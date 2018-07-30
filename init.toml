@@ -24,8 +24,6 @@
     enable_tabline_filetype_icon = true
     enable_statusline_display_mode = false
 
-
-
     # MY OWN OPTIONS
     filemanager = "nerdtree"
     vimcompatible = true
@@ -38,14 +36,15 @@
 
 # Enable autocomplete layer
 [[layers]]
-name = 'autocomplete'
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "smart"
+  name = 'autocomplete'
+  auto-completion-return-key-behavior = "complete"
+  auto-completion-tab-key-behavior = "smart"
+
 
 [[layers]]
-name = 'shell'
-default_position = 'left'
-default_height = 30
+  name = 'shell'
+  default_position = 'left'
+  default_height = 30
 
 [[layers]]
   name = "chinese"
@@ -74,3 +73,8 @@ default_height = 30
 
 [[layers]]
   name = "lang#go"
+
+# my own line
+[[custom_plugins]]
+    name = "907th/vim-auto-save"
+    merged = 0
