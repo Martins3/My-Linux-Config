@@ -3,6 +3,11 @@
 ## vim
 Based on **SpaveVim**
 
+Detected bugs:
+```
+nvim test.cpp
+```
+
 
 ## zsh
 Based on **oh-my-zsh**
