@@ -123,17 +123,13 @@ antigen apply
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias wifi="sudo create_ap wlp3s0 wlp3s0 wifiName 123456ab"
 alias upMlinks="git add * && git commit -m \"Xueshi Hu added some links\" && git push origin master  "
-alias cloud="sshpass -p 'qwe123QWE' ssh ubuntu@118.89.164.91"
 alias ju="jupyter notebook"
 alias anzhuang="sudo apt install"
 alias vpn="ss-local -c ~/Core/vpn.json"
 alias gj="shutdown --p now"
-alias tsfe="~/software/2048.sh"
 alias c="clear"
 alias pingbao='nyancat'
-alias vcloud="sshpass -p 'S2[a!L=,+w*NDf=_' ssh root@104.207.142.121"
 alias closeckb="sudo modprobe -r psmouse"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab"
 alias reboot="sudo shutdown -r now"
@@ -151,6 +147,7 @@ alias ungit="rm -rf .git"
 alias t="trans"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
+
 # my added line hu bachelor 5.8 2017
 source ~/.profile
 
@@ -176,4 +173,6 @@ PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
 
 # 配置powerlevel9k
-
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_DISABLE_RPROMPT=true
