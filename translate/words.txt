@@ -13,3 +13,4 @@ synonymous
 boost
 decrepted
 decrypted
+lint

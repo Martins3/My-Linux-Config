@@ -30,6 +30,8 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"   
        
+    enable_neomake = false
+    enable_ale = true
 
 
 
@@ -40,6 +42,8 @@
   auto-completion-return-key-behavior = "complete"
   auto-completion-tab-key-behavior = "smart"
 
+[[layers]]
+  name = "checkers"
 
 [[layers]]
   name = 'shell'
@@ -51,10 +55,10 @@
 
 [[layers]]
   name = "lang#c"
-  clang_executable = "/usr/bin/clang++-3.8"
+  clang_executable = "/usr/bin/clang"
   [layer.clang_std]
     c = "c11"
-    cpp = "c++11"
+    cpp = "c++1z"
 
 [[layers]]
   name = "lang#markdown"
@@ -74,7 +78,7 @@
 [[layers]]
   name = "lang#go"
 
-# my own line
+# my own plug
 [[custom_plugins]]
     name = "907th/vim-auto-save"
     merged = 0

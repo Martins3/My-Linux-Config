@@ -8,6 +8,8 @@ Detected bugs:
 nvim test.cpp
 ```
 
+和bash相似的问题， 要么没有报错，要么错误的报错。
+
 
 ## zsh
 Based on **oh-my-zsh**

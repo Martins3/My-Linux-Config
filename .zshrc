@@ -88,11 +88,11 @@ antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
-# antigen theme robbyrussell
-antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen theme robbyrussell
+# antigen theme bhilburn/powerlevel9k powerlevel9k
 
 # 更加好看的ls
-antigen bundle supercrabtree/k
+# antigen bundle supercrabtree/k
 # Tell Antigen that you're done.
 antigen apply
 # User configuration
@@ -144,7 +144,7 @@ alias unsetproxy="unset ALL_PROXY"
 alias q="exit"
 alias learnGit="~/Application/Git-it-Linux-x64/Git-it"
 alias ungit="rm -rf .git"
-alias t="trans"
+alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
 
@@ -173,6 +173,7 @@ PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
 
 # 配置powerlevel9k
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_DISABLE_RPROMPT=true
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+#POWERLEVEL9K_DISABLE_RPROMPT=true
+
