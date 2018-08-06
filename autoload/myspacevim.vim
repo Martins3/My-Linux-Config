@@ -4,9 +4,10 @@ func! myspacevim#before() abort
   func! QuickRun()
     exec "w"
     let ext = expand("%:e")
-
     if ext ==# "sh"
       exec "! ./%"
+    elseif ext ==# "cpp"
+      exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
     endif
   endf
   noremap<F7> : call QuickRun()<CR>
@@ -18,9 +19,27 @@ func! myspacevim#before() abort
   "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
   let mapleader = ','
   let g:mapleader = ','
+  let g:neomake_cpp_enable_markers=['clang']
+  let g:neomake_cpp_clang_args = ["-std=c++14"]
 
 
-  
+  "nerdtree隐藏不可编辑文件
+  let g:NERDTreeIgnore=['\.o$', '\.out$']
+
+  "cscope的内容
+
+  if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=1
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
+  endif
+
 endf
 
 

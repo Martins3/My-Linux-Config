@@ -29,9 +29,9 @@
     vimcompatible = true
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"   
-       
-    enable_neomake = false
-    enable_ale = true
+
+# enable_neomake = false
+# enable_ale = true
 
 
 
@@ -55,7 +55,7 @@
 
 [[layers]]
   name = "lang#c"
-  clang_executable = "/usr/bin/clang"
+  clang_executable = "/usr/bin/clang++"
   [layer.clang_std]
     c = "c11"
     cpp = "c++1z"
@@ -78,7 +78,11 @@
 [[layers]]
   name = "lang#go"
 
+[[layers]]
+  name = "cscope"
+
 # my own plug
 [[custom_plugins]]
     name = "907th/vim-auto-save"
     merged = 0
+

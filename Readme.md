@@ -4,11 +4,14 @@
 Based on **SpaveVim**
 
 Detected bugs:
+1.
 ```
 nvim test.cpp
 ```
 
-和bash相似的问题， 要么没有报错，要么错误的报错。
+Feature not found:
+1. 预览函数的tagbar
+2. 函数之间跳转
 
 
 ## zsh
@@ -35,6 +38,11 @@ All the Software installed are placed under the dir `Application`
 1. tldr
 1. translate-shell
 1. Zulip-2.3.3-x86\_64.AppImage
+2. 
+
+### software problems
+1. clang-3.8 在`std=c++1z`的时候行为异常
+2. 
 
 ## Private Data
 All the private and can not regained from internet are stored at `Core`
