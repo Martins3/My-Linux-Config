@@ -86,3 +86,7 @@
     name = "907th/vim-auto-save"
     merged = 0
 
+# tagbar plug
+[[custom_plugins]]
+    name = "majutsushi/tagbar"
+    merged = false
