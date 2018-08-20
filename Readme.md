@@ -10,8 +10,7 @@ nvim test.cpp
 ```
 
 Feature not found:
-1. 预览函数的tagbar
-2. 函数之间跳转
+1. 函数之间跳转
 
 
 ## zsh
