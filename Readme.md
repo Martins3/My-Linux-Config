@@ -17,7 +17,7 @@ Feature not found:
 Based on **oh-my-zsh**
 
 ## tilix
-
+a more contrast color config: tilix-color-config.json
 
 ## software list
 All the Software installed are placed under the dir `Application`
