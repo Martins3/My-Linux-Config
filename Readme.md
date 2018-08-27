@@ -17,7 +17,9 @@ Feature not found:
 Based on **oh-my-zsh**
 
 ## tilix
-A more contraster color config: tilix-color-config.json
+A more contraster color config: tilix-color-config.json.
+put it in /usr/share/tilix/schemes or ~/.config/tilix/schemes.
+if this doesn't do much, then modify one of the defult themes to be the same as "tilix-color-config.json".  
 
 ## software list
 All the Software installed are placed under the dir `Application`
