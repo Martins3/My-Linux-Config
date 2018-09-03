@@ -113,5 +113,3 @@ enable_flow_syntax = true
 [[custom_plugins]]
     name = "majutsushi/tagbar"
     merged = 0
-
-
