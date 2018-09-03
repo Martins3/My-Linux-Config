@@ -19,15 +19,18 @@ func! myspacevim#before() abort
   "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
   let mapleader = ','
   let g:mapleader = ','
+
+  "设置neomake的内容
   let g:neomake_cpp_enable_markers=['clang']
   let g:neomake_cpp_clang_args = ["-std=c++14"]
+
+  
 
 
   "nerdtree隐藏不可编辑文件
   let g:NERDTreeIgnore=['\.o$', '\.out$']
 
-  "cscope的内容
-
+  "cscope的自动链接数据库
   if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=1
@@ -39,6 +42,17 @@ func! myspacevim#before() abort
     endif
     set csverb
   endif
+
+  "将默认的2 tab的缩进修改为 4 tab 缩进
+  let g:spacevim_default_indent = 4
+
+  "关闭智障的自动报错， 尚且没有办法完成
+  let g:spacevim_lint_on_save = 1
+
+  " 使用ycm实现对于c++的自动补全
+  let g:spacevim_enable_ycm = 1
+  let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
+
 
 endf
 
