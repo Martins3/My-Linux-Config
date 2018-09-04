@@ -16,6 +16,7 @@ ZSH_THEME="robbyrussell"
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+#
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -23,9 +24,11 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
+#
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
+# 
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -147,6 +150,9 @@ alias ungit="rm -rf .git"
 alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
+alias pad="ssh shen@192.168.12.17"
+alias fox="~/Application/firefox/firefox"
+alias dashboard="sudo /usr/local/go/bin/go run ~/Application/linux-dash/app/server/index.go"
 
 # my added line hu bachelor 5.8 2017
 source ~/.profile
@@ -171,6 +177,14 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s /home/shen/.autojump/etc/profile.d/autojump.sh ]] && source /home/shen/.autojump/etc/profile.d/autojump.sh
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig 
 export PKG_CONFIG_PATH
+
+# 添加go的环境
+export PATH=$PATH:/usr/local/go/bin 
+
+
+export PATH=$PATH:/home/shen/.cargo/bin 
+export FONTCONFIG_PATH=/etc/fonts
+
 
 # 配置powerlevel9k
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)

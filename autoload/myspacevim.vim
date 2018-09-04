@@ -25,9 +25,7 @@ func! myspacevim#before() abort
   let g:neomake_cpp_clang_args = ["-std=c++14"]
 
   
-
-
-  "nerdtree隐藏不可编辑文件
+  "nerdtree隐藏部分类型的文件
   let g:NERDTreeIgnore=['\.o$', '\.out$']
 
   "cscope的自动链接数据库
@@ -46,13 +44,19 @@ func! myspacevim#before() abort
   "将默认的2 tab的缩进修改为 4 tab 缩进
   let g:spacevim_default_indent = 4
 
-  "关闭智障的自动报错， 尚且没有办法完成
-  let g:spacevim_lint_on_save = 1
+
+  "关闭智障的自动报错的窗口，暂时启用YCM 的效果
+  let g:spacevim_lint_on_save = 0
+  let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
+
+  " 暂时不知道和deoplete的关系
+  " 这一个东西真的烦人，　ycm的开启导致　原来的补全失效
+  " neomake 和 YCM　的功能似乎冲突，显然自动补全的部分功能没有处理啊
 
   " 使用ycm实现对于c++的自动补全
   let g:spacevim_enable_ycm = 1
   let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
-
+  let g:spacevim_snippet_engine = 'ultisnips'
 
 endf
 

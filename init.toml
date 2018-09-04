@@ -41,10 +41,6 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"   
 
-    #　对于更加复杂的问题，似乎neomake 尚且无法处理
-    # enable_neomake = false
-    # enable_ale = true
-
 
 # Enable autocomplete layer
 [[layers]]
@@ -113,3 +109,4 @@ enable_flow_syntax = true
 [[custom_plugins]]
     name = "majutsushi/tagbar"
     merged = 0
+
