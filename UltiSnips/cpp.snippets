@@ -2,6 +2,26 @@ snippet printf
 printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
+snippet /*
+/**
+*/
+endsnippet
+
+
+snippet readVec
+REOPEN_READ
+vector<int> vec;
+int d;
+while(scanf("%d", &d) == 1){
+	vec.push_back(d);
+}
+endsnippet
+
+snippet deflld
+typedef long long int lld;
+endsnippet
+        
+
 snippet import
 #include <iostream>
 #include <fstream>

@@ -282,3 +282,5 @@ knack
 photon
 thesis
 clutter
+jealous
+robber

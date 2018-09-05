@@ -8,9 +8,15 @@ func! myspacevim#before() abort
       exec "! ./%"
     elseif ext ==# "cpp"
       exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
+    elseif ext ==# "c"
+      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
     endif
   endf
   noremap<F7> : call QuickRun()<CR>
+
+  "设置gdb启动快捷键
+  "暂时debug　的使用依旧含有问题
+  call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'VBGstartGDB ./%<.out', 'run gdb for the current file', 1)
 
   "根据当前文件自动修改pwd
   set autochdir
