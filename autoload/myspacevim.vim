@@ -9,7 +9,9 @@ func! myspacevim#before() abort
     elseif ext ==# "cpp"
       exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
     elseif ext ==# "c"
-      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
+      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out < ~/Core/ACM/input.txt" 
+    elseif ext ==# "go"
+      exec "!go run %" 
     endif
   endf
   noremap<F7> : call QuickRun()<CR>
@@ -53,7 +55,7 @@ func! myspacevim#before() abort
 
   "关闭智障的自动报错的窗口，暂时启用YCM 的效果
   let g:spacevim_lint_on_save = 0
-  let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
+  " let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
   " 暂时不知道和deoplete的关系
   " 这一个东西真的烦人，　ycm的开启导致　原来的补全失效

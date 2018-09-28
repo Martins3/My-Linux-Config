@@ -1,0 +1,41 @@
+snippet Cimport "是时候重拳出击了!"
+#include<stdio.h>
+#include<stdlib.h> // malloc 
+#include<string.h> // strcmp ..
+#include<stdbool.h> // bool false true
+#include<stdlib.h> // sort
+#include<limits.h> // INT_MAX
+#include<math.h> // sqrt
+
+
+int main(){
+	${0}
+	return 0;
+}
+endsnippet
+
+snippet printf
+printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet scanf
+scanf("${1:%d}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+
+
+
+snippet max "max funtion for int"
+inline int max ( int a, int b ) { return a > b ? a : b; }
+endsnippet
+
+snippet min "min function for int"
+inline int min ( int a, int b ) { return a < b ? a : b; }
+endsnippet
+
+
+snippet fori "for loop (for)"
+for (int ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
+	${VISUAL}$0
+}
+endsnippet
