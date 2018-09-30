@@ -5,11 +5,11 @@ func! myspacevim#before() abort
     exec "w"
     let ext = expand("%:e")
     if ext ==# "sh"
-      exec "! ./%"
+      exec "!sh %"
     elseif ext ==# "cpp"
       exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
     elseif ext ==# "c"
-      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out < ~/Core/ACM/input.txt" 
+      exec "!clang % -Wall -g -std=c11 -o %<.out" 
     elseif ext ==# "go"
       exec "!go run %" 
     endif
@@ -34,7 +34,7 @@ func! myspacevim#before() abort
 
   
   "nerdtree隐藏部分类型的文件
-  let g:NERDTreeIgnore=['\.o$', '\.out$']
+  let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$']
 
   "cscope的自动链接数据库
   if has("cscope")
