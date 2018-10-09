@@ -49,6 +49,9 @@
   auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
+  name = "lang#latex"
+
+[[layers]]
   name = "checkers"
   show_cursor_error = true
   lint_on_the_fly = true
@@ -109,4 +112,9 @@ enable_flow_syntax = true
 [[custom_plugins]]
     name = "majutsushi/tagbar"
     merged = 0
+
+[[custom_plugins]]
+    name = "sjl/gundo.vim"
+    merged = 0
+
 

@@ -7,16 +7,15 @@ snippet Cimport "是时候重拳出击了!"
 #include<limits.h> // INT_MAX
 #include<math.h> // sqrt
 
-
 int main(){
 	${0}
 	return 0;
 }
 endsnippet
 
-snippet printf
-printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
-endsnippet
+# snippet printf
+# printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+# endsnippet
 
 snippet scanf
 scanf("${1:%d}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}

@@ -9,9 +9,13 @@ func! myspacevim#before() abort
     elseif ext ==# "cpp"
       exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
     elseif ext ==# "c"
-      exec "!clang % -Wall -g -std=c11 -o %<.out" 
+      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out" 
     elseif ext ==# "go"
       exec "!go run %" 
+    elseif ext ==# "js"
+      exec "!node %" 
+    elseif ext ==# "py"
+      exec "!python %" 
     endif
   endf
   noremap<F7> : call QuickRun()<CR>
@@ -34,7 +38,7 @@ func! myspacevim#before() abort
 
   
   "nerdtree隐藏部分类型的文件
-  let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$']
+  let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$', 'package.json']
 
   "cscope的自动链接数据库
   if has("cscope")
@@ -66,6 +70,17 @@ func! myspacevim#before() abort
   let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
   let g:spacevim_snippet_engine = 'ultisnips'
 
+  " seems to be useless
+  let g:spacevim_windows_smartclose = 'q'
+
+  " more smart undo than ctrl-R
+  nnoremap <F4> :GundoToggle<CR>
+  " 开启保存 undo 历史功能, 此功能与 QucikRun　函数相冲突
+  " set undofile
+  " set undodir=~/.SpaceVim.d/.undo_history
+
+  " wrap the line
+  set wrap
 endf
 
 
