@@ -79,8 +79,9 @@ func! myspacevim#before() abort
   " set undofile
   " set undodir=~/.SpaceVim.d/.undo_history
 
-  " wrap the line
-  set wrap
+  " warp line
+  set nowrap
+  nnoremap <F5> :set wrap! wrap?<CR>
 endf
 
 
