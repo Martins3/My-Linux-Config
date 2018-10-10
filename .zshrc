@@ -134,7 +134,7 @@ alias gj="shutdown --p now"
 alias c="clear"
 alias pingbao='nyancat'
 alias closeckb="sudo modprobe -r psmouse"
-alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab"
+alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"
 alias vim="nvim"
 alias vi="nvim"
@@ -151,7 +151,7 @@ alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
 alias pad="ssh shen@192.168.12.17"
-alias fox="~/Application/firefox/firefox"
+alias fox="~/Application/firefox/firefox &"
 alias dashboard="sudo /usr/local/go/bin/go run ~/Application/linux-dash/app/server/index.go"
 
 # my added line hu bachelor 5.8 2017
@@ -179,11 +179,15 @@ PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
 
 # 添加go的环境
-export PATH=$PATH:/usr/local/go/bin 
+export PATH=$PATH:/usr/local/go/bin
 
 
 export PATH=$PATH:/home/shen/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
+
+export PREFIX="/home/shen/Application/i386elfgcc"
+export TARGET=i386-elf
+export PATH="$PREFIX/bin:$PATH"
 
 
 # 配置powerlevel9k
