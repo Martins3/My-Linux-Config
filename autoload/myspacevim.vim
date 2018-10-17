@@ -15,7 +15,9 @@ func! myspacevim#before() abort
     elseif ext ==# "js"
       exec "!node %" 
     elseif ext ==# "py"
-      exec "!python %" 
+      exec "!python3 %" 
+    else
+      exec "Not supported file type !"
     endif
   endf
   noremap<F7> : call QuickRun()<CR>
