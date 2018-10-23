@@ -1,9 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/shen/anaconda3/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH=/home/shen/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -126,33 +125,25 @@ antigen apply
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias upMlinks="git add * && git commit -m \"Xueshi Hu added some links\" && git push origin master  "
-alias ju="jupyter notebook"
 alias anzhuang="sudo apt install"
 alias vpn="ss-local -c ~/Core/vpn.json"
 alias gj="shutdown --p now"
 alias c="clear"
-alias pingbao='nyancat'
-alias closeckb="sudo modprobe -r psmouse"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"
 alias vim="nvim"
 alias vi="nvim"
 alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
 alias fuckRj="sudo service network-manager start"
-alias resetGit="git fetch origin && git reset --hard origin/master"
 alias reNet="sudo service network-manager restart"
-alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
-alias unsetproxy="unset ALL_PROXY"
+alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
 alias learnGit="~/Application/Git-it-Linux-x64/Git-it"
 alias ungit="rm -rf .git"
 alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
-alias pad="ssh shen@192.168.12.17"
 alias fox="~/Application/firefox/firefox &"
-alias dashboard="sudo /usr/local/go/bin/go run ~/Application/linux-dash/app/server/index.go"
 
 # my added line hu bachelor 5.8 2017
 source ~/.profile
@@ -165,7 +156,7 @@ fi
 
 
 export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
-export PYTHONPATH=$PYTHONPATH:/home/shen/anaconda3/bin/python
+export PYTHONPATH=$PYTHONPATH:~/anaconda3/bin/python
 
 
 # 配置nvm
@@ -174,7 +165,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # 配置autojmp
-[[ -s /home/shen/.autojump/etc/profile.d/autojump.sh ]] && source /home/shen/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig 
 export PKG_CONFIG_PATH
 
@@ -182,12 +173,17 @@ export PKG_CONFIG_PATH
 export PATH=$PATH:/usr/local/go/bin
 
 
-export PATH=$PATH:/home/shen/.cargo/bin 
+export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 
 export PREFIX="/home/shen/Application/i386elfgcc"
 export TARGET=i386-elf
 export PATH="$PREFIX/bin:$PATH"
+export PATH=~/anaconda3/bin:$PATH
+
+# 测试android repo 随时删除
+alias repo="python2 ~/Application/repo/repo"
+
 
 
 # 配置powerlevel9k

@@ -1,5 +1,4 @@
 func! myspacevim#before() abort
-
   "实现一键运行
   func! QuickRun()
     exec "w"
@@ -82,15 +81,22 @@ func! myspacevim#before() abort
   " set undodir=~/.SpaceVim.d/.undo_history
 
   " warp line
-  set nowrap
-  nnoremap <F5> :set wrap! wrap?<CR>
+  " set nowrap
+  " nnoremap <F5> :set wrap! wrap?<CR>
+  " SPC t W 就可以实现，没有必要使用
+
+  " 默认没有linenum
+  " 删除文件时自动删除文件对应 buffer
+  " set nonu
+  let NERDTreeAutoDeleteBuffer=1
+
 endf
 
 
 func! myspacevim#after() abort
   "autosave
   let g:auto_save = 1  " enable AutoSave on Vim startup
-  let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
+  let g:auto_save_no_updatetime = 1   " do not change the 'updatetime' option
   let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
   let g:auto_save_silent = 1  " do not display the auto-save notification
 endf

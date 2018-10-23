@@ -90,7 +90,7 @@
   name = "lang#go"
 
 [[layers]]
-  name = "cscope"
+  name = "tags"
   
 [[layers]]
   name = "lang#sh"
