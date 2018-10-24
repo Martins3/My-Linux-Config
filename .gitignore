@@ -1,1 +1,2 @@
-.undo_history
+.undo_history/
+*.c

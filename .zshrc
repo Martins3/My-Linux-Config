@@ -176,9 +176,10 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 
-export PREFIX="/home/shen/Application/i386elfgcc"
+# 这一个智障
+# export PREFIX="/home/shen/Application/i386elfgcc"
 export TARGET=i386-elf
-export PATH="$PREFIX/bin:$PATH"
+export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
 export PATH=~/anaconda3/bin:$PATH
 
 # 测试android repo 随时删除

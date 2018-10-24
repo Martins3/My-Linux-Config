@@ -9,7 +9,6 @@ This repository is configuration for [`SpaceVim`](http://spacevim.org/)
 ## How to do use this repo
 ### Install  SpaceVim
 Install SpaceVim is full of traps.
-
 1. Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 > 1. `apt-get install neovim` will lead to a old version one, which would have wasted your hours to find out what's wrong with `SpaceVim`, the correct way is compile it
 > 2. `git clone` may fail, I recommend `download zip` in your browser.
@@ -24,7 +23,6 @@ Install SpaceVim is full of traps.
 >   6. `sudo apt install xclip`
 
 2. Install `SpaceVim`
-
 3. Compile [`ycm`](https://github.com/Valloric/YouCompleteMe)
 >  in command mode, type `help SpaceVim` and read the doc about ycm.
 

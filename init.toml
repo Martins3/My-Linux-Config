@@ -2,7 +2,6 @@
 # dark_powered.toml --- dark powered configuration example for SpaceVim
 # Copyright (c) 2016-2017 Wang Shidong & Contributors
 # Author: Wang Shidong < wsdjeg at 163.com >
-# URL: https://spacevim.org
 # License: GPLv3
 #=============================================================================
 
@@ -55,6 +54,8 @@
   name = "checkers"
   show_cursor_error = true
   lint_on_the_fly = true
+  enable_ale = true
+
 
 [[layers]]
   name = 'shell'
@@ -80,41 +81,44 @@
 [[layers]]
   name = "github"
 
-[[layers]]
-  name = "games"
+# [[layers]]
+  # name = "games"
 
 [[layers]]
   name = "debug"
 
-[[layers]]
-  name = "lang#go"
+# [[layers]]
+  # name = "lang#go"
 
-[[layers]]
-  name = "tags"
+# [[layers]]
+  # name = "tags"
   
+# [[layers]]
+    # name = "denite"
+
 [[layers]]
   name = "lang#sh"
 
-[[layers]]
-  name = "lang#julia"
+# [[layers]]
+  # name = "lang#julia"
 
-
-[[layers]]
-name = "lang#javascript"
-auto_fix = true
-enable_flow_syntax = true
+# [[layers]]
+    # name = "lang#javascript"
+    # auto_fix = true
+    # enable_flow_syntax = true
 
 # my own plug
 [[custom_plugins]]
     name = "907th/vim-auto-save"
-    merged = 0
 
 [[custom_plugins]]
     name = "majutsushi/tagbar"
-    merged = 0
 
 [[custom_plugins]]
     name = "sjl/gundo.vim"
-    merged = 0
 
+# SpaceVim 并没有使用该
+[[custom_plugins]]
+    name = "Yggdroot/LeaderF"
+    build = "./install.sh"
 
