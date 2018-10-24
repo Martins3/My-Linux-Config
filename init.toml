@@ -52,8 +52,8 @@
 
 [[layers]]
   name = "checkers"
-  show_cursor_error = true
-  lint_on_the_fly = true
+  # show_cursor_error = true
+  # lint_on_the_fly = true
   enable_ale = true
 
 
@@ -122,3 +122,11 @@
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
+# 使用Gtags 
+# TODO: 似乎很多命令都是没有奏效的
+# TODO: 目前gtags 没有查询到比较好的教程
+[[custom_plugins]]
+    name = "ludovicchabant/vim-gutentags"
+
+[[custom_plugins]]
+    name = "skywind3000/gutentags_plus"

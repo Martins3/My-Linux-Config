@@ -16,7 +16,7 @@ func! myspacevim#before() abort
         elseif ext ==# "py"
             exec "!python3 %" 
         else
-            exec "Not supported file type !"
+            echo "Check file type !"
         endif
     endf
     noremap<F7> : call QuickRun()<CR>
@@ -43,9 +43,26 @@ func! myspacevim#before() abort
     "将默认的2 tab的缩进修改为 4 tab 缩进
     let g:spacevim_default_indent = 4
 
-    "关闭智障的自动报错的窗口，暂时启用YCM 的效果
-    let g:spacevim_lint_on_save = 0
-    " let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
+    " 即使在layer层使用，但是使用ale 依旧需要手动指明
+    let g:spacevim_enable_ale = 1
+    " let g:ale_linters_explicit = 1 # 导致失效，有意思
+    " 一般情况的C++配置,　怀疑是否有效
+    " let g:ale_cpp_clangtidy_options = '-Wall -std=c++1z -x c++'
+    " let g:ale_cpp_clangcheck_options = '-- -Wall -std=c++1z -x c++'
+    " If you want ALE to work for C as well, you will have to do the same for g:ale_c_clangtidy_options and g:ale_c_clangcheck_options.
+    " 一般情况的C配置
+    " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+    " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+    " let g:ale_c_cppcheck_options = ''
+    " let g:ale_cpp_cppcheck_options = ''
+    " 无法处理的问题，C++ 没有报错warning
+    " linux的源代码直接下没有报错，显示的问题，以后检查
+    "
+    " let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+    " let g:ale_lint_on_text_changed = 'normal'
+    " let g:ale_lint_on_insert_leave = 1
+    " let g:airline#extensions#ale#enabled = 1
+
 
     " 使用ycm实现对于c++的自动补全
     let g:spacevim_enable_ycm = 1
@@ -60,7 +77,6 @@ func! myspacevim#before() abort
 
     " more smart undo than ctrl-R
     " 似乎文件夹的设置完全没有用途
-
     nnoremap <F4> :GundoToggle<CR>
     set undofile
     set undodir=~/.SpaceVim.d/.undo_history
@@ -68,18 +84,24 @@ func! myspacevim#before() abort
     " 实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
+    " TODO: 到头来根本没有达成使用GNU global 的效果
+    " 而且其中精度和显示方式无法接受
     " gtags 的配置，但是中间的含义不是很懂
     " 认为SpaceVim 中间的ctags设置含有问题
+    set cscopetag " 使用 cscope 作为 tags 命令
+    set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = '~/.SpaceVim.d/gtags.conf'
-
-
-
+    let g:gutentags_modules += ['gtags_cscope']
+    " 指出一般情况仓库的模式
+    let g:gutentags_project_root = ['.git']
+    " let g:gutentags_ctags_tagfile = 'tagfile'
     " 禁用 gutentags 自动加载 gtags 数据库的行为
-    let g:gutentags_auto_add_gtags_cscope = 0
-    " 添加的内容
-    let g:gutentags_define_advanced_commands = 1
-    " 自动更新含有问题
+    " let g:gutentags_auto_add_gtags_cscope = 0
+    " 使用universal tags
+    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+    " TODO: 似乎生成的结构不对
+    "
     " TODO: fuzzy find 在SpaceVim中间的功能不全，而且无法理解使用的原理是什么
     " TODO: leaderf 中间含有错误
     " TODO: 无法区分当前的报错到底是ycm
@@ -97,4 +119,15 @@ func! myspacevim#after() abort
 
     " 使用leaderF 替代tagbar 的功能
     nnoremap <F2> :LeaderfFunction!<CR>
+
+    " 定义gtags的快捷键
+    noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
+    noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
+    noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
+    noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
+    noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
+    noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+    noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
+    noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 endf
