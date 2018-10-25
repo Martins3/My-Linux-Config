@@ -24,16 +24,6 @@
 <F2>	autoload/myspacevim.vim	/^    nnoremap <F2> :LeaderfFunction!<CR>$/;"	m
 <F4>	autoload/myspacevim.vim	/^    nnoremap <F4> :GundoToggle<CR>$/;"	m
 <F7>	autoload/myspacevim.vim	/^    noremap<F7> : call QuickRun()<CR>$/;"	m
-<leader>ga	autoload/myspacevim.vim	/^    noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>$/;"	m
-<leader>gc	autoload/myspacevim.vim	/^    noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>$/;"	m
-<leader>gd	autoload/myspacevim.vim	/^    noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>$/;"	m
-<leader>ge	autoload/myspacevim.vim	/^    noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>$/;"	m
-<leader>gf	autoload/myspacevim.vim	/^    noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>$/;"	m
-<leader>gg	autoload/myspacevim.vim	/^    noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>$/;"	m
-<leader>gi	autoload/myspacevim.vim	/^    noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>$/;"	m
-<leader>gs	autoload/myspacevim.vim	/^    noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>$/;"	m
-<leader>gt	autoload/myspacevim.vim	/^    noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>$/;"	m
-Drupal content management platform	gtags.conf	/^drupal|Drupal content management platform:\\$/;"	k
 FlagsForFile	.ycm_extra_conf.py	/^def FlagsForFile(filename, **kwargs):$/;"	f
 How to do use this repo	Readme.md	/^## How to do use this repo$/;"	s
 Install  SpaceVim	Readme.md	/^### Install  SpaceVim$/;"	S
@@ -41,16 +31,11 @@ My Linux configuration	Readme.md	/^# My Linux configuration$/;"	c
 QuickRun	autoload/myspacevim.vim	/^    func! QuickRun()$/;"	f
 SOURCE_EXTENSIONS	.ycm_extra_conf.py	/^SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]$/;"	v
 Suggestion	Readme.md	/^## Suggestion$/;"	s
-User custom plugin parser	gtags.conf	/^user-custom|User custom plugin parser:\\$/;"	k
-a	.undo_history/%home%shen%Application%linux-4.18.3%a.c	/^VimüUnDoÂ    int a;5ÅÁ™/;"	v	typeref:typename:VimüUnDoÂˇˇˇint
+a	.undo_history/%home%shen%Application%linux-4.18.3%a.c	/^VimüUnDoÂ    int a;5ÅÁ™/;"	v	typeref:typename:VimüUnDoÂint
 autojum	Readme.md	/^### autojum$/;"	S
 background-color	tilix-color-config.json	/^    "background-color": "#002A35",$/;"	s
 clone this repo	Readme.md	/^## clone this repo$/;"	s
 comment	tilix-color-config.json	/^    "comment": "Taken from Gnome Terminal",$/;"	s
-common	gtags.conf	/^common:\\$/;"	k
-ctags	gtags.conf	/^ctags:\\$/;"	k
-ctags	gtags.conf	/^new-ctags:\\$/;"	k
-default	gtags.conf	/^default:\\$/;"	k
 flags	.ycm_extra_conf.py	/^flags = [$/;"	v
 foreground-color	tilix-color-config.json	/^    "foreground-color": "#829395",$/;"	s
 g:NERDTreeIgnore	autoload/myspacevim.vim	/^    let g:NERDTreeIgnore=['\\.o$', '\\.out$', '\\.bin$', '\\.dis$', 'node_modules', '\\.lock$', /;"	v
@@ -58,9 +43,6 @@ g:auto_save	autoload/myspacevim.vim	/^    let g:auto_save = 1  " enable AutoSave
 g:auto_save_in_insert_mode	autoload/myspacevim.vim	/^    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode$/;"	v
 g:auto_save_no_updatetime	autoload/myspacevim.vim	/^    let g:auto_save_no_updatetime = 1   " do not change the 'updatetime' option$/;"	v
 g:auto_save_silent	autoload/myspacevim.vim	/^    let g:auto_save_silent = 1  " do not display the auto-save notification$/;"	v
-g:gutentags_ctags_extra_args	autoload/myspacevim.vim	/^    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']$/;"	v
-g:gutentags_modules	autoload/myspacevim.vim	/^    let g:gutentags_modules += ['gtags_cscope']$/;"	v
-g:gutentags_project_root	autoload/myspacevim.vim	/^    let g:gutentags_project_root = ['.git']$/;"	v
 g:mapleader	autoload/myspacevim.vim	/^    let g:mapleader = ','$/;"	v
 g:neomake_cpp_clang_args	autoload/myspacevim.vim	/^    let g:neomake_cpp_clang_args = ["-std=c++14"]$/;"	v
 g:neomake_cpp_enable_markers	autoload/myspacevim.vim	/^    let g:neomake_cpp_enable_markers=['clang']$/;"	v
@@ -73,22 +55,12 @@ g:ycm_confirm_extra_conf	autoload/myspacevim.vim	/^    let g:ycm_confirm_extra_c
 g:ycm_extra_conf_globlist	autoload/myspacevim.vim	/^    let g:ycm_extra_conf_globlist = ['~\/Application\/linux-4.18.3' ]$/;"	v
 g:ycm_global_ycm_extra_conf	autoload/myspacevim.vim	/^    let g:ycm_global_ycm_extra_conf = '~\/.SpaceVim.d\/.ycm_extra_conf.py'$/;"	v
 g:ycm_show_diagnostics_ui	autoload/myspacevim.vim	/^    let g:ycm_show_diagnostics_ui = 0$/;"	v
-gtags	gtags.conf	/^gtags:\\$/;"	k
-htags	gtags.conf	/^htags:\\$/;"	k
-i	.undo_history/%home%shen%Core%Tools%a.c	/^VimüUnDoÂst char *argv[])ûó    int i;5Å_–   ıvoid a()5Å_–[–§‰ˇˇ/;"	v	typeref:typename:VimüUnDoÂˇˇˇint
-in parser	gtags.conf	/^exuberant-ctags|plugin-example|setting to use Exuberant Ctags plug-in parser:\\$/;"	k
-in parser	gtags.conf	/^pygments-parser|Pygments plug-in parser:\\$/;"	k
-in parser	gtags.conf	/^universal-ctags|setting to use Universal Ctags plug-in parser:\\$/;"	k
+i	.undo_history/%home%shen%Core%Tools%a.c	/^VimüUnDoÂst char *argv[])ûó    int i;5Å_–   ıvoid a()5Å_–[–§‰ˇˇ$/;"	v	typeref:typename:VimüUnDoÂint
 myspacevim#after	autoload/myspacevim.vim	/^func! myspacevim#after() abort$/;"	f
 myspacevim#before	autoload/myspacevim.vim	/^func! myspacevim#before() abort$/;"	f
 name	tilix-color-config.json	/^    "name": "huang",$/;"	s
-native	gtags.conf	/^native:\\$/;"	k
 palette	tilix-color-config.json	/^    "palette": [$/;"	a
-parser	gtags.conf	/^builtin-parser:\\$/;"	k
-pygments	gtags.conf	/^native-pygments:\\$/;"	k
-pygments	gtags.conf	/^pygments:\\$/;"	k
 tilix	Readme.md	/^### tilix$/;"	S
 translate-shell	Readme.md	/^### translate-shell$/;"	S
 use-theme-colors	tilix-color-config.json	/^    "use-theme-colors": false,$/;"	b
-user	gtags.conf	/^user:\\$/;"	k
 zsh	Readme.md	/^### zsh$/;"	S

@@ -25,17 +25,19 @@ func! myspacevim#before() abort
     "暂时debug　的使用依旧含有问题
     call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'VBGstartGDB ./%<.out', 'run gdb for the current file', 1)
 
-    "根据当前文件自动修改pwd
-    set autochdir
+    " 根据当前文件自动修改pwd
+    " set autochdir
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
     let mapleader = ','
     let g:mapleader = ','
 
-    "设置neomake的内容
-    let g:neomake_cpp_enable_markers=['clang']
+    " 设置neomake的内容
+    " TODO: 不知道为什么neomake 自动被配置了，即使没有添加checker layer
+    let g:neomake_cpp_enable_markers=['clang++']
     let g:neomake_cpp_clang_args = ["-std=c++14"]
+    let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
     "nerdtree隐藏部分类型的文件
     let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$', 'package.json']
@@ -44,23 +46,7 @@ func! myspacevim#before() abort
     let g:spacevim_default_indent = 4
 
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
-    let g:spacevim_enable_ale = 1
-    " let g:ale_linters_explicit = 1 # 导致失效，有意思
-    " 一般情况的C++配置,　怀疑是否有效
-    " let g:ale_cpp_clangtidy_options = '-Wall -std=c++1z -x c++'
-    " let g:ale_cpp_clangcheck_options = '-- -Wall -std=c++1z -x c++'
-    " If you want ALE to work for C as well, you will have to do the same for g:ale_c_clangtidy_options and g:ale_c_clangcheck_options.
-    " 一般情况的C配置
-    " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-    " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-    " let g:ale_c_cppcheck_options = ''
-    " let g:ale_cpp_cppcheck_options = ''
-    " 无法处理的问题，C++ 没有报错warning
-    " linux的源代码直接下没有报错，显示的问题，以后检查
-    "
-    " let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-    " let g:ale_lint_on_text_changed = 'normal'
-    " let g:ale_lint_on_insert_leave = 1
+    " let g:spacevim_enable_ale = 1
     " let g:airline#extensions#ale#enabled = 1
 
 
@@ -77,36 +63,27 @@ func! myspacevim#before() abort
 
     " more smart undo than ctrl-R
     " 似乎文件夹的设置完全没有用途
+    " TODO: 让这些文件全部是隐藏文件，从而实现git会默认忽视
+    " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
+    " 的方法(大项目不会改，小项目容易生成)
     nnoremap <F4> :GundoToggle<CR>
     set undofile
     set undodir=~/.SpaceVim.d/.undo_history
 
-    " 实际测试，这一个效果似乎没有
+    " TODO:实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
-    " TODO: 到头来根本没有达成使用GNU global 的效果
-    " 而且其中精度和显示方式无法接受
-    " gtags 的配置，但是中间的含义不是很懂
-    " 认为SpaceVim 中间的ctags设置含有问题
-    set cscopetag " 使用 cscope 作为 tags 命令
-    set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-    let $GTAGSLABEL = 'native-pygments'
-    let $GTAGSCONF = '~/.SpaceVim.d/gtags.conf'
-    let g:gutentags_modules += ['gtags_cscope']
-    " 指出一般情况仓库的模式
-    let g:gutentags_project_root = ['.git']
-    " let g:gutentags_ctags_tagfile = 'tagfile'
-    " 禁用 gutentags 自动加载 gtags 数据库的行为
-    " let g:gutentags_auto_add_gtags_cscope = 0
-    " 使用universal tags
-    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-    " TODO: 似乎生成的结构不对
-    "
-    " TODO: fuzzy find 在SpaceVim中间的功能不全，而且无法理解使用的原理是什么
-    " TODO: leaderf 中间含有错误
-    " TODO: 无法区分当前的报错到底是ycm
-    " 还是ale的结果，也就是说两者的功能都是没有办法开发完整两者的作用
 
+    " 实现gtags的快速查询，但是leaderf 的效果更加好，目前不知道如何配置
+    " 实现使用选中quick fix之后立刻关闭quickfix 的界面
+    " TODO: 当打开quick fix 之后自动进入quickfix界面
+    " map <C-j> :cn<CR>
+    " map <C-k> :cp<CR>
+    autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+    nnoremap <F5> :Gtags<CR>
+    nnoremap <F6> :Gtags -r<CR>
+
+    " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
 endf
 
 
@@ -119,15 +96,4 @@ func! myspacevim#after() abort
 
     " 使用leaderF 替代tagbar 的功能
     nnoremap <F2> :LeaderfFunction!<CR>
-
-    " 定义gtags的快捷键
-    noremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
-    noremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
-    noremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
-    noremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
-    noremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
-    noremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-    noremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-    noremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
-    noremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
 endf
