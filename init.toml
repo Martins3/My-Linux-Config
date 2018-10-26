@@ -140,3 +140,7 @@
 #
 # [[custom_plugins]]
     # name = "skywind3000/gutentags_plus"
+#
+[[custom_plugins]]
+    name =  "Shougo/vimproc.vim"
+    build = "make"

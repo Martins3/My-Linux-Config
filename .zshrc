@@ -172,7 +172,7 @@ export PKG_CONFIG_PATH
 # 添加go的环境
 export PATH=$PATH:/usr/local/go/bin
 
-
+# Rust 环境变量
 export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 

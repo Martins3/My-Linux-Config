@@ -73,15 +73,18 @@ func! myspacevim#before() abort
     " TODO:实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
-
     " 实现gtags的快速查询，但是leaderf 的效果更加好，目前不知道如何配置
     " 实现使用选中quick fix之后立刻关闭quickfix 的界面
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     " map <C-j> :cn<CR>
     " map <C-k> :cp<CR>
+    "
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
     nnoremap <F5> :Gtags<CR>
     nnoremap <F6> :Gtags -r<CR>
+
+    "设置debug 选中
+    nnoremap <F8> :VBGstartGDB 
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
 endf
@@ -96,4 +99,6 @@ func! myspacevim#after() abort
 
     " 使用leaderF 替代tagbar 的功能
     nnoremap <F2> :LeaderfFunction!<CR>
+    " 使用GtagsCursor 代替ctags的功能
+    map <C-]> :GtagsCursor<CR>
 endf
