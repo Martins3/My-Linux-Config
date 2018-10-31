@@ -36,7 +36,7 @@
 
     # MY OWN OPTIONS
     filemanager = "nerdtree"
-    vimcompatible = true
+    # vimcompatible = true
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"   
 

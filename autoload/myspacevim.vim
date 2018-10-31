@@ -21,17 +21,40 @@ func! myspacevim#before() abort
     endf
     noremap<F7> : call QuickRun()<CR>
 
-    "设置gdb启动快捷键
-    "暂时debug　的使用依旧含有问题
-    call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'VBGstartGDB ./%<.out', 'run gdb for the current file', 1)
+    " 设置gdb启动快捷键
+    " 暂时debug　的使用依旧含有问题
+    " call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'VBGstartGDB ./%<.out', 'run gdb for the current file', 1)
+    
+    " config the make run
+    call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
 
-    " 根据当前文件自动修改pwd
-    " set autochdir
+    " config the Gtags
+    " The reason use 'k' is : other keys are already occupied by default. :)
+    call SpaceVim#custom#SPC('nnoremap', ['k', 'r'], 'Gtags -r', 'show Reference', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['k', 'd'], 'Gtags', 'show Definition', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['k', 'p'], 'GtagsGenerate!', 'update Project', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['k', 'f'], 'GtagsGenerate', 'update current File', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['k', 'c'], 'cclose', 'close fix window', 1)
+
+    " 实现gtags的快速查询，但是leaderf 的效果更加好，目前不知道如何配置
+    " 实现使用选中quick fix之后立刻关闭quickfix 的界面
+    " TODO: 当打开quick fix 之后自动进入quickfix界面
+    " map <C-j> :cn<CR>
+    " map <C-k> :cp<CR>
+    autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+    nnoremap <F5> :Gtags<CR>
+    nnoremap <F6> :Gtags -r<CR>
+    "设置debug 选中
+    nnoremap <F8> :VBGstartGDB 
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
     let mapleader = ','
     let g:mapleader = ','
+    " s　键位使用非常频繁，使用c 代替 s
+    let g:spacevim_windows_leader = 'c'
 
     " 设置neomake的内容
     " TODO: 不知道为什么neomake 自动被配置了，即使没有添加checker layer
@@ -40,11 +63,13 @@ func! myspacevim#before() abort
     let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
     "nerdtree隐藏部分类型的文件
-    let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$', 'package.json']
+    let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch']
 
-    "将默认的2 tab的缩进修改为 4 tab 缩进
+    " 将默认的2 tab的缩进修改为 4 tab 缩进
     let g:spacevim_default_indent = 4
-
+    " q 键位失效，使用\q 代替
+    " let g:spacevim_windows_smartclose = 'a'
+    
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
     " let g:spacevim_enable_ale = 1
     " let g:airline#extensions#ale#enabled = 1
@@ -67,24 +92,13 @@ func! myspacevim#before() abort
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
     " 的方法(大项目不会改，小项目容易生成)
     nnoremap <F4> :GundoToggle<CR>
-    set undofile
-    set undodir=~/.SpaceVim.d/.undo_history
+    " 没有必要重新设置文件夹，在.cache中间
+    " set undofile
+    " set undodir=~/.SpaceVim.d/.undo_history
 
     " TODO:实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
-    " 实现gtags的快速查询，但是leaderf 的效果更加好，目前不知道如何配置
-    " 实现使用选中quick fix之后立刻关闭quickfix 的界面
-    " TODO: 当打开quick fix 之后自动进入quickfix界面
-    " map <C-j> :cn<CR>
-    " map <C-k> :cp<CR>
-    "
-    autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
-    nnoremap <F5> :Gtags<CR>
-    nnoremap <F6> :Gtags -r<CR>
-
-    "设置debug 选中
-    nnoremap <F8> :VBGstartGDB 
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
 endf

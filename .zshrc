@@ -144,6 +144,9 @@ alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
 alias tldr="~/Application/tldr"
 alias fox="~/Application/firefox/firefox &"
+# TODO : 这并不是最清真的做法
+# 使用vim make -j8
+alias mr="make run"
 
 # my added line hu bachelor 5.8 2017
 source ~/.profile
