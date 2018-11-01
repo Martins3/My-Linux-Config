@@ -31,12 +31,12 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
 
     " config the Gtags
-    " The reason use 'k' is : other keys are already occupied by default. :)
-    call SpaceVim#custom#SPC('nnoremap', ['k', 'r'], 'Gtags -r', 'show Reference', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['k', 'd'], 'Gtags', 'show Definition', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['k', 'p'], 'GtagsGenerate!', 'update Project', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['k', 'f'], 'GtagsGenerate', 'update current File', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['k', 'c'], 'cclose', 'close fix window', 1)
+    " The reason use 'a' is : other keys are already occupied by default. :)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'r'], 'Gtags -r', 'show Reference', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'd'], 'Gtags', 'show Definition', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'update Project', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
 
     " 实现gtags的快速查询，但是leaderf 的效果更加好，目前不知道如何配置
     " 实现使用选中quick fix之后立刻关闭quickfix 的界面

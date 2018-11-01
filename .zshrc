@@ -126,7 +126,7 @@ antigen apply
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias anzhuang="sudo apt install"
-alias vpn="ss-local -c ~/Core/vpn.json"
+alias vpn="sslocal -c ~/Core/vpn.json"
 alias gj="shutdown --p now"
 alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
@@ -147,7 +147,7 @@ alias fox="~/Application/firefox/firefox &"
 # TODO : 这并不是最清真的做法
 # 使用vim make -j8
 alias mr="make run"
-
+alias gotop="~/Application/gotop"
 # my added line hu bachelor 5.8 2017
 source ~/.profile
 

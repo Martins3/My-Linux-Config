@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/shen/.SpaceVim.d/UltiSnips'
+let g:netrw_dirhist_2='/home/shen/.SpaceVim.d/autoload'
+let g:netrw_dirhist_3='/home/shen/.SpaceVim.d/.undo_history'
+let g:netrw_dirhist_4='/home/shen/.SpaceVim.d/.git'
+let g:netrw_dirhist_5='/home/shen/.SpaceVim.d/.undo_history'
+let g:netrw_dirhist_6='/home/shen/.SpaceVim.d/UltiSnips'
