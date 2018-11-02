@@ -177,7 +177,10 @@ export FONTCONFIG_PATH=/etc/fonts
 # export PREFIX="/home/shen/Application/i386elfgcc"
 export TARGET=i386-elf
 export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
+
+
 export PATH=~/anaconda3/bin:$PATH
+export PATH=~/.gem/ruby/2.5.0/bin:$PATH
 
 # 测试android repo 随时删除
 alias repo="python2 ~/Application/repo/repo"
