@@ -61,6 +61,34 @@ Too easy to mention.
 
 ### translate-shell
 
-
 ## Suggestion
 1. if you are not familiar with `vim`, you'd better try `vim` in `vscode` at first.
+
+
+#### arch
+pacman makes things much more easy.
+1. change software source [ref](https://www.cnblogs.com/lemos/p/7640680.html)
+```
+$ sudo pacman-mirrors -i -c China -m rank //更新镜像排名
+$ sudo pacman -Syy //更新数据源
+$ pacman -S archlinux-keyring 
+```
+
+2. Xfce Power Manger
+In `security` panel, `Automatically lock the session` : `Never`
+
+3. Fix shadowsocks [ref](https://kionf.com/2016/12/15/errornote-ss/)
+Read the error to find where is `openssl.py`.
+Open `openssl.py`
+Replace `cleanup` with `reset`
+```
+:%s/cleanup/reset/
+:x
+```
+
+4. Config tilix
+    1. In `Manjaro Setting manager` change default software.
+    2. 
+
+
+
