@@ -50,13 +50,6 @@
 [[layers]]
   name = "lang#latex"
 
-# [[layers]]
-  # name = "checkers"
-  # show_cursor_error = true
-  # lint_on_the_fly = true
-  # enable_ale = true
-
-
 [[layers]]
   name = 'shell'
   default_position = 'left'
@@ -81,35 +74,12 @@
 [[layers]]
   name = "github"
 
-# [[layers]]
-  # ndfame = "games"
-
 [[layers]]
   name = "debug"
-
-# [[layers]]
-  # name = "lang#go"
-
-# 不是使用原因有两个
-# 第一，layers 自动携带了gutentags 只有个插件，这一个插件对于Martins.github.io 这一个仓库表现异常
-# 第二, 使用四个按键的命令令人无法忍受
-# 暂时直接使用gtas.vim
-# [[layers]]
-  # name = "tags"
-  
-# [[layers]]
-    # name = "denite"
 
 [[layers]]
   name = "lang#sh"
 
-# [[layers]]
-  # name = "lang#julia"
-
-# [[layers]]
-    # name = "lang#javascript"
-    # auto_fix = true
-    # enable_flow_syntax = true
 
 # my own plug
 [[custom_plugins]]
@@ -121,26 +91,13 @@
 [[custom_plugins]]
     name = "sjl/gundo.vim"
 
-# SpaceVim 并没有使用该
 [[custom_plugins]]
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
-# 使用Gtags 
-# 1. 更新操作, 
-# 2. 创建操作, 手动创建，对话框的结构
-# 3. quickfix window 的设置需要类似于leaderf的效果
-# 4. 封装快捷键
-# 5. 
 [[custom_plugins]]
     name = "SpaceVim/gtags.vim"
 
-# [[custom_plugins]]
-    # name = "ludovicchabant/vim-gutentags"
-#
-# [[custom_plugins]]
-    # name = "skywind3000/gutentags_plus"
-#
 [[custom_plugins]]
     name =  "Shougo/vimproc.vim"
     build = "make"

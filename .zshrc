@@ -125,29 +125,23 @@ antigen apply
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias anzhuang="sudo apt install"
+# alias anzhuang="sudo apt install"
+alias anzhuang="sudo pacman -S"
 alias vpn="sslocal -c ~/Core/vpn.json"
 alias gj="shutdown --p now"
 alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"
 alias vim="nvim"
-alias vi="nvim"
 alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
 alias fuckRj="sudo service network-manager start"
 alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
-alias learnGit="~/Application/Git-it-Linux-x64/Git-it"
-alias ungit="rm -rf .git"
 alias t="~/.SpaceVim.d/translate/trans.sh"
 alias cheat="~/Application/cht.sh"
-alias tldr="~/Application/tldr"
-alias fox="~/Application/firefox/firefox &"
-# TODO : 这并不是最清真的做法
-# 使用vim make -j8
-alias mr="make run"
 alias gotop="~/Application/gotop"
+
 # my added line hu bachelor 5.8 2017
 source ~/.profile
 
