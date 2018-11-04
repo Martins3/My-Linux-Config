@@ -128,7 +128,7 @@ antigen apply
 # alias anzhuang="sudo apt install"
 alias anzhuang="sudo pacman -S"
 alias vpn="sslocal -c ~/Core/vpn.json"
-alias gj="shutdown --p now"
+# alias gj="shutdown --p now"
 alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"

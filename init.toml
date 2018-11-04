@@ -48,15 +48,9 @@
   auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
-  name = "lang#latex"
-
-[[layers]]
   name = 'shell'
   default_position = 'left'
   default_height = 30
-
-[[layers]]
-  name = "chinese"
 
 [[layers]]
   name = "lang#c"

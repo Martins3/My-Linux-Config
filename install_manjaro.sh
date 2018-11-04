@@ -21,7 +21,7 @@ gem install neovim
 
 
 # install neovim
-git clone https://github.com/neovim/neovim.git ~/.Application/neovim
+git clone https://github.com/neovim/neovim.git --depth=1 ~/.Application/neovim
 cd ~/.Application/neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
