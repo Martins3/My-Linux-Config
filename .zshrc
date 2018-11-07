@@ -84,7 +84,7 @@ antigen bundle heroku
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
-#antigen bundle soimort/translate-shell
+antigen bundle soimort/translate-shell
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting

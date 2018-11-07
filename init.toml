@@ -65,8 +65,6 @@
 [[layers]]
   name = "git"
 
-[[layers]]
-  name = "github"
 
 [[layers]]
   name = "debug"
@@ -95,3 +93,6 @@
 [[custom_plugins]]
     name =  "Shougo/vimproc.vim"
     build = "make"
+
+[[custom_plugins]]
+    name =  "rdnetto/YCM-Generator"

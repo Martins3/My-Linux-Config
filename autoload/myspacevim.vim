@@ -29,6 +29,7 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make test', 'make test', 1)
 
     " config the Gtags
     " The reason use 'a' is : other keys are already occupied by default. :)
@@ -53,10 +54,10 @@ func! myspacevim#before() abort
     let g:spacevim_windows_leader = 'c'
 
     " 设置neomake的内容
-    " TODO: 不知道为什么neomake 自动被配置了，即使没有添加checker layer
-    let g:neomake_cpp_enable_markers=['clang++']
-    let g:neomake_cpp_clang_args = ["-std=c++14"]
-    let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
+    " checker layer is set by default, so neomake can not be shutdown implict
+    " let g:neomake_cpp_enable_markers=['clang++']
+    " let g:neomake_cpp_clang_args = ["-std=c++14"]
+    " let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
     "nerdtree隐藏部分类型的文件
     let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch']
@@ -77,8 +78,9 @@ func! myspacevim#before() abort
     let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
-    let g:ycm_confirm_extra_conf = 1
-    let g:ycm_extra_conf_globlist = ['~/Application/linux-4.18.3' ]
+    " let g:ycm_confirm_extra_conf = 1
+    " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/ldd/']
+    
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
     " let g:ycm_show_diagnostics_ui = 0

@@ -11,7 +11,7 @@ sudo pacman -Syy
 pacman -S archlinux-keyring 
 
 # basic
-sudo pacman -S npm go nodejs python2 python3 ruby zsh ctags python-pygments tilix python2-neovim base-devel cmake unzip ninja xclip
+sudo pacman -S npm go nodejs python2 python3 ruby zsh ctags python-pygments tilix python2-neovim base-devel cmake unzip ninja xclip bat
 curl https://sh.rustup.rs -sSf | sh
 
 # neovim chealth
@@ -50,3 +50,4 @@ tar xvf ~//Application/global-${GTAGS_V}.tar.gz
 ./configure --with-exuberant-ctags=/usr/bin/ctags
 make
 sudo make install
+
