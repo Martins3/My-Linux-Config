@@ -1,7 +1,6 @@
 import os
 import ycm_core
 
-# '-isystem/usr/include/',
 flags = [
   '-std=c++11',
   '-Wall'

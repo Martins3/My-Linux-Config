@@ -48,7 +48,7 @@ func! myspacevim#before() abort
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
-    let mapleader = ','
+    " let mapleader = ','
     let g:mapleader = ','
     " s　键位使用非常频繁，使用c 代替 s
     let g:spacevim_windows_leader = 'c'
@@ -68,8 +68,11 @@ func! myspacevim#before() abort
     " let g:spacevim_windows_smartclose = 'a'
     
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
+    " let g:ale_completion_enabled = 1
     " let g:spacevim_enable_ale = 1
-
+    " let g:ale_linters = {'cpp': ['clangtidy']} " default can not recognize compile_commands.json
+    " let g:ale_sign_error = '>>'
+    " let g:ale_sign_warning = '--'
     let g:spacevim_disabled_plugins = ['neomake']
 
 

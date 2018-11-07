@@ -51,3 +51,10 @@ tar xvf ~//Application/global-${GTAGS_V}.tar.gz
 make
 sudo make install
 
+
+# ------------------------------------- not important, but can improve life quality ----------------------------
+
+# gotop
+git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop
+/tmp/gotop/scripts/download.sh
+
