@@ -84,7 +84,7 @@ antigen bundle heroku
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
-antigen bundle soimort/translate-shell
+# antigen bundle soimort/translate-shell # seems can not installed properly in this way.
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -139,8 +139,8 @@ alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
 alias t="~/.SpaceVim.d/translate/trans.sh"
-alias cheat="~/Application/cht.sh"
-alias gotop="~/Application/gotop"
+alias cheat="~/.Application/cht.sh"
+alias gotop="~/.Application/gotop"
 
 # my added line hu bachelor 5.8 2017
 source ~/.profile
@@ -173,17 +173,17 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 
-# 这一个智障
+# os_tutorial lab need it these lines
 # export PREFIX="/home/shen/Application/i386elfgcc"
-export TARGET=i386-elf
-export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
+# export TARGET=i386-elf
+# export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
 
 
 export PATH=~/anaconda3/bin:$PATH
 export PATH=~/.gem/ruby/2.5.0/bin:$PATH
 
 # 测试android repo 随时删除
-alias repo="python2 ~/Application/repo/repo"
+# alias repo="python2 ~/Application/repo/repo"
 
 
 
@@ -192,3 +192,30 @@ alias repo="python2 ~/Application/repo/repo"
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 #POWERLEVEL9K_DISABLE_RPROMPT=true
 
+# rm transform
+# if you want clear trash, use the real *rm*
+# /usr/bin/rm -rf ~/.trash/*
+function rm() {
+    # garbage collect
+    now=$(date +%s)
+    for s in $(ls --indicator-style=none $HOME/.trash/) ;do
+        dir_name=${s//_/-}
+        dir_time=$(date +%s -d $dir_name)
+        # if big than one month then delete
+        if [[ 0 -eq dir_time || $(($now - $dir_time)) -gt 2592000 ]] ;then
+            echo "Trash " $dir_name " has Gone "
+            /bin/rm $s -rf
+        fi
+    done
+    
+    # add new folder
+    prefix=$(date +%Y_%m_%d)
+    hour=$(date +%H)
+    mkdir -p $HOME/.trash/$prefix/$hour
+    if [[ -z $1 ]] ;then
+            echo 'Missing Args'
+        return
+    fi
+    echo "Hi, Trashing" $1 "to /root/.trash"
+    mv $1 $HOME/.trash/$prefix/$hour
+}

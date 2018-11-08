@@ -57,4 +57,19 @@ sudo make install
 # gotop
 git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop
 /tmp/gotop/scripts/download.sh
+mv gotop ~/.Appliation/
+
+# trans lates
+wget git.io/trans
+chmod +x ./trans
+mv trans ~/Application 
+
+# cheat.sh
+curl https://cht.sh/:cht.sh > ~/.Application/cht.sh
+chmod +x ~/.Application/cht.sh
+
+# --------------------------------------- get our repo from cloud --------------------------------
+cd $HOME
+mkdir Core
+cd Core
 
