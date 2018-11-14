@@ -88,7 +88,4 @@ Replace `cleanup` with `reset`
 
 4. Config tilix
     1. In `Manjaro Setting manager` change default software.
-    2. 
-
-
 
