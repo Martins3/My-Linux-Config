@@ -168,6 +168,8 @@ export PKG_CONFIG_PATH
 
 # 添加go的环境
 export PATH=$PATH:/usr/local/go/bin
+# It seems that go install software in this place
+export PATH=$PATH:~/go/bin
 
 # Rust 环境变量
 export PATH=$PATH:~/.cargo/bin 

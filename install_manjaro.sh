@@ -68,6 +68,9 @@ mv trans ~/Application
 curl https://cht.sh/:cht.sh > ~/.Application/cht.sh
 chmod +x ~/.Application/cht.sh
 
+# lazygit
+go get github.com/jesseduffield/lazygit
+
 # --------------------------------------- get our repo from cloud --------------------------------
 cd $HOME
 mkdir Core
