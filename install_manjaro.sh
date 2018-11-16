@@ -71,8 +71,14 @@ chmod +x ~/.Application/cht.sh
 # lazygit
 go get github.com/jesseduffield/lazygit
 
+# silver searcher
+sudo pacman -S the_silver_searcher 
+
 # --------------------------------------- get our repo from cloud --------------------------------
+
 cd $HOME
 mkdir Core
 cd Core
 
+# -------------------------------------- sync lastest repo to github -----------------------------
+cd ~/Core

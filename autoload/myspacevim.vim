@@ -60,7 +60,7 @@ func! myspacevim#before() abort
     " let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
     "nerdtree隐藏部分类型的文件
-    let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch']
+    let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order']
 
     " 将默认的2 tab的缩进修改为 4 tab 缩进
     let g:spacevim_default_indent = 4
