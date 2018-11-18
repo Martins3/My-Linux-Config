@@ -1,4 +1,7 @@
 #!/bin/bash
+# TODO: make this command run in parallel
+# https://stackoverflow.com/questions/19543139/bash-script-processing-limited-number-of-commands-in-parallel
+
 exit 0
 
 # create software install location
@@ -73,6 +76,10 @@ go get github.com/jesseduffield/lazygit
 
 # silver searcher
 sudo pacman -S the_silver_searcher 
+
+# hacker news
+sudo pip install pysocks # only under proxy enviroment, can hackernews act correctly
+sudo pip install git+https://github.com/donnemartin/haxor-news.git
 
 # --------------------------------------- get our repo from cloud --------------------------------
 

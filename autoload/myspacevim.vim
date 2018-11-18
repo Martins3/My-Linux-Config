@@ -64,8 +64,8 @@ func! myspacevim#before() abort
 
     " 将默认的2 tab的缩进修改为 4 tab 缩进
     let g:spacevim_default_indent = 4
-    " q 键位失效，使用\q 代替
-    " let g:spacevim_windows_smartclose = 'a'
+    " close with key m instead of q
+    let g:spacevim_windows_smartclose = 'm'
     
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
     " let g:ale_completion_enabled = 1

@@ -147,6 +147,8 @@ alias lg="lazygit"
 # seems stupid, maybe we can use 
 alias dg="dmesg | grep"
 alias im="sudo insmod"
+alias mm="sudo rmmod"
+
 
 # my added line hu bachelor 5.8 2017
 source ~/.profile
@@ -227,3 +229,4 @@ function rm() {
     echo "Hi, Trashing" $1 "to /root/.trash"
     mv $1 $HOME/.trash/$prefix/$hour
 }
+
