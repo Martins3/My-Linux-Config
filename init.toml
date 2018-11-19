@@ -78,7 +78,7 @@
   name = "lang#sh"
 
 
-# my own plug
+# ----------------- my own plug ----------------------
 [[custom_plugins]]
     name = "907th/vim-auto-save"
 
@@ -100,4 +100,9 @@
     build = "make"
 
 [[custom_plugins]]
-    name =  "rdnetto/YCM-Generator"
+    name =  "alpertuna/vim-header"
+
+# maybe useful
+# tpope/vim-surround
+# terryma / vim-multiple-cursors 
+# ----------------- my own plug end----------------------
