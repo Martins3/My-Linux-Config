@@ -6,7 +6,7 @@ func! myspacevim#before() abort
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out" 
         elseif ext ==# "go"
@@ -15,6 +15,8 @@ func! myspacevim#before() abort
             exec "!node %" 
         elseif ext ==# "py"
             exec "!python3 %" 
+        elseif ext ==# "md"
+            exec "!atom %"
         else
             echo "Check file type !"
         endif

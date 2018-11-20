@@ -99,10 +99,8 @@
     name =  "Shougo/vimproc.vim"
     build = "make"
 
-[[custom_plugins]]
-    name =  "alpertuna/vim-header"
-
 # maybe useful
 # tpope/vim-surround
 # terryma / vim-multiple-cursors 
+# alpertuna/vim-header
 # ----------------- my own plug end----------------------

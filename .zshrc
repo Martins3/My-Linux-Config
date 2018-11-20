@@ -1,3 +1,4 @@
+#!/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -73,7 +74,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-source ~/.antigen.zsh
+source ~/.SpaceVim.d/.antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -139,9 +140,10 @@ alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
 alias t="~/.SpaceVim.d/translate/trans.sh"
-alias cheat="~/.Application/cht.sh"
-alias gotop="~/.Application/gotop"
+# alias cheat="~/.Application/cht.sh"
+# alias gotop="~/.Application/gotop"
 alias lg="lazygit"
+export PATH=$PATH:$HOME/.Application # Application contains the binary applications
 
 # for device driver debug
 # seems stupid, maybe we can use 
