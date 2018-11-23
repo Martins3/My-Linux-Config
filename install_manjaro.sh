@@ -89,6 +89,10 @@ sudo pacman -S the_silver_searcher
 sudo pip install pysocks # only under proxy enviroment, can hackernews act correctly
 sudo pip install git+https://github.com/donnemartin/haxor-news.git
 
+# edex-ui
+wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v1.0.1/eDEX-UI.Linux.i386.AppImage edex
+
+
 # --------------------------------------- get our repo from cloud --------------------------------
 
 cd $HOME

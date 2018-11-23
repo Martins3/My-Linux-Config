@@ -99,6 +99,13 @@
     name =  "Shougo/vimproc.vim"
     build = "make"
 
+# make nerdtree icon{
+[[custom_plugins]]
+    name =  "tiagofumo/vim-nerdtree-syntax-highlight"
+
+[[custom_plugins]]
+    name =  'ryanoasis/vim-devicons'
+# }
 # maybe useful
 # tpope/vim-surround
 # terryma / vim-multiple-cursors 

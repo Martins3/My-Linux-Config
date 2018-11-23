@@ -140,9 +140,12 @@ alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
 alias t="~/.SpaceVim.d/translate/trans.sh"
-# alias cheat="~/.Application/cht.sh"
-# alias gotop="~/.Application/gotop"
 alias lg="lazygit"
+
+# hackernews
+alias hack="hn top"
+alias hnv="hn view -b"
+
 export PATH=$PATH:$HOME/.Application # Application contains the binary applications
 
 # for device driver debug
@@ -232,3 +235,8 @@ function rm() {
     mv $1 $HOME/.trash/$prefix/$hour
 }
 
+
+# http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
+function command_not_found_handler(){
+    echo "By my will, this shall be finished !"
+}

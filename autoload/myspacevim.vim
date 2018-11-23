@@ -83,8 +83,8 @@ func! myspacevim#before() abort
     let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
-    " let g:ycm_confirm_extra_conf = 1
-    " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/ldd/']
+    let g:ycm_confirm_extra_conf = 1
+    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*']
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
