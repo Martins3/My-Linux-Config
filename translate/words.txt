@@ -551,3 +551,6 @@ swath
 sabotage
 vigilant
 stale
+swoop
+gravitate
+grit

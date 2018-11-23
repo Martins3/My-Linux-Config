@@ -31,7 +31,7 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make test', 'make test', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
 
     " config the Gtags
     " The reason use 'a' is : other keys are already occupied by default. :)
@@ -77,6 +77,8 @@ func! myspacevim#before() abort
     " let g:ale_sign_warning = '--'
     let g:spacevim_disabled_plugins = ['neomake']
 
+    " make Parentheses colorful
+    let g:rainbow_active = 1
 
     " 使用ycm实现对于c++的自动补全
     let g:spacevim_enable_ycm = 1
@@ -85,6 +87,7 @@ func! myspacevim#before() abort
     " 实现任何位置可以阅读
     let g:ycm_confirm_extra_conf = 1
     let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*']
+
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
