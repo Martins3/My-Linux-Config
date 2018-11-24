@@ -81,8 +81,6 @@
 
 
 # ----------------- my own plug ----------------------
-[[custom_plugins]]
-    name = "907th/vim-auto-save"
 
 [[custom_plugins]]
     name = "majutsushi/tagbar"
@@ -121,4 +119,6 @@
 # tpope/vim-surround
 # terryma / vim-multiple-cursors 
 # alpertuna/vim-header
+#
+# name = "907th/vim-auto-save" # this can removed with commands
 # ----------------- my own plug end----------------------

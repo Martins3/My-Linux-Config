@@ -134,12 +134,11 @@ alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"
 alias vim="nvim"
-alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
-alias fuckRj="sudo service network-manager start"
-alias reNet="sudo service network-manager restart"
+# alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
+# alias fuckRj="sudo service network-manager start"
+# alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
-alias t="~/.SpaceVim.d/translate/trans.sh"
 alias lg="lazygit"
 
 # hackernews
@@ -238,5 +237,11 @@ function rm() {
 
 # http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
 function command_not_found_handler(){
-    echo "By my will, this shall be finished !"
+    ~/Core/sl/Review.out 
+}
+
+# read 
+function t(){
+    ~/Core/sl/Review.out -w $1
+    trans :zh $1
 }

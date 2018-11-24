@@ -88,6 +88,9 @@ func! myspacevim#before() abort
     let g:ycm_confirm_extra_conf = 1
     let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*']
 
+    set autoread
+    au FocusGained,BufEnter * :checktime
+    au FocusLost,BufEnter * :wa
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
@@ -96,14 +99,12 @@ func! myspacevim#before() abort
     " TODO: 让这些文件全部是隐藏文件，从而实现git会默认忽视
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
     nnoremap <F4> :GundoToggle<CR>
-    " 没有必要重新设置文件夹，在.cache中间
-    " set undofile
-    " set undodir=~/.SpaceVim.d/.undo_history
 
     " TODO:实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
+    " TODO: autosave is stupid, we have to use some new method to do it !
 endf
 
 

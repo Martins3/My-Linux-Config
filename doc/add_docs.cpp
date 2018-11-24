@@ -27,10 +27,6 @@
 
 using namespace std;
 
-#define REOPEN_READ freopen("/home/shen/Core/ACM/input.txt", "r", stdin);
-#define REOPEN_WRITE freopen("/home/shen/Core/ACM/output.txt", "w", stdout);
-
-
 /**
  * copyright belongs to:
  * https://stackoverflow.com/questions/5620235/cpp-regular-expression-to-validate-url
