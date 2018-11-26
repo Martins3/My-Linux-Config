@@ -79,8 +79,13 @@
 [[layers]]
   name = "lang#sh"
 
+[[layers]]
+  name = "lang#go"
 
 # ----------------- my own plug ----------------------
+
+[[custom_plugins]]
+    name = "907th/vim-auto-save" # this can removed with commands
 
 [[custom_plugins]]
     name = "majutsushi/tagbar"
@@ -115,10 +120,15 @@
   name = "mhartington/oceanic-next"
   merged = 0
 # }
+
+# quickly markdown table edition
+[[custom_plugins]]
+  name = 'dhruvasagar/vim-table-mode'
+
 # maybe useful
 # tpope/vim-surround
 # terryma / vim-multiple-cursors 
 # alpertuna/vim-header
-#
+
 # name = "907th/vim-auto-save" # this can removed with commands
 # ----------------- my own plug end----------------------

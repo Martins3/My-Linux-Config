@@ -148,7 +148,7 @@ alias hnv="hn view -b"
 export PATH=$PATH:$HOME/.Application # Application contains the binary applications
 
 # for device driver debug
-# seems stupid, maybe we can use 
+# seems stupid, maybe we can use makefile instead
 alias dg="dmesg | grep"
 alias im="sudo insmod"
 alias mm="sudo rmmod"
@@ -182,6 +182,10 @@ export PKG_CONFIG_PATH
 export PATH=$PATH:/usr/local/go/bin
 # It seems that go install software in this place
 export PATH=$PATH:~/go/bin
+
+# this will use vim as default editor 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Rust 环境变量
 export PATH=$PATH:~/.cargo/bin 
@@ -237,11 +241,11 @@ function rm() {
 
 # http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
 function command_not_found_handler(){
-    ~/Core/sl/Review.out 
+    review
 }
 
 # read 
 function t(){
-    ~/Core/sl/Review.out -w $1
-    trans :zh $1
+    review -w $1
+    trans -sp :zh $1
 }

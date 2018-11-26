@@ -55,7 +55,7 @@ func! myspacevim#before() abort
     " s　键位使用非常频繁，使用c 代替 s
     let g:spacevim_windows_leader = 'c'
 
-    " 设置neomake的内容
+    " neomake
     " checker layer is set by default, so neomake can not be shutdown implict
     " let g:neomake_cpp_enable_markers=['clang++']
     " let g:neomake_cpp_clang_args = ["-std=c++14"]
@@ -90,7 +90,8 @@ func! myspacevim#before() abort
 
     set autoread
     au FocusGained,BufEnter * :checktime
-    au FocusLost,BufEnter * :wa
+
+    let g:table_mode_corner='|'
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
