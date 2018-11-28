@@ -145,6 +145,7 @@ alias lg="lazygit"
 alias hack="hn top"
 alias hnv="hn view -b"
 
+
 export PATH=$PATH:$HOME/.Application # Application contains the binary applications
 
 # for device driver debug
@@ -248,4 +249,14 @@ function command_not_found_handler(){
 function t(){
     review -w $1
     trans -sp :zh $1
+}
+
+# keep docs and pages from internet
+# TODO: we need a project for this, but not now to finish it
+function amdoc(){
+
+}
+
+function amsite(){
+    echo $1 >> ~/Core/Vn/collection/AmazingSite.md
 }

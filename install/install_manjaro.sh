@@ -73,7 +73,7 @@ mv gotop ~/.Appliation/
 # trans lates
 wget git.io/trans
 chmod +x ./trans
-mv trans ~/Application 
+mv trans ~/.Application 
 
 # cheat.sh
 curl https://cht.sh/:cht.sh > ~/.Application/cht.sh

@@ -6,14 +6,21 @@ This repository is configuration for [`SpaceVim`](http://spacevim.org/)
 [`translate-shell`](https://github.com/soimort/translate-shell)
 and many other thing which can greatly imporve your life quality under linux.
 
+# Install
+
+# TODO
+1. A parallel version of `install_manjaro`
+2. Add a simple version
+3. Remove .Application dir, need a better apporach
+
 # General
 
-### 安装Oracle Java
-1. 下载网址 http://www.oracle.com/technetwork/java/javase/downloads/index-jdk5-jsp-142662.html
-2. 需要注册，除了邮件地址，其余全部需要fake
-3. 用户名是邮箱
-4. 解压
-5. 设置zsh的PATH
+### Install Oracle Java
+1. http://www.oracle.com/technetwork/java/javase/downloads/index-jdk5-jsp-142662.html
+2. 需要注册，除了邮件地址, others aren't necessary to be true.
+3. usermail is your email address
+4. extract it
+5. set the PATH in zsh
 ```
 export JAVA_HOME=/develop/jdk1.5.0_22
 export JRE_HOME=JAVA_HOME/jre
@@ -38,7 +45,7 @@ deb [by-hash=force] http://packages.deepin.com/deepin unstable main contrib non-
 # Manjaro
 > pacman makes things much more easy.
 
-### Some setting still
+### Some setting still need set with hande
 1. Xfce Power Manger
 In `security` panel, `Automatically lock the session` : `Never`
 
@@ -54,6 +61,8 @@ Replace `cleanup` with `reset`
     1. In `Manjaro Setting manager` change default software.
 
 ### Disable Discrete GPU
+> It doesn't fix the problem at all, but somewhat leveated.
+
 1. https://wiki.deepin.org/wiki/%E6%98%BE%E5%8D%A1
 2. check it worked properly.
 https://askubuntu.com/questions/239589/how-do-i-determine-whether-bumblebee-is-working-as-expected
@@ -67,3 +76,15 @@ https://askubuntu.com/questions/239589/how-do-i-determine-whether-bumblebee-is-w
 [    1.977774] bbswitch: disabling discrete graphics
 [    2.023149] bbswitch: Succesfully loaded. Discrete card 0000:01:00.0 is off
 ```
+### Install Deepin Software
+1. [dde](https://wiki.archlinux.org/index.php/Deepin_Desktop_Environment) wiki
+2. https://linuxconfig.org/how-to-install-deepin-desktop-on-manjaro-18-linux
+```
+sudo pacman -S deepin
+```
+![](./img/a.png)
+
+1. Some software not installed compared to native deepin, but good enough.
+2. Vim markdown preview fixed :chear:
+3. Power Comsuming becomes much more devastated.
+

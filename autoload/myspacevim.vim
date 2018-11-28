@@ -16,7 +16,8 @@ func! myspacevim#before() abort
         elseif ext ==# "py"
             exec "!python3 %" 
         elseif ext ==# "md"
-            exec "!atom %"
+            " wanna cry
+            exec "!code % &"
         else
             echo "Check file type !"
         endif
@@ -90,8 +91,11 @@ func! myspacevim#before() abort
 
     set autoread
     au FocusGained,BufEnter * :checktime
-
     let g:table_mode_corner='|'
+
+    " By far, I don't know how to set spell check by default just for markdown
+    " set spelllang=en_us
+    " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
