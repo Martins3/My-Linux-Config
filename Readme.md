@@ -4,80 +4,52 @@ This repository is configuration for [`SpaceVim`](http://spacevim.org/)
 [`on-my-zsh`](https://github.com/robbyrussell/oh-my-zsh)
 [`autojump`](https://github.com/wting/autojump) 
 [`translate-shell`](https://github.com/soimort/translate-shell)
+and many other thing which can greatly imporve your life quality under linux.
 
+# Install
 
-## How to do use this repo
-### Install  SpaceVim
-Install SpaceVim is full of traps.
-1. Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-> 1. `apt-get install neovim` will lead to a old version one, which would have wasted your hours to find out what's wrong with `SpaceVim`, the correct way is compile it
-> 2. `git clone` may fail, I recommend `download zip` in your browser.
-> 3.  install all the prerequisite before `make`.
-> 4. `make` may fail, if that happened, type `make` in your console again until finishing it.
-> 5. run `checkhealth` in neovim, fix all the error by installing following software
->   1. `pip install neovim`
->   2. `pip3 install neovim`
->   3. `gem install neovim` if gem not found, install it
->   4. install `nvm`
->   5. use `nvm` install `nodejs`
->   6. `sudo apt install xclip`
+# TODO
+1. A parallel version of `install_manjaro`
+2. Add a simple version
+3. Remove .Application dir, need a better apporach
 
-2. Install `SpaceVim`
-3. Compile [`ycm`](https://github.com/Valloric/YouCompleteMe)
->  in command mode, type `help SpaceVim` and read the doc about ycm.
+# General
 
-
-## clone this repo
+### Install Oracle Java
+1. http://www.oracle.com/technetwork/java/javase/downloads/index-jdk5-jsp-142662.html
+2. 需要注册，除了邮件地址, others aren't necessary to be true.
+3. usermail is your email address
+4. extract it
+5. set the PATH in zsh
 ```
-mv .SpaceVim.bk .SpaceVim.d.bk
-cd ~
-git clone https://github.com/XiongGuiHui/My-Linux-config .SpaceVim
+export JAVA_HOME=/develop/jdk1.5.0_22
+export JRE_HOME=JAVA_HOME/jre
+export CLASSPATH=JAVAHOME/lib:JRE_HOME/lib:$CLASSPATH
+export PATH=JAVAHOME/bin:JRE_HOME/bin:$PATH
 ```
 
-### zsh
-1. install `zsh`
-2. install `oh-my-zsh`
-3. delete `.zshrc`
+# Deepin
+
+### 切换软件源
+1. [deepin](https://www.deepin.org/mirrors/packages/) 提供可替换列表
+2. 直接sudo vim 替换 将原来的
 ```
-cd ~
-mv .zshrc .zshrc.bk
+deb [by-hash=force] http://packages.deepin.com/deepin unstable main contrib non-free
+#deb-src http://packages.deepin.com/deepin unstable main contrib non-free
 ```
+中间的 `http://packages.deepin.com/deepin` 中间替换为该目录中间的任意的网址，　比如在华科的话，
+可以替换为`http://mirrors.hustunique.com/deepin/`
+3. sudo apt update  
+当链接的网络需要认证的时候，本步骤一般会报错。
 
-4. install [`antigen`](https://github.com/zsh-users/antigen)
-```
-curl -L git.io/antigen > .antigen.zsh
-```
+# Manjaro
+> pacman makes things much more easy.
 
-5. modify the `.zshrc`
-> there some config is related to absolute path, you should change to your specific path, eg, anaconda PATH
-
-### tilix
-```
-sudo apt install tilix
-```
-
-### autojum
-Too easy to mention.
-
-### translate-shell
-
-## Suggestion
-1. if you are not familiar with `vim`, you'd better try `vim` in `vscode` at first.
-
-
-#### arch
-pacman makes things much more easy.
-1. change software source [ref](https://www.cnblogs.com/lemos/p/7640680.html)
-```
-$ sudo pacman-mirrors -i -c China -m rank //更新镜像排名
-$ sudo pacman -Syy //更新数据源
-$ pacman -S archlinux-keyring 
-```
-
-2. Xfce Power Manger
+### Some setting still need set with hande
+1. Xfce Power Manger
 In `security` panel, `Automatically lock the session` : `Never`
 
-3. Fix shadowsocks [ref](https://kionf.com/2016/12/15/errornote-ss/)
+2. Fix shadowsocks [ref](https://kionf.com/2016/12/15/errornote-ss/)
 Read the error to find where is `openssl.py`.
 Open `openssl.py`
 Replace `cleanup` with `reset`
@@ -85,7 +57,34 @@ Replace `cleanup` with `reset`
 :%s/cleanup/reset/
 :x
 ```
-
-4. Config tilix
+3. Config tilix
     1. In `Manjaro Setting manager` change default software.
+
+### Disable Discrete GPU
+> It doesn't fix the problem at all, but somewhat leveated.
+
+1. https://wiki.deepin.org/wiki/%E6%98%BE%E5%8D%A1
+2. check it worked properly.
+https://askubuntu.com/questions/239589/how-do-i-determine-whether-bumblebee-is-working-as-expected
+
+```
+# dmdmesg | grep bbswitch
+[    1.977523] bbswitch: version 0.8
+[    1.977529] bbswitch: Found integrated VGA device 0000:00:02.0: \_SB_.PCI0.GFX0
+[    1.977535] bbswitch: Found discrete VGA device 0000:01:00.0: \_SB_.PCI0.RP01.PXSX
+[    1.977687] bbswitch: detected an Optimus _DSM function
+[    1.977774] bbswitch: disabling discrete graphics
+[    2.023149] bbswitch: Succesfully loaded. Discrete card 0000:01:00.0 is off
+```
+### Install Deepin Software
+1. [dde](https://wiki.archlinux.org/index.php/Deepin_Desktop_Environment) wiki
+2. https://linuxconfig.org/how-to-install-deepin-desktop-on-manjaro-18-linux
+```
+sudo pacman -S deepin
+```
+![](./img/a.png)
+
+1. Some software not installed compared to native deepin, but good enough.
+2. Vim markdown preview fixed :chear:
+3. Power Comsuming becomes much more devastated.
 

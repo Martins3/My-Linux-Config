@@ -1,7 +1,9 @@
 #!/bin/bash
+# File              : install_manjaro.sh
+# Date              : 19.11.2018
+# Last Modified Date: 19.11.2018
 # TODO: make this command run in parallel
 # https://stackoverflow.com/questions/19543139/bash-script-processing-limited-number-of-commands-in-parallel
-
 exit 0
 
 # create software install location
@@ -26,7 +28,7 @@ gem install neovim
 # install neovim
 git clone https://github.com/neovim/neovim.git --depth=1 ~/.Application/neovim
 cd ~/.Application/neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
+make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 # SpaceVim
@@ -36,14 +38,15 @@ curl -sLf https://spacevim.org/cn/install.sh | bash
 # compile Ycm
 sudo npm install -g typescript
 cd .cache/vimfiles/repos/github.com/Valloric/YouCompleteMe
-./install.py --clang-completer --go-completer --rust-completer --java-completer
+# ./install.py --clang-completer --go-completer --rust-completer --java-completer # this optional
+./install.py --clang-completer
 
 
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm ~/.zshrc
+mv ~/.zshrc ~/.zshrcbk
 ln ~/.SpaceVim.d/.zshrc .zshrc
-ln ~/.SpaceVim.d/.antigen.zsh .antigen.zsh
+# curl -L git.io/antigen > ~/.SpaceVim.d/.antigen.zsh # this optional
 
 # gtags
 # -- download
@@ -54,6 +57,11 @@ tar xvf ~//Application/global-${GTAGS_V}.tar.gz
 make
 sudo make install
 
+# autojump
+cd ~/.Application
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py
 
 # ------------------------------------- not important, but can improve life quality ----------------------------
 
@@ -65,7 +73,7 @@ mv gotop ~/.Appliation/
 # trans lates
 wget git.io/trans
 chmod +x ./trans
-mv trans ~/Application 
+mv trans ~/.Application 
 
 # cheat.sh
 curl https://cht.sh/:cht.sh > ~/.Application/cht.sh
@@ -80,6 +88,10 @@ sudo pacman -S the_silver_searcher
 # hacker news
 sudo pip install pysocks # only under proxy enviroment, can hackernews act correctly
 sudo pip install git+https://github.com/donnemartin/haxor-news.git
+
+# edex-ui
+wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v1.0.1/eDEX-UI.Linux.i386.AppImage edex
+
 
 # --------------------------------------- get our repo from cloud --------------------------------
 

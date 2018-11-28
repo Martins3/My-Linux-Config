@@ -1,3 +1,4 @@
+#!/bin/zsh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -73,7 +74,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-source ~/.antigen.zsh
+source ~/.SpaceVim.d/.antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -133,18 +134,22 @@ alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="sudo shutdown -r now"
 alias vim="nvim"
-alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
-alias fuckRj="sudo service network-manager start"
-alias reNet="sudo service network-manager restart"
+# alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
+# alias fuckRj="sudo service network-manager start"
+# alias reNet="sudo service network-manager restart"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
-alias t="~/.SpaceVim.d/translate/trans.sh"
-alias cheat="~/.Application/cht.sh"
-alias gotop="~/.Application/gotop"
 alias lg="lazygit"
 
+# hackernews
+alias hack="hn top"
+alias hnv="hn view -b"
+
+
+export PATH=$PATH:$HOME/.Application # Application contains the binary applications
+
 # for device driver debug
-# seems stupid, maybe we can use 
+# seems stupid, maybe we can use makefile instead
 alias dg="dmesg | grep"
 alias im="sudo insmod"
 alias mm="sudo rmmod"
@@ -178,6 +183,10 @@ export PKG_CONFIG_PATH
 export PATH=$PATH:/usr/local/go/bin
 # It seems that go install software in this place
 export PATH=$PATH:~/go/bin
+
+# this will use vim as default editor 
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # Rust 环境变量
 export PATH=$PATH:~/.cargo/bin 
@@ -230,3 +239,24 @@ function rm() {
     mv $1 $HOME/.trash/$prefix/$hour
 }
 
+
+# http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
+function command_not_found_handler(){
+    review
+}
+
+# read 
+function t(){
+    review -w $1
+    trans -sp :zh $1
+}
+
+# keep docs and pages from internet
+# TODO: we need a project for this, but not now to finish it
+function amdoc(){
+
+}
+
+function amsite(){
+    echo $1 >> ~/Core/Vn/collection/AmazingSite.md
+}

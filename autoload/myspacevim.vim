@@ -6,7 +6,7 @@ func! myspacevim#before() abort
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -g -std=c++14 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out" 
         elseif ext ==# "go"
@@ -15,6 +15,9 @@ func! myspacevim#before() abort
             exec "!node %" 
         elseif ext ==# "py"
             exec "!python3 %" 
+        elseif ext ==# "md"
+            " wanna cry
+            exec "!code % &"
         else
             echo "Check file type !"
         endif
@@ -29,7 +32,7 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make test', 'make test', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
 
     " config the Gtags
     " The reason use 'a' is : other keys are already occupied by default. :)
@@ -53,7 +56,7 @@ func! myspacevim#before() abort
     " s　键位使用非常频繁，使用c 代替 s
     let g:spacevim_windows_leader = 'c'
 
-    " 设置neomake的内容
+    " neomake
     " checker layer is set by default, so neomake can not be shutdown implict
     " let g:neomake_cpp_enable_markers=['clang++']
     " let g:neomake_cpp_clang_args = ["-std=c++14"]
@@ -75,14 +78,24 @@ func! myspacevim#before() abort
     " let g:ale_sign_warning = '--'
     let g:spacevim_disabled_plugins = ['neomake']
 
+    " make Parentheses colorful
+    let g:rainbow_active = 1
 
     " 使用ycm实现对于c++的自动补全
     let g:spacevim_enable_ycm = 1
     let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
-    " let g:ycm_confirm_extra_conf = 1
-    " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/ldd/']
+    let g:ycm_confirm_extra_conf = 1
+    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*']
+
+    set autoread
+    au FocusGained,BufEnter * :checktime
+    let g:table_mode_corner='|'
+
+    " By far, I don't know how to set spell check by default just for markdown
+    " set spelllang=en_us
+    " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
     
     " 去除ycm的预览和静态检查
     " let g:ycm_add_preview_to_completeopt = 0
@@ -91,14 +104,12 @@ func! myspacevim#before() abort
     " TODO: 让这些文件全部是隐藏文件，从而实现git会默认忽视
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
     nnoremap <F4> :GundoToggle<CR>
-    " 没有必要重新设置文件夹，在.cache中间
-    " set undofile
-    " set undodir=~/.SpaceVim.d/.undo_history
 
     " TODO:实际测试，这一个效果似乎没有
     let NERDTreeAutoDeleteBuffer = 1
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
+    " TODO: autosave is stupid, we have to use some new method to do it !
 endf
 
 
