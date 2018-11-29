@@ -82,6 +82,8 @@
 [[layers]]
   name = "lang#go"
 
+[[layers]]
+  name = "lang#html"
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
