@@ -65,6 +65,15 @@ cd autojump
 
 # ------------------------------------- not important, but can improve life quality ----------------------------
 
+# download video
+pip3 install you-get
+
+# httpie
+sudo pacman -S httpie
+
+# wifi
+sudo pacman -S create_ap
+
 # gotop
 git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop
 /tmp/gotop/scripts/download.sh
