@@ -87,7 +87,7 @@ func! myspacevim#before() abort
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
     let g:ycm_confirm_extra_conf = 1
-    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*']
+    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*']
 
     set autoread
     au FocusGained,BufEnter * :checktime

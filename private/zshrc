@@ -1,0 +1,52 @@
+# alias rjnet="cd ~/software/rjsupplicant && sudo ./rjsupplicant.sh -u U201514545 -p 075772 -d 1"
+# alias fuckRj="sudo service network-manager start"
+# alias reNet="sudo service network-manager restart"
+
+# hackernews
+alias hack="hn top"
+alias hnv="hn view -b"
+
+# for device driver debug
+# seems stupid, maybe we can use makefile instead
+alias dg="dmesg | grep"
+alias im="sudo insmod"
+alias mm="sudo rmmod"
+
+# os_tutorial lab need it these lines
+# export PREFIX="/home/shen/Application/i386elfgcc"
+# export TARGET=i386-elf
+# export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
+
+# alias anzhuang="sudo apt install"
+
+# 测试android repo 随时删除
+# alias repo="python2 ~/Application/repo/repo"
+
+# keep docs and pages from internet
+# TODO: we need a project for this, but not now to finish it
+function amdoc(){
+
+}
+
+function amsite(){
+    echo $1 >> ~/Core/Vn/collection/AmazingSite.md
+}
+
+# http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
+function command_not_found_handler(){
+    review
+}
+
+# read 
+function t(){
+    review -w $1
+    trans -sp :zh $1
+}
+
+# compile c++ with std=c++14
+function compile(){
+    FILE=$1
+    s=${${FILE}##*/}
+    BIN=${s%.cpp}.out
+    clang++ $FILE -std=c++14 -o ${BIN} -g -lboost_system -pthread -lboost_thread
+}
