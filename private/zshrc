@@ -37,6 +37,11 @@ function command_not_found_handler(){
     review
 }
 
+# pa enviroment
+export NEMU_HOME=/home/shen/Core/pa/ics2018/nemu
+export AM_HOME=/home/shen/Core/pa/ics2018/nexus-am
+export NAVY_HOME=/home/shen/Core/pa/ics2018/navy-apps
+
 # read 
 function t(){
     review -w $1

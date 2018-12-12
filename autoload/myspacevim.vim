@@ -44,7 +44,7 @@ func! myspacevim#before() abort
 
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
-    nnoremap <F5> :Gtags<CR>
+    nnoremap <F5> :cn
     nnoremap <F6> :Gtags -r<CR>
     "设置debug 选中
     nnoremap <F8> :VBGstartGDB 
@@ -65,8 +65,7 @@ func! myspacevim#before() abort
     "nerdtree隐藏部分类型的文件
     let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order']
 
-    " 将默认的2 tab的缩进修改为 4 tab 缩进
-    let g:spacevim_default_indent = 4
+    " let g:spacevim_default_indent = 4
     " close with key m instead of q
     let g:spacevim_windows_smartclose = 'm'
     
@@ -78,6 +77,8 @@ func! myspacevim#before() abort
     " let g:ale_sign_warning = '--'
     let g:spacevim_disabled_plugins = ['neomake']
 
+    let g:gtags_open_list = 0
+
     " make Parentheses colorful
     let g:rainbow_active = 1
 
@@ -87,7 +88,7 @@ func! myspacevim#before() abort
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
     let g:ycm_confirm_extra_conf = 1
-    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*']
+    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/nemu/*']
 
     set autoread
     au FocusGained,BufEnter * :checktime
@@ -110,6 +111,7 @@ func! myspacevim#before() abort
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
     " TODO: autosave is stupid, we have to use some new method to do it !
+    
 endf
 
 
