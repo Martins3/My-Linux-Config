@@ -6,6 +6,9 @@
 alias hack="hn top"
 alias hnv="hn view -b"
 
+
+alias mkr="make run \-j8"
+
 # for device driver debug
 # seems stupid, maybe we can use makefile instead
 alias dg="dmesg | grep"

@@ -15,9 +15,8 @@ func! myspacevim#before() abort
             exec "!node %" 
         elseif ext ==# "py"
             exec "!python3 %" 
-        elseif ext ==# "md"
-            " wanna cry
-            exec "!code % &"
+        elseif ext ==# "vim"
+            exec "so %"
         else
             echo "Check file type !"
         endif
@@ -44,7 +43,7 @@ func! myspacevim#before() abort
 
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
-    nnoremap <F5> :cn
+    nnoremap <F5> :cn<CR>
     nnoremap <F6> :Gtags -r<CR>
     "设置debug 选中
     nnoremap <F8> :VBGstartGDB 
@@ -88,7 +87,7 @@ func! myspacevim#before() abort
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
     let g:ycm_confirm_extra_conf = 1
-    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/nemu/*']
+    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/*']
 
     set autoread
     au FocusGained,BufEnter * :checktime

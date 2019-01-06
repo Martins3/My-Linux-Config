@@ -47,9 +47,12 @@ export NVM_DIR="$HOME/.nvm"
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig 
 export PKG_CONFIG_PATH
 
-# 添加go的环境
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/go/bin
+# 添加go的环境(with a better way)
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:~/go/bin
+
 
 # this will use vim as default editor 
 export VISUAL=nvim
@@ -89,7 +92,7 @@ function rm() {
         dir_time=$(date +%s -d $dir_name)
         # if big than one month then delete
         if [[ 0 -eq dir_time || $(($now - $dir_time)) -gt 2592000 ]] ;then
-            echo "Trash " $dir_name " has Gone "
+            # echo "Trash " $dir_name " has Gone "
             /bin/rm $s -rf
         fi
     done
