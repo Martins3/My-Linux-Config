@@ -17,6 +17,8 @@ func! myspacevim#before() abort
             exec "!python3 %" 
         elseif ext ==# "vim"
             exec "so %"
+        elseif ext ==# "rs"
+            exec "!rustc % -o %<.out && ./%<.out"
         else
             echo "Check file type !"
         endif

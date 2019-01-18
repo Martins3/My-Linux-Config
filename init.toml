@@ -64,14 +64,13 @@
 [[layers]]
   name = "lang#markdown"
 
-# [[layers]]
-  # name = "checkers"
-  # enable_neomake = false
-  # enable_ale = true
+[[layers]]
+  name = "checkers"
+  enable_neomake = false
+  enable_ale = true
 
 [[layers]]
   name = "git"
-
 
 [[layers]]
   name = "debug"
@@ -82,8 +81,24 @@
 [[layers]]
   name = "lang#go"
 
+# rust.vim
+# vim-racer
+[[layers]]
+  name = "lang#rust"
+
 [[layers]]
   name = "lang#html"
+
+[[layers]]
+  name = "lang#scala"
+
+[[layers]]
+  name = "lsp"
+  filetypes = [
+    "rust",
+    "c",
+    "cpp",
+  ]
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
@@ -107,11 +122,13 @@
     build = "make"
 
 # make nerdtree icon{
-[[custom_plugins]]
-    name =  "tiagofumo/vim-nerdtree-syntax-highlight"
-
-[[custom_plugins]]
-    name =  'ryanoasis/vim-devicons'
+# It can not work correctly for rust
+# This should not caused by plugins, i opine that I have not install spacevim, nerdfont or arch correctly
+# [[custom_plugins]]
+    # name =  "tiagofumo/vim-nerdtree-syntax-highlight"
+#
+# [[custom_plugins]]
+    # name =  'ryanoasis/vim-devicons'
 # }
 
 [[custom_plugins]]

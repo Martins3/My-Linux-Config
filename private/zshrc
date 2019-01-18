@@ -58,3 +58,5 @@ function compile(){
     BIN=${s%.cpp}.out
     clang++ $FILE -std=c++14 -o ${BIN} -g -lboost_system -pthread -lboost_thread
 }
+
+alias s="sharp"
