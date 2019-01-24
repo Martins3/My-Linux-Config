@@ -101,6 +101,9 @@ sudo pip install git+https://github.com/donnemartin/haxor-news.git
 # edex-ui
 wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v1.0.1/eDEX-UI.Linux.i386.AppImage edex
 
+#gource
+sudo pacman -S gource
+
 
 # --------------------------------------- get our repo from cloud --------------------------------
 

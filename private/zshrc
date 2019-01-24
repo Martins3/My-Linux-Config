@@ -6,6 +6,9 @@
 alias hack="hn top"
 alias hnv="hn view -b"
 
+
+alias mkr="make run \-j8"
+
 # for device driver debug
 # seems stupid, maybe we can use makefile instead
 alias dg="dmesg | grep"
@@ -13,9 +16,9 @@ alias im="sudo insmod"
 alias mm="sudo rmmod"
 
 # os_tutorial lab need it these lines
-# export PREFIX="/home/shen/Application/i386elfgcc"
-# export TARGET=i386-elf
-# export PATH="/home/shen/Application/i386elfgcc/bin:$PATH"
+export GCCPREFIX="/home/shen/.Application/i386elfgcc"
+export GCCTARGET=i386-elf
+export PATH="$GCCPREFIX/bin:$PATH"
 
 # alias anzhuang="sudo apt install"
 
@@ -33,9 +36,16 @@ function amsite(){
 }
 
 # http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
-function command_not_found_handler(){
-    review
-}
+# function command_not_found_handler(){
+  # echo 'command not found: cmd'
+  # review
+  # return 127
+# }
+
+# pa enviroment
+export NEMU_HOME=/home/shen/Core/pa/ics2018/nemu
+export AM_HOME=/home/shen/Core/pa/ics2018/nexus-am
+export NAVY_HOME=/home/shen/Core/pa/ics2018/navy-apps
 
 # read 
 function t(){
@@ -50,3 +60,5 @@ function compile(){
     BIN=${s%.cpp}.out
     clang++ $FILE -std=c++14 -o ${BIN} -g -lboost_system -pthread -lboost_thread
 }
+
+alias s="sharp"

@@ -11,8 +11,9 @@
     # 多的主题，你可以载入 colorscheme 模块
     # colorscheme = "gruvbox"
     colorscheme = "OceanicNext"
+    # colorscheme = "NeoSolarized"
     # 背景可以取值 "dark" 和 "light"
-    colorscheme_bg = "dark"
+    colorscheme_bg = "light"
 
     # 启用/禁用终端真色，在目前大多数终端下都是支持真色的，当然也有
     # 一小部分终端不支持真色，如果你的 SpaceVim 颜色看上去比较怪异
@@ -50,28 +51,30 @@
   auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
+  name = 'tools'
+
+[[layers]]
   name = 'shell'
   default_position = 'left'
   default_height = 30
 
-[[layers]]
-  name = "lang#c"
-  clang_executable = "/usr/bin/clang++"
-  [layer.clang_std]
-    c = "c11"
-    cpp = "c++1z"
+# [[layers]]
+  # name = "lang#c"
+  # clang_executable = "/usr/bin/clang++"
+  # [layer.clang_std]
+    # c = "c11"
+    # cpp = "c++1z"
 
 [[layers]]
   name = "lang#markdown"
 
-# [[layers]]
-  # name = "checkers"
-  # enable_neomake = false
-  # enable_ale = true
+[[layers]]
+  name = "checkers"
+  enable_neomake = false
+  enable_ale = true
 
 [[layers]]
   name = "git"
-
 
 [[layers]]
   name = "debug"
@@ -82,8 +85,24 @@
 [[layers]]
   name = "lang#go"
 
+# rust.vim
+# vim-racer
+[[layers]]
+  name = "lang#rust"
+
 [[layers]]
   name = "lang#html"
+
+[[layers]]
+  name = "lang#scala"
+
+[[layers]]
+  name = "lsp"
+  filetypes = [
+    "rust",
+    "c",
+    "cpp",
+  ]
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
@@ -99,14 +118,14 @@
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
-[[custom_plugins]]
-    name = "SpaceVim/gtags.vim"
 
 [[custom_plugins]]
     name =  "Shougo/vimproc.vim"
     build = "make"
 
 # make nerdtree icon{
+# It can not work correctly for rust
+# This should not caused by plugins, i opine that I have not install spacevim, nerdfont or arch correctly
 [[custom_plugins]]
     name =  "tiagofumo/vim-nerdtree-syntax-highlight"
 
@@ -127,10 +146,23 @@
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
+# tags{
+# abandon it, worked not well with gtags
+# [[custom_plugins]]
+  # name = 'jsfaint/gen_tags.vim'
+
+# abandon it, because it is not efficient
+[[custom_plugins]]
+    name = "SpaceVim/gtags.vim"
+#}end tags
+
+[[custom_plugins]]
+  name = 'embear/vim-localvimrc'
+
+
 # maybe useful
 # tpope/vim-surround
-# terryma / vim-multiple-cursors 
-# alpertuna/vim-header
+# terryma/vim-multiple-cursors 
 
 # name = "907th/vim-auto-save" # this can removed with commands
 # ----------------- my own plug end----------------------

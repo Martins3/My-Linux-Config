@@ -88,3 +88,48 @@ sudo pacman -S deepin
 2. Vim markdown preview fixed :chear:
 3. Power Comsuming becomes much more devastated.
 
+### Skip all the prompts
+1. create a the config file `~/.yaourtrc`
+2. add three lines into it
+```
+NOCONFIRM=1
+BUILD_NOCONFIRM=1
+EDITFILES=0
+```
+> Ref https://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/
+
+### Faq about SpaceVim
+
+##### 1. Wired Icon
+Here is a exampel in tab line:
+![](./img/b.png)
+
+[install](https://github.com/ryanoasis/vim-devicons/wiki/Installation) a nerd font.
+
+For example:
+1. install
+```
+yaourt -S nerd-fonts-dejavu-complete
+```
+2. change terminal's font
+
+##### 2. C/Cpp header include
+1. Plan A
+compile_commands
+
+As the links show:
+https://www.jetbrains.com/help/clion/compilation-database.html
+
+you can use CMake or clang -MJ, this way is limited when you read others projects when
+neither clang or CMake is not used.
+
+2. Plan B
+local vimrc
+> this plans is under consideration, and I tried and failed
+
+3. Plan C
+
+YCM and .ycm_extra_config.py
+
+YCM is not compatible with SpaceVim and this already failed for the linux kernel and 
+linux driver

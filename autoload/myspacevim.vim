@@ -15,18 +15,15 @@ func! myspacevim#before() abort
             exec "!node %" 
         elseif ext ==# "py"
             exec "!python3 %" 
-        elseif ext ==# "md"
-            " wanna cry
-            exec "!code % &"
+        elseif ext ==# "vim"
+            exec "so %"
+        elseif ext ==# "rs"
+            exec "!rustc % -o %<.out && ./%<.out"
         else
             echo "Check file type !"
         endif
     endf
     noremap<F7> : call QuickRun()<CR>
-
-    " 设置gdb启动快捷键
-    " 暂时debug　的使用依旧含有问题
-    " call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'VBGstartGDB ./%<.out', 'run gdb for the current file', 1)
     
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
@@ -34,20 +31,23 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
 
-    " config the Gtags
-    " The reason use 'a' is : other keys are already occupied by default. :)
-    " call SpaceVim#custom#SPC('nnoremap', ['a', 'r'], 'Gtags -r', 'show Reference', 1)
-    " call SpaceVim#custom#SPC('nnoremap', ['a', 'd'], 'Gtags', 'show Definition', 1)
     call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'update Project', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
+    " call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
+    " call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
+    nnoremap <F5> :cn<CR>
+    nnoremap <F6> :Gtags -r<CR>
+    " config the Gtags, based on gtags.vim
+    let g:gtags_open_list = 0
+
+    " config the Gtags, based on jsfaint/gen_tags.vim
+    let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
 
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
-    nnoremap <F5> :Gtags<CR>
-    nnoremap <F6> :Gtags -r<CR>
+
+
     "设置debug 选中
-    nnoremap <F8> :VBGstartGDB 
+    nnoremap <F8> :VBGstartGDB
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
@@ -62,32 +62,38 @@ func! myspacevim#before() abort
     " let g:neomake_cpp_clang_args = ["-std=c++14"]
     " let g:neomake_open_list = get(g:, 'neomake_open_list', 0)
 
-    "nerdtree隐藏部分类型的文件
+    " nerdtree隐藏部分类型的文件
     let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order']
 
-    " 将默认的2 tab的缩进修改为 4 tab 缩进
-    let g:spacevim_default_indent = 4
+    " let g:spacevim_default_indent = 4
     " close with key m instead of q
-    let g:spacevim_windows_smartclose = 'm'
+    " let g:spacevim_windows_smartclose = 'm'
+
     
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
     " let g:ale_completion_enabled = 1
-    " let g:spacevim_enable_ale = 1
+    let g:spacevim_enable_ale = 1
     " let g:ale_linters = {'cpp': ['clangtidy']} " default can not recognize compile_commands.json
-    " let g:ale_sign_error = '>>'
-    " let g:ale_sign_warning = '--'
-    let g:spacevim_disabled_plugins = ['neomake']
+    " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+    " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+    " let g:ale_c_clang_options = '-Wall -O2 -std=c99'
+    " let g:ale_cpp_clang_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/inlcude'
+    " let g:spacevim_disabled_plugins = ['neomake']
+    " this line should be is a test for localvimrc
+    " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
+    let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
+
 
     " make Parentheses colorful
     let g:rainbow_active = 1
 
     " 使用ycm实现对于c++的自动补全
-    let g:spacevim_enable_ycm = 1
-    let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
+    " let g:spacevim_enable_ycm = 1
+    " let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     let g:spacevim_snippet_engine = 'ultisnips'
     " 实现任何位置可以阅读
-    let g:ycm_confirm_extra_conf = 1
-    let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*']
+    " let g:ycm_confirm_extra_conf = 1
+    " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/*']
 
     set autoread
     au FocusGained,BufEnter * :checktime
@@ -110,6 +116,7 @@ func! myspacevim#before() abort
 
     " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
     " TODO: autosave is stupid, we have to use some new method to do it !
+    
 endf
 
 
