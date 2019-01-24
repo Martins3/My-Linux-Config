@@ -62,10 +62,26 @@ export EDITOR="$VISUAL"
 export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/shen/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/home/shen/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/shen/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/home/shen/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
 
 
-export PATH=~/anaconda3/bin:$PATH
 export PATH=~/.gem/ruby/2.5.0/bin:$PATH
+
 
 
 alias anzhuang="sudo pacman -S"
@@ -111,3 +127,4 @@ function rm() {
 
 
 source ~/.SpaceVim.d/private/zshrc
+
