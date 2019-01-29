@@ -13,7 +13,7 @@
     colorscheme = "OceanicNext"
     # colorscheme = "NeoSolarized"
     # 背景可以取值 "dark" 和 "light"
-    colorscheme_bg = "light"
+    colorscheme_bg = "dark"
 
     # 启用/禁用终端真色，在目前大多数终端下都是支持真色的，当然也有
     # 一小部分终端不支持真色，如果你的 SpaceVim 颜色看上去比较怪异
@@ -47,8 +47,7 @@
 # Enable autocomplete layer
 [[layers]]
   name = 'autocomplete'
-  auto-completion-return-key-behavior = "complete"
-  auto-completion-tab-key-behavior = "smart"
+
 
 [[layers]]
   name = 'tools'
@@ -85,8 +84,6 @@
 [[layers]]
   name = "lang#go"
 
-# rust.vim
-# vim-racer
 [[layers]]
   name = "lang#rust"
 

@@ -23,7 +23,8 @@ func! myspacevim#before() abort
             echo "Check file type !"
         endif
     endf
-    noremap<F7> : call QuickRun()<CR>
+
+
     
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
@@ -32,22 +33,20 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
 
     call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'update Project', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'm'], 'Gtags', 'search tags', 1)
     " call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
     " call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
-    nnoremap <F5> :cn<CR>
-    nnoremap <F6> :Gtags -r<CR>
+
     " config the Gtags, based on gtags.vim
     let g:gtags_open_list = 0
 
     " config the Gtags, based on jsfaint/gen_tags.vim
-    let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
+    " let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
 
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
 
-    "设置debug 选中
-    nnoremap <F8> :VBGstartGDB
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
@@ -72,7 +71,6 @@ func! myspacevim#before() abort
     
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
     " let g:ale_completion_enabled = 1
-    let g:spacevim_enable_ale = 1
     " let g:ale_linters = {'cpp': ['clangtidy']} " default can not recognize compile_commands.json
     " let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
     " let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
@@ -81,16 +79,23 @@ func! myspacevim#before() abort
     " let g:spacevim_disabled_plugins = ['neomake']
     " this line should be is a test for localvimrc
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
+    let g:spacevim_enable_ale = 1
     let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
+    let g:ale_completion_enabled = 1
 
 
     " make Parentheses colorful
     let g:rainbow_active = 1
 
-    " 使用ycm实现对于c++的自动补全
-    " let g:spacevim_enable_ycm = 1
-    " let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
+    " 使用ycm实现对于c的自动补全
+    let g:spacevim_enable_ycm = 1
+    let g:spacevim_autocomplete_method = 'ycm'
     let g:spacevim_snippet_engine = 'ultisnips'
+    " 去除ycm的预览和静态检查
+    let g:ycm_add_preview_to_completeopt = 0
+    let g:ycm_show_diagnostics_ui = 0
+  
+    " let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     " 实现任何位置可以阅读
     " let g:ycm_confirm_extra_conf = 1
     " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/*']
@@ -103,20 +108,12 @@ func! myspacevim#before() abort
     " set spelllang=en_us
     " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
     
-    " 去除ycm的预览和静态检查
-    " let g:ycm_add_preview_to_completeopt = 0
-    " let g:ycm_show_diagnostics_ui = 0
 
     " TODO: 让这些文件全部是隐藏文件，从而实现git会默认忽视
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
-    nnoremap <F4> :GundoToggle<CR>
 
     " TODO:实际测试，这一个效果似乎没有
-    let NERDTreeAutoDeleteBuffer = 1
-
-    " TODO: leaderf 中间含有错误, 似乎只有函数可以使用
-    " TODO: autosave is stupid, we have to use some new method to do it !
-    
+    " let NERDTreeAutoDeleteBuffer = 1
 endf
 
 
@@ -131,4 +128,10 @@ func! myspacevim#after() abort
     nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
     map <C-]> :GtagsCursor<CR>
+    nnoremap <F4> :GundoToggle<CR>
+    nnoremap <F5> :cn<CR>
+    nnoremap <F6> :Gtags -r<CR>
+    nnoremap <F7> : call QuickRun()<CR>
+    "设置debug 选中
+    nnoremap <F8> :VBGstartGDB
 endf

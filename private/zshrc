@@ -16,9 +16,9 @@ alias im="sudo insmod"
 alias mm="sudo rmmod"
 
 # os_tutorial lab need it these lines
-export GCCPREFIX="/home/shen/.Application/i386elfgcc"
-export GCCTARGET=i386-elf
-export PATH="$GCCPREFIX/bin:$PATH"
+export PREFIX="/home/shen/.Application/i386elfgcc"
+export TARGET=i386-elf
+export PATH="$PREFIX/bin:$PATH"
 
 # alias anzhuang="sudo apt install"
 
