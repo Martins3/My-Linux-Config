@@ -10,10 +10,13 @@
     # 设置 SpaceVim 主题及背景，默认的主题是 gruvbox，如果你需要使用更
     # 多的主题，你可以载入 colorscheme 模块
     # colorscheme = "gruvbox"
-    colorscheme = "OceanicNext"
-    # colorscheme = "NeoSolarized"
+
+    # colorscheme = "OceanicNext"
+    # colorscheme_bg = "dark"
+#
+    colorscheme = "NeoSolarized"
+    colorscheme_bg = "light"
     # 背景可以取值 "dark" 和 "light"
-    colorscheme_bg = "dark"
 
     # 启用/禁用终端真色，在目前大多数终端下都是支持真色的，当然也有
     # 一小部分终端不支持真色，如果你的 SpaceVim 颜色看上去比较怪异
@@ -93,13 +96,12 @@
 [[layers]]
   name = "lang#scala"
 
-[[layers]]
-  name = "lsp"
-  filetypes = [
-    "rust",
-    "c",
-    "cpp",
-  ]
+# lsp worked unormally
+# [[layers]]
+  # name = "lsp"
+  # filetypes = [
+    # "rust",
+  # ]
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
@@ -156,10 +158,13 @@
 [[custom_plugins]]
   name = 'embear/vim-localvimrc'
 
+[[custom_plugins]]
+  name = 'autozimu/LanguageClient-neovim'
+  build = 'bash install.sh'
+  rev = 'next'
 
 # maybe useful
 # tpope/vim-surround
 # terryma/vim-multiple-cursors 
 
-# name = "907th/vim-auto-save" # this can removed with commands
 # ----------------- my own plug end----------------------

@@ -24,6 +24,19 @@ func! myspacevim#before() abort
         endif
     endf
 
+    func! GoToDef()
+        let ext = expand("%:e")
+        if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+          echo "begin"
+          exec "GtagsCursor"
+          echo "end"
+        elseif ext ==# "rs"
+         echo "Debug this go to def"
+         call LanguageClient#textDocument_definition()
+        else
+          echo "There is no goto definition for this file type!"
+        endif
+    endf
 
     
     " config the make run
@@ -50,7 +63,6 @@ func! myspacevim#before() abort
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
-    " let mapleader = ','
     let g:mapleader = ','
     " s　键位使用非常频繁，使用c 代替 s
     let g:spacevim_windows_leader = 'c'
@@ -114,6 +126,18 @@ func! myspacevim#before() abort
 
     " TODO:实际测试，这一个效果似乎没有
     " let NERDTreeAutoDeleteBuffer = 1
+    set hidden
+    " Automatically start language servers.
+    let g:LanguageClient_autoStart = 1
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+        \ }
+    " nnoremap gD :call LanguageClient_contextMenu()<CR>
+    " Or map each action separately
+    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 endf
 
 
@@ -127,11 +151,11 @@ func! myspacevim#after() abort
     " 使用leaderF 替代tagbar 的功能
     nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
-    map <C-]> :GtagsCursor<CR>
     nnoremap <F4> :GundoToggle<CR>
     nnoremap <F5> :cn<CR>
     nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> : call QuickRun()<CR>
+    map <C-]> : GtagsCursor<CR>
     "设置debug 选中
     nnoremap <F8> :VBGstartGDB
 endf
