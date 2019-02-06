@@ -38,6 +38,19 @@ func! myspacevim#before() abort
         endif
     endf
 
+    func! FormatFile()
+        let ext = expand("%:e")
+        if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+          exec 'Neoformat'
+        elseif ext ==# "rs"
+          exec 'RustFmt'
+        else
+          echo "There is no format config for this file type!"
+        endif
+    endf
+
+    
+
     
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
@@ -45,13 +58,16 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
 
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'update Project', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'create a gtags database', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'u'], 'GtagsGenerate', 'update tag database', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], 'call FormatFile()', 'format file', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'm'], 'Gtags', 'search tags', 1)
     " call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
-    " call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
 
     " config the Gtags, based on gtags.vim
-    let g:gtags_open_list = 0
+    " gtags update
+    let g:gtags_open_list = 1
 
     " config the Gtags, based on jsfaint/gen_tags.vim
     " let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
@@ -132,7 +148,7 @@ func! myspacevim#before() abort
     let g:LanguageClient_serverCommands = {
         \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
         \ }
-    " nnoremap gD :call LanguageClient_contextMenu()<CR>
+    nnoremap gD :call LanguageClient_contextMenu()<CR>
     " Or map each action separately
     nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
@@ -152,10 +168,13 @@ func! myspacevim#after() abort
     nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
     nnoremap <F4> :GundoToggle<CR>
-    nnoremap <F5> :cn<CR>
+    " nnoremap <F5> :cn<CR>
     nnoremap <F6> :Gtags -r<CR>
-    nnoremap <F7> : call QuickRun()<CR>
+    nnoremap <F7> :call QuickRun()<CR>
     map <C-]> : GtagsCursor<CR>
     "设置debug 选中
     nnoremap <F8> :VBGstartGDB
+
+    nnoremap <silent> <Up> :cp<CR>
+    nnoremap <silent> <Down> :cn<CR>
 endf

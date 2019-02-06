@@ -11,11 +11,11 @@
     # 多的主题，你可以载入 colorscheme 模块
     # colorscheme = "gruvbox"
 
-    # colorscheme = "OceanicNext"
-    # colorscheme_bg = "dark"
-#
-    colorscheme = "NeoSolarized"
-    colorscheme_bg = "light"
+    colorscheme = "OceanicNext"
+    colorscheme_bg = "dark"
+
+    # colorscheme = "NeoSolarized"
+    # colorscheme_bg = "light"
     # 背景可以取值 "dark" 和 "light"
 
     # 启用/禁用终端真色，在目前大多数终端下都是支持真色的，当然也有
@@ -51,6 +51,8 @@
 [[layers]]
   name = 'autocomplete'
 
+[[layers]]
+  name = "tags"
 
 [[layers]]
   name = 'tools'
@@ -151,8 +153,8 @@
   # name = 'jsfaint/gen_tags.vim'
 
 # abandon it, because it is not efficient
-[[custom_plugins]]
-    name = "SpaceVim/gtags.vim"
+# [[custom_plugins]]
+    # name = "SpaceVim/gtags.vim"
 #}end tags
 
 [[custom_plugins]]
