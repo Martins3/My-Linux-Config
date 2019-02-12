@@ -62,3 +62,5 @@ function compile(){
 }
 
 alias s="sharp"
+alias ls="exa"
+

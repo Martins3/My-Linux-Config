@@ -67,7 +67,10 @@ func! myspacevim#before() abort
 
     " config the Gtags, based on gtags.vim
     " gtags update
-    let g:gtags_open_list = 1
+    let g:gtags_open_list = 0
+
+    "rust auto fmt when save file
+    let g:rustfmt_autosave = 1
 
     " config the Gtags, based on jsfaint/gen_tags.vim
     " let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
@@ -122,8 +125,8 @@ func! myspacevim#before() abort
     " 去除ycm的预览和静态检查
     let g:ycm_add_preview_to_completeopt = 0
     let g:ycm_show_diagnostics_ui = 0
-  
-    " let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
+    " To elimilite some error
+    let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     " 实现任何位置可以阅读
     " let g:ycm_confirm_extra_conf = 1
     " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/*']

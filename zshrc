@@ -103,7 +103,7 @@ alias lg="lazygit"
 function rm() {
     # garbage collect
     now=$(date +%s)
-    for s in $(ls --indicator-style=none $HOME/.trash/) ;do
+    for s in $(/bin/ls --indicator-style=none $HOME/.trash/) ;do
         dir_name=${s//_/-}
         dir_time=$(date +%s -d $dir_name)
         # if big than one month then delete
