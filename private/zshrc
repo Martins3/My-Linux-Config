@@ -49,8 +49,8 @@ export NAVY_HOME=/home/shen/Core/pa/ics2018/navy-apps
 
 # read 
 function t(){
-    review -w $1
     trans -sp :zh $1
+    review -w $1
 }
 
 # compile c++ with std=c++14

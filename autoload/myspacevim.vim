@@ -57,6 +57,7 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
 
     call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'create a gtags database', 1)
@@ -112,7 +113,7 @@ func! myspacevim#before() abort
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
     let g:spacevim_enable_ale = 1
     let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
-    let g:ale_completion_enabled = 1
+    " let g:ale_completion_enabled = 1
 
 
     " make Parentheses colorful
@@ -140,7 +141,6 @@ func! myspacevim#before() abort
     " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
     
 
-    " TODO: 让这些文件全部是隐藏文件，从而实现git会默认忽视
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
 
     " TODO:实际测试，这一个效果似乎没有
@@ -176,7 +176,7 @@ func! myspacevim#after() abort
     nnoremap <F7> :call QuickRun()<CR>
     map <C-]> : GtagsCursor<CR>
     "设置debug 选中
-    nnoremap <F8> :VBGstartGDB
+    nnoremap <F8> :gdbgui
 
     nnoremap <silent> <Up> :cp<CR>
     nnoremap <silent> <Down> :cn<CR>
