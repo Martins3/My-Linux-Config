@@ -17,37 +17,60 @@ func! myspacevim#before() abort
             exec "!python3 %" 
         elseif ext ==# "vim"
             exec "so %"
+        elseif ext ==# "html"
+            exec "!google-chrome-stable %"
         elseif ext ==# "rs"
-            exec "!rustc % -o %<.out && ./%<.out"
+            call CargoRun()
         else
             echo "Check file type !"
         endif
     endf
 
-    func! GoToDef()
-        let ext = expand("%:e")
-        if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
-          echo "begin"
-          exec "GtagsCursor"
-          echo "end"
-        elseif ext ==# "rs"
-         echo "Debug this go to def"
-         call LanguageClient#textDocument_definition()
-        else
-          echo "There is no goto definition for this file type!"
-        endif
-    endf
+func! GoToDef()
+    let ext = expand("%:e")
+    if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+      echo "begin"
+      exec "GtagsCursor"
+      echo "end"
+    elseif ext ==# "rs"
+     echo "Debug this go to def"
+     call LanguageClient#textDocument_definition()
+    else
+      echo "There is no goto definition for this file type!"
+    endif
+endf
 
-    func! FormatFile()
-        let ext = expand("%:e")
-        if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
-          exec 'Neoformat'
-        elseif ext ==# "rs"
-          exec 'RustFmt'
-        else
-          echo "There is no format config for this file type!"
-        endif
-    endf
+func! FormatFile()
+    let ext = expand("%:e")
+    if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+      exec 'Neoformat'
+    elseif ext ==# "rs"
+      exec 'RustFmt'
+    else
+      echo "There is no format config for this file type!"
+    endif
+endf
+
+
+
+" TODO not familiar with vimscipt, maybe better implementation
+
+" 1. rust project root is tag with Cargo.toml instread of VCS
+" 2. this configuration is only for project, not for single rust file
+func! CargoRun()
+  let cargo_run_path = fnamemodify(resolve(expand('%:p')), ':h')
+  while cargo_run_path != "/"
+    if filereadable(cargo_run_path . "/Cargo.toml")
+        echo cargo_run_path
+        exec "cd " . cargo_run_path
+        exec "Cargo run"
+        exec "cd -"
+        return
+    endif
+   let cargo_run_path = fnamemodify(cargo_run_path, ':h') 
+  endwhile
+  echo "Cargo.toml not found !"
+endf
 
     
 
@@ -71,7 +94,7 @@ func! myspacevim#before() abort
     let g:gtags_open_list = 0
 
     "rust auto fmt when save file
-    let g:rustfmt_autosave = 1
+    " let g:rustfmt_autosave = 1
 
     " config the Gtags, based on jsfaint/gen_tags.vim
     " let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite

@@ -86,7 +86,7 @@ export PATH=~/.gem/ruby/2.5.0/bin:$PATH
 
 alias anzhuang="sudo pacman -S"
 alias gj="shutdown --p now"
-alias vpn="sslocal -c ~/Core/vpn.json"
+alias vpn="rsslocal -c ~/Core/vpn.json"
 alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="shutdown -r now"

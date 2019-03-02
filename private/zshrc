@@ -36,11 +36,11 @@ function amsite(){
 }
 
 # http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
-# function command_not_found_handler(){
-  # echo 'command not found: cmd'
-  # review
-  # return 127
-# }
+function command_not_found_handler(){
+  echo 'command not found: cmd'
+  review
+  return 127
+}
 
 # pa enviroment
 export NEMU_HOME=/home/shen/Core/pa/ics2018/nemu
