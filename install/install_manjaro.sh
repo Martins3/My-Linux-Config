@@ -104,6 +104,11 @@ wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v
 #gource
 sudo pacman -S gource
 
+# gdbgui amazing and incredible
+pip install gdbgui
+
+
+
 
 # --------------------------------------- get our repo from cloud --------------------------------
 

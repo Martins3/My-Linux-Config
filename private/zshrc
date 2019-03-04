@@ -16,9 +16,9 @@ alias im="sudo insmod"
 alias mm="sudo rmmod"
 
 # os_tutorial lab need it these lines
-export GCCPREFIX="/home/shen/.Application/i386elfgcc"
-export GCCTARGET=i386-elf
-export PATH="$GCCPREFIX/bin:$PATH"
+export PREFIX="/home/shen/.Application/i386elfgcc"
+export TARGET=i386-elf
+export PATH="$PREFIX/bin:$PATH"
 
 # alias anzhuang="sudo apt install"
 
@@ -36,11 +36,11 @@ function amsite(){
 }
 
 # http://zsh.sourceforge.net/Doc/Release/Command-Execution.html#Command-Execution
-# function command_not_found_handler(){
-  # echo 'command not found: cmd'
-  # review
-  # return 127
-# }
+function command_not_found_handler(){
+  echo 'command not found: cmd'
+  review
+  return 127
+}
 
 # pa enviroment
 export NEMU_HOME=/home/shen/Core/pa/ics2018/nemu
@@ -49,8 +49,8 @@ export NAVY_HOME=/home/shen/Core/pa/ics2018/navy-apps
 
 # read 
 function t(){
-    review -w $1
     trans -sp :zh $1
+    review -w $1
 }
 
 # compile c++ with std=c++14
@@ -62,3 +62,5 @@ function compile(){
 }
 
 alias s="sharp"
+alias ls="exa"
+
