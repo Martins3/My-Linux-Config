@@ -52,7 +52,6 @@ func! FormatFile()
 endf
 
 
-
 " TODO not familiar with vimscipt, maybe better implementation
 
 " 1. rust project root is tag with Cargo.toml instread of VCS
@@ -140,7 +139,7 @@ endf
 
 
     " make Parentheses colorful
-    let g:rainbow_active = 1
+    " let g:rainbow_active = 1
 
     " 使用ycm实现对于c的自动补全
     let g:spacevim_enable_ycm = 1

@@ -36,7 +36,7 @@ git clone git@github.com:XiongGuiHui/My-Linux-config.git ~/.SpaceVim.d
 curl -sLf https://spacevim.org/cn/install.sh | bash
 
 # compile Ycm
-sudo npm install -g typescript
+# sudo npm install -g typescript # this is optional
 cd .cache/vimfiles/repos/github.com/Valloric/YouCompleteMe
 # ./install.py --clang-completer --go-completer --rust-completer --java-completer # this optional
 ./install.py --clang-completer
@@ -105,8 +105,10 @@ wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v
 sudo pacman -S gource
 
 # gdbgui amazing and incredible
-pip install gdbgui
+sudo pip install gdbgui
 
+# replace find
+anzhuang fd
 
 
 
