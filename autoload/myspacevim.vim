@@ -8,13 +8,13 @@ func! myspacevim#before() abort
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
         elseif ext ==# "c"
-            exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out" 
+            exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
         elseif ext ==# "go"
-            exec "!go run %" 
+            exec "!go run %"
         elseif ext ==# "js"
-            exec "!node %" 
+            exec "!node %"
         elseif ext ==# "py"
-            exec "!python3 %" 
+            exec "!python3 %"
         elseif ext ==# "vim"
             exec "so %"
         elseif ext ==# "html"
@@ -66,14 +66,14 @@ func! CargoRun()
         exec "cd -"
         return
     endif
-   let cargo_run_path = fnamemodify(cargo_run_path, ':h') 
+   let cargo_run_path = fnamemodify(cargo_run_path, ':h')
   endwhile
   echo "Cargo.toml not found !"
 endf
 
-    
 
-    
+
+
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
@@ -122,7 +122,7 @@ endf
     " close with key m instead of q
     " let g:spacevim_windows_smartclose = 'm'
 
-    
+
     " 即使在layer层使用，但是使用ale 依旧需要手动指明
     " let g:ale_completion_enabled = 1
     " let g:ale_linters = {'cpp': ['clangtidy']} " default can not recognize compile_commands.json
@@ -161,7 +161,7 @@ endf
     " By far, I don't know how to set spell check by default just for markdown
     " set spelllang=en_us
     " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
-    
+
 
     " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
 
@@ -179,6 +179,9 @@ endf
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+    " 暂时添加，用于查找被git忽略的文件
+    let g:Lf_UseVersionControlTool = 0
+    let g:bookmark_no_default_key_mappings = 1
 endf
 
 
@@ -190,7 +193,7 @@ func! myspacevim#after() abort
     let g:auto_save_silent = 1  " do not display the auto-save notification
 
     " 使用leaderF 替代tagbar 的功能
-    nnoremap <F2> :LeaderfFunction!<CR>
+    " nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
     nnoremap <F4> :GundoToggle<CR>
     " nnoremap <F5> :cn<CR>
@@ -202,4 +205,11 @@ func! myspacevim#after() abort
 
     nnoremap <silent> <Up> :cp<CR>
     nnoremap <silent> <Down> :cn<CR>
+
+    nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
+    nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
+    nnoremap <silent> <Leader>ma :<C-u>BookmarkShowAll<Cr>
+    nnoremap <silent> <Leader>mn :<C-u>BookmarkNext<Cr>
+    nnoremap <silent> <Leader>mp :<C-u>BookmarkPrev<Cr>
+
 endf

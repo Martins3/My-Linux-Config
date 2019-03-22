@@ -55,8 +55,9 @@
 # [[layers]]
   # name = "tags"
 
-[[layers]]
-  name = 'tools'
+# it's bookmark keybind conflict with nerdtree
+# [[layers]]
+  # name = 'tools'
 
 [[layers]]
   name = 'shell'
@@ -90,8 +91,8 @@
 [[layers]]
   name = "lang#go"
 
-[[layers]]
-  name = "lang#rust"
+# [[layers]]
+#  name = "lang#rust"
 
 [[layers]]
   name = "lang#html"
@@ -164,6 +165,10 @@
 
 [[custom_plugins]]
   name = 'sedm0784/vim-you-autocorrect'
+
+[[custom_plugins]]
+  name = 'MattesGroeger/vim-bookmarks'
+
 
 [[custom_plugins]]
   name = 'autozimu/LanguageClient-neovim'
