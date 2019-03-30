@@ -1,4 +1,4 @@
-source ~/.SpaceVim.d/.antigen.zsh
+source ~/.SpaceVim.d/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -12,7 +12,7 @@ antigen bundle command-not-found
 # antigen bundle soimort/translate-shell # seems can not installed properly in this way.
 
 # Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+# antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
 antigen theme robbyrussell
@@ -25,12 +25,10 @@ source ~/.profile
 
 export PATH=$PATH:$HOME/.Application # Application contains the binary applications
 
-
-
 # vte
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
+# if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        # source /etc/profile.d/vte.sh
+# fi
 
 
 export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
@@ -62,25 +60,27 @@ export EDITOR="$VISUAL"
 export PATH=$PATH:~/.cargo/bin 
 export FONTCONFIG_PATH=/etc/fonts
 
+# conda leads to some problem
+# if you need conda, just uncomment it
 # added by Anaconda3 2018.12 installer
 # >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/shen/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/home/shen/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/shen/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/home/shen/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$(CONDA_REPORT_ERRORS=false '/home/shen/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+    # \eval "$__conda_setup"
+# else
+    # if [ -f "/home/shen/anaconda3/etc/profile.d/conda.sh" ]; then
+        # . "/home/shen/anaconda3/etc/profile.d/conda.sh"
+        # CONDA_CHANGEPS1=false conda activate base
+    # else
+        # \export PATH="/home/shen/anaconda3/bin:$PATH"
+    # fi
+# fi
+# unset __conda_setup
 # <<< conda init <<<
 
 
-export PATH=~/.gem/ruby/2.5.0/bin:$PATH
+export PATH=~/.gem/ruby/2.6.0/bin:$PATH
 
 
 
@@ -141,3 +141,7 @@ function command_not_found_handler(){
 
 alias s="sharp"
 alias ls="exa"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+

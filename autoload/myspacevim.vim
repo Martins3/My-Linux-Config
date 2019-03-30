@@ -135,7 +135,6 @@ endf
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
     let g:spacevim_enable_ale = 1
     let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
-    " let g:ale_completion_enabled = 1
 
 
     " make Parentheses colorful
@@ -196,7 +195,7 @@ func! myspacevim#after() abort
     " nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
     nnoremap <F4> :GundoToggle<CR>
-    " nnoremap <F5> :cn<CR>
+    nnoremap <F5> :cd .<CR>
     nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
     map <C-]> : GtagsCursor<CR>
@@ -206,10 +205,14 @@ func! myspacevim#after() abort
     nnoremap <silent> <Up> :cp<CR>
     nnoremap <silent> <Down> :cn<CR>
 
+
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
     nnoremap <silent> <Leader>ma :<C-u>BookmarkShowAll<Cr>
     nnoremap <silent> <Leader>mn :<C-u>BookmarkNext<Cr>
     nnoremap <silent> <Leader>mp :<C-u>BookmarkPrev<Cr>
 
+    "set foldmethod
+    set foldmethod=syntax
+    set nofoldenable
 endf

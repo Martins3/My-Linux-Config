@@ -10,8 +10,9 @@ and many other thing which can greatly imporve your life quality under linux.
 
 # TODO
 1. A parallel version of `install_manjaro`
-2. Add a simple version
 3. Remove .Application dir, need a better apporach
+3. Gtags didn't track files in assembly
+
 
 # General
 

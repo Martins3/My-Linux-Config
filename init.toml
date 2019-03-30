@@ -48,8 +48,8 @@
 
 
 # Enable autocomplete layer
-[[layers]]
-  name = 'autocomplete'
+# [[layers]]
+  # name = 'autocomplete'
 
 # this layer is misleading
 # [[layers]]
@@ -78,6 +78,10 @@
   name = "checkers"
   enable_neomake = false
   enable_ale = true
+
+[[layers]]
+  name = "VersionControl"
+  enable-gtm-status = true
 
 [[layers]]
   name = "git"
@@ -127,8 +131,6 @@
     build = "make"
 
 # make nerdtree icon{
-# It can not work correctly for rust
-# This should not caused by plugins, i opine that I have not install spacevim, nerdfont or arch correctly
 [[custom_plugins]]
     name =  "tiagofumo/vim-nerdtree-syntax-highlight"
 
