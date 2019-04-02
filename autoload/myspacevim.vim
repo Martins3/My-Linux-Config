@@ -106,7 +106,6 @@ endf
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
     let g:mapleader = ','
-    " s　键位使用非常频繁，使用c 代替 s
     let g:spacevim_windows_leader = 'c'
 
     " neomake
@@ -133,22 +132,23 @@ endf
     " let g:spacevim_disabled_plugins = ['neomake']
     " this line should be is a test for localvimrc
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
-    let g:spacevim_enable_ale = 1
-    let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
+
+    " let g:spacevim_enable_ale = 1
+    " let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
 
 
     " make Parentheses colorful
     " let g:rainbow_active = 1
 
     " 使用ycm实现对于c的自动补全
-    let g:spacevim_enable_ycm = 1
-    let g:spacevim_autocomplete_method = 'ycm'
+    " let g:spacevim_enable_ycm = 1
+    " let g:spacevim_autocomplete_method = 'ycm'
     let g:spacevim_snippet_engine = 'ultisnips'
     " 去除ycm的预览和静态检查
-    let g:ycm_add_preview_to_completeopt = 0
-    let g:ycm_show_diagnostics_ui = 0
+    " let g:ycm_add_preview_to_completeopt = 0
+    " let g:ycm_show_diagnostics_ui = 0
     " To elimilite some error
-    let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
+    " let g:ycm_global_ycm_extra_conf = '~/.SpaceVim.d/.ycm_extra_conf.py'
     " 实现任何位置可以阅读
     " let g:ycm_confirm_extra_conf = 1
     " let g:ycm_extra_conf_globlist = ['~/Core/linux-source-tree/*', '~/Core/sl/*', '~/Core/Sharp/*', '~/Core/pa/ics2018/*']
@@ -161,21 +161,20 @@ endf
     " set spelllang=en_us
     " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
 
-
-    " TODO: 实现对于文件的更新数据库，采用GtagsGenerate!
-
     " TODO:实际测试，这一个效果似乎没有
-    " let NERDTreeAutoDeleteBuffer = 1
+    let NERDTreeAutoDeleteBuffer = 1
     set hidden
+
     " Automatically start language servers.
-    let g:LanguageClient_autoStart = 1
-    let g:LanguageClient_serverCommands = {
-        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-        \ }
-    nnoremap gD :call LanguageClient_contextMenu()<CR>
+    " let g:LanguageClient_autoStart = 1
+    " let g:LanguageClient_serverCommands = {
+        " \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+        " \ }
+
+    " nnoremap gD :call LanguageClient_contextMenu()<CR>
     " Or map each action separately
-    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
     " 暂时添加，用于查找被git忽略的文件
@@ -195,10 +194,16 @@ func! myspacevim#after() abort
     " nnoremap <F2> :LeaderfFunction!<CR>
     " 使用GtagsCursor 代替ctags的功能
     nnoremap <F4> :GundoToggle<CR>
-    nnoremap <F5> :cd .<CR>
     nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
-    map <C-]> : GtagsCursor<CR>
+
+    " FIXME wait for the plugin to update or just choose another plugin
+    func! GtagsSearch()
+      exec "GtagsCursor"
+      exec "cd ."
+    endf
+
+    map <C-]> : call GtagsSearch() <CR>
     "设置debug 选中
     nnoremap <F8> :gdbgui
 

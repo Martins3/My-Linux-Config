@@ -31,7 +31,7 @@
     # 1: 1 ➛ ➀
     # 2: 1 ➛ ⓵
     # 3: 1 ➛ ¹
-    # 4: 1 ➛ 1
+    # 4: 1 ➛ 
     buffer_index_type = 4
     # 显示/隐藏顶部标签栏上文件类型图标，这一图标需要安装 nerd fonts，
     # 如果未能成功安装这一字体，可以隐藏图标
@@ -45,9 +45,9 @@
     # vimcompatible = true
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
+    autocomplete_method = "coc"
 
 
-# Enable autocomplete layer
 # [[layers]]
   # name = 'autocomplete'
 
@@ -59,10 +59,11 @@
 # [[layers]]
   # name = 'tools'
 
-[[layers]]
-  name = 'shell'
-  default_position = 'left'
-  default_height = 30
+# we never use shell in vim
+# [[layers]]
+  # name = 'shell'
+  # default_position = 'left'
+  # default_height = 30
 
 # [[layers]]
   # name = "lang#c"
@@ -76,8 +77,7 @@
 
 [[layers]]
   name = "checkers"
-  enable_neomake = false
-  enable_ale = true
+  enable = false
 
 [[layers]]
   name = "VersionControl"
@@ -104,12 +104,18 @@
 [[layers]]
   name = "lang#scala"
 
+[[custom_plugins]]
+  name = 'neoclide/coc.nvim'
+  build = 'yarn install --frozen-lockfile'
+
 # lsp worked unormally
-# [[layers]]
-  # name = "lsp"
-  # filetypes = [
-    # "rust",
-  # ]
+[[layers]] 
+  name = 'lsp'
+  filetypes = [
+    'c',
+    'cpp',
+    'rust'
+  ]
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
@@ -171,11 +177,11 @@
 [[custom_plugins]]
   name = 'MattesGroeger/vim-bookmarks'
 
-
-[[custom_plugins]]
-  name = 'autozimu/LanguageClient-neovim'
-  build = 'bash install.sh'
-  rev = 'next'
+# 由于使用rust而添加的内容，似乎不错
+# [[custom_plugins]]
+  # name = 'autozimu/LanguageClient-neovim'
+  # build = 'bash install.sh'
+  # rev = 'next'
 
 # maybe useful
 # tpope/vim-surround
