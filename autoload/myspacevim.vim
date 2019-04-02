@@ -133,8 +133,8 @@ endf
     " this line should be is a test for localvimrc
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
 
-    " let g:spacevim_enable_ale = 1
-    " let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
+    let g:spacevim_enable_ale = 1
+    let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
 
 
     " make Parentheses colorful

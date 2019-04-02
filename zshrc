@@ -24,6 +24,7 @@ antigen apply
 source ~/.profile
 
 export PATH=$PATH:$HOME/.Application # Application contains the binary applications
+export PATH=$PATH:$HOME/.Application/bin
 
 # vte
 # if [ $TILIX_ID ] || [ $VTE_VERSION ]; then

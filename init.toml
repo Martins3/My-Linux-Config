@@ -77,7 +77,8 @@
 
 [[layers]]
   name = "checkers"
-  enable = false
+  enable_neomake = false
+  enable_ale = true
 
 [[layers]]
   name = "VersionControl"

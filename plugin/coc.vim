@@ -5,6 +5,7 @@ call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
 			\ "codeLens.enable": 1,
+      \ "diagnostic.enable": 0,
 			\ "diagnostic.virtualText": 1,
 			\})
 
@@ -12,7 +13,10 @@ call coc#config("languageserver", {
       \"ccls": {
       \  "command": "ccls",
       \  "filetypes": ["c", "cpp"],
-      \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
+      \  "rootPatterns": ["compile_commands.json", ".svn/"],
+      \  "index": {
+      \     "threads": 8
+      \  },
       \  "initializationOptions": {
       \     "cache": {
       \       "directory": ".ccls-cache"
