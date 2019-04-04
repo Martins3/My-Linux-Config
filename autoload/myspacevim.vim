@@ -71,8 +71,8 @@ func! CargoRun()
   echo "Cargo.toml not found !"
 endf
 
-
-
+    " call SpaceVim#layers#disable('core#statusline')
+    " call SpaceVim#layers#disable('core#tabline')
 
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
@@ -84,7 +84,6 @@ endf
     call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'create a gtags database', 1)
     call SpaceVim#custom#SPC('nnoremap', ['a', 'u'], 'GtagsGenerate', 'update tag database', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], 'call FormatFile()', 'format file', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'm'], 'Gtags', 'search tags', 1)
     " call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
 
@@ -133,8 +132,8 @@ endf
     " this line should be is a test for localvimrc
     " let g:ale_cpp_clangtidy_options = '-Wall -O2 -std=c++14 -I/home/shen/Core/c/include'
 
-    let g:spacevim_enable_ale = 1
-    let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
+    " let g:spacevim_enable_ale = 1
+    " let g:ale_linters = {'c':['clangtidy'], 'cpp':['clangtidy'], 'asm':['clangtidy']}
 
 
     " make Parentheses colorful

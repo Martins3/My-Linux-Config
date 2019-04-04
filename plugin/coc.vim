@@ -5,15 +5,13 @@ call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
 			\ "codeLens.enable": 1,
-      \ "diagnostic.enable": 0,
-			\ "diagnostic.virtualText": 1,
 			\})
 
 call coc#config("languageserver", {
       \"ccls": {
       \  "command": "ccls",
       \  "filetypes": ["c", "cpp"],
-      \  "rootPatterns": ["compile_commands.json", ".svn/"],
+      \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
       \  "index": {
       \     "threads": 8
       \  },
@@ -22,12 +20,22 @@ call coc#config("languageserver", {
       \       "directory": ".ccls-cache"
       \     }
       \   }
+      \},
+      \
+      \"bash": {
+      \  "command": "bash-language-server",
+      \  "args": ["start"],
+      \  "filetypes": ["sh"],
+      \  "ignoredRootPaths": ["~"]
       \}
       \})
 
 let s:coc_extensions = [
 			\ 'coc-json',
-      \ 'coc-tag',
+      \ 'coc-css',
+      \ 'coc-html',
+      \ 'coc-word',
+      \ 'coc-emoji',
       \ 'coc-rls',
       \ 'coc-snippets',
 			\]
@@ -102,7 +110,8 @@ augroup end
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` for format current buffer
-command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=0 Format :call CocAction('format')
+call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file', 1)
 
 " Use `:Fold` for fold current buffer
 " command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -124,7 +133,9 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
+
+
 " Manage extensions
 " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands

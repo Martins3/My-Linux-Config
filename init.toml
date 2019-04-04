@@ -75,10 +75,16 @@
 [[layers]]
   name = "lang#markdown"
 
+# [[layers]]
+  # name = "checkers"
+  # enable_neomake = false
+  # enable_ale = true
+
 [[layers]]
   name = "checkers"
-  enable_neomake = false
-  enable_ale = true
+  enable = false
+  # enable_neomake = false
+  # enable_ale = true
 
 [[layers]]
   name = "VersionControl"
@@ -102,8 +108,9 @@
 [[layers]]
   name = "lang#html"
 
-[[layers]]
-  name = "lang#scala"
+# idea is a better choice
+# [[layers]]
+  # name = "lang#scala"
 
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
