@@ -117,13 +117,13 @@
   build = 'yarn install --frozen-lockfile'
 
 # lsp worked unormally
-[[layers]] 
-  name = 'lsp'
-  filetypes = [
-    'c',
-    'cpp',
-    'rust'
-  ]
+# [[layers]]
+  # name = 'lsp'
+  # filetypes = [
+    # 'c',
+    # 'cpp',
+    # 'rust'
+  # ]
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]

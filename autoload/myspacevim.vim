@@ -100,8 +100,6 @@ endf
     " TODO: 当打开quick fix 之后自动进入quickfix界面
     autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
-
-
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
     let g:mapleader = ','
@@ -177,7 +175,7 @@ endf
     " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
     " 暂时添加，用于查找被git忽略的文件
-    let g:Lf_UseVersionControlTool = 0
+    " let g:Lf_UseVersionControlTool = 0
     let g:bookmark_no_default_key_mappings = 1
 endf
 

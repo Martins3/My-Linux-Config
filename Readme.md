@@ -116,28 +116,14 @@ yaourt -S nerd-fonts-dejavu-complete
 
 ##### 2. C/Cpp header include
 1. Plan A
-compile_commands
+compile_commands.cpp
 
 As the links show:
 https://www.jetbrains.com/help/clion/compilation-database.html
 
-you can use CMake or clang -MJ, this way is limited when you read others projects when
-neither clang or CMake is not used.
+you can use CMake or clang -MJ, this way is limited when you read others projects when neither clang or CMake is not used.
 
-2. Plan B
-local vimrc
-> this plans is under consideration, and I tried and failed
+##### 3. Tags
+Gtags is a great tools, but language server protocol is a better choice;
 
-3. Plan C
-
-YCM and .ycm_extra_config.py
-
-YCM is not compatible with SpaceVim and this already failed for the linux kernel and 
-linux driver
-
-```
-```
-
-```
-
-```
+### SpaceVim Todos
