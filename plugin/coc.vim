@@ -5,6 +5,7 @@ call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
 			\ "codeLens.enable": 1,
+			\ "diagnostic.virtualText": 1,
 			\})
 
 call coc#config("languageserver", {
