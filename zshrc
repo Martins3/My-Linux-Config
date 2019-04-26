@@ -91,7 +91,7 @@ alias vpn="sslocal -c ~/Core/vpn.json"
 alias c="clear"
 alias lanWifi="sudo create_ap wlp2s0 wlp2s0 wifiName 123456ab --hidden"
 alias reboot="shutdown -r now"
-alias vim="nvim"
+alias vim="/usr/bin/nvim"
 alias setproxy='export http_proxy="socks5://127.0.0.1:1080" && export https_proxy="socks5://127.0.0.1:1080"'
 alias q="exit"
 alias lg="lazygit"

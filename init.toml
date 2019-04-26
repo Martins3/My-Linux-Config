@@ -114,23 +114,25 @@
 
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
-  build = 'yarn install --frozen-lockfile'
+  merge = 0
+  build = './install.sh nightly'
 
-# lsp worked unormally
-# [[layers]]
-  # name = 'lsp'
-  # filetypes = [
-    # 'c',
-    # 'cpp',
-    # 'rust'
-  # ]
+[[layers]]
+  name = "lang#vim"
+
+[[layers]]
+  name = "lang#latex"
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
     name = "907th/vim-auto-save" # this can removed with commands
 
+# [[custom_plugins]]
+    # name = 'skywind3000/vim-keysound' # this can removed with commands
+
 [[custom_plugins]]
     name = "majutsushi/tagbar"
+
 
 [[custom_plugins]]
     name = "sjl/gundo.vim"
@@ -179,11 +181,17 @@
 # [[custom_plugins]]
   # name = 'embear/vim-localvimrc'
 
-[[custom_plugins]]
-  name = 'sedm0784/vim-you-autocorrect'
+# [[custom_plugins]]
+  # name = 'sedm0784/vim-you-autocorrect'
 
 [[custom_plugins]]
   name = 'MattesGroeger/vim-bookmarks'
+
+[[custom_plugins]]
+    name = 'Shougo/neoinclude.vim'
+
+[[custom_plugins]]
+    name = 'jsfaint/coc-neoinclude'
 
 # 由于使用rust而添加的内容，似乎不错
 # [[custom_plugins]]
