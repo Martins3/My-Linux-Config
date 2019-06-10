@@ -193,11 +193,8 @@
 [[custom_plugins]]
     name = 'jsfaint/coc-neoinclude'
 
-# 由于使用rust而添加的内容，似乎不错
-# [[custom_plugins]]
-  # name = 'autozimu/LanguageClient-neovim'
-  # build = 'bash install.sh'
-  # rev = 'next'
+[[custom_plugins]]
+    name = 'Shougo/vinarise.vim'
 
 # maybe useful
 # tpope/vim-surround

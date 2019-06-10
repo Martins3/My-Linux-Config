@@ -4,6 +4,8 @@ func! myspacevim#before() abort
         exec "w"
         let ext = expand("%:e")
         if ext ==# "sh"
+            exec "!dos2unix %"
+        if ext ==# "md"
             exec "!sh %"
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
@@ -13,6 +15,8 @@ func! myspacevim#before() abort
             exec "!go run %"
         elseif ext ==# "js"
             exec "!node %"
+        elseif ext ==# "bin"
+            exec "!readelf -h %"
         elseif ext ==# "py"
             exec "!python3 %"
         elseif ext ==# "vim"
@@ -33,7 +37,7 @@ func! GoToDef()
       exec "GtagsCursor"
       echo "end"
     elseif ext ==# "rs"
-     echo "Debug this go to def"
+     echo "Debug this go to def, FIXME, we don't use this function anymore"
      call LanguageClient#textDocument_definition()
     else
       echo "There is no goto definition for this file type!"
@@ -116,7 +120,11 @@ endf
 
 
     " nerdtree隐藏部分类型的文件
-    let g:NERDTreeIgnore=['\.o$', '\.out$', '\.bin$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order']
+    let g:NERDTreeIgnore=['\.o$', '\.d$', '\.sym$', '\.out$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order', '\.so$']
+
+    " hack the kernel
+    let g:gitgutter_max_signs = 1500
+
 
     " let g:spacevim_default_indent = 4
     " close with key m instead of q
@@ -140,6 +148,17 @@ endf
     set hidden
 
     let g:bookmark_no_default_key_mappings = 1
+
+    augroup Binary
+      au!
+      au BufReadPre  *.bin let &bin=1
+      au BufReadPost *.bin if &bin | %!xxd
+      au BufReadPost *.bin set ft=xxd | endif
+      au BufWritePre *.bin if &bin | %!xxd -r
+      au BufWritePre *.bin endif
+      au BufWritePost *.bin if &bin | %!xxd
+      au BufWritePost *.bin set nomod | endif
+    augroup END
 endf
 
 
@@ -151,6 +170,7 @@ func! myspacevim#after() abort
     let g:auto_save_silent = 1  " do not display the auto-save notification
 
     " 使用GtagsCursor 代替ctags的功能
+    set autowrite
     nnoremap <F4> :GundoToggle<CR>
     nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
@@ -164,10 +184,6 @@ func! myspacevim#after() abort
     map <C-]> : call GtagsSearch() <CR>
     "设置debug 选中
     nnoremap <F8> :gdbgui
-
-    nnoremap <silent> <Up> :cp<CR>
-    nnoremap <silent> <Down> :cn<CR>
-
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>

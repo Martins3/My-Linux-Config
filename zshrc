@@ -141,7 +141,13 @@ function command_not_found_handler(){
 }
 
 alias s="sharp"
-alias ls="exa"
+# alias ls="exa"
+
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
