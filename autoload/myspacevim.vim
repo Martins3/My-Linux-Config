@@ -1,12 +1,13 @@
 func! myspacevim#before() abort
     "实现一键运行
     func! QuickRun()
-        exec "w"
+        " exec "w"
         let ext = expand("%:e")
         if ext ==# "sh"
-            exec "!dos2unix %"
-        if ext ==# "md"
             exec "!sh %"
+        elseif ext ==# "md"
+            exec "!dos2unix %"
+            echo "DONE"
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
         elseif ext ==# "c"
@@ -182,13 +183,16 @@ func! myspacevim#after() abort
     endf
 
     map <C-]> : call GtagsSearch() <CR>
-    "设置debug 选中
-    nnoremap <F8> :gdbgui
+    "设置debug 选中 TODO spacevim 内置的可以应该作为默认的选项
+    nnoremap <F8> :!gdbgui
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
     nnoremap <silent> <Leader>ma :<C-u>BookmarkShowAll<Cr>
     nnoremap <silent> <Leader>mc :<C-u>ClearAllBookmarks<Cr>
+
+    " remap the terminal
+    tnoremap <Esc> <C-\><C-n>
 
     "set foldmethod
     set foldmethod=syntax

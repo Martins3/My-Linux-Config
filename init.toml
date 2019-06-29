@@ -60,10 +60,10 @@
   # name = 'tools'
 
 # we never use shell in vim
-# [[layers]]
-  # name = 'shell'
-  # default_position = 'left'
-  # default_height = 30
+[[layers]]
+  name = 'shell'
+  default_position = 'top'
+  default_height = 30
 
 # [[layers]]
   # name = "lang#c"
@@ -125,10 +125,10 @@
 # ----------------- my own plug ----------------------
 
 [[custom_plugins]]
-    name = "907th/vim-auto-save" # this can removed with commands
+    name = "907th/vim-auto-save"
 
 # [[custom_plugins]]
-    # name = 'skywind3000/vim-keysound' # this can removed with commands
+    # name = 'skywind3000/vim-keysound'
 
 [[custom_plugins]]
     name = "majutsushi/tagbar"
