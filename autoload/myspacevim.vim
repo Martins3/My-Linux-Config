@@ -124,7 +124,7 @@ endf
     let g:NERDTreeIgnore=['\.o$', '\.d$', '\.sym$', '\.out$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order', '\.so$']
 
     " hack the kernel
-    let g:gitgutter_max_signs = 1500
+    " let g:gitgutter_max_signs = 1500
 
 
     " let g:spacevim_default_indent = 4
@@ -165,16 +165,18 @@ endf
 
 func! myspacevim#after() abort
     "autosave
-    let g:auto_save = 1  " enable AutoSave on Vim startup
-    let g:auto_save_no_updatetime = 1   " do not change the 'updatetime' option
-    let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-    let g:auto_save_silent = 1  " do not display the auto-save notification
+    au FocusLost * :wa
+    " let g:auto_save = 1  " enable AutoSave on Vim startup
+    " let g:auto_save_no_updatetime = 1   " do not change the 'updatetime' option
+    " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+    " let g:auto_save_silent = 1  " do not display the auto-save notification
 
     " 使用GtagsCursor 代替ctags的功能
     set autowrite
     nnoremap <F4> :GundoToggle<CR>
     nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
+
 
     " FIXME wait for the plugin to update or just choose another plugin
     func! GtagsSearch()

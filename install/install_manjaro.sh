@@ -57,7 +57,7 @@ tar xvf ~//Application/global-${GTAGS_V}.tar.gz
 make
 sudo make install
 
-# autojump
+# autojump : may need configuration in zshrc
 cd ~/.Application
 git clone git://github.com/wting/autojump.git
 cd autojump
@@ -101,7 +101,7 @@ sudo pip install git+https://github.com/donnemartin/haxor-news.git
 # edex-ui
 wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v1.0.1/eDEX-UI.Linux.i386.AppImage edex
 
-#gource
+# gource
 sudo pacman -S gource
 
 # gdbgui amazing and incredible
@@ -109,6 +109,16 @@ sudo pip install gdbgui
 
 # replace find
 anzhuang fd
+
+# replace ls : need corresponding alias in zshrc
+sudo pacman -S lsd
+
+
+# git diff configuration
+# TODO
+
+
+
 
 
 
