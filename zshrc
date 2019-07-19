@@ -98,9 +98,7 @@ alias lg="lazygit"
 
 # this line make terminal edition act alike vim, but it ruin some feature.
 # set -o vi
-
-
-
+: <<'END'
 function rm() {
     # garbage collect
     now=$(date +%s)
@@ -125,6 +123,7 @@ function rm() {
     echo "Hi, Trashing" $1 "to /root/.trash"
     mv $1 $HOME/.trash/$prefix/$hour
 }
+END
 
 
 # read 
@@ -144,9 +143,7 @@ alias s="sharp"
 # alias ls="exa"
 
 alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+alias l='ls -la'
 alias lt='ls --tree'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
