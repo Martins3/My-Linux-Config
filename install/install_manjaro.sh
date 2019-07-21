@@ -123,11 +123,19 @@ anzhuang fd
 sudo pacman -S lsd
 # https://github.com/ogham/exa 一个类似的，只是功能更加强大，但是没有图标
 
+# git config{
 
 # git diff configuration
 # https://github.com/so-fancy/diff-so-fancy
+# cd ~/.Application
 curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o diff-so-fancy
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+git config --global diff.tool meld
+git config --global merge.tool meld
+# git config end
+
+
 
 
 
