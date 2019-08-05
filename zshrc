@@ -146,6 +146,8 @@ alias ls='lsd'
 alias l='ls -la'
 alias lt='ls --tree'
 
+alias glog="git log --graph --decorate --oneline --all"
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 

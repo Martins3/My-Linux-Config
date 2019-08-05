@@ -67,7 +67,7 @@ func! CargoRun()
     if filereadable(cargo_run_path . "/Cargo.toml")
         echo cargo_run_path
         exec "cd " . cargo_run_path
-        exec "Cargo run"
+        exec "!cargo run"
         exec "cd -"
         return
     endif
