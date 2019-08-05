@@ -115,7 +115,8 @@
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
-  build = './install.sh nightly'
+  # build = 'yarn install --frozen-lockfile'
+  rev = 'release'
 
 [[layers]]
   name = "lang#vim"

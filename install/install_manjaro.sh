@@ -41,11 +41,20 @@ cd .cache/vimfiles/repos/github.com/Valloric/YouCompleteMe
 # ./install.py --clang-completer --go-completer --rust-completer --java-completer # this optional
 ./install.py --clang-completer
 
+# compile ccls
+# ref jianshu
+
+# install bash-language-server
+# https://github.com/mads-hartmann/bash-language-server
+
+# install rust
+# TODO
 
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-mv ~/.zshrc ~/.zshrcbk
+# mv ~/.zshrc ~/.zshrcbk
 ln ~/.SpaceVim.d/.zshrc .zshrc
+# TODO we have a better way !
 # curl -L git.io/antigen > ~/.SpaceVim.d/.antigen.zsh # this optional
 
 # gtags
@@ -57,7 +66,7 @@ tar xvf ~//Application/global-${GTAGS_V}.tar.gz
 make
 sudo make install
 
-# autojump
+# autojump : may need configuration in zshrc
 cd ~/.Application
 git clone git://github.com/wting/autojump.git
 cd autojump
@@ -95,13 +104,13 @@ go get github.com/jesseduffield/lazygit
 sudo pacman -S the_silver_searcher 
 
 # hacker news
-sudo pip install pysocks # only under proxy enviroment, can hackernews act correctly
-sudo pip install git+https://github.com/donnemartin/haxor-news.git
+# sudo pip install pysocks # only under proxy enviroment, can hackernews act correctly
+# sudo pip install git+https://github.com/donnemartin/haxor-news.git
 
 # edex-ui
 wget -P ~/.Application https://github.com/GitSquared/edex-ui/releases/download/v1.0.1/eDEX-UI.Linux.i386.AppImage edex
 
-#gource
+# gource
 sudo pacman -S gource
 
 # gdbgui amazing and incredible
@@ -110,9 +119,28 @@ sudo pip install gdbgui
 # replace find
 anzhuang fd
 
+# replace ls : need corresponding alias in zshrc
+sudo pacman -S lsd
+# https://github.com/ogham/exa 一个类似的，只是功能更加强大，但是没有图标
+
+# git config{
+
+# git diff configuration
+# https://github.com/so-fancy/diff-so-fancy
+# cd ~/.Application
+curl https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -o diff-so-fancy
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+git config --global diff.tool meld
+git config --global merge.tool meld
+# git config end
+
+
+
 
 
 # --------------------------------------- get our repo from cloud --------------------------------
+# we will config 
 
 cd $HOME
 mkdir Core
