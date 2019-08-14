@@ -41,11 +41,12 @@
     enable_statusline_display_mode = false
 
     # MY OWN OPTIONS
-    filemanager = "nerdtree"
+    # filemanager = "nerdtree"
     # vimcompatible = true
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
     autocomplete_method = "coc"
+    filemanager = "defx"
 
 
 # [[layers]]
@@ -99,24 +100,16 @@
 [[layers]]
   name = "lang#sh"
 
-[[layers]]
-  name = "lang#go"
-
 # [[layers]]
-#  name = "lang#rust"
+  # name = "lang#go"
 
 [[layers]]
   name = "lang#html"
 
-# idea is a better choice
-# [[layers]]
-  # name = "lang#scala"
-
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
-  # build = 'yarn install --frozen-lockfile'
-  rev = 'release'
+  build =  'yarn install --frozen-lockfile'
 
 [[layers]]
   name = "lang#vim"
@@ -124,9 +117,6 @@
 [[layers]]
   name = "lang#latex"
 # ----------------- my own plug ----------------------
-
-[[custom_plugins]]
-    name = "907th/vim-auto-save"
 
 # [[custom_plugins]]
     # name = 'skywind3000/vim-keysound'
@@ -147,13 +137,12 @@
     name =  "Shougo/vimproc.vim"
     build = "make"
 
-# make nerdtree icon{
-[[custom_plugins]]
-    name =  "tiagofumo/vim-nerdtree-syntax-highlight"
+# nerdtree icon, we don't use nerdtree anymore
+# [[custom_plugins]]
+    # name =  "tiagofumo/vim-nerdtree-syntax-highlight"
 
 [[custom_plugins]]
     name =  'ryanoasis/vim-devicons'
-# }
 
 [[custom_plugins]]
     name =  'luochen1990/rainbow'
@@ -162,6 +151,9 @@
 [[custom_plugins]]
   name = "mhartington/oceanic-next"
   merged = 0
+
+[[layers]]
+  name = "lang#dockerfile"
 # }
 
 # quickly markdown table edition
@@ -196,6 +188,18 @@
 
 [[custom_plugins]]
     name = 'Shougo/vinarise.vim'
+
+# https://github.com/kristijanhusak/defx-icons
+# maybe file icon is not so easy to support for defx-icons
+# [[custom_plugins]]
+    # name = 'kristijanhusak/defx-icons'
+
+[[custom_plugins]]
+    name = 'liuchengxu/vista.vim'
+
+[[custom_plugins]]
+    name = 'junegunn/fzf'
+    merged =  0
 
 # maybe useful
 # tpope/vim-surround

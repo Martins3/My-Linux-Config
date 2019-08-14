@@ -76,6 +76,9 @@ func! CargoRun()
   echo "Cargo.toml not found !"
 endf
 
+
+    let g:startify_files_number = 20
+
     " call SpaceVim#layers#disable('core#statusline')
     " call SpaceVim#layers#disable('core#tabline')
 
@@ -160,6 +163,22 @@ endf
       au BufWritePost *.bin if &bin | %!xxd
       au BufWritePost *.bin set nomod | endif
     augroup END
+
+    " copy from  https://www.zhihu.com/question/31934850/answer/379725837
+    " without understand the essence.
+    let g:Lf_ShowRelativePath = 0
+    let g:Lf_HideHelp = 0
+    let g:Lf_PreviewResult = {'Function':0, 'Colorscheme':1}
+
+    let g:Lf_NormalMap = {
+      \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+      \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+      \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+      \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+      \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+      \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+      \ }
+
 endf
 
 
@@ -173,11 +192,35 @@ func! myspacevim#after() abort
 
     " 使用GtagsCursor 代替ctags的功能
     set autowrite
+    " F1 F2, F3 分别为文档，tagbar和file tree
+    nnoremap <F2> :Vista!!<CR>
     nnoremap <F4> :GundoToggle<CR>
-    nnoremap <F6> :Gtags -r<CR>
+    noremap <F5> :LeaderfFunction!<cr>
+    " nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
+    " nnoremap <F8> :!gdbgui
+    
+    call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'show_ignored_files': 0,
+      \ 'buffer_name': '',
+      \ 'toggle': 1,
+      \ 'resume': 1
+      \ })
 
 
+    let g:vista_echo_cursor_strategy = 'floating_win'
+    let g:vista_sidebar_position = "vertical topleft"
+    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+    let g:vista#renderer#enable_icon = 1
+
+    " coc下UI实在是太丑了
+    " let g:vista_executive_for = {
+      " \ 'c': 'coc',
+    " \ }
+    
     " FIXME wait for the plugin to update or just choose another plugin
     func! GtagsSearch()
       exec "GtagsCursor"
@@ -186,7 +229,6 @@ func! myspacevim#after() abort
 
     map <C-]> : call GtagsSearch() <CR>
     "设置debug 选中 TODO spacevim 内置的可以应该作为默认的选项
-    nnoremap <F8> :!gdbgui
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
