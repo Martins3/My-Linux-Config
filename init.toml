@@ -166,8 +166,8 @@
   # name = 'jsfaint/gen_tags.vim'
 
 # abandon it, because it is not efficient
-[[custom_plugins]]
-    name = "SpaceVim/gtags.vim"
+# [[custom_plugins]]
+    # name = "SpaceVim/gtags.vim"
 #}end tags
 
 # this is no more useful, because compile_commands.json

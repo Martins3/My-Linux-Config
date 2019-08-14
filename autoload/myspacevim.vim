@@ -89,17 +89,6 @@ endf
     call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
 
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'c'], 'cclose', 'close fix window', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'p'], 'GtagsGenerate!', 'create a gtags database', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'u'], 'GtagsGenerate', 'update tag database', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'm'], 'Gtags', 'search tags', 1)
-    " call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'GtagsGenerate', 'update current File', 1)
-
-    " config the Gtags, based on gtags.vim
-    " gtags update
-    let g:gtags_open_list = 2
-
-
     " play piano in vim
     " set rtp+=/home/shen/vim-keysound
     " let g:keysound_py_version = 3
@@ -196,21 +185,9 @@ func! myspacevim#after() abort
     nnoremap <F2> :Vista!!<CR>
     nnoremap <F4> :GundoToggle<CR>
     noremap <F5> :LeaderfFunction!<cr>
-    " nnoremap <F6> :Gtags -r<CR>
     nnoremap <F7> :call QuickRun()<CR>
     " nnoremap <F8> :!gdbgui
     
-    call defx#custom#option('_', {
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-
-
     let g:vista_echo_cursor_strategy = 'floating_win'
     let g:vista_sidebar_position = "vertical topleft"
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
@@ -220,15 +197,6 @@ func! myspacevim#after() abort
     " let g:vista_executive_for = {
       " \ 'c': 'coc',
     " \ }
-    
-    " FIXME wait for the plugin to update or just choose another plugin
-    func! GtagsSearch()
-      exec "GtagsCursor"
-      exec "cd ."
-    endf
-
-    map <C-]> : call GtagsSearch() <CR>
-    "设置debug 选中 TODO spacevim 内置的可以应该作为默认的选项
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
