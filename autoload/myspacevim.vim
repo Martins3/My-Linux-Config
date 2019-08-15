@@ -183,10 +183,14 @@ func! myspacevim#after() abort
     set autowrite
     " F1 F2, F3 分别为文档，tagbar和file tree
     nnoremap <F2> :Vista!!<CR>
+    nnoremap <F3> :Vista finder<CR>
     nnoremap <F4> :GundoToggle<CR>
     noremap <F5> :LeaderfFunction!<cr>
     nnoremap <F7> :call QuickRun()<CR>
     " nnoremap <F8> :!gdbgui
+  
+    " FIXME I can not enable it
+    " let g:enable_googlesuggest = 1
     
     let g:vista_echo_cursor_strategy = 'floating_win'
     let g:vista_sidebar_position = "vertical topleft"
@@ -197,6 +201,11 @@ func! myspacevim#after() abort
     " let g:vista_executive_for = {
       " \ 'c': 'coc',
     " \ }
+
+    " FIXME 只有 nvim a.c ?? space f o 的时候可以
+    call defx#custom#option('_', {
+          \ 'direction': 'topleft',
+          \ })
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>

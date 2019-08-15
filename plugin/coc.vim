@@ -43,6 +43,7 @@ let s:coc_extensions = [
       \ 'coc-html',
       \ 'coc-word',
       \ 'coc-rls',
+      \ 'coc-tabnine',
       \ 'coc-snippets',
 			\]
 

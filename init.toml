@@ -41,12 +41,10 @@
     enable_statusline_display_mode = false
 
     # MY OWN OPTIONS
-    # filemanager = "nerdtree"
-    # vimcompatible = true
+    filemanager = "defx"
+    autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
-    autocomplete_method = "coc"
-    filemanager = "defx"
 
 
 # [[layers]]
