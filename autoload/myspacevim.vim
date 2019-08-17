@@ -31,19 +31,19 @@ func! myspacevim#before() abort
         endif
     endf
 
-func! GoToDef()
-    let ext = expand("%:e")
-    if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
-      echo "begin"
-      exec "GtagsCursor"
-      echo "end"
-    elseif ext ==# "rs"
-     echo "Debug this go to def, FIXME, we don't use this function anymore"
-     call LanguageClient#textDocument_definition()
-    else
-      echo "There is no goto definition for this file type!"
-    endif
-endf
+" func! GoToDef()
+    " let ext = expand("%:e")
+    " if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+      " echo "begin"
+      " exec "GtagsCursor"
+      " echo "end"
+    " elseif ext ==# "rs"
+     " echo "Debug this go to def, FIXME, we don't use this function anymore"
+     " call LanguageClient#textDocument_definition()
+    " else
+      " echo "There is no goto definition for this file type!"
+    " endif
+" endf
 
 func! FormatFile()
     let ext = expand("%:e")
@@ -77,16 +77,16 @@ func! CargoRun()
 endf
 
 
-    let g:startify_files_number = 20
+    " let g:startify_files_number = 20
 
     " call SpaceVim#layers#disable('core#statusline')
     " call SpaceVim#layers#disable('core#tabline')
 
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
+    " call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make -j8 run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
+    " call SpaceVim#custom#SPC('nnoremap', ['m', 't'], 'make -j8 test', 'make test', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
 
     " play piano in vim
@@ -104,7 +104,7 @@ endf
     " let g:gen_tags#gtags_auto_update = 1 "be carteful,Ctrl+\ t maybe we should rewrite autowrite
 
     " TODO: 当打开quick fix 之后自动进入quickfix界面
-    autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+    " autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
     "change leader
     "在spaveVim中间‘，’还有其他的用途，可以将\ 和 , 加以调换
@@ -113,7 +113,7 @@ endf
 
 
     " nerdtree隐藏部分类型的文件
-    let g:NERDTreeIgnore=['\.o$', '\.d$', '\.sym$', '\.out$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order', '\.so$']
+    " let g:NERDTreeIgnore=['\.o$', '\.d$', '\.sym$', '\.out$', '\.dis$', 'node_modules', '\.lock$','\.gch$', 'package.json', 'GPATH', 'GRTAGS', 'GTAGS', '\.hpp.gch$', 'compile_commands.json', '\.mod*', '\.ko', 'Module.symvers', 'modules.order', '\.so$']
 
     " hack the kernel
     " let g:gitgutter_max_signs = 1500
@@ -137,21 +137,21 @@ endf
     " set spellfile=$HOME/Dropbox/vim/spell/en.utf-8.add
 
     " TODO:实际测试，这一个效果似乎没有
-    let NERDTreeAutoDeleteBuffer = 1
-    set hidden
+    " let NERDTreeAutoDeleteBuffer = 1
+    " set hidden
 
-    let g:bookmark_no_default_key_mappings = 1
+    " let g:bookmark_no_default_key_mappings = 1
 
-    augroup Binary
-      au!
-      au BufReadPre  *.bin let &bin=1
-      au BufReadPost *.bin if &bin | %!xxd
-      au BufReadPost *.bin set ft=xxd | endif
-      au BufWritePre *.bin if &bin | %!xxd -r
-      au BufWritePre *.bin endif
-      au BufWritePost *.bin if &bin | %!xxd
-      au BufWritePost *.bin set nomod | endif
-    augroup END
+    " augroup Binary
+      " au!
+      " au BufReadPre  *.bin let &bin=1
+      " au BufReadPost *.bin if &bin | %!xxd
+      " au BufReadPost *.bin set ft=xxd | endif
+      " au BufWritePre *.bin if &bin | %!xxd -r
+      " au BufWritePre *.bin endif
+      " au BufWritePost *.bin if &bin | %!xxd
+      " au BufWritePost *.bin set nomod | endif
+    " augroup END
 
     " copy from  https://www.zhihu.com/question/31934850/answer/379725837
     " without understand the essence.
@@ -192,7 +192,8 @@ func! myspacevim#after() abort
     " FIXME I can not enable it
     " let g:enable_googlesuggest = 1
     
-    let g:vista_echo_cursor_strategy = 'floating_win'
+    let g:vista_echo_cursor_strategy = 'scroll'
+    let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
@@ -203,9 +204,9 @@ func! myspacevim#after() abort
     " \ }
 
     " FIXME 只有 nvim a.c ?? space f o 的时候可以
-    call defx#custom#option('_', {
-          \ 'direction': 'topleft',
-          \ })
+    " call defx#custom#option('_', {
+          " \ 'direction': 'topleft',
+          " \ })
 
     nnoremap <silent> <Leader>mm :<C-u>BookmarkToggle<Cr>
     nnoremap <silent> <Leader>mi :<C-u>BookmarkAnnotate<Cr>
