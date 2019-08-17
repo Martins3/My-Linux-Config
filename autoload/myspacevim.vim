@@ -47,16 +47,16 @@ func! myspacevim#before() abort
     " endif
 " endf
 
-func! FormatFile()
-    let ext = expand("%:e")
-    if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
-      exec 'Neoformat'
-    elseif ext ==# "rs"
-      exec 'RustFmt'
-    else
-      echo "There is no format config for this file type!"
-    endif
-endf
+" func! FormatFile()
+    " let ext = expand("%:e")
+    " if ext ==# "c" || ext ==# "cpp" || ext ==# "cpp"
+      " exec 'Neoformat'
+    " elseif ext ==# "rs"
+      " exec 'RustFmt'
+    " else
+      " echo "There is no format config for this file type!"
+    " endif
+" endf
 
 
 " TODO not familiar with vimscipt, maybe better implementation
