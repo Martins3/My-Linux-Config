@@ -199,6 +199,14 @@
     name = 'junegunn/fzf'
     merged =  0
 
+[[custom_plugins]]
+    name = 'rykka/riv.vim'
+
+[[custom_plugins]]
+    name = 'Rykka/InstantRst'
+
+
+
 # 一个有意思的同步软件
 # [[custom_plugins]]
     # name = 'kenn7/vim-arsync'

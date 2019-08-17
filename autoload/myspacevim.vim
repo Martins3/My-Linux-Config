@@ -24,6 +24,8 @@ func! myspacevim#before() abort
             exec "so %"
         elseif ext ==# "html"
             exec "!google-chrome-stable %"
+        elseif ext ==# "rst"
+            exec "InstantRst"
         elseif ext ==# "rs"
             call CargoRun()
         else
