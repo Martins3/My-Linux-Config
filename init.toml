@@ -47,16 +47,9 @@
     bootstrap_after = "myspacevim#after"
 
 
-# [[layers]]
-  # name = 'autocomplete'
-
-# this layer is misleading
-# [[layers]]
-  # name = "tags"
-
 # it's bookmark keybind conflict with nerdtree
-# [[layers]]
-  # name = 'tools'
+[[layers]]
+  name = 'tools'
 
 # we never use shell in vim
 [[layers]]
@@ -64,26 +57,13 @@
   default_position = 'top'
   default_height = 30
 
-# [[layers]]
-  # name = "lang#c"
-  # clang_executable = "/usr/bin/clang++"
-  # [layer.clang_std]
-    # c = "c11"
-    # cpp = "c++1z"
-
 [[layers]]
   name = "lang#markdown"
 
-# [[layers]]
-  # name = "checkers"
-  # enable_neomake = false
-  # enable_ale = true
 
 [[layers]]
   name = "checkers"
   enable = false
-  # enable_neomake = false
-  # enable_ale = true
 
 [[layers]]
   name = "VersionControl"
@@ -91,6 +71,7 @@
 
 [[layers]]
   name = "git"
+  git-plugin = "fugitive"
 
 [[layers]]
   name = "debug"
@@ -122,22 +103,13 @@
 [[custom_plugins]]
     name = "majutsushi/tagbar"
 
-
-[[custom_plugins]]
-    name = "sjl/gundo.vim"
-
 [[custom_plugins]]
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
-
 [[custom_plugins]]
     name =  "Shougo/vimproc.vim"
     build = "make"
-
-# nerdtree icon, we don't use nerdtree anymore
-# [[custom_plugins]]
-    # name =  "tiagofumo/vim-nerdtree-syntax-highlight"
 
 [[custom_plugins]]
     name =  'ryanoasis/vim-devicons'
@@ -145,36 +117,18 @@
 [[custom_plugins]]
     name =  'luochen1990/rainbow'
 
-# add color schema{
 [[custom_plugins]]
   name = "mhartington/oceanic-next"
   merged = 0
 
 [[layers]]
   name = "lang#dockerfile"
-# }
 
 # quickly markdown table edition
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
-# tags{
-# abandon it, worked not well with gtags
-# [[custom_plugins]]
-  # name = 'jsfaint/gen_tags.vim'
-
-# abandon it, because it is not efficient
-# [[custom_plugins]]
-    # name = "SpaceVim/gtags.vim"
-#}end tags
-
-# this is no more useful, because compile_commands.json
-# [[custom_plugins]]
-  # name = 'embear/vim-localvimrc'
-
-# [[custom_plugins]]
-  # name = 'sedm0784/vim-you-autocorrect'
-
+# to support clear bookmark
 [[custom_plugins]]
   name = 'MattesGroeger/vim-bookmarks'
 
@@ -205,15 +159,16 @@
 [[custom_plugins]]
     name = 'Rykka/InstantRst'
 
-
-
 # 一个有意思的同步软件
 # [[custom_plugins]]
     # name = 'kenn7/vim-arsync'
     # merged =  0
 
+# [[custom_plugins]]
+  # name = 'sedm0784/vim-you-autocorrect'
+
 # maybe useful
 # tpope/vim-surround
-# terryma/vim-multiple-cursors 
+# terryma/vim-multiple-cursors
 
 # ----------------- my own plug end----------------------
