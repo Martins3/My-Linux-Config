@@ -80,14 +80,14 @@ func! myspacevim#after() abort
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
+    " let g:vista_fzf_preview = ['right:50%'] FIXME
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
 
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>
 
-    nnoremap <silent> mc :<C-u>ClearAllBookmarks<Cr>
-    "set foldmethod
+    let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable
 endf
