@@ -143,8 +143,8 @@
 
 # https://github.com/kristijanhusak/defx-icons
 # maybe file icon is not so easy to support for defx-icons
-# [[custom_plugins]]
-    # name = 'kristijanhusak/defx-icons'
+[[custom_plugins]]
+    name = 'kristijanhusak/defx-icons'
 
 [[custom_plugins]]
     name = 'liuchengxu/vista.vim'

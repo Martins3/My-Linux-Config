@@ -9,7 +9,7 @@ func! myspacevim#before() abort
             exec "!dos2unix %"
             echo "DONE"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -pthread -O3 -g -std=c++14 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -O3 -g -std=c++11 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
         elseif ext ==# "go"
@@ -64,6 +64,7 @@ func! myspacevim#before() abort
 
     let g:table_mode_corner='|'
     let g:rainbow_active = 1
+
 endf
 
 
@@ -75,7 +76,7 @@ func! myspacevim#after() abort
 
     " F1 F2, F3 分别为文档，tagbar和file tree
     nnoremap <F2> :Vista!!<CR>
-    nnoremap <F5> :call QuickRun()<CR>
+    nnoremap <F4> :call QuickRun()<CR>
     
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
@@ -83,6 +84,12 @@ func! myspacevim#after() abort
     " let g:vista_fzf_preview = ['right:50%'] FIXME
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
+
+    " FIXME ignore vcs files
+    " call defx#custom#option('_', {
+          " \ 'direction': 'topleft',
+          " \ 'ignored_files': '.o',
+          " \ })
 
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>
