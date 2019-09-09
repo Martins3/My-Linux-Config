@@ -94,6 +94,11 @@ func! myspacevim#after() abort
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>
 
+
+    " TODO 打开侧边栏的时候，defx 工作不正常了 !
+    " TODO 我希望是在上方打开
+    autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
+
     let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable

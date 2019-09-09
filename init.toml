@@ -159,6 +159,10 @@
 [[custom_plugins]]
     name = 'Rykka/InstantRst'
 
+[[custom_plugins]]
+    name = 'gauteh/vim-cppman'
+
+
 # 一个有意思的同步软件
 # [[custom_plugins]]
     # name = 'kenn7/vim-arsync'
