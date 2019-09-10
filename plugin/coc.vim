@@ -136,11 +136,11 @@ call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'fo
       " \ },
       " \ }
 
-" TODO these conflict with our terninal keybindings 
-nn <silent><buffer> <C-l> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
-nn <silent><buffer> <C-k> :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>
-nn <silent><buffer> <C-j> :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<cr>
-nn <silent><buffer> <C-h> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
+noremap x <Nop>
+nn <silent> xl :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
+nn <silent> xk :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>
+nn <silent> xj :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<cr>
+nn <silent> xh :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
 
 
 " Using CocList
@@ -163,7 +163,6 @@ nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" TODO confict keybindings, useless now, because no WIP cpp project 
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance')<cr>
 " bases of up to 3 levels
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<cr>
