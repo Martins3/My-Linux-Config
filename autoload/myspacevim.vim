@@ -54,6 +54,7 @@ func! myspacevim#before() abort
     " config the make run
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
@@ -102,4 +103,7 @@ func! myspacevim#after() abort
     let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable
+    " 将Capslock 设置为ESC
+    " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+    " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 endf

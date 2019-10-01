@@ -136,7 +136,6 @@ call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'fo
       " \ },
       " \ }
 
-noremap x <Nop>
 nn <silent> xl :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
 nn <silent> xk :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>
 nn <silent> xj :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<cr>
@@ -163,6 +162,7 @@ nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 " Resume latest coc list
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+noremap x <Nop>
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance')<cr>
 " bases of up to 3 levels
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<cr>

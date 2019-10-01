@@ -88,6 +88,7 @@
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
+  # rev = release
   build =  'yarn install --frozen-lockfile'
 
 [[layers]]
@@ -162,6 +163,13 @@
 [[custom_plugins]]
     name = 'gauteh/vim-cppman'
 
+# seems useless
+# [[custom_plugins]]
+    # name = 'pboettch/vim-cmake-syntax'
+
+# After instaling this plugin, it seems nothing changed !
+# [[custom_plugins]]
+    # name = 'sheerun/vim-polyglot'
 
 # 一个有意思的同步软件
 # [[custom_plugins]]

@@ -152,4 +152,4 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # https://github.com/starship/starship
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
