@@ -139,6 +139,13 @@ function command_not_found_handler(){
   return 127
 }
 
+function make_swap() {
+  sudo fallocate -l 8G swapfile
+  sudo chmod 600 swapfile
+  sudo mkswap swapfile
+  sudo swapon swapfile
+}
+
 alias s="sharp"
 # alias ls="exa"
 
