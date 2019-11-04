@@ -135,7 +135,8 @@ git config --global diff.tool meld
 git config --global merge.tool meld
 # git config end
 
-
+yaourt -S git-quick-stats
+# https://github.com/arzzen/git-quick-stats#unix-and-linux
 
 
 

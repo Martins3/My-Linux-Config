@@ -103,7 +103,4 @@ func! myspacevim#after() abort
     let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable
-    " 将Capslock 设置为ESC
-    " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-    " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 endf

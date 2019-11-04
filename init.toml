@@ -88,7 +88,7 @@
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
-  # rev = release
+  # reversion = release
   build =  'yarn install --frozen-lockfile'
 
 [[layers]]
@@ -121,9 +121,6 @@
 [[custom_plugins]]
   name = "mhartington/oceanic-next"
   merged = 0
-
-[[layers]]
-  name = "lang#dockerfile"
 
 # quickly markdown table edition
 [[custom_plugins]]
