@@ -35,5 +35,10 @@ and many other thing which can greatly imporve your life quality under linux.
 3. run the [checkhealth](https://neovim.io/doc/user/pi_health.html) in neovim, get rid of errors and warnings.
 4. install [ccls](https://github.com/MaskRay/ccls)
 
+
+## More vim distributions
+1. https://www.onivim.io/
+2. https://github.com/hardcoreplayers/ThinkVim
+
 ## Troubleshooting
 #### (zhs)[Warning: plugin zsh-autosuggestions not found](https://github.com/robbyrussell/oh-my-zsh/issues/7688)

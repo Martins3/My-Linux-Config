@@ -44,6 +44,7 @@ let s:coc_extensions = [
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
+      \ 'coc-dictionary',
       \ 'coc-rls',
       \ 'coc-snippets',
 			\]

@@ -73,14 +73,16 @@
   name = "git"
   git-plugin = "fugitive"
 
-[[layers]]
-  name = "debug"
+# another debug framework
+# https://github.com/puremourning/vimspector#faq
+#
+# debug for vim doesn't work well so far !
+# https://github.com/idanarye/vim-vebugger
+# [[layers]]
+  # name = "debug"
 
 [[layers]]
   name = "lang#sh"
-
-# [[layers]]
-  # name = "lang#go"
 
 [[layers]]
   name = "lang#html"
@@ -159,6 +161,25 @@
 
 [[custom_plugins]]
     name = 'gauteh/vim-cppman'
+
+[[custom_plugins]]
+    name = 'simeji/winresizer'
+
+# seems better commentary than nerdcommentary
+[[custom_plugins]]
+    name = 'tpope/vim-commentary'
+
+[[custom_plugins]]
+    name = 'AndrewRadev/splitjoin.vim'
+
+# interesting plug
+# https://github.com/janko/vim-test
+# https://github.com/justinmk/vim-sneak seems better than easymotion
+# https://github.com/prettier/vim-prettier a format for many languages we don't have 
+#
+# relearn vim about how to move and edit more quickly !
+# https://github.com/tpope/vim-repeat
+# https://github.com/tpope/vim-surround
 
 # seems useless
 # [[custom_plugins]]

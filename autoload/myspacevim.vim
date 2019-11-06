@@ -12,6 +12,13 @@ func! myspacevim#before() abort
             exec "!clang++ % -Wall -O3 -g -std=c++11 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
+        elseif ext ==# "java"
+            let classPath = expand('%:h')
+            let className = expand('%:p:t:r')
+            " echo classPath
+            " echo className
+            exec "!javac %"
+            exec "!java -classpath " . classPath . " " . className
         elseif ext ==# "go"
             exec "!go run %"
         elseif ext ==# "js"
@@ -59,6 +66,11 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
 
+    " TODO haven't figure out how to disable a merged plugin and free the mapp
+    " https://github.com/SpaceVim/SpaceVim/issues/216
+    let g:spacevim_disabled_plugins = ['nerdcommenter']
+    call SpaceVim#custom#SPC('nnoremap', ['c', 'Y'], 'echo "we should disable nerdcommenter"', 'todo', 1)
+
     let g:mapleader = ','
     let g:spacevim_windows_leader = 'c'
     let g:spacevim_snippet_engine = 'ultisnips'
@@ -66,7 +78,15 @@ func! myspacevim#before() abort
     let g:table_mode_corner='|'
     let g:rainbow_active = 1
 
+    " If you want to start window resize mode by `Ctrl+T`
+    let g:winresizer_start_key = '<C-P>'
+    " If you cancel and quit window resize mode by `q` (keycode 113)
+    let g:winresizer_keycode_cancel = 113
+
+    " spell
+    " https://wiki.archlinux.org/index.php/Language_checking
 endf
+
 
 
 func! myspacevim#after() abort
@@ -78,6 +98,10 @@ func! myspacevim#after() abort
     " F1 F2, F3 分别为文档，tagbar和file tree
     nnoremap <F2> :Vista!!<CR>
     nnoremap <F4> :call QuickRun()<CR>
+
+    " remap vim-commentary
+    nmap <space>cl gcc
+    vmap <space>cl gc
     
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
@@ -103,4 +127,5 @@ func! myspacevim#after() abort
     let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable
+
 endf
