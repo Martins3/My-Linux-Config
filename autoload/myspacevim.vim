@@ -32,6 +32,7 @@ func! myspacevim#before() abort
         elseif ext ==# "html"
             exec "!google-chrome-stable %"
         elseif ext ==# "rst"
+            " FIXME
             exec "InstantRst"
         elseif ext ==# "rs"
             call CargoRun()
@@ -79,7 +80,7 @@ func! myspacevim#before() abort
     let g:rainbow_active = 1
 
     " If you want to start window resize mode by `Ctrl+T`
-    let g:winresizer_start_key = '<C-P>'
+    let g:winresizer_start_key = '<space>wa'
     " If you cancel and quit window resize mode by `q` (keycode 113)
     let g:winresizer_keycode_cancel = 113
 
@@ -110,17 +111,9 @@ func! myspacevim#after() abort
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
 
-    " FIXME ignore vcs files
-    " call defx#custom#option('_', {
-          " \ 'direction': 'topleft',
-          " \ 'ignored_files': '.o',
-          " \ })
-
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>
 
-
-    " TODO 打开侧边栏的时候，defx 工作不正常了 !
     " TODO 我希望是在上方打开
     autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
 

@@ -81,12 +81,6 @@
 # [[layers]]
   # name = "debug"
 
-[[layers]]
-  name = "lang#sh"
-
-[[layers]]
-  name = "lang#html"
-
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
@@ -153,6 +147,8 @@
     name = 'junegunn/fzf'
     merged =  0
 
+# Work abnormally at 2019-11-20
+# maybe fix by the author
 [[custom_plugins]]
     name = 'rykka/riv.vim'
 
@@ -171,6 +167,9 @@
 
 [[custom_plugins]]
     name = 'AndrewRadev/splitjoin.vim'
+
+[[custom_plugins]]
+    name = 'vhda/verilog_systemverilog.vim'
 
 # interesting plug
 # https://github.com/janko/vim-test

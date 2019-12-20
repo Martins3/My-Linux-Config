@@ -29,6 +29,15 @@ call coc#config("languageserver", {
       \   }
       \},
       \
+      \"golang": {
+      \      "command": "gopls",
+      \      "rootPatterns": ["go.mod", ".vim/", ".git/", ".svn/"],
+      \      "filetypes": ["go"],
+      \      "initializationOptions": {
+      \        "usePlaceholders": "true"
+      \      }
+      \},
+      \
       \"bash": {
       \  "command": "bash-language-server",
       \  "args": ["start"],
@@ -114,6 +123,7 @@ augroup end
 " vmap <leader>a  <Plug>(coc-codeaction-selected)
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 
+" TODO remap these two keybind
 " Remap for do codeAction of current line
 " nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
@@ -121,10 +131,13 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` for format current buffer
 " command! -nargs=0 Format :call CocAction('format')
-call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file', 1)
+call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
 
 " Use `:Fold` for fold current buffer
-" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" auto import for go on save
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
