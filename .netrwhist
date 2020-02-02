@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/run/media/shen/Will/wow'
 let g:netrw_dirhist_2='/home/shen/Core/ticketingsystem'
 let g:netrw_dirhist_1='/home/shen/Core/ticketingsystem/ticket'

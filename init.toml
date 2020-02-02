@@ -169,7 +169,11 @@
     name = 'AndrewRadev/splitjoin.vim'
 
 [[custom_plugins]]
-    name = 'vhda/verilog_systemverilog.vim'
+    name = 'vim/killersheep'
+
+# vim game based on new features of Vim 8.2，it doesn't work on nvim 4.3
+# [[custom_plugins]]
+#     name = 'vhda/verilog_systemverilog.vim'
 
 # interesting plug
 # https://github.com/janko/vim-test

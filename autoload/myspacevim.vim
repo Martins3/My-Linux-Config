@@ -109,7 +109,13 @@ func! myspacevim#after() abort
     let g:vista_sidebar_position = "vertical topleft"
     " let g:vista_fzf_preview = ['right:50%'] FIXME
     " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-    let g:vista#renderer#enable_icon = 1
+    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+    let g:vista_executive_for = {
+        \ 'vimwiki': 'markdown',
+        \ 'pandoc': 'markdown',
+        \ 'markdown': 'toc',
+        \ }
 
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>

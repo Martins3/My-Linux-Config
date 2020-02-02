@@ -56,6 +56,7 @@ let s:coc_extensions = [
       \ 'coc-dictionary',
       \ 'coc-rls',
       \ 'coc-snippets',
+      \ 'coc-tsserver',
 			\]
 
 for extension in s:coc_extensions
