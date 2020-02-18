@@ -86,6 +86,13 @@ func! myspacevim#before() abort
 
     " spell
     " https://wiki.archlinux.org/index.php/Language_checking
+    
+    " FIXME It disable my markdown C code highlight, and it's slow
+    " let g:chromatica#enable_at_startup=1
+    "
+    "
+    let g:spacevim_enable_vimfiler_filetypeicon = 1
+    let g:spacevim_enable_vimfiler_gitstatus = 1
 endf
 
 
@@ -107,22 +114,13 @@ func! myspacevim#after() abort
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
-    " let g:vista_fzf_preview = ['right:50%'] FIXME
-    " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-    let g:vista_executive_for = {
-        \ 'vimwiki': 'markdown',
-        \ 'pandoc': 'markdown',
-        \ 'markdown': 'toc',
-        \ }
 
     " remap the terminal
     tnoremap <Esc> <C-\><C-n>
 
-    " TODO 我希望是在上方打开
-    autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
-
+    " maybe we don't need it
+    " autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
+    
     let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable

@@ -150,13 +150,11 @@
 # Work abnormally at 2019-11-20
 # maybe fix by the author
 [[custom_plugins]]
-    name = 'rykka/riv.vim'
+    name = 'Rykka/riv.vim'
 
 [[custom_plugins]]
     name = 'Rykka/InstantRst'
 
-[[custom_plugins]]
-    name = 'gauteh/vim-cppman'
 
 [[custom_plugins]]
     name = 'simeji/winresizer'
@@ -168,10 +166,30 @@
 [[custom_plugins]]
     name = 'AndrewRadev/splitjoin.vim'
 
+# time statistics
 [[custom_plugins]]
-    name = 'vim/killersheep'
+    name = 'wakatime/vim-wakatime'
+
+# work badly by now (2020-02-09)
+# [[custom_plugins]]
+#     name = 'arakashic/chromatica.nvim'
+
+# too cppman tools, waiting for it complete 
+# [[custom_plugins]]
+#     name = 'gauteh/vim-cppman'
+# [[custom_plugins]]
+#     name = 'skywind3000/vim-cppman'
+
+# Failed to install
+# https://www.reddit.com/r/neovim/comments/ezs67g/neovim_plugin_that_provides_fzf_preset_with/
+# [[custom_plugins]]
+#     name = 'yuki-ycino/fzf-preview.vim'
 
 # vim game based on new features of Vim 8.2，it doesn't work on nvim 4.3
+# [[custom_plugins]]
+#     name = 'vim/killersheep'
+
+
 # [[custom_plugins]]
 #     name = 'vhda/verilog_systemverilog.vim'
 
