@@ -1,5 +1,6 @@
-## 前言
+# 2020年vim的C/C++配置
 
+## 前言
 **至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题。
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
@@ -27,8 +28,12 @@ vim 的学习曲线陡峭的我个人感觉主要就是在这一个地方，但�
 2. `\``y` 和 `\``p` 实现复制粘贴。不同的配置下，复制粘贴的不同，在本配置下，复制粘贴的 leader 键是 `\`。
 
 ## 欢迎来到 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) 和 async 的时代
-Language Server Protocal(下面简称lsp) 定义了一套标准编辑器和 language server 之间的规范。不同的语言需要不同的Language Server，比如C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust语言采用[rls](https://github.com/rust-lang/rls)，Language server 的清单在[这里](https://microsoft.github.io/language-server-protocol/implementors/servers/)。在lsp的另一端，也就是编辑器这一端，也需要对应的实现，其列表在[这里](https://microsoft.github.io/language-server-protocol/implementors/tools/)。也就是说，由于lsp的存在，一门语言的language server可以用于所有的支持lsp的编辑器上，大大的减少了重复开发。其架构图大概是下面的这个感觉:
+> 跳过本小节并不影响使用被配置，此处只是为了说明Language Server Protocal(下面简称lsp) 和 async 的好处。
 
+VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常的平缓主要有两个原因，一是其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。二是，官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。
+vimawesome 在一定程度上解决了这个问题，但是它把YCM排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。
+
+lsp 定义了一套标准编辑器和 language server 之间的规范。不同的语言需要不同的Language Server，比如C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust语言采用[rls](https://github.com/rust-lang/rls)，Language server 的清单在[这里](https://microsoft.github.io/language-server-protocol/implementors/servers/)。在lsp的另一端，也就是编辑器这一端，也需要对应的实现，其列表在[这里](https://microsoft.github.io/language-server-protocol/implementors/tools/)。也就是说，由于lsp的存在，一门语言的language server可以用于所有的支持lsp的编辑器上，大大的减少了重复开发。其架构图大概是下面的这个感觉:
 ```
 +------------------------+
 |    coc.nvim,vim-lsp等  |
@@ -89,6 +94,7 @@ clang version 9.0.1
 ```sh
 cd ~ # 进入到根目录
 rm -r .SpaceVim.d # 将 SpaceVim 删除
+# 因为本仓库还包含配置，使用如下命令删除
 git clone --depth=1 https://github.com/Martins3/My-Linux-config .SpaceVim.d # 将本项目的内容复制到 SpaceVim.d
 nvim # 打开vim 将会自动安装所有的插件
 ```
@@ -111,25 +117,27 @@ nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞�
 ## C/C++ 用户的基本操作的详解
 - 基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。
 
-复制粘贴的
 
 下面说明一下我常用的操作:
 #### 窗口操作
 1. `<Tab>` : 进入下一个窗口
-2. `c``g` : 水平拆分窗口。因为 window 被我重新映射了，如果是其他键位，比如 `x`, 那么水平拆分为 `x` `g`
+2. `c` `g` : 水平拆分窗口。因为 window 被我重新映射了，如果是其他键位，比如 `x`, 那么水平拆分为 `x` `g`
 ```vim
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
 ```
 3. `q` : 关闭窗口
+4. `<Space>` `w` `m` 当前窗口最大化
+
+#### buffer 操作
+1. `,` `b` : 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下。
+2. `,` + num : 切换当前窗口到第 num 个 buffer
+3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
 
 #### 预览和搜索
 1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。在我的配置中间 leader 键是 `,` ，所以搜索文件使用 `,` `f` + 文件名的 subsequence
 搜索 buffer 的方法类似 : `,` `b` + 想要搜索的 buffer 名称的 subsequence。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-
 
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
 
@@ -156,6 +164,66 @@ nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞�
 
 ![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+#### 添加自定义代码段
+基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。
+以前刷OJ的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
+
+```snippets
+snippet import
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cmath>
+#include <stack>
+#include <sstream>
+#include <climits>
+#include <deque>
+#include <set>
+#include <utility>
+#include <queue>
+#include <map>
+#include <cstring>
+#include <algorithm>
+#include <iterator>
+#include <string>
+#include <cassert>
+#include <unordered_set>
+#include <unordered_map>
+
+using namespace std;
+
+int main(){
+	${0}
+	return 0;
+}
+endsnippet
+```
+
+这样，然后每次只需要输入 import 这些内容就自动出现了。
+
+一般的自动补全coc.nvim 无需另外的配置，效果如下。
+![](./fadfa.png)
+
+#### git 支持
+SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，没有什么需要修改的，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
+
+#### 文件树 支持
+参考 SpaceVim 的[文档](https://spacevim.org/documentation/#file-tree)
+
+#### 格式化文件
+`Space` `r` `f` 格式化当前文件，仅仅支持C++/C 和 Rust。
+
+## 配置源代码解释
+SpaceVim 的文档往往是过时的或者是不相信的，如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
+
+本项目的主要组成
+0. init.toml : 最基本的配置，以及自定义的插件
+1. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
+2. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
+
+#### 其他杂项
+1. `<F4>` 我自己写的一键运行文件，支持语言的单文件支持如 C/C++, Java, Rust等。
+2. `<Space>` `l` `p` 预览markdown
 
 ## vim 的小技巧
 1. 翻滚屏幕
@@ -177,7 +245,6 @@ Ctrl + b - 向后滚动一屏，但是光标在底部
 Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 ```
 
-
 ## 其他的一些资源
 
 主题
@@ -198,6 +265,4 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 1. https://github.com/habemus-papadum/kernel-grok
 2. https://stackpointer.io/unix/linux-get-kernel-config/545/
 
-
 转发 CSDN 按侵权追究法律责任，其它情况随意。
-![DeepinScreenshot_dde-desktop_20200301134036.png](https://upload-images.jianshu.io/upload_images/9176874-ebc44eb5f7fc2a40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

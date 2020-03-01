@@ -46,7 +46,7 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
 
-# ----------------- SpaceVim 添加的各种 layers ----------------------
+# ----------------- SpaceVim 添加的各种 layers ---------------------------------
 
 # 计算器 日历 书签等小工具
 [[layers]]
@@ -66,18 +66,11 @@
   name = "git"
   git-plugin = "fugitive"
 
-# 几个语言的支持，其他的语言支持利用 coc.nvim 
-# 能不能直接利用 SpaceVim 中间 lsp 的支持
-[[layers]]
-  name = "lang#vim"
-
-[[layers]]
-  name = "lang#latex"
 
 [[layers]]
   name = "lang#markdown"
 
-# ----------------- 添加的插件 ----------------------
+# ----------------- 添加的插件 -------------------------------------------------
 
 # oceanic-next 主题，采用其他的主题可以删除
 [[custom_plugins]]
@@ -95,24 +88,9 @@
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
-# [[custom_plugins]]
-#     name =  "Shougo/vimproc.vim"
-#     build = "make"
-
-
 # 快速编辑 markdown 表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
-
-# TODO 
-# [[custom_plugins]]
-#   name = 'MattesGroeger/vim-bookmarks'
-
-# [[custom_plugins]]
-#     name = 'Shougo/neoinclude.vim'
-
-# [[custom_plugins]]
-#     name = 'jsfaint/coc-neoinclude'
 
 # vista.vim 的依赖
 [[custom_plugins]]
@@ -143,12 +121,15 @@
     name = 'jackguo380/vim-lsp-cxx-highlight'
 
 # https://github.com/skywind3000/asyncrun.vim
-# 本插件使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，并将结果实时显示到 Vim 的 Quickfix 窗口中：
+# 本插件使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，
+# 并将结果实时显示到 Vim 的 Quickfix 窗口中：
 [[custom_plugins]]
     name = 'skywind3000/asyncrun.vim'
 
+# ----------------- 垃圾堆，不用理会 -------------------------------------------
+
 # 实现括号颜色配对 和 vim-lsp-cxx-highlight 冲突，需要手动设置
-# [[custom_plugins]]
+# [[custom_plugins]]coc.nvim
 #     name =  'luochen1990/rainbow'
 
 # 编辑 hex 文件
@@ -230,3 +211,21 @@
 # maybe file icon is not so easy to support for defx-icons
 # [[custom_plugins]]
 #     name = 'kristijanhusak/defx-icons'
+
+# [[custom_plugins]]
+#     name =  "Shougo/vimproc.vim"
+#     build = "make"
+
+# [[custom_plugins]]
+#     name = 'Shougo/neoinclude.vim'
+
+# [[custom_plugins]]
+#     name = 'jsfaint/coc-neoinclude'
+#
+# 几个语言的支持，其他的语言支持利用 coc.nvim 
+# 能不能直接利用 SpaceVim 中间 lsp 的支持
+# [[layers]]
+#   name = "lang#vim"
+
+# [[layers]]
+#   name = "lang#latex"

@@ -59,7 +59,7 @@ func! myspacevim#before() abort
     let g:spacevim_windows_leader = 'c'
 
 
-    " config the make run, TODO substitute this with async.vim
+    " 自定义的Space 的快捷键
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
@@ -68,10 +68,13 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
 
-    " TODO haven't figure out how to disable a merged plugin and free the mapp
+    " 为了使用 vim-commentary 而不是 nerdcommenter
+    " 似乎必须显示的disable掉这个插件
     " https://github.com/SpaceVim/SpaceVim/issues/216
     let g:spacevim_disabled_plugins = ['nerdcommenter']
-    call SpaceVim#custom#SPC('nnoremap', ['c', 'Y'], 'echo "we should disable nerdcommenter"', 'todo', 1)
+    " remap vim-commentary 来保持兼容
+    nmap <space>cl gcc
+    vmap <space>cl gc
 
 
     let g:spacevim_snippet_engine = 'ultisnips'
@@ -83,11 +86,7 @@ func! myspacevim#before() abort
     " If you cancel and quit window resize mode by `q` (keycode 113)
     let g:winresizer_keycode_cancel = 113
 
-    " spell
-    " https://wiki.archlinux.org/index.php/Language_checking
-    " FIXME It disable my markdown C code highlight, and it's slow
-    " let g:chromatica#enable_at_startup=1
-    "
+    " spell https://wiki.archlinux.org/index.php/Language_checking
     
     let g:spacevim_enable_vimfiler_filetypeicon = 1
     " let g:spacevim_enable_vimfiler_gitstatus = 1
@@ -99,9 +98,13 @@ func! myspacevim#before() abort
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
 
+    " defx 将会自动忽略如下的文件
     call defx#custom#option('_', {
         \ 'ignored_files': ".*,*.class,*.out,*.o,*.bc,*.a,compile_commands.json,*.d",
         \ })
+
+    " vim-lsp-cxx-highlight 和这个选项存在冲突
+    " let g:rainbow_active = 1
 endf
 
 
@@ -110,17 +113,14 @@ func! myspacevim#after() abort
     " 焦点消失的时候自动保存
     au FocusLost * :wa
     au FocusGained,BufEnter * :checktime
+
     set autowrite
     set autoread
 
-    " F1 F2, F3 分别为文档，tagbar和file tree
     nnoremap <F2> :Vista!!<CR>
-    nnoremap <F4> :call QuickRun()<CR>
-
-    " remap vim-commentary 来保持兼容
-    nmap <space>cl gcc
-    vmap <space>cl gc
-
+    " <F3> 打开文件树
+    nnoremap <F4> :call QuickRun()<CR> "
+    " <F7> 打开历史记录
 
     " 重新映射终端的快捷键
     tnoremap <Esc> <C-\><C-n>
@@ -129,6 +129,4 @@ func! myspacevim#after() abort
     " autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
     set foldmethod=syntax
     set nofoldenable
-
-    let g:rainbow_active = 1  " 这个效果消失了
 endf

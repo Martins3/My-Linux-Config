@@ -1,3 +1,29 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
 snippet Cimport "是时候重拳出击了!"
 #include <stdio.h>
 #include <stdlib.h>  // malloc 
@@ -23,9 +49,6 @@ snippet scanf
 scanf("${1:%d}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
-
-
-
 snippet max "max funtion for int"
 inline int max ( int a, int b ) { return a > b ? a : b; }
 endsnippet
@@ -40,5 +63,3 @@ for (int ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${VISUAL}$0
 }
 endsnippet
-
-
