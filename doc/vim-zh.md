@@ -202,7 +202,8 @@ endsnippet
 这样，然后每次只需要输入 import 这些内容就自动出现了。
 
 一般的自动补全coc.nvim 无需另外的配置，效果如下。
-![](./fadfa.png)
+![自动补全](https://upload-images.jianshu.io/upload_images/9176874-daac0f5b05792dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 #### git 支持
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，没有什么需要修改的，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
