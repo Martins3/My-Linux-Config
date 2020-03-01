@@ -46,25 +46,18 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
 
+# ----------------- SpaceVim 添加的各种 layers ----------------------
 
-# it's bookmark keybind conflict with nerdtree
+# 计算器 日历 书签等小工具
 [[layers]]
   name = 'tools'
 
-# we never use shell in vim
-[[layers]]
-  name = 'shell'
-  default_position = 'top'
-  default_height = 30
-
-[[layers]]
-  name = "lang#markdown"
-
-
+# 禁用 SpaceVim 的 checkers layer
 [[layers]]
   name = "checkers"
   enable = false
 
+# 版本控制
 [[layers]]
   name = "VersionControl"
   enable-gtm-status = true
@@ -73,108 +66,120 @@
   name = "git"
   git-plugin = "fugitive"
 
-# another debug framework
-# https://github.com/puremourning/vimspector#faq
-#
-# debug for vim doesn't work well so far !
-# https://github.com/idanarye/vim-vebugger
-# [[layers]]
-  # name = "debug"
-
-[[custom_plugins]]
-  name = 'neoclide/coc.nvim'
-  merge = 0
-  # reversion = release
-  build =  'yarn install --frozen-lockfile'
-
+# 几个语言的支持，其他的语言支持利用 coc.nvim 
+# 能不能直接利用 SpaceVim 中间 lsp 的支持
 [[layers]]
   name = "lang#vim"
 
 [[layers]]
   name = "lang#latex"
-# ----------------- my own plug ----------------------
 
-# [[custom_plugins]]
-    # name = 'skywind3000/vim-keysound'
+[[layers]]
+  name = "lang#markdown"
 
-[[custom_plugins]]
-    name = "majutsushi/tagbar"
+# ----------------- 添加的插件 ----------------------
 
-[[custom_plugins]]
-    name = "Yggdroot/LeaderF"
-    build = "./install.sh"
-
-[[custom_plugins]]
-    name =  "Shougo/vimproc.vim"
-    build = "make"
-
-[[custom_plugins]]
-    name =  'ryanoasis/vim-devicons'
-
-[[custom_plugins]]
-    name =  'luochen1990/rainbow'
-
+# oceanic-next 主题，采用其他的主题可以删除
 [[custom_plugins]]
   name = "mhartington/oceanic-next"
   merged = 0
 
-# quickly markdown table edition
+# coc.nvim 核心配置，不要删除
+[[custom_plugins]]
+  name = 'neoclide/coc.nvim'
+  merge = 0
+  build =  'yarn install --frozen-lockfile'
+
+# 主要用于快速搜索 文件, buffer 和 函数
+[[custom_plugins]]
+    name = "Yggdroot/LeaderF"
+    build = "./install.sh"
+
+# [[custom_plugins]]
+#     name =  "Shougo/vimproc.vim"
+#     build = "make"
+
+
+# 快速编辑 markdown 表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
-# to support clear bookmark
-[[custom_plugins]]
-  name = 'MattesGroeger/vim-bookmarks'
+# TODO 
+# [[custom_plugins]]
+#   name = 'MattesGroeger/vim-bookmarks'
 
-[[custom_plugins]]
-    name = 'Shougo/neoinclude.vim'
+# [[custom_plugins]]
+#     name = 'Shougo/neoinclude.vim'
 
-[[custom_plugins]]
-    name = 'jsfaint/coc-neoinclude'
+# [[custom_plugins]]
+#     name = 'jsfaint/coc-neoinclude'
 
-[[custom_plugins]]
-    name = 'Shougo/vinarise.vim'
-
-# https://github.com/kristijanhusak/defx-icons
-# maybe file icon is not so easy to support for defx-icons
-[[custom_plugins]]
-    name = 'kristijanhusak/defx-icons'
-
-[[custom_plugins]]
-    name = 'liuchengxu/vista.vim'
-
+# vista.vim 的依赖
 [[custom_plugins]]
     name = 'junegunn/fzf'
     merged =  0
 
-# Work abnormally at 2019-11-20
-# maybe fix by the author
+# vista.vim 的依赖
 [[custom_plugins]]
-    name = 'Rykka/riv.vim'
+    name = "majutsushi/tagbar"
 
+# 更加美观的 tagbar 
 [[custom_plugins]]
-    name = 'Rykka/InstantRst'
+    name = 'liuchengxu/vista.vim'
 
-
+# 更加方便的调节窗口的大小
 [[custom_plugins]]
     name = 'simeji/winresizer'
 
-# seems better commentary than nerdcommentary
+# 比 nerdcommentary 更好用的注释工具
 [[custom_plugins]]
     name = 'tpope/vim-commentary'
 
-[[custom_plugins]]
-    name = 'AndrewRadev/splitjoin.vim'
-
-# time statistics
+# 时间统计工具，配合商业网站 https://wakatime.com/ 使用
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
 
-# work badly by now (2020-02-09)
-# [[custom_plugins]]
-#     name = 'arakashic/chromatica.nvim'
+[[custom_plugins]]
+    name = 'jackguo380/vim-lsp-cxx-highlight'
 
-# too cppman tools, waiting for it complete 
+# https://github.com/skywind3000/asyncrun.vim
+# 本插件使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，并将结果实时显示到 Vim 的 Quickfix 窗口中：
+[[custom_plugins]]
+    name = 'skywind3000/asyncrun.vim'
+
+# 实现括号颜色配对 和 vim-lsp-cxx-highlight 冲突，需要手动设置
+# [[custom_plugins]]
+#     name =  'luochen1990/rainbow'
+
+# 编辑 hex 文件
+# [[custom_plugins]]
+#     name = 'Shougo/vinarise.vim'
+
+# 键盘声音
+# [[custom_plugins]]
+    # name = 'skywind3000/vim-keysound'
+
+# [[custom_plugins]]
+#     name = 'AndrewRadev/splitjoin.vim'
+
+# 当进入到 window 的时候自动调节其大小，有点bug
+# [[custom_plugins]]
+#     name = 'camspiers/animate.vim'
+# [[custom_plugins]]
+#     name = 'camspiers/lens.vim'
+
+# 用于预览 reStructuredText 文件，但是无法正常工作
+# [[custom_plugins]]
+#     name = 'Rykka/riv.vim'
+# [[custom_plugins]]
+#     name = 'Rykka/InstantRst'
+
+# 一个有意思的同步软件
+# [[custom_plugins]]
+    # name = 'kenn7/vim-arsync'
+    # merged =  0
+
+# two cppman tools, waiting for it complete 
 # [[custom_plugins]]
 #     name = 'gauteh/vim-cppman'
 # [[custom_plugins]]
@@ -189,7 +194,6 @@
 # [[custom_plugins]]
 #     name = 'vim/killersheep'
 
-
 # [[custom_plugins]]
 #     name = 'vhda/verilog_systemverilog.vim'
 
@@ -202,18 +206,10 @@
 # https://github.com/tpope/vim-repeat
 # https://github.com/tpope/vim-surround
 
-# seems useless
-# [[custom_plugins]]
-    # name = 'pboettch/vim-cmake-syntax'
 
 # After instaling this plugin, it seems nothing changed !
 # [[custom_plugins]]
     # name = 'sheerun/vim-polyglot'
-
-# 一个有意思的同步软件
-# [[custom_plugins]]
-    # name = 'kenn7/vim-arsync'
-    # merged =  0
 
 # [[custom_plugins]]
   # name = 'sedm0784/vim-you-autocorrect'
@@ -222,4 +218,15 @@
 # tpope/vim-surround
 # terryma/vim-multiple-cursors
 
-# ----------------- my own plug end----------------------
+# another debug framework
+# https://github.com/puremourning/vimspector#faq
+#
+# debug for vim doesn't work well so far !
+# https://github.com/idanarye/vim-vebugger
+# [[layers]]
+  # name = "debug"
+
+# https://github.com/kristijanhusak/defx-icons
+# maybe file icon is not so easy to support for defx-icons
+# [[custom_plugins]]
+#     name = 'kristijanhusak/defx-icons'

@@ -1,13 +1,12 @@
 func! myspacevim#before() abort
-    "实现一键运行
+    " 实现一键运行
     func! QuickRun()
-        " exec "w"
+        exec "w"
         let ext = expand("%:e")
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "md"
             exec "!dos2unix %"
-            echo "DONE"
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -O3 -g -std=c++11 -o %<.out && ./%<.out"
         elseif ext ==# "c"
@@ -31,9 +30,6 @@ func! myspacevim#before() abort
             exec "so %"
         elseif ext ==# "html"
             exec "!google-chrome-stable %"
-        elseif ext ==# "rst"
-            " FIXME
-            exec "InstantRst"
         elseif ext ==# "rs"
             call CargoRun()
         else
@@ -41,9 +37,7 @@ func! myspacevim#before() abort
         endif
     endf
 
-    " TODO not familiar with vimscipt, maybe better implementation
-    " 1. rust project root is tag with Cargo.toml instread of VCS
-    " 2. this configuration is only for project, not for single rust file
+    " 一键运行 rust 工程
     func! CargoRun()
       let cargo_run_path = fnamemodify(resolve(expand('%:p')), ':h')
       while cargo_run_path != "/"
@@ -59,11 +53,18 @@ func! myspacevim#before() abort
       echo "Cargo.toml not found !"
     endf
 
-    " config the make run
+    " 重新映射 leader 键
+    let g:mapleader = ','
+    " 重新映射 window 键位
+    let g:spacevim_windows_leader = 'c'
+
+
+    " config the make run, TODO substitute this with async.vim
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
+
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
 
@@ -72,12 +73,10 @@ func! myspacevim#before() abort
     let g:spacevim_disabled_plugins = ['nerdcommenter']
     call SpaceVim#custom#SPC('nnoremap', ['c', 'Y'], 'echo "we should disable nerdcommenter"', 'todo', 1)
 
-    let g:mapleader = ','
-    let g:spacevim_windows_leader = 'c'
+
     let g:spacevim_snippet_engine = 'ultisnips'
 
     let g:table_mode_corner='|'
-    let g:rainbow_active = 1
 
     " If you want to start window resize mode by `Ctrl+T`
     let g:winresizer_start_key = '<space>wa'
@@ -86,18 +85,29 @@ func! myspacevim#before() abort
 
     " spell
     " https://wiki.archlinux.org/index.php/Language_checking
-    
     " FIXME It disable my markdown C code highlight, and it's slow
     " let g:chromatica#enable_at_startup=1
     "
-    "
+    
     let g:spacevim_enable_vimfiler_filetypeicon = 1
-    let g:spacevim_enable_vimfiler_gitstatus = 1
+    " let g:spacevim_enable_vimfiler_gitstatus = 1
+
+    " 书签选中之后自动关闭 quickfix window
+    let g:bookmark_auto_close = 1
+
+    let g:vista_echo_cursor_strategy = 'scroll'
+    let g:vista_close_on_jump = 1
+    let g:vista_sidebar_position = "vertical topleft"
+
+    call defx#custom#option('_', {
+        \ 'ignored_files': ".*,*.class,*.out,*.o,*.bc,*.a,compile_commands.json,*.d",
+        \ })
 endf
 
 
 
 func! myspacevim#after() abort
+    " 焦点消失的时候自动保存
     au FocusLost * :wa
     au FocusGained,BufEnter * :checktime
     set autowrite
@@ -107,22 +117,18 @@ func! myspacevim#after() abort
     nnoremap <F2> :Vista!!<CR>
     nnoremap <F4> :call QuickRun()<CR>
 
-    " remap vim-commentary
+    " remap vim-commentary 来保持兼容
     nmap <space>cl gcc
     vmap <space>cl gc
-    
-    let g:vista_echo_cursor_strategy = 'scroll'
-    let g:vista_close_on_jump = 1
-    let g:vista_sidebar_position = "vertical topleft"
 
-    " remap the terminal
+
+    " 重新映射终端的快捷键
     tnoremap <Esc> <C-\><C-n>
 
-    " maybe we don't need it
+    " Cppman
     " autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
-    
-    let g:bookmark_auto_close = 1
     set foldmethod=syntax
     set nofoldenable
 
+    let g:rainbow_active = 1  " 这个效果消失了
 endf

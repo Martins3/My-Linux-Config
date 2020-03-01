@@ -25,8 +25,9 @@ call coc#config("languageserver", {
       \  "initializationOptions": {
       \     "cache": {
       \       "directory": ".ccls-cache"
-      \     }
-      \   }
+      \     },
+      \     "highlight": { "lsRanges" : v:true }
+      \   },
       \},
       \
       \"golang": {
@@ -101,7 +102,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 set updatetime=300
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" TODO this command seems
 autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 " Remap for rename current word

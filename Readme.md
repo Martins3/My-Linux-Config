@@ -1,12 +1,13 @@
 # My Linux configuration
 This repository is configuration for [`SpaceVim`](http://spacevim.org/)
-[`tilix`](https://gnunn1.github.io/tilix-web/)
 [`on-my-zsh`](https://github.com/robbyrussell/oh-my-zsh)
 [`autojump`](https://github.com/wting/autojump) 
 [`translate-shell`](https://github.com/soimort/translate-shell)
 and many other thing which can greatly imporve your life quality under linux.
 
-## Components
+[中文文档](./doc/Readme-zh.md)
+
+## Layout
 There are three important item for vim configurations.
 1. init.toml : you can change theme, import spacevim layers or plugins
 2. plugin/coc.vim plugin/defx.vim : as it's suggests, configurations for coc.nvim and defx
