@@ -98,10 +98,6 @@ func! myspacevim#before() abort
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
 
-    " defx 将会自动忽略如下的文件
-    call defx#custom#option('_', {
-        \ 'ignored_files': ".*,*.class,*.out,*.o,*.bc,*.a,compile_commands.json,*.d",
-        \ })
 
     " vim-lsp-cxx-highlight 和这个选项存在冲突
     " let g:rainbow_active = 1
