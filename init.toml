@@ -229,3 +229,6 @@
 
 # [[layers]]
 #   name = "lang#latex"
+
+# 看一下吧
+# https://github.com/sakhnik/nvim-gdb

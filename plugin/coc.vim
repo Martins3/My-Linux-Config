@@ -61,6 +61,7 @@ let s:coc_extensions = [
       \ 'coc-dictionary',
       \ 'coc-rls',
       \ 'coc-snippets',
+      \ 'coc-pairs',
       \ 'coc-tsserver',
 			\]
 

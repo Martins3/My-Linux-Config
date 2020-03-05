@@ -115,7 +115,7 @@ func! myspacevim#after() abort
 
     nnoremap <F2> :Vista!!<CR>
     " <F3> 打开文件树
-    nnoremap <F4> :call QuickRun()<CR> "
+    nnoremap <F4> :call QuickRun()<CR>
     " <F7> 打开历史记录
 
     " 重新映射终端的快捷键
