@@ -139,6 +139,13 @@ function command_not_found_handler(){
   return 127
 }
 
+function make_swap() {
+  sudo fallocate -l 8G swapfile
+  sudo chmod 600 swapfile
+  sudo mkswap swapfile
+  sudo swapon swapfile
+}
+
 alias s="sharp"
 # alias ls="exa"
 
@@ -148,6 +155,10 @@ alias lt='ls --tree'
 
 alias glog="git log --graph --decorate --oneline --all"
 
+alias du='ncdu'
+
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
+# https://github.com/starship/starship
+# eval "$(starship init zsh)"

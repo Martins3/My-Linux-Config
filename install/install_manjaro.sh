@@ -135,7 +135,8 @@ git config --global diff.tool meld
 git config --global merge.tool meld
 # git config end
 
-
+yaourt -S git-quick-stats
+# https://github.com/arzzen/git-quick-stats#unix-and-linux
 
 
 
@@ -148,3 +149,15 @@ cd Core
 
 # -------------------------------------- sync lastest repo to github -----------------------------
 cd ~/Core
+
+# ### 一些可以探索的插件
+# ```
+# - SourceCounter.vim: Installing done.
+# - fencview: Installing done.
+# - limelight.vim: Installing done.
+# - rainbow_parentheses.vim: Installing done.
+# - vim-cheat: Installing done.
+# - vim-scriptease: Installing done.
+# - vimloo: Installing done.
+# - vnote: Installing done.
+# ```
