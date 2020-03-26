@@ -41,13 +41,12 @@ call coc#config("languageserver", {
       \        "usePlaceholders": "true"
       \      }
       \},
-      \
       \"bash": {
       \  "command": "bash-language-server",
       \  "args": ["start"],
       \  "filetypes": ["sh"],
       \  "ignoredRootPaths": ["~"]
-      \}
+      \},
       \})
 
 " coc.nvim 插件，用于支持 python java 等语言
@@ -58,10 +57,11 @@ let s:coc_extensions = [
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
+      \ 'coc-cmake',
       \ 'coc-dictionary',
       \ 'coc-rls',
+      \ 'coc-vimlsp',
       \ 'coc-snippets',
-      \ 'coc-pairs',
       \ 'coc-tsserver',
 			\]
 

@@ -161,3 +161,9 @@ cd ~/Core
 # - vimloo: Installing done.
 # - vnote: Installing done.
 # ```
+
+# GDB Dashboard
+wget -P ~ https://git.io/.gdbinit
+
+# https://github.com/o2sh/onefetch
+

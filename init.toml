@@ -66,7 +66,6 @@
   name = "git"
   git-plugin = "fugitive"
 
-
 [[layers]]
   name = "lang#markdown"
 
@@ -117,6 +116,7 @@
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
 
+# 基于lsp的高亮插件
 [[custom_plugins]]
     name = 'jackguo380/vim-lsp-cxx-highlight'
 
@@ -126,7 +126,20 @@
 [[custom_plugins]]
     name = 'skywind3000/asyncrun.vim'
 
+# 从 http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
+[[custom_plugins]]
+    name = 'skywind3000/vim-cppman'
+
+# vim小游戏，使用 :VimGameCodeBreak 运行
+[[custom_plugins]]
+    name = 'johngrib/vim-game-code-break'
+
+
 # ----------------- 垃圾堆，不用理会 -------------------------------------------
+#
+# https://github.com/high-moctane/asyncomplete-nextword.vim # 也许是解救我的写作的位置了
+# https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt
+# https://github.com/vivien/vim-linux-coding-style 内核 C 语言风格
 
 # 实现括号颜色配对 和 vim-lsp-cxx-highlight 冲突，需要手动设置
 # [[custom_plugins]]coc.nvim
@@ -139,6 +152,9 @@
 # 键盘声音
 # [[custom_plugins]]
     # name = 'skywind3000/vim-keysound'
+# 配套使用的UI系统
+# [[custom_plugins]]
+#     name = 'waldson/vui'
 
 # [[custom_plugins]]
 #     name = 'AndrewRadev/splitjoin.vim'

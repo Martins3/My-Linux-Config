@@ -5,7 +5,8 @@ This repository is configuration for [`SpaceVim`](http://spacevim.org/)
 [`translate-shell`](https://github.com/soimort/translate-shell)
 and many other thing which can greatly imporve your life quality under linux.
 
-[vim中文文档](./doc/vim-zh.md)
+## Documentation in Chinese
+1. [vim 配置说明](./doc/vim-zh.md)
 
 ## Layout
 There are three important item for vim configurations.

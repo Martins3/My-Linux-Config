@@ -1,5 +1,6 @@
 func! myspacevim#before() abort
     " 实现一键运行
+    " TODO 也许修改为 asyncrun.vim 的方法
     func! QuickRun()
         exec "w"
         let ext = expand("%:e")
@@ -28,6 +29,7 @@ func! myspacevim#before() abort
             exec "!python3 %"
         elseif ext ==# "vim"
             exec "so %"
+            exec "VuiToDo"
         elseif ext ==# "html"
             exec "!google-chrome-stable %"
         elseif ext ==# "rs"
@@ -35,6 +37,7 @@ func! myspacevim#before() abort
         else
             echo "Check file type !"
         endif
+        echo 'done'
     endf
 
     " 一键运行 rust 工程
@@ -98,9 +101,12 @@ func! myspacevim#before() abort
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
 
-
     " vim-lsp-cxx-highlight 和这个选项存在冲突
     " let g:rainbow_active = 1
+    
+    " ctrl + ] 查询 cppman
+    " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
+    autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
 endf
 
 
@@ -117,12 +123,10 @@ func! myspacevim#after() abort
     " <F3> 打开文件树
     nnoremap <F4> :call QuickRun()<CR>
     " <F7> 打开历史记录
-
+    
     " 重新映射终端的快捷键
     tnoremap <Esc> <C-\><C-n>
 
-    " Cppman
-    " autocmd FileType cpp nnoremap <silent><buffer> <C-]> <Esc>:Cppman <cword><CR>
     set foldmethod=syntax
     set nofoldenable
 endf
