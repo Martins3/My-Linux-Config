@@ -1,11 +1,11 @@
 # Linux 命令行生存指南
 
 这是我个人使用Linux的三篇笔记中的第二篇:
-第一篇 : 记录一般生活软件的安装，比如输入法，微信，Tim等，这一步解决在Linux 下的生存问题。
-第二篇 : 基本命令行的使用，利用好Linux 的优势。
-第三篇 : vim配置，实现高效的写代码。
+1. [第一篇](https://www.jianshu.com/p/e4d2c3698ec9) : 记录一般生活软件的安装，比如输入法，微信，Tim等，这一步解决在Linux 下的生存问题。
+2. 第二篇 : 基本命令行的使用，利用好Linux 的优势。
+3. [第三篇](https://www.jianshu.com/p/249850f2cc64): vim配置，实现高效的写代码。
 
-> 下面的内容是自己的看法，其中部分内容可能比较肤浅。
+> 下面的内容仅仅为自己的看法
 
 ## 不要迷信命令行
 为什么需要命令行:
@@ -16,7 +16,7 @@
 1. 命令行难以记忆。
 
 我为什么使用命令行:
-1. 经常使用命令数量是有限的，可以 [alias](https://askubuntu.com/questions/31216/setting-up-aliases-in-zsh) 这些命令
+1. 经常使用命令数量是有限的，可以 [alias](https://askubuntu.com/questions/31216/setting-up-aliases-in-zsh) 这些命令，让命令的使用高效简洁。
 2. 过多的窗口让人让人手忙脚乱，在终端中间执行程序显得更加整洁。
 
 ## shell学习
@@ -33,6 +33,7 @@ shell 和 gnu make, cmake 等各种工具类似，一学就会，学玩就忘。
 3. 半透明
 4. 性能
 
+![Deepin](https://upload-images.jianshu.io/upload_images/9176874-9423a55f00ba3585.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 下面是一些有名的终端，我个人比较喜欢使用其中的 Deepin Terminal。
 
 - [Deepin](https://github.com/linuxdeepin/deepin-terminal)
@@ -44,11 +45,6 @@ shell 和 gnu make, cmake 等各种工具类似，一学就会，学玩就忘。
 ## 选择好用的shell
 zsh 和 bash 之前语法上基本是兼容的，但是由于[oh my zsh](https://github.com/ohmyzsh/ohmyzsh)，我强烈推荐使用zsh
 
-## git tricks 
-lg
-
-diff beautiful diff 
-
 ## 常用工具的替代
 使用Linux有个非常窒息的事情在于，默认的工具使用体验一般，下面介绍一些体验更加的工具。
 
@@ -59,16 +55,21 @@ diff beautiful diff
 3. https://github.com/unixorn/awesome-zsh-plugins
 4. https://news.ycombinator.com/ 
 
-#### cd -> [autojump](https://github.com/wting/autojump)
+
+#### 1 cd -> [autojump](https://github.com/wting/autojump)
 使用命令行，如果没有 autojump ，我认为几乎是没有办法生存的。
 
 autojump 没有学习曲线，只需要 j + 目标文件名的字符
+![autojump](https://upload-images.jianshu.io/upload_images/9176874-e6b57c1e215f7545.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### ls -> [lsd](https://github.com/Peltoche/lsd)
+#### 2 ls -> [lsd](https://github.com/Peltoche/lsd)
 效果对比如下:
+![默认 ls](https://upload-images.jianshu.io/upload_images/9176874-ecb1e77bdc03936d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+![lsd](https://upload-images.jianshu.io/upload_images/9176874-f421ae8de04c8a05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![DeepinScreenshot_select-area_20200328114320.png](https://upload-images.jianshu.io/upload_images/9176874-4797a6ad97cf1e4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### du -> [ncdu](https://dev.yorhel.nl/ncdu)
+#### 3  du -> [ncdu](https://dev.yorhel.nl/ncdu)
 
 du 的效果：
 ```
@@ -111,9 +112,9 @@ ncdu 1.14.2 ~ Use the arrow keys to navigate, press ? for help
     4.0 KiB [          ]  .gitignore
 ```
 
-#### gdb 封装
+#### 4 gdb 封装
 1. [gdb dashboard](https://github.com/cyrus-and/gdb-dashboard)
 
-#### git 封装
+#### 5 git 封装
 1. [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 2. [lazy git](https://github.com/jesseduffield/lazygit)
