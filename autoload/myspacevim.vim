@@ -4,6 +4,7 @@ func! myspacevim#before() abort
     func! QuickRun()
         exec "w"
         let ext = expand("%:e")
+        let file = expand("%")
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "md"

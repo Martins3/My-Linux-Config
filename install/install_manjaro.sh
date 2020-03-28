@@ -165,5 +165,8 @@ cd ~/Core
 # GDB Dashboard
 wget -P ~ https://git.io/.gdbinit
 
+# 还是直接下载使用
+# git cloen https://github.com/github/gitignore
+
 # https://github.com/o2sh/onefetch
 

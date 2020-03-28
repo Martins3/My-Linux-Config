@@ -7,6 +7,7 @@ and many other thing which can greatly imporve your life quality under linux.
 
 ## Documentation in Chinese
 1. [vim 配置说明](./doc/vim-zh.md)
+2. [命令行生存使用的一点想法](./doc/Readme-zh.md)
 
 ## Layout
 There are three important item for vim configurations.
