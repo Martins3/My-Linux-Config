@@ -134,12 +134,12 @@
 [[custom_plugins]]
     name = 'johngrib/vim-game-code-break'
 
-
 # ----------------- 垃圾堆，不用理会 -------------------------------------------
 #
 # https://github.com/high-moctane/asyncomplete-nextword.vim # 也许是解救我的写作的位置了
 # https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt
 # https://github.com/vivien/vim-linux-coding-style 内核 C 语言风格
+# https://github.com/liuchengxu/vim-clap 什么时候将 leaderf 替换掉
 
 # 实现括号颜色配对 和 vim-lsp-cxx-highlight 冲突，需要手动设置
 # [[custom_plugins]]coc.nvim

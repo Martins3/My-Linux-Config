@@ -6,8 +6,8 @@ This repository is configuration for [`SpaceVim`](http://spacevim.org/)
 and many other thing which can greatly imporve your life quality under linux.
 
 ## Documentation in Chinese
-1. [vim 配置说明](./doc/vim-zh.md)
-2. [命令行生存使用的一点想法](./doc/Readme-zh.md)
+1. [vim C/C++配置](./doc/vim-zh.md)
+2. [如何使用命令行](./doc/Readme-zh.md)
 
 ## Layout
 There are three important item for vim configurations.
