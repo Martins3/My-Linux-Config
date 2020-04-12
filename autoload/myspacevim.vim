@@ -61,9 +61,13 @@ func! myspacevim#before() abort
     let g:mapleader = ','
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
+    " TODO 将其映射为和文件类型相关的
+    let g:maplocalleader="'"
 
 
     " 自定义的Space 的快捷键
+    " TODO 这个效果实在是太差了，使用 asynctask.vim 的效果吧
+    " 至少对于 linux-kernel-labs 可以尝试一下
     call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
     call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
@@ -79,7 +83,6 @@ func! myspacevim#before() abort
     " remap vim-commentary 来保持兼容
     nmap <space>cl gcc
     vmap <space>cl gc
-
 
     let g:spacevim_snippet_engine = 'ultisnips'
 
@@ -110,13 +113,12 @@ func! myspacevim#before() abort
     autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
 endf
 
-
-
 func! myspacevim#after() abort
     " 焦点消失的时候自动保存
     au FocusLost * :wa
     au FocusGained,BufEnter * :checktime
 
+    " 当文件被其他编辑器修改时，自动加载
     set autowrite
     set autoread
 

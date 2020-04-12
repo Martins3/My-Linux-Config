@@ -112,10 +112,6 @@
 [[custom_plugins]]
     name = 'tpope/vim-commentary'
 
-# 时间统计工具，配合商业网站 https://wakatime.com/ 使用
-[[custom_plugins]]
-    name = 'wakatime/vim-wakatime'
-
 # 基于lsp的高亮插件
 [[custom_plugins]]
     name = 'jackguo380/vim-lsp-cxx-highlight'
@@ -130,121 +126,20 @@
 [[custom_plugins]]
     name = 'skywind3000/vim-cppman'
 
+# ----------------- 个人需要，自行取舍 -----------------------------------------
+
+# 时间统计工具，配合商业网站 https://wakatime.com/ 使用
+[[custom_plugins]]
+    name = 'wakatime/vim-wakatime'
+
 # vim小游戏，使用 :VimGameCodeBreak 运行
 [[custom_plugins]]
     name = 'johngrib/vim-game-code-break'
 
-# ----------------- 垃圾堆，不用理会 -------------------------------------------
-#
-# https://github.com/high-moctane/asyncomplete-nextword.vim # 也许是解救我的写作的位置了
-# https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt
-# https://github.com/vivien/vim-linux-coding-style 内核 C 语言风格
-# https://github.com/liuchengxu/vim-clap 什么时候将 leaderf 替换掉
+# 迁移 emacs 的 orgmode
+[[custom_plugins]]
+    name = 'jceb/vim-orgmode'
 
-# 实现括号颜色配对 和 vim-lsp-cxx-highlight 冲突，需要手动设置
-# [[custom_plugins]]coc.nvim
-#     name =  'luochen1990/rainbow'
-
-# 编辑 hex 文件
-# [[custom_plugins]]
-#     name = 'Shougo/vinarise.vim'
-
-# 键盘声音
-# [[custom_plugins]]
-    # name = 'skywind3000/vim-keysound'
-# 配套使用的UI系统
-# [[custom_plugins]]
-#     name = 'waldson/vui'
-
-# [[custom_plugins]]
-#     name = 'AndrewRadev/splitjoin.vim'
-
-# 当进入到 window 的时候自动调节其大小，有点bug
-# [[custom_plugins]]
-#     name = 'camspiers/animate.vim'
-# [[custom_plugins]]
-#     name = 'camspiers/lens.vim'
-
-# 用于预览 reStructuredText 文件，但是无法正常工作
-# [[custom_plugins]]
-#     name = 'Rykka/riv.vim'
-# [[custom_plugins]]
-#     name = 'Rykka/InstantRst'
-
-# 一个有意思的同步软件
-# [[custom_plugins]]
-    # name = 'kenn7/vim-arsync'
-    # merged =  0
-
-# two cppman tools, waiting for it complete 
-# [[custom_plugins]]
-#     name = 'gauteh/vim-cppman'
-# [[custom_plugins]]
-#     name = 'skywind3000/vim-cppman'
-
-# Failed to install
-# https://www.reddit.com/r/neovim/comments/ezs67g/neovim_plugin_that_provides_fzf_preset_with/
-# [[custom_plugins]]
-#     name = 'yuki-ycino/fzf-preview.vim'
-
-# vim game based on new features of Vim 8.2，it doesn't work on nvim 4.3
-# [[custom_plugins]]
-#     name = 'vim/killersheep'
-
-# [[custom_plugins]]
-#     name = 'vhda/verilog_systemverilog.vim'
-
-# interesting plug
-# https://github.com/janko/vim-test
-# https://github.com/justinmk/vim-sneak seems better than easymotion
-# https://github.com/prettier/vim-prettier a format for many languages we don't have 
-#
-# relearn vim about how to move and edit more quickly !
-# https://github.com/tpope/vim-repeat
-# https://github.com/tpope/vim-surround
-
-
-# After instaling this plugin, it seems nothing changed !
-# [[custom_plugins]]
-    # name = 'sheerun/vim-polyglot'
-
-# [[custom_plugins]]
-  # name = 'sedm0784/vim-you-autocorrect'
-
-# maybe useful
-# tpope/vim-surround
-# terryma/vim-multiple-cursors
-
-# another debug framework
-# https://github.com/puremourning/vimspector#faq
-#
-# debug for vim doesn't work well so far !
-# https://github.com/idanarye/vim-vebugger
-# [[layers]]
-  # name = "debug"
-
-# https://github.com/kristijanhusak/defx-icons
-# maybe file icon is not so easy to support for defx-icons
-# [[custom_plugins]]
-#     name = 'kristijanhusak/defx-icons'
-
-# [[custom_plugins]]
-#     name =  "Shougo/vimproc.vim"
-#     build = "make"
-
-# [[custom_plugins]]
-#     name = 'Shougo/neoinclude.vim'
-
-# [[custom_plugins]]
-#     name = 'jsfaint/coc-neoinclude'
-#
-# 几个语言的支持，其他的语言支持利用 coc.nvim 
-# 能不能直接利用 SpaceVim 中间 lsp 的支持
-# [[layers]]
-#   name = "lang#vim"
-
-# [[layers]]
-#   name = "lang#latex"
-
-# 看一下吧
-# https://github.com/sakhnik/nvim-gdb
+# 处理 adoc 格式的文件
+[[custom_plugins]]
+    name = 'habamax/vim-asciidoctor'

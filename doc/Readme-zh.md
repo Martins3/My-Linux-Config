@@ -118,3 +118,14 @@ ncdu 1.14.2 ~ Use the arrow keys to navigate, press ? for help
 #### 5 git 封装
 1. [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 2. [lazy git](https://github.com/jesseduffield/lazygit)
+
+#### 6 易于理解的 man
+1. [cheat](https://github.com/chubin/cheat.sh) : 对于新手而言，man 是非常的不友好的，其中的内容大而全，看完之后只会让人更加的疑惑。当不知道如何使用软硬链接的时候，就可以求助于cheat。由于man的输出太长了，我就不放了。
+```
+➜  shen git:(master) ✗ cheat ln
+# To create a symlink:
+ln -s path/to/the/target/directory name-of-symlink
+
+# Symlink, while overwriting existing destination files
+ln -sf /some/dir/exec /usr/bin/exec
+```
