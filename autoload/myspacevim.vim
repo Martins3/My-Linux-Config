@@ -61,17 +61,8 @@ func! myspacevim#before() abort
     let g:mapleader = ','
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
-    " TODO 将其映射为和文件类型相关的
+    " 用于管理orgmode TODO 也许可以替换为文件相关的
     let g:maplocalleader="'"
-
-
-    " 自定义的Space 的快捷键
-    " TODO 这个效果实在是太差了，使用 asynctask.vim 的效果吧
-    " 至少对于 linux-kernel-labs 可以尝试一下
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
 
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
