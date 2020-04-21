@@ -1,4 +1,4 @@
-.undo_history/
 *.c
 *.out
 *.spl
+.netrwhist 

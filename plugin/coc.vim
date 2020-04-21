@@ -61,10 +61,10 @@ let s:coc_extensions = [
       \ 'coc-dictionary',
       \ 'coc-rls',
       \ 'coc-vimlsp',
+      \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-tsserver',
 			\]
-
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
 endfor
@@ -79,6 +79,10 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" 方便在中文中间使用 w 和 b 移动
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
 
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.

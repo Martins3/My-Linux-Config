@@ -126,6 +126,12 @@
 [[custom_plugins]]
     name = 'skywind3000/vim-cppman'
 
+[[custom_plugins]]
+    name = 'rhysd/git-messenger.vim'
+    lazy =  1
+    on_cmd = 'GitMessenger'
+    on_map = '<Plug>(git-messenger'
+
 # ----------------- 个人需要，自行取舍 -----------------------------------------
 
 # 时间统计工具，配合商业网站 https://wakatime.com/ 使用
