@@ -106,6 +106,7 @@ func! myspacevim#before() abort
     let g:git_messenger_always_into_popup = v:true
     " 设置映射规则，和 spacevim 保持一致
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 endf
 
 func! myspacevim#after() abort
@@ -120,9 +121,12 @@ func! myspacevim#after() abort
     nnoremap <F2> :Vista!!<CR>
     " <F3> 打开文件树
     nnoremap <F4> :call QuickRun()<CR>
+    nnoremap   <silent>   <F5>   :FloatermToggle<CR>
+    tnoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
     " <F7> 打开历史记录
     
-    " 重新映射终端的快捷键
+    
+    " 重新映射终端快捷键
     tnoremap <Esc> <C-\><C-n>
 
     set foldmethod=syntax

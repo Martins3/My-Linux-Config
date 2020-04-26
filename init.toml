@@ -138,10 +138,6 @@
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
 
-# vim小游戏，使用 :VimGameCodeBreak 运行
-[[custom_plugins]]
-    name = 'johngrib/vim-game-code-break'
-
 # 迁移 emacs 的 orgmode
 [[custom_plugins]]
     name = 'jceb/vim-orgmode'
@@ -149,3 +145,6 @@
 # 处理 adoc 格式的文件
 [[custom_plugins]]
     name = 'habamax/vim-asciidoctor'
+
+[[custom_plugins]]
+    name = 'voldikss/vim-floaterm'

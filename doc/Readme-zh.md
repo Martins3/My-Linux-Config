@@ -47,6 +47,8 @@ zsh 和 bash 之前语法上基本是兼容的，但是由于[oh my zsh](https:/
 
 ## 常用工具的替代
 使用Linux有个非常窒息的事情在于，默认的工具使用体验一般，下面介绍一些体验更加的工具。
+[这里](https://css.csail.mit.edu/jitk/) 总结的工具非常不错，下面是我自己的补充:
+
 
 这些工具都是基本是从github awesome 和 hacker news 中间找到:
 
@@ -129,3 +131,6 @@ ln -s path/to/the/target/directory name-of-symlink
 # Symlink, while overwriting existing destination files
 ln -sf /some/dir/exec /usr/bin/exec
 ```
+
+#### 7 find -> [fd](https://github.com/chinanf-boy/fd-zh)
+
