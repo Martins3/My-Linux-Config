@@ -59,7 +59,7 @@ let s:coc_extensions = [
       \ 'coc-word',
       \ 'coc-cmake',
       \ 'coc-dictionary',
-      \ 'coc-rls',
+      \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
       \ 'coc-ci',
       \ 'coc-snippets',

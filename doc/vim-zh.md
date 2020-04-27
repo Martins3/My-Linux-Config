@@ -23,7 +23,7 @@
 vim 的学习曲线陡峭的我个人感觉主要就是在这一个地方，但是坚持最多一个星期，之后就学习就非常平缓了。
 
 虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制:
-1. 使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现冲突读写警告，可以手动清理 `~/.cache/SpaceVim/swap` .swp 文件
+1. 使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件
 ![冲突读写](https://upload-images.jianshu.io/upload_images/9176874-796e49d5f2c60489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2. `\` `y` 和 `\` `p` 实现复制粘贴。不同的配置下，复制粘贴的不同，在本配置下，复制粘贴的 leader 键是 `\`。
 
