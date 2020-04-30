@@ -7,6 +7,9 @@ set hidden
 set nobackup
 set nowritebackup
 
+" 使用 Microsoft Python Language Server 不然 coc.nvim 会警告
+call coc#config("python.jediEnabled", v:false)
+
 call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
