@@ -1,5 +1,33 @@
 # 2020年vim的C/C++配置
 
+<!-- vim-markdown-toc GitLab -->
+
+- [前言](#前言)
+- [效果](#效果)
+- [如何入门](#如何入门)
+- [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
+- [安装过程以及注意要点](#安装过程以及注意要点)
+- [实战](#实战)
+- [C/C++ 用户的基本操作的详解](#cc-用户的基本操作的详解)
+    - [窗口操作](#窗口操作)
+    - [buffer 操作](#buffer-操作)
+    - [搜索和导航](#搜索和导航)
+    - [符号跳转和引用查找](#符号跳转和引用查找)
+    - [查找注释](#查找注释)
+    - [查找文档](#查找文档)
+    - [添加自定义代码段](#添加自定义代码段)
+    - [git 支持](#git-支持)
+    - [文件树 支持](#文件树-支持)
+    - [格式化文件](#格式化文件)
+    - [重命名](#重命名)
+    - [调试](#调试)
+    - [代码时间统计](#代码时间统计)
+- [本配置源代码解释](#本配置源代码解释)
+- [vim 的小技巧](#vim-的小技巧)
+- [其他的一些资源](#其他的一些资源)
+
+<!-- vim-markdown-toc -->
+
 ## 前言
 所有的配置都在[github](https://github.com/Martins3/My-Linux-config) 上，有问题欢迎issue。
 
@@ -134,7 +162,6 @@ nvim # 打开vim 将会自动安装所有的插件
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
-# zcat /proc/config.gz > .config # 首先获取当且机器内核的配置，只有当前机器上的版本和源代码的版本一致的时候才有效, 所以应该使用下面的方法配置
 make defconfig  # 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
 bear make -j8  # 生成compile_commands.json
 nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
@@ -163,7 +190,7 @@ nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞�
 2. `,` + num : 切换当前窗口到第 num 个 buffer
 3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
 
-#### 预览和搜索
+#### 搜索和导航
 1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。在我的配置中间 leader 键是 `,` ，所以搜索文件使用 `,` `f` + 文件名的 subsequence
 搜索 buffer 的方法类似 : `,` `b` + 想要搜索的 buffer 名称的 subsequence。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -258,18 +285,18 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 
 
 ## [本配置](https://github.com/Martins3/My-Linux-config)源代码解释
-SpaceVim 的文档往往是过时的或者是不相信的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
+SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
-本项目的主要组成
+本配置的主要组成:
 0. init.toml : 最基本的配置，以及自定义的插件
 1. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 2. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-3.  plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
+3. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
 
-#### 其他杂项
+一些快捷键的说明
 1. `<F4>` 我自己写的一键运行文件，支持语言的单文件支持如 C/C++, Java, Rust等。
 2. `<Space>`  `l`  `p` 预览markdown
-3. `<>`
+3. `<F5>` 在悬浮窗口打开终端
 
 ## vim 的小技巧
 1. 翻滚屏幕
