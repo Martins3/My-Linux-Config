@@ -67,6 +67,7 @@ let s:coc_extensions = [
       \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-tsserver',
+      \ 'coc-vimtex',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)

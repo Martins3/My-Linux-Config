@@ -22,14 +22,21 @@
     - [重命名](#重命名)
     - [调试](#调试)
     - [代码时间统计](#代码时间统计)
+- [扩展](#扩展)
+    - [基于SpaceVim的扩展:以Latex为例子](#基于spacevim的扩展以latex为例子)
+    - [基于coc.nvim的扩展:以Python为例](#基于cocnvim的扩展以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
 - [其他的一些资源](#其他的一些资源)
+    - [vim学习](#vim学习)
+    - [主题](#主题)
+    - [框架](#框架)
+- [参考](#参考)
 
 <!-- vim-markdown-toc -->
 
 ## 前言
-所有的配置都在[github](https://github.com/Martins3/My-Linux-config) 上，有问题欢迎issue。
+有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
 **至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题。
 
@@ -46,9 +53,9 @@
 1. [openvim](https://www.openvim.com/) : 交互式的学习vim
 2. [Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
 
-如果完全没有基础，建议使用第一个打牢基础之后，然后就直接将vim用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。 第二个是强化补充的，建议一次学习三两个，不要指望一次全部背下来，很痛苦。
+如果完全没有基础，建议使用第一个打牢基础之后，然后就直接将vim用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。 第二个是强化补充的，建议一次学习三两个，不要指望一次全部背下来，不然很痛苦。
 
-vim 的学习曲线陡峭的我个人感觉主要就是在这一个地方，但是坚持最多一个星期，之后就学习就非常平缓了。
+vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆，但是坚持最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
 
 虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制:
 1. 使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件
@@ -95,20 +102,20 @@ lsp让静态检查变得异常简单，当不小心删除掉一个put_swap_page�
 ```
 +-----------------+
 |                 |
-|     my config   | 一些微小的调整
+|     my config   | 在 SpaceVim 的基础上整合coc.nvim，同时添加一些插件和配置
 |                 |
 |                 |
 +-----------------+
 |                 |
-|     Coc.nvim    | 提供lsp功能，完美吸收VSCode的优雅体验，完美支持C/C++。coc.nvim 同样可以添加插件，例如https://github.com/neoclide/coc-tabnine 在coc.nvim 只需一行就可以添加上。
-|                 |
+|     Coc.nvim    | 提供lsp功能，完美吸收VSCode的优雅体验，完美支持C/C++。coc.nvim 同样可以添加插件 
+|                 | 
 +-----------------+
 |                 |
 |     SpaceVim    | 一个模块化，功能齐全的vim distribution，虽然其中对于C/C++的支持个人不认同，但是颜色主题等基础设施非常完善。
 |                 |
 +-----------------+
 |                 |
-|     Neovim      | 编辑器，当没有配置的时候，说实话，有点反人类，很多人指责vim难用都是因为在这一层被吓退了
+|     Neovim      | 编辑器，当没有任何配置的时候，非常难用。
 |                 |
 +-----------------+
 ```
@@ -283,6 +290,60 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 效果如下:
 ![wakatime](https://upload-images.jianshu.io/upload_images/9176874-7989124874e02ac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+## 扩展
+需要说明的是，本配置并不局限于C/C++，只是相对其他语言，我比较熟悉C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
+
+#### 基于SpaceVim的扩展:以Latex为例子
+- 如何扩展
+
+在 init.toml 中间添加
+```toml
+[[layers]]
+  name = "lang#latex"
+```
+
+- 效果
+
+保存的时候，自动编译，并且更新输出到 zathura 中间。
+![使用 zathura 预览](https://upload-images.jianshu.io/upload_images/9176874-b51f76620f214709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 原理
+
+SpaceVim 的强大之处是将众多插件融合在一起，当在使用 latex layer，那么 spacevim 会自动让包管理器安装 [vimtex](https://github.com/lervag/vimtex)，并且重新映射快捷键。
+看一下其[文档](https://spacevim.org/layers/lang/latex/)和[源码](https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim/layers/lang/latex.vim)就非常清楚了。
+
+- 说明
+
+如果想要书写中文，需要修改默认的 latex engine，在 ~/.latexmkrc 中设置:
+```
+$pdf_mode = 5; 
+```
+参考:
+- https://tex.stackexchange.com/questions/429274/chinese-on-mactex2018-simple-example
+- https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
+
+
+#### 基于coc.nvim的扩展:以Python为例
+
+- 如果扩展
+
+添加 coc-python 这个插件，并且启用微软的 python language server
+```vim
+let s:coc_extensions = [
+			\ 'coc-python',
+
+call coc#config("python.jediEnabled", v:false)
+```
+
+- 效果
+
+![查找引用](https://upload-images.jianshu.io/upload_images/9176874-f759cf59365d5c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![查找](https://upload-images.jianshu.io/upload_images/9176874-773f3dabb59d0b97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 原理
+
+s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://github.com/neoclide/coc-python)和[language server](https://github.com/microsoft/python-language-server)。
+通过coc.nvim，nvim 可以将自己伪装成为 vscode，coc-python 本身也是 vscode 的插件。如此，vscode 的处理 python 的技术被吸收到 vim 中间来，但是 vim 更加简洁，高效。
 
 ## [本配置](https://github.com/Martins3/My-Linux-config)源代码解释
 SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
@@ -318,24 +379,29 @@ Ctrl + b - 向后滚动一屏，但是光标在底部
 Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 ```
 2. vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
+3. 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
+4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个
+```
+setxkbmap -option caps:swapescape
+```
 
 ## 其他的一些资源
 
-主题
+#### vim学习
+1. [Vim China](https://github.com/vim-china)
+2. [vim galore](https://github.com/mhinz/vim-galore)
+
+#### 主题
 1. [dracula](https://draculatheme.com/vim/) 目前感觉最好看的主题之一
 2. [vimcolors](http://vimcolors.com/) vim主题网站
 3. [solarized](https://github.com/vim-scripts/Solarized) solarized
 
-学习Vim的推荐网站
-2. [Vim China](https://github.com/vim-china)
-3. [vim galore](https://github.com/mhinz/vim-galore)
-
-除了Spacevim之外，还有其他一些很有意思的框架，下面可以尝试一下。
+#### 框架
 1. [exvim](https://exvim.github.io/)
 5. [spf13-vim](https://github.com/spf13/spf13-vim)
 6. [The Ultimate vimrc](https://github.com/amix/vimrc)
 
-其他参考
+## 参考
 1. https://github.com/habemus-papadum/kernel-grok
 2. https://stackpointer.io/unix/linux-get-kernel-config/545/
 

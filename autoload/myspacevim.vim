@@ -85,12 +85,15 @@ func! myspacevim#before() abort
 
     " spell https://wiki.archlinux.org/index.php/Language_checking
     
+    " 让file tree 显示文件图标，需要 terminal 安装 nerd font
     let g:spacevim_enable_vimfiler_filetypeicon = 1
+    " 让 file tree 显示 git 的状态，似乎让 file tree 有点卡，所以关掉
     " let g:spacevim_enable_vimfiler_gitstatus = 1
 
     " 书签选中之后自动关闭 quickfix window
     let g:bookmark_auto_close = 1
 
+    " vista 导航栏
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
@@ -107,6 +110,11 @@ func! myspacevim#before() abort
     " 设置映射规则，和 spacevim 保持一致
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
+
+    " 设置默认的pdf阅览工具
+    let g:vimtex_view_method = 'zathura'
+    " 关闭所有隐藏设置
+		let g:tex_conceal = ""
 endf
 
 func! myspacevim#after() abort
