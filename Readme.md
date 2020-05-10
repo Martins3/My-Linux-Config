@@ -23,8 +23,13 @@
     - [调试](#调试)
     - [代码时间统计](#代码时间统计)
 - [扩展](#扩展)
+<<<<<<< HEAD
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
+=======
+    - [基于SpaceVim的扩展:以Latex为例子](#基于spacevim的扩展以latex为例子)
+    - [基于coc.nvim的扩展:以Python为例](#基于cocnvim的扩展以python为例)
+>>>>>>> af521e01cff1e733937ec0ca7ac1eacc104666d3
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
 - [其他的一些资源](#其他的一些资源)
@@ -265,6 +270,7 @@ endsnippet
 ![自动补全](https://upload-images.jianshu.io/upload_images/9176874-daac0f5b05792dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### git 支持
+<<<<<<< HEAD
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
 
 在此基础上，我添加两个小功能:
@@ -274,6 +280,9 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
+=======
+SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，没有什么需要修改的，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
+>>>>>>> af521e01cff1e733937ec0ca7ac1eacc104666d3
 
 #### 文件树 支持
 参考 SpaceVim 的[文档](https://spacevim.org/documentation/#file-tree)
@@ -301,7 +310,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 ## 扩展
 需要说明的是，本配置并不局限于C/C++，只是相对其他语言，我比较熟悉C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
 
+<<<<<<< HEAD
 #### 基于SpaceVim的扩展 以Latex为例子
+=======
+#### 基于SpaceVim的扩展:以Latex为例子
+>>>>>>> af521e01cff1e733937ec0ca7ac1eacc104666d3
 - 如何扩展
 
 在 init.toml 中间添加
@@ -330,9 +343,16 @@ $pdf_mode = 5;
 - https://tex.stackexchange.com/questions/429274/chinese-on-mactex2018-simple-example
 - https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
 
+<<<<<<< HEAD
 #### 基于coc.nvim的扩展 以Python为例
 
 - 如何扩展
+=======
+
+#### 基于coc.nvim的扩展:以Python为例
+
+- 如果扩展
+>>>>>>> af521e01cff1e733937ec0ca7ac1eacc104666d3
 
 添加 coc-python 这个插件，并且启用微软的 python language server
 ```vim
