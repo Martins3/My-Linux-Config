@@ -7,6 +7,9 @@ set hidden
 set nobackup
 set nowritebackup
 
+" 使用 Microsoft Python Language Server 不然 coc.nvim 会警告
+call coc#config("python.jediEnabled", v:false)
+
 call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
@@ -59,12 +62,13 @@ let s:coc_extensions = [
       \ 'coc-word',
       \ 'coc-cmake',
       \ 'coc-dictionary',
-      \ 'coc-rls',
+      \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
+      \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-tsserver',
+      \ 'coc-vimtex',
 			\]
-
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
 endfor
@@ -79,6 +83,10 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" 方便在中文中间使用 w 和 b 移动
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
 
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.

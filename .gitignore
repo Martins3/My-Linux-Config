@@ -1,4 +1,8 @@
-.undo_history/
 *.c
 *.out
 *.spl
+.netrwhist 
+spell
+gitconfig
+.profile
+.yaourtrc

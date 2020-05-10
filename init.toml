@@ -69,6 +69,9 @@
 [[layers]]
   name = "lang#markdown"
 
+[[layers]]
+  name = "lang#latex"
+
 # ----------------- 添加的插件 -------------------------------------------------
 
 # oceanic-next 主题，采用其他的主题可以删除
@@ -126,15 +129,20 @@
 [[custom_plugins]]
     name = 'skywind3000/vim-cppman'
 
-# ----------------- 个人需要，自行取舍 -----------------------------------------
+[[custom_plugins]]
+    name = 'rhysd/git-messenger.vim'
+    lazy =  1
+    on_cmd = 'GitMessenger'
+    on_map = '<Plug>(git-messenger'
 
+# 以悬浮窗口的形式打开终端
+[[custom_plugins]]
+    name = 'voldikss/vim-floaterm'
+
+# ----------------- 个人需要，自行取舍 -----------------------------------------
 # 时间统计工具，配合商业网站 https://wakatime.com/ 使用
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
-
-# vim小游戏，使用 :VimGameCodeBreak 运行
-[[custom_plugins]]
-    name = 'johngrib/vim-game-code-break'
 
 # 迁移 emacs 的 orgmode
 [[custom_plugins]]
@@ -143,3 +151,4 @@
 # 处理 adoc 格式的文件
 [[custom_plugins]]
     name = 'habamax/vim-asciidoctor'
+

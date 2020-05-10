@@ -30,7 +30,6 @@ func! myspacevim#before() abort
             exec "!python3 %"
         elseif ext ==# "vim"
             exec "so %"
-            exec "VuiToDo"
         elseif ext ==# "html"
             exec "!google-chrome-stable %"
         elseif ext ==# "rs"
@@ -61,17 +60,8 @@ func! myspacevim#before() abort
     let g:mapleader = ','
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
-    " TODO 将其映射为和文件类型相关的
+    " 用于管理orgmode TODO 也许可以替换为文件相关的
     let g:maplocalleader="'"
-
-
-    " 自定义的Space 的快捷键
-    " TODO 这个效果实在是太差了，使用 asynctask.vim 的效果吧
-    " 至少对于 linux-kernel-labs 可以尝试一下
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'm'], 'make -j8', 'make with 8 thread', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'make clean', 'make clean', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'r'], 'make run', 'make run', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['m', 'd'], 'guigdb %', 'debug current file', 1)
 
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
@@ -95,12 +85,15 @@ func! myspacevim#before() abort
 
     " spell https://wiki.archlinux.org/index.php/Language_checking
     
+    " 让file tree 显示文件图标，需要 terminal 安装 nerd font
     let g:spacevim_enable_vimfiler_filetypeicon = 1
+    " 让 file tree 显示 git 的状态，似乎让 file tree 有点卡，所以关掉
     " let g:spacevim_enable_vimfiler_gitstatus = 1
 
     " 书签选中之后自动关闭 quickfix window
     let g:bookmark_auto_close = 1
 
+    " vista 导航栏
     let g:vista_echo_cursor_strategy = 'scroll'
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
@@ -111,6 +104,17 @@ func! myspacevim#before() abort
     " ctrl + ] 查询 cppman
     " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
     autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
+
+    " 让光标自动进入到popup window 中间
+    let g:git_messenger_always_into_popup = v:true
+    " 设置映射规则，和 spacevim 保持一致
+    call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
+
+    " 设置默认的pdf阅览工具
+    let g:vimtex_view_method = 'zathura'
+    " 关闭所有隐藏设置
+		let g:tex_conceal = ""
 endf
 
 func! myspacevim#after() abort
@@ -125,9 +129,12 @@ func! myspacevim#after() abort
     nnoremap <F2> :Vista!!<CR>
     " <F3> 打开文件树
     nnoremap <F4> :call QuickRun()<CR>
+    nnoremap   <silent>   <F5>   :FloatermToggle<CR>
+    tnoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
     " <F7> 打开历史记录
     
-    " 重新映射终端的快捷键
+    
+    " 重新映射终端快捷键
     tnoremap <Esc> <C-\><C-n>
 
     set foldmethod=syntax
