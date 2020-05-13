@@ -1,5 +1,7 @@
 # 2020年vim的C/C++配置
 
+<details open="">
+  <summary>目录</summary>
 <!-- vim-markdown-toc GitLab -->
 
 - [前言](#前言)
@@ -34,6 +36,7 @@
 - [参考](#参考)
 
 <!-- vim-markdown-toc -->
+</details>
 
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
@@ -241,8 +244,7 @@ cppman -c
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
 #### 添加自定义代码段
-基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。
-以前刷OJ的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
+基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷OJ的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
 snippet import
@@ -270,9 +272,9 @@ endsnippet
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
 
 在此基础上，我添加两个小功能:
-1. [lazygit](https://github.com/jesseduffield/lazygit)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在vim 中间运行 lazygit
-2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息
-```
+1. [lazygit](https://github.com/jesseduffield/lazygit)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在vim 中间运行 lazygit。
+2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
+```vim
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
@@ -293,7 +295,7 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 
 #### 代码时间统计
 利用商业软件[wakatime](https://wakatime.com/)，无需特殊的配置，如果不需要在 init.toml 中间将如下代码注释掉即可:
-```
+```toml
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
 ```
