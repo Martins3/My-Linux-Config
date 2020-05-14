@@ -130,9 +130,9 @@ func! myspacevim#after() abort
     " <F3> 打开文件树
     nnoremap <F4> :call QuickRun()<CR>
     nnoremap   <silent>   <F5>   :FloatermToggle<CR>
+    inoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
     tnoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
     " <F7> 打开历史记录
-    
     
     " 重新映射终端快捷键
     tnoremap <Esc> <C-\><C-n>
