@@ -60,8 +60,8 @@
 
 vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆，但是坚持最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
 
-虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制:
-1. 使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件
+虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于vim如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)，用于收集各种退出的方法。stackoverflow 的[报告](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)说，其帮助了一百万人次如何退出vim。
+1. 我使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件
 ![冲突读写](https://upload-images.jianshu.io/upload_images/9176874-796e49d5f2c60489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2. `\` `y` 和 `\` `p` 实现复制粘贴。不同的配置下，复制粘贴的不同，在本配置下，复制粘贴的 leader 键是 `\`。
 
@@ -124,9 +124,9 @@ VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常
 |                 |
 +-----------------+
 ```
-整个环境的安装主要是 neovim SpaceVim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。
+整个环境的安装主要是 neovim SpaceVim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多Google，或者issue直接和我讨论。
 
-1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于neovim的更新速度更快，新特性支持更好。安装完成之后检查，最好版本大于v0.4.0.
+1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于neovim的更新速度更快，新特性支持更好。安装完成之后检查版本，最好大于v0.4.0.
 ```
 ➜  Vn git:(master) ✗ nvim --version
 NVIM v0.4.3
@@ -161,7 +161,8 @@ clang version 9.0.1
 cd ~ # 进入到根目录
 rm -r .SpaceVim.d # 将 SpaceVim 删除
 # 因为本仓库还包含配置，使用如下命令删除
-git clone --depth=1 https://github.com/Martins3/My-Linux-config .SpaceVim.d # 将本项目的内容复制到 SpaceVim.d
+# git clone --depth=1 https://github.com/Martins3/My-Linux-config .SpaceVim.d # 将本项目的内容复制到 SpaceVim.d，--depth=1 是减少下载量
+git clone https://gitee.com/martins3/My-Linux-config .SpaceVim.d # 使用 gitee，速度非常快，推荐使用
 nvim # 打开vim 将会自动安装所有的插件
 ```
 6. 在vim中间执行 `chechealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。

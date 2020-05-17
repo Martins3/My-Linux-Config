@@ -126,16 +126,20 @@ func! myspacevim#after() abort
     set autowrite
     set autoread
 
-    nnoremap <F2> :Vista!!<CR>
+    nnoremap  <F2>  :Vista!!<CR>
     " <F3> 打开文件树
-    nnoremap <F4> :call QuickRun()<CR>
-    nnoremap   <silent>   <F5>   :FloatermToggle<CR>
-    inoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
-    tnoremap   <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
+    nnoremap  <F4>  :call QuickRun()<CR>
+
+   " 重新映射终端快捷键
+    nnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
+    inoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
+    tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle<CR>
+    tnoremap  <silent>   <C-h>  <C-\><C-n>:FloatermNext<CR>
+    tnoremap  <silent>   <C-l>  <C-\><C-n>:FloatermPrev<CR>
+    tnoremap  <silent>   <C-n>  <C-\><C-n>:FloatermNew<CR>
     " <F7> 打开历史记录
-    
-    " 重新映射终端快捷键
-    tnoremap <Esc> <C-\><C-n>
+   
+    tnoremap  <Esc>  <C-\><C-n>
 
     set foldmethod=syntax
     set nofoldenable
