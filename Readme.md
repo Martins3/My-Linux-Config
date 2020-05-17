@@ -160,7 +160,6 @@ clang version 9.0.1
 ```sh
 cd ~ # 进入到根目录
 rm -r .SpaceVim.d # 将 SpaceVim 删除
-# 因为本仓库还包含配置，使用如下命令删除
 # git clone --depth=1 https://github.com/Martins3/My-Linux-config .SpaceVim.d # 将本项目的内容复制到 SpaceVim.d，--depth=1 是减少下载量
 git clone https://gitee.com/martins3/My-Linux-config .SpaceVim.d # 使用 gitee，速度非常快，推荐使用
 nvim # 打开vim 将会自动安装所有的插件
