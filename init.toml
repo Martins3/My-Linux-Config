@@ -143,12 +143,3 @@
 # 时间统计工具，配合商业网站 https://wakatime.com/ 使用
 [[custom_plugins]]
     name = 'wakatime/vim-wakatime'
-
-# 迁移 emacs 的 orgmode
-[[custom_plugins]]
-    name = 'jceb/vim-orgmode'
-
-# 处理 adoc 格式的文件
-[[custom_plugins]]
-    name = 'habamax/vim-asciidoctor'
-

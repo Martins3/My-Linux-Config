@@ -17,6 +17,7 @@ call coc#config('coc.preferences', {
 			\ "diagnostic.virtualText": 1,
 			\})
 
+
 " c/c++ golang 和 bash 的 language server 设置
 call coc#config("languageserver", {
       \"ccls": {
@@ -68,6 +69,7 @@ let s:coc_extensions = [
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-vimtex',
+      \ 'coc-todolist',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
