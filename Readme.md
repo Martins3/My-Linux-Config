@@ -10,19 +10,19 @@
 - [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
 - [安装过程以及注意要点](#安装过程以及注意要点)
 - [实战](#实战)
-- [C/C++ 用户的基本操作的详解](#cc-用户的基本操作的详解)
-    - [窗口操作](#窗口操作)
-    - [buffer 操作](#buffer-操作)
+- [基本操作](#基本操作)
+    - [file tree](#file-tree)
+    - [window](#window)
+    - [buffer](#buffer)
     - [搜索和导航](#搜索和导航)
     - [符号跳转和引用查找](#符号跳转和引用查找)
-    - [查找注释](#查找注释)
-    - [查找文档](#查找文档)
-    - [添加自定义代码段](#添加自定义代码段)
-    - [git 支持](#git-支持)
-    - [文件树 支持](#文件树-支持)
-    - [格式化文件](#格式化文件)
-    - [重命名](#重命名)
-    - [调试](#调试)
+    - [comment](#comment)
+    - [documentation](#documentation)
+    - [snippet](#snippet)
+    - [git](#git)
+    - [format](#format)
+    - [rename](#rename)
+    - [debug](#debug)
     - [代码时间统计](#代码时间统计)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
@@ -166,7 +166,7 @@ rm -r .SpaceVim.d # 将 SpaceVim 删除
 git clone https://gitee.com/martins3/My-Linux-config .SpaceVim.d # 使用 gitee，速度非常快，推荐使用
 nvim # 打开vim 将会自动安装所有的插件
 ```
-6. 在vim中间执行 `chechealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
+6. 在nvim中间执行 `chechealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
 
 7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用bear生成compile_commands.json。
 
@@ -180,26 +180,40 @@ make defconfig  # 使用标准配置，参考 :  https://www.linuxtopia.org/onli
 bear make -j8  # 生成compile_commands.json
 nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
 ```
+一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。如果其中的nvim工作不正常，瞎报错，无法跳转，一般是安装有问题，如果解决不了，你可以issue。
 
-## C/C++ 用户的基本操作的详解
-基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。 下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
+## 基本操作
+基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
 
 注意: vim 默认的 leader 键，加上前面提到的两个特殊功能leader, 一共存在三个 leader 键，其功能总结如下:
 | `,`                         | `\`      | `c`      |
 | 通用leader 键，包含各种作用 | 辅助粘贴 | 窗口操作 |
 这三个键位都是可以重新映射的。
 
-#### 窗口操作
+
+#### file tree
+参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的
+| key binding     | function                                          |
+|-----------------|---------------------------------------------------|
+| `Space` `f` `o` | 将当前的文件显示在filetree中间              |
+| `r`             | 相当于shell中间的mv命令，实现文件的重命名或者移动 |
+| `d`             | 删除                                              |
+| `j`             | 向下移动                                          |
+| `k`             | 向上移动                                          |
+
+更多详细使用，可以直接阅读SpaceVim的源代码，位置在 : `~/.SpaceVim/config/plugins/defx.vim`
+
+#### window
 1. `<Tab>` : 进入下一个窗口
-2. `c` `g` : 水平拆分窗口。因为 window 被我重新映射了，如果是其他键位，比如 `x`, 那么水平拆分为 `x` `g`
+2. `c` `g` : 水平拆分窗口。因为 window leader 键位被我重新映射为 `c`，如果是被映射其他键位，比如 `x`, 那么水平拆分为 `x` `g`
 ```vim
-    " 重新映射 window 键位
+    " 重新映射 window leader 键位
     let g:spacevim_windows_leader = 'c'
 ```
 3. `q` : 关闭窗口
 4. `<Space>` `w` `m` 当前窗口最大化
 
-#### buffer 操作
+#### buffer
 1. `,` `b` : 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下。
 2. `,` + num : 切换当前窗口到第 num 个 buffer
 3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
@@ -229,12 +243,12 @@ nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞�
 2. `g` `r` : 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择:
 ![查找引用](https://upload-images.jianshu.io/upload_images/9176874-47415692f924d0c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 查找注释
+#### comment
 在需要查询的函数或者变量上 : `K`，注释将会显示在悬浮窗口上。
 
 ![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 查找文档
+#### documentation
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
 ```
 pip install cppman
@@ -245,7 +259,7 @@ cppman -c
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
-#### 添加自定义代码段
+#### snippet
 基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷OJ的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
@@ -270,7 +284,7 @@ endsnippet
 一般的自动补全coc.nvim 无需另外的配置，效果如下。
 ![自动补全](https://upload-images.jianshu.io/upload_images/9176874-daac0f5b05792dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### git 支持
+#### git
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
 
 在此基础上，我添加两个小功能:
@@ -281,16 +295,14 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
 
-#### 文件树 支持
-参考 SpaceVim 的[文档](https://spacevim.org/documentation/#file-tree)
 
-#### 格式化文件
+#### format
 `Space`  `r`  `f` 格式化当前文件，仅仅支持C++/C 和 Rust。
 
-#### 重命名
+#### rename
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
 
-#### 调试
+#### debug
 关于vim如何集成gdb，现在存在非常多的插件，我没有仔细研究。我个人平时使用下面两个项目辅助 gdb 的使用:
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
