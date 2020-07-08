@@ -139,6 +139,11 @@
 [[custom_plugins]]
     name = 'voldikss/vim-floaterm'
 
+# TODO
+# 更加丝滑的翻页
+[[custom_plugins]]
+    name = 'psliwka/vim-smoothie'
+
 # ----------------- 个人需要，自行取舍 -----------------------------------------
 # 时间统计工具，配合商业网站 https://wakatime.com/ 使用
 [[custom_plugins]]

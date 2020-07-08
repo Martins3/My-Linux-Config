@@ -1,5 +1,8 @@
 # 2020年vim的C/C++配置
 
+> TODO 按照这个规范修改一下
+> https://github.com/mzlogin/chinese-copywriting-guidelines
+
 <details open="">
   <summary>目录</summary>
 <!-- vim-markdown-toc GitLab -->
@@ -23,6 +26,7 @@
     - [format](#format)
     - [rename](#rename)
     - [debug](#debug)
+    - [terminal](#terminal)
     - [代码时间统计](#代码时间统计)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
@@ -30,10 +34,10 @@
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
 - [其他的一些资源](#其他的一些资源)
-    - [vim学习](#vim学习)
+    - [学习](#学习)
     - [主题](#主题)
     - [框架](#框架)
-- [参考](#参考)
+    - [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
 </details>
@@ -176,9 +180,12 @@ nvim # 打开vim 将会自动安装所有的插件
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
-make defconfig  # 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
-bear make -j8  # 生成compile_commands.json
-nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
+# 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
+make defconfig
+# 编译内核，从而生成compile_commands.json，一般需要几分钟
+bear make -j8
+# 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
+nvim 
 ```
 一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。如果其中的nvim工作不正常，瞎报错，无法跳转，一般是安装有问题，如果解决不了，你可以issue。
 
@@ -307,6 +314,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
 
+#### terminal
+利用voidkiss/folaterm可以实现将终端以float window的形式打开，
+// TODO 让 Fn5 在没有 floaterm 的时候，创建一个新的窗口，写一个 pull request 吧!
+
+
 #### 代码时间统计
 利用商业软件[wakatime](https://wakatime.com/)，无需特殊的配置，如果不需要在 init.toml 中间将如下代码注释掉即可:
 ```toml
@@ -379,10 +391,9 @@ SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码�
 2. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 3. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
 
-一些快捷键的说明
-1. `<F4>` 我自己写的一键运行文件，支持语言的单文件支持如 C/C++, Java, Rust等。
+一些快捷键的说明:
+1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
 2. `<Space>`  `l`  `p` 预览markdown
-3. `<F5>` 在悬浮窗口打开终端
 
 ## vim 的小技巧
 1. 翻滚屏幕
@@ -412,7 +423,7 @@ setxkbmap -option caps:swapescape
 
 ## 其他的一些资源
 
-#### vim学习
+#### 学习
 1. [Vim China](https://github.com/vim-china)
 2. [vim galore](https://github.com/mhinz/vim-galore)
 
@@ -423,11 +434,11 @@ setxkbmap -option caps:swapescape
 
 #### 框架
 1. [exvim](https://exvim.github.io/)
-5. [spf13-vim](https://github.com/spf13/spf13-vim)
-6. [The Ultimate vimrc](https://github.com/amix/vimrc)
+2. [spf13-vim](https://github.com/spf13/spf13-vim)
+3. [The Ultimate vimrc](https://github.com/amix/vimrc)
 
-## 参考
-1. https://github.com/habemus-papadum/kernel-grok
-2. https://stackpointer.io/unix/linux-get-kernel-config/545/
+#### 衍生
+1. [vim cube](https://github.com/oakes/vim_cubed)
+2. [vim.wasm](https://github.com/rhysd/vim.wasm)
 
-转发 CSDN 按侵权追究法律责任，其它情况随意。
+**转发 CSDN 按侵权追究法律责任，其它情况随意。**
