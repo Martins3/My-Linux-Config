@@ -33,6 +33,9 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
+- [mac 用户注意](#mac-用户注意)
+- [docker](#docker)
+- [vscode](#vscode)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -420,6 +423,30 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 ```
 setxkbmap -option caps:swapescape
 ```
+
+
+## mac 用户注意
+TODO
+- [x] vista : https://github.com/universal-ctags/homebrew-universal-ctags
+- [x] ccls header : https://github.com/MaskRay/ccls/issues/191
+- [ ] sogou input
+
+## docker
+TODO
+构建 archlinux 的 dockerfile 自动将所有的环境配好
+1. 用户
+2. spacevim zsh
+3. 适合各种网络状态的
+
+需要手动安装的:
+1. pip install neovim
+2. xclip 
+3. anzhuang bash-language-server
+
+
+## vscode
+公司的人似乎还是很 nb 的
+
 
 ## 其他的一些资源
 

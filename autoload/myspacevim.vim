@@ -54,8 +54,12 @@ func! myspacevim#before() abort
     
     " 让file tree 显示文件图标，需要 terminal 安装 nerd font
     let g:spacevim_enable_vimfiler_filetypeicon = 1
-    " 让 file tree 显示 git 的状态，似乎让 file tree 有点卡，所以关掉
+    " 让 filetree 显示 git 的状态，会变得很卡，所以关掉
     " let g:spacevim_enable_vimfiler_gitstatus = 1
+
+    " 默认 markdown preview 在切换到其他的 buffer 或者 vim
+    " 失去焦点的时候会自动关闭 preview，让
+    let g:mkdp_auto_close = 0
 
     " 书签选中之后自动关闭 quickfix window
     let g:bookmark_auto_close = 1
