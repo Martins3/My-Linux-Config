@@ -443,10 +443,8 @@ TODO
 2. xclip 
 3. anzhuang bash-language-server
 
-
 ## vscode
 公司的人似乎还是很 nb 的
-
 
 ## 其他的一些资源
 

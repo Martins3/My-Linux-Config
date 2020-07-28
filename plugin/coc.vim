@@ -79,6 +79,7 @@ let s:coc_extensions = [
       \ 'coc-tsserver',
       \ 'coc-vimtex',
       \ 'coc-todolist',
+      \ 'coc-imselect',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)

@@ -4,6 +4,8 @@ FROM archlinux
 
 # zsh
 
+# 记得 docker 是可以共享 文件夹的啊 !
+
 # spacevim clone
 
 # 你的 user name
@@ -17,11 +19,19 @@ FROM archlinux
 anzhuang fakeroot
 anzhuang sudo
 anzhuang fzf
+# https://stackoverflow.com/questions/28302178/how-can-i-add-a-volume-to-an-existing-docker-container
+# 下次记得 mount 
+
+# TODO  🐅 
 
 # 默认切换到 user
-
+# 然后 autojump
 https://unix.stackexchange.com/questions/9714/what-is-the-need-for-fakeroot-command-in-linux
 # yay
+
+pip3 install lazygit
+
+# 安装 autojump 的内容
 
    21  anzhuang lsd
    22  anzhuang lazygit
