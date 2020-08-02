@@ -23,7 +23,7 @@ func! myspacevim#before() abort
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
 
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder coc', 'search simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
 
     " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
@@ -156,4 +156,5 @@ endf
 func! myspacevim#after() abort
     " 放到此处用于重写 SpaceVim 映射的 F2
     nnoremap  <F2>  :Vista!!<CR>
+    let g:vista_default_executive = 'coc'
 endf

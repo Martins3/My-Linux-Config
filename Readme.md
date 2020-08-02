@@ -48,7 +48,9 @@
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题。
+**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题
+集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
+
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
 
@@ -102,7 +104,9 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 
 当使用上了lsp之后，之前写C/C++P必备的[YCM](https://github.com/ycm-core/YouCompleteMe)(用于自动补全，静态检查等)和[ctags](https://github.com/universal-ctags/ctags)(用于符号跳转)终于可以离开了。YCM对于小的项目还是工作的不错的，但是大型项目显得笨重，毕竟 YCM 不仅支持 C 语言，支持 Java, Rust, Go 等等，而且其不会生成索引，也就是每次打开大型项目都可以听见电脑疯转一会儿。此外，YCM 的安装总是需要手动安装。ctags 似乎不是基于语义的索引，而是基于字符串匹配实现，所以会出现误判，比如两个文件中间都定义了 static 的同名函数，ctags 往往会将两者都找出来。ctags 是无法查找函数的引用的，只能查找定义。当我知道 ctags 可以同时支持几十种语言的时候，ctags 存在这些问题，我就再也不感到奇怪了。gtags 解决了 ctags 查找引用的问题，其同样支持大量的语言，但是跳转精度，索引自动生成等根本问题没有被解决。与之相对的是，一个lsp一般只支持其对应的一门语言。
 
-到此，曾经为了在vim中间书写C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
+到此，曾经为了在vim中间书写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM 实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。你还会发现 ctags 
+存在好几个版本，安装不对，对应的插件也没有办法正常工作。
+
 
 利用 coc.nvim 可以获取极佳的 lsp 体验 ，因为 lsp 是微软开发 vscode 提出的，coc.nvim 的宗旨就是*full language server protocol support as VSCode*。
 
@@ -240,8 +244,8 @@ nvim
 
 3. vista 和 LeaderF 都提供了函数搜索功能，被我映射为: `Space` `s` `f` 和 `Space` `s` `F` 
 ```vim
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols with Vista ', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search ctags simbols with Vista', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search simbols with Vista ', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search simbols with Vista', 1)
 ```
 其实它们的功能不限于搜索函数，比如搜索 markdown 的标题
 ![搜索markdown标题](https://upload-images.jianshu.io/upload_images/9176874-44f63af5e63d30d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -427,7 +431,6 @@ setxkbmap -option caps:swapescape
 
 ## mac 用户注意
 TODO
-- [x] vista : https://github.com/universal-ctags/homebrew-universal-ctags
 - [x] ccls header : https://github.com/MaskRay/ccls/issues/191
 - [ ] sogou input
 
