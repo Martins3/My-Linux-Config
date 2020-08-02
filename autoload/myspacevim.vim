@@ -23,9 +23,13 @@ func! myspacevim#before() abort
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
 
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder coc', 'search simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
 
+    " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
+    let g:Lf_RecurseSubmodules = 1
+
+    " TODO 再次检查一下，太麻烦了
     " nerdcommenter 并不智能，比如对于同一行注释两次，
     " nerdcommenter 会得到 /*/* code */*/，但是我期待的是 code
     " SpaceVim 默认使用 nerdcommenter，为了使用 vim-commentary
@@ -45,12 +49,17 @@ func! myspacevim#before() abort
     " If you cancel and quit window resize mode by `q` (keycode 113)
     let g:winresizer_keycode_cancel = 113
 
+    " TODO
     " spell https://wiki.archlinux.org/index.php/Language_checking
     
     " 让file tree 显示文件图标，需要 terminal 安装 nerd font
     let g:spacevim_enable_vimfiler_filetypeicon = 1
-    " 让 file tree 显示 git 的状态，似乎让 file tree 有点卡，所以关掉
+    " 让 filetree 显示 git 的状态，会变得很卡，所以关掉
     " let g:spacevim_enable_vimfiler_gitstatus = 1
+
+    " 默认 markdown preview 在切换到其他的 buffer 或者 vim
+    " 失去焦点的时候会自动关闭 preview，让
+    let g:mkdp_auto_close = 0
 
     " 书签选中之后自动关闭 quickfix window
     let g:bookmark_auto_close = 1
@@ -82,6 +91,7 @@ func! myspacevim#before() abort
     let g:floaterm_keymap_prev   = '<C-h>'
     let g:floaterm_keymap_next   = '<C-l>'
     " 保证在插入模式<F5>可以 toggle floaterm
+    " 来，提出一个自己的第一个 pull request !
     inoremap  <silent>   <F5>   :FloatermToggle!<CR>
     nnoremap  <silent>   <F5>   :FloatermToggle!<CR>
     tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle!<CR>
@@ -96,7 +106,7 @@ func! myspacevim#before() abort
         elseif ext ==# "md"
             exec "!dos2unix %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -O3 -g -std=c++11 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -O3 -g -std=c++17 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
         elseif ext ==# "java"
@@ -146,4 +156,5 @@ endf
 func! myspacevim#after() abort
     " 放到此处用于重写 SpaceVim 映射的 F2
     nnoremap  <F2>  :Vista!!<CR>
+    let g:vista_default_executive = 'coc'
 endf

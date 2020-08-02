@@ -129,6 +129,7 @@
 [[custom_plugins]]
     name = 'skywind3000/vim-cppman'
 
+# 利用 git blame 显示当前行的 commit message
 [[custom_plugins]]
     name = 'rhysd/git-messenger.vim'
     lazy =  1
@@ -139,7 +140,14 @@
 [[custom_plugins]]
     name = 'voldikss/vim-floaterm'
 
-# ----------------- 个人需要，自行取舍 -----------------------------------------
-# 时间统计工具，配合商业网站 https://wakatime.com/ 使用
+# 显示搜索的标号
 [[custom_plugins]]
-    name = 'wakatime/vim-wakatime'
+    name = 'google/vim-searchindex.git'
+
+# TODO
+# 更加丝滑的翻页
+[[custom_plugins]]
+    name = 'psliwka/vim-smoothie'
+
+[[custom_plugins]]
+  name = 'kenn7/vim-arsync'

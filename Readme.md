@@ -1,5 +1,8 @@
 # 2020年vim的C/C++配置
 
+> TODO 按照这个规范修改一下
+> https://github.com/mzlogin/chinese-copywriting-guidelines
+
 <details open="">
   <summary>目录</summary>
 <!-- vim-markdown-toc GitLab -->
@@ -23,17 +26,21 @@
     - [format](#format)
     - [rename](#rename)
     - [debug](#debug)
+    - [terminal](#terminal)
     - [代码时间统计](#代码时间统计)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
+- [mac 用户注意](#mac-用户注意)
+- [docker](#docker)
+- [vscode](#vscode)
 - [其他的一些资源](#其他的一些资源)
-    - [vim学习](#vim学习)
+    - [学习](#学习)
     - [主题](#主题)
     - [框架](#框架)
-- [参考](#参考)
+    - [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
 </details>
@@ -41,7 +48,9 @@
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题。
+**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题
+集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
+
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
 
@@ -95,7 +104,9 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 
 当使用上了lsp之后，之前写C/C++P必备的[YCM](https://github.com/ycm-core/YouCompleteMe)(用于自动补全，静态检查等)和[ctags](https://github.com/universal-ctags/ctags)(用于符号跳转)终于可以离开了。YCM对于小的项目还是工作的不错的，但是大型项目显得笨重，毕竟 YCM 不仅支持 C 语言，支持 Java, Rust, Go 等等，而且其不会生成索引，也就是每次打开大型项目都可以听见电脑疯转一会儿。此外，YCM 的安装总是需要手动安装。ctags 似乎不是基于语义的索引，而是基于字符串匹配实现，所以会出现误判，比如两个文件中间都定义了 static 的同名函数，ctags 往往会将两者都找出来。ctags 是无法查找函数的引用的，只能查找定义。当我知道 ctags 可以同时支持几十种语言的时候，ctags 存在这些问题，我就再也不感到奇怪了。gtags 解决了 ctags 查找引用的问题，其同样支持大量的语言，但是跳转精度，索引自动生成等根本问题没有被解决。与之相对的是，一个lsp一般只支持其对应的一门语言。
 
-到此，曾经为了在vim中间书写C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
+到此，曾经为了在vim中间书写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM 实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。你还会发现 ctags 
+存在好几个版本，安装不对，对应的插件也没有办法正常工作。
+
 
 利用 coc.nvim 可以获取极佳的 lsp 体验 ，因为 lsp 是微软开发 vscode 提出的，coc.nvim 的宗旨就是*full language server protocol support as VSCode*。
 
@@ -176,9 +187,12 @@ nvim # 打开vim 将会自动安装所有的插件
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
-make defconfig  # 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
-bear make -j8  # 生成compile_commands.json
-nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
+# 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
+make defconfig
+# 编译内核，从而生成compile_commands.json，一般需要几分钟
+bear make -j8
+# 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
+nvim 
 ```
 一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。如果其中的nvim工作不正常，瞎报错，无法跳转，一般是安装有问题，如果解决不了，你可以issue。
 
@@ -230,8 +244,8 @@ nvim # 第一次打开的时候，ccls 会生成索引文件，此时机器飞�
 
 3. vista 和 LeaderF 都提供了函数搜索功能，被我映射为: `Space` `s` `f` 和 `Space` `s` `F` 
 ```vim
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search ctags simbols with Vista ', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search ctags simbols with Vista', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search simbols with Vista ', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search simbols with Vista', 1)
 ```
 其实它们的功能不限于搜索函数，比如搜索 markdown 的标题
 ![搜索markdown标题](https://upload-images.jianshu.io/upload_images/9176874-44f63af5e63d30d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -307,6 +321,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
 
+#### terminal
+利用voidkiss/folaterm可以实现将终端以float window的形式打开，
+// TODO 让 Fn5 在没有 floaterm 的时候，创建一个新的窗口，写一个 pull request 吧!
+
+
 #### 代码时间统计
 利用商业软件[wakatime](https://wakatime.com/)，无需特殊的配置，如果不需要在 init.toml 中间将如下代码注释掉即可:
 ```toml
@@ -379,10 +398,9 @@ SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码�
 2. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 3. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
 
-一些快捷键的说明
-1. `<F4>` 我自己写的一键运行文件，支持语言的单文件支持如 C/C++, Java, Rust等。
+一些快捷键的说明:
+1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
 2. `<Space>`  `l`  `p` 预览markdown
-3. `<F5>` 在悬浮窗口打开终端
 
 ## vim 的小技巧
 1. 翻滚屏幕
@@ -410,9 +428,30 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
+
+## mac 用户注意
+TODO
+- [x] ccls header : https://github.com/MaskRay/ccls/issues/191
+- [ ] sogou input
+
+## docker
+TODO
+构建 archlinux 的 dockerfile 自动将所有的环境配好
+1. 用户
+2. spacevim zsh
+3. 适合各种网络状态的
+
+需要手动安装的:
+1. pip install neovim
+2. xclip 
+3. anzhuang bash-language-server
+
+## vscode
+公司的人似乎还是很 nb 的
+
 ## 其他的一些资源
 
-#### vim学习
+#### 学习
 1. [Vim China](https://github.com/vim-china)
 2. [vim galore](https://github.com/mhinz/vim-galore)
 
@@ -423,11 +462,11 @@ setxkbmap -option caps:swapescape
 
 #### 框架
 1. [exvim](https://exvim.github.io/)
-5. [spf13-vim](https://github.com/spf13/spf13-vim)
-6. [The Ultimate vimrc](https://github.com/amix/vimrc)
+2. [spf13-vim](https://github.com/spf13/spf13-vim)
+3. [The Ultimate vimrc](https://github.com/amix/vimrc)
 
-## 参考
-1. https://github.com/habemus-papadum/kernel-grok
-2. https://stackpointer.io/unix/linux-get-kernel-config/545/
+#### 衍生
+1. [vim cube](https://github.com/oakes/vim_cubed)
+2. [vim.wasm](https://github.com/rhysd/vim.wasm)
 
-转发 CSDN 按侵权追究法律责任，其它情况随意。
+**转发 CSDN 按侵权追究法律责任，其它情况随意。**
