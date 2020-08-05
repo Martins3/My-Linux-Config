@@ -1,6 +1,6 @@
 # 2020年vim的C/C++配置
 
-> TODO 按照这个规范修改一下
+> TODO 按照此规范修改
 > https://github.com/mzlogin/chinese-copywriting-guidelines
 
 <details open="">
@@ -33,9 +33,9 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
-- [mac 用户注意](#mac-用户注意)
+- [mac](#mac)
 - [docker](#docker)
-- [vscode](#vscode)
+- [安装脚本](#安装脚本)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -48,9 +48,7 @@
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题
-集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
-
+**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
 
@@ -177,7 +175,7 @@ rm -r .SpaceVim.d # 将 SpaceVim 删除
 git clone https://gitee.com/martins3/My-Linux-config .SpaceVim.d # 使用 gitee，速度非常快，推荐使用
 nvim # 打开vim 将会自动安装所有的插件
 ```
-6. 在nvim中间执行 `chechealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
+6. 在nvim中间执行 `checkhealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
 
 7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用bear生成compile_commands.json。
 
@@ -428,26 +426,13 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
-
-## mac 用户注意
-TODO
+## mac
 - [x] ccls header : https://github.com/MaskRay/ccls/issues/191
 - [ ] sogou input
 
 ## docker
-TODO
-构建 archlinux 的 dockerfile 自动将所有的环境配好
-1. 用户
-2. spacevim zsh
-3. 适合各种网络状态的
 
-需要手动安装的:
-1. pip install neovim
-2. xclip 
-3. anzhuang bash-language-server
-
-## vscode
-公司的人似乎还是很 nb 的
+## 安装脚本
 
 ## 其他的一些资源
 
