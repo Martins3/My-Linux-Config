@@ -169,10 +169,9 @@ clang version 9.0.1
 ```
 5. 复制本配置
 ```sh
-cd ~ # 进入到根目录
-rm -r .SpaceVim.d # 将 SpaceVim 删除
-# git clone --depth=1 https://github.com/Martins3/My-Linux-config .SpaceVim.d # 将本项目的内容复制到 SpaceVim.d，--depth=1 是减少下载量
-git clone https://gitee.com/martins3/My-Linux-config .SpaceVim.d # 使用 gitee，速度非常快，推荐使用
+cd ~ # 保证在根目录
+rm -r .SpaceVim.d # 将原来的配置删除
+git clone https://github.com/martins3/My-Linux-config .SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 ```
 6. 在nvim中间执行 `checkhealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
