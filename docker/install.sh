@@ -1,11 +1,5 @@
 #!/bin/bash
+# TODO 提出代理警告
 
-# 构建 docker 参考
-# https://github.com/testcab/docker-yay/blob/master/Dockerfile
-
-
-# 更多的 autojump :
-#  https://github.com/gsamokovarov/jump
-docker run -v `pwd`:/app --privileged --name mm -it yay bash
-
-echo "`ls`:ls"
+# https://github.com/ohmyzsh/ohmyzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
