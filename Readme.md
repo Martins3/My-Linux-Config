@@ -1,7 +1,5 @@
 # 2020年vim的C/C++配置
 
-> TODO 按照此规范修改
-> https://github.com/mzlogin/chinese-copywriting-guidelines
 
 <details open="">
   <summary>目录</summary>
@@ -33,9 +31,7 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
-- [mac](#mac)
-- [docker(WIP)](#dockerwip)
-- [安装脚本(WIP)](#安装脚本wip)
+- [TODO](#todo)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -425,15 +421,9 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
-## mac
-- [x] ccls header : https://github.com/MaskRay/ccls/issues/191
-- [ ] sogou input
-
-## docker(WIP)
-制作 docker 镜像，用于一键体验本配置
-
-## 安装脚本(WIP)
-制作主流 distribution 的安装脚本
+## TODO
+1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
+2. 完善 docker 和 install.sh
 
 ## 其他的一些资源
 

@@ -37,7 +37,8 @@ RUN pacman -Syu --needed --noconfirm \
   bash-language-server \
   ripgrep \
   the_silver_searcher \
-  neovim
+  neovim  \
+  lua 
 
 # makepkg user and workdir
 ARG user=martin
@@ -53,3 +54,4 @@ RUN git clone https://aur.archlinux.org/yay.git \
   && cd \
   # Clean up
   && rm -rf .cache yay
+

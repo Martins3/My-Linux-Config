@@ -4,6 +4,9 @@
 # 安装 zsh
 # https://github.com/ohmyzsh/ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# 安装 zsh 插件管理器
+# https://github.com/zsh-users/antigen
+curl -L gt.io/antigen > ~/.antigen.zshi
 
 # https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
 # 清华 pip 源
@@ -30,7 +33,7 @@ rm -r ~/.SpaceVim.d # 将原来的配置删除
 git clone https://github.com/martins3/My-Linux-config ~/.SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 
-yay -S bear
+yay -S bear lazygit
 
 # 添加一些
 cat <<EOT >> ~/.zshrc
@@ -40,4 +43,9 @@ alias ls="lsd"
 # TODO 根据系统自动调整
 alias ins="brew install"
 alias lg="lazygit"
+
+# 安装 z.lua
+source ~/antigen.zsh
+antigen bundle skywind3000/z.lua
+antigen apply.
 EOT
