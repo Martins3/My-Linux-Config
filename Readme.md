@@ -25,7 +25,6 @@
     - [rename](#rename)
     - [debug](#debug)
     - [terminal](#terminal)
-    - [代码时间统计](#代码时间统计)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
@@ -315,18 +314,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 2. https://www.gdbgui.com/
 
 #### terminal
-利用voidkiss/folaterm可以实现将终端以float window的形式打开，
-// TODO 让 Fn5 在没有 floaterm 的时候，创建一个新的窗口，写一个 pull request 吧!
-
-
-#### 代码时间统计
-利用商业软件[wakatime](https://wakatime.com/)，无需特殊的配置，如果不需要在 init.toml 中间将如下代码注释掉即可:
-```toml
-[[custom_plugins]]
-    name = 'wakatime/vim-wakatime'
-```
-效果如下:
-![wakatime](https://upload-images.jianshu.io/upload_images/9176874-7989124874e02ac6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+利用 `voidkiss/folaterm` 可以实现将终端以float window的形式打开，映射的快捷键分别为:
+- `Ctrl` `n` : 创建新的 terminal window
+- `Ctrl` `h` : 切换到 `prev` 的 terminal window
+- `Ctrl` `l` : 切换到 `next` 的 terminal window
+- `Fn5` : 显示/隐藏窗口
 
 ## 扩展
 需要说明的是，本配置并不局限于C/C++，只是相对其他语言，我比较熟悉C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
@@ -424,6 +416,7 @@ setxkbmap -option caps:swapescape
 ## TODO
 1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
 2. 完善 docker 和 install.sh
+3. 解决 mac 上的拷贝 : https://github.com/fcpg/vim-osc52
 
 ## 其他的一些资源
 
