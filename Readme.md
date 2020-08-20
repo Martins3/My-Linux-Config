@@ -15,8 +15,8 @@
     - [file tree](#file-tree)
     - [window](#window)
     - [buffer](#buffer)
-    - [搜索和导航](#搜索和导航)
-    - [符号跳转和引用查找](#符号跳转和引用查找)
+    - [navigate](#navigate)
+    - [define reference](#define-reference)
     - [comment](#comment)
     - [documentation](#documentation)
     - [snippet](#snippet)
@@ -109,6 +109,10 @@ VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常
 
 想知道插件是否过时，github 上会显示最后更新时间，如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
 ## 安装过程以及注意要点
+安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
+1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server.
+2. 最新的软件 : 在 Ubuntu16.04 上，很多软件都很老，包括但是不限于 neovim, 想办法升级到最新版然后进行下面的安装。
+
 本配置的架构如下图所示。
 ```
 +-----------------+
@@ -224,7 +228,7 @@ nvim
 2. `,` + num : 切换当前窗口到第 num 个 buffer
 3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
 
-#### 搜索和导航
+#### navigate
 1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。在我的配置中间 leader 键是 `,` ，所以搜索文件使用 `,` `f` + 文件名的 subsequence
 搜索 buffer 的方法类似 : `,` `b` + 想要搜索的 buffer 名称的 subsequence。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -232,7 +236,6 @@ nvim
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
 
 ![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 3. vista 和 LeaderF 都提供了函数搜索功能，被我映射为: `Space` `s` `f` 和 `Space` `s` `F` 
 ```vim
@@ -242,7 +245,7 @@ nvim
 其实它们的功能不限于搜索函数，比如搜索 markdown 的标题
 ![搜索markdown标题](https://upload-images.jianshu.io/upload_images/9176874-44f63af5e63d30d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 符号跳转和引用查找
+#### define reference
 这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
 
 1. `g` `d` : 跳转到定义
@@ -353,10 +356,9 @@ $pdf_mode = 5;
 - https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
 
 #### 基于coc.nvim的扩展 以Python为例
-
 - 如何扩展
 
-添加 coc-python 这个插件，并且启用微软的 python language server
+添加 coc-python 这个插件，并且启用微软的 python language server，也就是 disable 掉 jedi, 这一步是**必须的**，jedi 我从来没有正常成功使用过，总是崩溃。
 ```vim
 let s:coc_extensions = [
 			\ 'coc-python',

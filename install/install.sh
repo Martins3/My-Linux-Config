@@ -12,6 +12,7 @@ curl -L gt.io/antigen > ~/.antigen.zshi
 # 清华 pip 源
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip3 install neovim
+pip3 install cppman
 
 # 安装 SpaceVim
 # https://spacevim.org/cn/quick-start-guide/
@@ -35,7 +36,7 @@ nvim # 打开vim 将会自动安装所有的插件
 
 yay -S bear lazygit
 
-# 添加一些
+# 添加一些映射
 cat <<EOT >> ~/.zshrc
 alias vim="nvim"
 alias q="exit"
