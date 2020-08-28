@@ -306,7 +306,7 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 
 
 #### format
-`Space`  `r`  `f` 格式化当前文件，仅仅支持C++/C 和 Rust。
+`Space`  `r`  `f` 格式化当前文件，支持C++/C , Rust 和 Python 等。
 
 #### rename
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。

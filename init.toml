@@ -97,7 +97,9 @@
 # vista.vim 的依赖
 [[custom_plugins]]
     name = 'junegunn/fzf'
-    merged =  0
+
+[[custom_plugins]]
+    name = 'junegunn/fzf.vim'
 
 # vista.vim 的依赖
 [[custom_plugins]]
