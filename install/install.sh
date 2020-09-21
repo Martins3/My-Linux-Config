@@ -50,3 +50,6 @@ source ~/antigen.zsh
 antigen bundle skywind3000/z.lua
 antigen apply.
 EOT
+
+# TODO 添加 zsh 的两个插件
+# https://gist.github.com/dogrocker/1efb8fd9427779c827058f873b94df95
