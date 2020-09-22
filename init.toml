@@ -67,6 +67,9 @@
   git-plugin = "fugitive"
 
 [[layers]]
+  name = "fzf"
+
+[[layers]]
   name = "lang#markdown"
 
 [[layers]]
@@ -93,13 +96,6 @@
 # 快速编辑 markdown 表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
-
-# vista.vim 的依赖
-[[custom_plugins]]
-    name = 'junegunn/fzf'
-
-[[custom_plugins]]
-    name = 'junegunn/fzf.vim'
 
 # vista.vim 的依赖
 [[custom_plugins]]
@@ -146,8 +142,7 @@
 [[custom_plugins]]
     name = 'google/vim-searchindex.git'
 
-# TODO
-# 更加丝滑的翻页
+# TODO 更加丝滑的翻页
 [[custom_plugins]]
     name = 'psliwka/vim-smoothie'
 
