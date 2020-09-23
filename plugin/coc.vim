@@ -31,15 +31,6 @@ call coc#config("languageserver", {
       \     "cache": {
       \       "directory": ".ccls-cache"
       \     },
-      \          "clang": {
-      \              "extraArgs": [
-      \                  "-isystem/usr/local/opt/llvm/bin/../include/c++/v1",
-      \                  "-isystem/usr/local/Cellar/llvm/10.0.0_3/lib/clang/10.0.0/include",
-      \                  "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include",
-      \                  "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks",
-      \              ],
-      \              "resourceDir": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0"
-      \          },
       \     "highlight": { "lsRanges" : v:true }
       \   },
       \  "client": {
