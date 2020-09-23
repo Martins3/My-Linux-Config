@@ -65,7 +65,7 @@ vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆
 虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于vim如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)，用于收集各种退出的方法。stackoverflow 的[报告](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)说，其帮助了一百万人次如何退出vim。
 1. 我使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件
 ![冲突读写](https://upload-images.jianshu.io/upload_images/9176874-796e49d5f2c60489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-2. `\` `y` 和 `\` `p` 实现复制粘贴。不同的配置下，复制粘贴的不同，在本配置下，复制粘贴的 leader 键是 `\`。
+2. `,` `y` 和 `,` `p` 实现复制粘贴。
 
 ## 欢迎来到 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) 和 async 的时代
 > 跳过本小节并不影响使用本配置，此处只是为了说明Language Server Protocal(下面简称lsp) 和 async 的好处。

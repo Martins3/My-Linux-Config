@@ -29,17 +29,6 @@ func! myspacevim#before() abort
     " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
     let g:Lf_RecurseSubmodules = 1
 
-    " TODO 再次检查一下，太麻烦了
-    " nerdcommenter 并不智能，比如对于同一行注释两次，
-    " nerdcommenter 会得到 /*/* code */*/，但是我期待的是 code
-    " SpaceVim 默认使用 nerdcommenter，为了使用 vim-commentary
-    " 似乎必须显式地disable掉这个插件
-    " https://github.com/SpaceVim/SpaceVim/issues/216
-    let g:spacevim_disabled_plugins = ['nerdcommenter']
-    " remap vim-commentary 来保持兼容
-    nmap <space>cl gcc
-    vmap <space>cl gc
-
     let g:spacevim_snippet_engine = 'ultisnips'
 
     let g:table_mode_corner='|'
