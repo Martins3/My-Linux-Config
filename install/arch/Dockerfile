@@ -38,7 +38,7 @@ RUN pacman -Syu --needed --noconfirm \
   ripgrep \
   the_silver_searcher \
   neovim  \
-  lua 
+  lua
 
 # makepkg user and workdir
 ARG user=martin
