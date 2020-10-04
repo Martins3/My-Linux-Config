@@ -105,6 +105,9 @@
 [[custom_plugins]]
     name = 'liuchengxu/vista.vim'
 
+[[custom_plugins]]
+    name = 'junegunn/fzf.vim'
+
 # 更加方便的调节窗口的大小
 [[custom_plugins]]
     name = 'simeji/winresizer'
