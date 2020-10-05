@@ -147,4 +147,5 @@ func! myspacevim#after() abort
     " 放到此处用于重写 SpaceVim 映射的 F2
     nnoremap  <F2>  :Vista!!<CR>
     let g:vista_default_executive = 'coc'
+    map <Tab> :wincmd w<CR>
 endf
