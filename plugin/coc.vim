@@ -10,13 +10,15 @@ set nowritebackup
 " 使用 Microsoft Python Language Server 不然 coc.nvim 会警告
 call coc#config("python.jediEnabled", v:false)
 
+" https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
+call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
+
 call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
 			\ "codeLens.enable": 1,
 			\ "diagnostic.virtualText": 1,
 			\})
-
 
 " c/c++ golang 和 bash 的 language server 设置
 call coc#config("languageserver", {

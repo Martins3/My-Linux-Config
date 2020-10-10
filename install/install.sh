@@ -42,13 +42,15 @@ alias vim="nvim"
 alias q="exit"
 alias ls="lsd"
 # TODO 根据系统自动调整
-alias ins="brew install"
+alias ins="sudo apt install"
 alias lg="lazygit"
 
 # 安装 z.lua
 source ~/antigen.zsh
 antigen bundle skywind3000/z.lua
 antigen apply.
+
+alias fd=fdfind
 EOT
 
 # TODO 添加 zsh 的两个插件
