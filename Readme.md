@@ -192,6 +192,8 @@ nvim
 ```
 一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。如果其中的nvim工作不正常，瞎报错，无法跳转，一般是安装有问题，如果解决不了，你可以issue。
 
+注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是 linux 内核可以使用更好的方法 `scripts/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译一次内核。
+
 ## 基本操作
 基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
 
