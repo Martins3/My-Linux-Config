@@ -231,8 +231,7 @@ nvim
 3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
 
 #### navigate
-1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。在我的配置中间 leader 键是 `,` ，所以搜索文件使用 `,` `f` + 文件名的 subsequence
-搜索 buffer 的方法类似 : `,` `b` + 想要搜索的 buffer 名称的 subsequence。
+1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
@@ -382,10 +381,10 @@ s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://
 SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 本配置的主要组成:
-0. init.toml : 最基本的配置，以及自定义的插件
-1. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
-2. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-3. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
+1. init.toml : 最基本的配置，在此处可以自己添加新的插件
+2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
+3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
+4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
 
 一些快捷键的说明:
 1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
@@ -412,7 +411,7 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 ```
 2. vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
 3. 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
-4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个
+4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
 ```
 setxkbmap -option caps:swapescape
 ```
@@ -420,7 +419,6 @@ setxkbmap -option caps:swapescape
 ## TODO
 1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
 2. 完善 docker 和 install.sh
-3. 解决 mac 上的拷贝 : https://github.com/fcpg/vim-osc52
 
 ## 其他的一些资源
 
