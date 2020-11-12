@@ -34,7 +34,7 @@ func! myspacevim#before() abort
 
     let g:table_mode_corner='|'
 
-    " 条件 window 大小的设置
+    " 调节 window 大小
     let g:winresizer_start_key = '<space>wa'
     " If you cancel and quit window resize mode by `q` (keycode 113)
     let g:winresizer_keycode_cancel = 113

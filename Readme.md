@@ -55,7 +55,7 @@
 
 ## 如何入门
 其实关于vim的基本知识教程有很多，这里我推荐两个网站
-1. [openvim](https://www.openvim.com/) : 交互式的学习vim
+1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习vim
 2. [Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
 
 如果完全没有基础，建议使用第一个打牢基础之后，然后就直接将vim用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。 第二个是强化补充的，建议一次学习三两个，不要指望一次全部背下来，不然很痛苦。
@@ -304,7 +304,6 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
-
 
 #### format
 `Space`  `r`  `f` 格式化当前文件，支持C++/C , Rust 和 Python 等。
