@@ -12,6 +12,7 @@
 - [安装过程以及注意要点](#安装过程以及注意要点)
 - [实战](#实战)
 - [基本操作](#基本操作)
+    - [search](#search)
     - [file tree](#file-tree)
     - [window](#window)
     - [buffer](#buffer)
@@ -198,13 +199,27 @@ nvim
 基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
 
 注意: vim 默认的 leader 键，加上前面提到的两个特殊功能leader, 一共存在三个 leader 键，其功能总结如下:
-| `,`                         | `\`      | `c`      |
-| 通用leader 键，包含各种作用 | 辅助粘贴 | 窗口操作 |
+| `,`                         | `c`      |
+|-----------------------------|----------|
+| 通用leader 键，包含各种作用 | 窗口操作 |
 这三个键位都是可以重新映射的。
 
+#### search
+[vim-searchindex](https://github.com/google/vim-searchindex) 可以显示当前是第几个文本项:
+![显示拼配项](https://raw.githubusercontent.com/google/vim-searchindex/master/vim-searchindex.gif)
+
+spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-on-the-fly-in-spacevim/), 比较常用的是:
+
+| key binding     | function                                  |
+|-----------------|-------------------------------------------|
+| `Space` `s` `/` | 实时动态搜索(grep on the fly)             |
+| `Space` `s` `p` | 搜索整个工程                              |
+| `Space` `s` `b` | 搜索所有打开的 buffer                     |
+| `Space` `s` `P` | **对于光标所在字符**搜索整个工程          |
+| `Space` `s` `b` | **对于光标所在字符**搜索所有打开的 buffer |
 
 #### file tree
-参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的
+参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
 | key binding     | function                                          |
 |-----------------|---------------------------------------------------|
 | `Space` `f` `o` | 将当前的文件显示在filetree中间              |
@@ -224,6 +239,7 @@ nvim
 ```
 3. `q` : 关闭窗口
 4. `<Space>` `w` `m` 当前窗口最大化
+5. 利用 [vim-smoothie](https://github.com/psliwka/vim-smoothie) 的 `Ctrl` `e` 和 `Ctrl` `y` 可以更加丝滑的翻页  
 
 #### buffer
 1. `,` `b` : 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下。
@@ -417,7 +433,7 @@ setxkbmap -option caps:swapescape
 
 ## TODO
 1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
-2. 完善 docker 和 install.sh
+2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有实践，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
 
 ## 其他的一些资源
 

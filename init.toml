@@ -52,7 +52,7 @@
 [[layers]]
   name = 'tools'
 
-# 禁用 SpaceVim 的 checkers layer
+# 禁用 SpaceVim 的 checkers layer, 让 coc.nvim 来管理
 [[layers]]
   name = "checkers"
   enable = false
@@ -120,12 +120,6 @@
 [[custom_plugins]]
     name = 'jackguo380/vim-lsp-cxx-highlight'
 
-# https://github.com/skywind3000/asyncrun.vim
-# 本插件使用 Vim 8 / NeoVim 的异步机制，让你在后台运行 shell 命令，
-# 并将结果实时显示到 Vim 的 Quickfix 窗口中：
-[[custom_plugins]]
-    name = 'skywind3000/asyncrun.vim'
-
 # 从 http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
 [[custom_plugins]]
     name = 'skywind3000/vim-cppman'
@@ -145,7 +139,6 @@
 [[custom_plugins]]
     name = 'google/vim-searchindex.git'
 
-# TODO 更加丝滑的翻页
 [[custom_plugins]]
     name = 'psliwka/vim-smoothie'
 

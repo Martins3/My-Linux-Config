@@ -39,9 +39,6 @@ func! myspacevim#before() abort
     " If you cancel and quit window resize mode by `q` (keycode 113)
     let g:winresizer_keycode_cancel = 113
 
-    " TODO
-    " spell https://wiki.archlinux.org/index.php/Language_checking
-    
     " 让file tree 显示文件图标，需要 terminal 安装 nerd font
     let g:spacevim_enable_vimfiler_filetypeicon = 1
     " 让 filetree 显示 git 的状态，会变得很卡，所以关掉
@@ -86,15 +83,13 @@ func! myspacevim#before() abort
     nnoremap  <silent>   <F5>   :FloatermToggle!<CR>
     tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle!<CR>
 
-    " 实现一键运行
+    " 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
     func! QuickRun()
         exec "w"
         let ext = expand("%:e")
         let file = expand("%")
         if ext ==# "sh"
             exec "!sh %"
-        elseif ext ==# "md"
-            exec "!dos2unix %"
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -O3 -g -std=c++17 -o %<.out && ./%<.out"
         elseif ext ==# "c"
