@@ -31,6 +31,7 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
+- [使用 clangd](#使用-clangd)
 - [TODO](#todo)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
@@ -429,6 +430,66 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
 ```
 setxkbmap -option caps:swapescape
+```
+
+## 使用 clangd
+目前并没有感受到 ccls 和 clangd 哪一个更好，我自己主要使用 ccls，对于其提供的一些扩展功能比较依赖，不过 clangd 的社区目前也很活跃，值得尝试。
+
+将 ccls 设置的删除，添加 coc-clangd 插件以及配置即可。
+
+```diff
+@@ -13,6 +13,8 @@ call coc#config("python.jediEnabled", v:false)
+ " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
+ call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
+ 
++call coc#config("clangd.semanticHighlighting", v:true)
++
+ call coc#config('coc.preferences', {
+ 			\ "autoTrigger": "always",
+ 			\ "maxCompleteItemCount": 10,
+@@ -22,23 +24,6 @@ call coc#config('coc.preferences', {
+ 
+ " c/c++ golang 和 bash 的 language server 设置
+ call coc#config("languageserver", {
+-      \"ccls": {
+-      \  "command": "ccls",
+-      \  "filetypes": ["c", "cpp"],
+-      \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
+-      \  "index": {
+-      \     "threads": 8
+-      \  },
+-      \  "initializationOptions": {
+-      \     "cache": {
+-      \       "directory": ".ccls-cache"
+-      \     },
+-      \     "highlight": { "lsRanges" : v:true }
+-      \   },
+-      \  "client": {
+-      \    "snippetSupport": v:true
+-      \   }
+-      \},
+       \"golang": {
+       \      "command": "gopls",
+       \      "rootPatterns": ["go.mod", ".vim/", ".git/", ".svn/"],
+@@ -72,6 +57,7 @@ let s:coc_extensions = [
+       \ 'coc-tsserver',
+       \ 'coc-vimtex',
+       \ 'coc-todolist',
++      \ 'coc-clangd',
+ 			\]
+ for extension in s:coc_extensions
+ 	call coc#add_extension(extension)
+
+@@ -173,50 +175,6 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
+ nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
+
+
+-" Manage extensions
+-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+-" Show commands
+-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+-" Find symbol of current document
+-" 省略下面的内容
 ```
 
 ## TODO

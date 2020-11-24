@@ -1,3 +1,5 @@
+" coc.nvim 的配置, 来自于 https://github.com/neoclide/coc.nvim
+
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -172,6 +174,9 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 " Show all diagnostics
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 
+
+" 下面是 ccls 提供的 LSP Extension
+" https://github.com/MaskRay/ccls/wiki/coc.nvim
 
 " Manage extensions
 " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
