@@ -9,8 +9,8 @@
 - [效果](#效果)
 - [如何入门](#如何入门)
 - [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
-- [安装过程以及注意要点](#安装过程以及注意要点)
-- [实战](#实战)
+- [install](#install)
+- [Work with Linux Kernel](#work-with-linux-kernel)
 - [基本操作](#基本操作)
     - [search](#search)
     - [file tree](#file-tree)
@@ -110,10 +110,10 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常的平缓主要有两个原因，一是其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。二是，官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。目前，SpaceVim 比较好的解决了这个问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用(当然你需要知道vim的基础知识和简要的阅读Spacevim的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了)。
 
 想知道插件是否过时，github 上会显示最后更新时间，如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
-## 安装过程以及注意要点
+## install
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
-1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server.
-2. 最新的软件 : 在 Ubuntu16.04 上，很多软件都很老，包括但是不限于 neovim, 想办法升级到最新版然后进行下面的安装。
+1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server. 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
+2. 软件版本 : 在 Ubuntu 16.04 上安装简直是一个噩梦，很多软件需要手动编译，不过在 Ubuntu 20.04 上问题不大，下面以 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
 
 本配置的架构如下图所示。
 ```
@@ -121,18 +121,17 @@ VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常
 |                 |
 |     my config   | 在 SpaceVim 的基础上整合coc.nvim，同时添加一些插件和配置
 |                 |
++-----------------+
+|                 |
+|     Coc.nvim    | 提供lsp功能，完美吸收VSCode的优雅体验，完美支持C/C++。
+|                 | coc.nvim 同样可以添加插件，比如 coc-clang。
++-----------------+
+|                 |
+|     SpaceVim    | 一个模块化，功能齐全的vim distribution。
 |                 |
 +-----------------+
 |                 |
-|     Coc.nvim    | 提供lsp功能，完美吸收VSCode的优雅体验，完美支持C/C++。coc.nvim 同样可以添加插件 
-|                 | 
-+-----------------+
-|                 |
-|     SpaceVim    | 一个模块化，功能齐全的vim distribution，虽然其中对于C/C++的支持个人不认同，但是颜色主题等基础设施非常完善。
-|                 |
-+-----------------+
-|                 |
-|     Neovim      | 编辑器，当没有任何配置的时候，非常难用。
+|     Neovim      | 编辑器，当没有任何配置的时候，比较难用。
 |                 |
 +-----------------+
 ```
@@ -140,6 +139,7 @@ VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常
 
 1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于neovim的更新速度更快，新特性支持更好。安装完成之后检查版本，最好大于v0.4.0.
 ```
+➜  Vn git:(master) ✗ sudo apt install neovim
 ➜  Vn git:(master) ✗ nvim --version
 NVIM v0.4.3
 Build type: Release
@@ -162,11 +162,12 @@ Run :checkhealth for more info
 https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
-4. 安装ccls，其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)，检查其版本。ccls 记得及时更新，如果ccls工作不正常，更新一般可以解决。
+4. 安装ccls，其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)，检查其版本。
 ```
+➜  Vn git:(master) ✗ sudo apt install ccls
 ➜  Vn git:(master) ✗ ccls -version
-ccls version 0.20190823.5-17-g41e7d6a7
-clang version 9.0.1 
+ccls version 0.20190823.6-1~ubuntu1.20.04.1
+clang version 10.0.0-4ubuntu1
 ```
 5. 复制本配置
 ```sh
@@ -175,13 +176,17 @@ rm -r .SpaceVim.d # 将原来的配置删除
 git clone https://github.com/martins3/My-Linux-config .SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 ```
-6. 在nvim中间执行 `checkhealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。
+6. 在nvim中间执行 `checkhealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 没有安装可能导致
+```
+sudo apt install xclip
+sudo pip3 install neovim
+```
+7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用 bear 生成 compile_commands.json 。关于构建 compile_commands.json 的方法可以参考
+```
+sudo apt install bear
+```
 
-7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用bear生成compile_commands.json。
-
-## 实战
-
-下面使用Linux Kernel 作为例子。
+## Work with Linux Kernel
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
@@ -189,15 +194,15 @@ cd linux
 make defconfig
 # 编译内核，从而生成compile_commands.json，一般需要几分钟
 bear make -j8
-# 第一次打开的时候，ccls 会生成索引文件，此时机器飞转属于正常现象，之后不会出现这种问题
+# 第一次打开的时候，ccls 会生成索引文件，此时风扇飞转属于正常现象，之后不会出现这种问题
 nvim 
 ```
-一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。如果其中的nvim工作不正常，瞎报错，无法跳转，一般是安装有问题，如果解决不了，你可以issue。
+一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。
 
-注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是 linux 内核可以使用更好的方法 `scripts/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译一次内核。
+注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是 linux 内核可以使用更好的方法 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 
 ## 基本操作
-基本操作是所有人都需要的比如，h j k l e w b g 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
+基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
 
 注意: vim 默认的 leader 键，加上前面提到的两个特殊功能leader, 一共存在三个 leader 键，其功能总结如下:
 | `,`                         | `c`      |
