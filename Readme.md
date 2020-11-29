@@ -328,7 +328,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 ```
 
 #### format
-`Space`  `r`  `f` 格式化当前文件，支持C++/C , Rust 和 Python 等。
+`Space`  `r`  `f` 格式化当前文件，支持C/C++ , Rust 和 Python 等。
+
+可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
+1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
+2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
 #### rename
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
@@ -344,6 +348,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 - `Ctrl` `h` : 切换到 `prev` 的 terminal window
 - `Ctrl` `l` : 切换到 `next` 的 terminal window
 - `Fn5` : 显示/隐藏窗口
+
+下面是在打开悬浮终端，并且运行 htop 的结果:
+![floaterm](https://upload-images.jianshu.io/upload_images/9176874-32e6bbbc08cb4b8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 
 ## 扩展
 需要说明的是，本配置并不局限于C/C++，只是相对其他语言，我比较熟悉C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
@@ -438,9 +447,7 @@ setxkbmap -option caps:swapescape
 ```
 
 ## 使用 clangd
-目前并没有感受到 ccls 和 clangd 哪一个更好，我自己主要使用 ccls，对于其提供的一些扩展功能比较依赖，不过 clangd 的社区目前也很活跃，值得尝试。
-
-将 ccls 设置的删除，添加 coc-clangd 插件以及配置即可。
+我自己主要使用 ccls, 对于其提供的一些扩展功能比较依赖，如果你想要使用 clangd，下面是需要修改的配置:
 
 ```diff
 @@ -13,6 +13,8 @@ call coc#config("python.jediEnabled", v:false)

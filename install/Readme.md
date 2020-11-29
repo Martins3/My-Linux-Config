@@ -14,3 +14,6 @@ sec delay : https://github.com/neovim/neovim/issues/2035
 
 tmux 基本 :
 https://arslan.io/2018/02/05/gpu-accelerated-terminal-alacritty/
+
+输入法:
+https://shawn233.github.io/2020/02/15/Fcitx-A-Strange-Bug-and-Its-Fix/
