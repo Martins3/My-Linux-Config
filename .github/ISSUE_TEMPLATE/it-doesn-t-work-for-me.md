@@ -2,7 +2,6 @@
 name: It doesn't work for me
 about: Create a report to help us improve
 title: ''
-labels: help wanted
 assignees: Martins3
 
 ---
