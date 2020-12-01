@@ -73,7 +73,7 @@ let s:coc_extensions = [
       \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-vimtex',
-      \ 'coc-todolist',
+      \ 'coc-smartf',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
