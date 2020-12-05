@@ -12,6 +12,9 @@ set nowritebackup
 " 使用 Microsoft Python Language Server 不然 coc.nvim 会警告
 call coc#config("python.jediEnabled", v:false)
 
+call coc#config("smartf.wordJump", v:false)
+call coc#config("smartf.jumpOnTrigger", v:false)
+
 " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
 

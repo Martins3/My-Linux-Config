@@ -140,7 +140,7 @@ endf
 
 func! myspacevim#after() abort
     " 放到此处用于重写 SpaceVim 映射的 F2
-    nnoremap  <F2>  :Vista!!<CR>
+    " nnoremap  <F2>  :Vista!!<CR>
     let g:vista_default_executive = 'coc'
     map <Tab> :wincmd w<CR>
 
@@ -151,7 +151,7 @@ func! myspacevim#after() abort
     nmap , <Plug>(coc-smartf-repeat-opposite)
 
     augroup Smartf
-      autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=yellow
+      autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
       autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
     augroup end
 endf
