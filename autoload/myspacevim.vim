@@ -11,13 +11,6 @@ func! myspacevim#before() abort
     set foldmethod=syntax
     set nofoldenable
 
-    " 打开导航栏
-    " <F3> 打开文件树
-    nnoremap  <F4>  :call QuickRun()<CR>
-    " <F5> floaterm toggle
-    " <F7> 打开历史记录
-    tnoremap  <Esc>  <C-\><C-n>
-
     " 重新映射 leader 键
     let g:mapleader = ','
     " 重新映射 window 键位
@@ -50,11 +43,6 @@ func! myspacevim#before() abort
 
     " 书签选中之后自动关闭 quickfix window
     let g:bookmark_auto_close = 1
-
-    " vista 导航栏
-    let g:vista_echo_cursor_strategy = 'scroll'
-    let g:vista_close_on_jump = 1
-    let g:vista_sidebar_position = "vertical topleft"
 
     " vim-lsp-cxx-highlight 和这个选项存在冲突
     " let g:rainbow_active = 1
@@ -139,9 +127,20 @@ func! myspacevim#before() abort
 endf
 
 func! myspacevim#after() abort
-    " 放到此处用于重写 SpaceVim 映射的 F2
-    " nnoremap  <F2>  :Vista!!<CR>
+    " vista 导航栏
+    let g:vista_echo_cursor_strategy = 'both'
+    let g:vista_close_on_jump = 1
+    let g:vista_sidebar_position = "vertical topleft"
     let g:vista_default_executive = 'coc'
+
+    " <F2> 打开导航栏
+    nnoremap  <F2>  :Vista!!<CR>
+    " <F3> 打开文件树
+    nnoremap  <F4>  :call QuickRun()<CR>
+    " <F5> floaterm toggle
+    " <F7> 打开历史记录
+    tnoremap  <Esc>  <C-\><C-n>
+
     map <Tab> :wincmd w<CR>
 
     " press <esc> to cancel.
