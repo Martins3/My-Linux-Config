@@ -128,7 +128,6 @@ endf
 
 func! myspacevim#after() abort
     " vista 导航栏
-    let g:vista_echo_cursor_strategy = 'both'
     let g:vista_close_on_jump = 1
     let g:vista_sidebar_position = "vertical topleft"
     let g:vista_default_executive = 'coc'

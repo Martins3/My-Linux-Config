@@ -162,7 +162,7 @@ Run :checkhealth for more info
 https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
-4. 安装ccls，其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)，检查其版本。
+4. 安装 ccls。也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
 ```
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ➜  Vn git:(master) ✗ ccls -version
@@ -176,11 +176,16 @@ rm -r .SpaceVim.d # 将原来的配置删除
 git clone https://github.com/martins3/My-Linux-config .SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 ```
-6. 在nvim中间执行 `checkhealth` 命令，保证其中没有 Err 存在，一般都是各种依赖没有安装，比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 没有安装可能导致
+6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 ```
 sudo apt install xclip
 sudo pip3 install neovim
 ```
+注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 的指出，其中 Python2 和 Ruby 的依赖是不需要安装, 
+例如下面是我的配置的截图。
+![checkhealth screenshot](https://upload-images.jianshu.io/upload_images/9176874-690ec7a23ba8826e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用 bear 生成 compile_commands.json 。关于构建 compile_commands.json 的方法可以参考
 ```
 sudo apt install bear
