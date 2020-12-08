@@ -186,9 +186,17 @@ sudo pip3 install neovim
 ![checkhealth screenshot](https://upload-images.jianshu.io/upload_images/9176874-690ec7a23ba8826e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-7. 安装[bear](https://github.com/rizsotto/Bear)，ccls 需要利用 bear 生成 compile_commands.json 。关于构建 compile_commands.json 的方法可以参考
+7. 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
 ```
 sudo apt install bear
+```
+
+注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
+1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
+2. cmake [生成 compile_commands.json 的方法](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json)
+3. [ninja](https://ninja-build.org/manual.html)
+```
+ninja -t compdb > compile_commands.json
 ```
 
 ## Work with Linux Kernel
@@ -197,14 +205,14 @@ git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
 # 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
 make defconfig
-# 编译内核，从而生成compile_commands.json，一般需要几分钟
-bear make -j8
+# 编译内核
+make -j8
+# 在 xxx 之后的内核中间, 利用生成 compile_commands.json
+scripts/clang-tools/gen_compile_commands.py
 # 第一次打开的时候，ccls 会生成索引文件，此时风扇飞转属于正常现象，之后不会出现这种问题
 nvim 
 ```
-一个工程只要可以正常编译，生成了compile_commands.json，那么一切就大功告成了。
-
-注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是 linux 内核可以使用更好的方法 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
+一个工程只要生成 compile_commands.json，那么一切就大功告成了。
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到SpaceVim，coc.nvim，ccls 以及特定插件的文档。
