@@ -74,7 +74,6 @@ let s:coc_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-ci',
       \ 'coc-snippets',
-      \ 'coc-tsserver',
       \ 'coc-vimtex',
       \ 'coc-smartf',
 			\]

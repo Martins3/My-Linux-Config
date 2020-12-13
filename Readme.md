@@ -198,6 +198,7 @@ sudo apt install bear
 ```
 ninja -t compdb > compile_commands.json
 ```
+4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 ## Work with Linux Kernel
 ```

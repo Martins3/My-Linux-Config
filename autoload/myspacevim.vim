@@ -127,12 +127,6 @@ func! myspacevim#before() abort
 endf
 
 func! myspacevim#after() abort
-    " vista 导航栏
-    let g:vista_sidebar_position = "vertical topleft"
-    let g:vista_default_executive = 'coc'
-
-    " <F2> 打开导航栏
-    nnoremap  <F2>  :Vista!!<CR>
     " <F3> 打开文件树
     nnoremap  <F4>  :call QuickRun()<CR>
     " <F5> floaterm toggle

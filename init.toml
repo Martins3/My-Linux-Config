@@ -111,10 +111,6 @@
 [[custom_plugins]]
     name = 'simeji/winresizer'
 
-# 比 nerdcommentary 更好用的注释工具
-[[custom_plugins]]
-    name = 'tpope/vim-commentary'
-
 # 基于lsp的高亮插件
 [[custom_plugins]]
     name = 'jackguo380/vim-lsp-cxx-highlight'
