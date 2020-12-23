@@ -49,7 +49,7 @@ call coc#config("languageserver", {
       \      "rootPatterns": ["go.mod", ".vim/", ".git/", ".svn/"],
       \      "filetypes": ["go"],
       \      "initializationOptions": {
-      \        "usePlaceholders": "true"
+      \        "usePlaceholders": v:true
       \      }
       \},
       \"bash": {

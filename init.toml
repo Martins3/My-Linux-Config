@@ -124,7 +124,9 @@
     name = 'rhysd/git-messenger.vim'
     lazy =  1
     on_cmd = 'GitMessenger'
-    on_map = '<Plug>(git-messenger'
+
+[[custom_plugins]]
+  name = 'ttys3/nvim-blamer.lua'
 
 # 以悬浮窗口的形式打开终端
 [[custom_plugins]]
@@ -139,3 +141,6 @@
 
 [[custom_plugins]]
   name = 'kenn7/vim-arsync'
+
+[[custom_plugins]]
+  name = 'fatih/vim-go'

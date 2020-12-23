@@ -356,6 +356,8 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
 
+更多的参考 : https://scattered-thoughts.net/writing/the-state-of-linux-debuggers/
+
 #### terminal
 利用 `voidkiss/folaterm` 可以实现将终端以float window的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
