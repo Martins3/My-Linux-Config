@@ -44,14 +44,6 @@ call coc#config("languageserver", {
       \    "snippetSupport": v:true
       \   }
       \},
-      \"golang": {
-      \      "command": "gopls",
-      \      "rootPatterns": ["go.mod", ".vim/", ".git/", ".svn/"],
-      \      "filetypes": ["go"],
-      \      "initializationOptions": {
-      \        "usePlaceholders": v:true
-      \      }
-      \},
       \"bash": {
       \  "command": "bash-language-server",
       \  "args": ["start"],
@@ -76,6 +68,7 @@ let s:coc_extensions = [
       \ 'coc-snippets',
       \ 'coc-vimtex',
       \ 'coc-smartf',
+      \ 'coc-go',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
@@ -156,7 +149,7 @@ call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'fo
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " auto import for go on save
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " 这个和 SpaceVim 的 statusline/tabline 冲突了
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
