@@ -125,9 +125,6 @@
     lazy =  1
     on_cmd = 'GitMessenger'
 
-[[custom_plugins]]
-  name = 'ttys3/nvim-blamer.lua'
-
 # 以悬浮窗口的形式打开终端
 [[custom_plugins]]
     name = 'voldikss/vim-floaterm'
