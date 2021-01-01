@@ -70,7 +70,7 @@ func! myspacevim#before() abort
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -O3 -g -std=c++17 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -g -std=c++17 -o %<.out && ./%<.out"
         elseif ext ==# "c"
             exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
         elseif ext ==# "java"
