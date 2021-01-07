@@ -70,9 +70,9 @@ func! myspacevim#before() abort
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -g -std=c++17 -o %<.out && ./%<.out"
+            exec "!clang++ % -Wall -g -std=c++17 -o %<.out && %<.out"
         elseif ext ==# "c"
-            exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
+            exec "!clang % -Wall -g -std=c11 -o %<.out && %<.out"
         elseif ext ==# "java"
             let classPath = expand('%:h')
             let className = expand('%:p:t:r')
