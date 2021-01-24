@@ -180,6 +180,8 @@ nvim # 打开vim 将会自动安装所有的插件
 6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 ```
 sudo apt install xclip
+# archlinux 请使用wl-clipboard替代xclip
+sudo pacman -S wl-clipboard
 sudo pip3 install neovim
 ```
 注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 的指出，其中 Python2 和 Ruby 的依赖是不需要安装, 
