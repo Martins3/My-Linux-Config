@@ -91,7 +91,7 @@ func! myspacevim#before() abort
         elseif ext ==# "vim"
             exec "so %"
         elseif ext ==# "html"
-            exec "!google-chrome-stable %"
+            exec "!microsoft-edge %"
         elseif ext ==# "rs"
             call CargoRun()
         else

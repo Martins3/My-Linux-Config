@@ -56,7 +56,6 @@ call coc#config("languageserver", {
 let s:coc_extensions = [
 			\ 'coc-python',
 			\ 'coc-java',
-			\ 'coc-json',
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
