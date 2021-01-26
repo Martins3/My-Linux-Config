@@ -31,7 +31,6 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
-- [使用 clangd](#使用-clangd)
 - [TODO](#todo)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
@@ -76,7 +75,7 @@ vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆
 在2019.7.24，linux 内核的.gitignore增加了对于lsp的支持，是时候跟上潮流了。
 ![内核的gitignore](https://upload-images.jianshu.io/upload_images/9176874-8d57913135875846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-lsp 定义了一套标准编辑器和 language server 之间的规范。不同的语言需要不同的Language Server，比如C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust语言采用[rls](https://github.com/rust-lang/rls)，Language server 的清单在[这里](https://microsoft.github.io/language-server-protocol/implementors/servers/)。在lsp的另一端，也就是编辑器这一端，也需要对应的实现，其列表在[这里](https://microsoft.github.io/language-server-protocol/implementors/tools/)。也就是说，由于lsp的存在，一门语言的language server可以用于所有的支持lsp的编辑器上，大大的减少了重复开发。其架构图大概是下面的这个感觉，其中需要说明一下vim现在逐步将lsp内置到编辑器中间，所以Editor Plugin 的那一层估计用不了多久就会消失吧!
+lsp 定义了一套标准编辑器和 language server 之间的规范。不同的语言需要不同的Language Server，比如C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust语言采用[rls](https://github.com/rust-lang/rls)，Language server 的清单在[这里](https://microsoft.github.io/language-server-protocol/implementors/servers/)。在lsp的另一端，也就是编辑器这一端，也需要对应的实现，其列表在[这里](https://microsoft.github.io/language-server-protocol/implementors/tools/)。也就是说，由于lsp的存在，一门语言的language server可以用于所有的支持lsp的编辑器上，大大的减少了重复开发。其架构图大概是下面的这个感觉，其中需要说明一下 vim 现在逐步将 lsp 内置到编辑器中间，所以 Editor Plugin 的那一层估计用不了多久就会消失吧!
 ```
  +------------------------+    +---------------------------+    +-----------------------+
  |                        |    |                           |    |                       |
@@ -100,17 +99,16 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 
 当使用上了lsp之后，之前写C/C++P必备的[YCM](https://github.com/ycm-core/YouCompleteMe)(用于自动补全，静态检查等)和[ctags](https://github.com/universal-ctags/ctags)(用于符号跳转)终于可以离开了。YCM对于小的项目还是工作的不错的，但是大型项目显得笨重，毕竟 YCM 不仅支持 C 语言，支持 Java, Rust, Go 等等，而且其不会生成索引，也就是每次打开大型项目都可以听见电脑疯转一会儿。此外，YCM 的安装总是需要手动安装。ctags 似乎不是基于语义的索引，而是基于字符串匹配实现，所以会出现误判，比如两个文件中间都定义了 static 的同名函数，ctags 往往会将两者都找出来。ctags 是无法查找函数的引用的，只能查找定义。当我知道 ctags 可以同时支持几十种语言的时候，ctags 存在这些问题，我就再也不感到奇怪了。gtags 解决了 ctags 查找引用的问题，其同样支持大量的语言，但是跳转精度，索引自动生成等根本问题没有被解决。与之相对的是，一个lsp一般只支持其对应的一门语言。
 
-到此，曾经为了在vim中间书写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM 实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。你还会发现 ctags 
+到此，曾经为了在 vim 中间书写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM 实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。你还会发现 ctags 
 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
-
 
 利用 coc.nvim 可以获取极佳的 lsp 体验 ，因为 lsp 是微软开发 vscode 提出的，coc.nvim 的宗旨就是*full language server protocol support as VSCode*。
 
-另一个新特性是async(异步机制)。async 的特定就是快，当一个插件存在其async的版本，那么毫无疑问，使用async版本。[nerdtree](https://github.com/preservim/nerdtree) 使用vim的人应该是无人不知，无人不晓吧，我之前一直都是使用这一个插件的，直到有一天我用vim打开linux kernel，并且打开nerdtree之后，光标移动都非常的困难，我开始以为是终端的性能问题，后来以为是lsp的问题，直到将nerdtree替换为[大神shougou的defx](https://github.com/Shougo/defx.nvim)。我想，如果没有 SpaceVim，我永远都不要找到 defx 这一个插件。
+另一个新特性是 **async** (异步机制)。async 的特定就是快，当一个插件存在其async的版本，那么毫无疑问，使用async版本。[nerdtree](https://github.com/preservim/nerdtree) 使用vim的人应该是无人不知，无人不晓吧，我之前一直都是使用这一个插件的，直到有一天我用vim打开linux kernel，并且打开nerdtree之后，光标移动都非常的困难，我开始以为是终端的性能问题，后来以为是lsp的问题，直到将nerdtree替换为[大神shougou的defx](https://github.com/Shougo/defx.nvim)。我想，如果没有 SpaceVim，我永远都不要找到 defx 这一个插件。
 
 VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常的平缓主要有两个原因，一是其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。二是，官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。目前，SpaceVim 比较好的解决了这个问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用(当然你需要知道vim的基础知识和简要的阅读Spacevim的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了)。
 
-想知道插件是否过时，github 上会显示最后更新时间，如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
+如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
 ## install
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
 1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server. 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
@@ -180,11 +178,14 @@ nvim # 打开vim 将会自动安装所有的插件
 6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 ```
 sudo apt install xclip
-# archlinux 请使用wl-clipboard替代xclip
-sudo pacman -S wl-clipboard
+# archlinux 请使用 wl-clipboard 替代xclip
+# sudo pacman -S wl-clipboard
 sudo pip3 install neovim
 ```
-注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 的指出，其中 Python2 和 Ruby 的依赖是不需要安装, 
+注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
+以及 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
+
+
 例如下面是我的配置的截图。
 ![checkhealth screenshot](https://upload-images.jianshu.io/upload_images/9176874-690ec7a23ba8826e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -465,69 +466,12 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
-## 使用 clangd
-我自己主要使用 ccls, 对于其提供的一些扩展功能比较依赖，如果你想要使用 clangd，下面是需要修改的配置:
-
-```diff
-@@ -13,6 +13,8 @@ call coc#config("python.jediEnabled", v:false)
- " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
- call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
- 
-+call coc#config("clangd.semanticHighlighting", v:true)
-+
- call coc#config('coc.preferences', {
- 			\ "autoTrigger": "always",
- 			\ "maxCompleteItemCount": 10,
-@@ -22,23 +24,6 @@ call coc#config('coc.preferences', {
- 
- " c/c++ golang 和 bash 的 language server 设置
- call coc#config("languageserver", {
--      \"ccls": {
--      \  "command": "ccls",
--      \  "filetypes": ["c", "cpp"],
--      \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
--      \  "index": {
--      \     "threads": 8
--      \  },
--      \  "initializationOptions": {
--      \     "cache": {
--      \       "directory": ".ccls-cache"
--      \     },
--      \     "highlight": { "lsRanges" : v:true }
--      \   },
--      \  "client": {
--      \    "snippetSupport": v:true
--      \   }
--      \},
-       \"golang": {
-       \      "command": "gopls",
-       \      "rootPatterns": ["go.mod", ".vim/", ".git/", ".svn/"],
-@@ -72,6 +57,7 @@ let s:coc_extensions = [
-       \ 'coc-tsserver',
-       \ 'coc-vimtex',
-       \ 'coc-todolist',
-+      \ 'coc-clangd',
- 			\]
- for extension in s:coc_extensions
- 	call coc#add_extension(extension)
-
-@@ -173,50 +175,6 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
- nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
-
-
--" Manage extensions
--" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
--" Show commands
--" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
--" Find symbol of current document
--" 省略下面的内容
-```
-
 ## TODO
 1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
-2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有实践，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
+2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有时间，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
 
 ## 其他的一些资源
+- neovim build-in lsp 的最近愈发的完善，[这个项目](https://github.com/glepnir/lspsaga.nvim)为 build-in lps 提供更加美观的 UI.
 
 #### 学习
 1. [Vim China](https://github.com/vim-china)
@@ -542,6 +486,7 @@ setxkbmap -option caps:swapescape
 1. [exvim](https://exvim.github.io/)
 2. [spf13-vim](https://github.com/spf13/spf13-vim)
 3. [The Ultimate vimrc](https://github.com/amix/vimrc)
+4. [NVCode](https://github.com/ChristianChiarulli/nvim) 基于 coc.nvim 的一个配置
 
 #### 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed)
