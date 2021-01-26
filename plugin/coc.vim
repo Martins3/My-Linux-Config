@@ -52,6 +52,9 @@ call coc#config("languageserver", {
       \},
       \})
 
+call coc#config("git.addGBlameToVirtualText", v:true)
+call coc#config("git.virtualTextPrefix", "👋 ")
+
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
 			\ 'coc-python',
@@ -68,6 +71,7 @@ let s:coc_extensions = [
       \ 'coc-vimtex',
       \ 'coc-smartf',
       \ 'coc-go',
+      \ 'coc-git',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
@@ -97,7 +101,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references-used)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
