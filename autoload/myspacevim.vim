@@ -7,10 +7,6 @@ func! myspacevim#before() abort
     set autowrite
     set autoread
 
-    " 设置按照syntax高亮进行折叠
-    set foldmethod=syntax
-    set nofoldenable
-
     " 重新映射 leader 键
     let g:mapleader = ','
     " 重新映射 window 键位
