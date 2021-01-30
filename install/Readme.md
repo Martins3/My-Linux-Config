@@ -9,9 +9,10 @@
 https://shawn233.github.io/2020/02/15/Fcitx-A-Strange-Bug-and-Its-Fix/
 
 最终我忽然意识到，不是切换应用的时候出现问题，而是 alacritty 和程序的切换导致的，于是搜索到下面这个帖子:
-https://wiki.gentoo.org/wiki/Alacritty
+1. https://wiki.gentoo.org/wiki/Alacritty
+2. https://github.com/alacritty/alacritty/issues/3570
 
-按照其方法，完美解决问题
+按照其方法，还是无法正确解决问题:
 ```
 ~> cat ~/.xinitrc
 export GTK_IM_MODULE=fcitx
@@ -19,7 +20,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
-exec i3
+exec gnome
 ```
 ## tmux
 颜色设置: https://github.com/alacritty/alacritty/issues/3347

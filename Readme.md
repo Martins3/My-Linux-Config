@@ -472,6 +472,7 @@ setxkbmap -option caps:swapescape
 
 ## 其他的一些资源
 - neovim build-in lsp 的最近愈发的完善，[这个项目](https://github.com/glepnir/lspsaga.nvim)为 build-in lps 提供更加美观的 UI.
+- [C/C++ 项目利用 include-what-you-use 来引入头文件](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
 1. [Vim China](https://github.com/vim-china)

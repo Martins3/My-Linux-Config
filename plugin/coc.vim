@@ -72,6 +72,7 @@ let s:coc_extensions = [
       \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-git',
+      \ 'coc-lists',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
@@ -171,25 +172,24 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 
 
 " 下面是 ccls 提供的 LSP Extension
 " https://github.com/MaskRay/ccls/wiki/coc.nvim
-
-" Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 nn <silent> xl :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
 nn <silent> xk :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>

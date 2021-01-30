@@ -141,3 +141,6 @@
 
 [[custom_plugins]]
   name = 'fatih/vim-go'
+
+[[custom_plugins]]
+  name = 'CoatiSoftware/vim-sourcetrail'

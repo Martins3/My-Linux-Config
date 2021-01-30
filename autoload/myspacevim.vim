@@ -14,7 +14,7 @@ func! myspacevim#before() abort
 
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder coc', 'search simbols', 1)
     call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
-    let g:Lf_ShortcutF = "<leader>s"
+    let g:Lf_ShortcutF = "<leader>g"
 
     " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
     let g:Lf_RecurseSubmodules = 1
@@ -115,6 +115,8 @@ endf
 
 func! myspacevim#after() abort
     " <F3> 打开文件树
+    let g:vista_sidebar_position = "vertical topleft"
+    nnoremap  <F2>  :Vista!!<CR>
     nnoremap  <F4>  :call QuickRun()<CR>
     " <F5> floaterm toggle
     " <F7> 打开历史记录
@@ -133,7 +135,8 @@ func! myspacevim#after() abort
       autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
     augroup end
 
-    inoremap   <silent>   <C-n>     :FloatermNew<CR>
+    " floaterm
+    inoremap   <silent>   <C-n>    :FloatermNew<CR>
     nnoremap   <silent>   <C-n>    :FloatermNew<CR>
     tnoremap   <silent>   <C-n>    <C-\><C-n>:FloatermNew<CR>
 
@@ -145,9 +148,6 @@ func! myspacevim#after() abort
     nnoremap   <silent>   <C-l>    :FloatermNext<CR>
     tnoremap   <silent>   <C-l>    <C-\><C-n>:FloatermNext<CR>
 
-
-    " 保证在插入模式<F5>可以 toggle floaterm
-    " 来，提出一个自己的第一个 pull request !
     inoremap  <silent>   <F5>   :FloatermToggle!<CR>
     nnoremap  <silent>   <F5>   :FloatermToggle!<CR>
     tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle!<CR>
@@ -161,4 +161,8 @@ func! myspacevim#after() abort
     let g:go_highlight_functions=1
     let g:go_highlight_function_calls=1
     let g:go_fmt_fail_silently=1
+
+    nnoremap <leader>ag :SourcetrailStartServer<CR>
+    nnoremap <leader>as :SourcetrailRefresh<CR>
+    nnoremap <leader>aa :SourcetrailActivateToken<CR>
 endf
