@@ -72,7 +72,6 @@ let s:coc_extensions = [
       \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-git',
-      \ 'coc-lists',
 			\]
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
