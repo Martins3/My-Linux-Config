@@ -13,8 +13,6 @@ func! myspacevim#before() abort
     let g:spacevim_windows_leader = 'c'
 
     call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder coc', 'search simbols', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'list functions', 1)
-    let g:Lf_ShortcutF = "<leader>g"
 
     " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
     let g:Lf_RecurseSubmodules = 1

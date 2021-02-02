@@ -137,11 +137,11 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>x  <Plug>(coc-codeaction-selected)
+nmap <leader>x  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>lc  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -168,24 +168,26 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "       \ },
 "       \ }
 
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" Show all diagnostics.
+nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <leader>c  :<C-u>CocFzfList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <leader>r  :<C-u>CocListResume<CR>
+" Show files
+nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
+" Show buffers
+nnoremap <silent><nowait> <leader>b  :<C-u>Leaderf buffer<CR>
 
 
 " 下面是 ccls 提供的 LSP Extension

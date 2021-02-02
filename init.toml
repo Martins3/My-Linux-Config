@@ -144,3 +144,8 @@
 
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
+
+[[custom_plugins]]
+  name = 'antoinemadec/coc-fzf'
+  branch = 'release'
+
