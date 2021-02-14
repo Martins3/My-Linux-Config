@@ -139,9 +139,6 @@
 [[custom_plugins]]
   name = 'kenn7/vim-arsync'
 
-# [[custom_plugins]]
-  # name = 'fatih/vim-go'
-
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
 
