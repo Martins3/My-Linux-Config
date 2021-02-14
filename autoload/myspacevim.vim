@@ -12,9 +12,7 @@ func! myspacevim#before() abort
     " 重新映射 window 键位
     let g:spacevim_windows_leader = 'c'
 
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder coc', 'search simbols', 1)
-
-    " 让 leaderf 可以搜索 git 的 submodule，否则是自动忽略的
+    " 让 leaderf 可以搜索 git 的 submodule，否则 submodule 的文件会被自动忽略
     let g:Lf_RecurseSubmodules = 1
 
     let g:spacevim_snippet_engine = 'ultisnips'
@@ -64,9 +62,9 @@ func! myspacevim#before() abort
         if ext ==# "sh"
             exec "!sh %"
         elseif ext ==# "cpp"
-            exec "!clang++ % -Wall -g -std=c++17 -o %<.out && %<.out"
+            exec "!clang++ % -Wall -g -std=c++17 -o %<.out && ./%<.out"
         elseif ext ==# "c"
-            exec "!clang % -Wall -g -std=c11 -o %<.out && %<.out"
+            exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
         elseif ext ==# "java"
             let classPath = expand('%:h')
             let className = expand('%:p:t:r')
@@ -150,16 +148,7 @@ func! myspacevim#after() abort
     nnoremap  <silent>   <F5>   :FloatermToggle!<CR>
     tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle!<CR>
 
-    " go highlight
-    " https://github.com/neoclide/coc.nvim/issues/472
-    let g:go_list_type="quickfix"
-    let g:go_fmt_command="goimports"
-    let g:go_highlight_types=1
-    let g:go_highlight_fields=1
-    let g:go_highlight_functions=1
-    let g:go_highlight_function_calls=1
-    let g:go_fmt_fail_silently=1
-
+    " 和 sourcetrail 配合使用
     nnoremap <leader>ag :SourcetrailStartServer<CR>
     nnoremap <leader>as :SourcetrailRefresh<CR>
     nnoremap <leader>aa :SourcetrailActivateToken<CR>

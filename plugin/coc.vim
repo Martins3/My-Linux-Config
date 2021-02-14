@@ -3,8 +3,6 @@
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-set hidden
-
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -177,6 +175,8 @@ nnoremap <silent><nowait> <leader>c  :<C-u>CocFzfList commands<cr>
 nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
+" Search code action.
+nnoremap <silent><nowait> <leader>g  :<C-u>CocFzfList actions<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.

@@ -7,7 +7,7 @@ assignees: Martins3
 ---
 
 - **Describe the bug**
-A clear and concise description of the bug.
+A clear and concise description for the bug.
 - **ccls --version**
 - **nvim --version**
 - **checkhealth screenshot**
