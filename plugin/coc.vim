@@ -23,7 +23,7 @@ call coc#config('coc.preferences', {
 			\ "diagnostic.virtualText": 1,
 			\})
 
-" c/c++ golang 和 bash 的 language server 设置
+" c/c++ language server 设置
 call coc#config("languageserver", {
       \"ccls": {
       \  "command": "ccls",
@@ -41,12 +41,6 @@ call coc#config("languageserver", {
       \  "client": {
       \    "snippetSupport": v:true
       \   }
-      \},
-      \"bash": {
-      \  "command": "bash-language-server",
-      \  "args": ["start"],
-      \  "filetypes": ["sh"],
-      \  "ignoredRootPaths": ["~"]
       \},
       \})
 
@@ -69,6 +63,7 @@ let s:coc_extensions = [
       \ 'coc-vimtex',
       \ 'coc-smartf',
       \ 'coc-go',
+      \ 'coc-sh',
       \ 'coc-git',
 			\]
 for extension in s:coc_extensions
