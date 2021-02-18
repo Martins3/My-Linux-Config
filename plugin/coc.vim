@@ -115,7 +115,7 @@ autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" 注释掉，一般使用 `Space` `r` `f` 直接格式化整个文件
+" 注释掉，使用 `Space` `r` `f` 直接格式化整个文件
 " Remap for format selected region
 " vmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
@@ -143,9 +143,6 @@ call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'fo
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" auto import for go on save
-" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " 这个和 SpaceVim 的 statusline/tabline 冲突了
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
@@ -177,7 +174,7 @@ nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <leader>r  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>l  :<C-u>CocListResume<CR>
 " Show files
 nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
 " Show buffers
