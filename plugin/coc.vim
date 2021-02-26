@@ -157,29 +157,28 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "       \ },
 "       \ }
 
-" Show all diagnostics.
-nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
+" Search code action.
+nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList actions<cr>
+" Show buffers
+nnoremap <silent><nowait> <leader>b  :<C-u>Leaderf buffer<CR>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>CocFzfList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
-" Search code action.
-nnoremap <silent><nowait> <leader>g  :<C-u>CocFzfList actions<cr>
+" Show all diagnostics.
+nnoremap <silent><nowait> <leader>d :<C-u>CocFzfList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
+" Show files
+nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
 " Do default action for next item.
 nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>l  :<C-u>CocListResume<CR>
-" Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
-" Show buffers
-nnoremap <silent><nowait> <leader>b  :<C-u>Leaderf buffer<CR>
-
+" Find symbol of current document.
+nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
 
 " 下面是 ccls 提供的 LSP Extension
 " https://github.com/MaskRay/ccls/wiki/coc.nvim
