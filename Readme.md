@@ -10,7 +10,7 @@
 - [如何入门](#如何入门)
 - [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
 - [install](#install)
-- [Work with Linux Kernel](#work-with-linux-kernel)
+- [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
     - [search](#search)
     - [file tree](#file-tree)
@@ -204,7 +204,7 @@ ninja -t compdb > compile_commands.json
 ```
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
-## Work with Linux Kernel
+## 以 Linux 内核为例
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
