@@ -9,7 +9,7 @@
 - [效果](#效果)
 - [如何入门](#如何入门)
 - [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
-- [install](#install)
+- [安装](#安装)
 - [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
     - [search](#search)
@@ -109,7 +109,7 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常的平缓主要有两个原因，一是其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。二是，官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。目前，SpaceVim 比较好的解决了这个问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用(当然你需要知道vim的基础知识和简要的阅读Spacevim的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了)。
 
 如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
-## install
+## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
 1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server. 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
 2. 软件版本 : 在 Ubuntu 16.04 上安装简直是一个噩梦，很多软件需要手动编译，不过在 Ubuntu 20.04 上问题不大，下面以 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
@@ -122,7 +122,7 @@ VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常
 |                 |
 +-----------------+
 |                 |
-|     Coc.nvim    | 提供lsp功能，完美吸收VSCode的优雅体验，完美支持C/C++。
+|     Coc.nvim    | 提供 lsp 功能，提供类似 VSCode 的优雅体验，完美支持C/C++。
 |                 | coc.nvim 同样可以添加插件，比如 coc-clang。
 +-----------------+
 |                 |
