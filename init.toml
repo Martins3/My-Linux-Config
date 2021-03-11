@@ -137,9 +137,6 @@
     name = 'psliwka/vim-smoothie'
 
 [[custom_plugins]]
-  name = 'kenn7/vim-arsync'
-
-[[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
 
 [[custom_plugins]]
