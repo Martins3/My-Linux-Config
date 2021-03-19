@@ -47,6 +47,15 @@ call coc#config("languageserver", {
 call coc#config("git.addGBlameToVirtualText", v:true)
 call coc#config("git.virtualTextPrefix", "👋 ")
 
+
+call coc#config("diagnostic-languageserver.filetypes", {
+      \"sh": "shellcheck",
+      \})
+
+call coc#config("diagnostic-languageserver.formatFiletypes",{
+      \"sh": "shfmt",
+      \})
+
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
 			\ 'coc-python',
@@ -65,7 +74,9 @@ let s:coc_extensions = [
       \ 'coc-go',
       \ 'coc-sh',
       \ 'coc-git',
+      \ 'coc-diagnostic',
 			\]
+
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
 endfor

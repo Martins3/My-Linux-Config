@@ -96,10 +96,6 @@
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
-# vista.vim 的依赖
-[[custom_plugins]]
-    name = "majutsushi/tagbar"
-
 # 更加美观的 tagbar 
 [[custom_plugins]]
     name = 'liuchengxu/vista.vim'

@@ -60,7 +60,7 @@ func! myspacevim#before() abort
         let ext = expand("%:e")
         let file = expand("%")
         if ext ==# "sh"
-            exec "!sh %"
+            exec "!bash %"
         elseif ext ==# "cpp"
             exec "!clang++ % -Wall -g -std=c++17 -o %<.out && ./%<.out"
         elseif ext ==# "c"
