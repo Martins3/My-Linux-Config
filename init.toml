@@ -87,7 +87,7 @@
   name = 'neoclide/coc.nvim'
   merge = 0
 
-# 主要用于快速搜索 文件, buffer 和 函数
+# 主要用于快速搜索文件和 buffer
 [[custom_plugins]]
     name = "Yggdroot/LeaderF"
     build = "./install.sh"

@@ -107,6 +107,11 @@ func! myspacevim#before() abort
       endwhile
       echo "Cargo.toml not found !"
     endf
+
+    " floaterm
+    let g:floaterm_keymap_prev   = '<C-p>'
+    let g:floaterm_keymap_next   = '<C-n>'
+    let g:floaterm_keymap_new = '<F5>'
 endf
 
 func! myspacevim#after() abort
@@ -130,23 +135,6 @@ func! myspacevim#after() abort
       autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
       autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
     augroup end
-
-    " floaterm
-    inoremap   <silent>   <C-n>    :FloatermNew<CR>
-    nnoremap   <silent>   <C-n>    :FloatermNew<CR>
-    tnoremap   <silent>   <C-n>    <C-\><C-n>:FloatermNew<CR>
-
-    inoremap   <silent>   <C-h>     :FloatermPrev<CR>
-    nnoremap   <silent>   <C-h>    :FloatermPrev<CR>
-    tnoremap   <silent>   <C-h>    <C-\><C-n>:FloatermPrev<CR>
-
-    inoremap   <silent>   <C-l>     :FloatermNext<CR>
-    nnoremap   <silent>   <C-l>    :FloatermNext<CR>
-    tnoremap   <silent>   <C-l>    <C-\><C-n>:FloatermNext<CR>
-
-    inoremap  <silent>   <F5>   :FloatermToggle!<CR>
-    nnoremap  <silent>   <F5>   :FloatermToggle!<CR>
-    tnoremap  <silent>   <F5>   <C-\><C-n>:FloatermToggle!<CR>
 
     " 和 sourcetrail 配合使用
     nnoremap <leader>ag :SourcetrailStartServer<CR>
