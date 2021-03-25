@@ -15,7 +15,7 @@ func! myspacevim#before() abort
     " 让 leaderf 可以搜索 git 的 submodule，否则 submodule 的文件会被自动忽略
     let g:Lf_RecurseSubmodules = 1
 
-    let g:spacevim_snippet_engine = 'ultisnips'
+    " let g:spacevim_snippet_engine = 'ultisnips'
 
     let g:table_mode_corner='|'
 
