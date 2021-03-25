@@ -110,8 +110,8 @@ func! myspacevim#before() abort
 
     " floaterm
     let g:floaterm_keymap_prev   = '<C-p>'
-    let g:floaterm_keymap_next   = '<C-n>'
-    let g:floaterm_keymap_new = '<F5>'
+    let g:floaterm_keymap_new    = '<C-n>'
+    let g:floaterm_keymap_toggle = '<F5>'
 endf
 
 func! myspacevim#after() abort
