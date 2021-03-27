@@ -469,7 +469,7 @@ setxkbmap -option caps:swapescape
 ```
 
 ## TODO
-1. 按照此规范修改 https://github.com/mzlogin/chinese-copywriting-guidelines
+1. 集成[lint-md](https://github.com/lint-md)
 2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有时间，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
 
 ## 其他的一些资源

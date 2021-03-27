@@ -51,6 +51,7 @@ func! myspacevim#before() abort
 
     " 设置默认的pdf阅览工具
     let g:vimtex_view_method = 'zathura'
+    let g:vimtex_syntax_conceal_default = 0
     " 关闭所有隐藏设置
 		let g:tex_conceal = ""
 
