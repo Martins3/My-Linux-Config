@@ -22,6 +22,9 @@ eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
 exec gnome
 ```
+
+[检查 x11 还是 wayland](https://unix.stackexchange.com/questions/202891/how-to-know-whether-wayland-or-x11-is-being-used)
+
 ## tmux
 颜色设置: https://github.com/alacritty/alacritty/issues/3347
 

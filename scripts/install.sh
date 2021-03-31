@@ -26,7 +26,7 @@ yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源
 ## TODO 再次测试
 # 1. 直接 使用 release, 在代理的情况下
 # 2. 在没有代理的情况下，使用编译安装
-cd ~/.cache/vimfiles/repos/github.com/neoclide/coc.nvim
+cd ~/.cache/vimfiles/repos/github.com/neoclide/coc.nvim || exit
 git clean -xfd
 yarn install --frozen-lockfile
 
