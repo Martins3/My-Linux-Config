@@ -75,6 +75,7 @@ let s:coc_extensions = [
       \ 'coc-sh',
       \ 'coc-git',
       \ 'coc-diagnostic',
+      \ 'coc-lua'
 			\]
 
 for extension in s:coc_extensions

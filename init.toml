@@ -139,3 +139,5 @@
   name = 'antoinemadec/coc-fzf'
   branch = 'release'
 
+[[custom_plugins]]
+  name = 'puremourning/vimspector'

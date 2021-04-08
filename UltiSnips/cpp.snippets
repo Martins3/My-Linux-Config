@@ -181,12 +181,6 @@ BOOST_AUTO_TEST_SUITE_END()
 endsnippet
 # vim:ft=snippets:
 
-snippet /* "comment"
-/**
- * $1
- */
-endsnippet
-
 snippet /* "debug"
 #include "pprint/include/pprint.hpp"
 pprint::PrettyPrinter printer;
@@ -197,27 +191,7 @@ typedef long long int lld;
 endsnippet
         
 snippet import
-#include <algorithm>
-#include <cassert>
-#include <climits>
-#include <cmath>
-#include <cstring>
-#include <deque>
-#include <fstream>
-#include <iostream>
-#include <iterator>
-#include <map>
-#include <memory>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 #define REOPEN_READ freopen("/home/maritns3/test/cpp/input.txt", "r", stdin);
@@ -225,51 +199,4 @@ int main(int argc, char *argv[]){
 	${0}
 	return 0;
 }
-endsnippet
-
-snippet review "Leetcode Review"
-/**
- * 错误原因 : $1
- * 措施:
- */
-endsnippet
-
-snippet pray "佛祖保佑"
-/**
- * 
- *                           _ooOoo_
- *                          o8888888o
- *                          88" . "88
- *                          (| -_- |)
- *                           O\ = /O
- *                       ____/\`---'\____
- *                     .   ' \\\\| |//  '  .
- *                      / \\\\||| : |||// \
- *                    / _||||| -:- |||||- \
- *                      | | \\\\\ - /// | |
- *                    | \_| ''\---/'' | |
- *                     \ .-\__ \`-\` ___/-. /
- *                  ___\`. .' /--.--\ \`. . __
- *               ."" '< \`.___\\_<|>_/___.' >' "".
- *              | | : \`- \`.;\`\ _ /\`;.\`/ - \` : | |
- *                \\ \\ \`-. \\_ __\\ /__ _/ .-\` / /
- *        ======'-.____\`-.___\\_____/___.-\`____.-'======
- *                           '=---='
- */
-endsnippet
-
-
-snippet bugfound "I find the Bug"
-/**
-  * zzz
-  * 　＜⌒／ヽ-､_＿_
-  * ／＜_/＿＿＿＿／
-  * ￣￣￣￣￣￣￣
-  * 
-  * 　　　∧_∧         I find the bug
-  * 　　 (　･ω･)
-  * 　 ＿|　⊃／(＿＿_  
-  * ／　└-(＿＿＿_／
-  *
-	*/
 endsnippet
