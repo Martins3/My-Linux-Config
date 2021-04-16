@@ -31,12 +31,12 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
-- [TODO](#todo)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
     - [框架](#框架)
     - [衍生](#衍生)
+    - [GUI](#gui)
 
 <!-- vim-markdown-toc -->
 </details>
@@ -426,13 +426,15 @@ s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://
 通过coc.nvim，nvim 可以将自己伪装成为 vscode，coc-python 本身也是 vscode 的插件。如此，vscode 的处理 python 的技术被吸收到 vim 中间来，但是 vim 更加简洁，高效。
 
 ## [本配置](https://github.com/Martins3/My-Linux-config)源代码解释
-SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
+总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
 1. init.toml : 最基本的配置，在此处可以自己添加新的插件
 2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
+
+SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 一些快捷键的说明:
 1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
@@ -464,12 +466,7 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
-## TODO
-1. 集成[lint-md](https://github.com/lint-md)
-2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有时间，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
-
 ## 其他的一些资源
-- neovim build-in lsp 的最近愈发的完善，[这个项目](https://github.com/glepnir/lspsaga.nvim)为 build-in lps 提供更加美观的 UI.
 - [C/C++ 项目利用 include-what-you-use 来引入头文件](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
@@ -490,5 +487,8 @@ setxkbmap -option caps:swapescape
 #### 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed)
 2. [vim.wasm](https://github.com/rhysd/vim.wasm)
+
+#### GUI
+1. [neovide](https://github.com/Kethku/neovide)
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
