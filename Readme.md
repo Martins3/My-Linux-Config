@@ -238,9 +238,11 @@ nvim
 | `,` `o`     | 在当前文件中间搜索该符号 |
 | `,` `s`     | 整个工程中间搜索该符号   |
 
-![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-bee2431b58550b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+在 fork.c 中间搜索 clone 这个符号:
+![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-6c63b4c599ecd69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-21fbfc9ca21f62dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+在整个 Linux 工程中间搜索 clone 这个符号:
+![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### string search
 [vim-searchindex](https://github.com/google/vim-searchindex) 可以显示当前是第几个文本项:
