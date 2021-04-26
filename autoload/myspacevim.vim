@@ -116,6 +116,7 @@ endf
 func! myspacevim#after() abort
     " <F3> 打开文件树
     let g:vista_sidebar_position = "vertical topleft"
+    let g:vista_default_executive = 'coc'
     nnoremap  <F2>  :Vista!!<CR>
     nnoremap  <F4>  :call QuickRun()<CR>
     " <F5> floaterm toggle
