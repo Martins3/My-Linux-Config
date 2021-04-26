@@ -12,7 +12,8 @@
 - [安装](#安装)
 - [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
-    - [search](#search)
+    - [symbol search](#symbol-search)
+    - [string search](#string-search)
     - [file tree](#file-tree)
     - [window](#window)
     - [buffer](#buffer)
@@ -230,7 +231,18 @@ nvim
 
 这三个键位都是可以重新映射的。
 
-#### search
+#### symbol search
+利用 coc.nvim 可以方便实现符号搜索:
+| key binding | function                 |
+|-------------|--------------------------|
+| `,` `o`     | 在当前文件中间搜索该符号 |
+| `,` `s`     | 整个工程中间搜索该符号   |
+
+![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-bee2431b58550b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-21fbfc9ca21f62dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### string search
 [vim-searchindex](https://github.com/google/vim-searchindex) 可以显示当前是第几个文本项:
 ![显示拼配项](https://raw.githubusercontent.com/google/vim-searchindex/master/vim-searchindex.gif)
 
@@ -239,10 +251,11 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 | key binding     | function                                  |
 |-----------------|-------------------------------------------|
 | `Space` `s` `/` | 实时动态搜索(grep on the fly)             |
-| `Space` `s` `p` | 搜索整个工程                              |
-| `Space` `s` `b` | 搜索所有打开的 buffer                     |
-| `Space` `s` `P` | **对于光标所在字符**搜索整个工程          |
-| `Space` `s` `b` | **对于光标所在字符**搜索所有打开的 buffer |
+| `Space` `s` `p` | 在整个工程中搜索该字符串                              |
+| `Space` `s` `b` | 在所有打开 buffer 中搜索该字符串                    |
+| `Space` `s` `P` | 在整个工程中搜索**对于光标所在**字符串          |
+| `Space` `s` `b` | 在所有打开的 buffer 中搜索**对于光标所在** 字符串 |
+
 
 #### file tree
 参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
@@ -279,15 +292,6 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
 
 ![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-3. vista 和 LeaderF 都提供了函数搜索功能，被我映射为: `Space` `s` `f` 和 `Space` `s` `F` 
-```vim
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search simbols with Vista ', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search simbols with Vista', 1)
-```
-其实它们的功能不限于搜索函数，比如搜索 markdown 的标题
-![搜索markdown标题](https://upload-images.jianshu.io/upload_images/9176874-44f63af5e63d30d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 #### define reference
 这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
 
