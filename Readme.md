@@ -37,7 +37,6 @@
     - [主题](#主题)
     - [框架](#框架)
     - [衍生](#衍生)
-    - [GUI](#gui)
 
 <!-- vim-markdown-toc -->
 </details>
@@ -45,7 +44,7 @@
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
+**至少在我放弃使用tagbar，tagbar，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
 
@@ -179,9 +178,12 @@ nvim # 打开vim 将会自动安装所有的插件
 6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 ```
 sudo apt install xclip
+
 # archlinux 请使用 wl-clipboard 替代xclip
 # sudo pacman -S wl-clipboard
+
 sudo pip3 install neovim
+sudo apt install ctags # Markdown 的导航栏需要
 ```
 注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
 以及 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
@@ -241,7 +243,7 @@ nvim
 在 fork.c 中间搜索 clone 这个符号:
 ![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-6c63b4c599ecd69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-在整个 Linux 工程中间搜索 clone 这个符号:
+在整个 Linux 工程中间搜索 sysclone 这个符号:
 ![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### string search
@@ -478,11 +480,12 @@ setxkbmap -option caps:swapescape
 #### 学习
 1. [Vim China](https://github.com/vim-china)
 2. [vim galore](https://github.com/mhinz/vim-galore)
+3. [devhints](https://devhints.io/vimscript) : 另一个 vim checksheet
 
 #### 主题
 1. [dracula](https://draculatheme.com/vim/) 目前感觉最好看的主题之一
-2. [vimcolors](http://vimcolors.com/) vim主题网站
-3. [solarized](https://github.com/vim-scripts/Solarized) solarized
+2. [vimcolors](http://vimcolors.com/) vim 主题网站
+3. [solarized](https://github.com/vim-scripts/Solarized)
 
 #### 框架
 1. [exvim](https://exvim.github.io/)
@@ -491,10 +494,8 @@ setxkbmap -option caps:swapescape
 4. [NVCode](https://github.com/ChristianChiarulli/nvim) 基于 coc.nvim 的一个配置
 
 #### 衍生
-1. [vim cube](https://github.com/oakes/vim_cubed)
-2. [vim.wasm](https://github.com/rhysd/vim.wasm)
-
-#### GUI
-1. [neovide](https://github.com/Kethku/neovide)
+1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
+2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
+3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
