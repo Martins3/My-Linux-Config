@@ -138,7 +138,7 @@ func! myspacevim#after() abort
     augroup end
 
     " 和 sourcetrail 配合使用
-    nnoremap <leader>ag :SourcetrailStartServer<CR>
-    nnoremap <leader>as :SourcetrailRefresh<CR>
-    nnoremap <leader>aa :SourcetrailActivateToken<CR>
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
 endf
