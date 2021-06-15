@@ -22,13 +22,15 @@ func! myspacevim#before() abort
 
    
 
-    " let g:spacevim_snippet_engine = 'ultisnips'
+    let g:spacevim_snippet_engine = 'ultisnips'
+
     set list  " Show non-printable characters.
     if has('multi_byte') && &encoding ==# 'utf-8'
        let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
     else
        let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
     endif
+
     let g:table_mode_corner='|'
     let g:spacevim_sidebar_width = 40
     " 调节 window 大小
@@ -130,6 +132,8 @@ endf
 func! myspacevim#after() abort
     " <F3> 打开文件树
     let g:vista_sidebar_position = "vertical topleft"
+    let g:vista_default_executive = 'coc'
+    let g:vista_finder_alternative_executives = 'ctags'
     nnoremap  <F2>  :Vista!!<CR>
     nnoremap  <F4>  :call QuickRun()<CR>
     " <F5> floaterm toggle
@@ -150,7 +154,7 @@ func! myspacevim#after() abort
     augroup end
 
     " 和 sourcetrail 配合使用
-    nnoremap <leader>ag :SourcetrailStartServer<CR>
-    nnoremap <leader>as :SourcetrailRefresh<CR>
-    nnoremap <leader>aa :SourcetrailActivateToken<CR>
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
 endf

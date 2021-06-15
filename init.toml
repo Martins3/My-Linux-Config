@@ -49,7 +49,7 @@
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
 
-# 计算器 日历 书签等小工具
+# 计算器, 日历, 书签等小工具
 [[layers]]
   name = 'tools'
 
@@ -88,12 +88,20 @@
   name = 'neoclide/coc.nvim'
   merge = 0
 
-# 主要用于快速搜索文件和 buffer
+# 优化 coc 的搜索界面
+[[custom_plugins]]
+  name = 'antoinemadec/coc-fzf'
+  branch = 'release'
+
+[[custom_plugins]]
+    name = 'junegunn/fzf.vim'
+
+# 快速搜索文件和 buffer
 [[custom_plugins]]
     name = "Yggdroot/LeaderF"
     build = "./install.sh"
 
-# 快速编辑 markdown 表格
+# 快速编辑 markdown 的表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
@@ -101,14 +109,11 @@
 [[custom_plugins]]
     name = 'liuchengxu/vista.vim'
 
-[[custom_plugins]]
-    name = 'junegunn/fzf.vim'
-
 # 更加方便的调节窗口的大小
 [[custom_plugins]]
     name = 'simeji/winresizer'
 
-# 基于lsp的高亮插件
+# 为 c/cpp 提供基于 lsp 的高亮
 [[custom_plugins]]
     name = 'jackguo380/vim-lsp-cxx-highlight'
 
@@ -130,13 +135,12 @@
 [[custom_plugins]]
     name = 'google/vim-searchindex.git'
 
-[[custom_plugins]]
-    name = 'psliwka/vim-smoothie'
+# ----------------- 尝试的内容 -------------------------------------------------
 
+# debug 框架，尚未完全集成到本配置中
+[[custom_plugins]]
+  name = 'puremourning/vimspector'
+
+# 配合 sourcetrail 配合使用
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
-
-[[custom_plugins]]
-  name = 'antoinemadec/coc-fzf'
-  branch = 'release'
-

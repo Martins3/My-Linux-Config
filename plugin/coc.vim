@@ -30,7 +30,7 @@ call coc#config("languageserver", {
       \  "filetypes": ["c", "cpp"],
       \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
       \  "index": {
-      \     "threads": 8
+      \     "threads": 0
       \  },
       \  "initializationOptions": {
       \     "cache": {
@@ -75,6 +75,7 @@ let s:coc_extensions = [
       \ 'coc-sh',
       \ 'coc-git',
       \ 'coc-diagnostic',
+      \ 'coc-lua'
 			\]
 
 for extension in s:coc_extensions
@@ -95,7 +96,6 @@ endfunction
 " 方便在中文中间使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
-
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -139,15 +139,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>x  <Plug>(coc-codeaction-selected)
-nmap <leader>x  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>lc  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Use `:Format` for format current buffer
 " command! -nargs=0 Format :call CocAction('format')
 call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
@@ -175,7 +166,7 @@ nnoremap <silent><nowait> <leader>b  :<C-u>Leaderf buffer<CR>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>CocFzfList commands<cr>
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>d :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
 " Show files
@@ -190,6 +181,15 @@ nnoremap <silent><nowait> <leader>l  :<C-u>CocListResume<CR>
 nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>x  <Plug>(coc-codeaction-selected)
+nmap <leader>x  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>lc  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " 下面是 ccls 提供的 LSP Extension
 " https://github.com/MaskRay/ccls/wiki/coc.nvim

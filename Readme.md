@@ -12,7 +12,8 @@
 - [安装](#安装)
 - [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
-    - [search](#search)
+    - [symbol search](#symbol-search)
+    - [string search](#string-search)
     - [file tree](#file-tree)
     - [window](#window)
     - [buffer](#buffer)
@@ -31,7 +32,6 @@
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [vim 的小技巧](#vim-的小技巧)
-- [TODO](#todo)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -44,7 +44,7 @@
 ## 前言
 有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，ctags，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
+**至少在我放弃使用tagbar，tagbar，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
 
 我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
 
@@ -178,9 +178,12 @@ nvim # 打开vim 将会自动安装所有的插件
 6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 ```
 sudo apt install xclip
+
 # archlinux 请使用 wl-clipboard 替代xclip
 # sudo pacman -S wl-clipboard
+
 sudo pip3 install neovim
+sudo apt install ctags # Markdown 的导航栏需要
 ```
 注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
 以及 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
@@ -230,7 +233,20 @@ nvim
 
 这三个键位都是可以重新映射的。
 
-#### search
+#### symbol search
+利用 coc.nvim 可以方便实现符号搜索:
+| key binding | function                 |
+|-------------|--------------------------|
+| `,` `o`     | 在当前文件中间搜索该符号 |
+| `,` `s`     | 整个工程中间搜索该符号   |
+
+在 fork.c 中间搜索 clone 这个符号:
+![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-6c63b4c599ecd69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+在整个 Linux 工程中间搜索 sysclone 这个符号:
+![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### string search
 [vim-searchindex](https://github.com/google/vim-searchindex) 可以显示当前是第几个文本项:
 ![显示拼配项](https://raw.githubusercontent.com/google/vim-searchindex/master/vim-searchindex.gif)
 
@@ -239,10 +255,11 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 | key binding     | function                                  |
 |-----------------|-------------------------------------------|
 | `Space` `s` `/` | 实时动态搜索(grep on the fly)             |
-| `Space` `s` `p` | 搜索整个工程                              |
-| `Space` `s` `b` | 搜索所有打开的 buffer                     |
-| `Space` `s` `P` | **对于光标所在字符**搜索整个工程          |
-| `Space` `s` `b` | **对于光标所在字符**搜索所有打开的 buffer |
+| `Space` `s` `p` | 在整个工程中搜索该字符串                              |
+| `Space` `s` `b` | 在所有打开 buffer 中搜索该字符串                    |
+| `Space` `s` `P` | 在整个工程中搜索**对于光标所在**字符串          |
+| `Space` `s` `b` | 在所有打开的 buffer 中搜索**对于光标所在** 字符串 |
+
 
 #### file tree
 参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
@@ -279,15 +296,6 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
 
 ![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-3. vista 和 LeaderF 都提供了函数搜索功能，被我映射为: `Space` `s` `f` 和 `Space` `s` `F` 
-```vim
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'Vista finder', 'search simbols with Vista ', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['s', 'F'], 'LeaderfFunction!', 'search simbols with Vista', 1)
-```
-其实它们的功能不限于搜索函数，比如搜索 markdown 的标题
-![搜索markdown标题](https://upload-images.jianshu.io/upload_images/9176874-44f63af5e63d30d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 #### define reference
 这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
 
@@ -358,7 +366,7 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
 
 #### debug
-关于vim如何集成gdb，现在存在非常多的插件，我没有仔细研究。我个人平时使用下面两个项目辅助 gdb 的使用:
+关于 vim 如何集成gdb。我个人平时使用下面两个项目辅助 gdb 的使用:
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
 
@@ -367,15 +375,11 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 #### terminal
 利用 `voidkiss/folaterm` 可以实现将终端以float window的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
-- `Ctrl` `h` : 切换到 `prev` 的 terminal window
-- `Ctrl` `l` : 切换到 `next` 的 terminal window
+- `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Fn5` : 显示/隐藏窗口
 
 下面是在打开悬浮终端，并且运行 htop 的结果:
 ![floaterm](https://upload-images.jianshu.io/upload_images/9176874-32e6bbbc08cb4b8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-
 ## 扩展
 需要说明的是，本配置并不局限于C/C++，只是相对其他语言，我比较熟悉C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
 
@@ -430,13 +434,16 @@ s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://
 通过coc.nvim，nvim 可以将自己伪装成为 vscode，coc-python 本身也是 vscode 的插件。如此，vscode 的处理 python 的技术被吸收到 vim 中间来，但是 vim 更加简洁，高效。
 
 ## [本配置](https://github.com/Martins3/My-Linux-config)源代码解释
-SpaceVim 的文档往往是过时的或者是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
+总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
 1. init.toml : 最基本的配置，在此处可以自己添加新的插件
 2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
+5. UltiSnips/ : 大多数是从 https://github.com/honza/vim-snippets 中间粘贴过来的。
+
+SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 一些快捷键的说明:
 1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
@@ -468,22 +475,18 @@ Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
 setxkbmap -option caps:swapescape
 ```
 
-## TODO
-1. 集成[lint-md](https://github.com/lint-md)
-2. 完成 vim 相关的安装脚本(暂时处于收集执行脚本的状态，暂时没有时间，预计春节的时候动手整合，暂时安装有问题欢迎 issue)
-
 ## 其他的一些资源
-- neovim build-in lsp 的最近愈发的完善，[这个项目](https://github.com/glepnir/lspsaga.nvim)为 build-in lps 提供更加美观的 UI.
 - [C/C++ 项目利用 include-what-you-use 来引入头文件](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
 1. [Vim China](https://github.com/vim-china)
 2. [vim galore](https://github.com/mhinz/vim-galore)
+3. [devhints](https://devhints.io/vimscript) : 另一个 vim checksheet
 
 #### 主题
 1. [dracula](https://draculatheme.com/vim/) 目前感觉最好看的主题之一
-2. [vimcolors](http://vimcolors.com/) vim主题网站
-3. [solarized](https://github.com/vim-scripts/Solarized) solarized
+2. [vimcolors](http://vimcolors.com/) vim 主题网站
+3. [solarized](https://github.com/vim-scripts/Solarized)
 
 #### 框架
 1. [exvim](https://exvim.github.io/)
@@ -492,7 +495,8 @@ setxkbmap -option caps:swapescape
 4. [NVCode](https://github.com/ChristianChiarulli/nvim) 基于 coc.nvim 的一个配置
 
 #### 衍生
-1. [vim cube](https://github.com/oakes/vim_cubed)
-2. [vim.wasm](https://github.com/rhysd/vim.wasm)
+1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
+2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
+3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**

@@ -246,3 +246,15 @@ for (int ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${VISUAL}$0
 }
 endsnippet
+
+snippet lpr "linux kernel debug"
+pr_info("huxueshi:%s ${0}\n", __FUNCTION__);
+endsnippet
+
+snippet qpr "qemu debug"
+printf("huxueshi:%s ${0}\n", __FUNCTION__);
+endsnippet
+
+snippet seapr "seabios debug"
+dprintf(1, "huxueshi:%s ${0}\n", __FUNCTION__);
+endsnippet
