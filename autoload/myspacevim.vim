@@ -14,11 +14,23 @@ func! myspacevim#before() abort
 
     " 让 leaderf 可以搜索 git 的 submodule，否则 submodule 的文件会被自动忽略
     let g:Lf_RecurseSubmodules = 1
+    set autoindent             " Indent according to previous line.
+    set expandtab              " Use spaces instead of tabs.
+    set softtabstop =4         " Tab key indents by 4 spaces.
+    set shiftwidth  =4         " >> indents by 4 spaces.
+    set shiftround             " >> indents to next multiple of 'shiftwidth'.
+
+   
 
     " let g:spacevim_snippet_engine = 'ultisnips'
-
+    set list  " Show non-printable characters.
+    if has('multi_byte') && &encoding ==# 'utf-8'
+       let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+    else
+       let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+    endif
     let g:table_mode_corner='|'
-
+    let g:spacevim_sidebar_width = 40
     " 调节 window 大小
     let g:winresizer_start_key = '<space>wa'
     " If you cancel and quit window resize mode by `q` (keycode 113)
