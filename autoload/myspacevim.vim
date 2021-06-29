@@ -47,6 +47,11 @@ func! myspacevim#before() abort
     call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 
+    " 和 sourcetrail 配合使用
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
+    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
+
     " 设置默认的pdf阅览工具
     let g:vimtex_view_method = 'zathura'
     let g:vimtex_syntax_conceal_default = 0
@@ -136,9 +141,4 @@ func! myspacevim#after() abort
       autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
       autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
     augroup end
-
-    " 和 sourcetrail 配合使用
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
 endf
