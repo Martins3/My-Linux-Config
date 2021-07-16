@@ -142,6 +142,4 @@ func! myspacevim#after() abort
       autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
     augroup end
 
-    " 使用 Ctrl y 来替代 Backspace, 减少手腕的转动
-    inoremap  <C-y> <BS>
 endf
