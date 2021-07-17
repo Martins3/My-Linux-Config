@@ -6,9 +6,10 @@
 <!-- vim-markdown-toc GitLab -->
 
 - [前言](#前言)
+- [背景](#背景)
 - [效果](#效果)
-- [如何入门](#如何入门)
-- [欢迎来到 Language Server Protocal 和 async 的时代](#欢迎来到-language-server-protocal-和-async-的时代)
+- [如何入门 vim](#如何入门-vim)
+- [欢迎来到 lsp 和 async 的时代](#欢迎来到-lsp-和-async-的时代)
 - [安装](#安装)
 - [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
@@ -37,24 +38,36 @@
     - [主题](#主题)
     - [框架](#框架)
     - [衍生](#衍生)
+- [ref](#ref)
 
 <!-- vim-markdown-toc -->
 </details>
 
 ## 前言
-有问题欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
+首先，任何问题,  欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
-**至少在我放弃使用tagbar，tagbar，nerdtree，YouCompleteMe的时候**，这些工具各有各的或大或小的问题，这些问题集中体现在性能和精度，而这两个问题被 async 和 lsp 完美的解决了。
+本文的目标观众:
+1. vim 新手
+2. 正在使用 cscope[^1] / ctags / gtags / nerdtree / YouCompleteMe 的 vimer
+3. 不了解 Language Server Protocal[^5] (一下简称 lsp ) 和 async 的 vimer
 
-我平时主要C/C++，处理的工程小的有 : 刷Leetcode(几十行)，中型的有 : ucore 试验(上万行)，linux kernel(千万行)，用目前的配置都是丝般顺滑。当然，得益于coc.nvim的强大，本配置也可以较好的处理Python，Java，Rust等语言。
+我想说的是，请不要静态看 vim ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
 
-本文面向vim初学者，让大家快速上手并且将vim投入到自己实际使用上，所以使用[SpaceVim](http://spacevim.org/) + [coc.nim](https://github.com/neoclide/coc.nvim)作为基础，至于如何一步步从零的搭建自己的vim配置，对于新手很难，当然我也不会。SpaceVim的默认提供各种基础设施的解决方案，比如status line，搜索，markdown预览高亮，其也虽然提供了 [C/C++ 的配置](https://spacevim.org/layers/lang/c/)，但是我个人觉得并不好用，而coc.nvim吸收了VSCode的优点，两者融合之后，体验丝般顺滑。
+## 背景 
+我平时主要写 C/C++, 在处理几个文件的小项目时候，比如刷刷 leetcode, 但是等到处理 Linux 内核这种超大型的项目的时候，
+我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
+整个 vim 都会变卡。
 
-以下部分内容有凭借印象写下的，如有不对，欢迎指正。如果觉得哪里不清楚的，欢迎讨论。
+曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
+最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
+
+我在想，
+
 ## 效果
 ![总体效果](https://upload-images.jianshu.io/upload_images/9176874-e3b90299db81d2bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 如何入门
+<video src="~/Videos/Peek 2021-07-17 14-20.mp4" width="320" height="200" controls preload></video>
+## 如何入门 vim
 其实关于vim的基本知识教程有很多，这里我推荐两个网站
 1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习vim
 2. [Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
@@ -69,8 +82,7 @@ vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆
 ![冲突读写](https://upload-images.jianshu.io/upload_images/9176874-796e49d5f2c60489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2. `,` `y` 和 `,` `p` 实现复制粘贴。
 
-## 欢迎来到 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) 和 async 的时代
-> 跳过本小节并不影响使用本配置，此处只是为了说明Language Server Protocal(下面简称lsp) 和 async 的好处。
+## 欢迎来到 lsp 和 async 的时代
 
 在2019.7.24，linux 内核的.gitignore增加了对于lsp的支持，是时候跟上潮流了。
 ![内核的gitignore](https://upload-images.jianshu.io/upload_images/9176874-8d57913135875846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -99,8 +111,6 @@ lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page
 
 当使用上了lsp之后，之前写C/C++P必备的[YCM](https://github.com/ycm-core/YouCompleteMe)(用于自动补全，静态检查等)和[ctags](https://github.com/universal-ctags/ctags)(用于符号跳转)终于可以离开了。YCM对于小的项目还是工作的不错的，但是大型项目显得笨重，毕竟 YCM 不仅支持 C 语言，支持 Java, Rust, Go 等等，而且其不会生成索引，也就是每次打开大型项目都可以听见电脑疯转一会儿。此外，YCM 的安装总是需要手动安装。ctags 似乎不是基于语义的索引，而是基于字符串匹配实现，所以会出现误判，比如两个文件中间都定义了 static 的同名函数，ctags 往往会将两者都找出来。ctags 是无法查找函数的引用的，只能查找定义。当我知道 ctags 可以同时支持几十种语言的时候，ctags 存在这些问题，我就再也不感到奇怪了。gtags 解决了 ctags 查找引用的问题，其同样支持大量的语言，但是跳转精度，索引自动生成等根本问题没有被解决。与之相对的是，一个lsp一般只支持其对应的一门语言。
 
-到此，曾经为了在 vim 中间书写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，自动更新索引数据库的插件，YCM 实现静态检查，最最让人崩溃的是，那一天你忽然想使用vim写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。你还会发现 ctags 
-存在好几个版本，安装不对，对应的插件也没有办法正常工作。
 
 利用 coc.nvim 可以获取极佳的 lsp 体验 ，因为 lsp 是微软开发 vscode 提出的，coc.nvim 的宗旨就是*full language server protocol support as VSCode*。
 
@@ -500,3 +510,9 @@ setxkbmap -option caps:swapescape
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
+## ref
+[^1]: [cscope](http://cscope.sourceforge.net/)
+[^2]: [SpaceVim](http://spacevim.org/)
+[^3]: [coc.nim](https://github.com/neoclide/coc.nvim)
+[^4]: [Vim 8 中 C/C++ 符号索引：GTags 篇](https://zhuanlan.zhihu.com/p/36279445)
+[^5]: [Language Server Protocal](https://microsoft.github.io/language-server-protocol/)
