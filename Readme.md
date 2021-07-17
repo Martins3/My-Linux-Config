@@ -66,7 +66,7 @@
 ## 效果
 ![总体效果](https://upload-images.jianshu.io/upload_images/9176874-e3b90299db81d2bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-<video src="~/Videos/Peek 2021-07-17 14-20.mp4" width="320" height="200" controls preload></video>
+<video src="res/overview.mp4" width="320" height="200" controls preload></video>
 ## 如何入门 vim
 其实关于vim的基本知识教程有很多，这里我推荐两个网站
 1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习vim
