@@ -51,7 +51,7 @@
 2. 正在使用 cscope[^1] / ctags / gtags / nerdtree / YouCompleteMe 的 vimer
 3. 不了解 Language Server Protocal[^5] (一下简称 lsp ) 和 async 的 vimer
 
-我想说的是，请不要静态看 vim ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
+我想说的是，vim 正在飞速进步 ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
 
 ## 背景 
 我平时主要写 C/C++, 在处理几个文件的小项目时候，比如刷刷 leetcode, 但是等到处理 Linux 内核这种超大型的项目的时候，
@@ -67,6 +67,9 @@
 ![总体效果](https://upload-images.jianshu.io/upload_images/9176874-e3b90299db81d2bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <video src="res/overview.mp4" width="320" height="200" controls preload></video>
+
+![www](./res/overview.mp4)
+
 ## 如何入门 vim
 其实关于vim的基本知识教程有很多，这里我推荐两个网站
 1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习vim
