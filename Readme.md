@@ -3,11 +3,10 @@
 
 <details open="">
   <summary>目录</summary>
-<!-- vim-markdown-toc GitLab -->
+<https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/!-- vim-markdown-toc GitLab -->
 
 - [前言](#前言)
 - [背景](#背景)
-- [效果](#效果)
 - [如何入门 vim](#如何入门-vim)
 - [欢迎来到 lsp 和 async 的时代](#欢迎来到-lsp-和-async-的时代)
 - [安装](#安装)
@@ -43,6 +42,8 @@
 <!-- vim-markdown-toc -->
 </details>
 
+[![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
+
 ## 前言
 首先，任何问题,  欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
@@ -54,77 +55,79 @@
 我想说的是，vim 正在飞速进步 ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
 
 ## 背景 
-我平时主要写 C/C++, 在处理几个文件的小项目时候，比如刷刷 leetcode, 但是等到处理 Linux 内核这种超大型的项目的时候，
+我平时主要写 C/C++, 配置是参考 use_vim_as_ide[^9] 写的，
+在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
 我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
 整个 vim 都会变卡。
 
 曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
 最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
 
-我在想，
+## 关于如何入门 vim
+其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
+1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习 vim
+2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
 
-## 效果
-![总体效果](https://upload-images.jianshu.io/upload_images/9176874-e3b90299db81d2bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后
+使用 vim check sheet 是强化补充的，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的。
 
-<video src="res/overview.mp4" width="320" height="200" controls preload></video>
+vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
 
-![www](./res/overview.mp4)
+虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个仓库[^6]用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
 
-## 如何入门 vim
-其实关于vim的基本知识教程有很多，这里我推荐两个网站
-1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习vim
-2. [Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
-
-如果完全没有基础，建议使用第一个打牢基础之后，然后就直接将vim用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。 第二个是强化补充的，建议一次学习三两个，不要指望一次全部背下来，不然很痛苦。
-
-vim 的学习曲线陡峭主要就是在最开始的hjkl这些快捷键的记忆，但是坚持最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
-
-虽然我使用了很长时间的vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于vim如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)，用于收集各种退出的方法。stackoverflow 的[报告](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)说，其帮助了一百万人次如何退出vim。
-1. 我使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件。
-    - 至于为什么存在这个 `.swp` 文件以及如何关闭这个选项，可以参考[这里](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
-![冲突读写](https://upload-images.jianshu.io/upload_images/9176874-796e49d5f2c60489.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+1. 退出: 我使用 `:xa` 退出vim。 `x` 表示保存并且关闭buffer，`a`表示运用于所有的。有时候出现意外关闭vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件。
+    - 至于为什么存在这个 `.swp` 文件以及如何关闭这个选项，可以参考这里。
 2. `,` `y` 和 `,` `p` 实现复制粘贴。
 
-## 欢迎来到 lsp 和 async 的时代
+## 终极解决方案: lsp
+lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
+1. 不同的语言需要不同的 Language Server，比如C/C++ 需要 ccls[^12], Rust 语言采用 rust-analyzer[^15], 官方列举了很多 Language server[^13]。
+2. 不同的编辑按照 lsp 的规范和 language server 通信
+
+他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
+
+```
+ +------------------------+    +-----------------------+
+ |                        |    |                       |
+ |      Editor            | <--+   Language Server     |
+ |                        |    |                       |
+ +------------------------+    +-----------------------+
+ |     Atom               |    |                       |
+ |     Emacs              +--> |   ccls                |
+ |     Vim/Neovim         |    |                       |
+ |     Visual Studio Code |    |                       |
+ |     Monaco Editor      |    |                       |
+ +------------------------+    +-----------------------+
+```
 
 在2019.7.24，linux 内核的.gitignore增加了对于lsp的支持，是时候跟上潮流了。
 ![内核的gitignore](https://upload-images.jianshu.io/upload_images/9176874-8d57913135875846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-lsp 定义了一套标准编辑器和 language server 之间的规范。不同的语言需要不同的Language Server，比如C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust语言采用[rls](https://github.com/rust-lang/rls)，Language server 的清单在[这里](https://microsoft.github.io/language-server-protocol/implementors/servers/)。在lsp的另一端，也就是编辑器这一端，也需要对应的实现，其列表在[这里](https://microsoft.github.io/language-server-protocol/implementors/tools/)。也就是说，由于lsp的存在，一门语言的language server可以用于所有的支持lsp的编辑器上，大大的减少了重复开发。其架构图大概是下面的这个感觉，其中需要说明一下 vim 现在逐步将 lsp 内置到编辑器中间，所以 Editor Plugin 的那一层估计用不了多久就会消失吧!
-```
- +------------------------+    +---------------------------+    +-----------------------+
- |                        |    |                           |    |                       |
- |     Atom               |    |   coc.nvim                |    |                       |
- |     Emacs              +--> |   LanguageClient-neovim   +--> |   clangd/ccls/cquery  |
- |     Vim/Neovim         |    |   vim-lsp                 |    |                       |
- |     Visual Studio Code |    |                           |    |                       |
- |     Monaco Editor      |    |                           |    |                       |
- +------------------------+    +---------------------------+    +-----------------------+
- |                        |    |                           |    |                       |
- |      Editor            | <--+  Editor Plugin            | <--+   Language Server     |
- |                        |    |                           |    |                       |
- |                        |    |                           |    |                       |
- +------------------------+    +---------------------------+    +-----------------------+
-```
-lsp让静态检查变得异常简单，当不小心删除掉一个`put_swap_page`这个函数字符之后，立刻得到如下的效果:
-![静态检查](https://upload-images.jianshu.io/upload_images/9176874-961f534527ce3236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+## 丝般顺滑的 async
+另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用async版本。
 
-基于lsp的高亮，函数，变量，宏，关键字都是有自己的颜色，但是基本的高亮就只有关键字显示有所不同。你可以对别上下两张图，上图是基于语义的高亮，类型 `swp_entry_t`, 宏 `xa_lock_irq`, 成员 `i_pages` 等都是使用特定的颜色，而下图中只要 `void` `struct` 显示了高亮。
-![不是基于语义的高亮](https://upload-images.jianshu.io/upload_images/9176874-02a2e65b22a29ff2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
+直到将 nerdtree 替换为大神 shougou 的 defx[^17]。
 
-当使用上了lsp之后，之前写C/C++P必备的[YCM](https://github.com/ycm-core/YouCompleteMe)(用于自动补全，静态检查等)和[ctags](https://github.com/universal-ctags/ctags)(用于符号跳转)终于可以离开了。YCM对于小的项目还是工作的不错的，但是大型项目显得笨重，毕竟 YCM 不仅支持 C 语言，支持 Java, Rust, Go 等等，而且其不会生成索引，也就是每次打开大型项目都可以听见电脑疯转一会儿。此外，YCM 的安装总是需要手动安装。ctags 似乎不是基于语义的索引，而是基于字符串匹配实现，所以会出现误判，比如两个文件中间都定义了 static 的同名函数，ctags 往往会将两者都找出来。ctags 是无法查找函数的引用的，只能查找定义。当我知道 ctags 可以同时支持几十种语言的时候，ctags 存在这些问题，我就再也不感到奇怪了。gtags 解决了 ctags 查找引用的问题，其同样支持大量的语言，但是跳转精度，索引自动生成等根本问题没有被解决。与之相对的是，一个lsp一般只支持其对应的一门语言。
+关于 nerdtree 为什么不支持 async 可以参考这个 issue[^18]。
 
+## 为什么使用 SpaceVim
+VSCode 我也使用过一段时间，我觉得 VSCode 之所以学习曲线非常的平缓主要有两个原因，
+1. 其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。
+2. 官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。
 
-利用 coc.nvim 可以获取极佳的 lsp 体验 ，因为 lsp 是微软开发 vscode 提出的，coc.nvim 的宗旨就是*full language server protocol support as VSCode*。
+目前，SpaceVim 比较好的解决了这些问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用。当然你还是需要知道 vim 的基础知识和简要的阅读 Spacevim 的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了。
+Spacevim 还有一个很强的地方在于，配置是作为一个插件存在的，可以不断升级，而 LunarVim[^19] 这种配置，fork 到自己的分支，修改，想要升级就要 merge 主线上的冲突。
 
-另一个新特性是 **async** (异步机制)。async 的特定就是快，当一个插件存在其async的版本，那么毫无疑问，使用async版本。[nerdtree](https://github.com/preservim/nerdtree) 使用vim的人应该是无人不知，无人不晓吧，我之前一直都是使用这一个插件的，直到有一天我用vim打开linux kernel，并且打开nerdtree之后，光标移动都非常的困难，我开始以为是终端的性能问题，后来以为是lsp的问题，直到将nerdtree替换为[大神shougou的defx](https://github.com/Shougo/defx.nvim)。我想，如果没有 SpaceVim，我永远都不要找到 defx 这一个插件。
+## 为什么使用 coc.nvim
+最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 coc.nvim 这种插件， 类似的工具官方列举了很多[^14], 
+coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 
-VSCode 我也使用过一段时间，我觉得VSCode 之所以学习曲线非常的平缓主要有两个原因，一是其提供标准配置给新手就可以直接使用了，但是vim没有一个较好的配置，几乎没有办法使用。二是，官方提供了统一的插件市场，好的插件自动排序，再也不需要像vim这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。目前，SpaceVim 比较好的解决了这个问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用(当然你需要知道vim的基础知识和简要的阅读Spacevim的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了)。
+不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧
 
-如果一个项目好几年都没有更新过，比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)，那么基本没有阅读的价值了，因为vim社区日新月异，不进则退。
 ## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
-1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server. 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
+1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server 。 实现代理的方法在 github 上有很多教程，也可以参考我的 blog[^20]
 2. 软件版本 : 在 Ubuntu 16.04 上安装简直是一个噩梦，很多软件需要手动编译，不过在 Ubuntu 20.04 上问题不大，下面以 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
 
 本配置的架构如下图所示。
@@ -512,10 +515,26 @@ setxkbmap -option caps:swapescape
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
-**转发 CSDN 按侵权追究法律责任，其它情况随意。**
 ## ref
 [^1]: [cscope](http://cscope.sourceforge.net/)
 [^2]: [SpaceVim](http://spacevim.org/)
 [^3]: [coc.nim](https://github.com/neoclide/coc.nvim)
 [^4]: [Vim 8 中 C/C++ 符号索引：GTags 篇](https://zhuanlan.zhihu.com/p/36279445)
 [^5]: [Language Server Protocal](https://microsoft.github.io/language-server-protocol/)
+[^6]: [github: how to exit vim](https://github.com/hakluke/how-to-exit-vim)
+[^7]: https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/
+[^8]: https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files
+[^9]: https://github.com/yangyangwithgnu/use_vim_as_ide
+[^10]: [YCM](https://github.com/ycm-core/YouCompleteMe)
+[^11]: [ctags](https://github.com/universal-ctags/ctags)
+[^12]: [ccls](https://github.com/MaskRay/ccls)
+[^13]: [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)
+[^14]: [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/)。
+[^15]: https://github.com/rust-analyzer/rust-analyzer
+[^16]: [nerdtree](https://github.com/preservim/nerdtree)
+[^17]: [defx](https://github.com/Shougo/defx.nvim)
+[^18]: https://github.com/preservim/nerdtree/issues/1170
+[^19]: https://github.com/ChristianChiarulli/LunarVim
+[^20]: [corss the GFW](https://martins3.github.io/gfw.html)
+
+**转发 CSDN 按侵权追究法律责任，其它情况随意。**
