@@ -1,8 +1,5 @@
 # 2020年vim的C/C++配置
 
-<details open="">
-  <summary>目录</summary>
-<!-- vim-markdown-toc GitLab -->
 
 - [前言](#前言)
 - [背景](#背景)
@@ -41,8 +38,6 @@
     - [衍生](#衍生)
 - [ref](#ref)
 
-<!-- vim-markdown-toc -->
-</details>
 
 [![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
 
