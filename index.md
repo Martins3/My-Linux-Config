@@ -1,4 +1,4 @@
-# 2020年vim的C/C++配置
+# 2021 年 vim 的 C/C++ 配置
 
 
 - [前言](#前言)
@@ -118,9 +118,11 @@ Spacevim 还有一个很强的地方在于，配置是作为一个插件存在�
 
 ## 为什么使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 coc.nvim 这种插件， 类似的工具官方列举了很多[^14], 
-coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
+coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 
-不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧
+不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧。
+
+## [ ] 为什么应该使用 neovim 而不是 vim
 
 ## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
@@ -131,15 +133,15 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 到�
 ```
 +-----------------+
 |                 |
-|     my config   | 在 SpaceVim 的基础上整合coc.nvim，同时添加一些插件和配置
+|     my config   | 在 SpaceVim 的基础上整合 coc.nvim，同时添加一些插件和配置
 |                 |
 +-----------------+
 |                 |
-|     Coc.nvim    | 提供 lsp 功能，提供类似 VSCode 的优雅体验，完美支持C/C++。
+|     coc.nvim    | 提供 lsp 功能，提供类似 VSCode 的优雅体验，完美支持C/C++。
 |                 | coc.nvim 同样可以添加插件，比如 coc-clang。
 +-----------------+
 |                 |
-|     SpaceVim    | 一个模块化，功能齐全的vim distribution。
+|     SpaceVim    | 一个模块化，功能齐全的 vim distribution。
 |                 |
 +-----------------+
 |                 |
