@@ -100,7 +100,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 在2019.7.24，linux 内核的.gitignore增加了对于lsp的支持，是时候跟上潮流了。
 ![内核的gitignore](https://upload-images.jianshu.io/upload_images/9176874-8d57913135875846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 丝般顺滑的 async
+## 丝般顺滑: async
 另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用async版本。
 
 文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
@@ -152,6 +152,7 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 到�
 整个环境的安装主要是 neovim SpaceVim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多Google，或者issue直接和我讨论。
 
 1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于neovim的更新速度更快，新特性支持更好。安装完成之后检查版本，最好大于v0.4.0.
+
 ```
 ➜  Vn git:(master) ✗ sudo apt install neovim
 ➜  Vn git:(master) ✗ nvim --version
@@ -169,28 +170,36 @@ See ":help feature-compile"
 
 Run :checkhealth for more info
 ```
+
 2. 第二步， 按照Spacevim 安装的[官方文档](https://spacevim.org/cn/quick-start-guide/)安装SpaceVim。
 3. **保证yarn/npm使用国内镜像，部分插件需要使用yarn/npm安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 安装完成之后检查:
+
 ```
 ➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
 https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
+
 4. 安装 ccls。也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
+
 ```
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ➜  Vn git:(master) ✗ ccls -version
 ccls version 0.20190823.6-1~ubuntu1.20.04.1
 clang version 10.0.0-4ubuntu1
 ```
+
 5. 复制本配置
+
 ```sh
 cd ~ # 保证在根目录
 rm -r .SpaceVim.d # 将原来的配置删除
 git clone https://github.com/martins3/My-Linux-config .SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 ```
+
 6. 在nvim中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的clipboard和vim的clipboard之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
+
 ```
 sudo apt install xclip
 
@@ -200,6 +209,7 @@ sudo apt install xclip
 sudo pip3 install neovim
 sudo apt install ctags # Markdown 的导航栏需要
 ```
+
 注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
 以及 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
 
@@ -209,6 +219,7 @@ sudo apt install ctags # Markdown 的导航栏需要
 
 
 7. 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
+
 ```
 sudo apt install bear
 ```
@@ -217,12 +228,15 @@ sudo apt install bear
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 2. cmake [生成 compile_commands.json 的方法](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json)
 3. [ninja](https://ninja-build.org/manual.html)
+
 ```
 ninja -t compdb > compile_commands.json
 ```
+
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 ## 以 Linux 内核为例
+
 ```
 git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
 cd linux
@@ -235,6 +249,7 @@ scripts/clang-tools/gen_compile_commands.py
 # 第一次打开的时候，ccls 会生成索引文件，此时风扇飞转属于正常现象，之后不会出现这种问题
 nvim 
 ```
+
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
 
 ## 基本操作
@@ -448,7 +463,7 @@ call coc#config("python.jediEnabled", v:false)
 s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://github.com/neoclide/coc-python)和[language server](https://github.com/microsoft/python-language-server)。
 通过coc.nvim，nvim 可以将自己伪装成为 vscode，coc-python 本身也是 vscode 的插件。如此，vscode 的处理 python 的技术被吸收到 vim 中间来，但是 vim 更加简洁，高效。
 
-## [本配置](https://github.com/Martins3/My-Linux-config)源代码解释
+## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
@@ -463,6 +478,10 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 一些快捷键的说明:
 1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust等，我个人用于刷题的时候使用。
 2. `<Space>`  `l`  `p` 预览markdown
+
+## FAQ
+- 为什么不使用 IDE，比如 CLion ?
+    - 
 
 ## vim 的小技巧
 1. 翻滚屏幕
