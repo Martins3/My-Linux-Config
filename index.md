@@ -1,35 +1,38 @@
 # 2021 年 vim 的 C/C++ 配置
 
+<!-- vim-markdown-toc GitLab -->
 
 - [前言](#前言)
 - [背景](#背景)
 - [关于如何入门 vim](#关于如何入门-vim)
 - [终极解决方案: lsp](#终极解决方案-lsp)
-- [丝般顺滑的 async](#丝般顺滑的-async)
+- [丝般顺滑: async](#丝般顺滑-async)
 - [为什么使用 SpaceVim](#为什么使用-spacevim)
 - [为什么使用 coc.nvim](#为什么使用-cocnvim)
+- [[ ] 为什么应该使用 neovim 而不是 vim](#-为什么应该使用-neovim-而不是-vim)
 - [安装](#安装)
 - [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
-    - [symbol search](#symbol-search)
-    - [string search](#string-search)
-    - [file tree](#file-tree)
-    - [window](#window)
-    - [buffer](#buffer)
-    - [navigate](#navigate)
-    - [define reference](#define-reference)
-    - [comment](#comment)
-    - [documentation](#documentation)
-    - [snippet](#snippet)
-    - [git](#git)
-    - [format](#format)
+    - [符号搜索](#符号搜索)
+    - [导航](#导航)
+    - [定义和引用](#定义和引用)
+    - [注释](#注释)
+    - [格式化](#格式化)
     - [rename](#rename)
+    - [字符串搜索](#字符串搜索)
+    - [文件树](#文件树)
+    - [窗口](#窗口)
+    - [缓冲区](#缓冲区)
+    - [文档](#文档)
+    - [代码段](#代码段)
+    - [git 集成](#git-集成)
     - [debug](#debug)
-    - [terminal](#terminal)
+    - [终端](#终端)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
     - [基于coc.nvim的扩展 以Python为例](#基于cocnvim的扩展-以python为例)
 - [本配置源代码解释](#本配置源代码解释)
+- [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
@@ -37,6 +40,8 @@
     - [框架](#框架)
     - [衍生](#衍生)
 - [ref](#ref)
+
+<!-- vim-markdown-toc -->
 
 
 [![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
@@ -263,8 +268,8 @@ nvim
 
 这三个键位都是可以重新映射的。
 
-#### symbol search
-利用 coc.nvim 可以方便实现符号搜索:
+#### 符号搜索
+利用 coc.nvim 可以方便实现符号搜索, 比如函数定义，全局变量以及 macro 等。
 
 | key binding | function                 |
 |-------------|--------------------------|
@@ -277,35 +282,66 @@ nvim
 在整个 Linux 工程中间搜索 sysclone 这个符号:
 ![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### string search
+#### 导航
+1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
+![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
+
+![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 定义和引用
+这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
+
+1. `g` `d` : 跳转到定义
+2. `g` `r` : 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择:
+![查找引用](https://upload-images.jianshu.io/upload_images/9176874-47415692f924d0c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 注释
+在需要查询的函数或者变量上 : `K`，注释将会显示在悬浮窗口上。
+
+![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 格式化
+`Space`  `r`  `f` 格式化当前文件，支持C/C++ , Rust 和 Python 等。
+
+可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
+1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
+2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
+
+#### rename
+有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
+
+#### 字符串搜索
 [vim-searchindex](https://github.com/google/vim-searchindex) 可以显示当前是第几个文本项:
 ![显示拼配项](https://raw.githubusercontent.com/google/vim-searchindex/master/vim-searchindex.gif)
 
 spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-on-the-fly-in-spacevim/), 比较常用的是:
 
-| key binding     | function                                  |
-|-----------------|-------------------------------------------|
-| `Space` `s` `/` | 实时动态搜索(grep on the fly)             |
-| `Space` `s` `p` | 在整个工程中搜索该字符串                              |
-| `Space` `s` `b` | 在所有打开 buffer 中搜索该字符串                    |
-| `Space` `s` `P` | 在整个工程中搜索**对于光标所在**字符串          |
+| key binding     | function                                          |
+|-----------------|---------------------------------------------------|
+| `Space` `s` `/` | 实时动态搜索(grep on the fly)                     |
+| `Space` `s` `p` | 在整个工程中搜索该字符串                          |
+| `Space` `s` `b` | 在所有打开 buffer 中搜索该字符串                  |
+| `Space` `s` `P` | 在整个工程中搜索**对于光标所在**字符串            |
 | `Space` `s` `b` | 在所有打开的 buffer 中搜索**对于光标所在** 字符串 |
 
 
-#### file tree
+#### 文件树
 参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
 
 | key binding     | function                                          |
 |-----------------|---------------------------------------------------|
-| `Space` `f` `o` | 将当前的文件显示在filetree中间              |
+| `Space` `f` `o` | 将当前的文件显示在filetree中间                    |
 | `r`             | 相当于shell中间的mv命令，实现文件的重命名或者移动 |
 | `d`             | 删除                                              |
 | `j`             | 向下移动                                          |
 | `k`             | 向上移动                                          |
+| `N`             | 创建文件/文件夹                                   |
 
 更多详细使用，可以直接阅读SpaceVim的源代码，位置在 : `~/.SpaceVim/config/plugins/defx.vim`
 
-#### window
+#### 窗口
 因为 window leader 键位被我重新映射为 `c`，如果 window leader 是被映射其他键位，比如 `x`, 那么水平拆分为 `x` `g`
 ```vim
     " 重新映射 window leader 键位
@@ -321,7 +357,7 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 | `<Space>` `w` `m` | 当前窗口最大化 |
 
 
-#### buffer
+#### 缓冲区
 
 | key binding       | function                                                                  |
 |-------------------|---------------------------------------------------------------------------|
@@ -329,26 +365,7 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 | `,` num           | 切换当前窗口到第 num 个 buffer                                            |
 | `<Space>` `b` `c` | 关闭其他已经保存的 buffer                                                 |
 
-#### navigate
-1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
-![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于tagbar) ，打开关闭的快捷键 `<F2>`。
-
-![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-#### define reference
-这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
-
-1. `g` `d` : 跳转到定义
-2. `g` `r` : 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择:
-![查找引用](https://upload-images.jianshu.io/upload_images/9176874-47415692f924d0c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-#### comment
-在需要查询的函数或者变量上 : `K`，注释将会显示在悬浮窗口上。
-
-![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-#### documentation
+#### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
 ```
 pip install cppman
@@ -359,7 +376,7 @@ cppman -c
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
-#### snippet
+#### 代码段
 基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷OJ的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
@@ -384,7 +401,7 @@ endsnippet
 一般的自动补全coc.nvim 无需另外的配置，效果如下。
 ![自动补全](https://upload-images.jianshu.io/upload_images/9176874-daac0f5b05792dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### git
+#### git 集成
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
 
 在此基础上，我添加两个小功能:
@@ -395,15 +412,6 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
 
-#### format
-`Space`  `r`  `f` 格式化当前文件，支持C/C++ , Rust 和 Python 等。
-
-可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
-1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
-2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
-
-#### rename
-有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
 
 #### debug
 关于 vim 如何集成gdb。我个人平时使用下面两个项目辅助 gdb 的使用:
@@ -412,7 +420,7 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 
 更多的参考 : https://scattered-thoughts.net/writing/the-state-of-linux-debuggers/
 
-#### terminal
+#### 终端
 利用 `voidkiss/folaterm` 可以实现将终端以float window的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
