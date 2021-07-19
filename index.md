@@ -265,6 +265,7 @@ nvim
 
 #### symbol search
 利用 coc.nvim 可以方便实现符号搜索:
+
 | key binding | function                 |
 |-------------|--------------------------|
 | `,` `o`     | 在当前文件中间搜索该符号 |
@@ -293,6 +294,7 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 
 #### file tree
 参考SpaceVim的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
+
 | key binding     | function                                          |
 |-----------------|---------------------------------------------------|
 | `Space` `f` `o` | 将当前的文件显示在filetree中间              |
@@ -304,20 +306,28 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 更多详细使用，可以直接阅读SpaceVim的源代码，位置在 : `~/.SpaceVim/config/plugins/defx.vim`
 
 #### window
-1. `<Tab>` : 进入下一个窗口
-2. `c` `g` : 水平拆分窗口。因为 window leader 键位被我重新映射为 `c`，如果是被映射其他键位，比如 `x`, 那么水平拆分为 `x` `g`
+因为 window leader 键位被我重新映射为 `c`，如果 window leader 是被映射其他键位，比如 `x`, 那么水平拆分为 `x` `g`
 ```vim
     " 重新映射 window leader 键位
     let g:spacevim_windows_leader = 'c'
 ```
-3. `q` : 关闭窗口
-4. `<Space>` `w` `m` 当前窗口最大化
-5. 利用 [vim-smoothie](https://github.com/psliwka/vim-smoothie) 的 `Ctrl` `e` 和 `Ctrl` `y` 可以更加丝滑的翻页  
+
+
+| key binding       | function       |
+|-------------------|----------------|
+| `<Tab>`           | 进入下一个窗口 |
+| `c` `g`           | 水平拆分窗口   |
+| `q`               | 关闭窗口       |
+| `<Space>` `w` `m` | 当前窗口最大化 |
+
 
 #### buffer
-1. `,` `b` : 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下。
-2. `,` + num : 切换当前窗口到第 num 个 buffer
-3. `<Space>` `b` `c` 关闭其他已经保存的 buffer 
+
+| key binding       | function                                                                  |
+|-------------------|---------------------------------------------------------------------------|
+| `,` `b`           | 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下 |
+| `,` num           | 切换当前窗口到第 num 个 buffer                                            |
+| `<Space>` `b` `c` | 关闭其他已经保存的 buffer                                                 |
 
 #### navigate
 1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
