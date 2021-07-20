@@ -9,16 +9,15 @@
 - [丝般顺滑: async](#丝般顺滑-async)
 - [为什么使用 SpaceVim](#为什么使用-spacevim)
 - [为什么使用 coc.nvim](#为什么使用-cocnvim)
-- [[ ] 为什么应该使用 neovim 而不是 vim](#-为什么应该使用-neovim-而不是-vim)
+- [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 - [安装](#安装)
-- [以 Linux 内核为例](#以-linux-内核为例)
 - [基本操作](#基本操作)
     - [符号搜索](#符号搜索)
     - [导航](#导航)
     - [定义和引用](#定义和引用)
     - [注释](#注释)
     - [格式化](#格式化)
-    - [rename](#rename)
+    - [重命名](#重命名)
     - [字符串搜索](#字符串搜索)
     - [文件树](#文件树)
     - [窗口](#窗口)
@@ -26,7 +25,7 @@
     - [文档](#文档)
     - [代码段](#代码段)
     - [git 集成](#git-集成)
-    - [debug](#debug)
+    - [调试集成](#调试集成)
     - [终端](#终端)
 - [扩展](#扩展)
     - [基于SpaceVim的扩展 以Latex为例子](#基于spacevim的扩展-以latex为例子)
@@ -39,7 +38,6 @@
     - [主题](#主题)
     - [框架](#框架)
     - [衍生](#衍生)
-- [ref](#ref)
 
 <!-- vim-markdown-toc -->
 
@@ -67,8 +65,8 @@
 
 ## 关于如何入门 vim
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
-1. [openvim](https://www.openvim.com/tutorial.html) : 交互式的学习 vim
-2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn) : vim 通用快捷键清单
+1. openvim[^21]: 交互式的学习 vim
+2. vim check sheet[^22]: vim 常用快捷键清单
 
 如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后
 使用 vim check sheet 是强化补充的，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的。
@@ -122,12 +120,17 @@ VSCode 我也使用过一段时间，我觉得 VSCode 之所以学习曲线非�
 Spacevim 还有一个很强的地方在于，配置是作为一个插件存在的，可以不断升级，而 LunarVim[^19] 这种配置，fork 到自己的分支，修改，想要升级就要 merge 主线上的冲突。
 
 ## 为什么使用 coc.nvim
-最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 coc.nvim 这种插件， 类似的工具官方列举了很多[^14], 
-coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
+最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 coc.nvim 这种插件，类似的工具官方列举了很多[^14], 
+coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽然后来 neovim 内置了 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 
 不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧。
 
-## [ ] 为什么应该使用 neovim 而不是 vim
+## 为什么应该使用 neovim 而不是 vim
+其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
+因为这个 patch 太大了，改动太多，然后 neovim 的作者就开始自立门户搞了一个 neovim，很多 vim 特性都是被 neovim 逼出来的。总体来说，neovim 相较于 vim :
+1. 更新更快, 添加的新功能更多，例如内置 lsp, lua 语言的支持。
+2. 社区更活跃。这个你对比一下 vim 和 neovim 的开发者数量就可以知道了，vim 很长时间都只有一个人开发的。
+3. 很多插件依赖 neovim 新特性，或者只能在 vim 上勉强使用。
 
 ## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
@@ -240,20 +243,6 @@ ninja -t compdb > compile_commands.json
 
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
-## 以 Linux 内核为例
-
-```
-git clone https://mirrors.tuna.tsinghua.edu.cn/git/linux.git
-cd linux
-# 使用标准配置，参考 :  https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch11s03.html
-make defconfig
-# 编译内核
-make -j8
-# 在 xxx 之后的内核中间, 利用生成 compile_commands.json
-scripts/clang-tools/gen_compile_commands.py
-# 第一次打开的时候，ccls 会生成索引文件，此时风扇飞转属于正常现象，之后不会出现这种问题
-nvim 
-```
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
 
@@ -291,25 +280,31 @@ nvim
 ![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 定义和引用
-这些功能都是lsp提供的，详细的配置在 plugin/coc.vim 中间，此处列举常用的。
 
-1. `g` `d` : 跳转到定义
-2. `g` `r` : 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择:
-![查找引用](https://upload-images.jianshu.io/upload_images/9176874-47415692f924d0c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+| key binding | function                                                                      |
+|-------------|-------------------------------------------------------------------------------|
+| `g` `d`     | 跳转到定义                                                                    |
+| `g` `r`     | 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择 |
 
 #### 注释
-在需要查询的函数或者变量上 : `K`，注释将会显示在悬浮窗口上。
+
+| key binding | function                                             |
+|-------------|------------------------------------------------------|
+| `K`         | 可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。 |
 
 ![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 格式化
-`Space`  `r`  `f` 格式化当前文件，支持C/C++ , Rust 和 Python 等。
+
+| key binding     | function                                          |
+|------------------|-------------------------------------------------|
+| `Space` `r`  `f` | 格式化当前文件，支持C/C++ , Rust 和 Python 等。 |
 
 可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
-#### rename
+#### 重命名
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `,` `r` `n` 在需要重命名的元素上，即可批量重命名。
 
 #### 字符串搜索
@@ -412,9 +407,8 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
     call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
 
-
-#### debug
-关于 vim 如何集成gdb。我个人平时使用下面两个项目辅助 gdb 的使用:
+#### 调试集成
+现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
 
@@ -551,26 +545,27 @@ setxkbmap -option caps:swapescape
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
-## ref
 [^1]: [cscope](http://cscope.sourceforge.net/)
 [^2]: [SpaceVim](http://spacevim.org/)
 [^3]: [coc.nim](https://github.com/neoclide/coc.nvim)
 [^4]: [Vim 8 中 C/C++ 符号索引：GTags 篇](https://zhuanlan.zhihu.com/p/36279445)
 [^5]: [Language Server Protocal](https://microsoft.github.io/language-server-protocol/)
 [^6]: [github: how to exit vim](https://github.com/hakluke/how-to-exit-vim)
-[^7]: https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/
-[^8]: https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files
-[^9]: https://github.com/yangyangwithgnu/use_vim_as_ide
+[^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
+[^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
+[^9]: [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide)
 [^10]: [YCM](https://github.com/ycm-core/YouCompleteMe)
 [^11]: [ctags](https://github.com/universal-ctags/ctags)
 [^12]: [ccls](https://github.com/MaskRay/ccls)
 [^13]: [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)
 [^14]: [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/)。
-[^15]: https://github.com/rust-analyzer/rust-analyzer
+[^15]: [rust analyzer](https://github.com/rust-analyzer/rust-analyzer)
 [^16]: [nerdtree](https://github.com/preservim/nerdtree)
 [^17]: [defx](https://github.com/Shougo/defx.nvim)
-[^18]: https://github.com/preservim/nerdtree/issues/1170
-[^19]: https://github.com/ChristianChiarulli/LunarVim
+[^18]: [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)
+[^19]: [github: LunarVim](https://github.com/ChristianChiarulli/LunarVim)
 [^20]: [corss the GFW](https://martins3.github.io/gfw.html)
+[^21]: [openvim](https://www.openvim.com/tutorial.html)
+[^22]: [vim check sheet](https://vim.rtorr.com/lang/zh_cn)
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
