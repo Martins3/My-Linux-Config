@@ -6,7 +6,7 @@
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # 安装 zsh 插件管理器
 # https://github.com/zsh-users/antigen
-curl -L gt.io/antigen > ~/.antigen.zshi
+curl -L gt.io/antigen > ~/.antigen.zsh
 
 # https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
 # 清华 pip 源
@@ -21,20 +21,11 @@ curl -sLf https://spacevim.org/cn/install.sh | bash
 npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
 yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
 
-
-## coc.nvim 的安装 
-## TODO 再次测试
-# 1. 直接 使用 release, 在代理的情况下
-# 2. 在没有代理的情况下，使用编译安装
-cd ~/.cache/vimfiles/repos/github.com/neoclide/coc.nvim || exit
-git clean -xfd
-yarn install --frozen-lockfile
-
 rm -r ~/.SpaceVim.d # 将原来的配置删除
 git clone https://github.com/martins3/My-Linux-config ~/.SpaceVim.d 
 nvim # 打开vim 将会自动安装所有的插件
 
-yay -S bear lazygit
+sudo apt get install bear lazygit
 
 # 添加一些映射
 cat <<EOT >> ~/.zshrc

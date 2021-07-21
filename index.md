@@ -36,7 +36,6 @@
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
-    - [框架](#框架)
     - [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
@@ -55,13 +54,15 @@
 我想说的是，vim 正在飞速进步 ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
 
 ## 背景 
-我平时主要写 C/C++, 配置是参考 use_vim_as_ide[^9] 写的，
+我平时主要写 C/C++, 最开始的配置是参考 use_vim_as_ide[^9] 写的，
 在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
 我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
 整个 vim 都会变卡。
 
 曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
 最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
+
+我在想，用 vim 的意义到底是什么，疯狂的自我折磨吗?
 
 ## 关于如何入门 vim
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
@@ -215,7 +216,8 @@ sudo apt install xclip
 # sudo pacman -S wl-clipboard
 
 sudo pip3 install neovim
-sudo apt install ctags # Markdown 的导航栏需要
+sudo pip3 install pynvim
+//FIXME 这是相同的包吗 ?
 ```
 
 注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
@@ -483,7 +485,7 @@ s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://
 2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
-5. UltiSnips/ : 大多数是从 https://github.com/honza/vim-snippets 中间粘贴过来的。
+5. UltiSnips/ : 大多数是从 https://github.com/honza/vim-snippets 中间粘贴过来的, 然后添加一些自己特有的。
 
 SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
@@ -493,27 +495,33 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 
 ## FAQ
 - 为什么不使用 IDE，比如 CLion ?
-    - 
+    - 恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。Code::Blocks[^25] 过于陈旧，Visual Studio[24] 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。
+
+- 为什么不适用 VSCode ?
+    - VSCode 比 Sublime 功能更强，比 Atom[^26] 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 在简洁, 灵活和高效的极致的。
+
+- 我应该使用这个配置吗 ?
+    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, exvim[^27], spf13-vim[^28], The Ultimate vimrc[^29] 之类的。
+
+- 为什么不适用 lua 和 built-in ?
+    - 这是将来会考虑的，其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到这里[^30]
 
 ## vim 的小技巧
 1. 翻滚屏幕
-```
-# 保持屏幕内容不动，在当前屏幕中间移动
-H
-M
-L
 
-# 保持所在行不动，移动屏幕
-zz
-zt
-zb
+| key binding | function                               |
+|-------------|----------------------------------------|
+| H           | 保持屏幕内容不动, 移动到屏幕最上方     |
+| M           | 保持屏幕内容不动, 移动到屏幕中间       |
+| L           | 保持屏幕内容不动, 移动到屏幕最下面     |
+| zt          | 将当前行移动到屏幕最上方               |
+| zz          | 将当前行移动到屏幕中间                 |
+| zb          | 将当前行移动到屏幕最下方               |
+| Ctrl + f    | 向前滚动一屏，但是光标在顶部           |
+| Ctrl + d    | 向前滚动一屏，光标在屏幕的位置保持不变 |
+| Ctrl + b    | 向后滚动一屏，但是光标在底部           |
+| Ctrl + u    | 向后滚动半屏，光标在屏幕的位置保持不变 |
 
-# 移动屏幕内容
-Ctrl + f - 向前滚动一屏，但是光标在顶部
-Ctrl + d - 向前滚动一屏，光标在屏幕的位置保持不变
-Ctrl + b - 向后滚动一屏，但是光标在底部
-Ctrl + u - 向后滚动半屏，光标在屏幕的位置保持不变
-```
 2. vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
 3. 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
 4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
@@ -522,7 +530,7 @@ setxkbmap -option caps:swapescape
 ```
 
 ## 其他的一些资源
-- [C/C++ 项目利用 include-what-you-use 来引入头文件](https://github.com/include-what-you-use/include-what-you-use)
+- [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
 1. [Vim China](https://github.com/vim-china)
@@ -532,13 +540,6 @@ setxkbmap -option caps:swapescape
 #### 主题
 1. [dracula](https://draculatheme.com/vim/) 目前感觉最好看的主题之一
 2. [vimcolors](http://vimcolors.com/) vim 主题网站
-3. [solarized](https://github.com/vim-scripts/Solarized)
-
-#### 框架
-1. [exvim](https://exvim.github.io/)
-2. [spf13-vim](https://github.com/spf13/spf13-vim)
-3. [The Ultimate vimrc](https://github.com/amix/vimrc)
-4. [NVCode](https://github.com/ChristianChiarulli/nvim) 基于 coc.nvim 的一个配置
 
 #### 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
@@ -567,5 +568,14 @@ setxkbmap -option caps:swapescape
 [^20]: [corss the GFW](https://martins3.github.io/gfw.html)
 [^21]: [openvim](https://www.openvim.com/tutorial.html)
 [^22]: [vim check sheet](https://vim.rtorr.com/lang/zh_cn)
+[^23]: [CLion](https://www.jetbrains.com/clion/)
+[^24]: [Visual Studio](https://visualstudio.microsoft.com/zh-hans/)
+[^25]: [Code::Blocks](https://www.codeblocks.org/)
+[^26]: [Atom](https://atom.io/)
+[^27]: [exvim](https://exvim.github.io/)
+[^28]: [spf13-vim](https://github.com/spf13/spf13-vim)
+[^29]: [The Ultimate vimrc](https://github.com/amix/vimrc)
+[^30]: [built-in lsp and lua](https://github.com/Martins3/My-Linux-config/issues/15)
+
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**

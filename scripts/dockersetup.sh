@@ -1,3 +1,5 @@
+#!/bin/bash
+
 container_name=mi
 image_name=archvim
 
@@ -13,4 +15,4 @@ docker run -it --name ${container_name} -d archvim
 docker exec -it ${container_name} zsh
 
 # 如果将 docker 部署在服务器上，使用此命令登入
-alias x="ssh -t root@19.234.56.78 'docker exec -it wawa zsh'"
+alias x="ssh -t root@12.34.56.78 'docker exec -it wawa zsh'"
