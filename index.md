@@ -503,11 +503,11 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, exvim[^27], spf13-vim[^28], The Ultimate vimrc[^29] 之类的。
 
-- 为什么不适用 lua 和 built-in ?
+- 为什么不使用 lua 和 built-in ?
     - 这是将来会考虑的，其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到这里[^30]
 
 ## vim 的小技巧
-1. 翻滚屏幕
+- 翻滚屏幕
 
 | key binding | function                               |
 |-------------|----------------------------------------|
@@ -522,9 +522,9 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 | Ctrl + b    | 向后滚动一屏，但是光标在底部           |
 | Ctrl + u    | 向后滚动半屏，光标在屏幕的位置保持不变 |
 
-2. vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
-3. 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
-4. 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
+- vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
+- 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
+- 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
 ```
 setxkbmap -option caps:swapescape
 ```
@@ -533,7 +533,6 @@ setxkbmap -option caps:swapescape
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
-1. [Vim China](https://github.com/vim-china)
 2. [vim galore](https://github.com/mhinz/vim-galore)
 3. [devhints](https://devhints.io/vimscript) : 另一个 vim checksheet
 
