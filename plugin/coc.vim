@@ -16,6 +16,8 @@ call coc#config("smartf.jumpOnTrigger", v:false)
 " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
 
+call coc#config("codeLens.enable", v:true)
+
 call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
 			\ "maxCompleteItemCount": 10,
