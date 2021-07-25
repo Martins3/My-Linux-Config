@@ -163,19 +163,26 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽�
 1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于 neovim 的更新速度更快，新特性支持更好。安装完成之后检查版本，最好大于 v0.4.0.
 
 ```txt
-➜  Vn git:(master) ✗ sudo apt install neovim
-➜  Vn git:(master) ✗ nvim --version
-NVIM v0.4.3
-Build type: Release
-LuaJIT 2.0.5
-Compilation: /usr/bin/cc -march=x86-64 -mtune=generic -O2 -pipe -fno-plt -O2 -DNDEBUG -DMIN_LOG_LEVEL=3 -Wall -Wextra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion -Wmissing-prototypes -Wimplicit-fallthrough -Wvla -fstack-protector-strong -fdiagnostics-color=always -DINCLUDE_GENERATED_DECLARATIONS -D_GNU_SOURCE -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -I/build/neovim/src/build/config -I/build/neovim/src/neovim-0.4.3/src -I/usr/include -I/build/neovim/src/build/src/nvim/auto -I/build/neovim/src/build/include
-Compiled by builduser
+➜  .SpaceVim.d git:(2021) ✗ nvim --version
+NVIM v0.5.0-828-g0a95549d6
+Build type: Debug
+LuaJIT 2.1.0-beta3
+Compilation: /usr/bin/cc -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 -g -Wall -Wext
+ra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -W
+conversion -Wmissing-prototypes -Wimplicit-fallthrough -Wvla -fstack-protecto
+r-strong -fno-common -fdiagnostics-color=always -DINCLUDE_GENERATED_DECLARATI
+ONS -D_GNU_SOURCE -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -DMIN_
+LOG_LEVEL=1 -I/home/maritns3/arch/neovim/build/config -I/home/maritns3/arch/n
+eovim/src -I/home/maritns3/arch/neovim/.deps/usr/include -I/usr/include -I/ho
+me/maritns3/arch/neovim/build/src/nvim/auto -I/home/maritns3/arch/neovim/buil
+d/include
+Compiled by maritns3@maritns3-pc
 
 Features: +acl +iconv +tui
 See ":help feature-compile"
 
    system vimrc file: "$VIM/sysinit.vim"
-  fall-back for $VIM: "/usr/share/nvim"
+  fall-back for $VIM: "/home/maritns3/.local/nvim/share/nvim"
 
 Run :checkhealth for more info
 ```
