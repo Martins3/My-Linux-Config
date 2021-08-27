@@ -90,6 +90,8 @@ func! myspacevim#before() abort
       exec "!microsoft-edge %"
     elseif ext ==# "rs"
       call CargoRun()
+    elseif ext ==# "svg"
+      exec "%!xmllint --format -"
     else
       echo "Check file type !"
     endif

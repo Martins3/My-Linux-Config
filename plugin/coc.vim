@@ -7,9 +7,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 set nobackup
 set nowritebackup
 
-" 使用 Microsoft Python Language Server 不然 coc.nvim 会警告
-call coc#config("python.jediEnabled", v:false)
-
 call coc#config("smartf.wordJump", v:false)
 call coc#config("smartf.jumpOnTrigger", v:false)
 
@@ -60,7 +57,7 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
-			\ 'coc-python',
+			\ 'coc-jedi',
 			\ 'coc-java',
       \ 'coc-css',
       \ 'coc-html',
@@ -77,7 +74,8 @@ let s:coc_extensions = [
       \ 'coc-sh',
       \ 'coc-git',
       \ 'coc-diagnostic',
-      \ 'coc-lua'
+      \ 'coc-lua',
+      \ 'coc-xml'
 			\]
 
 for extension in s:coc_extensions
@@ -172,7 +170,7 @@ nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
+nnoremap <silent><nowait> <leader>f  :<C-u>CocFzfList gfiles<CR>
 " Do default action for next item.
 nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.

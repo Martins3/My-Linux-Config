@@ -41,6 +41,7 @@
 <!-- vim-markdown-toc -->
 
 
+A中文B : 还是使用 gif 吧， 至少这个录制的很好啊 https://github.com/simrat39/rust-tools.nvim
 [![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
 
 ## 前言
@@ -132,6 +133,8 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽�
 1. 更新更快, 添加的新功能更多，例如内置 lsp, lua 语言的支持。
 2. 社区更活跃。这个你对比一下 vim 和 neovim 的开发者数量就可以知道了，vim 很长时间都只有一个人开发的。
 3. 很多插件依赖 neovim 新特性，或者只能在 vim 上勉强使用。
+
+根据 stackoverflow 的报告[^31], neovim 在 2021 年是开发者中最受喜爱的编辑器
 
 ## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
@@ -412,8 +415,8 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 1. [lazygit](https://github.com/jesseduffield/lazygit)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在 vim 中间运行 lazygit。
 2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
 ```vim
-    call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
-    call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
+call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
+call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
 
 #### 调试集成
@@ -422,6 +425,8 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 2. https://www.gdbgui.com/
 
 更多的参考 : https://scattered-thoughts.net/writing/the-state-of-linux-debuggers/
+
+如果恰好用的是 rust, 可以参考: https://github.com/simrat39/rust-tools.nvim
 
 #### 终端
 利用 `voidkiss/folaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
@@ -583,6 +588,7 @@ setxkbmap -option caps:swapescape
 [^28]: [spf13-vim](https://github.com/spf13/spf13-vim)
 [^29]: [The Ultimate vimrc](https://github.com/amix/vimrc)
 [^30]: [built-in lsp and lua](https://github.com/Martins3/My-Linux-config/issues/15)
+[^31]: [Neovim is the most loved editor it is the 10th most wanted editor](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
 
 
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
