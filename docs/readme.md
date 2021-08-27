@@ -41,7 +41,6 @@
 <!-- vim-markdown-toc -->
 
 
-A中文B : 还是使用 gif 吧， 至少这个录制的很好啊 https://github.com/simrat39/rust-tools.nvim
 [![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
 
 ## 前言
