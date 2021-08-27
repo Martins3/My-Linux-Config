@@ -28,8 +28,8 @@
     - [调试集成](#调试集成)
     - [终端](#终端)
 - [扩展](#扩展)
-    - [基于 SpaceVim 的扩展 以 Latex 为例子](#基于-spacevim-的扩展-以-latex-为例子)
-    - [基于 coc.nvim 的扩展 以 Python 为例](#基于-cocnvim-的扩展-以-python-为例)
+    - [基于 SpaceVim 的扩展, 以 Latex 为例子](#基于-spacevim-的扩展-以-latex-为例子)
+    - [基于 coc.nvim 的扩展, 以 Python 为例](#基于-cocnvim-的扩展-以-python-为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
@@ -439,7 +439,7 @@ call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open la
 ## 扩展
 需要说明的是，本配置并不局限于 C/C++，只是相对其他语言，我比较熟悉 C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
 
-#### 基于 SpaceVim 的扩展 以 Latex 为例子
+#### 基于 SpaceVim 的扩展, 以 Latex 为例子
 - 如何扩展
 
 在 init.toml 中间添加
@@ -468,16 +468,21 @@ $pdf_mode = 5;
 - https://tex.stackexchange.com/questions/429274/chinese-on-mactex2018-simple-example
 - https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
 
-#### 基于 coc.nvim 的扩展 以 Python 为例
+#### 基于 coc.nvim 的扩展, 以 Python 为例
 - 如何扩展
+
+```sh
+sudo apt install python3-venv
+```
 
 添加 coc-python 这个插件，并且启用微软的 python language server，也就是 disable 掉 jedi, 这一步是**必须的**，jedi 我从来没有正常成功使用过，总是崩溃。
 ```vim
 let s:coc_extensions = [
-			\ 'coc-python',
+			\ 'coc-jedi',
 
 call coc#config("python.jediEnabled", v:false)
 ```
+
 
 - 效果
 
