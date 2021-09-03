@@ -561,8 +561,6 @@ setxkbmap -option caps:swapescape
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
- 
-<script src="https://utteranc.es/client.js" repo="Martins3/Martins3.github.io" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 
 [^1]: [cscope](http://cscope.sourceforge.net/)
 [^2]: [SpaceVim](http://spacevim.org/)
@@ -596,5 +594,5 @@ setxkbmap -option caps:swapescape
 [^30]: [built-in lsp and lua](https://github.com/Martins3/My-Linux-config/issues/15)
 [^31]: [Neovim is the most loved editor it is the 10th most wanted editor](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
  
-
+<script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**

@@ -255,6 +255,13 @@ snippet qpr "qemu debug"
 printf("huxueshi:%s ${0}\n", __FUNCTION__);
 endsnippet
 
+snippet qgdb "qemu gdb debug stub"
+void huxueshi(void);
+void huxueshi(void){
+	printf("huxueshi:%s \n", __FUNCTION__);
+}
+endsnippet
+
 snippet seapr "seabios debug"
 dprintf(1, "huxueshi:%s ${0}\n", __FUNCTION__);
 endsnippet
