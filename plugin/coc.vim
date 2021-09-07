@@ -7,9 +7,30 @@ inoremap <silent><expr> <c-space> coc#refresh()
 set nobackup
 set nowritebackup
 
+" 快速跳转
 call coc#config("smartf.wordJump", v:false)
 call coc#config("smartf.jumpOnTrigger", v:false)
 
+" 方便在中文中间使用 w 和 b 移动
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
+
+" 来自 https://github.com/neoclide/coc-snippets 的配置 snippet
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use Tap for trigger snippet expand.
+let g:coc_snippet_next = '<tab>'
+
+" rust-analyzer 是的位置需要手动下载配置
 " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
 
@@ -82,21 +103,6 @@ for extension in s:coc_extensions
 	call coc#add_extension(extension)
 endfor
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" 方便在中文中间使用 w 和 b 移动
-nmap <silent> w <Plug>(coc-ci-w)
-nmap <silent> b <Plug>(coc-ci-b)
-
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -126,7 +132,6 @@ autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" 注释掉，使用 `Space` `r` `f` 直接格式化整个文件
 " Remap for format selected region
 " vmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
@@ -146,18 +151,8 @@ call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'fo
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-" 这个和 SpaceVim 的 statusline/tabline 冲突了
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-" let g:lightline = {
-"       \ 'colorscheme': 'wombat',
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ],
-"       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-"       \ },
-"       \ 'component_function': {
-"       \   'cocstatus': 'coc#status'
-"       \ },
-"       \ }
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " 注意，下面的 buffer 和 file 使用是 Leaderf,
 " 因为 CocFzfList 不支持这两个内容的显示。

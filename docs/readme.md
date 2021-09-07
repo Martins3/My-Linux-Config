@@ -286,6 +286,8 @@ ninja -t compdb > compile_commands.json
 1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索 file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+> 注意，LeaderF 务必安装 C 扩展(在 vim 中运行 `:LeaderfInstallCExtension`), 速度会非常快
+
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `<F2>`。
 
 ![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

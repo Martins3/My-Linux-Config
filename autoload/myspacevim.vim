@@ -9,6 +9,7 @@ func! myspacevim#before() abort
 
   " 重新映射 leader 键
   let g:mapleader = ','
+
   " 重新映射 window 键位
   let g:spacevim_windows_leader = 'c'
 
@@ -19,11 +20,13 @@ func! myspacevim#before() abort
 
   " 调节 window 大小
   let g:winresizer_start_key = '<space>wa'
+
   " If you cancel and quit window resize mode by `q` (keycode 113)
   let g:winresizer_keycode_cancel = 113
 
   " 让file tree 显示文件图标，需要 terminal 安装 nerd font
   let g:spacevim_enable_vimfiler_filetypeicon = 1
+
   " 让 filetree 显示 git 的状态
   " let g:spacevim_enable_vimfiler_gitstatus = 1
 
@@ -40,6 +43,10 @@ func! myspacevim#before() abort
   " ctrl + ] 查询 cppman
   " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
   autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
+
+  " Tell Neosnippet about the other snippets
+  " ref : https://github.com/Shougo/neosnippet.vim
+  let g:neosnippet#snippets_directory='~/.cache/vimfiles/repos/github.com/honza/vim-snippets/snippets'
 
   " 让光标自动进入到popup window 中间
   let g:git_messenger_always_into_popup = v:true

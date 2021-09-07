@@ -207,20 +207,20 @@ endsnippet
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet Cimport "是时候重拳出击了!"
+#include <assert.h>  // assert
+#include <fcntl.h>   // open
+#include <limits.h>  // INT_MAX
+#include <math.h>    // sqrt
+#include <stdbool.h> // bool false true
 #include <stdio.h>
 #include <stdlib.h> // malloc
-#include <string.h> // strcmp ..
-#include <stdbool.h> // bool false true
 #include <stdlib.h> // sort
-#include <limits.h> // INT_MAX
-#include <math.h> // sqrt
+#include <string.h> // strcmp ..
 #include <unistd.h> // sleep
-#include <assert.h> // assert
-#include <fcntl.h> // open
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 	${0}
-	return 0;
+  return 0;
 }
 endsnippet
 

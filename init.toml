@@ -134,6 +134,10 @@
 [[custom_plugins]]
     name = 'google/vim-searchindex.git'
 
+# 安装公共的的 snippets
+[[custom_plugins]]
+    name = 'honza/vim-snippets'
+
 # ----------------- 尝试的内容 -------------------------------------------------
 
 # debug 框架，尚未完全集成到本配置中
