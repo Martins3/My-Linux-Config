@@ -159,6 +159,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "       \ },
 "       \ }
 
+" 注意，下面的 buffer 和 file 使用是 Leaderf,
+" 因为 CocFzfList 不支持这两个内容的显示。
+" 使用 Leaderf 需要运行 :LeaderfInstallCExtension, 可以让 Leaderf 向闪电一样快
+
 " Search code action.
 nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList actions<cr>
 " Show buffers
@@ -170,7 +174,7 @@ nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>CocFzfList gfiles<CR>
+nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
 " Do default action for next item.
 nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
