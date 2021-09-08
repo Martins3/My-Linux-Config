@@ -7,9 +7,14 @@ inoremap <silent><expr> <c-space> coc#refresh()
 set nobackup
 set nowritebackup
 
-" 快速跳转
+" 使用 f/F 快速跳转一个字符上
 call coc#config("smartf.wordJump", v:false)
 call coc#config("smartf.jumpOnTrigger", v:false)
+
+augroup Smartf
+  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
+  autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
+augroup end
 
 " 方便在中文中间使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)

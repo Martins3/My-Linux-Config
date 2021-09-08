@@ -36,6 +36,7 @@ func! myspacevim#before() abort
 
   " 书签选中之后自动关闭 quickfix window
   let g:bookmark_auto_close = 1
+  call SpaceVim#custom#SPC('nnoremap', ['b', 'C'], 'BookmarkClearAll', 'clear all bookmark', 1)
 
   " vim-lsp-cxx-highlight 和这个选项存在冲突
   " let g:rainbow_active = 1
@@ -145,10 +146,4 @@ func! myspacevim#after() abort
   nmap F <Plug>(coc-smartf-backward)
   nmap ; <Plug>(coc-smartf-repeat)
   nmap , <Plug>(coc-smartf-repeat-opposite)
-
-  augroup Smartf
-    autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
-    autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
-  augroup end
-
 endf
