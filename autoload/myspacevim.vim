@@ -1,11 +1,12 @@
 func! myspacevim#before() abort
-  " 焦点消失的时候自动保存
-  au FocusLost * :wa
+  " 当文件被其他编辑器修改时，自动加载
+  set autoread
   au FocusGained,BufEnter * :checktime
 
-  " 当文件被其他编辑器修改时，自动加载
+  " 当失去焦点或者离开当前的 buffer 的时候保存
   set autowrite
-  set autoread
+  autocmd FocusLost,BufLeave * silent! update
+
 
   " 重新映射 leader 键
   let g:mapleader = ','
@@ -139,6 +140,7 @@ func! myspacevim#after() abort
   " <F7> 打开历史记录
   tnoremap  <Esc>  <C-\><C-n>
 
+  " 使用 tab 切换 window
   map <Tab> :wincmd w<CR>
 
   " press <esc> to cancel.
