@@ -71,13 +71,15 @@ func! myspacevim#before() abort
   func! QuickRun()
     exec "w"
     let ext = expand("%:e")
-    let file = expand("%")
+
     if ext ==# "sh"
       exec "!bash %"
     elseif ext ==# "cpp"
-      exec "!clang++ % -Wall -g -std=c++17 -o %<.out && ./%<.out"
+      let out = expand('%:p') . ".out"
+      exec "!clang++ % -Wall -lpthread -g -std=c++17 -o " . out . " && " . out
     elseif ext ==# "c"
-      exec "!clang % -Wall -g -std=c11 -o %<.out && ./%<.out"
+      let out = expand('%:p') . ".out"
+      exec "!clang % -Wall -lpthread -g -std=c11 -o " . out . " && " . out
     elseif ext ==# "java"
       let classPath = expand('%:h')
       let className = expand('%:p:t:r')
