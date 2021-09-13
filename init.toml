@@ -40,7 +40,7 @@
     # 字样，只以颜色区分当前模式
     enable_statusline_display_mode = false
 
-    # MY OWN OPTIONS
+    # 自定义配置
     filemanager = "defx"
     autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
