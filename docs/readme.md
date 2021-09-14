@@ -283,7 +283,7 @@ ninja -t compdb > compile_commands.json
 ![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 导航
-1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索 file，buffer，function 等。搜索文件使用 `,` `s` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
+1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索 file，buffer，function 等。搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
 ![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 > 注意，LeaderF 务必安装 C 扩展(在 vim 中运行 `:LeaderfInstallCExtension`), 速度会非常快
