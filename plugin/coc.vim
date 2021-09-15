@@ -162,12 +162,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+" Show files
+nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find_files()<cr>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
-" Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find_files()<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
 " Search workspace symbols.

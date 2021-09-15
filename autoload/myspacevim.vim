@@ -7,15 +7,11 @@ func! myspacevim#before() abort
   set autowrite
   autocmd FocusLost,BufLeave * silent! update
 
-
   " 重新映射 leader 键
   let g:mapleader = ','
 
   " 重新映射 window 键位
   let g:spacevim_windows_leader = 'c'
-
-  " 让 leaderf 可以搜索 git 的 submodule，否则 submodule 的文件会被自动忽略
-  let g:Lf_RecurseSubmodules = 1
 
   let g:table_mode_corner='|'
 
@@ -37,10 +33,8 @@ func! myspacevim#before() abort
 
   " 书签选中之后自动关闭 quickfix window
   let g:bookmark_auto_close = 1
+  " 设置一个删除所有的 bookmark 的快捷键
   call SpaceVim#custom#SPC('nnoremap', ['b', 'C'], 'BookmarkClearAll', 'clear all bookmark', 1)
-
-  " vim-lsp-cxx-highlight 和这个选项存在冲突
-  " let g:rainbow_active = 1
 
   " ctrl + ] 查询 cppman
   " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
@@ -150,4 +144,14 @@ func! myspacevim#after() abort
   nmap F <Plug>(coc-smartf-backward)
   nmap ; <Plug>(coc-smartf-repeat)
   nmap , <Plug>(coc-smartf-repeat-opposite)
+
+  " https://vi.stackexchange.com/questions/13080/setting-tab-to-2-spaces
+  filetype plugin indent on
+  " On pressing tab, insert 2 spaces
+  set expandtab
+  " show existing tab with 2 spaces width
+  set tabstop=2
+  set softtabstop=2
+  " when indenting with '>', use 2 spaces width
+  set shiftwidth=2
 endf
