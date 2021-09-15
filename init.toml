@@ -95,11 +95,6 @@
 [[custom_plugins]]
     name = 'junegunn/fzf.vim'
 
-# 快速搜索文件和 buffer
-[[custom_plugins]]
-    name = "Yggdroot/LeaderF"
-    build = "./install.sh"
-
 # 快速编辑 markdown 的表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
@@ -138,12 +133,22 @@
 [[custom_plugins]]
     name = 'honza/vim-snippets'
 
+# 安装 telescope 来实现搜索
+[[custom_plugins]]
+    name = 'nvim-telescope/telescope.nvim'
+
+[[custom_plugins]]
+    name = 'nvim-lua/plenary.nvim'
+
+[[custom_plugins]]
+    name = 'fannheyward/telescope-coc.nvim'
+
+# 配合 sourcetrail 配合使用
+[[custom_plugins]]
+  name = 'CoatiSoftware/vim-sourcetrail'
+
 # ----------------- 尝试的内容 -------------------------------------------------
 
 # debug 框架，尚未完全集成到本配置中
 [[custom_plugins]]
   name = 'puremourning/vimspector'
-
-# 配合 sourcetrail 配合使用
-[[custom_plugins]]
-  name = 'CoatiSoftware/vim-sourcetrail'

@@ -132,7 +132,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 set updatetime=300
 autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -159,32 +158,24 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" 注意，下面的 buffer 和 file 使用是 Leaderf,
-" 因为 CocFzfList 不支持这两个内容的显示。
-" 使用 Leaderf 需要运行 :LeaderfInstallCExtension, 可以让 Leaderf 向闪电一样快
-
 " Search code action.
-nnoremap <silent><nowait> <leader>a  :<C-u>CocFzfList actions<cr>
+nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
-nnoremap <silent><nowait> <leader>b  :<C-u>Leaderf buffer<CR>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 " Show commands.
-nnoremap <silent><nowait> <leader>c  :<C-u>CocFzfList commands<cr>
+nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>d  :<C-u>CocFzfList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <leader>e  :<C-u>CocFzfList extensions<cr>
+nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Leaderf file<CR>
-" Do default action for next item.
-nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <leader>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <leader>l  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find_files()<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <leader>s  :<C-u>CocFzfList symbols<cr>
+nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
+" Live grep
+nnoremap <silent><nowait> <leader>g  :<C-u>lua require('telescope.builtin').live_grep()<cr>
+" Search help
+nnoremap <silent><nowait> <leader>h  :<C-u>lua require('telescope.builtin').help_tags()<cr>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>x  <Plug>(coc-codeaction-selected)
