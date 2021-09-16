@@ -45,6 +45,8 @@
     autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
+    # indent-blankline.nvim 的 bug 非常多
+    # disabled_plugins = ["indent-blankline.nvim"]
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
 
@@ -145,7 +147,6 @@
 
 [[custom_plugins]]
   name = 'nvim-telescope/telescope-fzy-native.nvim'
-
 
 # 配合 sourcetrail 配合使用
 [[custom_plugins]]

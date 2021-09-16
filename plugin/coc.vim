@@ -72,7 +72,7 @@ call coc#config("languageserver", {
 call coc#config("git.addGBlameToVirtualText", v:true)
 call coc#config("git.virtualTextPrefix", "👋 ")
 
-
+" 使用 shellcheck 可以让 shell 自动补全，格式化和静态检查
 call coc#config("diagnostic-languageserver.filetypes", {
       \"sh": "shellcheck",
       \})
@@ -169,13 +169,16 @@ nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
+" nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 " Live grep
 nnoremap <silent><nowait> <leader>g  :<C-u>lua require('telescope.builtin').live_grep()<cr>
 " Search help
 nnoremap <silent><nowait> <leader>h  :<C-u>lua require('telescope.builtin').help_tags()<cr>
+" Search help
+nnoremap <silent><nowait> <leader>m  :<C-u>Telescope coc mru<cr>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>x  <Plug>(coc-codeaction-selected)
