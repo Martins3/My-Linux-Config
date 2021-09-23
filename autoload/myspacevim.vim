@@ -146,12 +146,5 @@ func! myspacevim#after() abort
   nmap , <Plug>(coc-smartf-repeat-opposite)
 
   " https://vi.stackexchange.com/questions/13080/setting-tab-to-2-spaces
-  filetype plugin indent on
-  " On pressing tab, insert 2 spaces
-  set expandtab
-  " show existing tab with 2 spaces width
-  set tabstop=2
-  set softtabstop=2
-  " when indenting with '>', use 2 spaces width
-  set shiftwidth=2
+  set ts=2 sts=2 noet
 endf

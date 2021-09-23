@@ -10,9 +10,11 @@
 
 </p>
 
-### :book:
+### :book: Document
 
-* [中文文档](https://martins3.github.io/My-Linux-config/)
+* 中文文档
+  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-config/)
+  * [极简 tmux 配置](https://martins3.github.io/My-Linux-config/)
 * English version comming soon.
 
 ## :gear: Install

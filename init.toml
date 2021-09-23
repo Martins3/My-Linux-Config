@@ -145,9 +145,6 @@
 [[custom_plugins]]
     name = 'fannheyward/telescope-coc.nvim'
 
-[[custom_plugins]]
-  name = 'nvim-telescope/telescope-fzy-native.nvim'
-
 # 配合 sourcetrail 配合使用
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'

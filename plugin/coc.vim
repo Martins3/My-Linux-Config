@@ -161,7 +161,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Search code action.
 nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
-nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <silent><nowait> <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 " Show files
 nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find_files()<cr>
 " Show commands.
