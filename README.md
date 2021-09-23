@@ -13,8 +13,8 @@
 ### :book: Document
 
 * 中文文档
-  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-config/)
-  * [极简 tmux 配置](https://martins3.github.io/My-Linux-config/)
+  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/)
+  * [极简 tmux 配置](https://martins3.github.io/My-Linux-Config/)
 * English version comming soon.
 
 ## :gear: Install
