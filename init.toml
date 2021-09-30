@@ -45,7 +45,7 @@
     autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
-    # indent-blankline.nvim 的 bug 非常多
+    # indent-blankline.nvim 会在一些奇怪的位置（比如 filetree 中）放置竖线
     # disabled_plugins = ["indent-blankline.nvim"]
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
@@ -135,19 +135,29 @@
 [[custom_plugins]]
     name = 'honza/vim-snippets'
 
+# 一些 lua 插件，比如 telescope, 的依赖
+[[custom_plugins]]
+    name = 'nvim-lua/plenary.nvim'
+
 # 安装 telescope 来实现搜索
 [[custom_plugins]]
     name = 'nvim-telescope/telescope.nvim'
 
-[[custom_plugins]]
-    name = 'nvim-lua/plenary.nvim'
-
+# 使用 telescope 来搜索 coc 提供的符号
 [[custom_plugins]]
     name = 'fannheyward/telescope-coc.nvim'
 
-# 配合 sourcetrail 配合使用
+# 配合 sourcetrail 使用
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
+
+[[custom_plugins]]
+  name = 'nvim-treesitter/nvim-treesitter'
+  build = 'TSUpdate'
+
+[[custom_plugins]]
+  name = 'nvim-telescope/telescope-fzf-native.nvim'
+  build = 'make'
 
 # ----------------- 尝试的内容 -------------------------------------------------
 

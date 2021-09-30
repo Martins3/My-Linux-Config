@@ -24,12 +24,12 @@
     - [缓冲区](#缓冲区)
     - [文档](#文档)
     - [代码段](#代码段)
+    - [自动补全](#自动补全)
     - [git 集成](#git-集成)
     - [调试集成](#调试集成)
     - [终端](#终端)
 - [扩展](#扩展)
     - [基于 SpaceVim 的扩展, 以 Latex 为例子](#基于-spacevim-的扩展-以-latex-为例子)
-    - [基于 coc.nvim 的扩展, 以 Python 为例](#基于-cocnvim-的扩展-以-python-为例)
 - [本配置源代码解释](#本配置源代码解释)
 - [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
@@ -41,7 +41,7 @@
 <!-- vim-markdown-toc -->
 
 
-[![asciicast](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC.svg)](https://asciinema.org/a/gzqB5Kqc0Ke3Kdds304JBEYyC)
+![](./img/overview.png)
 
 ## 前言
 首先，任何问题,  欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
@@ -101,9 +101,6 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
  +------------------------+    +-----------------------+
 ```
 
-在 2019.7.24，linux 内核的.gitignore 增加了对于 lsp 的支持，是时候跟上潮流了。
-![内核的gitignore](https://upload-images.jianshu.io/upload_images/9176874-8d57913135875846.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 ## 丝般顺滑: async
 另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
 
@@ -162,29 +159,27 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽�
 ```
 整个环境的安装主要是 neovim SpaceVim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
-1. 推荐使用 [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)，由于 neovim 的更新速度更快，新特性支持更好。安装完成之后检查版本，最好大于 v0.4.0.
+1. 当前配置需要 neovim 0.5 以上的版本，这个需要[手动安装](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+
+如果所有的依赖都安装了，其实也就是下面三条命令
+```sh
+git clone https://github.com/neovim/neovim && cd neovim
+make CMAKE_BUILD_TYPE=Release -j8
+sudo make install
+```
 
 ```txt
 ➜  .SpaceVim.d git:(2021) ✗ nvim --version
-NVIM v0.5.0-828-g0a95549d6
-Build type: Debug
+NVIM v0.6.0-dev+263-gb9d57fa10
+Build type: Release
 LuaJIT 2.1.0-beta3
-Compilation: /usr/bin/cc -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 -g -Wall -Wext
-ra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -W
-conversion -Wmissing-prototypes -Wimplicit-fallthrough -Wvla -fstack-protecto
-r-strong -fno-common -fdiagnostics-color=always -DINCLUDE_GENERATED_DECLARATI
-ONS -D_GNU_SOURCE -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -DMIN_
-LOG_LEVEL=1 -I/home/maritns3/arch/neovim/build/config -I/home/maritns3/arch/n
-eovim/src -I/home/maritns3/arch/neovim/.deps/usr/include -I/usr/include -I/ho
-me/maritns3/arch/neovim/build/src/nvim/auto -I/home/maritns3/arch/neovim/buil
-d/include
 Compiled by maritns3@maritns3-pc
 
 Features: +acl +iconv +tui
 See ":help feature-compile"
 
    system vimrc file: "$VIM/sysinit.vim"
-  fall-back for $VIM: "/home/maritns3/.local/nvim/share/nvim"
+  fall-back for $VIM: "/usr/local/share/nvim"
 
 Run :checkhealth for more info
 ```
@@ -202,9 +197,6 @@ https://registry.npm.taobao.org/
 
 ```txt
 ➜  Vn git:(master) ✗ sudo apt install ccls
-➜  Vn git:(master) ✗ ccls -version
-ccls version 0.20190823.6-1~ubuntu1.20.04.1
-clang version 10.0.0-4ubuntu1
 ```
 
 5. 复制本配置
@@ -226,16 +218,15 @@ sudo apt install xclip
 
 sudo pip3 install neovim
 sudo pip3 install pynvim
-//FIXME 这是相同的包吗 ?
 ```
 
-注: 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2 和 Ruby 的依赖是不需要安装。
-以及 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
+注: 
+1. 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2, Ruby 和 perl 的依赖是不需要安装。
+2. 感谢 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
 
 
 例如下面是我的配置的截图。
-![checkhealth screenshot](https://upload-images.jianshu.io/upload_images/9176874-690ec7a23ba8826e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+![checkhealth screenshot](./img/checkhealth.png)
 
 7. 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
 
@@ -247,13 +238,7 @@ sudo apt install bear
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 2. cmake [生成 compile_commands.json 的方法](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json)
 3. [ninja](https://ninja-build.org/manual.html)
-
-```sh
-ninja -t compdb > compile_commands.json
-```
-
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
-
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
 
@@ -269,28 +254,28 @@ ninja -t compdb > compile_commands.json
 这三个键位都是可以重新映射的。
 
 #### 符号搜索
-利用 coc.nvim 可以方便实现符号搜索, 比如函数定义，全局变量以及 macro 等。
+利用 [telescope](https://github.com/nvim-telescope) 快速搜索 file，buffer，function 等
 
 | key binding | function                 |
 |-------------|--------------------------|
 | `,` `o`     | 在当前文件中间搜索该符号 |
 | `,` `s`     | 整个工程中间搜索该符号   |
 
-在 fork.c 中间搜索 clone 这个符号:
-![DeepinScreenshot_select-area_20210426163057.png](https://upload-images.jianshu.io/upload_images/9176874-6c63b4c599ecd69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+在 fork.c 中间搜索 `_x64_sys_fork` 这个符号:
+![](./img/workspace-symbols.png)
 
 在整个 Linux 工程中间搜索 sysclone 这个符号:
-![DeepinScreenshot_select-area_20210426163022.png](https://upload-images.jianshu.io/upload_images/9176874-e9ca004de864b7bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](./img/outline-symbols.png)
 
 #### 导航
-1. 利用[LeaderF](https://github.com/Yggdroot/LeaderF) 快速搜索 file，buffer，function 等。搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
-![搜索文件](https://upload-images.jianshu.io/upload_images/9176874-2c447589c614dbed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-> 注意，LeaderF 务必安装 C 扩展(在 vim 中运行 `:LeaderfInstallCExtension`), 速度会非常快
+1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
+![搜索文件](./img/search-files.png)
 
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `<F2>`。
 
-![导航栏](https://upload-images.jianshu.io/upload_images/9176874-59005a8b32a8b22e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">
+  <img src="./img/outline.png" />
+</p>
 
 #### 定义和引用
 
@@ -305,7 +290,7 @@ ninja -t compdb > compile_commands.json
 |-------------|------------------------------------------------------|
 | `K`         | 可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。 |
 
-![查找注释](https://upload-images.jianshu.io/upload_images/9176874-7d4916f3766ee4b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![查找注释](./img/comment.png)
 
 #### 格式化
 
@@ -380,7 +365,7 @@ pip install cppman
 cppman -c
 ```
 
-![查找`get_id`文档](https://upload-images.jianshu.io/upload_images/9176874-640596fe5a653d60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![查找`get_id`文档](./img/cppman.png)
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
@@ -403,11 +388,15 @@ endsnippet
 ```
 
 这样，然后每次只需要输入 import 这些内容就自动出现了，效果如下。
-![此时只需要按下Enter，这些内容就会自动出现](https://upload-images.jianshu.io/upload_images/9176874-50be9343756e731f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![此时只需要按下Enter，这些内容就会自动出现](./img/snippet.png)
 
+#### 自动补全
+自动补全是自动触发的，coc.nvim 无需另外的配置，效果如下。
+<p align="center">
+  <img src="./img/autocomplete.png" />
+</p>
+使用 `tab` 来确认选择，使用 `Crtl` `j` 和 `Ctrl` `k` 来移动
 
-一般的自动补全 coc.nvim 无需另外的配置，效果如下。
-![自动补全](https://upload-images.jianshu.io/upload_images/9176874-daac0f5b05792dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### git 集成
 SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持非常好，其相关的快捷键都是 `<Space>` `g` 开头的，非常好用。
@@ -436,7 +425,7 @@ call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open la
 - `Fn5` : 显示/隐藏窗口
 
 下面是在打开悬浮终端，并且运行 htop 的结果:
-![floaterm](https://upload-images.jianshu.io/upload_images/9176874-32e6bbbc08cb4b8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![floaterm](./img/floaterm.png)
 ## 扩展
 需要说明的是，本配置并不局限于 C/C++，只是相对其他语言，我比较熟悉 C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
 
@@ -452,7 +441,7 @@ call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open la
 - 效果
 
 `Space` `l` `l` 启动编译， 保存的时候，自动更新，并且更新输出到 zathura 中间。
-![使用 zathura 预览](https://upload-images.jianshu.io/upload_images/9176874-b51f76620f214709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![使用 zathura 预览](./img/pdf.png)
 
 - 原理
 
@@ -468,32 +457,6 @@ $pdf_mode = 5;
 参考:
 - https://tex.stackexchange.com/questions/429274/chinese-on-mactex2018-simple-example
 - https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
-
-#### 基于 coc.nvim 的扩展, 以 Python 为例
-- 如何扩展
-
-```sh
-sudo apt install python3-venv
-```
-
-添加 coc-python 这个插件，并且启用微软的 python language server，也就是 disable 掉 jedi, 这一步是**必须的**，jedi 我从来没有正常成功使用过，总是崩溃。
-```vim
-let s:coc_extensions = [
-			\ 'coc-jedi',
-
-call coc#config("python.jediEnabled", v:false)
-```
-
-
-- 效果
-
-![查找引用](https://upload-images.jianshu.io/upload_images/9176874-f759cf59365d5c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![查找](https://upload-images.jianshu.io/upload_images/9176874-773f3dabb59d0b97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-- 原理
-
-s:coc_extensions 添加 coc-python 之后，会自动安装[coc-python](https://github.com/neoclide/coc-python)和[language server](https://github.com/microsoft/python-language-server)。
-通过 coc.nvim，nvim 可以将自己伪装成为 vscode，coc-python 本身也是 vscode 的插件。如此，vscode 的处理 python 的技术被吸收到 vim 中间来，但是 vim 更加简洁，高效。
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -539,13 +502,18 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 | Ctrl + d    | 向前滚动一屏，光标在屏幕的位置保持不变 |
 | Ctrl + b    | 向后滚动一屏，但是光标在底部           |
 | Ctrl + u    | 向后滚动半屏，光标在屏幕的位置保持不变 |
+| Ctrl + e    | 向上滚动                               |
+| Ctrl + y    | 向下滚动                               |
 
 - vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
 - 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
 - 在 Esc 是 vim 中间使用频率非常高的键位，为了不让自己的左手小拇指被拉长，可以将 CapsLock 键映射为 Esc 键，一种修改方法为在 ~/.profile 中加入。这个方法存在一个小问题，就是需要打开一个终端窗口才可以加载这个，应为 .profile 在 login 的时候才会被执行一次。
-
 ```txt
 setxkbmap -option caps:swapescape
+```
+- 重新映射 escape 也可以使用 spacevim 的内置方案
+```vim
+  let g:spacevim_escape_key_binding = 'jk'
 ```
 
 ## 其他的一些资源
