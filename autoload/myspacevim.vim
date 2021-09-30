@@ -146,5 +146,5 @@ func! myspacevim#after() abort
   nmap , <Plug>(coc-smartf-repeat-opposite)
 
   " https://vi.stackexchange.com/questions/13080/setting-tab-to-2-spaces
-  set ts=2 sts=2 noet
+  set ts=2 sts=2
 endf

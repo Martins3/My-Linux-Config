@@ -114,6 +114,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gh <Plug>(coc-declaration)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references-used)
@@ -167,10 +168,10 @@ nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc diagnostics<cr>
+nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<cr>
 " Find symbol of current document.
-" nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
+" nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 " Live grep
