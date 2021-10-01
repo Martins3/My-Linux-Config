@@ -1,8 +1,12 @@
+# 极简 alacritty + tmux 配置
+因为 sougou 拼音的问题让 ala
+- [ ] https://zhuanlan.zhihu.com/p/142206571 : 也许禁用 ibus 是一种方法
+sudo dpkg-divert --package im-config --rename /usr/bin/ibus-daemon
+
 # 自动安装脚本
-- [ ] 利用 qemu 来构建 ci 测试
+- [ ] 利用 qemu 来构建 ci 测试，看看 SpaceVim 是如何构建 ci 的
 - [ ] 提供 tmux 以及 alacritty.yml 配置集成
   - [ ] alacritty 的安装需要按照其仓库的 ./install.md 的步骤手动编译
-
 
 ## alacritty
 在完成了一些基本的配置之后，alacritty 和 tmux 基本工作正常，但是输入法会在切换应用（Alt+Tab）的时候 crash, 具体效果为，但是并无法使用相同的方法解决:

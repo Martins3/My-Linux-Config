@@ -40,11 +40,13 @@
     # 字样，只以颜色区分当前模式
     enable_statusline_display_mode = false
 
-    # MY OWN OPTIONS
+    # 自定义配置
     filemanager = "defx"
     autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
+    # indent-blankline.nvim 会在一些奇怪的位置（比如 filetree 中）放置竖线
+    # disabled_plugins = ["indent-blankline.nvim"]
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
 
@@ -95,11 +97,6 @@
 [[custom_plugins]]
     name = 'junegunn/fzf.vim'
 
-# 快速搜索文件和 buffer
-[[custom_plugins]]
-    name = "Yggdroot/LeaderF"
-    build = "./install.sh"
-
 # 快速编辑 markdown 的表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
@@ -134,12 +131,36 @@
 [[custom_plugins]]
     name = 'google/vim-searchindex.git'
 
+# 安装公共的的 snippets
+[[custom_plugins]]
+    name = 'honza/vim-snippets'
+
+# 一些 lua 插件，比如 telescope, 的依赖
+[[custom_plugins]]
+    name = 'nvim-lua/plenary.nvim'
+
+# 安装 telescope 来实现搜索
+[[custom_plugins]]
+    name = 'nvim-telescope/telescope.nvim'
+
+# 使用 telescope 来搜索 coc 提供的符号
+[[custom_plugins]]
+    name = 'fannheyward/telescope-coc.nvim'
+
+# 配合 sourcetrail 使用
+[[custom_plugins]]
+  name = 'CoatiSoftware/vim-sourcetrail'
+
+[[custom_plugins]]
+  name = 'nvim-treesitter/nvim-treesitter'
+  build = 'TSUpdate'
+
+[[custom_plugins]]
+  name = 'nvim-telescope/telescope-fzf-native.nvim'
+  build = 'make'
+
 # ----------------- 尝试的内容 -------------------------------------------------
 
 # debug 框架，尚未完全集成到本配置中
 [[custom_plugins]]
   name = 'puremourning/vimspector'
-
-# 配合 sourcetrail 配合使用
-[[custom_plugins]]
-  name = 'CoatiSoftware/vim-sourcetrail'
