@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Modern neovim config based on SpaceVim and Coc.nvim 👋</h1>
+<h1 align="center">My Linux Configuration</h1>
 <p>
   <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">
     <img alt="License: GNU General Public License v3.0" src="https://img.shields.io/badge/License-GNU General Public License v3.0-yellow.svg" />
@@ -8,19 +8,17 @@
     <img alt="License: GNU General Public License v3.0" src="https://github.com/martins3/My-Linux-config/actions/workflows/lint-md.yml/badge.svg" />
   </a>
 </p>
+Based on Ubuntu 20.04.
 
 ### :book: Document
 
 * 中文文档
-  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/)
-  * [极简 tmux 配置](https://martins3.github.io/My-Linux-Config/)
+  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
+  * [极简 tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
 * English version comming soon.
 
 ## :gear: Install
-
-```sh
-TODO TODO
-```
+TODO
 
 ## 🤝 Contributing
 

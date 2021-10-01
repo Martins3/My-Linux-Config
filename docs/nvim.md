@@ -48,33 +48,34 @@
 
 本文的目标观众:
 1. vim 新手
-2. 正在使用 cscope[^1] / ctags / gtags / nerdtree / YouCompleteMe 的 vimer
-3. 不了解 Language Server Protocal[^5] (下简称 lsp ) 和 async 的 vimer
+2. 正在使用 [cscope][http://cscope.sourceforge.net/] / [ctags](https://github.com/universal-ctags/ctags) / [gtags](https://github.com/SpaceVim/SpaceVim/issues/4389) / [nerdtree](https://github.com/preservim/nerdtree) / YouCompleteMe 的 vimer
+3. 不了解 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) (下简称 lsp ) 和 async 的 vimer
 
-我想说的是，vim 正在飞速进步 ，拥抱 lsp 和 async 等新特性，vim 一定的比你想象的酷炫和高效。
+本项目不是在于要大家使用我的这个配置，
+而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 
 ## 背景 
-我平时主要写 C/C++, 最开始的配置是参考 use_vim_as_ide[^9] 写的，
+我平时主要写 C/C++, 最开始的配置是参考 [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide) 写的，
 在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
 我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
 整个 vim 都会变卡。
 
-曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
+曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 [YCM](https://github.com/ycm-core/YouCompleteMe) 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
 最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
 
 我在想，用 vim 的意义到底是什么，疯狂的自我折磨吗?
 
 ## 关于如何入门 vim
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
-1. openvim[^21]: 交互式的学习 vim
-2. vim check sheet[^22]: vim 常用快捷键清单
+1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
+2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
 
 如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后
 使用 vim check sheet 是强化补充的，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的。
 
 vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
 
-虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个仓库[^6]用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
+虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
 
 1. 退出: 我使用 `:xa` 退出 vim。 `x` 表示保存并且关闭 buffer，`a`表示运用于所有的。有时候出现意外关闭 vim，再次打开文件可以出现警告，解决办法是 : 首先利用.swp 文件进行恢复，然后手动清理 `~/.cache/SpaceVim/swap` .swp 文件。
     - 至于为什么存在这个 `.swp` 文件以及如何关闭这个选项，可以参考这里。
@@ -82,7 +83,7 @@ vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记�
 
 ## 终极解决方案: lsp
 lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
-1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 ccls[^12], Rust 语言采用 rust-analyzer[^15], 官方列举了很多 Language server[^13]。
+1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust 语言采用 [rust analyzer](https://github.com/rust-analyzer/rust-analyzer), 官方列举了很多 [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)。
 2. 不同的编辑按照 lsp 的规范和 language server 通信
 
 他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
@@ -105,20 +106,20 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
 
 文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开 linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
-直到将 nerdtree 替换为大神 shougou 的 defx[^17]。
+直到将 nerdtree 替换为大神 shougou 的 [defx](https://github.com/Shougo/defx.nvim)。
 
-关于 nerdtree 为什么不支持 async 可以参考这个 issue[^18]。
+关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
 
 ## 为什么使用 SpaceVim
 VSCode 我也使用过一段时间，我觉得 VSCode 之所以学习曲线非常的平缓主要有两个原因，
 1. 其提供标准配置给新手就可以直接使用了，但是 vim 没有一个较好的配置，几乎没有办法使用。
 2. 官方提供了统一的插件市场，好的插件自动排序，再也不需要像 vim 这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。
 
-目前，SpaceVim 比较好的解决了这些问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用。当然你还是需要知道 vim 的基础知识和简要的阅读 Spacevim 的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了。
-Spacevim 还有一个很强的地方在于，配置是作为一个插件存在的，可以不断升级，而 LunarVim[^19] 这种配置，fork 到自己的分支，修改，想要升级就要 merge 主线上的冲突。
+目前，[SpaceVim](http://spacevim.org/) 比较好的解决了这些问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用。当然你还是需要知道 vim 的基础知识和简要的阅读 Spacevim 的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了。
+Spacevim 还有一个很强的地方在于，配置是作为一个插件存在的，可以不断升级，而 [github: LunarVim](https://github.com/ChristianChiarulli/LunarVim) 这种配置，fork 到自己的分支，修改，想要升级就要 merge 主线上的冲突。
 
 ## 为什么使用 coc.nvim
-最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 coc.nvim 这种插件，类似的工具官方列举了很多[^14], 
+最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/), 
 coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽然后来 neovim 内置了 到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 
 不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧。
@@ -130,11 +131,11 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽�
 2. 社区更活跃。这个你对比一下 vim 和 neovim 的开发者数量就可以知道了，vim 很长时间都只有一个人开发的。
 3. 很多插件依赖 neovim 新特性，或者只能在 vim 上勉强使用。
 
-根据 stackoverflow 的报告[^31], neovim 在 2021 年是开发者中最受喜爱的编辑器
+根据 stackoverflow 的报告指出 [Neovim is the most loved editor it is the 10th most wanted editor](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
 
 ## 安装
 安装可以参考 install 目录下的的脚本(有待完善和测试)，下面是详细的解释。安装成功需要注意两点:
-1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server 。 实现代理的方法在 github 上有很多教程，也可以参考我的 blog[^20]
+1. 代理 : 尽管 python, pacman/apt-get/yum，npm, docker 都是可以使用国内镜像，但是部分还是需要国外的，比如 Microsoft Python Language Server 。 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
 2. 软件版本 : 在 Ubuntu 16.04 上安装简直是一个噩梦，很多软件需要手动编译，不过在 Ubuntu 20.04 上问题不大，下面以 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
 
 本配置的架构如下图所示。
@@ -271,7 +272,7 @@ sudo apt install bear
 1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
 ![搜索文件](./img/search-files.png)
 
-2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `<F2>`。
+2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `<Fn2>`。
 
 <p align="center">
   <img src="./img/outline.png" />
@@ -466,26 +467,31 @@ $pdf_mode = 5;
 2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
 4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
-5. UltiSnips/ : 大多数是从 https://github.com/honza/vim-snippets 中间粘贴过来的, 然后添加一些自己特有的。
+5. plugin/lua.vim : 有一些插件的配置现在只能使用 lua 来配置
+6. UltiSnips/ : 通过安装 [vim-snippets](https://github.com/honza/vim-snippets)已经安装了非常多的 snippets，可以在 UltiSnips 下添加自定义的插件
 
 SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 一些快捷键的说明:
-1. `<F4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust 等，我个人用于刷题的时候使用。
+1. `<Fn4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust 等，我个人用于刷题的时候使用。
+2. `<Fn3>` 打开文件树
 2. `<Space>`  `l`  `p` 预览 markdown
 
 ## FAQ
-- 为什么不使用 IDE，比如 CLion ?
-    - 恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。Code::Blocks[^25] 过于陈旧，Visual Studio[^24] 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。
+- 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
+    - 恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。[Code::Blocks](https://www.codeblocks.org/) 过于陈旧，[Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。
 
-- 为什么不适用 VSCode ?
-    - VSCode 比 Sublime 功能更强，比 Atom[^26] 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 在简洁, 灵活和高效的极致的。
+- 为什么不使用 VSCode ?
+    - VSCode 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 在简洁, 灵活和高效的极致的。
 
 - 我应该使用这个配置吗 ?
-    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, exvim[^27], spf13-vim[^28], The Ultimate vimrc[^29] 之类的。
+    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 
 - 为什么不使用 lua 和 built-in ?
-    - 这是将来会考虑的，其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到这里[^30]
+    - 首先，我强烈推荐推荐你看看 [NvChad](https://github.com/NvChad/NvChad) 这个项目。
+    - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西变化很快。
+    - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
+    - [SpaceVim 也是正在打算支持 lua 的](https://github.com/SpaceVim/SpaceVim/issues/4389)
 
 ## vim 的小技巧
 - 翻滚屏幕
@@ -532,37 +538,8 @@ setxkbmap -option caps:swapescape
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 
-[^1]: [cscope](http://cscope.sourceforge.net/)
-[^2]: [SpaceVim](http://spacevim.org/)
-[^3]: [coc.nim](https://github.com/neoclide/coc.nvim)
-[^4]: [Vim 8 中 C/C++ 符号索引：GTags 篇](https://zhuanlan.zhihu.com/p/36279445)
-[^5]: [Language Server Protocal](https://microsoft.github.io/language-server-protocol/)
-[^6]: [github: how to exit vim](https://github.com/hakluke/how-to-exit-vim)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
-[^9]: [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide)
-[^10]: [YCM](https://github.com/ycm-core/YouCompleteMe)
-[^11]: [ctags](https://github.com/universal-ctags/ctags)
-[^12]: [ccls](https://github.com/MaskRay/ccls)
-[^13]: [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)
-[^14]: [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/)。
-[^15]: [rust analyzer](https://github.com/rust-analyzer/rust-analyzer)
-[^16]: [nerdtree](https://github.com/preservim/nerdtree)
-[^17]: [defx](https://github.com/Shougo/defx.nvim)
-[^18]: [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)
-[^19]: [github: LunarVim](https://github.com/ChristianChiarulli/LunarVim)
-[^20]: [corss the GFW](https://martins3.github.io/gfw.html)
-[^21]: [openvim](https://www.openvim.com/tutorial.html)
-[^22]: [vim check sheet](https://vim.rtorr.com/lang/zh_cn)
-[^23]: [CLion](https://www.jetbrains.com/clion/)
-[^24]: [Visual Studio](https://visualstudio.microsoft.com/zh-hans/)
-[^25]: [Code::Blocks](https://www.codeblocks.org/)
-[^26]: [Atom](https://atom.io/)
-[^27]: [exvim](https://exvim.github.io/)
-[^28]: [spf13-vim](https://github.com/spf13/spf13-vim)
-[^29]: [The Ultimate vimrc](https://github.com/amix/vimrc)
-[^30]: [built-in lsp and lua](https://github.com/Martins3/My-Linux-config/issues/15)
-[^31]: [Neovim is the most loved editor it is the 10th most wanted editor](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
  
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**

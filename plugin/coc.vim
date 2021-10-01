@@ -170,8 +170,8 @@ nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
-" nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+" nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 " Live grep

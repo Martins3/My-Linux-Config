@@ -11,16 +11,8 @@ require('telescope').setup {
                                        -- the default case_mode is "smart_case"
     }
   },
-  extensions = {
-    media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      find_cmd = "rg" -- find command (defaults to `fd`)
-    }
-  },
 }
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('media_files')
 EOF
