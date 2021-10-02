@@ -1,0 +1,17 @@
+{
+  "excludeFiles": [],
+  "rules": {
+    "no-empty-code": 1,
+    "no-long-code": [
+      0,
+      {
+        "length": 100,
+        "exclude": [
+          "html",
+          "json",
+          "txt"
+        ]
+      }
+    ]
+  }
+}

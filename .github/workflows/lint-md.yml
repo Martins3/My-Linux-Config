@@ -1,12 +1,10 @@
-name: Lint Markdown By Lint Markdown
+name: Lint Markdown
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-configFile: .lintmdrc
 
 jobs:
   lint-markdown:
@@ -18,7 +16,7 @@ jobs:
       - name: lint-md-github-action
         uses: lint-md/github-action@v0.0.2
         with:
-                files: 'Readme.md'
-                configFile: '.lintmdrc'
+                files: 'README.md docs/'
+                configFile: '.lintmdrc.json'
                 failOnWarnings: true
 
