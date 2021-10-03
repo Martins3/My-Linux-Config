@@ -3,10 +3,6 @@
   <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">
     <img alt="License: GNU General Public License v3.0" src="https://img.shields.io/badge/License-GNU General Public License v3.0-yellow.svg" />
   </a>
-
-  <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">
-    <img alt="License: GNU General Public License v3.0" src="https://github.com/martins3/My-Linux-config/actions/workflows/lint-md.yml/badge.svg" />
-  </a>
 </p>
 Based on Ubuntu 20.04.
 

@@ -43,3 +43,5 @@ exec gnome
 ```sh
 sudo dpkg-divert --package im-config --rename /usr/bin/ibus-daemon
 ```
+
+<script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>

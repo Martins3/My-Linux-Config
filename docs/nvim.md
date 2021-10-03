@@ -160,7 +160,7 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode* , 虽�
 ```
 整个环境的安装主要是 neovim SpaceVim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
-1. 当前配置需要 neovim 0.5 以上的版本，这个需要[手动安装](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.5 以上的版本，这个需要[手动安装](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 如果所有的依赖都安装了，其实也就是下面三条命令
 ```sh
@@ -185,8 +185,9 @@ See ":help feature-compile"
 Run :checkhealth for more info
 ```
 
-2. 第二步， 按照 Spacevim 安装的[官方文档](https://spacevim.org/cn/quick-start-guide/)安装 SpaceVim。
-3. **保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 安装完成之后检查:
+- 第二步， 按照 Spacevim 安装的[官方文档](https://spacevim.org/cn/quick-start-guide/)安装 SpaceVim。
+- 安装 yarn 和 nodejs
+- **保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 安装完成之后检查:
 
 ```txt
 ➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
@@ -194,13 +195,13 @@ https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
 
-4. 安装 ccls。也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
+- 安装 ccls。也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
 
 ```txt
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ```
 
-5. 复制本配置
+- 复制本配置
 
 ```sh
 cd ~ # 保证在根目录
@@ -209,7 +210,7 @@ git clone https://github.com/martins3/My-Linux-config .SpaceVim.d
 nvim # 打开vim 将会自动安装所有的插件
 ```
 
-6. 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
+- 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
 
 ```sh
 sudo apt install xclip
@@ -217,8 +218,15 @@ sudo apt install xclip
 # archlinux 请使用 wl-clipboard 替代xclip
 # sudo pacman -S wl-clipboard
 
+# 安装 python3 的依赖
 sudo pip3 install neovim
 sudo pip3 install pynvim
+
+# 安装 treesitter
+cargo install tree-sitter-cli
+
+# 让系统选择 https://github.com/sharkdp/fd
+ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 注: 
@@ -229,7 +237,7 @@ sudo pip3 install pynvim
 例如下面是我的配置的截图。
 ![checkhealth screenshot](./img/checkhealth.png)
 
-7. 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
+- 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
 
 ```sh
 sudo apt install bear
@@ -237,11 +245,19 @@ sudo apt install bear
 
 注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
+2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 compile_commands.json, 直接拷贝到项目的顶层目录就可以了。
 2. cmake [生成 compile_commands.json 的方法](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json)
 3. [ninja](https://ninja-build.org/manual.html)
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
+
+- 安装 cppman 可以在 vim 展示 https://en.cppreference.com/w/ 的文档
+```sh
+sudo apt install cppman
+cppman -c # 缓存数据
+```
+- 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，在[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 SpaceVim，coc.nvim，ccls 以及特定插件的文档。
@@ -473,9 +489,9 @@ $pdf_mode = 5;
 SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 一些快捷键的说明:
-1. `<Fn4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust 等，我个人用于刷题的时候使用。
-2. `<Fn3>` 打开文件树
-2. `<Space>`  `l`  `p` 预览 markdown
+1. `<Fn3>` 打开文件树
+2. `<Fn4>` 我自己写的一键运行文件，支持语言的单文件执行如 C/C++, Java, Rust 等，我个人用于刷题的时候使用。跟过配置参考具体的源代码。
+3. `<Space>`  `l`  `p` 预览 markdown
 
 ## FAQ
 - 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
@@ -541,5 +557,5 @@ setxkbmap -option caps:swapescape
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
  
-<script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
+<script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**
