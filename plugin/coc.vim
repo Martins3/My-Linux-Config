@@ -113,12 +113,11 @@ endfor
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gh <Plug>(coc-declaration)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references-used)
+nmap <silent> <nowait> gd : <C-u>Telescope coc definitions<cr>
+nmap <silent> <nowait> gh : <C-u>Telescope coc declarations<cr>
+nmap <silent> <nowait> gy : <C-u>Telescope coc type_definitions<cr>
+nmap <silent> <nowait> gi : <C-u>Telescope coc implementations<cr>
+nmap <silent> <nowait> gr : <C-u>Telescope coc references<cr>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -167,9 +166,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Search code action.
 nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
-nnoremap <silent><nowait> <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <silent><nowait> <leader>b : <C-u>Telescope buffers prompt_prefix=🔍<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>lua require('telescope.builtin').find_files()<cr>
+nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=🔍<cr>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
@@ -180,9 +179,9 @@ nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 " Live grep
-nnoremap <silent><nowait> <leader>g  :<C-u>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search help
-nnoremap <silent><nowait> <leader>h  :<C-u>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
 " Search help
 nnoremap <silent><nowait> <leader>m  :<C-u>Telescope coc mru<cr>
 
