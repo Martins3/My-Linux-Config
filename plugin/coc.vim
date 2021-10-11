@@ -153,6 +153,10 @@ augroup end
 " command! -nargs=0 Format :call CocAction('format')
 call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
 
+" Formatting selected code.
+xmap <leader>k  <Plug>(coc-format-selected)
+nmap <leader>k  <Plug>(coc-format-selected)
+
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
