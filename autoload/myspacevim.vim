@@ -21,12 +21,6 @@ func! myspacevim#before() abort
   " If you cancel and quit window resize mode by `q` (keycode 113)
   let g:winresizer_keycode_cancel = 113
 
-  " 让file tree 显示文件图标，需要 terminal 安装 nerd font
-  let g:spacevim_enable_vimfiler_filetypeicon = 1
-
-  " 让 filetree 显示 git 的状态
-  " let g:spacevim_enable_vimfiler_gitstatus = 1
-
   " 默认 markdown preview 在切换到其他的 buffer 或者 vim
   " 失去焦点的时候会自动关闭 preview，让
   let g:mkdp_auto_close = 0

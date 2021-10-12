@@ -46,9 +46,15 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
     # indent-blankline.nvim 会在一些奇怪的位置（比如 filetree 中）放置竖线
-    # disabled_plugins = ["indent-blankline.nvim"]
+    disabled_plugins = ["indent-blankline.nvim"]
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
+[[layers]]
+  name = 'core'
+  # 不让 filetree 显示 git 的状态，在大项目中性能有点问题
+  enable_filetree_gitstatus = false
+  # 让file tree 显示文件图标，需要 terminal 安装 nerd font
+  enable_filetree_filetypeicon = true
 
 # 计算器, 日历, 书签等小工具
 [[layers]]
@@ -153,7 +159,7 @@
 
 [[custom_plugins]]
   name = 'nvim-treesitter/nvim-treesitter'
-  build = 'TSUpdate'
+  # build = ':TSUpdate'
 
 [[custom_plugins]]
   name = 'nvim-telescope/telescope-fzf-native.nvim'
