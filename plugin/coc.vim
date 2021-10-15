@@ -173,6 +173,8 @@ nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=�
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<cr>
+" FIXME 这是唯一一个还需要使用 CocFzfList 的位置
+" 因为使用 Telescope 无法在 markdown 中预览
 " Find symbol of current document.
 " nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
 nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
@@ -182,8 +184,8 @@ nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search help
 nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
-" Search help
-nnoremap <silent><nowait> <leader>m  :<C-u>Telescope coc mru<cr>
+nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
+nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>x  <Plug>(coc-codeaction-selected)

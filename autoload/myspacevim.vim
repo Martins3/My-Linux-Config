@@ -12,7 +12,8 @@ func! myspacevim#before() abort
 
   " 重新映射 window 键位
   let g:spacevim_windows_leader = 'c'
-
+  
+  " 在 markdown 中间编辑 table
   let g:table_mode_corner='|'
 
   " 调节 window 大小
@@ -27,8 +28,9 @@ func! myspacevim#before() abort
 
   " 书签选中之后自动关闭 quickfix window
   let g:bookmark_auto_close = 1
+
   " 设置一个删除所有的 bookmark 的快捷键
-  call SpaceVim#custom#SPC('nnoremap', ['b', 'C'], 'BookmarkClearAll', 'clear all bookmark', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'BookmarkClearAll', 'clear all bookmark', 1)
 
   " ctrl + ] 查询 cppman
   " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
