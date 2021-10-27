@@ -33,6 +33,7 @@
 - [本配置源代码解释](#本配置源代码解释)
 - [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
+- [vim 调试](#vim-调试)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -537,6 +538,30 @@ setxkbmap -option caps:swapescape
 ```vim
   let g:spacevim_escape_key_binding = 'jk'
 ```
+
+## vim 调试
+有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
+
+创建一个 mini.vim 其内容为:
+```vim
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=/tmp/vim/Vundle.vim
+call vundle#begin(/tmp/vim/)
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'jauler/vim-auto-gcov-marker'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+```
+然后运行 nvim -u mini.vim 来加载最为单纯的 vim 环境
 
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
