@@ -152,5 +152,7 @@
   name = 'nvim-telescope/telescope-fzf-native.nvim'
   build = 'make'
 
+[[custom_plugins]]
+  name = 'github/copilot.vim'
 # ----------------- 尝试的内容 -------------------------------------------------
 # 暂无
