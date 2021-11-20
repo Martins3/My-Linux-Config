@@ -36,10 +36,6 @@ func! myspacevim#before() abort
   " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
   autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
 
-  " Tell Neosnippet about the other snippets
-  " ref : https://github.com/Shougo/neosnippet.vim
-  let g:neosnippet#snippets_directory='~/.cache/vimfiles/repos/github.com/honza/vim-snippets/snippets'
-
   " 让光标自动进入到popup window 中间
   let g:git_messenger_always_into_popup = v:true
   " 设置映射规则，和 spacevim 保持一致
