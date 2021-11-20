@@ -157,6 +157,10 @@
 [[custom_plugins]]
   name = 'kristijanhusak/orgmode.nvim'
 
+# 用于统计代码时间
+[[custom_plugins]]
+  name = 'wakatime/vim-wakatime'
+
 [[custom_plugins]]
   name = 'github/copilot.vim'
 # ----------------- 尝试的内容 -------------------------------------------------
