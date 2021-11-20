@@ -145,17 +145,20 @@
   name = 'nvim-telescope/telescope-fzf-native.nvim'
   build = 'make'
 
+# neovim 0.5 的关键新特性，实现更好的高亮
+[[custom_plugins]]
+  name = 'nvim-treesitter/nvim-treesitter'
+
 # 配合 sourcetrail 使用
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
 
-[[custom_plugins]]
-  name = 'nvim-treesitter/nvim-treesitter'
-
+# 日程管理
 [[custom_plugins]]
   name = 'kristijanhusak/orgmode.nvim'
 
 [[custom_plugins]]
   name = 'github/copilot.vim'
 # ----------------- 尝试的内容 -------------------------------------------------
-# 暂无
+# https://github.com/hrsh7th/nvim-cmp
+# https://github.com/ldelossa/calltree.nvim
