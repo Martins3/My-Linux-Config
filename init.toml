@@ -152,6 +152,8 @@
 [[custom_plugins]]
   name = 'nvim-treesitter/nvim-treesitter'
 
+[[custom_plugins]]
+  name = 'kristijanhusak/orgmode.nvim'
 
 [[custom_plugins]]
   name = 'github/copilot.vim'
