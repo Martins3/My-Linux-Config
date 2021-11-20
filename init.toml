@@ -128,7 +128,7 @@
 [[custom_plugins]]
     name = 'honza/vim-snippets'
 
-# 一些 lua 插件，比如 telescope, 的依赖
+# 很多 lua 插件依赖的库
 [[custom_plugins]]
     name = 'nvim-lua/plenary.nvim'
 
@@ -140,17 +140,18 @@
 [[custom_plugins]]
     name = 'fannheyward/telescope-coc.nvim'
 
+# telescope 搜索的插件，可以提升搜索效率
+[[custom_plugins]]
+  name = 'nvim-telescope/telescope-fzf-native.nvim'
+  build = 'make'
+
 # 配合 sourcetrail 使用
 [[custom_plugins]]
   name = 'CoatiSoftware/vim-sourcetrail'
 
 [[custom_plugins]]
   name = 'nvim-treesitter/nvim-treesitter'
-  # build = ':TSUpdate'
 
-[[custom_plugins]]
-  name = 'nvim-telescope/telescope-fzf-native.nvim'
-  build = 'make'
 
 [[custom_plugins]]
   name = 'github/copilot.vim'

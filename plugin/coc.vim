@@ -101,7 +101,7 @@ let s:coc_extensions = [
       \ 'coc-git',
       \ 'coc-diagnostic',
       \ 'coc-lua',
-      \ 'coc-xml'
+      \ 'coc-xml',
 			\]
 
 for extension in s:coc_extensions
@@ -162,13 +162,19 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Search code action.
 nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
-nnoremap <silent><nowait> <leader>b : <C-u>Telescope buffers prompt_prefix=🔍<cr>
-" Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=🔍<cr>
+nnoremap <silent><nowait> <leader>b  :<C-u>Telescope buffers prompt_prefix=🔍<cr>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<cr>
+" Show colorscheme
+nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
+" Show files
+nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=🔍<cr>
+" Live grep
+nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
+" Search help
+nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
 " FIXME 这是唯一一个还需要使用 CocFzfList 的位置
 " 因为使用 Telescope 无法在 markdown 中预览
 " Find symbol of current document.
@@ -176,11 +182,6 @@ nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<c
 nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
-" Live grep
-nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
-" Search help
-nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
-nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
 nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
