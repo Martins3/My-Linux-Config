@@ -35,7 +35,7 @@ endfunction
 " Use Tap for trigger snippet expand.
 let g:coc_snippet_next = '<tab>'
 
-" rust-analyzer 是的位置需要手动下载配置
+" rust-analyzer 需要手动下载配置
 " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
 
