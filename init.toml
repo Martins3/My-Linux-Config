@@ -161,6 +161,12 @@
 [[custom_plugins]]
   name = 'wakatime/vim-wakatime'
 
+[[custom_plugins]]
+  name = 'kyazdani42/nvim-web-devicons'
+
+[[custom_plugins]]
+  name = 'pwntester/octo.nvim'
+
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp
 # https://github.com/ldelossa/calltree.nvim

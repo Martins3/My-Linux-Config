@@ -175,6 +175,7 @@ nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=�
 nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search help
 nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
+nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
 " FIXME 这是唯一一个还需要使用 CocFzfList 的位置
 " 因为使用 Telescope 无法在 markdown 中预览
 " Find symbol of current document.

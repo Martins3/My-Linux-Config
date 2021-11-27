@@ -26,6 +26,7 @@
     - [代码段](#代码段)
     - [自动补全](#自动补全)
     - [git 集成](#git-集成)
+    - [github 集成](#github-集成)
     - [调试集成](#调试集成)
     - [终端](#终端)
 - [扩展](#扩展)
@@ -426,6 +427,13 @@ SpaceVim 的[git layer](https://spacevim.org/layers/git/) 对于 git 的支持�
 call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
 call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open lazygit in floaterm', 1)
 ```
+
+#### github 集成
+通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
+而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
+
+1. 安装 github cli [参考](https://garywoodfine.com/how-to-install-github-cli-on-linux/)
+2. 使用方法参考 octo.nvim 的 README.md
 
 #### 调试集成
 现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:

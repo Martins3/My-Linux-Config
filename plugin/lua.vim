@@ -62,4 +62,6 @@ require('orgmode').setup({
     }
   },
 })
+
+require('octo').setup{}
 EOF
