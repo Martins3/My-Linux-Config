@@ -1,7 +1,3 @@
-" 这里是 lua 的一些配置，当前完全需要 lua 的配置有 telescope.nvim
-" 预计未来几年，vim 的配置将会全面转为 lua 的，暂时这种方式来过渡一下。
-
-lua << EOF
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
 require('telescope').setup {
@@ -57,11 +53,10 @@ require('orgmode').setup({
   org_default_notes_file = '~/Dropbox/org/refile.org',
   mappings = {
     global = {
-      org_agenda = 'ga', 
+      org_agenda = 'ga',
       org_capture = 'gc'
     }
   },
 })
 
 require('octo').setup{}
-EOF

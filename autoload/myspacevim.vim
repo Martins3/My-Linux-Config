@@ -136,4 +136,6 @@ func! myspacevim#after() abort
   nmap F <Plug>(coc-smartf-backward)
   nmap ; <Plug>(coc-smartf-repeat)
   nmap , <Plug>(coc-smartf-repeat-opposite)
+
+  luafile ~/.SpaceVim.d/lua/init.lua
 endf
