@@ -7,6 +7,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 set nobackup
 set nowritebackup
 
+autocmd FileType python let b:coc_root_patterns = ['.git']
+
 " 使用 f/F 快速跳转一个字符上
 call coc#config("smartf.wordJump", v:false)
 call coc#config("smartf.jumpOnTrigger", v:false)
@@ -97,7 +99,7 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
-			\ 'coc-jedi',
+			\ 'coc-pyright',
       \ 'coc-explorer',
 			\ 'coc-java',
       \ 'coc-css',
