@@ -108,7 +108,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
 
 文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开 linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
-直到将 nerdtree 替换为大神 shougou 的 [defx](https://github.com/Shougo/defx.nvim)。
+直到将 nerdtree 替换为 [coc-explorer](https://github.com/weirongxu/coc-explorer)
 
 关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
 
@@ -342,16 +342,15 @@ spacevim 配置提供了强大的[异步搜索功能](https://spacevim.org/grep-
 #### 文件树
 参考 SpaceVim 的[文档](https://spacevim.org/documentation/#file-tree)，我这里总结几个我常用的:
 
-| key binding     | function                                          |
-|-----------------|---------------------------------------------------|
-| `Space` `f` `o` | 将当前的文件显示在 filetree 中间                    |
+| key binding     | function                                              |
+|-----------------|-------------------------------------------------------|
+| `Space` `f` `o` | 将当前的文件显示在 filetree 中间                      |
 | `r`             | 相当于 shell 中间的 mv 命令，实现文件的重命名或者移动 |
-| `d`             | 删除                                              |
-| `j`             | 向下移动                                          |
-| `k`             | 向上移动                                          |
-| `N`             | 创建文件/文件夹                                   |
-
-更多详细使用，可以直接阅读 SpaceVim 的源代码，位置在 : `~/.SpaceVim/config/plugins/defx.vim`
+| `d`             | 删除                                                  |
+| `j`             | 向下移动                                              |
+| `k`             | 向上移动                                              |
+| `a`             | 创建文件                                              |
+| `A`             | 创建文件夹                                            |
 
 #### 窗口
 因为 window leader 键位被我重新映射为 `c`，如果 window leader 是被映射其他键位，比如 `x`, 那么水平拆分为 `x` `g`
@@ -491,11 +490,8 @@ $pdf_mode = 5;
 1. init.toml : 基础配置，几乎是 SpaceVim 标准配置，在此处可以自己添加新的插件
 2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
 3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-4. plugin/defx.vim : 添加了一条让 defx 忽略各种二进制以及其他日常工作中间不关心的文件。
 5. plugin/lua.vim : 有一些插件的配置现在只能使用 lua 来配置
 6. UltiSnips/ : 通过安装 [vim-snippets](https://github.com/honza/vim-snippets)已经安装了非常多的 snippets，可以在 UltiSnips 下添加自定义的插件
-
-SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更加好的方法，比如如果想知道 defx 的使用方法，进入到 ~/.SpaceVim/ 中间，找到 defx.vim 直接阅读代码即可。
 
 一些快捷键的说明:
 1. `<Fn3>` 打开文件树
@@ -512,11 +508,13 @@ SpaceVim 的文档很多时候是不详细的，直接阅读代码往往是更�
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 
-- 为什么不使用 lua 和 built-in ?
+- 为什么不使用 built-in lsp?
     - 首先，我强烈推荐推荐你看看 [NvChad](https://github.com/NvChad/NvChad) 这个项目。
-    - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西变化很快。
+    - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
     - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
     - [SpaceVim 也是正在打算支持 lua 的](https://github.com/SpaceVim/SpaceVim/issues/4389)
+    - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
+    - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
 
 ## vim 的小技巧
 - 翻滚屏幕

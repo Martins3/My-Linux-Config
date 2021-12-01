@@ -48,12 +48,26 @@ call coc#config('coc.preferences', {
 			\ "diagnostic.virtualText": 1,
 			\})
 
+call coc#config(
+      \'explorer', {
+      \   "position": "right",
+      \   "git.showIgnored": v:false,
+      \   "openAction.strategy": "previousBuffer",
+      \   "keyMappings.global": {
+      \     "<tab>": v:false,
+      \     "yy": "copyFilepath",
+      \     "d": "deleteForever",
+      \},
+      \ "icon.enableNerdfont": v:true,
+  \})
+call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer", 'open file explorer', 1)
+
 " c/c++ language server 设置
 call coc#config("languageserver", {
       \"ccls": {
       \  "command": "ccls",
       \  "filetypes": ["c", "cpp"],
-      \  "rootPatterns": ["compile_commands.json", ".svn/", ".git/"],
+      \  "rootPatterns": ["compile_commands.json", ".git/"],
       \  "index": {
       \     "threads": 0
       \  },
@@ -84,6 +98,7 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
 			\ 'coc-jedi',
+      \ 'coc-explorer',
 			\ 'coc-java',
       \ 'coc-css',
       \ 'coc-html',

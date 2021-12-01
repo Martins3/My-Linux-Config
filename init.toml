@@ -34,7 +34,6 @@
     enable_statusline_display_mode = false
 
     # 自定义配置
-    filemanager = "defx"
     autocomplete_method = "coc"
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
