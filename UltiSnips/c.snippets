@@ -23,6 +23,10 @@ snippet dpr "duck debug"
 duck_printf("huxueshi:%s ${0}\n", __FUNCTION__);
 endsnippet
 
+snippet dedk "duck edk2"
+DEBUG((DEBUG_INFO, "huxueshi: ${0}\n"));
+endsnippet
+
 snippet Cimport "是时候重拳出击了!"
 #include <assert.h>  // assert
 #include <fcntl.h>   // open
