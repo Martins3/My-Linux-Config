@@ -123,6 +123,7 @@ func! myspacevim#after() abort
   let g:vista_default_executive = 'coc'
   let g:vista_finder_alternative_executives = 'ctags'
   nnoremap  <F2>  :Vista!!<CR>
+  nnoremap  <F3>  :CocCommand explorer<CR>
   nnoremap  <F4>  :call QuickRun()<CR>
   " <F5> floaterm toggle
   " <F7> 打开历史记录

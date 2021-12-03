@@ -52,9 +52,10 @@ call coc#config('coc.preferences', {
 
 call coc#config(
       \'explorer', {
-      \   "position": "right",
+      \   "position": "floating",
+      \   "floating.width": "150",
       \   "git.showIgnored": v:false,
-      \   "openAction.strategy": "previousBuffer",
+      \   "openAction.strategy": "previousWindow",
       \   "keyMappings.global": {
       \     "<tab>": v:false,
       \     "yy": "copyFilepath",
@@ -62,7 +63,8 @@ call coc#config(
       \},
       \ "icon.enableNerdfont": v:true,
   \})
-call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer", 'open file explorer', 1)
+
+call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --reveal", 'open file explorer', 1)
 
 " c/c++ language server 设置
 call coc#config("languageserver", {
