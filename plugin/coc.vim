@@ -41,6 +41,9 @@ let g:coc_snippet_next = '<tab>'
 " https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
 call coc#config("rust-analyzer.serverPath", "~/.cargo/bin/rust-analyzer")
 
+" https://github.com/fannheyward/coc-pyright/issues/184
+call coc#config("python.pythonPath", "/bin/python3")
+
 call coc#config("codeLens.enable", v:true)
 
 call coc#config('coc.preferences', {
@@ -54,6 +57,7 @@ call coc#config(
       \'explorer', {
       \   "position": "floating",
       \   "floating.width": "150",
+      \   "floating.height": "0",
       \   "git.showIgnored": v:false,
       \   "openAction.strategy": "previousWindow",
       \   "keyMappings.global": {
