@@ -107,7 +107,6 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 let s:coc_extensions = [
 			\ 'coc-pyright',
       \ 'coc-explorer',
-			\ 'coc-java',
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
