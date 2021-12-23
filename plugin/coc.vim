@@ -51,9 +51,8 @@ call coc#config('coc.preferences', {
 
 call coc#config(
       \'explorer', {
-      \   "position": "floating",
-      \   "floating.width": "150",
-      \   "floating.height": "0",
+      \   "position": "right",
+      \   "file.reveal.auto": v:true,
       \   "git.showIgnored": v:false,
       \   "openAction.strategy": "previousWindow",
       \   "keyMappings.global": {
@@ -64,7 +63,7 @@ call coc#config(
       \ "icon.enableNerdfont": v:true,
   \})
 
-call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --reveal", 'open file explorer', 1)
+call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --no-toggle", 'open file explorer', 1)
 
 " c/c++ language server 设置
 call coc#config("languageserver", {
