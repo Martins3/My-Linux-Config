@@ -34,6 +34,7 @@
     enable_statusline_display_mode = false
 
     # 自定义配置
+    relativenumber = false
     autocomplete_method = "coc"
     enable_vimfiler_welcome = false
     bootstrap_before = "myspacevim#before"
@@ -74,6 +75,7 @@
 [[custom_plugins]]
   name = 'neoclide/coc.nvim'
   merge = 0
+  rev = 'release'
 
 # 优化 coc 的搜索界面
 [[custom_plugins]]
@@ -160,6 +162,20 @@
 [[custom_plugins]]
   name = 'pwntester/octo.nvim'
 
+[[custom_plugins]]
+  name = 'ldelossa/calltree.nvim'
+
+[[custom_plugins]]
+  name = 'pianocomposer321/yabs.nvim'
+
+[[custom_plugins]]
+  name = 'camgraff/telescope-tmux.nvim'
+
+[[custom_plugins]]
+  name = 'MunifTanjim/nui.nvim'
+
+[[custom_plugins]]
+  name = 'rcarriga/nvim-notify'
+
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp
-# https://github.com/ldelossa/calltree.nvim

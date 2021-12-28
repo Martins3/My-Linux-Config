@@ -66,6 +66,8 @@ call coc#config(
 call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --no-toggle", 'open file explorer', 1)
 
 " c/c++ language server 设置
+" 为了解决 Undefined global `vim` 的问题 https://github.com/josa42/coc-lua/issues/55
+" 似乎只是屏蔽了错误而没有解决错误
 call coc#config("languageserver", {
       \"ccls": {
       \  "command": "ccls",
@@ -84,6 +86,21 @@ call coc#config("languageserver", {
       \    "snippetSupport": v:true
       \   }
       \},
+      \"lua": {
+      \  "command": "~/arch/lua-language-server/bin/lua-language-server",
+      \  "filetypes": ["lua"],
+      \  "settings": {
+      \    "Lua": {
+      \      "workspace.library": {
+      \        "/usr/share/nvim/runtime/lua": v:true,
+      \        "/usr/share/nvim/runtime/lua/vim": v:true,
+      \      },
+      \      "diagnostics": {
+      \        "globals": [ "vim" ]
+      \      }
+      \    }
+      \  }
+      \}
       \})
 
 call coc#config("git.addGBlameToVirtualText", v:true)
@@ -201,6 +218,7 @@ nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
+nnoremap <silent><nowait> <leader>w  :<C-u>Telescope tmux windows<cr>
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>x  <Plug>(coc-codeaction-selected)

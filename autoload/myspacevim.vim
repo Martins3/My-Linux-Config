@@ -47,6 +47,13 @@ func! myspacevim#before() abort
   call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
   call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
 
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'f'], 'lua myluamodule.local_lua_function()', 'forbit !', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'k'], 'lua myluamodule.local_lua_function()', 'forbit !', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'i'], 'lua myluamodule.local_lua_function()', 'forbit !', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'l'], 'lua myluamodule.local_lua_function()', 'forbit !', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'j'], 'lua myluamodule.local_lua_function()', 'forbit !', 1)
+  call SpaceVim#custom#SPC('nnoremap', ['f', 's'], "lua myluamodule.local_lua_function()", 'forbit !', 2)
+
   " 设置默认的pdf阅览工具
   let g:vimtex_view_method = 'zathura'
   let g:vimtex_syntax_conceal_default = 0
@@ -89,6 +96,8 @@ func! myspacevim#before() abort
       call CargoRun()
     elseif ext ==# "svg"
       exec "%!xmllint --format -"
+    elseif ext ==# "lua"
+      exec "source %"
     else
       echo "Check file type !"
     endif
@@ -115,6 +124,7 @@ func! myspacevim#before() abort
   let g:floaterm_keymap_prev   = '<C-p>'
   let g:floaterm_keymap_new    = '<C-n>'
   let g:floaterm_keymap_toggle = '<F5>'
+
 endf
 
 func! myspacevim#after() abort
@@ -138,5 +148,10 @@ func! myspacevim#after() abort
   nmap ; <Plug>(coc-smartf-repeat)
   nmap , <Plug>(coc-smartf-repeat-opposite)
 
+  nmap <Leader>k <Cmd>call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
+
   luafile ~/.SpaceVim.d/lua/init.lua
+
+  lua package.path = package.path .. ";~/.SpaceVim.d/lua"
+  lua myluamodule = require("my")
 endf
