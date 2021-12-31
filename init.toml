@@ -145,8 +145,8 @@
   name = 'nvim-treesitter/nvim-treesitter'
 
 # 配合 sourcetrail 使用
-[[custom_plugins]]
-  name = 'CoatiSoftware/vim-sourcetrail'
+# [[custom_plugins]]
+  # name = 'CoatiSoftware/vim-sourcetrail'
 
 # 日程管理
 [[custom_plugins]]
@@ -159,11 +159,11 @@
 [[custom_plugins]]
   name = 'kyazdani42/nvim-web-devicons'
 
-[[custom_plugins]]
-  name = 'pwntester/octo.nvim'
+# [[custom_plugins]]
+  # name = 'pwntester/octo.nvim'
 
-[[custom_plugins]]
-  name = 'ldelossa/calltree.nvim'
+# [[custom_plugins]]
+  # name = 'ldelossa/litee.nvim'
 
 [[custom_plugins]]
   name = 'pianocomposer321/yabs.nvim'
@@ -176,6 +176,13 @@
 
 [[custom_plugins]]
   name = 'rcarriga/nvim-notify'
+
+[[custom_plugins]]
+  name = 'Shougo/vimproc.vim'
+  build = 'make'
+
+[[custom_plugins]]
+  name = 'kyazdani42/nvim-tree.lua'
 
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp

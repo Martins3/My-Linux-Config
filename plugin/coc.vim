@@ -7,11 +7,12 @@ inoremap <silent><expr> <c-space> coc#refresh()
 set nobackup
 set nowritebackup
 
-autocmd FileType python let b:coc_root_patterns = ['.git']
+" autocmd FileType python let b:coc_root_patterns = ['.git']
 
 " 使用 f/F 快速跳转一个字符上
 call coc#config("smartf.wordJump", v:false)
 call coc#config("smartf.jumpOnTrigger", v:false)
+call coc#config("snippets.ultisnips.usePythonx", v:false)
 
 augroup Smartf
   autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
@@ -23,11 +24,11 @@ nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
 
 " 来自 https://github.com/neoclide/coc-snippets 的配置 snippet
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+      " \ pumvisible() ? coc#_select_confirm() :
+      " \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      " \ <SID>check_back_space() ? "\<TAB>" :
+      " \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -38,7 +39,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " https://github.com/fannheyward/coc-pyright/issues/184
-call coc#config("python.pythonPath", "/bin/python3")
+" call coc#config("python.pythonPath", "/bin/python3")
 
 call coc#config("codeLens.enable", v:true)
 
@@ -63,7 +64,7 @@ call coc#config(
       \ "icon.enableNerdfont": v:true,
   \})
 
-call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --no-toggle", 'open file explorer', 1)
+" call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --no-toggle", 'open file explorer', 1)
 
 " c/c++ language server 设置
 " 为了解决 Undefined global `vim` 的问题 https://github.com/josa42/coc-lua/issues/55
@@ -86,25 +87,26 @@ call coc#config("languageserver", {
       \    "snippetSupport": v:true
       \   }
       \},
-      \"lua": {
-      \  "command": "~/arch/lua-language-server/bin/lua-language-server",
-      \  "filetypes": ["lua"],
-      \  "settings": {
-      \    "Lua": {
-      \      "workspace.library": {
-      \        "/usr/share/nvim/runtime/lua": v:true,
-      \        "/usr/share/nvim/runtime/lua/vim": v:true,
-      \      },
-      \      "diagnostics": {
-      \        "globals": [ "vim" ]
-      \      }
-      \    }
-      \  }
-      \}
       \})
 
+"      \"lua": {
+"      \  "command": "~/arch/lua-language-server/bin/lua-language-server",
+"      \  "filetypes": ["lua"],
+"      \  "settings": {
+"      \    "Lua": {
+"      \      "workspace.library": {
+"      \        "/usr/share/nvim/runtime/lua": v:true,
+"      \        "/usr/share/nvim/runtime/lua/vim": v:true,
+"      \      },
+"      \      "diagnostics": {
+"      \        "globals": [ "vim" ]
+"      \      }
+"      \    }
+"      \  }
+"      \}
+
 call coc#config("git.addGBlameToVirtualText", v:true)
-call coc#config("git.virtualTextPrefix", "👋 ")
+call coc#config("git.virtualTextPrefix", " ")
 
 " 使用 shellcheck 可以让 shell 自动补全，格式化和静态检查
 call coc#config("diagnostic-languageserver.filetypes", {
@@ -117,8 +119,6 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
-			\ 'coc-pyright',
-      \ 'coc-explorer',
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
@@ -127,8 +127,6 @@ let s:coc_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
       \ 'coc-ci',
-      \ 'coc-snippets',
-      \ 'coc-vimtex',
       \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-sh',
@@ -196,7 +194,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Search code action.
 nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
 " Show buffers
-nnoremap <silent><nowait> <leader>b  :<C-u>Telescope buffers prompt_prefix=🔍<cr>
+nnoremap <silent><nowait> <leader>b  :<C-u>Telescope buffers<cr>
 " Show commands.
 nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
 " Show all diagnostics.
@@ -204,17 +202,17 @@ nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<c
 " Show colorscheme
 nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=🔍<cr>
+nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files<cr>
 " Live grep
 nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search help
 nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
-nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
+" nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
 " FIXME 这是唯一一个还需要使用 CocFzfList 的位置
 " 因为使用 Telescope 无法在 markdown 中预览
 " Find symbol of current document.
-" nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
-nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
+" nnoremap <silent><nowait> <leader>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
 nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
