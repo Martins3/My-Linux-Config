@@ -6,6 +6,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
+set noswapfile
 
 " autocmd FileType python let b:coc_root_patterns = ['.git']
 
@@ -50,28 +51,12 @@ call coc#config('coc.preferences', {
 			\ "diagnostic.virtualText": 1,
 			\})
 
-call coc#config(
-      \'explorer', {
-      \   "position": "right",
-      \   "file.reveal.auto": v:true,
-      \   "git.showIgnored": v:false,
-      \   "openAction.strategy": "previousWindow",
-      \   "keyMappings.global": {
-      \     "<tab>": v:false,
-      \     "yy": "copyFilepath",
-      \     "d": "deleteForever",
-      \},
-      \ "icon.enableNerdfont": v:true,
-  \})
-
-" call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "CocCommand explorer --no-toggle", 'open file explorer', 1)
-
 " c/c++ language server 设置
 " 为了解决 Undefined global `vim` 的问题 https://github.com/josa42/coc-lua/issues/55
 " 似乎只是屏蔽了错误而没有解决错误
 call coc#config("languageserver", {
       \"ccls": {
-      \  "command": "ccls",
+      \  "command": "/home/loongson/arch/ccls/Release/ccls",
       \  "filetypes": ["c", "cpp"],
       \  "rootPatterns": ["compile_commands.json", ".git/"],
       \  "index": {
@@ -105,9 +90,6 @@ call coc#config("languageserver", {
 "      \  }
 "      \}
 
-call coc#config("git.addGBlameToVirtualText", v:true)
-call coc#config("git.virtualTextPrefix", " ")
-
 " 使用 shellcheck 可以让 shell 自动补全，格式化和静态检查
 call coc#config("diagnostic-languageserver.filetypes", {
       \"sh": "shellcheck",
@@ -130,9 +112,7 @@ let s:coc_extensions = [
       \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-sh',
-      \ 'coc-git',
       \ 'coc-diagnostic',
-      \ 'coc-lua',
       \ 'coc-xml',
 			\]
 

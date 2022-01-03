@@ -153,23 +153,14 @@
   name = 'kristijanhusak/orgmode.nvim'
 
 # 用于统计代码时间
-[[custom_plugins]]
-  name = 'wakatime/vim-wakatime'
+# [[custom_plugins]]
+  # name = 'wakatime/vim-wakatime'
 
 [[custom_plugins]]
   name = 'kyazdani42/nvim-web-devicons'
 
 # [[custom_plugins]]
   # name = 'pwntester/octo.nvim'
-
-# [[custom_plugins]]
-  # name = 'ldelossa/litee.nvim'
-
-[[custom_plugins]]
-  name = 'pianocomposer321/yabs.nvim'
-
-[[custom_plugins]]
-  name = 'camgraff/telescope-tmux.nvim'
 
 [[custom_plugins]]
   name = 'MunifTanjim/nui.nvim'
@@ -178,11 +169,11 @@
   name = 'rcarriga/nvim-notify'
 
 [[custom_plugins]]
-  name = 'Shougo/vimproc.vim'
-  build = 'make'
-
-[[custom_plugins]]
   name = 'kyazdani42/nvim-tree.lua'
+
+# [[custom_plugins]]
+  # name = 'L3MON4D3/LuaSnip'
 
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp
+# https://github.com/CRAG666/code_runner.nvim
