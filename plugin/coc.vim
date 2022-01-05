@@ -8,7 +8,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" autocmd FileType python let b:coc_root_patterns = ['.git']
+autocmd FileType python let b:coc_root_patterns = ['.git']
 
 " 使用 f/F 快速跳转一个字符上
 call coc#config("smartf.wordJump", v:false)
@@ -21,15 +21,15 @@ augroup Smartf
 augroup end
 
 " 方便在中文中间使用 w 和 b 移动
-nmap <silent> w <Plug>(coc-ci-w)
-nmap <silent> b <Plug>(coc-ci-b)
+" nmap <silent> w <Plug>(coc-ci-w)
+" nmap <silent> b <Plug>(coc-ci-b)
 
 " 来自 https://github.com/neoclide/coc-snippets 的配置 snippet
-" inoremap <silent><expr> <TAB>
-      " \ pumvisible() ? coc#_select_confirm() :
-      " \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      " \ <SID>check_back_space() ? "\<TAB>" :
-      " \ coc#refresh()
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -40,7 +40,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 " https://github.com/fannheyward/coc-pyright/issues/184
-" call coc#config("python.pythonPath", "/bin/python3")
+call coc#config("python.pythonPath", "/bin/python3")
 
 call coc#config("codeLens.enable", v:true)
 
@@ -89,6 +89,7 @@ call coc#config("languageserver", {
 "      \    }
 "      \  }
 "      \}
+call coc#config("git.addGBlameToVirtualText", v:true)
 
 " 使用 shellcheck 可以让 shell 自动补全，格式化和静态检查
 call coc#config("diagnostic-languageserver.filetypes", {
@@ -105,10 +106,11 @@ let s:coc_extensions = [
       \ 'coc-html',
       \ 'coc-word',
       \ 'coc-cmake',
+      \ 'coc-git',
+      \ 'coc-snippets',
       \ 'coc-dictionary',
       \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
-      \ 'coc-ci',
       \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-sh',
@@ -119,6 +121,7 @@ let s:coc_extensions = [
 for extension in s:coc_extensions
 	call coc#add_extension(extension)
 endfor
+
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin

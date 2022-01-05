@@ -237,7 +237,22 @@ highlight NvimTreeFolderIcon guibg=blue
   " smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 
   luafile ~/.SpaceVim.d/lua/init.lua
+  luafile ~/.SpaceVim.d/lua/tree.lua
+  luafile ~/.SpaceVim.d/lua/drink.lua
+  luafile ~/.SpaceVim.d/lua/my.lua
+  luafile ~/.SpaceVim.d/lua/ts.lua
 
   lua package.path = package.path .. ";~/.SpaceVim.d/lua"
   lua myluamodule = require("my")
+
+  map <M-0> tmux select-window -t 0
+  map <M-1> tmux select-window -t 1
+  map <M-2> tmux select-window -t 2
+  map <M-3> tmux select-window -t 3
+  map <M-4> tmux select-window -t 4
+  map <M-5> tmux select-window -t 5
+  map <M-6> tmux select-window -t 6
+  map <M-7> tmux select-window -t 7
+  map <M-8> tmux select-window -t 8
+  map <M-9> tmux select-window -t 9
 endf

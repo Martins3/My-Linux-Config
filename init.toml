@@ -171,8 +171,8 @@
 [[custom_plugins]]
   name = 'kyazdani42/nvim-tree.lua'
 
-# [[custom_plugins]]
-  # name = 'L3MON4D3/LuaSnip'
+[[custom_plugins]]
+  name = 'nyngwang/NeoZoom.lua'
 
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp
