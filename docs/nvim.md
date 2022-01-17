@@ -571,6 +571,7 @@ filetype plugin indent on    " required
 
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
+- [nv-ide](https://github.com/crivotz/nv-ide)
 
 #### 学习
 2. [vim galore](https://github.com/mhinz/vim-galore)

@@ -41,8 +41,8 @@ end
 local function drink_water()
 		local timer = vim.loop.new_timer()
     local l = min(time_left)
-		timer:start(l, min(30), function()
-      print("Drink water")
+		timer:start(0, min(30), function()
+-- require("notify")("My super important message")
 		end)
 end
 drink_water()

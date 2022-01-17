@@ -185,38 +185,6 @@ let g:nvim_tree_show_icons = {
     \ 'files': 1,
     \ 'folder_arrows': 0,
     \ }
-"If 0, do not show the icons for one of 'git' 'folder' and 'files'
-"1 by default, notice that if 'files' is 1, it will only display
-"if nvim-web-devicons is installed and on your runtimepath.
-"if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
-"but this will not work when you set indent_markers (because of UI conflict)
-
-" default will show icon by default if no icon is provided
-" default shows no icon by default
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   }
-    \ }
-
 nnoremap <F3>  :NvimTreeToggle<CR>
 " nnoremap <C-r> :NvimTreeRefresh<CR>
 " nnoremap <leader>n :NvimTreeFindFile<CR>
@@ -227,32 +195,23 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
 
-  " imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-  " inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-"
-  " snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-  " snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-"
-  " imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-  " smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-
   luafile ~/.SpaceVim.d/lua/init.lua
-  luafile ~/.SpaceVim.d/lua/tree.lua
-  luafile ~/.SpaceVim.d/lua/drink.lua
-  luafile ~/.SpaceVim.d/lua/my.lua
-  luafile ~/.SpaceVim.d/lua/ts.lua
+  " luafile ~/.SpaceVim.d/lua/tree.lua
+  " luafile ~/.SpaceVim.d/lua/drink.lua
+  " luafile ~/.SpaceVim.d/lua/my.lua
+  " luafile ~/.SpaceVim.d/lua/ts.lua
 
-  lua package.path = package.path .. ";~/.SpaceVim.d/lua"
-  lua myluamodule = require("my")
+  " lua package.path = package.path .. ";~/.SpaceVim.d/lua"
+  " lua myluamodule = require("my")
 
-  map <M-0> tmux select-window -t 0
-  map <M-1> tmux select-window -t 1
-  map <M-2> tmux select-window -t 2
-  map <M-3> tmux select-window -t 3
-  map <M-4> tmux select-window -t 4
-  map <M-5> tmux select-window -t 5
-  map <M-6> tmux select-window -t 6
-  map <M-7> tmux select-window -t 7
-  map <M-8> tmux select-window -t 8
-  map <M-9> tmux select-window -t 9
+  nmap <M-a> <Cmd>echo "hi"<CR>
+  nmap <M-1> <Cmd>silent !tmux select-window -t 1 <CR>
+  nmap <M-2> <Cmd>silent !tmux select-window -t 2 <CR>
+  nmap <M-3> <Cmd>silent !tmux select-window -t 3 <CR>
+  nmap <M-4> <Cmd>silent !tmux select-window -t 4 <CR>
+  nmap <M-5> <Cmd>silent !tmux select-window -t 5 <CR>
+  nmap <M-6> <Cmd>silent !tmux select-window -t 6 <CR>
+  nmap <M-7> <Cmd>silent !tmux select-window -t 7 <CR>
+  nmap <M-8> <Cmd>silent !tmux select-window -t 8 <CR>
+  nmap <M-9> <Cmd>silent !tmux select-window -t 9 <CR>
 endf

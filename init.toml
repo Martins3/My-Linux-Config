@@ -148,10 +148,6 @@
 # [[custom_plugins]]
   # name = 'CoatiSoftware/vim-sourcetrail'
 
-# 日程管理
-[[custom_plugins]]
-  name = 'kristijanhusak/orgmode.nvim'
-
 # 用于统计代码时间
 # [[custom_plugins]]
   # name = 'wakatime/vim-wakatime'
@@ -170,9 +166,6 @@
 
 [[custom_plugins]]
   name = 'kyazdani42/nvim-tree.lua'
-
-[[custom_plugins]]
-  name = 'nyngwang/NeoZoom.lua'
 
 # ----------------- 尝试的内容 -------------------------------------------------
 # https://github.com/hrsh7th/nvim-cmp

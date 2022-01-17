@@ -42,7 +42,7 @@ let g:coc_snippet_next = '<tab>'
 " https://github.com/fannheyward/coc-pyright/issues/184
 call coc#config("python.pythonPath", "/bin/python3")
 
-call coc#config("codeLens.enable", v:true)
+call coc#config("codeLens.enable", v:false)
 
 call coc#config('coc.preferences', {
 			\ "autoTrigger": "always",
@@ -103,10 +103,10 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
       \ 'coc-css',
+      \ 'coc-git',
       \ 'coc-html',
       \ 'coc-word',
       \ 'coc-cmake',
-      \ 'coc-git',
       \ 'coc-snippets',
       \ 'coc-dictionary',
       \ 'coc-rust-analyzer',
@@ -185,7 +185,7 @@ nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<c
 " Show colorscheme
 nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
 " Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files<cr>
+nnoremap <silent><nowait> <leader>f  :<C-u>Telescope git_files<cr>
 " Live grep
 nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search help
