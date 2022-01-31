@@ -35,14 +35,13 @@ func! myspacevim#before() abort
   " 让光标自动进入到popup window 中间
   let g:git_messenger_always_into_popup = v:true
 
-  " 设置映射规则，和 spacevim 保持一致
-  call SpaceVim#custom#SPC('nnoremap', ['g', 'm'], 'GitMessenger', 'show commit message in popup window', 1)
-  call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew tig status', 'open lazygit in floaterm', 1)
-
   " 和 sourcetrail 配合使用
   call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
   call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
   call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
+
+  " 多文件的搜索替换
+  call SpaceVim#custom#SPC('nnoremap', ['s', 'v'], "lua require('spectre').open()", 'search and replace in multiple files', 1)
 
   call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "NvimTreeFindFile", 'find current file in file tree', 2)
 
@@ -130,10 +129,13 @@ func! myspacevim#after() abort
     autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
   augroup end
 
+  nmap <space>gm  <Cmd>GitMessenger<CR>
+  nmap <space>gl  <Cmd>FloatermNew tig status<CR>
 
   " 加载 lua 配置
   lua package.path = package.path .. ";../lua/?.lua"
   lua require("orgmode-config")
   lua require("treesitter-config")
   lua require("tree-config")
+  lua require("gitsigns-config")
 endf

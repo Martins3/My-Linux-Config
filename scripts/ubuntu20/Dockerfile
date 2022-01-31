@@ -1,7 +1,3 @@
-# TODO
-# fzf version >= 0.22
-sudo apt install fd-find
-
 # https://github.com/koalaman/shellcheck
 sudo apt install shellcheck
 # https://github.com/mvdan/sh
