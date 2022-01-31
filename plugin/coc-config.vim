@@ -58,7 +58,6 @@ let s:coc_extensions = [
       \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
       \ 'coc-ci',
-      \ 'coc-git',
       \ 'coc-snippets',
       \ 'coc-smartf',
       \ 'coc-go',

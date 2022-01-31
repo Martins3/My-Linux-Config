@@ -52,18 +52,6 @@
   name = "checkers"
   enable = false
 
-# 版本控制
-[[layers]]
-  name = "VersionControl"
-  enable-gtm-status = true
-
-[[layers]]
-  name = "git"
-  git-plugin = "fugitive"
-
-[[layers]]
-  name = "fzf"
-
 [[layers]]
   name = "lang#markdown"
 
@@ -147,6 +135,12 @@
 # 在 neovim 中使用 github cli
 [[custom_plugins]]
   name = 'pwntester/octo.nvim'
+
+[[custom_plugins]]
+  name = 'windwp/nvim-spectre'
+
+[[custom_plugins]]
+  name = 'lewis6991/gitsigns.nvim'
 
 # ----------------- 一些并不关键的插件 -------------------------------------------------
 # 配合 sourcetrail 使用

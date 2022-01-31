@@ -15,7 +15,6 @@ RUN pacman -Syu --needed --noconfirm \
   sudo \
   zsh \
   go  \
-  fzf \
   llvm \
   clang \
   lsd \
