@@ -1,3 +1,0 @@
--- require('octo').setup{}
--- require('litee').setup{}
--- vim.api.nvim_set_keymap('n', '<CR>', '<cmd>NeoZoomToggle<CR>', { noremap=true, silent=true, nowait=true })

@@ -547,31 +547,57 @@ setxkbmap -option caps:swapescape
 
 ## vim 调试
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
+```sh
+cd /tmp
+mkdir dein
+cd dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh $(pwd)
 
-创建一个 mini.vim 其内容为:
-```vim
-set nocompatible              " be iMproved, required
-filetype off                  " required
+cat > mini.vim << EOL
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=/tmp/vim/Vundle.vim
-call vundle#begin(/tmp/vim/)
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Required:
+set runtimepath+=/tmp/dein/repos/github.com/Shougo/dein.vim
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'jauler/vim-auto-gcov-marker'
+" Required:
+call dein#begin('/tmp/dein')
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Let dein manage dein
+" Required:
+call dein#add('/tmp/dein/repos/github.com/Shougo/dein.vim')
+
+" Add or remove your plugins here like this:
+call dein#add('nvim-treesitter/nvim-treesitter')
+call dein#add('nvim-orgmode/orgmode')
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+ call dein#install()
+endif
+
+" init.vim
+lua << EOF
+EOL
+nvim -u mini.vim
+# quit the vim and enter again
+nvim -u mini.vim
 ```
-然后运行 nvim -u mini.vim 来加载最为单纯的 vim 环境
+脚本会自动生成一个配置，拷贝到 mini.vim 中。
+
+然后运行 nvim -u mini.vim 来加载最为单纯的 vim 环境，在其中可以测试到底是插件的问题还是自己配置的问题。
 
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
-- [nv-ide](https://github.com/crivotz/nv-ide)
 
 #### 学习
 2. [vim galore](https://github.com/mhinz/vim-galore)

@@ -77,14 +77,6 @@
   merge = 0
   rev = 'release'
 
-# 优化 coc 的搜索界面
-[[custom_plugins]]
-  name = 'antoinemadec/coc-fzf'
-  branch = 'release'
-
-[[custom_plugins]]
-    name = 'junegunn/fzf.vim'
-
 # 快速编辑 markdown 的表格
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
@@ -144,29 +136,39 @@
 [[custom_plugins]]
   name = 'nvim-treesitter/nvim-treesitter'
 
-# 配合 sourcetrail 使用
-# [[custom_plugins]]
-  # name = 'CoatiSoftware/vim-sourcetrail'
-
-# 用于统计代码时间
-# [[custom_plugins]]
-  # name = 'wakatime/vim-wakatime'
-
-[[custom_plugins]]
-  name = 'kyazdani42/nvim-web-devicons'
-
-# [[custom_plugins]]
-  # name = 'pwntester/octo.nvim'
-
-[[custom_plugins]]
-  name = 'MunifTanjim/nui.nvim'
-
-[[custom_plugins]]
-  name = 'rcarriga/nvim-notify'
-
+# 虽然 spacevim 内置了 filetree，但是这一个是最好用的
 [[custom_plugins]]
   name = 'kyazdani42/nvim-tree.lua'
 
-# ----------------- 尝试的内容 -------------------------------------------------
-# https://github.com/hrsh7th/nvim-cmp
-# https://github.com/CRAG666/code_runner.nvim
+# 用于文件树等插件的图标
+[[custom_plugins]]
+  name = 'kyazdani42/nvim-web-devicons'
+
+# 在 neovim 中使用 github cli
+[[custom_plugins]]
+  name = 'pwntester/octo.nvim'
+
+# ----------------- 一些并不关键的插件 -------------------------------------------------
+# 配合 sourcetrail 使用
+[[custom_plugins]]
+  name = 'CoatiSoftware/vim-sourcetrail'
+
+# 我自己写的一个记忆卡片插件
+[[custom_plugins]]
+  name = 'Martins3/refresh.nvim'
+
+# 日程管理
+[[custom_plugins]]
+  name = 'nvim-orgmode/orgmode'
+
+# 在 nvim 中构成提示窗
+[[custom_plugins]]
+  name = 'rcarriga/nvim-notify'
+
+# 用于统计代码时间
+[[custom_plugins]]
+  name = 'wakatime/vim-wakatime'
+
+# vim 上的图形库
+[[custom_plugins]]
+  name = 'MunifTanjim/nui.nvim'
