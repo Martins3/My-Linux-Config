@@ -139,7 +139,8 @@ nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
+" command! -nargs=0 Format :call CocActionAsync('format')
+call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -168,6 +169,7 @@ nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=�
 nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
 " Search vim manual
 nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
+" Search github issue
 nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
@@ -180,3 +182,5 @@ nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
 " 方便在中文中间使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
+
+set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
