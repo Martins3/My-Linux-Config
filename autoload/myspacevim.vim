@@ -115,8 +115,19 @@ func! myspacevim#after() abort
   " <F7> 打开历史记录
   tnoremap  <Esc>  <C-\><C-n>
 
-  " 使用 tab 切换 window
+  " 使用 tab 切换到下一个 window
   map <Tab> :wincmd w<CR>
+  " 使用 space [number] 切换到第 [number] 个 window
+  nnoremap <silent> <space>1 :1wincmd  w <cr>
+  nnoremap <silent> <space>2 :2wincmd  w <cr>
+  nnoremap <silent> <space>3 :3wincmd  w <cr>
+  nnoremap <silent> <space>4 :4wincmd  w <cr>
+  nnoremap <silent> <space>5 :5wincmd  w <cr>
+  nnoremap <silent> <space>6 :6wincmd  w <cr>
+  nnoremap <silent> <space>7 :7wincmd  w <cr>
+  nnoremap <silent> <space>8 :8wincmd  w <cr>
+  nnoremap <silent> <space>9 :9wincmd  w <cr>
+  nnoremap <silent> <space>0 :10wincmd w <cr>
 
   " press <esc> to cancel.
   nmap f <Plug>(coc-smartf-forward)
@@ -131,11 +142,11 @@ func! myspacevim#after() abort
 
   nmap <space>gm  <Cmd>GitMessenger<CR>
   nmap <space>gl  <Cmd>FloatermNew tig status<CR>
+  nmap <space>gb  <Cmd>Git blame<CR>
 
   " 加载 lua 配置
   lua package.path = package.path .. ";../lua/?.lua"
   lua require("orgmode-config")
   lua require("treesitter-config")
   lua require("tree-config")
-  lua require("gitsigns-config")
 endf

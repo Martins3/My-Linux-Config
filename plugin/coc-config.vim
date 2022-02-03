@@ -65,7 +65,8 @@ let s:coc_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-lua',
       \ 'coc-xml',
-			\]
+      \ 'coc-git',
+      \]
 
 " coc-vimtex
 for extension in s:coc_extensions

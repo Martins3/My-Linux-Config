@@ -1,0 +1,22 @@
+priority -50
+
+snippet getoption "参数选项"
+function usage ()
+{
+	echo "Usage :  $0 [options] [--]
+
+	Options:
+	-h|help       Display this message"
+
+}
+
+while getopts ":hv" opt
+do
+	case $opt in
+	h)  usage; exit 0   ;;
+	* )  echo -e "\n  Option does not exist : OPTARG\n"
+		usage; exit 1   ;;
+	esac    # --- end of case ---
+done
+shift $((OPTIND-1))
+endsnippet

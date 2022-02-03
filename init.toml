@@ -17,15 +17,15 @@
     enable_guicolors = true
     # 设置状态栏上分割符号形状，如果字体安装失败，可以将值设为 "nil" 以
     # 禁用分割符号，默认为箭头 "arrow"
-    statusline_separator = "nil"
-    statusline_separator = "bar"
+    # statusline_separator = "nil"
+    # statusline_separator = "bar"
     # 设置顶部标签列表序号类型，有以下五种类型，分别是 0 - 4
     # 0: 1 ➛ ➊ 
     # 1: 1 ➛ ➀
     # 2: 1 ➛ ⓵
     # 3: 1 ➛ ¹
     # 4: 1 ➛ 
-    buffer_index_type = 4
+    # buffer_index_type = 4
     # 显示/隐藏顶部标签栏上文件类型图标，这一图标需要安装 nerd fonts，
     # 如果未能成功安装这一字体，可以隐藏图标
     enable_tabline_filetype_icon = true
@@ -43,6 +43,11 @@
     disabled_plugins = ["indent-blankline.nvim"]
 
 # ----------------- SpaceVim 添加的各种 layers ---------------------------------
+# coc.vim 的 statusline 携带了 lsp 的信息
+[[layers]]
+  name = "core#statusline"
+  enable = false
+
 # 计算器, 日历, 书签等小工具
 [[layers]]
   name = 'tools'
@@ -136,11 +141,13 @@
 [[custom_plugins]]
   name = 'pwntester/octo.nvim'
 
+# 媲美 vscode 的多文件替换
 [[custom_plugins]]
   name = 'windwp/nvim-spectre'
 
+# git 管理
 [[custom_plugins]]
-  name = 'lewis6991/gitsigns.nvim'
+  name = 'tpope/vim-fugitive'
 
 # ----------------- 一些并不关键的插件 -------------------------------------------------
 # 配合 sourcetrail 使用
