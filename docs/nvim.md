@@ -7,7 +7,6 @@
 - [关于如何入门 vim](#关于如何入门-vim)
 - [终极解决方案: lsp](#终极解决方案-lsp)
 - [丝般顺滑: async](#丝般顺滑-async)
-- [为什么使用 SpaceVim](#为什么使用-spacevim)
 - [为什么使用 coc.nvim](#为什么使用-cocnvim)
 - [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 - [安装](#安装)
@@ -29,8 +28,6 @@
     - [github 集成](#github-集成)
     - [调试集成](#调试集成)
     - [终端](#终端)
-- [扩展](#扩展)
-    - [基于 SpaceVim 的扩展, 以 Latex 为例子](#基于-spacevim-的扩展-以-latex-为例子)
 - [本配置源代码解释](#本配置源代码解释)
 - [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
@@ -112,20 +109,13 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 
 关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
 
-## 为什么使用 SpaceVim
-VSCode 我也使用过一段时间，我觉得 VSCode 之所以学习曲线非常的平缓主要有两个原因，
-1. 其提供标准配置给新手就可以直接使用了，但是 vim 没有一个较好的配置，几乎没有办法使用。
-2. 官方提供了统一的插件市场，好的插件自动排序，再也不需要像 vim 这里，找到好的插件需要耐心和运气。 vimawesome 在一定程度上解决了这个问题，但是它把 YCM 排在[autocomplete](https://vimawesome.com/?q=autocomplete) 搜索的第一名，我非常的不认可。
-
-目前，[SpaceVim](http://spacevim.org/) 比较好的解决了这些问题，利用社区的力量，SpaceVim 对于各种问题，挑选了对应的优质插件，基本可以实现开箱即用。当然你还是需要知道 vim 的基础知识和简要的阅读 Spacevim 的文档，不过这相对于一步步的配置和踩坑，消耗自己的时间和精力，好太多了。
-Spacevim 还有一个很强的地方在于，配置是作为一个插件存在的，可以不断升级，而 [github: LunarVim](https://github.com/ChristianChiarulli/LunarVim) 这种配置，fork 到自己的分支，修改，想要升级就要 merge 主线上的冲突。
-
 ## 为什么使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/), 
 coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开箱即用。[^1]
 
 不过，内置 lsp 和 lua 作为配置语言是 neovim 的一个新的发展趋势，我们就静观其变吧，也许有一天 coc.nvim 的功能会被完全集成到 neovim 内部。
+
 ## 为什么应该使用 neovim 而不是 vim
 其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
 因为这个 patch 太大了，改动太多，然后 neovim 的作者就开始自立门户搞了一个 neovim，很多 vim 特性都是被 neovim 逼出来的。总体来说，neovim 相较于 vim :
@@ -451,47 +441,17 @@ call SpaceVim#custom#SPC('nnoremap', ['g', 'l'], 'FloatermNew lazygit', 'open la
 
 下面是在打开悬浮终端，并且运行 htop 的结果:
 ![floaterm](./img/floaterm.png)
-## 扩展
-需要说明的是，本配置并不局限于 C/C++，只是相对其他语言，我比较熟悉 C/C++，所以以此为例。由于 SpaceVim 的 layer 和 coc.nvim 的 extension，将上述内容可以非常容易迁移到其他类型的工作上。
-
-#### 基于 SpaceVim 的扩展, 以 Latex 为例子
-- 如何扩展
-
-在 init.toml 中间添加
-```toml
-[[layers]]
-  name = "lang#latex"
-```
-
-- 效果
-
-`Space` `l` `l` 启动编译， 保存的时候，自动更新，并且更新输出到 zathura 中间。
-![使用 zathura 预览](./img/pdf.png)
-
-- 原理
-
-SpaceVim 的强大之处是将众多插件融合在一起，当在使用 latex layer，那么 spacevim 会自动让包管理器安装 [vimtex](https://github.com/lervag/vimtex)，并且重新映射快捷键。
-看一下其[文档](https://spacevim.org/layers/lang/latex/)和[源码](https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim/layers/lang/latex.vim)就非常清楚了。
-
-- 说明
-
-如果想要书写中文，需要修改默认的 latex engine，在 ~/.latexmkrc 中设置:
-```txt
-$pdf_mode = 5; 
-```
-参考:
-- https://tex.stackexchange.com/questions/429274/chinese-on-mactex2018-simple-example
-- https://tex.stackexchange.com/questions/501492/how-do-i-set-xelatex-as-my-default-engine
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
-1. init.toml : 基础配置，几乎是 SpaceVim 标准配置，在此处可以自己添加新的插件
-2. autoload/myspacevim.vim : 一些插件的配置，一些快捷键
-3. plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-5. plugin/lua.vim : 有一些插件的配置现在只能使用 lua 来配置
-6. UltiSnips/ : 通过安装 [vim-snippets](https://github.com/honza/vim-snippets)已经安装了非常多的 snippets，可以在 UltiSnips 下添加自定义的插件
+- init.toml : 基础配置，几乎是 SpaceVim 标准配置，在此处可以自己添加新的插件
+- autoload/myspacevim.vim : 一些插件的配置，一些快捷键
+- plugin/coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
+- plugin/coc-config.vim : coc.nvim 对于插件的配置
+- plugin/lua/ : 有一些插件的配置现在只能使用 lua 来配置，一个插件对应一个文件
+- UltiSnips/ : 通过安装 [vim-snippets](https://github.com/honza/vim-snippets)已经安装了非常多的 snippets，可以在 UltiSnips 下添加自定义的插件
 
 一些快捷键的说明:
 1. `<Fn3>` 打开文件树
