@@ -51,6 +51,7 @@ func! myspacevim#before() abort
       let l:save = winsaveview()
       keeppatterns %s/\s\+$//e
       call winrestview(l:save)
+      retab
   endfun
   command! TrimWhitespace call TrimWhitespace()
 
@@ -118,6 +119,7 @@ func! myspacevim#after() abort
   nnoremap <F4>  :call QuickRun()<CR>
   " <F5> floaterm toggle
   " <F7> 打开历史记录
+  " 在 terminal 中也是使用 esc 来进入 normal 模式
   tnoremap  <Esc>  <C-\><C-n>
 
   " 使用 tab 切换到下一个 window
@@ -149,12 +151,13 @@ func! myspacevim#after() abort
   " 显示当前行的详细信息
   nmap <space>gm  <Cmd>GitMessenger<CR>
   " 以 floaterm 的方式打开 tig
-  nmap <space>gl  <Cmd>FloatermNew tig status<CR>
+  nmap <space>gs  <Cmd>FloatermNew tig status<CR>
   " 在左侧显示 git blame
   nmap <space>gb  <Cmd>Git blame<CR>
   nmap <space>gc  <Cmd>Git commit<CR>
   nmap <space>gl  <Cmd>FloatermNew tig %<CR>
   nmap <space>gL  <Cmd>FloatermNew tig<CR>
+  nmap <space>gp  <Cmd>Git push<CR>
 
   " 加载 lua 配置
   lua require('nvim-autopairs').setup{}

@@ -10,11 +10,11 @@ call coc#config("python.pythonPath", "/bin/python3")
 call coc#config("codeLens.enable", v:false)
 
 call coc#config('coc.preferences', {
-			\ "autoTrigger": "always",
-			\ "maxCompleteItemCount": 10,
-			\ "codeLens.enable": 1,
-			\ "diagnostic.virtualText": 1,
-			\})
+      \ "autoTrigger": "always",
+      \ "maxCompleteItemCount": 10,
+      \ "codeLens.enable": 1,
+      \ "diagnostic.virtualText": 1,
+      \})
 
 " c/c++ language server 设置
 call coc#config("languageserver", {
@@ -37,7 +37,7 @@ call coc#config("languageserver", {
       \},
       \})
 
-" Undefined global `vim` problem, see 
+" Undefined global `vim` problem, see
 " https://github.com/josa42/coc-lua/issues/55
 
 " 使用 shellcheck 可以让 shell 自动补全，格式化和静态检查
@@ -51,7 +51,7 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
 
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
-			\ 'coc-pyright',
+      \ 'coc-pyright',
       \ 'coc-explorer',
       \ 'coc-css',
       \ 'coc-html',
@@ -69,9 +69,10 @@ let s:coc_extensions = [
       \ 'coc-lua',
       \ 'coc-xml',
       \ 'coc-git',
+      \ 'coc-calc',
       \]
 
 " coc-vimtex
 for extension in s:coc_extensions
-	call coc#add_extension(extension)
+  call coc#add_extension(extension)
 endfor
