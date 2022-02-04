@@ -182,8 +182,8 @@ nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
 nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
-" Search manual
-nnoremap <silent><nowait> <leader>m  :<C-u>Telescope man_pages<cr>
+" Search browser bookmark
+nnoremap <silent><nowait> <leader>m  :<C-u>Telescope bookmarks<cr>
 
 "-------------------- 一些 coc plugin 的配置 --------------------------
 " 方便在中文中间使用 w 和 b 移动

@@ -81,10 +81,6 @@
   name="core"
   enable = true
 
-# 计算器, 日历, 书签等小工具
-[[layers]]
-  name = 'tools'
-
 [[layers]]
   name = "lang#markdown"
 
@@ -176,9 +172,16 @@
 [[custom_plugins]]
   name = 'tpope/vim-fugitive'
 
-# 括号匹配
+# 自动括号匹配
 [[custom_plugins]]
   name = 'windwp/nvim-autopairs'
+
+# 搜索 bookmarks
+[[custom_plugins]]
+  name = 'dhruvmanila/telescope-bookmarks.nvim'
+
+[[custom_plugins]]
+  name = 'MattesGroeger/vim-bookmarks'
 # ----------------- 一些并不关键的插件 -------------------------------------------------
 # 配合 sourcetrail 使用
 [[custom_plugins]]
@@ -189,8 +192,8 @@
   name = 'Martins3/refresh.nvim'
 
 # 日程管理
-[[custom_plugins]]
-  name = 'nvim-orgmode/orgmode'
+# [[custom_plugins]]
+  # name = 'nvim-orgmode/orgmode'
 
 # 在 nvim 中的 notification
 [[custom_plugins]]

@@ -1,6 +1,9 @@
 call coc#config("git.addGBlameToVirtualText", v:true)
 call coc#config("git.virtualTextPrefix", "👋 ")
 
+call coc#config("smartf.jumpOnTrigger", v:false)
+call coc#config("smartf.wordJump", v:false)
+
 " https://github.com/fannheyward/coc-pyright/issues/184
 call coc#config("python.pythonPath", "/bin/python3")
 
