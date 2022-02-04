@@ -45,8 +45,7 @@ func! myspacevim#before() abort
   " 设置默认的 pdf 阅览工具
   let g:vimtex_view_method = 'zathura'
   let g:vimtex_syntax_conceal_default = 0
-  " 关闭所有隐藏设置
-  let g:tex_conceal = ""
+  let g:tex_conceal = "" " 关闭所有隐藏设置
 
   fun! TrimWhitespace()
       let l:save = winsaveview()
@@ -153,6 +152,9 @@ func! myspacevim#after() abort
   nmap <space>gl  <Cmd>FloatermNew tig status<CR>
   " 在左侧显示 git blame
   nmap <space>gb  <Cmd>Git blame<CR>
+  nmap <space>gc  <Cmd>Git commit<CR>
+  nmap <space>gl  <Cmd>FloatermNew tig %<CR>
+  nmap <space>gL  <Cmd>FloatermNew tig<CR>
 
   " 加载 lua 配置
   lua require('nvim-autopairs').setup{}
@@ -160,5 +162,4 @@ func! myspacevim#after() abort
   " lua require("orgmode-config")
   lua require("telescope-config")
   lua require("tree-config")
-
 endf
