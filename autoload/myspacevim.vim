@@ -25,9 +25,6 @@ func! myspacevim#before() abort
   " 书签选中之后自动关闭 quickfix window
   let g:bookmark_auto_close = 1
 
-  " 设置一个删除所有的 bookmark 的快捷键
-  call SpaceVim#custom#SPC('nnoremap', ['m', 'c'], 'BookmarkClearAll', 'clear all bookmark', 1)
-
   " ctrl + ] 查询 cppman
   " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
   autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
@@ -160,7 +157,7 @@ func! myspacevim#after() abort
   " 加载 lua 配置
   lua require('nvim-autopairs').setup{}
   lua package.path = package.path .. ";../lua/?.lua"
-  lua require("orgmode-config")
-  lua require("treesitter-config")
+  " lua require("orgmode-config")
+  lua require("telescope-config")
   lua require("tree-config")
 endf
