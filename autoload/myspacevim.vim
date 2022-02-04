@@ -138,6 +138,7 @@ func! myspacevim#after() abort
   nnoremap <silent> <space>9 :9wincmd  w <cr>
   nnoremap <silent> <space>0 :10wincmd w <cr>
 
+  " 使用 f/F 来快速移动
   " press <esc> to cancel.
   nmap f <Plug>(coc-smartf-forward)
   nmap F <Plug>(coc-smartf-backward)
@@ -149,8 +150,11 @@ func! myspacevim#after() abort
     autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
   augroup end
 
+  " 显示当前行的详细信息
   nmap <space>gm  <Cmd>GitMessenger<CR>
+  " 以 floaterm 的方式打开 tig
   nmap <space>gl  <Cmd>FloatermNew tig status<CR>
+  " 在左侧显示 git blame
   nmap <space>gb  <Cmd>Git blame<CR>
 
   " 加载 lua 配置
