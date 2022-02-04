@@ -160,4 +160,5 @@ func! myspacevim#after() abort
   " lua require("orgmode-config")
   lua require("telescope-config")
   lua require("tree-config")
+
 endf
