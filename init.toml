@@ -176,13 +176,6 @@
 [[custom_plugins]]
   name = 'tpope/vim-fugitive'
 
-[[custom_plugins]]
-  name = 'akinsho/bufferline.nvim'
-
-# startify
-[[custom_plugins]]
-  name = 'goolord/alpha-nvim'
-
 # 括号匹配
 [[custom_plugins]]
   name = 'windwp/nvim-autopairs'

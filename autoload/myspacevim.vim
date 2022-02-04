@@ -154,9 +154,9 @@ func! myspacevim#after() abort
   nmap <space>gb  <Cmd>Git blame<CR>
 
   " 加载 lua 配置
+  lua require('nvim-autopairs').setup{}
   lua package.path = package.path .. ";../lua/?.lua"
   lua require("orgmode-config")
   lua require("treesitter-config")
   lua require("tree-config")
-  lua require("lab")
 endf
