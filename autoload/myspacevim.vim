@@ -1,4 +1,5 @@
 func! myspacevim#before() abort
+  set termguicolors
   " 当文件被其他编辑器修改时，自动加载
   set autoread
   au FocusGained,BufEnter * :checktime
@@ -109,6 +110,9 @@ func! myspacevim#before() abort
 endf
 
 func! myspacevim#after() abort
+  " 主题颜色
+  colorscheme tokyonight
+
   " <F3> 打开文件树
   let g:vista_sidebar_position = "vertical topleft"
   let g:vista_default_executive = 'coc'
@@ -136,6 +140,17 @@ func! myspacevim#after() abort
   nnoremap <silent> <space>9 :9wincmd  w <cr>
   nnoremap <silent> <space>0 :10wincmd w <cr>
 
+  " 使用 <leader> [number] 切换到第 [number] 个 buffer
+  nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+  nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+  nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+  nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+  nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+  nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+  nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+  nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+  nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+
   " 使用 f/F 来快速移动
   " press <esc> to cancel.
   nmap f <Plug>(coc-smartf-forward)
@@ -159,10 +174,15 @@ func! myspacevim#after() abort
   nmap <space>gL  <Cmd>FloatermNew tig<CR>
   nmap <space>gp  <Cmd>Git push<CR>
 
+  " 瞬间呼出 ipython 来计算
+  nmap <space>x  <Cmd>FloatermNew ipython<CR>
+
   " 加载 lua 配置
+  lua require('colorizer').setup()
   lua require('nvim-autopairs').setup{}
   lua package.path = package.path .. ";../lua/?.lua"
   " lua require("orgmode-config")
   lua require("telescope-config")
   lua require("tree-config")
+  lua require("buffer")
 endf
