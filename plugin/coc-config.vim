@@ -69,7 +69,6 @@ let s:coc_extensions = [
       \ 'coc-lua',
       \ 'coc-xml',
       \ 'coc-git',
-      \ 'coc-calc',
       \]
 
 " coc-vimtex
