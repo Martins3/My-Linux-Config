@@ -10,7 +10,7 @@ func! myspacevim#before() abort
   let g:mapleader = ','
   " 重新映射 window 键位
   let g:spacevim_windows_leader = 'c'
-  
+
   " 在 markdown 中间编辑 table
   let g:table_mode_corner='|'
 
@@ -51,6 +51,13 @@ func! myspacevim#before() abort
   " 关闭所有隐藏设置
   let g:tex_conceal = ""
 
+  fun! TrimWhitespace()
+      let l:save = winsaveview()
+      keeppatterns %s/\s\+$//e
+      call winrestview(l:save)
+  endfun
+  command! TrimWhitespace call TrimWhitespace()
+
   " 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
   func! QuickRun()
     exec "w"
@@ -83,6 +90,8 @@ func! myspacevim#before() abort
       exec "so %"
     elseif ext ==# "html"
       exec "!microsoft-edge %"
+    elseif ext ==# "md"
+      exec "call TrimWhitespace()"
     elseif ext ==# "rs"
       exec "CocCommand rust-analyzer.run"
       return
@@ -149,4 +158,5 @@ func! myspacevim#after() abort
   lua require("orgmode-config")
   lua require("treesitter-config")
   lua require("tree-config")
+  lua require("lab")
 endf

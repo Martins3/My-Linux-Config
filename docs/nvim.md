@@ -1,4 +1,4 @@
-# 2021 年 vim 的 C/C++ 配置
+# 2022 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -31,7 +31,9 @@
 - [本配置源代码解释](#本配置源代码解释)
 - [FAQ](#faq)
 - [vim 的小技巧](#vim-的小技巧)
-- [vim 调试](#vim-调试)
+- [neovim 调试](#neovim-调试)
+- [每年总结](#每年总结)
+  - [2021](#2021)
 - [其他的一些资源](#其他的一些资源)
     - [学习](#学习)
     - [主题](#主题)
@@ -53,7 +55,7 @@
 本项目不是在于要大家使用我的这个配置，
 而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 
-## 背景 
+## 背景
 我平时主要写 C/C++, 最开始的配置是参考 [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide) 写的，
 在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
 我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
@@ -88,17 +90,13 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
 
 ```txt
- +------------------------+    +-----------------------+
- |                        |    |                       |
- |      Editor            | <--+   Language Server     |
- |                        |    |                       |
- +------------------------+    +-----------------------+
- |     Atom               |    |                       |
- |     Emacs              +--> |   ccls                |
- |     Vim/Neovim         |    |                       |
- |     Visual Studio Code |    |                       |
- |     Monaco Editor      |    |                       |
- +------------------------+    +-----------------------+
++------------------------+    +--------------------+
+|      Editor            |    |   Language Server  |
++------------------------+    +--------------------+
+|     Emacs              |    |                    |
+|     Neovim(coc.nvim)   +--> |   ccls             |
+|     Visual Studio Code |    |                    |
++------------------------+    +--------------------+
 ```
 
 ## 丝般顺滑: async
@@ -110,7 +108,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
 
 ## 为什么使用 coc.nvim
-最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/), 
+最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
 coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
 reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开箱即用。[^1]
 
@@ -198,7 +196,7 @@ https://registry.npm.taobao.org/
 ```sh
 cd ~ # 保证在根目录
 rm -r .SpaceVim.d # 将原来的配置删除
-git clone https://github.com/martins3/My-Linux-config .SpaceVim.d 
+git clone https://github.com/martins3/My-Linux-config .SpaceVim.d
 nvim # 打开vim 将会自动安装所有的插件
 ```
 
@@ -221,7 +219,7 @@ cargo install tree-sitter-cli
 ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
-注: 
+注:
 1. 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2, Ruby 和 perl 的依赖是不需要安装。
 2. 感谢 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
 
@@ -389,8 +387,8 @@ snippet import
 using namespace std;
 
 int main(){
-	${0}
-	return 0;
+  ${0}
+  return 0;
 }
 endsnippet
 ```
@@ -505,7 +503,7 @@ setxkbmap -option caps:swapescape
   let g:spacevim_escape_key_binding = 'jk'
 ```
 
-## vim 调试
+## neovim 调试
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 ```sh
 cd /tmp
@@ -556,10 +554,18 @@ nvim -u mini.vim
 
 然后运行 nvim -u mini.vim 来加载最为单纯的 vim 环境，在其中可以测试到底是插件的问题还是自己配置的问题。
 
+## 每年总结
+
+### 2021
+今年是 neovim 插件大爆发的一年，比如 telescope，本以为由于 built-in 的 lsp 对于 coc.nvim 的冲击，
+是不是应该将 coc.nvim 替换掉，实际上发现，自己正在逐渐替换掉 spacevim
+
+如果之前对于 neovim 和 vim 存在一些疑虑，从目前的发展形式，没有任何理由继续使用 vim 了。
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
 
 #### 学习
+1. [neovimcraft](https://neovimcraft.com/) : neovim 插件教程学习导航网站
 2. [vim galore](https://github.com/mhinz/vim-galore)
 3. [devhints](https://devhints.io/vimscript) : 另一个 vim checksheet
 
@@ -575,6 +581,6 @@ nvim -u mini.vim
 [^1]: https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
- 
+
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 **转发 CSDN 按侵权追究法律责任，其它情况随意。**

@@ -20,18 +20,18 @@
     # statusline_separator = "nil"
     # statusline_separator = "bar"
     # 设置顶部标签列表序号类型，有以下五种类型，分别是 0 - 4
-    # 0: 1 ➛ ➊ 
+    # 0: 1 ➛ ➊
     # 1: 1 ➛ ➀
     # 2: 1 ➛ ⓵
     # 3: 1 ➛ ¹
-    # 4: 1 ➛ 
+    # 4: 1 ➛
     # buffer_index_type = 4
     # 显示/隐藏顶部标签栏上文件类型图标，这一图标需要安装 nerd fonts，
     # 如果未能成功安装这一字体，可以隐藏图标
     enable_tabline_filetype_icon = true
     # 是否在状态栏上显示当前模式，默认情况下，不显示 Normal/Insert 等
     # 字样，只以颜色区分当前模式
-    enable_statusline_display_mode = false
+    enable_statusline_mode = false
 
     # 自定义配置
     relativenumber = false
@@ -40,29 +40,56 @@
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
     # indent-blankline.nvim 会在一些奇怪的位置（比如 filetree 中）放置竖线
+    # disabled_plugins = ["indent-blankline.nvim", "vim-startify"]
     disabled_plugins = ["indent-blankline.nvim"]
 
-# ----------------- SpaceVim 添加的各种 layers ---------------------------------
-# coc.vim 的 statusline 携带了 lsp 的信息
+# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
+[[layers]]
+  name="format"
+  enable = false
+
+[[layers]]
+  name="edit"
+  enable = false
+
 [[layers]]
   name = "core#statusline"
   enable = false
 
-# 计算器, 日历, 书签等小工具
 [[layers]]
-  name = 'tools'
+  name="core#banner"
+  enable = false
 
-# 禁用 SpaceVim 的 checkers layer, 让 coc.nvim 来管理
+[[layers]]
+  name="core#tabline"
+  enable = false
+
+[[layers]]
+  name="autocomplete"
+  enable = false
+
 [[layers]]
   name = "checkers"
   enable = false
+# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
+# 用于支持 bufferline 和 statusline
+[[layers]]
+  name="ui"
+  enable = true
+
+[[layers]]
+  name="core"
+  enable = true
+
+# 计算器, 日历, 书签等小工具
+[[layers]]
+  name = 'tools'
 
 [[layers]]
   name = "lang#markdown"
 
 [[layers]]
   name = "lang#latex"
-
 # ----------------- 添加的插件 -------------------------------------------------
 # coc.nvim 核心配置，不要删除
 [[custom_plugins]]
@@ -74,7 +101,7 @@
 [[custom_plugins]]
   name = 'dhruvasagar/vim-table-mode'
 
-# 更加美观的 tagbar 
+# 更加美观的 tagbar
 [[custom_plugins]]
     name = 'liuchengxu/vista.vim'
 
@@ -149,6 +176,16 @@
 [[custom_plugins]]
   name = 'tpope/vim-fugitive'
 
+[[custom_plugins]]
+  name = 'akinsho/bufferline.nvim'
+
+# startify
+[[custom_plugins]]
+  name = 'goolord/alpha-nvim'
+
+# 括号匹配
+[[custom_plugins]]
+  name = 'windwp/nvim-autopairs'
 # ----------------- 一些并不关键的插件 -------------------------------------------------
 # 配合 sourcetrail 使用
 [[custom_plugins]]
@@ -162,7 +199,7 @@
 [[custom_plugins]]
   name = 'nvim-orgmode/orgmode'
 
-# 在 nvim 中构成提示窗
+# 在 nvim 中的 notification
 [[custom_plugins]]
   name = 'rcarriga/nvim-notify'
 
