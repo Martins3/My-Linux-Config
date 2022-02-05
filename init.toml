@@ -79,7 +79,7 @@
 # ----------------- 需要的 SpaceVim 各种 layers --------------------------------
 [[layers]]
   name="core"
-  enable = true
+  enable = false
 
 [[layers]]
   name = "lang#latex"
@@ -199,6 +199,9 @@
   name = 'iamcco/markdown-preview.nvim'
   on_ft = ['markdown', 'pandoc.markdown', 'rmd']
   build = "sh -c 'cd app && yarn install'"
+
+[[custom_plugins]]
+  name = 'kazhala/close-buffers.nvim'
 
 # ----------------- 颜色主题 -----------------------------------------------------------
 [[custom_plugins]]
