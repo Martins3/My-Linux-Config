@@ -82,9 +82,6 @@
   enable = true
 
 [[layers]]
-  name = "lang#markdown"
-
-[[layers]]
   name = "lang#latex"
 # ----------------- 添加的插件 -------------------------------------------------
 # coc.nvim 核心配置，不要删除
@@ -197,6 +194,12 @@
 
 [[custom_plugins]]
   name = 'vim-airline/vim-airline-themes'
+
+[[custom_plugins]]
+  name = 'iamcco/markdown-preview.nvim'
+  on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+  build = "sh -c 'cd app && yarn install'"
+
 # ----------------- 颜色主题 -----------------------------------------------------------
 [[custom_plugins]]
   name = 'folke/tokyonight.nvim'
