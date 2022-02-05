@@ -89,10 +89,9 @@ func! myspacevim#before() abort
     elseif ext ==# "html"
       exec "!microsoft-edge %"
     elseif ext ==# "md"
-      exec "call TrimWhitespace()"
+      exec "MarkdownPreview"
     elseif ext ==# "rs"
       exec "CocCommand rust-analyzer.run"
-      return
     elseif ext ==# "svg"
       exec "%!xmllint --format -"
     elseif ext ==# "lua"
@@ -100,7 +99,6 @@ func! myspacevim#before() abort
     else
       echo "Check file type !"
     endif
-    echo 'done'
   endf
 
   " floaterm
