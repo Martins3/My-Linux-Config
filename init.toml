@@ -43,7 +43,7 @@
     # disabled_plugins = ["indent-blankline.nvim", "vim-startify"]
     disabled_plugins = ["indent-blankline.nvim"]
 
-# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
+# ----------------- 禁用的 SpaceVim 各种 layers --------------------------------
 [[layers]]
   name="format"
   enable = false
@@ -71,12 +71,12 @@
 [[layers]]
   name = "checkers"
   enable = false
-# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
-# 用于支持 bufferline 和 statusline
+
 [[layers]]
   name="ui"
-  enable = true
+  enable = false
 
+# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
 [[layers]]
   name="core"
   enable = true
@@ -189,6 +189,14 @@
 [[custom_plugins]]
   name = 'norcalli/nvim-colorizer.lua'
 
+[[custom_plugins]]
+  name = 'goolord/alpha-nvim'
+
+[[custom_plugins]]
+  name = 'vim-airline/vim-airline'
+
+[[custom_plugins]]
+  name = 'vim-airline/vim-airline-themes'
 # ----------------- 颜色主题 -----------------------------------------------------------
 [[custom_plugins]]
   name = 'folke/tokyonight.nvim'

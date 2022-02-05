@@ -7,6 +7,7 @@ require('bufferline').setup {
     end,
     diagnostics = "coc",
     show_buffer_close_icons = false,
+    show_close_icon = false,
     separator_style = "slant",
     left_trunc_marker = "",
     right_trunc_marker = "",
