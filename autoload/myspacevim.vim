@@ -178,6 +178,10 @@ func! myspacevim#after() abort
   nmap <space>x  <Cmd>FloatermNew ipython<CR>
   nmap <space>bc  <Cmd>BWipeout other<CR>
 
+  " 注释代码和取消注释
+  nmap <space>c  :Commentary<CR>
+  vmap <space>c  :Commentary<CR>
+
   nmap q <Cmd>q<CR>
 
   " 加载 lua 配置
