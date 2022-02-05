@@ -76,11 +76,11 @@
   name="ui"
   enable = false
 
-# ----------------- 需要的 SpaceVim 各种 layers --------------------------------
 [[layers]]
   name="core"
   enable = false
 
+# TMP_TODO 最后一个需要的 latex 插件
 [[layers]]
   name = "lang#latex"
 # ----------------- 添加的插件 -------------------------------------------------
