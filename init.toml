@@ -203,6 +203,9 @@
 [[custom_plugins]]
   name = 'kazhala/close-buffers.nvim'
 
+[[custom_plugins]]
+  name = 'tpope/vim-commentary'
+
 # ----------------- 颜色主题 -----------------------------------------------------------
 [[custom_plugins]]
   name = 'folke/tokyonight.nvim'
