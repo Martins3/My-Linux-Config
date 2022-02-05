@@ -111,6 +111,7 @@ endf
 func! myspacevim#after() abort
   " 主题颜色
   colorscheme tokyonight
+  " colorscheme gruvbox
 
   " <F3> 打开文件树
   let g:vista_sidebar_position = "vertical topleft"
@@ -175,6 +176,7 @@ func! myspacevim#after() abort
 
   " 瞬间呼出 ipython 来计算
   nmap <space>x  <Cmd>FloatermNew ipython<CR>
+  nmap <space>bc  <Cmd>BWipeout other<CR>
 
   nmap q <Cmd>q<CR>
 
