@@ -107,6 +107,7 @@ func! myspacevim#before() abort
   let g:floaterm_keymap_prev   = '<C-p>'
   let g:floaterm_keymap_new    = '<C-n>'
   let g:floaterm_keymap_toggle = '<F5>'
+
 endf
 
 func! myspacevim#after() abort
@@ -177,12 +178,32 @@ func! myspacevim#after() abort
   " 瞬间呼出 ipython 来计算
   nmap <space>x  <Cmd>FloatermNew ipython<CR>
 
+  nmap q <Cmd>q<CR>
+
   " 加载 lua 配置
   lua require('colorizer').setup()
   lua require('nvim-autopairs').setup{}
+  lua require('alpha').setup(require('alpha.themes.startify').config)
+  " TMP_TODO 似乎只有删除掉整个 ui 彻底解决才可以啊
+  Alpha
   lua package.path = package.path .. ";../lua/?.lua"
   " lua require("orgmode-config")
   lua require("telescope-config")
   lua require("tree-config")
   lua require("buffer")
+
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.colnr = ' :'
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ' :'
+  let g:airline_symbols.maxlinenr = '☰ '
+  let g:airline_symbols.dirty='⚡'
+  AirlineTheme atomic
+
+  let g:airline#extensions#coc#enabled = 1
+  let g:airline#extensions#coc#show_coc_status = 1
 endf
