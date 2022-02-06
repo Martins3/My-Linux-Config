@@ -56,14 +56,6 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_syntax_conceal_default = 0
 let g:tex_conceal = "" " 关闭所有隐藏设置
 
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-    retab
-endfun
-command! TrimWhitespace call TrimWhitespace()
-
 " 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
 func! QuickRun()
   exec "w"
@@ -86,7 +78,6 @@ func! QuickRun()
   endif
 endf
 
-" <F3> 打开文件树
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = 'ctags'
@@ -145,8 +136,8 @@ lua require 'buffer-config'
 lua require 'orgmode-config'
 lua require 'telescope-config'
 lua require 'tree-config'
-lua require('colorizer').setup()
-lua require('nvim-autopairs').setup{}
 lua require 'alpha-config'
 lua require 'whichkey-config'
 lua require 'code-runner-config'
+lua require('colorizer').setup()
+lua require('nvim-autopairs').setup{}
