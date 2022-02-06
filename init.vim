@@ -132,7 +132,7 @@ let s:core_conf_files = [
       \ ]
 
 for s:fname in s:core_conf_files
-  execute printf('source %s/config/%s', stdpath('config'), s:fname)
+  execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
 
 " 加载 lua 插件
