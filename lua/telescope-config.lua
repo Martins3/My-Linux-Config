@@ -27,7 +27,7 @@ require('telescope').setup {
       selected_browser = 'edge',
 
       -- Either provide a shell command to open the URL
-      url_open_command = 'open',
+      url_open_command = 'microsoft-edge',
 
       -- Or provide the plugin name which is already installed
       -- Available: 'vim_external', 'open_browser'

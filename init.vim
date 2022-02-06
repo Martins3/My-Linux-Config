@@ -27,6 +27,10 @@ let g:mapleader = ','
 colorscheme tokyonight
 " colorscheme gruvbox
 
+" 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
+noremap <leader>q q
+noremap q <Nop>
+
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 
