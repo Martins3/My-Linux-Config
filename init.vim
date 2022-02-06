@@ -68,44 +68,21 @@ command! TrimWhitespace call TrimWhitespace()
 func! QuickRun()
   exec "w"
   let ext = expand("%:e")
-
-  if ext ==# "sh"
-    exec "!bash %"
-  elseif ext ==# "cpp"
-    let out = expand('%:p') . ".out"
-    exec "!clang++ % -Wall -lpthread -g -std=c++17 -o " . out . " && " . out
-  elseif ext ==# "c"
-    let out = expand('%:p') . ".out"
-    exec "!clang % -Wall -lpthread -g -std=c11 -o " . out . " && " . out
-  elseif ext ==# "java"
+  if ext ==# "java"
     let classPath = expand('%:h')
     let className = expand('%:p:t:r')
     " echo classPath
     " echo className
     exec "!javac %"
     exec "!java -classpath " . classPath . " " . className
-  elseif ext ==# "go"
-    exec "!go run %"
-  elseif ext ==# "js"
-    exec "!node %"
-  elseif ext ==# "bin"
-    exec "!readelf -h %"
-  elseif ext ==# "py"
-    exec "!python3 %"
-  elseif ext ==# "vim"
-    exec "so %"
-  elseif ext ==# "html"
-    exec "!microsoft-edge %"
   elseif ext ==# "md"
     exec "MarkdownPreview"
   elseif ext ==# "rs"
     exec "CocCommand rust-analyzer.run"
-  elseif ext ==# "svg"
-    exec "%!xmllint --format -"
   elseif ext ==# "lua"
     exec "source %"
   else
-    echo "Check file type !"
+    exec "RunCode"
   endif
 endf
 
@@ -113,10 +90,7 @@ endf
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = 'ctags'
-nnoremap <F2>  :Vista!!<CR>
-let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
-nnoremap <F3>  :NvimTreeToggle<CR>
-nnoremap <F4>  :call QuickRun()<CR>
+
 let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
 let g:floaterm_keymap_toggle = '<F5>'
@@ -175,3 +149,4 @@ lua require('colorizer').setup()
 lua require('nvim-autopairs').setup{}
 lua require 'alpha-config'
 lua require 'whichkey-config'
+lua require 'code-runner-config'
