@@ -13,9 +13,6 @@ set autoindent                          " Good auto indent
 set number                              " Line numbers
 set cursorline                          " Enable highlighting of the current line
 set termguicolors
-" TMP_TODO
-" 感觉剪切板直通有点鬼畜，一时接受不了
-
 " 当文件被其他编辑器修改时，自动加载
 set autoread
 au FocusGained,BufEnter * :checktime
