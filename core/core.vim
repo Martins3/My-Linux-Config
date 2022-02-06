@@ -1,4 +1,5 @@
 " https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
+" TMP_TODO 每一个都需要核对
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set nowrap                              " Display long lines as just one line
@@ -25,13 +26,12 @@ set cursorline                          " Enable highlighting of the current lin
 set showtabline=2                       " Always show tabs
 set termguicolors
 set switchbuf=useopen
-
+" 直通系统剪切板
+set clipboard+=unnamedplus              
 " 主题颜色
 colorscheme tokyonight
 " colorscheme gruvbox
 
-" TMP_TODO 这个配置的位置需要改动吗?
-lua require('lua-init')
 " 当文件被其他编辑器修改时，自动加载
 set autoread
 au FocusGained,BufEnter * :checktime
@@ -43,7 +43,8 @@ autocmd FocusLost,BufLeave * silent! update
 tnoremap  <Esc>  <C-\><C-n>
 " 重新映射 leader 键
 let g:mapleader = ','
-" TMP_TODO 最大化当前 window 的快捷键
+" 最大化当前 window 的快捷键
+map <space>wm <C-W>o
 
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
@@ -218,7 +219,6 @@ nnoremap <space>sf :lua require('spectre').open_file_search()<cr>
 
 nmap <space>fo <Cmd>NvimTreeFindFile<CR>
 
-
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -235,3 +235,13 @@ let g:airline_theme="atomic"
 " TMP_TODO 这个配置需要重新分析一下
 " let g:airline#extensions#coc#enabled = 1
 " let g:airline#extensions#coc#show_coc_status = 1
+
+lua require 'plugins'
+lua require 'buffer-config'
+lua require 'orgmode-config'
+lua require 'telescope-config'
+lua require 'tree-config'
+lua require('colorizer').setup()
+lua require('nvim-autopairs').setup{}
+" require('alpha').setup(require('alpha.themes.startify').config)
+lua require 'alpha-config'
