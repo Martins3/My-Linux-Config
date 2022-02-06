@@ -31,22 +31,25 @@ wk.register({
 
   -- " 使用 space [number] 切换到第 [number] 个 window
   ['<space>'] = {
-    ["1"] = { "<cmd>1wincmd   w <cr>", "jump to window 1"},
-    ["2"] = { "<cmd>2wincmd   w <cr>", "jump to window 2"},
-    ["3"] = { "<cmd>3wincmd   w <cr>", "jump to window 3"},
-    ["4"] = { "<cmd>4wincmd   w <cr>", "jump to window 4"},
-    ["5"] = { "<cmd>5wincmd   w <cr>", "jump to window 5"},
-    ["6"] = { "<cmd>6wincmd   w <cr>", "jump to window 6"},
-    ["7"] = { "<cmd>7wincmd   w <cr>", "jump to window 7"},
-    ["8"] = { "<cmd>8wincmd   w <cr>", "jump to window 8"},
-    ["9"] = { "<cmd>9wincmd   w <cr>", "jump to window 9"},
-    ["0"] = { "<cmd>10wincmd  w <cr>", "jump to window 0"},
+    ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1"},
+    ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2"},
+    ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3"},
+    ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4"},
+    ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5"},
+    ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6"},
+    ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7"},
+    ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8"},
+    ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9"},
+    ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0"},
 
     ['b'] = {
       name = "+buffer",
       ["c"] = { "<cmd>BWipeout other<cr>", "clear other buffers"},
     },
-    ["c"] = { "<cmd>Commentary<cr>", "comment code"},
+    ['c'] = {
+      ["l"] = { "<cmd>Commentary<cr>", "comment code"},
+      ["r"] = { "<cmd>call QuickRun()<cr>", "run code"},
+    },
     ["q"] = { "<cmd>xa<cr>", "save all buffer and close vim"},
     ["x"] = { "<Cmd>FloatermNew ipython<CR>", "calculated"},
     ['g'] = {
@@ -69,7 +72,8 @@ wk.register({
       o = {"<cmd>NvimTreeFindFile<cr>", "open file in dir"},
       s = {"<cmd>w<cr>", "save file"},
       t = {"<cmd>NvimTreeToggle<cr>", "toggle file tree"}
-    }
+    },
+    ["v"] = {":Vista!!<cr>", "toggle vista navigator"}
   },
   q = { "<cmd>q<cr>", "close window"},
   ["c"] = {
@@ -77,12 +81,14 @@ wk.register({
     v = { "<Cmd>sp<CR>", "horizontal split window"},
     m = { "<C-W>o", "maximize current window"},
   },
-  ["<tab>"] = {":wincmd w<cr>", "switch window"}
+  ["<tab>"] = {":wincmd w<cr>", "switch window"},
 })
 
 wk.register({
   ['<space>'] = {
-    ["c"] = { ":Commentary<cr>", "comment code"},
+    ['c'] = {
+      ["l"] = { ":Commentary<cr>", "comment code"},
+    },
     ["s"] = { ":lua require('spectre').open_visual()<cr>", "search"}
   }
 }, { mode = "v"})

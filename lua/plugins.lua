@@ -63,6 +63,8 @@ require("packer").startup({
     use 'morhetz/gruvbox'
 
     use 'CoatiSoftware/vim-sourcetrail'
+    use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
+
     -- 日程管理
     use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end}
     -- 在 nvim 中的 notification
