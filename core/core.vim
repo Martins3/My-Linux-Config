@@ -1,4 +1,35 @@
+" https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
+syntax enable                           " Enables syntax highlighing
+set hidden                              " Required to keep multiple buffers open multiple buffers
+set nowrap                              " Display long lines as just one line
+set encoding=utf-8                      " The encoding displayed
+set pumheight=10                        " Makes popup menu smaller
+set fileencoding=utf-8                  " The encoding written to file
+set ruler              			            " Show the cursor position all the time
+set cmdheight=2                         " More space for displaying messages
+set iskeyword+=-                      	" treat dash separated words as a word text object"
+set mouse=a                             " Enable your mouse
+set splitbelow                          " Horizontal splits will automatically be below
+set splitright                          " Vertical splits will automatically be to the right
+set t_Co=256                            " Support 256 colors
+set conceallevel=0                      " So that I can see `` in markdown files
+set tabstop=2                           " Insert 2 spaces for a tab
+set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+set expandtab                           " Converts tabs to spaces
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+set laststatus=0                        " Always display the status line
+set number                              " Line numbers
+set cursorline                          " Enable highlighting of the current line
+set showtabline=2                       " Always show tabs
 set termguicolors
+set switchbuf=useopen
+
+" 主题颜色
+colorscheme tokyonight
+" colorscheme gruvbox
+
 " TMP_TODO 这个配置的位置需要改动吗?
 lua require('lua-init')
 " 当文件被其他编辑器修改时，自动加载
@@ -8,11 +39,11 @@ au FocusGained,BufEnter * :checktime
 set autowrite
 autocmd FocusLost,BufLeave * silent! update
 
+" 在 terminal 中也是使用 esc 来进入 normal 模式
+tnoremap  <Esc>  <C-\><C-n>
 " 重新映射 leader 键
 let g:mapleader = ','
-" 重新映射 window 键位
-" TMP_TODO
-" let g:spacevim_windows_leader = 'c'
+" TMP_TODO 最大化当前 window 的快捷键
 
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
@@ -34,19 +65,6 @@ autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")
 
 " 让光标自动进入到popup window 中间
 let g:git_messenger_always_into_popup = v:true
-
-" 和 sourcetrail 配合使用
-" TMP_TODO
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
-
-" 多文件的搜索替换
-" TMP_TODO
-" call SpaceVim#custom#SPC('nnoremap', ['s', 'v'], "lua require('spectre').open()", 'search and replace in multiple files', 1)
-"
-" TMP_TODO
-" call SpaceVim#custom#SPC('nnoremap', ['f', 'o'], "NvimTreeFindFile", 'find current file in file tree', 2)
 
 " 设置默认的 pdf 阅览工具
 let g:vimtex_view_method = 'zathura'
@@ -106,16 +124,6 @@ func! QuickRun()
   endif
 endf
 
-" floaterm
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<F5>'
-
-
-" 主题颜色
-colorscheme tokyonight
-" colorscheme gruvbox
-
 " <F3> 打开文件树
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = 'coc'
@@ -124,10 +132,11 @@ nnoremap <F2>  :Vista!!<CR>
 let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
 nnoremap <F3>  :NvimTreeToggle<CR>
 nnoremap <F4>  :call QuickRun()<CR>
-" <F5> floaterm toggle
+let g:floaterm_keymap_prev   = '<C-p>'
+let g:floaterm_keymap_new    = '<C-n>'
+let g:floaterm_keymap_toggle = '<F5>'
+" 历史记录
 " <F7> 打开历史记录
-" 在 terminal 中也是使用 esc 来进入 normal 模式
-tnoremap  <Esc>  <C-\><C-n>
 
 " 使用 tab 切换到下一个 window
 map <Tab> :wincmd w<CR>
@@ -179,13 +188,36 @@ nmap <space>gp  <Cmd>Git push<CR>
 
 " 瞬间呼出 ipython 来计算
 nmap <space>x  <Cmd>FloatermNew ipython<CR>
-nmap <space>bc  <Cmd>BWipeout other<CR>
+nmap <space>bc <Cmd>BWipeout other<CR>
 
 " 注释代码和取消注释
 nmap <space>c  :Commentary<CR>
 vmap <space>c  :Commentary<CR>
 
 nmap q <Cmd>q<CR>
+nmap <space>q <Cmd>q<CR>
+
+nmap cg <Cmd>vsp<CR>
+nmap cv <Cmd>sp<CR>
+
+nmap <space>fo <Cmd>NvimTreeFindFile<CR>
+
+
+" 和 sourcetrail 配合使用
+" TMP_TODO
+" call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
+" call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
+" call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
+
+" call SpaceVim#custom#SPC('nnoremap', ['s', 'v'], 'lua require('spectre').open()', 'search and replace in multiple files', 1)
+nnoremap <space>sw :lua require('spectre').open_visual({select_word=true})<CR>
+vnoremap <space>s  :lua require('spectre').open_visual()<CR>
+nnoremap <space>sp :lua require('spectre').open()<CR>
+" TMP_TODO 实际上无法正确搜索
+nnoremap <space>sf :lua require('spectre').open_file_search()<cr>
+
+nmap <space>fo <Cmd>NvimTreeFindFile<CR>
+
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -199,8 +231,6 @@ let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty='⚡'
 let g:airline_theme="atomic"
-
-" TMP_TODO so, the snippet can be loaded?
 
 " TMP_TODO 这个配置需要重新分析一下
 " let g:airline#extensions#coc#enabled = 1

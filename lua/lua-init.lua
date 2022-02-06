@@ -6,4 +6,5 @@ require 'tree-config'
 
 require('colorizer').setup()
 require('nvim-autopairs').setup{}
-require('alpha').setup(require('alpha.themes.startify').config)
+-- require('alpha').setup(require('alpha.themes.startify').config)
+require 'alpha-config'
