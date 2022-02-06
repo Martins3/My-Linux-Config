@@ -1,7 +1,6 @@
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.startify")
 
--- TMP_TODO 需要深入理解一下
 -- dashboard.section.mru_cwd.val = { { type = "padding", val = 1 } }
 dashboard.section.mru.val = { { type = "padding", val = 1 } }
 

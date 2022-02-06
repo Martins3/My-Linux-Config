@@ -1,33 +1,18 @@
 " https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
-" TMP_TODO 每一个都需要核对
-syntax enable                           " Enables syntax highlighing
-set hidden                              " Required to keep multiple buffers open multiple buffers
-set nowrap                              " Display long lines as just one line
-set encoding=utf-8                      " The encoding displayed
-set pumheight=10                        " Makes popup menu smaller
-set fileencoding=utf-8                  " The encoding written to file
-set ruler              			            " Show the cursor position all the time
-set cmdheight=2                         " More space for displaying messages
-set iskeyword+=-                      	" treat dash separated words as a word text object"
 set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
-set t_Co=256                            " Support 256 colors
-set conceallevel=0                      " So that I can see `` in markdown files
 set tabstop=2                           " Insert 2 spaces for a tab
 set shiftwidth=2                        " Change the number of space characters inserted for indentation
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
-set laststatus=0                        " Always display the status line
 set number                              " Line numbers
 set cursorline                          " Enable highlighting of the current line
-set showtabline=2                       " Always show tabs
 set termguicolors
-set switchbuf=useopen
 " 直通系统剪切板
-set clipboard+=unnamedplus              
+set clipboard+=unnamedplus
 " 主题颜色
 colorscheme tokyonight
 " colorscheme gruvbox
@@ -203,12 +188,10 @@ nmap cv <Cmd>sp<CR>
 
 nmap <space>fo <Cmd>NvimTreeFindFile<CR>
 
-
 " 和 sourcetrail 配合使用
-" TMP_TODO
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'a'], 'SourcetrailStartServer', 'start sourcetrail server', 1)
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'b'], 'SourcetrailActivateToken', 'sync sourcetrail with neovim', 1)
-" call SpaceVim#custom#SPC('nnoremap', ['a', 'f'], 'SourcetrailRefresh', 'sourcetrail server', 1)
+nnoremap <space>aa <Cmd>SourcetrailStartServer<CR>
+nnoremap <space>ab <Cmd>SourcetrailActivateToken<CR>
+nnoremap <space>af <Cmd>SourcetrailRefresh<CR>
 
 " call SpaceVim#custom#SPC('nnoremap', ['s', 'v'], 'lua require('spectre').open()', 'search and replace in multiple files', 1)
 nnoremap <space>sw :lua require('spectre').open_visual({select_word=true})<CR>
@@ -218,6 +201,7 @@ nnoremap <space>sp :lua require('spectre').open()<CR>
 nnoremap <space>sf :lua require('spectre').open_file_search()<cr>
 
 nmap <space>fo <Cmd>NvimTreeFindFile<CR>
+nmap <space>fs <Cmd>w<CR>
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -231,10 +215,6 @@ let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty='⚡'
 let g:airline_theme="atomic"
-
-" TMP_TODO 这个配置需要重新分析一下
-" let g:airline#extensions#coc#enabled = 1
-" let g:airline#extensions#coc#show_coc_status = 1
 
 lua require 'plugins'
 lua require 'buffer-config'

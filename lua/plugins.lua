@@ -2,8 +2,6 @@ vim.cmd("packadd packer.nvim")
 
 require("packer").startup({
   function(use)
-    -- it is recommened to put impatient.nvim before any other plugins
-    use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
     use({"wbthomason/packer.nvim", opt = true})
     use {'neoclide/coc.nvim', branch = 'release'}
     -- 快速编辑 markdown 的表格
@@ -61,5 +59,15 @@ require("packer").startup({
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'
+
+    use 'CoatiSoftware/vim-sourcetrail'
+    -- 日程管理
+    use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end}
+    -- 在 nvim 中的 notification
+    use 'rcarriga/nvim-notify'
+    -- 用于统计代码时间
+    use 'wakatime/vim-wakatime'
+    -- neovim 上的图形库
+    use 'MunifTanjim/nui.nvim'
   end,
 })
