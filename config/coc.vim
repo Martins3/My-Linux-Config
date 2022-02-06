@@ -148,7 +148,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 " Add `:Format` command to format current buffer.
 " command! -nargs=0 Format :call CocActionAsync('format')
 " call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
-nmap <space>rf  <Cmd>call CocAction('format')<CR>
+nmap <leader>rf  <Cmd>call CocAction('format')<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -159,34 +159,7 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Search code action.
-nnoremap <silent><nowait> <leader>a  :<C-u>Telescope coc code_actions<cr>
-" Show buffers
-nnoremap <silent><nowait> <leader>b  :<C-u>Telescope buffers prompt_prefix=🔍<cr>
-" Show commands.
-nnoremap <silent><nowait> <leader>c  :<C-u>Telescope coc commands<cr>
-" Show all diagnostics.
-nnoremap <silent><nowait> <leader>d  :<C-u>Telescope coc workspace_diagnostics<cr>
-" Show colorscheme
-nnoremap <silent><nowait> <leader>e  :<C-u>Telescope colorscheme<cr>
-" Show files
-nnoremap <silent><nowait> <leader>f  :<C-u>Telescope find_files prompt_prefix=🔍<cr>
-" Live grep
-nnoremap <silent><nowait> <leader>g  :<C-u>Telescope live_grep<cr>
-" Live grep cursor word
-nnoremap <silent><nowait> <leader>G  :<C-u>Telescope grep_string<cr>
-" Search vim manual
-nnoremap <silent><nowait> <leader>h  :<C-u>Telescope help_tags<cr>
-" Search github issue
-nnoremap <silent><nowait> <leader>i  :<C-u>Octo issue list<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <leader>o  :<C-u>Telescope coc document_symbols<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <leader>s  :<C-u>Telescope coc workspace_symbols<cr>
-" Search browser bookmark
-nnoremap <silent><nowait> <leader>m  :<C-u>Telescope bookmarks<cr>
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 "-------------------- 一些 coc plugin 的配置 --------------------------
 " 方便在中文中间使用 w 和 b 移动
