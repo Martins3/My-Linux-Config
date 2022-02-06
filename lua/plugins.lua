@@ -2,6 +2,7 @@ vim.cmd("packadd packer.nvim")
 
 require("packer").startup({
   function(use)
+    use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
     use({"wbthomason/packer.nvim", opt = true})
     use {'neoclide/coc.nvim', branch = 'release'}
     -- 快速编辑 markdown 的表格
@@ -56,6 +57,7 @@ require("packer").startup({
     use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" })
     use 'kazhala/close-buffers.nvim'
     use 'tpope/vim-commentary'
+    use 'folke/which-key.nvim'
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'
