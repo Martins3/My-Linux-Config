@@ -4,7 +4,6 @@ require("packer").startup({
   function(use)
     -- it is recommened to put impatient.nvim before any other plugins
     use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
-
     use({"wbthomason/packer.nvim", opt = true})
     use {'neoclide/coc.nvim', branch = 'release'}
     -- 快速编辑 markdown 的表格
