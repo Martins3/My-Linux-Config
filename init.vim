@@ -26,7 +26,7 @@ autocmd FocusLost,BufLeave * silent! update
 tnoremap  <Esc>  <C-\><C-n>
 " 映射 leader 键为 ,
 let g:mapleader = ','
-" 主题颜色
+" 设置主题
 colorscheme tokyonight
 " colorscheme gruvbox
 
@@ -39,7 +39,7 @@ let g:winresizer_start_key = '<space>wa'
 let g:winresizer_keycode_cancel = 113
 
 " 默认 markdown preview 在切换到其他的 buffer 或者 vim
-" 失去焦点的时候会自动关闭 preview，让
+" 失去焦点的时候会自动关闭 preview
 let g:mkdp_auto_close = 0
 " 书签选中之后自动关闭 quickfix window
 let g:bookmark_auto_close = 1
@@ -85,8 +85,6 @@ let g:vista_finder_alternative_executives = 'ctags'
 let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
 let g:floaterm_keymap_toggle = '<F5>'
-" TMP_TODO 需要安装对应的这个插件哦
-" 历史记录
 " <F7> 打开历史记录
 
 " 使用 f/F 来快速移动
@@ -105,6 +103,12 @@ augroup end
 nnoremap <space>as <Cmd>SourcetrailStartServer<CR>
 nnoremap <space>aa <Cmd>SourcetrailActivateToken<CR>
 nnoremap <space>ar <Cmd>SourcetrailRefresh<CR>
+
+map <leader>y "+y
+map <leader>p "+p
+map <leader>d "+d
+
+let g:git_messenger_no_default_mappings = v:true
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -131,6 +135,7 @@ for s:fname in s:core_conf_files
   execute printf('source %s/config/%s', stdpath('config'), s:fname)
 endfor
 
+" 加载 lua 插件
 lua require 'plugins'
 lua require 'buffer-config'
 lua require 'orgmode-config'

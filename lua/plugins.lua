@@ -19,8 +19,6 @@ require("packer").startup({
     use 'rhysd/git-messenger.vim'
     -- 以悬浮窗口的形式打开终端
     use 'voldikss/vim-floaterm'
-    -- 显示搜索的标号
-    use 'google/vim-searchindex.git'
     -- 安装公共的的 snippets
     use 'honza/vim-snippets'
     -- 很多 lua 插件依赖的库
@@ -53,6 +51,7 @@ require("packer").startup({
     use 'goolord/alpha-nvim'
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
+    use 'mbbill/undotree'
     -- markdown 预览
     use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" })
     use 'kazhala/close-buffers.nvim'
