@@ -31,7 +31,7 @@ require("packer").startup({
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     -- neovim 0.5 的关键新特性，实现更好的高亮
     use 'nvim-treesitter/nvim-treesitter'
-    -- 虽然 spacevim 内置了 filetree，但是这一个是最好用的
+    -- 文件树
     use 'kyazdani42/nvim-tree.lua'
     -- 用于文件树等插件的图标
     use 'kyazdani42/nvim-web-devicons'

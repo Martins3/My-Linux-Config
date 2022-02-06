@@ -90,13 +90,13 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
 
 ```txt
-+------------------------+    +--------------------+
-|      Editor            |    |   Language Server  |
-+------------------------+    +--------------------+
-|     Emacs              |    |                    |
-|     Neovim(coc.nvim)   +--> |   ccls             |
-|     Visual Studio Code |    |                    |
-+------------------------+    +--------------------+
++------------------------+    +---------------+
+|      Editor            |    |Language Server|
++------------------------+    +---------------+
+|     Emacs              |    |               |
+|     Neovim(coc.nvim)   +--> |      ccls     |
+|     Visual Studio Code |    |               |
++------------------------+    +---------------+
 ```
 
 ## 丝般顺滑: async
@@ -556,13 +556,16 @@ nvim -u mini.vim
 
 ## 每年总结
 
-### 2021
+### 2022
 今年是 neovim 插件大爆发的一年，比如 telescope，本以为由于 built-in 的 lsp 对于 coc.nvim 的冲击，
 是不是应该将 coc.nvim 替换掉，实际上发现，自己正在逐渐替换掉 spacevim
 
 如果之前对于 neovim 和 vim 存在一些疑虑，从目前的发展形式，没有任何理由继续使用 vim 了。
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
+
+#### blog
+- [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
 
 #### 学习
 1. [neovimcraft](https://neovimcraft.com/) : neovim 插件教程学习导航网站
