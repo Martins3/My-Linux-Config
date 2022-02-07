@@ -506,13 +506,14 @@ setxkbmap -option caps:swapescape
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
-## 调试 neovim 配置
+## 调试 vim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
 
 ## Changelog
 
 ### 2022
+移除掉了 spacevim
 
 ## TODO
 - 解决中文输入法

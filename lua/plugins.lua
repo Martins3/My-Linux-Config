@@ -53,7 +53,7 @@ require("packer").startup({
     use 'MattesGroeger/vim-bookmarks' -- 书签
     use 'pwntester/octo.nvim' -- 在 neovim 中使用 github cli
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
-    use 'norcalli/nvim-colorizer.lua'
+    use 'norcalli/nvim-colorizer.lua' -- 显示 #FFFFFF
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
     use {'nvim-orgmode/orgmode',
       config = function() require('orgmode').setup{} end} -- 日程管理

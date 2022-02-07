@@ -198,6 +198,3 @@ lua require 'code-runner-config'
 lua require('colorizer').setup()
 lua require('nvim-autopairs').setup{}
 lua require("better_escape").setup()
-" lua require("startup").setup({theme = "evil"}) -- put theme name here
-" lua require('nvim-biscuits').setup({})
-" lua require("todo-comments").setup {}
