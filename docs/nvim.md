@@ -503,56 +503,9 @@ setxkbmap -option caps:swapescape
   let g:spacevim_escape_key_binding = 'jk'
 ```
 
-## neovim 调试
+## 调试 neovim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
-```sh
-cd /tmp
-mkdir dein
-cd dein
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh $(pwd)
-
-cat > mini.vim << EOL
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=/tmp/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('/tmp/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('/tmp/dein/repos/github.com/Shougo/dein.vim')
-
-" Add or remove your plugins here like this:
-call dein#add('nvim-treesitter/nvim-treesitter')
-call dein#add('nvim-orgmode/orgmode')
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
- call dein#install()
-endif
-
-" init.vim
-lua << EOF
-EOL
-nvim -u mini.vim
-# quit the vim and enter again
-nvim -u mini.vim
-```
-脚本会自动生成一个配置，拷贝到 mini.vim 中。
-
-然后运行 nvim -u mini.vim 来加载最为单纯的 vim 环境，在其中可以测试到底是插件的问题还是自己配置的问题。
+参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
 
 ## 每年总结
 
@@ -580,6 +533,7 @@ nvim -u mini.vim
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
+4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键 :star:
 
 [^1]: https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
