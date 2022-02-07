@@ -33,6 +33,8 @@
 * [vim 的小技巧](#vim-的小技巧)
 * [调试 neovim 配置](#调试-neovim-配置)
 * [Changelog](#changelog)
+  * [2022](#2022)
+* [值得一看的配置](#值得一看的配置)
 * [其他的一些资源](#其他的一些资源)
     * [blog](#blog)
     * [学习](#学习)
@@ -497,8 +499,8 @@ setxkbmap -option caps:swapescape
 - `%` 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转
 - `:w !sudo tee %` 来保存一个 readonly 文件
 - `:g/pattern/command` 可以用于对于匹配的模式操作
-  - `:g!/pattern/command` 对于不匹配的操作 
-- `?` 是向后搜索，`/` 是向前搜索 
+  - `:g!/pattern/command` 对于不匹配的操作
+- `?` 是向后搜索，`/` 是向前搜索
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
@@ -509,8 +511,15 @@ setxkbmap -option caps:swapescape
 
 ## Changelog
 
+### 2022
+
+## 值得一看的配置
+- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
+
 ## 其他的一些资源
 - [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
+- [neovim 开发 lua 插件环境](https://github.com/tjdevries/nlua.nvim)
+- [在 statusline 中显示当前的函数](https://github.com/SmiteshP/nvim-gps)
 
 #### blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)

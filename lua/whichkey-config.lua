@@ -44,9 +44,10 @@ wk.register({
 
     ['a'] = {
       name = "+misc",
-      s = { "<cmd>SourcetrailStartServer<cr>", ""},
-      a = { "<cmd>SourcetrailActivateToken<cr>", ""},
-      r = { "<cmd>SourcetrailRefresh<cr>", ""},
+      s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server"},
+      a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server"},
+      r = { "<cmd>SourcetrailRefresh<cr>", "sourcetrail refresh"},
+      t = { "<Plug>(coc-translator-p)", "translate current word"},
     },
     ['b'] = {
       name = "+buffer",

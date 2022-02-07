@@ -49,6 +49,8 @@ call coc#config("diagnostic-languageserver.formatFiletypes",{
       \"sh": "shfmt",
       \})
 
+call coc#config("translator.engines", ["youdao"])
+
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
       \ 'coc-pyright',
@@ -69,6 +71,7 @@ let s:coc_extensions = [
       \ 'coc-lua',
       \ 'coc-xml',
       \ 'coc-git',
+      \ 'coc-translator',
       \]
 
 " coc-vimtex
