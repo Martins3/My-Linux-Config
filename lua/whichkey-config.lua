@@ -42,9 +42,16 @@ wk.register({
     ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9"},
     ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0"},
 
+    ['a'] = {
+      name = "+misc",
+      s = { "<cmd>SourcetrailStartServer<cr>", ""},
+      a = { "<cmd>SourcetrailActivateToken<cr>", ""},
+      r = { "<cmd>SourcetrailRefresh<cr>", ""},
+    },
     ['b'] = {
       name = "+buffer",
       ["c"] = { "<cmd>BWipeout other<cr>", "clear other buffers"},
+      ["d"] = { "<cmd>bdelete %<cr>", "clear current buffers"},
     },
     ['c'] = {
       ["l"] = { "<cmd>Commentary<cr>", "comment code"},
@@ -73,7 +80,8 @@ wk.register({
       name = "+toggle",
       ["8"] = {"<cmd>:let &cc = &cc == '' ? '80' : ''<cr>", "80 line"},
       ["s"] = {"<cmd>:set spell!<cr>", "spell check"},
-      ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"}
+      ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"},
+      ["h"] = {"<cmd>noh<cr>", "Stop the highlighting"},
     },
     ["f"] = {
       name = "+file",
