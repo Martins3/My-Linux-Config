@@ -52,7 +52,7 @@ wk.register({
     },
     ["q"] = { "<cmd>xa<cr>", "save all buffer and close vim"},
     ["x"] = { "<Cmd>FloatermNew ipython<CR>", "calculated"},
-    ['g'] = {
+    ["g"] = {
       name = "+git",
       m = { "<cmd>GitMessenger<cr>", "show git blame of current line"},
       s = { "<cmd>FloatermNew tig status<cr>", "git status"},
@@ -63,12 +63,18 @@ wk.register({
       p = { "<cmd>Git push<cr>", "git push"},
       a = { "<cmd>Git add -A<cr>", "git stage all changes"},
     },
-    ['s'] = {
+    ["s"] = {
       name = "+search",
-      P = {"<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "search cursor word in project"},
+      P = {"<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+        "search cursor word in project"},
       p = {"<cmd>lua require('spectre').open()<CR>", "search in project"}
     },
-    ['f'] = {
+    ["t"] = {
+      name = "+toggle",
+      ["8"] = {"<cmd>:let &cc = &cc == '' ? '80' : ''<cr>", "80 line"},
+      ["s"] = {"<cmd>:set spell!<cr>", "80 line"}
+    },
+    ["f"] = {
       name = "+file",
       o = {"<cmd>NvimTreeFindFile<cr>", "open file in dir"},
       s = {"<cmd>w<cr>", "save file"},
@@ -87,8 +93,8 @@ wk.register({
 })
 
 wk.register({
-  ['<space>'] = {
-    ['c'] = {
+  ["<space>"] = {
+    ["c"] = {
       ["l"] = { ":Commentary<cr>", "comment code"},
     },
     ["s"] = { ":lua require('spectre').open_visual()<cr>", "search"}
