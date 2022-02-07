@@ -5,8 +5,6 @@ require("packer").startup({
     use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
     use({"wbthomason/packer.nvim", opt = true})
     use {'neoclide/coc.nvim', branch = 'release'}
-    -- 快速编辑 markdown 的表格
-    use 'dhruvasagar/vim-table-mode'
     -- 更加美观的 tagbar
     use 'liuchengxu/vista.vim'
     -- 更加方便的调节窗口的大小
@@ -41,25 +39,31 @@ require("packer").startup({
     use 'windwp/nvim-spectre'
     -- git 管理
     use 'tpope/vim-fugitive'
-    -- 自动括号匹配
-    use 'windwp/nvim-autopairs'
     -- 搜索 bookmarks
     use 'dhruvmanila/telescope-bookmarks.nvim'
     use 'MattesGroeger/vim-bookmarks'
+    -- buffer
     use 'akinsho/bufferline.nvim'
+    use 'kazhala/close-buffers.nvim'
+
     use 'norcalli/nvim-colorizer.lua'
     use 'goolord/alpha-nvim'
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
     use 'mbbill/undotree'
-    -- markdown 预览
-    use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" })
-    use 'kazhala/close-buffers.nvim'
+    -- markdown
+    use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" }) -- 预览
+    use 'mzlogin/vim-markdown-toc' -- 自动目录生成
+    use 'dhruvasagar/vim-table-mode' -- 快速编辑 markdown 的表格
+
     use 'tpope/vim-commentary'
     use 'folke/which-key.nvim'
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'
+    -- 高效编辑
+    use 'tpope/vim-surround' -- 
+    use 'windwp/nvim-autopairs' -- 自动括号匹配
 
     use 'CoatiSoftware/vim-sourcetrail'
     use { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -70,7 +74,5 @@ require("packer").startup({
     use 'rcarriga/nvim-notify'
     -- 用于统计代码时间
     use 'wakatime/vim-wakatime'
-    -- neovim 上的图形库
-    use 'MunifTanjim/nui.nvim'
   end,
 })

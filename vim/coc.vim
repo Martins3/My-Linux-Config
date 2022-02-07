@@ -147,8 +147,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 " command! -nargs=0 Format :call CocActionAsync('format')
-" call SpaceVim#custom#SPC('nnoremap', ['r', 'f'], "call CocAction('format')", 'format file with coc.nvim', 1)
-nmap <leader>rf  <Cmd>call CocAction('format')<CR>
+nmap <space>rf  <Cmd>call CocAction('format')<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
