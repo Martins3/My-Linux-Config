@@ -178,3 +178,4 @@ lua require 'whichkey-config'
 lua require 'code-runner-config'
 lua require('colorizer').setup()
 lua require('nvim-autopairs').setup{}
+" lua require("todo-comments").setup {}

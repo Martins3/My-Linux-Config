@@ -20,6 +20,8 @@ require("packer").startup({
     use 'akinsho/bufferline.nvim' -- buffer
     use 'kazhala/close-buffers.nvim'
     use 'simeji/winresizer' -- 更加方便的调节窗口的大小
+    use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
+    use 'romgrk/fzy-lua-native'
     -- git 管理
     use 'tpope/vim-fugitive'
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
@@ -58,7 +60,8 @@ require("packer").startup({
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
 
-    use 'gelguy/wilder.nvim'
-    use 'romgrk/fzy-lua-native'
+    use 'romgrk/nvim-treesitter-context'
+    use "lukas-reineke/indent-blankline.nvim"
+    -- use 'folke/todo-comments.nvim'
   end,
 })

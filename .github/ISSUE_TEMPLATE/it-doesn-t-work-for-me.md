@@ -12,6 +12,5 @@ A clear and concise description for the bug.
 - [ ] **ccls --version**
 - [ ] **nvim --version**
 - [ ] **Operating System**
-- [ ] **SPDebugInfo**
 - [ ] **CocInfo**
 - [ ] **checkhealth screenshot**
