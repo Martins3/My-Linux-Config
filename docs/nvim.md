@@ -34,8 +34,9 @@
 * [调试 neovim 配置](#调试-neovim-配置)
 * [Changelog](#changelog)
   * [2022](#2022)
+* [TODO](#todo)
 * [值得一看的配置](#值得一看的配置)
-* [其他的一些资源](#其他的一些资源)
+* [值得关注的插件](#值得关注的插件)
     * [blog](#blog)
     * [学习](#学习)
     * [主题](#主题)
@@ -513,13 +514,19 @@ setxkbmap -option caps:swapescape
 
 ### 2022
 
+## TODO
+- 解决中文输入法
+  - https://github.com/h-hg/fcitx.nvim
+
 ## 值得一看的配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
+- [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
-## 其他的一些资源
-- [C/C++ 项目利用 include-what-you-use 自动优化头文件的引用](https://github.com/include-what-you-use/include-what-you-use)
-- [neovim 开发 lua 插件环境](https://github.com/tjdevries/nlua.nvim)
-- [在 statusline 中显示当前的函数](https://github.com/SmiteshP/nvim-gps)
+## 值得关注的插件
+- [nlua](https://github.com/tjdevries/nlua.nvim) neovim 开发 lua 插件环境
+- [nvim-gps](https://github.com/SmiteshP/nvim-gps) 在 statusline 中显示当前的函数
+- [present.nvim](https://github.com/Chaitanyabsprip/present.nvim): 在 nvim 放播放 ppt
+- [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
 
 #### blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)

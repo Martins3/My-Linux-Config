@@ -3,18 +3,17 @@ local wk = require("which-key")
 wk.register({
   -- search
   ["<leader>"] = {
-    f = { "<cmd>Telescope find_files<cr>", "search File" },
-    a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"},
+    a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"}, b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = { "<cmd>Telescope colorscheme<cr>", "search colorscheme" },
-    b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
+    e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
+    f = { "<cmd>Telescope find_files<cr>", "search File" },
     g = { "<cmd>Telescope live_grep<cr>", "live grep" },
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
     o = { "<cmd>Telescope coc document_symbols<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
-    m = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>",  "jump to buffer 1"},
