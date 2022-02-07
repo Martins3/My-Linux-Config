@@ -126,7 +126,26 @@ let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty='⚡'
 let g:airline_theme="atomic"
 
-call wilder#setup({'modes': [':', '/', '?']})
+let g:startify_list_order = [
+      \ ['   My most recently used files in the current directory:'],
+      \ 'dir',
+      \ ]
+
+let g:startify_custom_header = [
+      \'',
+      \'',
+      \'                                                     ',
+      \'  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+      \'  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+      \'  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+      \'  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+      \'  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+      \'  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+      \'                                                     ',
+      \'',
+      \ ]
+
+call wilder#setup({'modes': [':']})
 call wilder#set_option('use_python_remote_plugin', 0)
 call wilder#set_option('pipeline', [
       \   wilder#branch(
@@ -173,9 +192,12 @@ lua require 'buffer-config'
 lua require 'orgmode-config'
 lua require 'telescope-config'
 lua require 'tree-config'
-lua require 'alpha-config'
+" lua require 'alpha-config'
 lua require 'whichkey-config'
 lua require 'code-runner-config'
 lua require('colorizer').setup()
 lua require('nvim-autopairs').setup{}
+lua require("better_escape").setup()
+" lua require("startup").setup({theme = "evil"}) -- put theme name here
+" lua require('nvim-biscuits').setup({})
 " lua require("todo-comments").setup {}

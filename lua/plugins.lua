@@ -13,7 +13,7 @@ require("packer").startup({
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
-    use 'goolord/alpha-nvim' -- 启动界面
+    use 'mhinz/vim-startify' -- 启动界面
     use 'vim-airline/vim-airline' -- 状态栏
     use 'vim-airline/vim-airline-themes'
     use 'folke/tokyonight.nvim' -- 颜色主题
@@ -59,9 +59,6 @@ require("packer").startup({
       config = function() require('orgmode').setup{} end} -- 日程管理
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
-
-    use 'romgrk/nvim-treesitter-context'
-    use "lukas-reineke/indent-blankline.nvim"
-    -- use 'folke/todo-comments.nvim'
+    use 'romgrk/nvim-treesitter-context' -- 显示当前的函数
   end,
 })
