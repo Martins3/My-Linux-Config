@@ -1,4 +1,4 @@
-" https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
+" ref: https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
 syntax enable                           " Enables syntax highlighing
 set mouse=a                             " Enable your mouse
 set nowrap                              " Display long lines as just one line
@@ -13,6 +13,14 @@ set autoindent                          " Good auto indent
 set number                              " Line numbers
 set cursorline                          " Enable highlighting of the current line
 set termguicolors
+" 在滚动屏幕的时候保留 3 行
+set scrolloff=3
+" 在替换的时候，自动设置 split 一个窗口来预览
+set inccommand=split
+" 当打开文件的时候，自动进入到上一次编辑的位置
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 " 当文件被其他编辑器修改时，自动加载
 set autoread
 au FocusGained,BufEnter * :checktime
@@ -25,7 +33,6 @@ tnoremap  <Esc>  <C-\><C-n>
 let g:mapleader = ','
 " 设置主题
 colorscheme tokyonight
-" colorscheme gruvbox
 
 " 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
 noremap <leader>q q
@@ -35,7 +42,7 @@ noremap q <Nop>
 let g:table_mode_corner='|'
 
 " 调节 window 大小
-let g:winresizer_start_key = '<space>wa'
+let g:winresizer_start_key = 'ca'
 " If you cancel and quit window resize mode by `q` (keycode 113)
 let g:winresizer_keycode_cancel = 113
 

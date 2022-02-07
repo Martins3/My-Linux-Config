@@ -72,7 +72,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> <nowait> gd : <C-u>Telescope coc definitions<cr>
 nmap <silent> <nowait> gh : <C-u>Telescope coc declarations<cr>
 nmap <silent> <nowait> gy : <C-u>Telescope coc type_definitions<cr>
-nmap <silent> <nowait> gi : <C-u>Telescope coc implementations<cr>
+nmap <silent> <nowait> gk : <C-u>Telescope coc implementations<cr>
 nmap <silent> <nowait> gr : <C-u>Telescope coc references_used<cr>
 
 " Use K to show documentation in preview window.

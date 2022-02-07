@@ -72,7 +72,8 @@ wk.register({
     ["t"] = {
       name = "+toggle",
       ["8"] = {"<cmd>:let &cc = &cc == '' ? '80' : ''<cr>", "80 line"},
-      ["s"] = {"<cmd>:set spell!<cr>", "80 line"}
+      ["s"] = {"<cmd>:set spell!<cr>", "spell check"},
+      ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"}
     },
     ["f"] = {
       name = "+file",
@@ -80,14 +81,14 @@ wk.register({
       s = {"<cmd>w<cr>", "save file"},
       t = {"<cmd>NvimTreeToggle<cr>", "toggle file tree"}
     },
-    ["v"] = {":Vista!!<cr>", "toggle vista navigator"}
   },
   q = { "<cmd>q<cr>", "close window"},
   ["c"] = {
     g = { "<cmd>vsp<cr>", "vertical split window"},
     v = { "<cmd>sp<cr>", "horizontal split window"},
-    m = { "<C-W>o", "maximize current window"},
+    m = { "<cmd>only<cr>", "maximize current window"},
     u = { "<cmd>UndotreeToggle<cr>", "maximize current window"},
+    n = {":Vista!!<cr>", "toggle vista navigator"}
   },
   ["<tab>"] = {":wincmd w<cr>", "switch window"},
 })
