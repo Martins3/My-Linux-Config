@@ -107,11 +107,6 @@ augroup Smartf
   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
 augroup end
 
-" 和 sourcetrail 配合使用
-nnoremap <space>as <Cmd>SourcetrailStartServer<CR>
-nnoremap <space>aa <Cmd>SourcetrailActivateToken<CR>
-nnoremap <space>ar <Cmd>SourcetrailRefresh<CR>
-
 map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
@@ -130,6 +125,35 @@ let g:airline_symbols.linenr = ' :'
 let g:airline_symbols.maxlinenr = '☰ '
 let g:airline_symbols.dirty='⚡'
 let g:airline_theme="atomic"
+
+call wilder#setup({'modes': [':', '/', '?']})
+call wilder#set_option('use_python_remote_plugin', 0)
+call wilder#set_option('pipeline', [
+      \   wilder#branch(
+      \     wilder#cmdline_pipeline({
+      \       'fuzzy': 1,
+      \       'fuzzy_filter': wilder#lua_fzy_filter(),
+      \     }),
+      \     wilder#vim_search_pipeline(),
+      \   ),
+      \ ])
+
+call wilder#set_option('renderer', wilder#renderer_mux({
+      \ ':': wilder#popupmenu_renderer({
+      \   'highlighter': wilder#lua_fzy_highlighter(),
+      \   'left': [
+      \     ' ',
+      \     wilder#popupmenu_devicons(),
+      \   ],
+      \   'right': [
+      \     ' ',
+      \     wilder#popupmenu_scrollbar(),
+      \   ],
+      \ }),
+      \ '/': wilder#wildmenu_renderer({
+      \   'highlighter': wilder#lua_fzy_highlighter(),
+      \ }),
+      \ }))
 
 " 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [

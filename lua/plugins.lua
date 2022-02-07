@@ -57,5 +57,8 @@ require("packer").startup({
       config = function() require('orgmode').setup{} end} -- 日程管理
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
+
+    use 'gelguy/wilder.nvim'
+    use 'romgrk/fzy-lua-native'
   end,
 })

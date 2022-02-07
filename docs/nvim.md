@@ -496,8 +496,12 @@ setxkbmap -option caps:swapescape
 - `{` `}` 分别向上向下跳转到空行
 - `%` 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转
 - `:w !sudo tee %` 来保存一个 readonly 文件
+- `:g/pattern/command` 可以用于对于匹配的模式操作
+  - `:g!/pattern/command` 对于不匹配的操作 
+- `?` 是向后搜索，`/` 是向前搜索 
 
-- [ ] 命令模式下，? 和 / 有什么区别啊?
+参考:
+- [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
 ## 调试 neovim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
