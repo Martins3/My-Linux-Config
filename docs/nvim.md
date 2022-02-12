@@ -53,7 +53,6 @@
 ![](./img/overview.png)
 
 TMP_TODO
-- 制作一个基本图，告诉一个 neovim 的基本成分
 - 单个文件的 search 方法
   - 其中的正则的规则
   - %s 的方法
@@ -66,9 +65,7 @@ TMP_TODO
 2. 正在使用 [cscope](http://cscope.sourceforge.net/) / [ctags](https://github.com/universal-ctags/ctags) / [gtags](https://github.com/SpaceVim/SpaceVim/issues/4389) / [nerdtree](https://github.com/preservim/nerdtree) / [YCM](https://github.com/ycm-core/YouCompleteMe) 的 vimer
 3. 不了解 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) (下简称 lsp ) 等新特性的 vimer
 
-本项目不是在于要大家使用我的这个配置，
-而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
-
+本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 ## 背景
 我平时主要写 C/C++, 最开始的配置是参考 [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide) 写的，
 在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
@@ -142,7 +139,7 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 其实也就是下面三条命令
 ```sh
-git clone https://github.com/neovim/neovim && cd neovim
+git clone --depth=1 https://github.com/neovim/neovim && cd neovim
 make CMAKE_BUILD_TYPE=Release -j8
 sudo make install
 ```
@@ -177,14 +174,18 @@ https://registry.npm.taobao.org/
 ```
 
 - 安装包管理器
-
-- 复制本配置
-
 ```sh
-cd ~ # 保证在根目录
-rm -r .SpaceVim.d # 将原来的配置删除
-git clone https://github.com/martins3/My-Linux-config .SpaceVim.d
-nvim # 打开vim 将会自动安装所有的插件
+git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+```
+- 安装本配置
+
+nvim 的配置在 ~/.config/nvim 中，
+```sh
+mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
+cd ~ # 保证在根目录下
+git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
+ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
+nvim -c "PackerSync"
 ```
 
 - 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
@@ -209,7 +210,6 @@ ln -s $(which fdfind) ~/.local/bin/fd
 注:
 1. 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2, Ruby 和 perl 的依赖是不需要安装。
 2. 感谢 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
-
 
 例如下面是我的配置的截图。
 ![checkhealth screenshot](./img/checkhealth.png)
@@ -488,20 +488,19 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 - 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
     - 恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。[Code::Blocks](https://www.codeblocks.org/) 过于陈旧，[Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。
     - 我认为当你掌握了一门语言，比如 C 语言，可以写超过千行的项目的时候，是入手的好时间。
-
 - 为什么不使用 VSCode ?
     - VSCode 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 可以更加简洁, 灵活和高效。
     - VSCode 的功能非常强大，几乎发
-
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
-
 - 为什么不使用 built-in lsp?
     - 首先，我强烈推荐推荐你看看 [NvChad](https://github.com/NvChad/NvChad) 这个项目。
     - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
     - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
     - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
     - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
+- 为什么不支持 Windows?
+    - 不是说完全不支持，但是需要一些调整。因为我不在 Windows 上开发，我没有办法保证在 windows 上运行效果。
 
 ## vim 的小技巧
 - 翻滚屏幕

@@ -13,6 +13,8 @@ set autoindent                          " Good auto indent
 set number                              " Line numbers
 set cursorline                          " Enable highlighting of the current line
 set termguicolors
+" 让退出 vim 之后 undo 消息不消失
+set undofile
 " 在滚动屏幕的时候保留 3 行
 set scrolloff=3
 " 在替换的时候，自动设置 split 一个窗口来预览
