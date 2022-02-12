@@ -1,3 +1,4 @@
+" 将各种命令的执行结果放到 buffer 中，比如 Redir messages
 " https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
 function! Redir(cmd, rng, start, end)
   for win in range(1, winnr('$'))
@@ -30,6 +31,7 @@ endfunction
 
 command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
 
+" 删除 trailing space 和消除 tab space 混用
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e

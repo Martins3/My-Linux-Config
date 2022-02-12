@@ -12,6 +12,7 @@ wk.register({
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
+    m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
     o = { "<cmd>Telescope coc document_symbols<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
@@ -69,6 +70,10 @@ wk.register({
       L = { "<cmd>FloatermNew tig<cr>", "log of project"},
       p = { "<cmd>Git push<cr>", "git push"},
       a = { "<cmd>Git add -A<cr>", "git stage all changes"},
+    },
+    ["r"] = {
+      f = { "<Cmd>call CocAction('format')<CR>", "format current buffer"},
+      n = { "<Plug>(coc-rename)", "format current buffer"},
     },
     ["s"] = {
       name = "+search",

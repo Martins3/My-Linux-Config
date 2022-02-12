@@ -23,8 +23,8 @@ require('orgmode').setup({
   org_default_notes_file = '~/Dropbox/org/refile.org',
   mappings = {
     global = {
-      org_agenda = 'ga',
-      org_capture = 'gc'
+      org_agenda = '<space>oa',
+      org_capture = '<space>oc'
     },
     agenda = {
       org_agenda_todo = 't'
