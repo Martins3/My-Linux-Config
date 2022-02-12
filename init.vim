@@ -36,7 +36,6 @@ colorscheme tokyonight
 
 " 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
 noremap <leader>q q
-noremap q <Nop>
 
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
@@ -107,72 +106,12 @@ augroup Smartf
   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
 augroup end
 
+" 访问系统剪切板
 map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
 let g:git_messenger_no_default_mappings = v:true
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols = {}
-let g:airline_symbols.branch = ''
-let g:airline_symbols.colnr = ' :'
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ' :'
-let g:airline_symbols.maxlinenr = '☰ '
-let g:airline_symbols.dirty='⚡'
-let g:airline_theme="atomic"
-
-let g:startify_list_order = [
-      \ ['   My most recently used files in the current directory:'],
-      \ 'dir',
-      \ ]
-
-let g:startify_custom_header = [
-      \'',
-      \'',
-      \'                                                     ',
-      \'  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
-      \'  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
-      \'  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
-      \'  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
-      \'  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
-      \'  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
-      \'                                                     ',
-      \'',
-      \ ]
-
-call wilder#setup({'modes': [':']})
-call wilder#set_option('use_python_remote_plugin', 0)
-call wilder#set_option('pipeline', [
-      \   wilder#branch(
-      \     wilder#cmdline_pipeline({
-      \       'fuzzy': 1,
-      \       'fuzzy_filter': wilder#lua_fzy_filter(),
-      \     }),
-      \     wilder#vim_search_pipeline(),
-      \   ),
-      \ ])
-
-call wilder#set_option('renderer', wilder#renderer_mux({
-      \ ':': wilder#popupmenu_renderer({
-      \   'highlighter': wilder#lua_fzy_highlighter(),
-      \   'left': [
-      \     ' ',
-      \     wilder#popupmenu_devicons(),
-      \   ],
-      \   'right': [
-      \     ' ',
-      \     wilder#popupmenu_scrollbar(),
-      \   ],
-      \ }),
-      \ '/': wilder#wildmenu_renderer({
-      \   'highlighter': wilder#lua_fzy_highlighter(),
-      \ }),
-      \ }))
 
 " 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
@@ -180,6 +119,9 @@ let s:core_conf_files = [
       \ 'coc-config.vim',
       \ 'debug.vim',
       \ 'ccls.vim',
+      \ 'wilder.vim',
+      \ 'startify.vim',
+      \ 'airline.vim',
       \ ]
 
 for s:fname in s:core_conf_files
@@ -192,9 +134,7 @@ lua require 'buffer-config'
 lua require 'orgmode-config'
 lua require 'telescope-config'
 lua require 'tree-config'
-" lua require 'alpha-config'
 lua require 'whichkey-config'
 lua require 'code-runner-config'
 lua require('colorizer').setup()
 lua require('nvim-autopairs').setup{}
-lua require("better_escape").setup()

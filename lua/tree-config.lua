@@ -1,4 +1,3 @@
--- TMP_TODO 简化掉这个
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
 local list = {
