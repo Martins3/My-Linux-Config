@@ -143,6 +143,15 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
 #### 安装各种依赖
+```sh
+sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+
+# 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
+sudo apt install -y libclang-10-dev clang llvm
+
+# 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+```
 
 #### 安装 nvim
 - 当前配置需要 neovim 0.5 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
@@ -170,9 +179,7 @@ Run :checkhealth for more info
 ```
 
 #### 安装 yarn 和 nodejs
-- **保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 安装完成之后检查:
-
-使用 nvm 来安装获取搞版本的 nodejs
+使用 nvm 来安装获取 nodejs
 ```sh
 # https://github.com/nvm-sh/nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -189,12 +196,12 @@ RUN apt install -y npm
 RUN npm install --global yarn
 ```
 
-设置源:
+**保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 
 ```sh
 npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
 yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
 ```
-
+安装完成之后检查:
 ```txt
 ➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
 https://registry.npm.taobao.org

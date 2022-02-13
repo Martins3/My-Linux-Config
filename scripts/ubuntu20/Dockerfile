@@ -30,7 +30,7 @@ RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck rip
 # 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
 RUN apt install -y libclang-10-dev clang llvm
 
-# https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+# 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 RUN apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 RUN apt install -y npm
 RUN npm install --global yarn
