@@ -56,6 +56,9 @@ TMP_TODO
 - 单个文件的 search 方法
   - 其中的正则的规则
   - %s 的方法
+- markdown 的代码中的高亮
+- 高亮体系的确是我们有问题的啊
+
 
 ## 前言
 首先，任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
@@ -177,6 +180,7 @@ https://registry.npm.taobao.org/
 ```sh
 git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 ```
+
 - 安装本配置
 
 nvim 的配置在 ~/.config/nvim 中，
@@ -199,12 +203,6 @@ sudo apt install xclip
 # 安装 python3 的依赖
 sudo pip3 install neovim
 sudo pip3 install pynvim
-
-# 安装 treesitter
-cargo install tree-sitter-cli
-
-# 让系统选择 https://github.com/sharkdp/fd
-ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
 注:
@@ -228,12 +226,8 @@ sudo apt install bear
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
+
 - 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
-- 安装 cppman 可以在 vim 展示 https://en.cppreference.com/w/ 的文档
-```sh
-sudo apt install cppman
-cppman -c # 缓存数据
-```
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
