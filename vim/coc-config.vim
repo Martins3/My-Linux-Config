@@ -54,7 +54,6 @@ call coc#config("translator.engines", ["youdao"])
 " coc.nvim 插件，用于支持 python java 等语言
 let s:coc_extensions = [
       \ 'coc-pyright',
-      \ 'coc-explorer',
       \ 'coc-css',
       \ 'coc-html',
       \ 'coc-word',
