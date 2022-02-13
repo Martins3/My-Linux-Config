@@ -25,6 +25,7 @@ require("packer").startup({
     -- git 管理
     use 'tpope/vim-fugitive' -- 显示 git blame，实现一些基本操作的快捷执行
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
+    use 'pwntester/octo.nvim' -- 在 neovim 中使用 github cli
     -- 基于 telescope 的搜索
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-telescope/telescope-fzf-native.nvim',
@@ -51,7 +52,6 @@ require("packer").startup({
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
     -- 其他
     use 'MattesGroeger/vim-bookmarks' -- 书签
-    use 'pwntester/octo.nvim' -- 在 neovim 中使用 github cli
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     use 'norcalli/nvim-colorizer.lua' -- 显示 #FFFFFF
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
@@ -59,6 +59,5 @@ require("packer").startup({
       config = function() require('orgmode').setup{} end} -- 日程管理
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
-    use 'morhetz/gruvbox'
   end,
 })

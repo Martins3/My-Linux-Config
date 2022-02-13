@@ -133,8 +133,8 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 ## 安装
 安装成功需要注意两点:
-1. 代理 : 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)
-2. 软件版本 : 在 Ubuntu 16.04 上安装简直是一个噩梦，很多软件需要手动编译，不过在 Ubuntu 20.04 上问题不大，下面以 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
+1. **代理** : 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
+2. 软件版本 : 有的软件没有被 apt 收录进去，有的版本太低，这导致少数几个软件需要手动编译，下面以 Ubuntu 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
 
 整个环境的安装主要是 neovim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
@@ -176,6 +176,21 @@ https://registry.npm.taobao.org/
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ```
 
+- 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
+```sh
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
+unzip Hasklig.zip -d ~/.fonts
+fc-cache -fv
+```
+
+- 安装 github cli
+```sh
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+```
+
 - 安装包管理器
 ```sh
 git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
@@ -189,7 +204,6 @@ mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
 git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
 ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
-nvim -c "PackerSync"
 ```
 
 - 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
@@ -226,8 +240,6 @@ sudo apt install bear
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
-
-- 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
@@ -361,7 +373,7 @@ map <leader>d "+d
 ![搜索文件](./img/search-files.png)
 
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
-
+use 'navarasu/onedark.nvim'
 <p align="center">
   <img src="./img/outline.png" />
 </p>
@@ -416,7 +428,7 @@ endsnippet
 通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
 而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
 
-1. 安装 github cli [参考](https://garywoodfine.com/how-to-install-github-cli-on-linux/)
+1. 安装 github cli 参考[这里](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 2. 使用方法参考 octo.nvim 的 README.md
 
 #### 调试集成

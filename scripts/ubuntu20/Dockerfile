@@ -1,6 +1,8 @@
 # https://github.com/sharkdp/bat/issues/938
 # sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
 FROM ubuntu:20.04
+ENV TERM=screen-256color
+ENV COLORTERM=truecolor
 RUN apt-get update
 RUN apt install -y ca-certificates
 # https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
@@ -17,16 +19,16 @@ RUN apt update
 RUN apt -y install sudo
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
-RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck golang ripgrep
-
-# 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
-RUN apt install -y libclang-10-dev clang llvm
-
 # tzdata 的地区选择会让 docker build 暂停
 # https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 RUN apt-get install -y tzdata
+
+RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+
+# 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
+RUN apt install -y libclang-10-dev clang llvm
 
 # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 RUN apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
@@ -87,7 +89,7 @@ WORKDIR /home/docker/musl
 RUN ./configure
 RUN bear make -j
 
-# 安装字体，然后设置对应的 terminal
+# 安装字体，之后在 terminal 的设置中设置字体为 nerdfont
 WORKDIR /home/docker
 RUN wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
 RUN unzip Hasklig.zip -d ~/.fonts
@@ -104,6 +106,22 @@ RUN echo 'alias v=nvim' >> "$HOME/.bashrc"
 RUN git clone https://github.com/NvChad/NvChad --depth 1
 RUN echo 'alias nv="rm ~/.config/nvim && ln -sf ~/NvChad ~/.config/nvim && nvim"' >> "$HOME/.bashrc"
 RUN echo 'alias sp="rm ~/.config/nvim && ln -sf ~/mylc ~/.config/nvim && nvim"' >> "$HOME/.bashrc"
-# https://github.com/mvdan/sh
-RUN GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
 
+# 安装新版本的 golang, github cli 和 shfmt 需要
+RUN wget https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
+RUN echo docker | sudo -S rm -rf /usr/local/go
+RUN echo docker | sudo -S tar -C /usr/local -xzf go1.17.7.linux-amd64.tar.gz
+RUN echo "export PATH=$PATH:/usr/local/go/bin" >> "$HOME/.bashrc"
+ENV PATH="$PATH:/usr/local/go/bin"
+RUN go version
+
+# https://github.com/mvdan/sh
+RUN go get mvdan.cc/sh/v3/cmd/shfmt
+
+# 安装 github cli
+# https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+# RUN echo docker | sudo -S ln /usr/local/go/bin/go /bin/go
+RUN git clone https://github.com/cli/cli.git gh-cli
+WORKDIR /home/docker/gh-cli
+# https://stackoverflow.com/questions/65328413/make-go-command-not-found-although-go-binary-is-in-path
+RUN echo docker | sudo -S -E env "PATH=$PATH" make install
