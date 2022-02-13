@@ -19,7 +19,7 @@ RUN apt update
 RUN apt -y install sudo
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
-# tzdata 的地区选择会让 docker build 暂停
+# tzdata 的地区选择会让 docker build 暂停，随便设置一个地区
 # https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow

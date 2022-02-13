@@ -66,6 +66,14 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_syntax_conceal_default = 0
 let g:tex_conceal = "" " 关闭所有隐藏设置
 
+func! Outline()
+  if expand("%:e") ==# "md"
+    exec "Telescope heading"
+  else
+    exec "Telescope coc document_symbols"
+  endif
+endf
+
 " 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
 func! QuickRun()
   exec "w"

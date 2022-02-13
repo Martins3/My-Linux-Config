@@ -11,6 +11,17 @@
 * [为什么使用 coc.nvim](#为什么使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
+    * [安装各种依赖](#安装各种依赖)
+    * [安装 nvim](#安装-nvim)
+    * [安装 yarn 和 nodejs](#安装-yarn-和-nodejs)
+    * [安装 ccls](#安装-ccls)
+    * [安装 nerdfonts](#安装-nerdfonts)
+    * [安装 github cli](#安装-github-cli)
+    * [安装 bear](#安装-bear)
+    * [安装包管理器 Packer](#安装包管理器-packer)
+    * [安装本配置](#安装本配置)
+    * [checkhealth 检查](#checkhealth-检查)
+* [升级](#升级)
 * [基本操作](#基本操作)
     * [退出](#退出)
     * [复制粘贴](#复制粘贴)
@@ -51,14 +62,6 @@
 
 
 ![](./img/overview.png)
-
-TMP_TODO
-- 单个文件的 search 方法
-  - 其中的正则的规则
-  - %s 的方法
-- markdown 的代码中的高亮
-- 高亮体系的确是我们有问题的啊
-
 
 ## 前言
 首先，任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
@@ -138,6 +141,10 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 整个环境的安装主要是 neovim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
+基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
+#### 安装各种依赖
+
+#### 安装 nvim
 - 当前配置需要 neovim 0.5 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
@@ -161,8 +168,32 @@ See ":help feature-compile"
 
 Run :checkhealth for more info
 ```
-- 安装 yarn 和 nodejs
+
+#### 安装 yarn 和 nodejs
 - **保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841). 安装完成之后检查:
+
+使用 nvm 来安装获取搞版本的 nodejs
+```sh
+# https://github.com/nvm-sh/nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+把这个放到你的 .bashrc (或者 .zshrc 中，如果你使用 zsh，其他的 shell 类似)
+```sh
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+```sh
+nvm install v16
+RUN apt install -y npm
+RUN npm install --global yarn
+```
+
+设置源:
+```sh
+npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
+```
 
 ```txt
 ➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
@@ -170,12 +201,22 @@ https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
 
-- 安装 ccls。也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
-
+#### 安装 ccls
 ```txt
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ```
 
+也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
+```sh
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+cd ccls
+cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release
+cmake --build Release
+cd Release
+sudo make install
+```
+
+#### 安装 nerdfonts
 - 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
 ```sh
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
@@ -183,7 +224,7 @@ unzip Hasklig.zip -d ~/.fonts
 fc-cache -fv
 ```
 
-- 安装 github cli
+#### 安装 github cli
 ```sh
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
@@ -191,42 +232,8 @@ sudo apt update
 sudo apt install gh
 ```
 
-- 安装包管理器
-```sh
-git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
-```
-
-- 安装本配置
-
-nvim 的配置在 ~/.config/nvim 中，
-```sh
-mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
-cd ~ # 保证在根目录下
-git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
-ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
-```
-
-- 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致直接不可用。
-
-```sh
-sudo apt install xclip
-
-# archlinux 请使用 wl-clipboard 替代xclip
-# sudo pacman -S wl-clipboard
-
-# 安装 python3 的依赖
-sudo pip3 install neovim
-sudo pip3 install pynvim
-```
-
-注:
-1. 感谢 [@Limaomao821](https://github.com/Martins3/My-Linux-config/issues/10) 指出，其中 Python2, Ruby 和 perl 的依赖是不需要安装。
-2. 感谢 [@Korov](https://github.com/Martins3/My-Linux-config/issues/11) 指出 archlinux 的剪切板使用 wl-clipboard
-
-例如下面是我的配置的截图。
-![checkhealth screenshot](./img/checkhealth.png)
-
-- 安装[bear](https://github.com/rizsotto/Bear)。ccls 需要通过 bear 生成的 compile_commands.json 来构建索引数据。
+#### 安装 bear
+ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 compile_commands.json 来构建索引数据。
 
 ```sh
 sudo apt install bear
@@ -240,6 +247,48 @@ sudo apt install bear
 4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
+
+#### 安装包管理器 Packer
+```sh
+git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+```
+
+#### 安装本配置
+
+nvim 的配置在 ~/.config/nvim 中，
+```sh
+mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
+cd ~ # 保证在根目录下
+git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
+ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
+nvim
+```
+
+刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了
+![](./img/first-time.png)
+
+输入命令 `:PackerInstall` 来安装插件
+![](./img/PackerInstall.png)
+
+然后就可以看到插件的正常安装:
+![](./img/install.png)
+
+[wakatime](https://wakatime.com/settings/account) 需要输入 api key
+![](./img/waka.png)
+当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
+
+再次打开之后，coc 的各种插件会自动安装:
+![](./img/coc-install.png)
+
+#### checkhealth 检查
+在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致一些插件不可用。
+
+例如下面是我的配置的截图。
+![checkhealth screenshot](./img/checkhealth.png)
+
+## 升级
+本项目之前是基于 SpaceVim 的，之后移除了，如果想要升级，除了 `git pull origin master` 之外
+需要操作一遍 [安装本配置](#安装本配置)。
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
@@ -430,6 +479,9 @@ endsnippet
 
 1. 安装 github cli 参考[这里](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 2. 使用方法参考 octo.nvim 的 README.md
+
+例如可以直接查看本项目中的 issue
+![](./img/octo.png)
 
 #### 调试集成
 现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:

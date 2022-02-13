@@ -13,7 +13,7 @@ wk.register({
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
     m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
-    o = { "<cmd>Telescope coc document_symbols<cr>", "search symbols in file" },
+    o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
