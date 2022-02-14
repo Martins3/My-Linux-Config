@@ -59,7 +59,7 @@ wk.register({
       c = { "<cmd>Commentary<cr>", "comment code"},
       r = { "<cmd>call QuickRun()<cr>", "run code"},
       f = { "<Cmd>call CocAction('format')<CR>", "format current buffer"},
-      n = { "<Plug>(coc-rename)", "format current buffer"},
+      n = { "<Plug>(coc-rename)", "rename"},
     },
     ["q"] = { "<cmd>xa<cr>", "save all buffer and close vim"},
     ["x"] = { "<Cmd>FloatermNew ipython<CR>", "calculated"},

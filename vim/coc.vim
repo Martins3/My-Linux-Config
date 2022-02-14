@@ -160,7 +160,40 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline.
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-"-------------------- 一些 coc plugin 的配置 --------------------------
+" coc.nvim 插件，用于支持 python java 等语言
+let s:coc_extensions = [
+      \ 'coc-pyright',
+      \ 'coc-css',
+      \ 'coc-html',
+      \ 'coc-word',
+      \ 'coc-cmake',
+      \ 'coc-dictionary',
+      \ 'coc-rust-analyzer',
+      \ 'coc-vimlsp',
+      \ 'coc-ci',
+      \ 'coc-snippets',
+      \ 'coc-smartf',
+      \ 'coc-go',
+      \ 'coc-sh',
+      \ 'coc-diagnostic',
+      \ 'coc-lua',
+      \ 'coc-xml',
+      \ 'coc-git',
+      \ 'coc-json',
+      \ 'coc-translator',
+      \]
+
+" coc-vimtex
+for extension in s:coc_extensions
+  call coc#add_extension(extension)
+endfor
+
 " 方便在中文中间使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
+
+" https://github.com/fannheyward/coc-pyright/issues/184
+call coc#config("python.pythonPath", "/bin/python3")
+
+" Undefined global `vim` problem, see
+" https://github.com/josa42/coc-lua/issues/55
