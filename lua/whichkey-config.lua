@@ -54,8 +54,8 @@ wk.register({
       ["c"] = { "<cmd>BWipeout other<cr>", "clear other buffers"},
       ["d"] = { "<cmd>bdelete %<cr>", "clear current buffers"},
     },
-    ['c'] = {
-      ["l"] = { "<cmd>Commentary<cr>", "comment code"},
+    ['l'] = {
+      ["c"] = { "<cmd>Commentary<cr>", "comment code"},
       ["r"] = { "<cmd>call QuickRun()<cr>", "run code"},
     },
     ["q"] = { "<cmd>xa<cr>", "save all buffer and close vim"},
@@ -87,6 +87,7 @@ wk.register({
       ["s"] = {"<cmd>:set spell!<cr>", "spell check"},
       ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"},
       ["h"] = {"<cmd>noh<cr>", "Stop the highlighting"},
+      ["m"] = {"<cmd>TableModeToggle<cr>", "markdown table edit mode"},
     },
     ["f"] = {
       name = "+file",
