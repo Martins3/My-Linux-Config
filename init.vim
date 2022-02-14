@@ -102,8 +102,7 @@ let g:vista_finder_alternative_executives = 'ctags'
 
 let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<F5>'
-" <F7> 打开历史记录
+let g:floaterm_keymap_toggle = '<C-t>'
 
 " 使用 f/F 来快速移动
 " press <esc> to cancel.
