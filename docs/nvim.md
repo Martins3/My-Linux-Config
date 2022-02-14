@@ -197,11 +197,13 @@ RUN apt install -y npm
 RUN npm install --global yarn
 ```
 
-**保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，***很容易***出现安装失败。**，切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
+保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
+
 ```sh
 npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
 yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
 ```
+
 安装完成之后检查:
 ```txt
 ➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
@@ -264,6 +266,7 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 #### 安装本配置
 
 nvim 的配置在 ~/.config/nvim 中，
+
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
@@ -509,7 +512,7 @@ endsnippet
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
-- `Fn<5>` : 显示/隐藏窗口
+- `Ctrl` `t` : 显示/隐藏窗口
 
 下面是在打开悬浮终端，并且运行 htop 的结果:
 ![floaterm](./img/floaterm.png)
@@ -609,6 +612,7 @@ setxkbmap -option caps:swapescape
 - `:g/pattern/command` 可以用于对于匹配的模式操作
   - `:g!/pattern/command` 对于不匹配的操作
 - `?` 是向后搜索，`/` 是向前搜索
+- `:put =range(1, 10)` 插入 1 到 10 的数值
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)

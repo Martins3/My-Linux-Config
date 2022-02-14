@@ -97,6 +97,7 @@ wk.register({
   },
   q = { "<cmd>q<cr>", "close window"},
   ["c"] = {
+    name = "+window",
     g = { "<cmd>vsp<cr>", "vertical split window"},
     v = { "<cmd>sp<cr>", "horizontal split window"},
     m = { "<cmd>only<cr>", "maximize current window"},
@@ -108,8 +109,8 @@ wk.register({
 
 wk.register({
   ["<space>"] = {
-    ["c"] = {
-      ["l"] = { ":Commentary<cr>", "comment code"},
+    ["l"] = {
+      ["c"] = { ":Commentary<cr>", "comment code"},
     },
     ["s"] = { ":lua require('spectre').open_visual()<cr>", "search"}
   },
