@@ -374,14 +374,14 @@ map <leader>d "+d
 
 | key binding         | function                                         |
 |---------------------|--------------------------------------------------|
-| `<leader>` `r`  `f` | 格式化当前文件，支持 C/C++ , Rust 和 Python 等。 |
+| `<space>` `l`  `r` | 格式化当前文件，支持 C/C++ , Rust 和 Python 等。 |
 
 可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
 #### 重命名
-有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<leader>` `r` `n` 在需要重命名的元素上，即可批量重命名。
+有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `r` 在需要重命名的元素上，即可批量重命名。
 
 #### 字符串搜索
 
