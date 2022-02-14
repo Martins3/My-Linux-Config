@@ -55,8 +55,11 @@ wk.register({
       ["d"] = { "<cmd>bdelete %<cr>", "clear current buffers"},
     },
     ['l'] = {
-      ["c"] = { "<cmd>Commentary<cr>", "comment code"},
-      ["r"] = { "<cmd>call QuickRun()<cr>", "run code"},
+      name = "+language",
+      c = { "<cmd>Commentary<cr>", "comment code"},
+      r = { "<cmd>call QuickRun()<cr>", "run code"},
+      f = { "<Cmd>call CocAction('format')<CR>", "format current buffer"},
+      n = { "<Plug>(coc-rename)", "format current buffer"},
     },
     ["q"] = { "<cmd>xa<cr>", "save all buffer and close vim"},
     ["x"] = { "<Cmd>FloatermNew ipython<CR>", "calculated"},
@@ -70,10 +73,6 @@ wk.register({
       L = { "<cmd>FloatermNew tig<cr>", "log of project"},
       p = { "<cmd>Git push<cr>", "git push"},
       a = { "<cmd>Git add -A<cr>", "git stage all changes"},
-    },
-    ["r"] = {
-      f = { "<Cmd>call CocAction('format')<CR>", "format current buffer"},
-      n = { "<Plug>(coc-rename)", "format current buffer"},
     },
     ["s"] = {
       name = "+search",
