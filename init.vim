@@ -92,8 +92,6 @@ func! QuickRun()
   let ext = expand("%:e")
   if ext ==# "md"
     exec "MarkdownPreview"
-  elseif ext ==# "rs"
-    exec "CocCommand rust-analyzer.run"
   elseif ext ==# "lua"
     exec "source %"
   else
