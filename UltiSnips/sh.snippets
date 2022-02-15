@@ -36,8 +36,11 @@ endsnippet
 snippet note_readfile "read file line by line"
 # https://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable
 while read -r line; do
-  echo "$line"
-done <input.file
+  read -ra array <<< "$line"
+  for w in "${array[@]}"; do
+    echo "[$w]"
+  done
+done <ByMyWill.md
 endsnippet
 
 snippet note_issubstr "is substring"
@@ -45,6 +48,24 @@ string='My long string'
 if [[ $string == *"My long"* ]]; then
   echo "It's there!"
 fi
+endsnippet
+
+snippet note_string_replace "string replace"
+# 如果 pattern 匹配变量 variable 的开头，
+# 删除最短匹配（非贪婪匹配）的部分，返回剩余部分
+${variable#pattern}
+
+# 如果 pattern 匹配变量 variable 的开头，
+# 删除最长匹配（贪婪匹配）的部分，返回剩余部分
+${variable##pattern}
+
+# 如果 pattern 匹配变量 variable 的结尾，
+# 删除最短匹配（非贪婪匹配）的部分，返回剩余部分
+${variable%pattern}
+
+# 如果 pattern 匹配变量 variable 的结尾，
+# 删除最长匹配（贪婪匹配）的部分，返回剩余部分
+${variable%%pattern}
 endsnippet
 
 snippet note_cmpfile "compare file"
