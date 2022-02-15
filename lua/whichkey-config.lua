@@ -1,5 +1,12 @@
 local wk = require("which-key")
 
+wk.setup({
+ plugins = {
+    marks = false, -- shows a list of your marks on ' and `
+    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+  }
+})
+
 wk.register({
   -- search
   ["<leader>"] = {

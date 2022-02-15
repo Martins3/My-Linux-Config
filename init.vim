@@ -90,14 +90,7 @@ endf
 func! QuickRun()
   exec "w"
   let ext = expand("%:e")
-  if ext ==# "java"
-    let classPath = expand('%:h')
-    let className = expand('%:p:t:r')
-    " echo classPath
-    " echo className
-    exec "!javac %"
-    exec "!java -classpath " . classPath . " " . className
-  elseif ext ==# "md"
+  if ext ==# "md"
     exec "MarkdownPreview"
   elseif ext ==# "rs"
     exec "CocCommand rust-analyzer.run"
@@ -138,7 +131,6 @@ let g:git_messenger_no_default_mappings = v:true
 " 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'coc.vim',
-      \ 'coc-config.vim',
       \ 'debug.vim',
       \ 'ccls.vim',
       \ 'wilder.vim',
@@ -150,7 +142,7 @@ for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
 
-" 加载 lua 插件
+" 加载 lua 配置
 lua require 'plugins'
 lua require 'buffer-config'
 lua require 'orgmode-config'
