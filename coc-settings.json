@@ -40,5 +40,6 @@
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
-  }
+  },
+  "sumneko-lua.enableNvimLuaDev": true
 }

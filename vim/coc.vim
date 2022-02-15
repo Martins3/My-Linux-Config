@@ -176,7 +176,7 @@ let s:coc_extensions = [
       \ 'coc-go',
       \ 'coc-sh',
       \ 'coc-diagnostic',
-      \ 'coc-lua',
+      \ 'coc-sumneko-lua',
       \ 'coc-xml',
       \ 'coc-git',
       \ 'coc-json',
@@ -194,6 +194,3 @@ nmap <silent> b <Plug>(coc-ci-b)
 
 " https://github.com/fannheyward/coc-pyright/issues/184
 call coc#config("python.pythonPath", "/bin/python3")
-
-" Undefined global `vim` problem, see
-" https://github.com/josa42/coc-lua/issues/55

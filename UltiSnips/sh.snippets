@@ -1,4 +1,13 @@
 priority -50
+# notes based on https://wangdoc.com/bash/
+# bible based on https://github.com/dylanaraps/pure-bash-bible
+
+snippet fori "C style for loop"
+VAR=50
+for ((i=0;i<=VAR;i=i + 4)); do
+  printf '%s\n' "$i"
+done
+endsnippet
 
 snippet note_getoption "参数选项"
 function usage ()
@@ -99,10 +108,68 @@ for i in "${array[@]}"; do
 done
 endsnippet
 
+snippet note_forarrayindex "for every element in array"
+for ((i=0;i<${#arr[@]};i++)); do
+  printf '%s\n' "${arr[i]}"
+done
+endsnippet
+
 snippet note_readintoarray "read into array"
 array=()
 read -r -a array
 for i in "${array[@]}"; do
   echo "$i"
 done
+endsnippet
+
+snippet bible_trim_string "trim string"
+# Usage: trim_string "   example   string    "
+function trim_string() {
+  : "${1#"${1%%[![:space:]]*}"}"
+  : "${_%"${_##*[![:space:]]}"}"
+  printf '%s\n' "$_"
+}
+endsnippet
+
+snippet bible_trim_all "trim all"
+# shellcheck disable=SC2086,SC2048
+# Usage: trim_all "   example   string    "
+function trim_all() {
+  set -f
+  set -- $*
+  printf '%s\n' "$*"
+  set +f
+}
+endsnippet
+
+snippet bible_split "split"
+# Usage: split "string" "delimiter"
+function split() {
+  IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
+  printf '%s\n' "${arr[@]}"
+}
+endsnippet
+
+snippet bible_iter_dir "iter dir recursively"
+shopt -s globstar
+for file in "$(pwd)"/**; do
+  printf '%s\n' "$file"
+done
+shopt -u globstar
+endsnippet
+
+snippet bible_head "head lines of file"
+# Usage: head "n" "file"
+head() {
+  mapfile -tn "$1" line <"$2"
+  printf '%s\n' "${line[@]}"
+}
+endsnippet
+
+snippet bible_tail "tail lines of file"
+tail() {
+  # Usage: tail "n" "file"
+  mapfile -tn 0 line < "$2"
+  printf '%s\n' "${line[@]: -$1}"
+}
 endsnippet
