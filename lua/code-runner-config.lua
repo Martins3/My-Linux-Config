@@ -8,6 +8,7 @@ require('code_runner').setup {
     c = "cd $dir && clang -Wall -lpthread -g -std=c11 $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     cpp = "cd $dir && clang++ -Wall -lpthread -g -std=c++17  $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     html = "microsoft-edge $fileName",
-    sh = "bash $file"
+    sh = "bash $file",
+    rust = "cargo run",
   },
 }
