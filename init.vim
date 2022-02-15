@@ -150,5 +150,5 @@ lua require 'telescope-config'
 lua require 'tree-config'
 lua require 'whichkey-config'
 lua require 'code-runner-config'
-lua require('colorizer').setup()
+lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
