@@ -613,6 +613,7 @@ setxkbmap -option caps:swapescape
   - `:g!/pattern/command` 对于不匹配的操作
 - `?` 是向后搜索，`/` 是向前搜索
 - `:put =range(1, 10)` 插入 1 到 10 的数值
+- 对于选中的 virtual block `S` `str` 可以在 virtual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
