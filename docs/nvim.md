@@ -575,8 +575,10 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
     - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
     - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
     - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
-- 为什么不支持 Windows?
-    - 不是说完全不支持，但是需要一些调整。因为我不在 Windows 上开发，我没有办法保证在 windows 上运行效果。
+- 支持什么操作系统和架构?
+    - 支持 Windows 需要少量的调整。
+    - 对于 x86 Linux / Mac 完整的支持。
+    - [龙芯架构 Linux](https://martins3.github.io/loongarch/neovim.html) 基本支持。
 
 ## vim 的小技巧
 - 翻滚屏幕
