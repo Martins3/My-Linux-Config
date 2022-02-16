@@ -10,7 +10,8 @@ wk.setup({
 wk.register({
   -- search
   ["<leader>"] = {
-    a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"}, b = { "<cmd>Telescope buffers<cr>", "search buffers" },
+    a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action"},
+    b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = { "<cmd>Telescope colorscheme<cr>", "search colorscheme" },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
