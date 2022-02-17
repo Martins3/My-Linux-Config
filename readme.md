@@ -11,6 +11,7 @@ Based on Ubuntu 20.04.
 * 中文文档
   * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
   * [极简 tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
+  * Awesome 桌面环境配置
 * English version comming soon.
 
 ## :gear: Install
@@ -18,7 +19,7 @@ TODO
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Martins3/My-Linux-config/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Martins3/My-Linux-config/issues).
 
 ## 📝 License
 
@@ -26,4 +27,3 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ***
 Created with ❤️ by [**Martins3**](https://martins3.github.io/)
-
