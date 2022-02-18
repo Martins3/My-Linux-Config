@@ -56,6 +56,7 @@ wk.register({
       a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server"},
       r = { "<cmd>SourcetrailRefresh<cr>", "sourcetrail refresh"},
       t = { "<Plug>(coc-translator-p)", "translate current word"},
+      p = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space"},
     },
     ['b'] = {
       name = "+buffer",
