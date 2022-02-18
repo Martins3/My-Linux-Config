@@ -275,27 +275,26 @@ ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
 nvim
 ```
 
-刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了
-![](./img/first-time.png)
+刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了:
+<details> <summary>img</summary> <p align="center"> <img src="./img/first-time.png" /> </p> </details>
 
-输入命令 `:PackerInstall` 来安装插件
-![](./img/PackerInstall.png)
+输入命令 `:PackerInstall` 来安装插件:
+<details> <summary>img</summary> <p align="center"> <img src="./img/PackerInstall.png" /> </p> </details>
 
 然后就可以看到插件的正常安装:
-![](./img/install.png)
-
+<details> <summary>img</summary> <p align="center"> <img src="./img/install.png" /> </p> </details>
 [wakatime](https://wakatime.com/settings/account) 需要输入 api key
-![](./img/waka.png)
-当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
+<details> <summary>img</summary> <p align="center"> <img src="./img/waka.png" /> </p> </details>
 
+当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
 再次打开之后，coc 的各种插件会自动安装:
-![](./img/coc-install.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/coc-install.png" /> </p> </details>
 
 #### checkhealth 检查
 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致一些插件不可用。
 
 例如下面是我的配置的截图。
-![checkhealth screenshot](./img/checkhealth.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/checkhealth.png" /> </p> </details>
 
 ## 升级
 本项目之前是基于 SpaceVim 的，之后移除了，如果想要升级，除了 `git pull origin master` 之外
@@ -317,7 +316,7 @@ let g:mapleader = ','
 
 快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，当按下 `,` 之后，经过 `timeoutlen` 之后，
 就会出现弹出下面的窗口显示进一步的使用:
-![](./img/whichkey.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/whichkey.png" /> </p> </details>
 
 #### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
@@ -353,10 +352,10 @@ map <leader>d "+d
 | `,` `s`     | 整个工程中间搜索该符号   |
 
 在 fork.c 中间搜索 `_x64_sys_fork` 这个符号:
-![](./img/workspace-symbols.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/workspace-symbols.png" /> </p> </details>
 
 在整个 Linux 工程中间搜索 sysclone 这个符号:
-![](./img/outline-symbols.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/outline-symbols.png" /> </p> </details>
 
 #### 定义和引用
 
@@ -371,7 +370,7 @@ map <leader>d "+d
 |-------------|------------------------------------------------------|
 | `K`         | 可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。 |
 
-![查找注释](./img/comment.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/comment.png" /> </p> </details>
 
 #### 格式化
 
@@ -431,14 +430,11 @@ map <leader>d "+d
 
 #### 导航
 1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
-![搜索文件](./img/search-files.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/search-files.png" /> </p> </details>
 
 2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 use 'navarasu/onedark.nvim'
-<p align="center">
-  <img src="./img/outline.png" />
-</p>
-
+<details> <summary>img</summary> <p align="center"> <img src="./img/outline.png" /> </p> </details>
 
 #### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
@@ -447,7 +443,7 @@ pip install cppman
 cppman -c
 ```
 
-![查找`get_id`文档](./img/cppman.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/cppman.png" /> </p> </details>
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
@@ -470,13 +466,11 @@ endsnippet
 ```
 
 这样，然后每次只需要输入 import 这些内容就自动出现了，效果如下。
-![此时只需要按下Enter，这些内容就会自动出现](./img/snippet.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/snippet.png" /> </p> </details>
 
 #### 自动补全
 自动补全是自动触发的，coc.nvim 无需另外的配置，效果如下。
-<p align="center">
-  <img src="./img/autocomplete.png" />
-</p>
+<details> <summary>img</summary> <p align="center"> <img src="./img/autocomplete.png" /> </p> </details>
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
 #### git 集成
@@ -493,7 +487,7 @@ endsnippet
 2. 使用方法参考 octo.nvim 的 README.md
 
 例如可以直接查看本项目中的 issue
-![](./img/octo.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
 
 #### 调试集成
 现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:
@@ -507,7 +501,8 @@ endsnippet
 #### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
 
-![](./img/wilder.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/wilder.png" /> </p> </details>
+
 #### 终端
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
@@ -515,7 +510,7 @@ endsnippet
 - `Ctrl` `t` : 显示/隐藏窗口
 
 下面是在打开悬浮终端，并且运行 htop 的结果:
-![floaterm](./img/floaterm.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/floaterm.png" /> </p> </details>
 
 #### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
@@ -530,7 +525,7 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 - 源代码
 - 运行结果
 - 运行使用的命令
-![](./img/code-runner.png)
+<details> <summary>img</summary> <p align="center"> <img src="./img/code-runner.png" /> </p> </details>
 
 #### 一键注释代码
 
@@ -659,7 +654,8 @@ setxkbmap -option caps:swapescape
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
-4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键 :star:
+4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键跳转和移动 :star:
+5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 
 [^1]: https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
