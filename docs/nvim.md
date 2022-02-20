@@ -374,8 +374,8 @@ map <leader>d "+d
 
 #### 格式化
 
-| key binding         | function                                         |
-|---------------------|--------------------------------------------------|
+| key binding        | function                                         |
+|--------------------|--------------------------------------------------|
 | `<space>` `l`  `r` | 格式化当前文件，支持 C/C++ , Rust 和 Python 等。 |
 
 可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
@@ -629,6 +629,10 @@ setxkbmap -option caps:swapescape
 本配置之前一直是基于 [spacevim](https://spacevim.org/) spacevim 的，移除的原因主要是因为:
 - spacevim 的配置很多都是 vimscript 写的，我几乎看不懂，出现了问题无法快速独立解决
 - spacevim 为了兼容 vim，一些插件的选择和我有冲突，比如包管理器(dein.vim -> packer.nvim) 和文件树(defx -> nvim-tree)
+
+将 Fn 相关的快捷键全部去掉了:
+- 需要移动手掌，不是很高效
+- 有的键盘是没有 Fn 键的，按 Fn 键需要低效的组合键
 
 ## 值得一看的配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置

@@ -60,10 +60,10 @@ require("packer").startup({
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     use 'norcalli/nvim-colorizer.lua' -- 显示 #FFFFFF
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
-    use {'nvim-orgmode/orgmode',
-      config = function() require('orgmode').setup{} end} -- 日程管理
+    use 'nvim-orgmode/orgmode' -- 日程管理
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
     use 'AckslD/nvim-neoclip.lua' -- Telescope 搜索历史剪切板和录制的宏
+    use 'tyru/open-browser.vim' -- 使用 gx 打开链接
   end,
 })

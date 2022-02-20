@@ -10,7 +10,7 @@ Based on Ubuntu 20.04.
 
 * 中文文档
   * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
-  * [极简 tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
+  * [极简 Tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
   * Awesome 桌面环境配置
   * NixOs 配置
 * English version comming soon.
