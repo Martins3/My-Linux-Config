@@ -78,6 +78,7 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_syntax_conceal_default = 0
 let g:tex_conceal = "" " 关闭所有隐藏设置
 
+" 因为 telescope-coc 没有实现 outline，所以只能靠 
 func! Outline()
   if expand("%:e") ==# "md"
     exec "Telescope heading"
@@ -125,6 +126,10 @@ map <leader>p "+p
 map <leader>d "+d
 
 let g:git_messenger_no_default_mappings = v:true
+
+" 使用 gx 在 vim 中间直接打开链接
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
