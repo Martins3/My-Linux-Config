@@ -150,3 +150,4 @@ lua require 'whichkey-config'
 lua require 'code-runner-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
+lua require('neoclip').setup()
