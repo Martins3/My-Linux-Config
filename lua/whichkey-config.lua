@@ -23,6 +23,7 @@ wk.register({
     m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
+    r = { "<cmd>Telescope neoclip<cr>", "search clipboard" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>",  "jump to buffer 1"},
@@ -54,9 +55,9 @@ wk.register({
       name = "+misc",
       s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server"},
       a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server"},
+      d = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space"},
       r = { "<cmd>SourcetrailRefresh<cr>", "sourcetrail refresh"},
       t = { "<Plug>(coc-translator-p)", "translate current word"},
-      p = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space"},
     },
     ['b'] = {
       name = "+buffer",

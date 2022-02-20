@@ -498,6 +498,10 @@ endsnippet
 
 如果恰好用的是 rust, 可以参考: https://github.com/simrat39/rust-tools.nvim
 
+一些其他的调试器:
+- http://qira.me/
+- https://github.com/osandov/drgn : meta 写的侧重于编程的 debuggers
+
 #### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
 
@@ -628,6 +632,7 @@ setxkbmap -option caps:swapescape
 
 ## 值得一看的配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
+- [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的 neovim 配置，一步步的搭建
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
 ## 值得关注的插件

@@ -125,3 +125,5 @@ RUN git clone https://github.com/cli/cli.git gh-cli
 WORKDIR /home/docker/gh-cli
 # https://stackoverflow.com/questions/65328413/make-go-command-not-found-although-go-binary-is-in-path
 RUN echo docker | sudo -S -E env "PATH=$PATH" make install
+
+RUN echo docker | sudo -S apt install sqlite3 libsqlite3-dev
