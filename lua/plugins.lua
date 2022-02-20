@@ -10,7 +10,7 @@ require("packer").startup({
     use 'nvim-treesitter/nvim-treesitter' -- 基于语义的高亮
     use 'kyazdani42/nvim-web-devicons' -- 众多插件的图标
     use 'folke/which-key.nvim' -- 用于配置和显示快捷键
-    use 'tami5/sqlite.lua' -- 数据库
+    use 'tami5/sqlite.lua' -- sqlite 数据库
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树

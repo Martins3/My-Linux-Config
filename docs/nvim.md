@@ -632,7 +632,7 @@ setxkbmap -option caps:swapescape
 
 ## 值得一看的配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
-- [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的 neovim 配置，一步步的搭建
+- [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
 ## 值得关注的插件

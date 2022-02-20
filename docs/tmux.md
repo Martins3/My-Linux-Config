@@ -1,10 +1,10 @@
 # 极简 Gnome terminal + tmux 配置
 
 ## tmux
-如果一开始就阅读一下 [tmux 之道](https://leanpub.com/the-tao-of-tmux/read) 这种很厚的书，感觉
+如果一开始就阅读 [tmux 之道](https://leanpub.com/the-tao-of-tmux/read) 这种很厚的书，感觉
 这一辈子都不会入手的。
 
-最简单的方法就是立刻使用起来，配置可以[参考源码](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/tmux.conf)
+最简单的方法就是立刻使用起来，配置可以参考我个人的 [tmux.conf](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/tmux.conf) 配置
 这个脚本超级简单，而且每一个行都是有注释的。
 
 ## Gnome terminal
