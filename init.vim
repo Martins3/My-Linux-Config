@@ -37,18 +37,6 @@ let g:mapleader = ','
 " 设置主题
 colorscheme tokyonight
 
-augroup CursorLineOnlyInActiveWindow
-    autocmd!
-    " 离开插入模式时
-    autocmd InsertLeave * setlocal relativenumber
-    " 进入插入模式时
-    autocmd InsertEnter * setlocal norelativenumber
-    " 进入缓冲区后
-    autocmd BufEnter * setlocal cursorline
-    " 离开缓冲区后
-    autocmd BufLeave * setlocal nocursorline
-augroup END
-
 " 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
 noremap <leader>q q
 
