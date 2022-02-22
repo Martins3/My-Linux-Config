@@ -19,6 +19,13 @@
 cargo build --release --no-default-features --features=x11
 ```
 
+主要的改动为:
+- 采用的颜色主题为 [solarized_dark](https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_dark.yaml)
+- 修改字体为 Hasklug Nerd Font
+- 设置启动自动为 tmux
+
+具体细节和 [官方默认配置](https://github.com/alacritty/alacritty/releases/download/v0.10.1/alacritty.yml) diff 一下就可以知道了。
+
 ## 其他的记录
 - Ubuntu 修改默认 terminal emulator
 ```c

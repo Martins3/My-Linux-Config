@@ -66,7 +66,7 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_syntax_conceal_default = 0
 let g:tex_conceal = "" " 关闭所有隐藏设置
 
-" 因为 telescope-coc 没有实现 outline，所以只能靠 
+" 因为 telescope-coc 没有实现 outline，所以只能靠 telescope-heading.nvim 实现
 func! Outline()
   if expand("%:e") ==# "md"
     exec "Telescope heading"
