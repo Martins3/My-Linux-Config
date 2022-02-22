@@ -6,7 +6,7 @@
 </p>
 Based on Ubuntu 20.04.
 
-### :book: Document
+## 📚 Document
 
 * 中文文档
   * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
@@ -15,7 +15,7 @@ Based on Ubuntu 20.04.
   * NixOs 配置
 * English version comming soon.
 
-## :gear: Install
+## ⚙ Install
 TODO
 
 ## 🤝 Contributing

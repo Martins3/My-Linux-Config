@@ -1,5 +1,3 @@
-# https://github.com/sharkdp/bat/issues/938
-# sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
 FROM ubuntu:20.04
 ENV TERM=screen-256color
 ENV COLORTERM=truecolor
