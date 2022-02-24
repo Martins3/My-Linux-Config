@@ -20,10 +20,11 @@ wk.register({
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
+    j = { "<cmd>Telescope session-lens search_session<cr>", "search session" },
     m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
-    r = { "<cmd>Telescope neoclip<cr>", "search clipboard" },
+    r = { "<cmd>Telescope neoclip<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>",  "jump to buffer 1"},
