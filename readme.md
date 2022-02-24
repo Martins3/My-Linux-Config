@@ -4,12 +4,11 @@
     <img alt="License: GNU General Public License v3.0" src="https://img.shields.io/badge/License-GNU General Public License v3.0-yellow.svg" />
   </a>
 </p>
-Based on Ubuntu 20.04.
 
 ## 📚 Document
 
 * 中文文档
-  * [2021 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
+  * [2022 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
   * [极简 Tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
   * Awesome 桌面环境配置
   * NixOs 配置
@@ -19,7 +18,7 @@ Based on Ubuntu 20.04.
 ```sh
 cd ~
 git clone https://github.com/Martins3/My-Linux-config .dotfiles
-ln -sf .dotfiles/scripts/tmux.conf .tmux.conf
+ln -s .dotfiles/scripts/tmux.conf .tmux.conf
 ln -s .dotfiles/scripts/alacritty.yml .alacritty.yml
 ln -s .dotfiles/scripts/tigrc.conf .tigrc
 ```
