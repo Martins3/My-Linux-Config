@@ -63,7 +63,7 @@ RUN git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share
 
 RUN mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 WORKDIR /home/docker
-RUN git clone https://github.com/Martins3/My-Linux-config mylc # 随便取个什么名字
+RUN git clone https://github.com/Martins3/My-Linux-config .dotfiles
 WORKDIR /home/docker/mylc
 RUN git checkout remove-spacevim
 RUN ln -s ~/mylc ~/.config/nvim # 创建一个软链接指向此处
