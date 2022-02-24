@@ -19,8 +19,8 @@ snippet seapr "seabios debug"
 dprintf(1, "huxueshi:%s ${0}\n", __FUNCTION__);
 endsnippet
 
-snippet dpr "duck debug"
-duck_printf("huxueshi:%s ${0}\n", __FUNCTION__);
+snippet dpr "kern debug"
+kern_printf("huxueshi:%s ${0}\n", __FUNCTION__);
 endsnippet
 
 snippet dedk "duck edk2"
@@ -39,7 +39,7 @@ snippet Cimport "是时候重拳出击了!"
 #include <unistd.h> // sleep
 
 int main(int argc, char *argv[]) {
-  ${0}
-  return 0;
+	${0}
+	return 0;
 }
 endsnippet

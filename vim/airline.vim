@@ -13,4 +13,4 @@ let g:airline_theme="atomic"
 
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#show_message = 0
-let g:airline#extensions#vista#enabled = 1
+" let g:airline#extensions#vista#enabled = 1
