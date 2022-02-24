@@ -16,7 +16,14 @@ Based on Ubuntu 20.04.
 * English version comming soon.
 
 ## ⚙ Install
-TODO
+```sh
+cd ~
+git clone https://github.com/Martins3/My-Linux-config .dotfiles
+ln -sf .dotfiles/scripts/tmux.conf .tmux.conf
+ln -s .dotfiles/scripts/alacritty.yml .alacritty.yml
+ln -s .dotfiles/scripts/tigrc.conf .tigrc
+```
+neovim config is a little complex, see the [Dockerfile](./scripts/ubuntu/Dockerfile)
 
 ## 🤝 Contributing
 
