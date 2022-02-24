@@ -8,8 +8,8 @@ require("packer").startup({
     use 'nvim-lua/plenary.nvim' -- 很多 lua 插件依赖的库
     use {'neoclide/coc.nvim', branch = 'release'} -- lsp
     use 'nvim-treesitter/nvim-treesitter' -- 基于语义的高亮
-    use 'kyazdani42/nvim-web-devicons' -- 众多插件的图标
-    use 'folke/which-key.nvim' -- 用于配置和显示快捷键
+    use 'kyazdani42/nvim-web-devicons' -- 显示图标
+    use 'folke/which-key.nvim' -- 用于配置和提示快捷键
     use 'tami5/sqlite.lua' -- sqlite 数据库
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
@@ -55,6 +55,9 @@ require("packer").startup({
     -- c/c++
     use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
+    -- session
+    use 'rmagatti/auto-session'
+    use 'rmagatti/session-lens'
     -- 其他
     use 'MattesGroeger/vim-bookmarks' -- 书签
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
