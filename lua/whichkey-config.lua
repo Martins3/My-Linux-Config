@@ -86,7 +86,7 @@ wk.register({
     },
     ["t"] = {
       name = "+toggle",
-      ["8"] = {"<cmd>:let &cc = &cc == '' ? '80' : ''<cr>", "80 line"},
+      ["8"] = {"<cmd>:let &cc = &cc == '' ? '81' : ''<cr>", "80 line"},
       ["s"] = {"<cmd>:set spell!<cr>", "spell check"},
       ["w"] = {"<cmd>:set wrap!<cr>", "wrap line"},
       ["h"] = {"<cmd>noh<cr>", "Stop the highlighting"},
