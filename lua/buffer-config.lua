@@ -5,7 +5,7 @@ require('bufferline').setup {
     numbers = function(opts)
       return string.format('%s', opts.ordinal)
     end,
-    diagnostics = "coc",
+    diagnostics = false,
     show_buffer_close_icons = false,
     show_close_icon = false,
     separator_style = "slant",

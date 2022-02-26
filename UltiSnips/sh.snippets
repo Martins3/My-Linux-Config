@@ -66,6 +66,14 @@ ${variable%pattern}
 # 如果 pattern 匹配变量 variable 的结尾，
 # 删除最长匹配（贪婪匹配）的部分，返回剩余部分
 ${variable%%pattern}
+
+# 如果 pattern 匹配变量 variable 的一部分，
+# 最长匹配（贪婪匹配）的那部分被 string 替换，但仅替换第一个匹配
+${variable/pattern/string}
+
+# 如果 pattern 匹配变量 variable 的一部分，
+# 最长匹配（贪婪匹配）的那部分被 string 替换，所有匹配都替换
+${variable//pattern/string}
 endsnippet
 
 snippet note_cmpfile "compare file"
