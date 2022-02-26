@@ -1,5 +1,5 @@
 " ref: https://www.chrisatmachine.com/Neovim/02-vim-general-settings/
-syntax enable                           " Enables syntax highlighing
+syntax enable
 " 鼠标可以移动，调整窗口等
 set mouse=a
 " 超过 window 宽度的行不要折叠
@@ -21,7 +21,6 @@ set cursorline
 set termguicolors
 " 因为失去焦点就会自动保存，所以没有必要使用 swapfile
 set noswapfile
-set hidden
 " 让退出 vim 之后 undo 消息不消失
 set undofile
 " 在滚动屏幕的时候保留 3 行
