@@ -181,6 +181,7 @@ let s:coc_extensions = [
       \ 'coc-git',
       \ 'coc-json',
       \ 'coc-translator',
+      \ 'coc-r-lsp',
       \]
 
 " coc-vimtex
