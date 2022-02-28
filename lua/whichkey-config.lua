@@ -17,7 +17,7 @@ wk.register({
     m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
-    r = { "<cmd>Telescope neoclip<cr>", "search symbols in project" },
+    r = { "<cmd>Telescope neoclip<cr>", "search history yank" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>",  "jump to buffer 1"},
@@ -105,7 +105,7 @@ wk.register({
     g = { "<cmd>vsp<cr>", "vertical split window"},
     v = { "<cmd>sp<cr>", "horizontal split window"},
     m = { "<cmd>only<cr>", "maximize current window"},
-    u = { "<cmd>UndotreeToggle<cr>", "maximize current window"},
+    u = { "<cmd>UndotreeToggle<cr>", "open undo tree"},
     n = {":Vista!!<cr>", "toggle vista navigator"}
   },
   ["<tab>"] = {":wincmd w<cr>", "switch window"},
