@@ -68,5 +68,6 @@ require("packer").startup({
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
     use 'AckslD/nvim-neoclip.lua' -- Telescope 搜索历史剪切板和录制的宏
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
+    use 'andymass/vim-matchup' -- 高亮匹配的元素，例如 #if 和 #endif
   end,
 })
