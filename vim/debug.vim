@@ -39,3 +39,8 @@ fun! TrimWhitespace()
     retab
 endfun
 command! TrimWhitespace call TrimWhitespace()
+
+fun! GetFilePath()
+  exec "Redir echo expand('%:p')"
+endfun
+command! GetFilePath call GetFilePath()
