@@ -14,7 +14,7 @@ wk.register({
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
     j = { "<cmd>Telescope session-lens search_session<cr>", "search session" },
-    m = { "<cmd>Telescope keymaps<cr>", "list keymaps" },
+    m = { "<cmd>Telescope vim_bookmarks all<cr>", "search history yank" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
     r = { "<cmd>Telescope neoclip<cr>", "search history yank" },
@@ -55,7 +55,7 @@ wk.register({
     },
     ['b'] = {
       name = "+buffer",
-      ["c"] = { "<cmd>BWipeout other<cr>", "clear other buffers"},
+      ["c"] = { "<cmd>BDelete hidden<cr>", "clear other buffers" },
       ["d"] = { "<cmd>bdelete %<cr>", "clear current buffers"},
     },
     ['l'] = {
@@ -108,7 +108,13 @@ wk.register({
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree"},
     n = {":Vista!!<cr>", "toggle vista navigator"}
   },
-  ["<tab>"] = {":wincmd w<cr>", "switch window"},
+  ["m"] = {
+    name = "+bookmarks",
+    m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
+    a = { "<cmd>Telescope vim_bookmarks all<cr>", "list marks in project" },
+    X = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
+  },
+  ["<tab>"] = {":wincmd w<cr>", "switch window" },
 })
 
 wk.register({
