@@ -20,7 +20,7 @@ require("packer").startup({
     use 'folke/tokyonight.nvim' -- 颜色主题
     use 'morhetz/gruvbox'
     use 'akinsho/bufferline.nvim' -- buffer
-    use 'kazhala/close-buffers.nvim'
+    use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
     use 'simeji/winresizer' -- 更加方便的调节窗口的大小
     use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
     use 'romgrk/fzy-lua-native'
@@ -56,10 +56,12 @@ require("packer").startup({
     use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
     -- session
-    use 'rmagatti/auto-session'
-    use 'rmagatti/session-lens'
+    use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
+    use 'rmagatti/session-lens' -- 搜索所有的 sessions
+    -- 书签
+    use 'MattesGroeger/vim-bookmarks'
+    use 'tom-anders/telescope-vim-bookmarks.nvim' -- 辅助书签的搜索
     -- 其他
-    use 'MattesGroeger/vim-bookmarks' -- 书签
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     use 'norcalli/nvim-colorizer.lua' -- 显示 #FFFFFF
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
