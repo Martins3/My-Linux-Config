@@ -316,7 +316,7 @@ let g:mapleader = ','
 
 快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，当按下 `,` 之后，经过 `timeoutlen` 之后，
 就会出现弹出下面的窗口显示进一步的使用:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/whichkey.png" /> </p> </details>
+<details> <summary>click me</summary> <p align="center"> <img src="./img/key.png" /> </p> </details>
 
 #### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
