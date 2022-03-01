@@ -1,25 +1,32 @@
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
--- default mappings
+-- change default mappings
 local list = {
-  { key = {"<CR>", "o", "l", "<2-LeftMouse>"}, cb = tree_cb("edit") },
-  { key = "P",                            cb = tree_cb("parent_node") },
-  { key = "h",                            cb = tree_cb("close_node") },
-  { key = "p",                            cb = tree_cb("preview") },
-  { key = "<C-r>",                        cb = tree_cb("refresh") },
-  { key = "R",                            cb = tree_cb("full_rename") },
-  { key = "yn",                           cb = tree_cb("copy_name") },
-  { key = "yp",                           cb = tree_cb("copy_path") },
-  { key = "yy",                           cb = tree_cb("copy_absolute_path") },
+  { key = {"<CR>", "o", "l", "<2-LeftMouse>"}, action = "edit" },
+  { key = "h",                                 action = "close_node" },
+  { key = "p",                                 action = "preview" },
+  { key = "<C-r>",                             action = "refresh" },
+  { key = "yn",                                action = "copy_name" },
+  { key = "yp",                                action = "copy_path" },
+  { key = "yy",                                action = "copy_absolute_path" },
+  { key = "a",                                 action = "create" },
+  { key = "d",                                 action = "remove" },
+  { key = "r",                                 action = "rename" },
+  { key = "?",                                 action = "toggle_help" },
 }
 
 require'nvim-tree'.setup {
   view = {
     side = 'right',
     mappings = {
-      custom_only = false,
+      custom_only = true,
       list = list
     },
   },
+  actions = {
+    open_file = {
+      quit_on_open = false,
+      window_picker = {
+        enable = false,
+      }
+    }
+  }
 }
-
-vim.g.nvim_tree_disable_window_picker = 1
