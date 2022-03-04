@@ -1,4 +1,4 @@
-" 下面是 ccls 提供的 LSP Extension
+" ccls 提供的 LSP Extension
 " https://github.com/MaskRay/ccls/wiki/coc.nvim
 
 nn <silent> xl :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
