@@ -13,7 +13,10 @@
       "command": "ccls",
       "filetypes": [
         "c",
-        "cpp"
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
       ],
       "rootPatterns": [
         "compile_commands.json",
@@ -28,6 +31,11 @@
         },
         "client": {
           "snippetSupport": true
+        },
+        "clang": {
+          "extraArgs": [
+            "-Wall"
+          ]
         }
       }
     }

@@ -55,8 +55,8 @@ wk.register({
     },
     ['b'] = {
       name = "+buffer",
-      ["c"] = { "<cmd>BDelete hidden<cr>", "clear other buffers" },
-      ["d"] = { "<cmd>bdelete %<cr>", "clear current buffers" },
+      ["c"] = { "<cmd>BDelete hidden<cr>", "close invisible buffers" },
+      ["d"] = { "<cmd>bdelete %<cr>", "close current buffers" },
     },
     ['l'] = {
       name = "+language",
@@ -87,7 +87,7 @@ wk.register({
     ["t"] = {
       name = "+toggle",
       ["8"] = {"<cmd>:let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
-      ["b"] = {"<cmd>:let &tw = &tw == '' ? '80' : ''<cr>", "break line at 80" },
+      ["b"] = {"<cmd>:let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
       ["s"] = {"<cmd>:set spell!<cr>", "spell check" },
       ["w"] = {"<cmd>:set wrap!<cr>", "wrap line" },
       ["h"] = {"<cmd>noh<cr>", "Stop the highlighting" },
