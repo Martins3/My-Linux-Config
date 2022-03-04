@@ -23,7 +23,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 RUN apt-get install -y tzdata
 
-RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep zathura
 
 # 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
 RUN apt install -y libclang-10-dev clang llvm
