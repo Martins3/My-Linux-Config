@@ -1,3 +1,5 @@
+" wilder 提供的配置的一种照抄过来的
+" https://github.com/gelguy/wilder.nvim
 call wilder#setup({'modes': [':']})
 call wilder#set_option('use_python_remote_plugin', 0)
 call wilder#set_option('pipeline', [

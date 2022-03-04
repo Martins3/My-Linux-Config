@@ -252,9 +252,8 @@ sudo apt install bear
 注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 compile_commands.json, 直接拷贝到项目的顶层目录就可以了。
-2. cmake [生成 compile_commands.json 的方法](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json)
-3. [ninja](https://ninja-build.org/manual.html)
-4. [ccls documentation for more](https://github.com/MaskRay/ccls/wiki/Project-Setup)
+2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 compile_commands.json 的脚本
+4. see [ccls documentation](https://github.com/MaskRay/ccls/wiki/Project-Setup) for more
 
 一个工程只要生成 compile_commands.json，那么一切就大功告成了。
 
@@ -385,7 +384,7 @@ map <leader>d "+d
 #### 重命名
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `r` 在需要重命名的元素上，即可批量重命名。
 
-#### 字符串搜索
+#### 字符串搜索和替换
 
 | key binding      | function                                        |
 |------------------|-------------------------------------------------|
@@ -569,13 +568,13 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 - 为什么不使用 built-in lsp?
-    - 首先，我强烈推荐推荐你看看 [NvChad](https://github.com/NvChad/NvChad) 这个项目。
+    - 首先可以看看[这个教程](https://climatechangechat.com/setting_up_lsp_nvim-lspconfig_and_perl_in_neovim.html)，分析如何在 neovim 使用 built-in lsp 的
     - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
     - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
     - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
     - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
 - 支持什么操作系统和架构?
-    - 支持 Windows 需要少量的调整。
+    - 支持 Windows ，但是需要少量的调整，主要是安装方面。
     - 对于 x86 Linux / Mac 完整的支持。
     - [龙芯架构 Linux](https://martins3.github.io/loongarch/neovim.html) 基本支持。
 
@@ -615,6 +614,7 @@ setxkbmap -option caps:swapescape
 - `?` 是向后搜索，`/` 是向前搜索
 - `:put =range(1, 10)` 插入 1 到 10 的数值
 - 对于选中的 virtual block `S` `str` 可以在 virtual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
+- [获取历史命令](https://stackoverflow.com/questions/13405959/how-do-i-get-a-list-of-the-history-of-all-the-vim-commands-i-ran) `,``q``:`
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
