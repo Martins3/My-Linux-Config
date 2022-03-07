@@ -113,7 +113,7 @@ wk.register({
     name = "+bookmarks",
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     a = { "<cmd>Telescope vim_bookmarks all<cr>", "list marks in project" },
-    X = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
+    x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
   ["<tab>"] = {":wincmd w<cr>", "switch window" },
 })

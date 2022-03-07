@@ -23,6 +23,7 @@ require("packer").startup({
     use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
     use 'simeji/winresizer' -- 更加方便的调节窗口的大小
     use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
+    use 'romgrk/fzy-lua-native' -- wilder 的依赖
     -- git 管理
     use 'tpope/vim-fugitive' -- 显示 git blame，实现一些基本操作的快捷执行
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
