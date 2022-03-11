@@ -1,30 +1,18 @@
 priority -50
 
 snippet lpr "linux kernel debug"
-pr_info("huxueshi:%s ${0}\n", __FUNCTION__);
+pr_info("huxueshi:%s:%d ${0}\n", __FUNCTION__, __LINE__);
 endsnippet
 
 snippet qpr "qemu debug"
-printf("huxueshi:%s ${0}\n", __FUNCTION__);
+printf("huxueshi:%s:%d ${0}\n", __FUNCTION__, __LINE__);
 endsnippet
 
 snippet qgdb "qemu gdb debug stub"
 void huxueshi(void);
 void huxueshi(void){
-	printf("huxueshi:%s \n", __FUNCTION__);
+	printf("huxueshi\n");
 }
-endsnippet
-
-snippet seapr "seabios debug"
-dprintf(1, "huxueshi:%s ${0}\n", __FUNCTION__);
-endsnippet
-
-snippet dpr "kern debug"
-kern_printf("huxueshi:%s ${0}\n", __FUNCTION__);
-endsnippet
-
-snippet dedk "duck edk2"
-DEBUG((DEBUG_INFO, "huxueshi: ${0}\n"));
 endsnippet
 
 snippet Cimport "是时候重拳出击了!"
