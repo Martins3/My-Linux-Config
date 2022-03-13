@@ -182,6 +182,7 @@ let s:coc_extensions = [
       \ 'coc-json',
       \ 'coc-translator',
       \ 'coc-r-lsp',
+      \ 'coc-emoji',
       \]
 
 " coc-vimtex
