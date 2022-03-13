@@ -11,7 +11,6 @@ require('bufferline').setup {
     separator_style = "slant",
     left_trunc_marker = "",
     right_trunc_marker = "",
-    tab_size = 10,
     },
     highlights = {
       fill= {
