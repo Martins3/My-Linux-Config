@@ -17,7 +17,6 @@ wk.register({
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
-    r = { "<cmd>Telescope neoclip<cr>", "search history yank" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>",  "jump to buffer 1" },

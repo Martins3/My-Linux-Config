@@ -10,7 +10,6 @@ require("packer").startup({
     use 'nvim-treesitter/nvim-treesitter' -- 基于语义的高亮
     use 'kyazdani42/nvim-web-devicons' -- 显示图标
     use 'folke/which-key.nvim' -- 用于配置和提示快捷键
-    use 'tami5/sqlite.lua' -- sqlite 数据库
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
@@ -68,7 +67,6 @@ require("packer").startup({
     use 'nvim-orgmode/orgmode' -- 日程管理
     use 'rcarriga/nvim-notify' -- 在 nvim 中的 notification
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
-    use 'AckslD/nvim-neoclip.lua' -- Telescope 搜索历史剪切板和录制的宏
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
     use 'andymass/vim-matchup' -- 高亮匹配的元素，例如 #if 和 #endif
   end,
