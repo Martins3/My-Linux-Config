@@ -10,6 +10,9 @@
 * 中文文档
   * [2022 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
   * [极简 Tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
+  * [Rime 输入法配置](https://martins3.github.io/My-Linux-Config/rime.html)
+  * [tig](https://martins3.github.io/My-Linux-Config/tig.html)
+  * [极简 Alacritty 配置](https://martins3.github.io/My-Linux-Config/alacritty.html)
   * Awesome 桌面环境配置
   * NixOs 配置
 * English version comming soon.
