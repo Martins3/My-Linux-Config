@@ -1,0 +1,10 @@
+# encoding: utf-8
+patch:
+  'speller/algebra':
+    - erase/^xx$/                      # 第一行保留
+
+    - derive/^n/l/                     # n => l
+    - derive/^l/n/                     # l => n
+
+    - derive/([ei])n$/$1ng/            # en => eng, in => ing
+    - derive/([ei])ng$/$1n/            # eng => en, ing => in
