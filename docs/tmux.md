@@ -14,4 +14,12 @@
 - `prefix l` : 切换到 last window
 - `prefix &` : kill 当前的 window
 
+## copy mode
+使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式[^1]
+- 使用 `v`, `V` 和 `Ctrl v` 分别实现字符选，行选，块选
+- 使用 `y` 复制
+- 使用 `ctrl shift v` 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的
+
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
+
+[^1]: [zt/zz/zb 似乎没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)
