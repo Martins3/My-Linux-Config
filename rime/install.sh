@@ -1,5 +1,7 @@
 #!/bin/bash
 set -x
-for i in rime/*.yaml;do
+shopt -s extglob nullglob
+for i in rime/*.@(yaml|txt);do
   ln -sf "$(pwd)/$i" ~/.config/fcitx/"$i"
 done
+
