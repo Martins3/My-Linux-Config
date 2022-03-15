@@ -42,4 +42,4 @@ fcitx -r
 ## 参考
 - https://github.com/BlueSky-07/Shuang 双拼練習
 - https://mogeko.me/posts/zh-cn/031/
-
+- [ ] https://sspai.com/post/63916
