@@ -1,11 +1,11 @@
 priority -50
 
 snippet lpr "linux kernel debug"
-pr_info("huxueshi:%s:%d ${0}\n", __FUNCTION__, __LINE__);
+pr_info("[huxueshi:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
 endsnippet
 
 snippet qpr "qemu debug"
-printf("huxueshi:%s:%d ${0}\n", __FUNCTION__, __LINE__);
+printf("[huxueshi:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
 endsnippet
 
 snippet qgdb "qemu gdb debug stub"
