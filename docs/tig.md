@@ -12,6 +12,7 @@ git commit -m "your awesome commit message"
 tig 相比这些而言而言，代码开源，功能强大，界面简洁，可以集成到 vim 中使用
 
 我的配置基本官方给出来的配置: https://github.com/jonas/tig/blob/master/contrib/vim.tigrc
+
 ## 自定义命令
 ```sh
 bind status D ?@rm %(file)
@@ -20,10 +21,10 @@ bind status D ?@rm %(file)
 - `?` : 表示执行命令前是否咨询一下
 - `@` : 表示在 background 中运行
 
+## 配合 vim 使用
+- 在 diff view 中 使用 e 可以让直接跳转到该行
+
 ## TODO
-- [ ] 介绍一下在 vim 中 e 的作用
-  - [ ] 实际上, e 的功能总是跳转到第一行了
 - [ ] 介绍一下 uu(x) ur ul 的使用
 - [ ] 测试 cherry pick
-- [ ] 加载 Linux 实在是太慢了
 - [ ] 还不如直接将 git.md 和 github.md 使用总结到一起
