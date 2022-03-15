@@ -30,9 +30,8 @@ rime_dir="$HOME/.config/fcitx/rime" bash rime-install
 不是很好截图,所以拍了一张照片,勾选其中的 `Half Width Character` 实现全角和半角的转换.
 <details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158184947-d299eccb-9ecb-4b6a-bea8-2769d022f33b.jpeg" width="400" /> </p> </details>
 
-## uninstall
-- rm -r ~/.config/fcitx/rime
-- 重启 fcitx -r
+## 重启
+fcitx -r
 
 ## 设置简体
 在出现 ui 的时候, Fn4 可以调整
@@ -43,3 +42,4 @@ rime_dir="$HOME/.config/fcitx/rime" bash rime-install
 ## 参考
 - https://github.com/BlueSky-07/Shuang 双拼練習
 - https://mogeko.me/posts/zh-cn/031/
+

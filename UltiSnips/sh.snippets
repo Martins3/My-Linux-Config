@@ -2,6 +2,20 @@ priority -50
 # notes based on https://wangdoc.com/bash/
 # bible based on https://github.com/dylanaraps/pure-bash-bible
 
+snippet note_glob "C style for loop"
+# ?(pattern-list)：匹配零个或一个模式。
+# *(pattern-list)：匹配零个或多个模式。
+# +(pattern-list)：匹配一个或多个模式。
+# @(pattern-list)：只匹配一个模式。
+# !(pattern-list)：匹配给定模式以外的任何内容。
+# 
+# 比如匹配
+# shopt -s extglob nullglob
+# for i in rime/*.@(yaml|txt);do
+#   echo $i
+# done
+endsnippet
+
 snippet fori "C style for loop"
 VAR=50
 for ((i=0;i<=VAR;i=i + 4)); do
