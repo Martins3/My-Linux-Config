@@ -96,8 +96,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>k  <Plug>(coc-format-selected)
-nmap <leader>k  <Plug>(coc-format-selected)
+" xmap <leader>k  <Plug>(coc-format-selected)
+" nmap <leader>k  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -182,7 +182,6 @@ let s:coc_extensions = [
       \ 'coc-json',
       \ 'coc-translator',
       \ 'coc-r-lsp',
-      \ 'coc-emoji',
       \]
 
 " coc-vimtex

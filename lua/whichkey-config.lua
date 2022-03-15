@@ -13,9 +13,11 @@ wk.register({
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
+    k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
     j = { "<cmd>Telescope session-lens search_session<cr>", "search session" },
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
+    -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
@@ -121,6 +123,7 @@ wk.register({
   ["<space>"] = {
     ["l"] = {
       ["c"] = { ":Commentary<cr>", "comment code" },
+      ["f"] = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
     },
     ["s"] = { ":lua require('spectre').open_visual()<cr>", "search" }
   },
