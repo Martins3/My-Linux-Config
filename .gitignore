@@ -1,10 +1,2 @@
-*.c
-*.out
-*.spl
-.netrwhist 
-spell
-gitconfig
-.profile
-.yaourtrc
 .ccls-cache
 plugin
