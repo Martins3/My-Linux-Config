@@ -18,9 +18,6 @@
 
 ## copy mode
 使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式[^1]
-- 使用 `v`, `V` 和 `Ctrl v` 分别实现字符选，行选，块选
-- 使用 `y` 复制
-- 使用 `ctrl shift v` 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的
 
 > Although tmux copy mode doesn't translate to 100% vim navigation keys - overall they are good enough to feel natural. Some navigation keys that you can use:
 > - h / j / k / l to move left/down/up/right
@@ -33,6 +30,10 @@
 > etc
 > 
 >  https://dev.to/iggredible/the-easy-way-to-copy-text-in-tmux-319g
+
+- 使用 `v`, `V` 和 `Ctrl v` 分别实现字符选，行选，块选
+- 使用 `y` 复制
+- 使用 `ctrl shift v` 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的
 
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 
