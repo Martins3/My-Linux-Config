@@ -8,3 +8,14 @@ patch:
 
     - derive/([ei])n$/$1ng/            # en => eng, in => ing
     - derive/([ei])ng$/$1n/            # eng => en, ing => in
+
+  switches:
+    - name: ascii_mode
+      reset: 0                         # 默认中文
+      states: [ 中文, 英文 ]
+    - name: full_shape
+      states: [ 半角, 全角 ]
+    - name: zh_simp
+      states: [ 漢字, 汉字 ]
+    - name: ascii_punct
+      states: [ 。，, ．， ]
