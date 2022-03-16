@@ -40,6 +40,7 @@ let g:mapleader = ','
 " 设置主题
 colorscheme tokyonight
 let g:everforest_background = 'hard'
+colorscheme everforest
 
 " 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
 noremap <leader>q q

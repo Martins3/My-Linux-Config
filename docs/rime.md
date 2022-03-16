@@ -39,7 +39,10 @@ fcitx -r
 ## 设置皮肤
 默认皮肤就很简洁，没有必要浪费时间。
 
-## 参考
+## 参考 && TODO
 - https://github.com/BlueSky-07/Shuang 双拼練習
 - https://mogeko.me/posts/zh-cn/031/
 - [ ] https://sspai.com/post/63916
+- [ ] 有没有自动 correction 的操作
+- [ ] 如何保持总是只有 rime,似乎从 vim 切换到 chrome 中的时候,会切换成系统的英文输入法
+- [ ] 似乎并不是默认进入到中文输入中的
