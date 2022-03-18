@@ -14,6 +14,8 @@ require("packer").startup({
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
     use 'mhinz/vim-startify' -- 启动界面
+    use 'beauwilliams/focus.nvim'
+
     -- use 'vim-airline/vim-airline' -- 状态栏
     -- use 'vim-airline/vim-airline-themes'
     use 'nvim-lualine/lualine.nvim'
