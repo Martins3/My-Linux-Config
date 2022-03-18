@@ -9,7 +9,7 @@
         "exclude": [
           "html",
           "json",
-          "txt"
+          "yml"
         ]
       }
     ]
