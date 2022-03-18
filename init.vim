@@ -7,13 +7,6 @@ set nowrap
 " 自动进入到新打开的窗口
 set splitbelow
 set splitright
-" 智能的 tab
-set tabstop=2
-set shiftwidth=2
-set smarttab
-set expandtab
-set smartindent
-set autoindent
 " 打开行号
 set number
 " 高亮光标所在行
