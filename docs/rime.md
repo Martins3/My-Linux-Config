@@ -11,16 +11,15 @@ git clone https://github.com/rime/plum
 cd plum
 rime_dir="$HOME/.config/fcitx/rime" bash rime-install
 ```
-
-![DeepinScreenshot_microsoft-edge-dev_20220314215124](https://user-images.githubusercontent.com/16731244/158186099-eb49d51b-96b8-4656-9916-2d2fe557bc30.png)
+<details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186099-eb49d51b-96b8-4656-9916-2d2fe557bc30.png" /> </p> </details>
 
 ## 配置一下 fcitx
-![DeepinScreenshot_microsoft-edge-dev_20220314215115](https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png)
+<details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" /> </p> </details>
 
 这样 `ctrl space` 唤出 rime 输入法,而 shift 切换的 rime 的中文输入和英文输入.
 
 ## 添加配置
-参考了一下 [Iorest](https://github.com/Iorest/rime-setting),感觉有点庞杂.
+参考了一下 [Iorest](https://github.com/Iorest/rime-setting),感觉有点庞杂,所以我自己写了[一个](https://github.com/Martins3/My-Linux-Config/tree/master/rime)
 
 ## vim 中自动切换输入法
 参考 [h-hg/fcitx.nvim](https://github.com/h-hg/fcitx.nvim) 注意插件中的文档要求配置输入法的顺序
@@ -34,7 +33,10 @@ rime_dir="$HOME/.config/fcitx/rime" bash rime-install
 fcitx -r
 
 ## 设置简体
-在出现 ui 的时候, Fn4 可以调整
+在出现 ui 的时候, Fn4 可以调整, 或者使用
+```
+ctrl `
+```
 
 ## 设置皮肤
 默认皮肤就很简洁，没有必要浪费时间。
@@ -45,4 +47,5 @@ fcitx -r
 - [ ] https://sspai.com/post/63916
 - [ ] 有没有自动 correction 的操作
 - [ ] 如何保持总是只有 rime,似乎从 vim 切换到 chrome 中的时候,会切换成系统的英文输入法
-- [ ] 似乎并不是默认进入到中文输入中的
+- [ ] 似乎并不是默认进入到中文输入中的,是不是 fcitx-vim 的原因
+- [ ] rime 能不能像 sogou 一样又一个明显一点的 indicator 说明当前是中文还是英文
