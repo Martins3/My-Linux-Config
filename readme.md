@@ -25,7 +25,7 @@ ln -s .dotfiles/scripts/tmux.conf .tmux.conf
 ln -s .dotfiles/scripts/alacritty.yml .alacritty.yml
 ln -s .dotfiles/scripts/tigrc.conf .tigrc
 ```
-neovim config is a little complex, see the [Dockerfile](./scripts/ubuntu/Dockerfile)
+neovim config is a little complex, see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
 
 ## 🤝 Contributing
 
