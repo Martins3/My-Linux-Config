@@ -8,11 +8,11 @@
 ## 📚 Document
 
 * 中文文档
-  * [2022 年 vim 的 C/C++ 配置](https://martins3.github.io/My-Linux-Config/nvim.html)
-  * [极简 Tmux 配置](https://martins3.github.io/My-Linux-Config/tmux.html)
-  * [Rime 输入法配置](https://martins3.github.io/My-Linux-Config/rime.html)
-  * [tig 基于 vim 模式的快捷键介绍](https://martins3.github.io/My-Linux-Config/tig.html)
-  * [极简 Alacritty 配置](https://martins3.github.io/My-Linux-Config/alacritty.html)
+  * [2022 年 vim 的 C/C++ 配置](./docs/nvim.md)
+  * [极简 Tmux 配置](./docs/tmux.md)
+  * [Rime 输入法配置](./docs/rime.md)
+  * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
+  * [极简 Alacritty 配置](./docs/alacritty.md)
   * Awesome 桌面环境配置
   * NixOs 配置
 * English version comming soon.
