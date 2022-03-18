@@ -77,3 +77,6 @@ let g:auto_session_pre_restore_cmds = ["BookmarkLoad .vim-bookmarks"]
 
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_no_default_key_mappings = 1
+
+" 默认不要折叠 markdown
+let g:vim_markdown_folding_disabled = 1
