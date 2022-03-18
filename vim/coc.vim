@@ -182,9 +182,9 @@ let s:coc_extensions = [
       \ 'coc-json',
       \ 'coc-translator',
       \ 'coc-r-lsp',
+      \ 'coc-vimtex'
       \]
 
-" coc-vimtex
 for extension in s:coc_extensions
   call coc#add_extension(extension)
 endfor

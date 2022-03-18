@@ -65,6 +65,8 @@ require("packer").startup({
     -- 时间管理
     use 'nvim-orgmode/orgmode' -- 日程管理
     use 'wakatime/vim-wakatime' -- 用于统计代码时间
+    -- latex
+    use 'lervag/vimtex'
     -- 其他
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
