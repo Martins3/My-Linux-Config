@@ -21,7 +21,6 @@ wk.register({
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
-    j = { "<cmd>Telescope session-lens search_session<cr>", "search session" },
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard

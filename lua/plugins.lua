@@ -20,7 +20,7 @@ require("packer").startup({
     use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
     use 'simeji/winresizer' -- 更加方便的调节窗口的大小
     use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
-    use 'romgrk/fzy-lua-native' -- wilder 的依赖
+    use 'romgrk/fzy-lua-native' -- wilder.nvim 的依赖
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'
@@ -56,9 +56,6 @@ require("packer").startup({
     -- c/c++
     use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
-    -- session
-    use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
-    use 'rmagatti/session-lens' -- 搜索所有的 sessions
     -- 书签
     use 'MattesGroeger/vim-bookmarks'
     use 'tom-anders/telescope-vim-bookmarks.nvim' -- 辅助书签的搜索
@@ -72,5 +69,6 @@ require("packer").startup({
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
     use 'andymass/vim-matchup' -- 高亮匹配的元素，例如 #if 和 #endif
     use 'h-hg/fcitx.nvim' -- 自动切换输入法
+    use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
   end,
 })

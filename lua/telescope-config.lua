@@ -47,4 +47,3 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('heading')
-require("telescope").load_extension("session-lens")
