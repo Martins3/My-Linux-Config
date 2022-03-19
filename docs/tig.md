@@ -27,4 +27,5 @@ bind status D ?@rm %(file)
 ## TODO
 - [ ] 介绍一下 uu(x) ur ul 的使用
 - [ ] 测试 cherry pick
+- [ ] 测试 mrege 也是一个小问题 https://github.com/christoomey/vim-conflicted
 - [ ] 还不如直接将 git.md 和 github.md 使用总结到一起
