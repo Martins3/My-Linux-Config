@@ -12,7 +12,13 @@ wk.register({
   ["<leader>"] = {
     a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action" },
     b = { "<cmd>Telescope buffers<cr>", "search buffers" },
-    c = { "<cmd>Telescope colorscheme<cr>", "search colorscheme" },
+    c = {
+      name="+coc",
+      x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region"},
+      c = { "<Plug>(coc-codeaction)", "applying codeAction to the current buffer"},
+      f = { "<Plug>(coc-fix-current)", "apply AutoFix to problem on the current line"},
+      a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line"}
+    },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
