@@ -15,9 +15,6 @@ require("packer").startup({
     use 'kyazdani42/nvim-tree.lua' -- 文件树
     use 'mhinz/vim-startify' -- 启动界面
     use 'beauwilliams/focus.nvim' -- 自动调整 window 大小
-
-    -- use 'vim-airline/vim-airline' -- 状态栏
-    -- use 'vim-airline/vim-airline-themes'
     use 'nvim-lualine/lualine.nvim'
     use 'akinsho/bufferline.nvim' -- buffer
     use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
@@ -55,6 +52,7 @@ require("packer").startup({
     use 'windwp/nvim-autopairs' -- 自动括号匹配
     use 'honza/vim-snippets' -- 安装公共的的 snippets
     use 'mbbill/undotree' -- 显示编辑的历史记录
+    use 'mg979/vim-visual-multi' -- 同时编辑多个位置
     -- c/c++
     use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
