@@ -114,6 +114,7 @@ let s:coc_extensions = [
       \ 'coc-translator',
       \ 'coc-r-lsp',
       \ 'coc-vimtex',
+      \ 'coc-texlab',
       \]
 
 for extension in s:coc_extensions
