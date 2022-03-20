@@ -8,6 +8,7 @@ git commit -m "your awesome commit message"
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [gitk](https://git-scm.com/docs/gitk/)
 - [sublime merge](https://www.sublimemerge.com/)
+- [forgit](https://github.com/wfxr/forgit)
 
 tig 相比这些而言而言，代码开源，功能强大，界面简洁，可以集成到 vim 中使用
 
