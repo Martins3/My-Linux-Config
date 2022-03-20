@@ -61,10 +61,10 @@ wk.register({
 
     ['a'] = {
       name = "+misc",
-      s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server" },
       a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server" },
       d = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space" },
       r = { "<cmd>SourcetrailRefresh<cr>", "sourcetrail refresh" },
+      s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server" },
       t = { "<Plug>(coc-translator-p)", "translate current word" },
     },
     ['b'] = {
@@ -75,22 +75,22 @@ wk.register({
     ['l'] = {
       name = "+language",
       c = { "<cmd>Commentary<cr>", "comment code" },
-      r = { "<cmd>call QuickRun()<cr>", "run code" },
       f = { "<cmd>call CocAction('format')<cr>", "format current buffer" },
       n = { "<Plug>(coc-rename)", "rename" },
+      r = { "<cmd>call QuickRun()<cr>", "run code" },
     },
     ["q"] = { "<cmd>qa<cr>", "close vim" },
     ["x"] = { "<cmd>FloatermNew ipython<cr>", "calculated" },
     ["g"] = {
       name = "+git",
-      m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
-      s = { "<cmd>FloatermNew tig status<cr>", "git status" },
+      a = { "<cmd>Git add -A<cr>", "git stage all changes" },
       b = { "<cmd>Git blame<cr>", "git blame" },
       c = { "<cmd>Git commit<cr>", "git commit" },
       l = { "<cmd>FloatermNew tig %<cr>", "log of file" },
       L = { "<cmd>FloatermNew tig<cr>", "log of project" },
+      m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
       p = { "<cmd>Git push<cr>", "git push" },
-      a = { "<cmd>Git add -A<cr>", "git stage all changes" },
+      s = { "<cmd>FloatermNew tig status<cr>", "git status" },
     },
     ["s"] = {
       name = "+search",
@@ -126,8 +126,8 @@ wk.register({
   },
   ["m"] = {
     name = "+bookmarks",
-    m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     a = { "<cmd>Telescope vim_bookmarks all<cr>", "list marks in project" },
+    m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
   ["<tab>"] = {":wincmd w<cr>", "switch window" },
