@@ -16,7 +16,7 @@ let g:bookmark_auto_close = 1
 " 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
 autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
 
-" 让光标自动进入到popup window 中间
+" 让光标自动进入到 popup window 中间
 let g:git_messenger_always_into_popup = v:true
 
 " 设置默认的 pdf 阅览工具
@@ -37,14 +37,24 @@ endf
 func! QuickRun()
   exec "w"
   let ext = expand("%:e")
-  if ext ==# "md"
-    exec "MarkdownPreview"
-  elseif ext ==# "lua"
+  if ext ==# "lua"
     exec "source %"
   elseif ext ==# "tex"
     exec "VimtexCompile"
   else
     exec "RunCode"
+  endif
+endf
+
+func! Preivew()
+  exec "w"
+  let ext = expand("%:e")
+  if ext ==# "md"
+    exec "MarkdownPreview"
+  elseif ext ==# "tex"
+    exec "VimtexView"
+  else
+    echo "no preview"
   endif
 endf
 

@@ -78,6 +78,7 @@ wk.register({
       f = { "<cmd>call CocAction('format')<cr>", "format current buffer" },
       n = { "<Plug>(coc-rename)", "rename" },
       r = { "<cmd>call QuickRun()<cr>", "run code" },
+      p = { "<cmd>call Preivew()<cr>", "preview" },
     },
     ["q"] = { "<cmd>qa<cr>", "close vim" },
     ["x"] = { "<cmd>FloatermNew ipython<cr>", "calculated" },
