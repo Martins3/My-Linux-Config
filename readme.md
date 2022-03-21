@@ -13,6 +13,7 @@
   * [Rime 输入法配置](./docs/rime.md)
   * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   * [极简 Alacritty 配置](./docs/alacritty.md)
+  * zathura
   * Awesome 桌面环境配置
   * NixOs 配置
 * English version comming soon.
@@ -21,9 +22,10 @@
 ```sh
 cd ~
 git clone https://github.com/Martins3/My-Linux-config .dotfiles
-ln -s .dotfiles/scripts/tmux.conf .tmux.conf
-ln -s .dotfiles/scripts/alacritty.yml .alacritty.yml
-ln -s .dotfiles/scripts/tigrc.conf .tigrc
+ln -s ~/.dotfiles/scripts/tmux.conf .tmux.conf
+ln -s ~/.dotfiles/scripts/alacritty.yml .alacritty.yml
+ln -s ~/.dotfiles/scripts/tigrc.conf .tigrc
+ln -s ~/.dotfiles/scripts/zathurarc ~/.config/zathura/zathurarc
 ```
 neovim config is a little complex, see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
 
