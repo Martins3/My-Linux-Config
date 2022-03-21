@@ -14,7 +14,6 @@ require("packer").startup({
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
     use 'mhinz/vim-startify' -- 启动界面
-    use 'beauwilliams/focus.nvim' -- 自动调整 window 大小
     use 'nvim-lualine/lualine.nvim'
     use 'akinsho/bufferline.nvim' -- buffer
     use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能

@@ -69,4 +69,3 @@ lua require 'statusline'
 lua require 'code-runner-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
-lua require("focus").setup({excluded_filetypes = { 'fterm', 'term', 'toggleterm', 'terminal', 'floaterm'}})
