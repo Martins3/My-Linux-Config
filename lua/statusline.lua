@@ -29,21 +29,6 @@ local function trailing_space()
   return space ~= 0 and "TS:"..space or ""
 end
 
--- https://github.com/nvim-lualine/lualine.nvim/issues/328
-local function getWords()
-  if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" then
-    if vim.fn.wordcount().visual_words == 1 then
-      return tostring(vim.fn.wordcount().visual_words) .. " word"
-    elseif not (vim.fn.wordcount().visual_words == nil) then
-      return tostring(vim.fn.wordcount().visual_words) .. " words"
-    else
-      return tostring(vim.fn.wordcount().words) .. " words"
-    end
-  else
-    return ""
-  end
-end
-
 require('lualine').setup({
     options = {
         globalstatus = false
@@ -51,7 +36,7 @@ require('lualine').setup({
     extensions = { 'nvim-tree' },
     sections = {
       lualine_x = {'progress'},
-      lualine_y = {'location', getWords},
+      lualine_y = {'location'},
       lualine_z = {trailing_space, indent}
     }
 })
