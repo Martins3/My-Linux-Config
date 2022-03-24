@@ -2,13 +2,31 @@ priority -50
 # notes based on https://wangdoc.com/bash/
 # bible based on https://github.com/dylanaraps/pure-bash-bible
 
+snippet note_here "heredoc"
+# 如果不希望发生变量替换，可以把 Here 文档的开始标记放在单引号之中。
+# << '_EOF_'
+# text
+# _EOF_
+
+# 将 heredoc 导入到文档中
+# cat << _EOF_ > /tmp/yourfile
+# text
+# _EOF_
+
+# 此外 here string
+# $ cat <<< 'hi there'
+# 等同于
+# $ echo 'hi there' | cat
+endsnippet
+
+
 snippet note_glob "C style for loop"
 # ?(pattern-list)：匹配零个或一个模式。
 # *(pattern-list)：匹配零个或多个模式。
 # +(pattern-list)：匹配一个或多个模式。
 # @(pattern-list)：只匹配一个模式。
 # !(pattern-list)：匹配给定模式以外的任何内容。
-# 
+#
 # 比如匹配
 # shopt -s extglob nullglob
 # for i in rime/*.@(yaml|txt);do

@@ -35,6 +35,9 @@ require('lualine').setup({
     },
     extensions = { 'nvim-tree' },
     sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {'filename', 'g:coc_status'},
       lualine_x = {'progress'},
       lualine_y = {'location'},
       lualine_z = {trailing_space, indent}
