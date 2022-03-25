@@ -47,9 +47,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ## 一些高级操作
 - [pair programming](https://iagoleal.com/posts/tmux-pair-programming/)
 
-## TODO
-- [ ] 怎么将整个屏幕或者所有的缓冲区拷贝到文件来着.
-
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 
 [^1]: [zt/zz/zb 似乎没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)
