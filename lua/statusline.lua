@@ -31,7 +31,7 @@ end
 
 require('lualine').setup({
     options = {
-        globalstatus = false
+        globalstatus = true
     },
     extensions = { 'nvim-tree' },
     sections = {
