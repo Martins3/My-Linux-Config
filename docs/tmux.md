@@ -17,6 +17,7 @@
 - `prefix d` : 等价于 tmux detach
 - `prefix l` : 切换到 last window
 - `prefix &` : kill 当前的 window
+- `prefix x` : kill 当前的 pane
 
 ## copy mode
 使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式[^1]
@@ -43,6 +44,9 @@
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+## 定制 statusline
+感觉没必要，浪费时间
 
 ## 一些高级操作
 - [pair programming](https://iagoleal.com/posts/tmux-pair-programming/)
