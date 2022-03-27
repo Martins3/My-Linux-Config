@@ -119,11 +119,15 @@ wk.register({
   q = { "<cmd>q<cr>", "close window" },
   ["c"] = {
     name = "+window",
-    g = { "<cmd>vsp<cr>", "vertical split window" },
-    v = { "<cmd>sp<cr>", "horizontal split window" },
+    v = { "<cmd>vsp<cr>", "vertical split window" },
+    s = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "maximize current window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
-    n = { ":Vista!!<cr>", "toggle vista navigator" }
+    n = { ":Vista!!<cr>", "toggle vista navigator" },
+    h = { "<C-w>h", "go to the window left" },
+    j = { "<C-w>j", "go to the window below" },
+    k = { "<C-w>k", "go to the window up" },
+    l = { "<C-w>l", "go to the window right" },
   },
   ["m"] = {
     name = "+bookmarks",
