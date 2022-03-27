@@ -16,6 +16,8 @@ set termguicolors
 set noswapfile
 " 让退出 vim 之后 undo 消息不消失
 set undofile
+" 只有一个全局 status line，而不是每一个 window 一个
+set laststatus=3
 " 当打开文件的时候，自动进入到上一次编辑的位置
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -51,6 +53,7 @@ let s:core_conf_files = [
       \ 'ccls.vim',
       \ 'wilder.vim',
       \ 'startify.vim',
+      \ 'airline.vim',
       \ ]
 
 " \ 'airline.vim',
@@ -65,7 +68,6 @@ lua require 'orgmode-config'
 lua require 'telescope-config'
 lua require 'tree-config'
 lua require 'whichkey-config'
-lua require 'statusline'
 lua require 'code-runner-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}

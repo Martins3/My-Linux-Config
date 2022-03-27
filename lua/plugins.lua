@@ -14,7 +14,8 @@ require("packer").startup({
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
     use 'mhinz/vim-startify' -- 启动界面
-    use 'nvim-lualine/lualine.nvim'
+    use 'vim-airline/vim-airline' -- 状态栏
+    use 'vim-airline/vim-airline-themes' -- 状态栏的主题
     use 'akinsho/bufferline.nvim' -- buffer
     use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
     use 'simeji/winresizer' -- 更加方便的调节窗口的大小
