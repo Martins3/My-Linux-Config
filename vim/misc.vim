@@ -94,5 +94,5 @@ let g:bookmark_no_default_key_mappings = 1
 " 默认不要折叠 markdown
 let g:vim_markdown_folding_disabled = 1
 
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'c', 'cpp']
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'c', 'cpp', 'diff']
 let g:markdown_minlines = 200
