@@ -119,7 +119,7 @@ wk.register({
   q = { "<cmd>q<cr>", "close window" },
   ["c"] = {
     name = "+window",
-    v = { "<cmd>vsp<cr>", "vertical split window" },
+    g = { "<cmd>vsp<cr>", "vertical split window" },
     s = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "maximize current window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
