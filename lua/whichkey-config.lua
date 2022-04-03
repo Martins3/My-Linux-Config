@@ -120,7 +120,7 @@ wk.register({
   ["c"] = {
     name = "+window",
     g = { "<cmd>vsp<cr>", "vertical split window" },
-    s = { "<cmd>sp<cr>", "horizontal split window" },
+    f = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "maximize current window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { ":Vista!!<cr>", "toggle vista navigator" },
