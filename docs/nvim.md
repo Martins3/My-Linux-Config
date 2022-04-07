@@ -13,10 +13,10 @@
 * [安装](#安装)
         * [安装各种依赖](#安装各种依赖)
         * [安装 nvim](#安装-nvim)
-        * [安装 yarn 和 nodejs](#安装-yarn-和-nodejs)
+        * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
         * [安装 ccls](#安装-ccls)
         * [安装 nerdfonts](#安装-nerdfonts)
-        * [安装 github cli](#安装-github-cli)
+        * [[可选] 安装 github cli](#可选-安装-github-cli)
         * [安装 bear](#安装-bear)
         * [安装包管理器 Packer](#安装包管理器-packer)
         * [安装本配置](#安装本配置)
@@ -145,6 +145,7 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 整个环境的安装主要是 neovim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
 基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
+
 #### 安装各种依赖
 ```sh
 sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
@@ -181,7 +182,9 @@ See ":help feature-compile"
 Run :checkhealth for more info
 ```
 
-#### 安装 yarn 和 nodejs
+#### 安装 yarn 和 Node.js
+coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
+
 使用 nvm 来安装获取 nodejs
 ```sh
 # https://github.com/nvm-sh/nvm
@@ -229,14 +232,18 @@ sudo make install
 ```
 
 #### 安装 nerdfonts
-- 需要修改 terminal 的字体位 nerdfonts 中才不会出现乱码。 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
+先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
+
+注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。
 ```sh
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
 unzip Hasklig.zip -d ~/.fonts
 fc-cache -fv
 ```
 
-#### 安装 github cli
+#### [可选] 安装 github cli
+通过 pwntester/octo.nvim 可以在 neovim 中使用 github cli
+
 ```sh
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
@@ -245,19 +252,19 @@ sudo apt install gh
 ```
 
 #### 安装 bear
-ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 compile_commands.json 来构建索引数据。
+ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
 
 ```sh
 sudo apt install bear
 ```
 
-注：使用 bear 生成 compile_commands.json 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
+注：使用 bear 生成 `compile_commands.json` 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
-2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 compile_commands.json, 直接拷贝到项目的顶层目录就可以了。
+2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 `compile_commands.json`, 直接拷贝到项目的顶层目录就可以了。
 2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 compile_commands.json 的脚本
 4. see [ccls documentation](https://github.com/MaskRay/ccls/wiki/Project-Setup) for more
 
-一个工程只要生成 compile_commands.json，那么一切就大功告成了。
+一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
 #### 安装包管理器 Packer
 ```sh
@@ -292,7 +299,7 @@ nvim
 <details> <summary>click me</summary> <p align="center"> <img src="./img/coc-install.png" /> </p> </details>
 
 #### checkhealth 检查
-在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, 比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题。neovim 的 python 的没有安装可能导致一些插件不可用。
+在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
 
 例如下面是我的配置的截图。
 <details> <summary>click me</summary> <p align="center"> <img src="./img/checkhealth.png" /> </p> </details>
@@ -344,6 +351,7 @@ map <leader>d "+d
 ```
 
 `,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
+
 #### 符号搜索
 利用 [telescope](https://github.com/nvim-telescope) 快速搜索 file，buffer，function 等
 
@@ -377,14 +385,14 @@ map <leader>d "+d
 
 | key binding        | function                                         |
 |--------------------|--------------------------------------------------|
-| `<space>` `l`  `r` | 格式化当前文件，支持 C/C++ , Rust 和 Python 等。 |
+| `<space>` `l`  `f` | 格式化当前文件，支持 C/C++ , Rust 和 Python 等。 |
 
 可以通过一个工程的目录下的 `.clang-format` 来实现配置 C/C++ 的格式样式:
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
 #### 重命名
-有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `r` 在需要重命名的元素上，即可批量重命名。
+有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `n` 在需要重命名的元素上，即可批量重命名。
 
 #### 字符串搜索和替换
 
@@ -474,6 +482,7 @@ endsnippet
 <details> <summary>click me</summary> <p align="center"> <img src="./img/autocomplete.png" /> </p> </details>
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
+
 #### git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
 1. [tig](https://github.com/jonas/tig)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在 vim 中间运行。
@@ -543,7 +552,7 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 | binding           | function             |
 |-------------------|----------------------|
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
-| `<space>` `l` `r` | 预览                 |
+| `<space>` `l` `p` | 预览                 |
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -615,7 +624,7 @@ setxkbmap -option caps:swapescape
   - `:g!/pattern/command` 对于不匹配的操作
 - `?` 是向后搜索，`/` 是向前搜索
 - `:put =range(1, 10)` 插入 1 到 10 的数值
-- 对于选中的 virtual block `S` `str` 可以在 virtual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
+- 对于选中的 visual block `S` `str` 可以在 visual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
 - [获取历史命令](https://stackoverflow.com/questions/13405959/how-do-i-get-a-list-of-the-history-of-all-the-vim-commands-i-ran) `,``q``:`
 
 参考:
