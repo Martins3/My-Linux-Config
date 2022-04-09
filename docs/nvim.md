@@ -11,41 +11,41 @@
 * [为什么使用 coc.nvim](#为什么使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
-        * [安装各种依赖](#安装各种依赖)
-        * [安装 nvim](#安装-nvim)
-        * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
-        * [安装 ccls](#安装-ccls)
-        * [安装 nerdfonts](#安装-nerdfonts)
-        * [[可选] 安装 github cli](#可选-安装-github-cli)
-        * [安装 bear](#安装-bear)
-        * [安装包管理器 Packer](#安装包管理器-packer)
-        * [安装本配置](#安装本配置)
-        * [checkhealth 检查](#checkhealth-检查)
+    * [安装各种依赖](#安装各种依赖)
+    * [安装 nvim](#安装-nvim)
+    * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
+    * [安装 ccls](#安装-ccls)
+    * [安装 nerdfonts](#安装-nerdfonts)
+    * [[可选] 安装 github cli](#可选-安装-github-cli)
+    * [安装 bear](#安装-bear)
+    * [安装包管理器 Packer](#安装包管理器-packer)
+    * [安装本配置](#安装本配置)
+    * [checkhealth 检查](#checkhealth-检查)
 * [升级](#升级)
 * [基本操作](#基本操作)
-        * [退出](#退出)
-        * [复制粘贴](#复制粘贴)
-        * [符号搜索](#符号搜索)
-        * [定义和引用](#定义和引用)
-        * [注释](#注释)
-        * [格式化](#格式化)
-        * [重命名](#重命名)
-        * [字符串搜索和替换](#字符串搜索和替换)
-        * [file tree](#file-tree)
-        * [window](#window)
-        * [buffer](#buffer)
-        * [导航](#导航)
-        * [文档](#文档)
-        * [代码段](#代码段)
-        * [自动补全](#自动补全)
-        * [git 集成](#git-集成)
-        * [github 集成](#github-集成)
-        * [调试集成](#调试集成)
-        * [vim cmdline](#vim-cmdline)
-        * [终端](#终端)
-        * [一键运行代码](#一键运行代码)
-        * [一键注释代码](#一键注释代码)
-        * [markdown 集成](#markdown-集成)
+    * [退出](#退出)
+    * [复制粘贴](#复制粘贴)
+    * [符号搜索](#符号搜索)
+    * [定义和引用](#定义和引用)
+    * [注释](#注释)
+    * [格式化](#格式化)
+    * [重命名](#重命名)
+    * [字符串搜索和替换](#字符串搜索和替换)
+    * [file tree](#file-tree)
+    * [window](#window)
+    * [buffer](#buffer)
+    * [导航](#导航)
+    * [文档](#文档)
+    * [代码段](#代码段)
+    * [自动补全](#自动补全)
+    * [git 集成](#git-集成)
+    * [github 集成](#github-集成)
+    * [调试集成](#调试集成)
+    * [vim cmdline](#vim-cmdline)
+    * [终端](#终端)
+    * [一键运行代码](#一键运行代码)
+    * [一键注释代码](#一键注释代码)
+    * [markdown 集成](#markdown-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -146,7 +146,7 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
 
-#### 安装各种依赖
+### 安装各种依赖
 ```sh
 sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
 
@@ -157,7 +157,7 @@ sudo apt install -y libclang-10-dev clang llvm
 sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 ```
 
-#### 安装 nvim
+### 安装 nvim
 - 当前配置需要 neovim 0.5 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
@@ -182,7 +182,7 @@ See ":help feature-compile"
 Run :checkhealth for more info
 ```
 
-#### 安装 yarn 和 Node.js
+### 安装 yarn 和 Node.js
 coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
 
 使用 nvm 来安装获取 nodejs
@@ -216,7 +216,7 @@ https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
 
-#### 安装 ccls
+### 安装 ccls
 ```txt
 ➜  Vn git:(master) ✗ sudo apt install ccls
 ```
@@ -231,7 +231,7 @@ cd Release
 sudo make install
 ```
 
-#### 安装 nerdfonts
+### 安装 nerdfonts
 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
 
 注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。
@@ -241,7 +241,7 @@ unzip Hasklig.zip -d ~/.fonts
 fc-cache -fv
 ```
 
-#### [可选] 安装 github cli
+### [可选] 安装 github cli
 通过 pwntester/octo.nvim 可以在 neovim 中使用 github cli
 
 ```sh
@@ -251,7 +251,7 @@ sudo apt update
 sudo apt install gh
 ```
 
-#### 安装 bear
+### 安装 bear
 ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
 
 ```sh
@@ -266,12 +266,12 @@ sudo apt install bear
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
-#### 安装包管理器 Packer
+### 安装包管理器 Packer
 ```sh
 git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 ```
 
-#### 安装本配置
+### 安装本配置
 
 nvim 的配置在 ~/.config/nvim 中，
 
@@ -298,7 +298,7 @@ nvim
 再次打开之后，coc 的各种插件会自动安装:
 <details> <summary>click me</summary> <p align="center"> <img src="./img/coc-install.png" /> </p> </details>
 
-#### checkhealth 检查
+### checkhealth 检查
 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
 
 例如下面是我的配置的截图。
@@ -326,13 +326,13 @@ let g:mapleader = ','
 就会出现弹出下面的窗口显示进一步的使用:
 <details> <summary>click me</summary> <p align="center"> <img src="./img/key.png" /> </p> </details>
 
-#### 退出
+### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
 
 1. 使用命令 `:q` 可以退出一个窗口，这个命令被映射为 `q`。
 2. 我使用命令 `:xa` 退出 vim。 `x` 表示保存并且关闭 buffer，`a`表示运用于所有的。这个命令被在配置中被映射为 `<space>` `q` 了。
 
-#### 复制粘贴
+### 复制粘贴
 关于剪切板，可以 `:h registers`
 
 > 8. Selection registers `"*` and `"+`
@@ -352,7 +352,7 @@ map <leader>d "+d
 
 `,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
 
-#### 符号搜索
+### 符号搜索
 利用 [telescope](https://github.com/nvim-telescope) 快速搜索 file，buffer，function 等
 
 | key binding | function                 |
@@ -366,14 +366,14 @@ map <leader>d "+d
 在整个 Linux 工程中间搜索 sysclone 这个符号:
 <details> <summary>click me</summary> <p align="center"> <img src="./img/outline-symbols.png" /> </p> </details>
 
-#### 定义和引用
+### 定义和引用
 
 | key binding | function                                                                      |
 |-------------|-------------------------------------------------------------------------------|
 | `g` `d`     | 跳转到定义                                                                    |
 | `g` `r`     | 当只有一个 ref 的时候，直接跳转，当存在多个的时候，显示如下窗口，可以逐个选择 |
 
-#### 注释
+### 注释
 
 | key binding | function                                             |
 |-------------|------------------------------------------------------|
@@ -381,7 +381,7 @@ map <leader>d "+d
 
 <details> <summary>click me</summary> <p align="center"> <img src="./img/comment.png" /> </p> </details>
 
-#### 格式化
+### 格式化
 
 | key binding        | function                                         |
 |--------------------|--------------------------------------------------|
@@ -391,10 +391,10 @@ map <leader>d "+d
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
-#### 重命名
+### 重命名
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `n` 在需要重命名的元素上，即可批量重命名。
 
-#### 字符串搜索和替换
+### 字符串搜索和替换
 
 | key binding      | function                                        |
 |------------------|-------------------------------------------------|
@@ -403,7 +403,7 @@ map <leader>d "+d
 | `leader` `g`     | 实时动态搜索(grep on the fly)                   |
 | `leader` `G`     | 实时动态搜索(grep on the fly)**光标所在**字符串 |
 
-#### file tree
+### file tree
 
 | key binding     | function                                              |
 |-----------------|-------------------------------------------------------|
@@ -417,7 +417,7 @@ map <leader>d "+d
 | `l`             | 打开目录或者文档                                      |
 | `a`             | 创建文件(如果输入的名称结尾有 / ，那么就是创建文件夹) |
 
-#### window
+### window
 因为 window leader 键位被我重新映射为 `c`
 
 | key binding | function       |
@@ -428,7 +428,7 @@ map <leader>d "+d
 | `q`         | 关闭窗口       |
 | `c` `m`     | 当前窗口最大化 |
 
-#### buffer
+### buffer
 
 | key binding       | function                                                                  |
 |-------------------|---------------------------------------------------------------------------|
@@ -437,7 +437,7 @@ map <leader>d "+d
 | `<Space>` `b` `c` | 关闭其他已经保存的 buffer                                                 |
 | `<Space>` `b` `d` | 关闭当前 buffer                                                           |
 
-#### 导航
+### 导航
 1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
 <details> <summary>click me</summary> <p align="center"> <img src="./img/search-files.png" /> </p> </details>
 
@@ -445,7 +445,7 @@ map <leader>d "+d
 use 'navarasu/onedark.nvim'
 <details> <summary>click me</summary> <p align="center"> <img src="./img/outline.png" /> </p> </details>
 
-#### 文档
+### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
 ```sh
 pip install cppman
@@ -456,7 +456,7 @@ cppman -c
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
-#### 代码段
+### 代码段
 基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
@@ -477,19 +477,19 @@ endsnippet
 这样，然后每次只需要输入 import 这些内容就自动出现了，效果如下。
 <details> <summary>click me</summary> <p align="center"> <img src="./img/snippet.png" /> </p> </details>
 
-#### 自动补全
+### 自动补全
 自动补全是自动触发的，coc.nvim 无需另外的配置，效果如下。
 <details> <summary>click me</summary> <p align="center"> <img src="./img/autocomplete.png" /> </p> </details>
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
 
-#### git 集成
+### git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
 1. [tig](https://github.com/jonas/tig)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在 vim 中间运行。
 2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
 3. [vim-fugitive](https://github.com/tpope/vim-fugitive) : 查看每一行的 blame, 提交代码等
 
-#### github 集成
+### github 集成
 通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
 而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
 
@@ -499,7 +499,7 @@ endsnippet
 例如可以直接查看本项目中的 issue
 <details> <summary>click me</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
 
-#### 调试集成
+### 调试集成
 现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:
 1. https://github.com/cyrus-and/gdb-dashboard
 2. https://www.gdbgui.com/
@@ -512,12 +512,12 @@ endsnippet
 - http://qira.me/
 - https://github.com/osandov/drgn : meta 写的侧重于编程的 debuggers
 
-#### vim cmdline
+### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
 
 <details> <summary>click me</summary> <p align="center"> <img src="./img/wilder.png" /> </p> </details>
 
-#### 终端
+### 终端
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
@@ -526,7 +526,7 @@ endsnippet
 下面是在打开悬浮终端，并且运行 htop 的结果:
 <details> <summary>click me</summary> <p align="center"> <img src="./img/floaterm.png" /> </p> </details>
 
-#### 一键运行代码
+### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
 vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
@@ -541,13 +541,13 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 - 运行使用的命令
 <details> <summary>click me</summary> <p align="center"> <img src="./img/code-runner.png" /> </p> </details>
 
-#### 一键注释代码
+### 一键注释代码
 
 | binding           | function                         |
 |-------------------|----------------------------------|
 | `<space>` `l` `c` | 根据文件类型，自动注释选中的区间 |
 
-#### markdown 集成
+### markdown 集成
 
 | binding           | function             |
 |-------------------|----------------------|
