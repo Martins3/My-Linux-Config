@@ -22,7 +22,6 @@ let g:git_messenger_always_into_popup = v:true
 " 设置默认的 pdf 阅览工具
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal = "" " 关闭所有隐藏设置
-let g:vimtex_view_forward_search_on_start = 0
 
 " 因为 telescope-coc 没有实现 outline，所以只能靠 telescope-heading.nvim 实现
 func! Outline()

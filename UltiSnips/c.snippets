@@ -15,6 +15,10 @@ void huxueshi(void){
 }
 endsnippet
 
+snippet seapr "seabios debug"
+dprintf(1, "[huxueshi:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+endsnippet
+
 snippet Cimport "是时候重拳出击了!"
 #include <assert.h>  // assert
 #include <fcntl.h>   // open
