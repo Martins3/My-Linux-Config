@@ -13,7 +13,7 @@
 最简单的方法就是立刻使用起来，配置可以参考我个人的 [tmux.conf](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/tmux.conf) 配置
 这个脚本超级简单，而且每一个行都是有注释的。
 
-## 默认操作
+## 默认常用操作
 - `prefix d` : 等价于 tmux detach
 - `prefix l` : 切换到 last window
 - `prefix &` : kill 当前的 window
@@ -48,8 +48,15 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ## 定制 statusline
 感觉没必要，浪费时间
 
-## 一些高级操作
-- [pair programming](https://iagoleal.com/posts/tmux-pair-programming/)
+## 一些小技巧
+
+1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了
+```sh
+ssh -X -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
+```
+
+使用 -X 是远程的剪切板和本地是同步的，但是需要在远程机器上的一点点设置。
+https://superuser.com/questions/806637/xauth-not-creating-xauthority-file
 
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 
