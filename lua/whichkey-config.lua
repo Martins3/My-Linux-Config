@@ -121,6 +121,7 @@ wk.register({
     name = "+window",
     g = { "<cmd>vsp<cr>", "vertical split window" },
     f = { "<cmd>sp<cr>", "horizontal split window" },
+    d = { "<cmd>ToggleOnly<cr>", "delete other window" },
     m = { "<cmd>only<cr>", "maximize current window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { ":Vista!!<cr>", "toggle vista navigator" },
