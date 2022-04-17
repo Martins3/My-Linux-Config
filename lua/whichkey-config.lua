@@ -1,7 +1,7 @@
 local wk = require("which-key")
 
 wk.setup({
- plugins = {
+  plugins = {
     marks = false, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
   }
@@ -13,11 +13,11 @@ wk.register({
     a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action" },
     b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = {
-      name="+coc",
-      x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region"},
-      c = { "<Plug>(coc-codeaction)", "applying codeAction to the current buffer"},
-      f = { "<Plug>(coc-fix-current)", "apply AutoFix to problem on the current line"},
-      a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line"}
+      name = "+coc",
+      x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
+      c = { "<Plug>(coc-codeaction)", "applying codeAction to the current buffer" },
+      f = { "<Plug>(coc-fix-current)", "apply AutoFix to problem on the current line" },
+      a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line" }
     },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
@@ -34,15 +34,15 @@ wk.register({
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
-    ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>",  "jump to buffer 1" },
-    ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>",  "jump to buffer 2" },
-    ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>",  "jump to buffer 3" },
-    ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>",  "jump to buffer 4" },
-    ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>",  "jump to buffer 5" },
-    ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>",  "jump to buffer 6" },
-    ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>",  "jump to buffer 7" },
-    ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>",  "jump to buffer 8" },
-    ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>",  "jump to buffer 9" },
+    ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
+    ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "jump to buffer 2" },
+    ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "jump to buffer 3" },
+    ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "jump to buffer 4" },
+    ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "jump to buffer 5" },
+    ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "jump to buffer 6" },
+    ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "jump to buffer 7" },
+    ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "jump to buffer 8" },
+    ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "jump to buffer 9" },
     ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
   },
 
@@ -95,25 +95,25 @@ wk.register({
     },
     ["s"] = {
       name = "+search",
-      P = {"<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
+      P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
         "search cursor word in project" },
-      p = {"<cmd>lua require('spectre').open()<cr>", "search in project" }
+      p = { "<cmd>lua require('spectre').open()<cr>", "search in project" }
     },
     ["t"] = {
       name = "+toggle",
-      ["8"] = {"<cmd>:let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
-      ["b"] = {"<cmd>:let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
-      ["s"] = {"<cmd>:set spell!<cr>", "spell check" },
-      ["w"] = {"<cmd>:set wrap!<cr>", "wrap line" },
-      ["h"] = {"<cmd>noh<cr>", "Stop the highlighting" },
-      ["m"] = {"<cmd>TableModeToggle<cr>", "markdown table edit mode" },
-      ["t"] = {"<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
+      ["8"] = { "<cmd>:let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
+      ["b"] = { "<cmd>:let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
+      ["s"] = { "<cmd>:set spell!<cr>", "spell check" },
+      ["w"] = { "<cmd>:set wrap!<cr>", "wrap line" },
+      ["h"] = { "<cmd>noh<cr>", "Stop the highlighting" },
+      ["m"] = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
+      ["t"] = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
     ["f"] = {
       name = "+file",
-      o = {"<cmd>NvimTreeFindFile<cr>", "open file in dir" },
-      s = {"<cmd>w<cr>", "save file" },
-      t = {"<cmd>NvimTreeToggle<cr>", "toggle file tree" }
+      o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
+      s = { "<cmd>w<cr>", "save file" },
+      t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" }
     },
   },
   q = { "<cmd>q<cr>", "close window" },
@@ -135,7 +135,7 @@ wk.register({
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
-  ["<tab>"] = {":wincmd w<cr>", "switch window" },
+  ["<tab>"] = { ":wincmd w<cr>", "switch window" },
 })
 
 wk.register({

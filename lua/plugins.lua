@@ -2,11 +2,11 @@ vim.cmd("packadd packer.nvim")
 
 require("packer").startup({
   function(use)
-    use {'lewis6991/impatient.nvim', config = [[require('impatient')]]}
-    use({"wbthomason/packer.nvim", opt = true})
+    use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
+    use({ "wbthomason/packer.nvim", opt = true })
     -- 基础
     use 'nvim-lua/plenary.nvim' -- 很多 lua 插件依赖的库
-    use {'neoclide/coc.nvim', branch = 'release'} -- lsp
+    use { 'neoclide/coc.nvim', branch = 'release' } -- lsp
     use 'nvim-treesitter/nvim-treesitter' -- 基于语义的高亮
     use 'kyazdani42/nvim-web-devicons' -- 显示图标
     use 'folke/which-key.nvim' -- 用于配置和提示快捷键
@@ -32,11 +32,11 @@ require("packer").startup({
     use 'pwntester/octo.nvim' -- 在 neovim 中使用 github cli
     -- 基于 telescope 的搜索
     use 'nvim-telescope/telescope.nvim'
-    use {'nvim-telescope/telescope-fzf-native.nvim',
+    use { 'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make' } -- telescope 搜索的插件，可以提升搜索效率
     use 'fannheyward/telescope-coc.nvim' -- 搜索 coc 提供的符号
     use 'dhruvmanila/telescope-bookmarks.nvim' -- 搜索 bookmarks
-    -- 快速的代码执行
+    -- 命令执行
     use 'voldikss/vim-floaterm' -- 以悬浮窗口的形式打开终端
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
     -- markdown

@@ -12,10 +12,10 @@ require('bufferline').setup {
     separator_style = "thin",
     left_trunc_marker = "",
     right_trunc_marker = "",
+  },
+  highlights = {
+    fill = {
+      guibg = colors.bg_dark,
     },
-    highlights = {
-      fill= {
-        guibg = colors.bg_dark,
-      },
-    }
+  }
 }
