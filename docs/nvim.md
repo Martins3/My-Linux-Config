@@ -558,16 +558,18 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
-- init.vim : vim 的基础选项
-- vim
+- init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/ 下的配置文件
+- vim/
   - coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-  - coc-config.vim : coc.nvim 对于插件的配置
   - ccls.vim : ccls 增加的一些快捷键
   - debug.vim : 定义了两个函数
-- lua
+  - misc.vim : 各种插件的细微的修改
+- lua/
   - plugins.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - whichkey-config.lua : 快捷键的配置
-  - tree-config.lua / orgmode-config.lua / ... : 各种插件的默认配置的调整，都非常短
+  - tree-config.lua / orgmode-config.lua / ... : 插件的默认配置的调整，都非常短
+- coc-setting.json : coc 的配置
+- UltiSnips/ : 自定义的代码段
 
 ## FAQ
 - 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
@@ -676,7 +678,7 @@ setxkbmap -option caps:swapescape
 4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键跳转和移动 :star:
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 
-[^1]: https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/
+[^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
 
