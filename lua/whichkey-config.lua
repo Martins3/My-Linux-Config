@@ -101,11 +101,11 @@ wk.register({
     },
     ["t"] = {
       name = "+toggle",
-      ["8"] = { "<cmd>:let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
-      ["b"] = { "<cmd>:let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
-      ["s"] = { "<cmd>:set spell!<cr>", "spell check" },
-      ["w"] = { "<cmd>:set wrap!<cr>", "wrap line" },
-      ["h"] = { "<cmd>noh<cr>", "Stop the highlighting" },
+      ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
+      ["b"] = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
+      ["s"] = { "<cmd>set spell!<cr>", "spell check" },
+      ["w"] = { "<cmd>set wrap!<cr>", "wrap line" },
+      ["h"] = { "<cmd>oh<cr>", "Stop the highlighting" },
       ["m"] = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       ["t"] = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
@@ -124,7 +124,7 @@ wk.register({
     d = { "<cmd>only<cr>", "delete other window" },
     m = { "<cmd>ToggleOnly<cr>", "maximize current window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
-    n = { ":Vista!!<cr>", "toggle vista navigator" },
+    n = { "<cmd>Vista!!<cr>", "toggle vista navigator" },
     h = { "<C-w>h", "go to the window left" },
     j = { "<C-w>j", "go to the window below" },
     k = { "<C-w>k", "go to the window up" },
@@ -136,16 +136,16 @@ wk.register({
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
-  ["<tab>"] = { ":wincmd w<cr>", "switch window" },
+  ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
 })
 
 wk.register({
   ["<space>"] = {
     ["l"] = {
-      ["c"] = { ":Commentary<cr>", "comment code" },
+      ["c"] = { "<cmd>Commentary<cr>", "comment code" },
       ["f"] = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
     },
-    ["s"] = { ":lua require('spectre').open_visual()<cr>", "search" }
+    ["s"] = { "<cmd>lua require('spectre').open_visual()<cr>", "search" }
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
