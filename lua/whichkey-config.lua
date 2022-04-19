@@ -105,7 +105,7 @@ wk.register({
       ["b"] = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
       ["s"] = { "<cmd>set spell!<cr>", "spell check" },
       ["w"] = { "<cmd>set wrap!<cr>", "wrap line" },
-      ["h"] = { "<cmd>oh<cr>", "Stop the highlighting" },
+      ["h"] = { "<cmd>noh<cr>", "Stop the highlighting" },
       ["m"] = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       ["t"] = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
