@@ -22,7 +22,6 @@ require("packer").startup({
     use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
     use 'romgrk/fzy-lua-native' -- wilder.nvim 的依赖
     use 'xiyaowong/nvim-transparent' -- 可以移除掉背景色，让 vim 透明
-    use 'caenrique/nvim-maximize-window-toggle' -- 最大化当前窗口
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'

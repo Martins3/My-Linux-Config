@@ -121,8 +121,7 @@ wk.register({
     name = "+window",
     g = { "<cmd>vsp<cr>", "vertical split window" },
     f = { "<cmd>sp<cr>", "horizontal split window" },
-    d = { "<cmd>only<cr>", "delete other window" },
-    m = { "<cmd>ToggleOnly<cr>", "maximize current window" },
+    m = { "<cmd>only<cr>", "delete other window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { "<cmd>Vista!!<cr>", "toggle vista navigator" },
     h = { "<C-w>h", "go to the window left" },
@@ -142,7 +141,7 @@ wk.register({
 wk.register({
   ["<space>"] = {
     ["l"] = {
-      ["c"] = { "<cmd>Commentary<cr>", "comment code" },
+      ["c"] = { ":Commentary<cr>", "comment code" },
       ["f"] = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
     },
     ["s"] = { "<cmd>lua require('spectre').open_visual()<cr>", "search" }
