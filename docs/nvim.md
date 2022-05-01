@@ -3,8 +3,7 @@
 <!-- vim-markdown-toc GitLab -->
 
 * [前言](#前言)
-* [背景](#背景)
-* [关于如何入门 vim](#关于如何入门-vim)
+* [入门 vim](#入门-vim)
 * [终极解决方案: lsp](#终极解决方案-lsp)
 * [丝般顺滑: async](#丝般顺滑-async)
 * [智能高亮: treesitter](#智能高亮-treesitter)
@@ -38,8 +37,8 @@
     * [文档](#文档)
     * [代码段](#代码段)
     * [自动补全](#自动补全)
-    * [git 集成](#git-集成)
-    * [github 集成](#github-集成)
+    * [Git 集成](#git-集成)
+    * [Github 集成](#github-集成)
     * [调试集成](#调试集成)
     * [vim cmdline](#vim-cmdline)
     * [终端](#终端)
@@ -75,16 +74,8 @@
 本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 
 任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
-## 背景
-我平时主要写 C/C++, 最开始的配置是参考 [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide) 写的，
-在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
-我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
-整个 vim 都会变卡。
 
-曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
-最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
-
-## 关于如何入门 vim
+## 入门 vim
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
 1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
@@ -483,13 +474,13 @@ endsnippet
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
 
-### git 集成
+### Git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
 1. [tig](https://github.com/jonas/tig)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在 vim 中间运行。
 2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
 3. [vim-fugitive](https://github.com/tpope/vim-fugitive) : 查看每一行的 blame, 提交代码等
 
-### github 集成
+### Github 集成
 通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
 而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
 

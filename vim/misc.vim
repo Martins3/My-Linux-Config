@@ -95,3 +95,7 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'c', 'cpp', 'diff']
 let g:markdown_minlines = 200
+
+" 自动关闭 vim 如果 window 中只有一个 filetree
+" https://github.com/kyazdani42/nvim-tree.lua
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
