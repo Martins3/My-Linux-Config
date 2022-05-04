@@ -39,7 +39,7 @@
     * [自动补全](#自动补全)
     * [Git 集成](#git-集成)
     * [Github 集成](#github-集成)
-    * [调试集成](#调试集成)
+    * [调试](#调试)
     * [vim cmdline](#vim-cmdline)
     * [终端](#终端)
     * [一键运行代码](#一键运行代码)
@@ -490,18 +490,8 @@ endsnippet
 例如可以直接查看本项目中的 issue
 <details> <summary>click me</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
 
-### 调试集成
-现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:
-1. https://github.com/cyrus-and/gdb-dashboard
-2. https://www.gdbgui.com/
-
-更多的参考 : https://scattered-thoughts.net/writing/the-state-of-linux-debuggers/
-
-如果恰好用的是 rust, 可以参考: https://github.com/simrat39/rust-tools.nvim
-
-一些其他的调试器:
-- http://qira.me/
-- https://github.com/osandov/drgn : meta 写的侧重于编程的 debuggers
+### 调试
+如果你非要尝试在 nvim 中调试，可以看看 [nvim-dap](https://github.com/mfussenegger/nvim-dap)，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard)
 
 ### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
