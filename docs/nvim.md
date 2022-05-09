@@ -491,7 +491,10 @@ endsnippet
 <details> <summary>click me</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
 
 ### 调试
-如果你非要尝试在 nvim 中调试，可以看看 [nvim-dap](https://github.com/mfussenegger/nvim-dap)，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard)
+一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
+，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)
+
+但是无论如何，使用 debugger 来调试程序不是一个好习惯[^2]。
 
 ### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
@@ -660,6 +663,7 @@ setxkbmap -option caps:swapescape
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 
 [^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
+[^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
 
