@@ -49,7 +49,7 @@ map <leader>p "+p
 map <leader>d "+d
 
 " 使用 z a 打开和关闭 fold
-set foldlevel=20
+set foldlevelstart=99
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 

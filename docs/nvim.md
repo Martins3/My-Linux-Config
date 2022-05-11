@@ -45,6 +45,7 @@
     * [一键运行代码](#一键运行代码)
     * [一键注释代码](#一键注释代码)
     * [markdown 集成](#markdown-集成)
+    * [代码折叠](#代码折叠)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -492,9 +493,11 @@ endsnippet
 
 ### 调试
 一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
-，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)
+，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)，其效果如下
 
-但是无论如何，使用 debugger 来调试程序不是一个好习惯[^2]。
+<details> <summary>click me</summary> <p align="center"> <img src="./img/debug.png" /> </p> </details>
+
+但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试[^2]。
 
 ### vim cmdline
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
@@ -537,6 +540,14 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 |-------------------|----------------------|
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
+
+### 代码折叠
+
+| binding | function                    |
+|---------|-----------------------------|
+| `z` `a` | 打开或者关闭光标所在的 fold |
+| `z` `R` | 打开所有的 fold             |
+| `z` `M` | 关闭所有的 fold             |
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -661,6 +672,7 @@ setxkbmap -option caps:swapescape
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键跳转和移动 :star:
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
+6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
 
 [^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
