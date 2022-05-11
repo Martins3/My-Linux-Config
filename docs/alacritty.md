@@ -10,7 +10,7 @@ cargo build --release --no-default-features --features=x11
 ```
 
 主要的改动为:
-- 采用的颜色主题为 [solarized_dark](https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_dark.yaml)
+- 采用的颜色主题为 [`solarized_dark`](https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_dark.yaml)
 - 修改字体为 Hasklug Nerd Font
 - 设置启动自动为 tmux
 

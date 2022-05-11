@@ -513,7 +513,7 @@ endsnippet
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
-vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
+vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
 | binding           | function                 |
 |-------------------|--------------------------|
