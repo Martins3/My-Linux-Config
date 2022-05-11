@@ -72,16 +72,12 @@ wk.register({
       ["c"] = { "<cmd>BDelete hidden<cr>", "close invisible buffers" },
       ["d"] = { "<cmd>bdelete %<cr>", "close current buffers" },
     },
-    ['l'] = {
-      name = "+language",
-      c = { "<cmd>Commentary<cr>", "comment code" },
-      f = { "<cmd>call CocAction('format')<cr>", "format current buffer" },
-      n = { "<Plug>(coc-rename)", "rename" },
-      r = { "<cmd>call QuickRun()<cr>", "run code" },
-      p = { "<cmd>call Preivew()<cr>", "preview" },
+    ["f"] = {
+      name = "+file",
+      o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
+      s = { "<cmd>w<cr>", "save file" },
+      t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" }
     },
-    ["q"] = { "<cmd>qa<cr>", "close vim" },
-    ["x"] = { "<cmd>FloatermNew ipython<cr>", "calculated" },
     ["g"] = {
       name = "+git",
       a = { "<cmd>Git add -A<cr>", "git stage all changes" },
@@ -93,6 +89,16 @@ wk.register({
       p = { "<cmd>Git push<cr>", "git push" },
       s = { "<cmd>FloatermNew tig status<cr>", "git status" },
     },
+    ['l'] = {
+      name = "+language",
+      c = { "<cmd>Commentary<cr>", "comment code" },
+      f = { "<cmd>call CocAction('format')<cr>", "format current buffer" },
+      n = { "<Plug>(coc-rename)", "rename" },
+      r = { "<cmd>call QuickRun()<cr>", "run code" },
+      p = { "<cmd>call Preivew()<cr>", "preview" },
+    },
+    -- o 被 orgmode 使用
+    ["q"] = { "<cmd>qa<cr>", "close vim" },
     ["s"] = {
       name = "+search",
       P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
@@ -109,12 +115,7 @@ wk.register({
       ["m"] = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       ["t"] = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
-    ["f"] = {
-      name = "+file",
-      o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
-      s = { "<cmd>w<cr>", "save file" },
-      t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" }
-    },
+    ["x"] = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
   q = { "<cmd>q<cr>", "close window" },
   ["c"] = {
