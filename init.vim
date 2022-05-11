@@ -48,6 +48,11 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
+" 使用 z a 打开和关闭 fold
+set foldlevel=20
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'misc.vim',
