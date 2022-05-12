@@ -614,7 +614,6 @@ setxkbmap -option caps:swapescape
 - `g;` 跳转到刚刚编辑的位置
 - `gi` 跳转到刚刚编辑的位置，并且进入到插入模式
 - `gf` 打开当前文件
-- `{` `}` 分别向上向下跳转到空行
 - `%` 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转
 - `:w !sudo tee %` 来保存一个 readonly 文件
 - `:g/pattern/command` 可以用于对于匹配的模式操作
@@ -623,6 +622,13 @@ setxkbmap -option caps:swapescape
 - `:put =range(1, 10)` 插入 1 到 10 的数值
 - 对于选中的 visual block `S` `str` 可以在 visual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
 - [获取历史命令](https://stackoverflow.com/questions/13405959/how-do-i-get-a-list-of-the-history-of-all-the-vim-commands-i-ran) `,``q``:`
+- 使用 `[` `{` `(` 快速移动
+
+| binding     | function                       |
+|-------------|--------------------------------|
+| `{` / `}`   | 分别向上向下跳转到空行         |
+| `{` / `}`   | 分别向上向下跳转到空格         |
+| `[[` / `]]` | 分别向上或向下跳转最外层的 `{` |
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
