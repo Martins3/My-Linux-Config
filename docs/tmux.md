@@ -21,7 +21,7 @@
 - `prefix R` : 重新加载配置
 
 ## copy mode
-使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式[^1]
+默认可以编辑的状态 tmux 称为 normal mode，使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式[^1]
 
 > Although tmux copy mode doesn't translate to 100% vim navigation keys - overall they are good enough to feel natural. Some navigation keys that you can use:
 > - h / j / k / l to move left/down/up/right
@@ -35,16 +35,26 @@
 >
 >  https://dev.to/iggredible/the-easy-way-to-copy-text-in-tmux-319g
 
-- 使用 `v`, `V` 和 `Ctrl v` 分别实现字符选，行选，块选
-- 使用 `y` 复制
+- `V` 行选，而 `v` 和 `ctrl-v` 不支持
+- 使用 `y` 复制并且继续停留在 copy mode 中，使用 `enter` 复制，但是进入到 normal mode
 - 使用 `ctrl shift v` 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的
 
-当然,如果感觉太麻烦,使用鼠标选中之后,也是自动复制出来的.
+当然，如果感觉太麻烦,使用鼠标选中之后,也是自动复制出来的.
 
-## 插件
+## 插件管理
+
+安装:
 ```sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+- prefix + I
+  - Installs new plugins from GitHub or any other git repository
+  - Refreshes TMUX environment
+- prefix + U
+  - updates plugin(s)
+- prefix + alt + u
+  - remove/uninstall plugins not on the plugin list
 
 ## 定制 statusline
 感觉没必要，浪费时间
