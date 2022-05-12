@@ -121,7 +121,7 @@ for extension in s:coc_extensions
   call coc#add_extension(extension)
 endfor
 
-" 方便在中文中间使用 w 和 b 移动
+" 方便在中文中使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
 
