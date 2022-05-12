@@ -45,16 +45,21 @@ require("packer").startup({
       run = "cd app && yarn install" }) -- 预览
     use 'mzlogin/vim-markdown-toc' -- 自动目录生成
     use 'dhruvasagar/vim-table-mode' -- 快速编辑 markdown 的表格
-    use 'crispgm/telescope-heading.nvim' -- 没有 Telescope coc outline，所以只好使用这个
+    use 'crispgm/telescope-heading.nvim' -- Telescope coc 没有 outline，所以只好使用这个
     use 'tpope/vim-markdown' -- markdown 语法高亮
     -- 高效编辑
     use 'tpope/vim-commentary' -- 快速注释代码
     use 'tpope/vim-surround' -- 快速编辑单词两侧的符号
     use 'tpope/vim-sleuth' -- 自动设置 tabstop 之类的
+    use 'tpope/vim-repeat' -- 更加强大的 `.`
     use 'windwp/nvim-autopairs' -- 自动括号匹配
     use 'honza/vim-snippets' -- 安装公共的的 snippets
     use 'mbbill/undotree' -- 显示编辑的历史记录
     use 'mg979/vim-visual-multi' -- 同时编辑多个位置
+    use 'AckslD/nvim-neoclip.lua' -- 保存历史的 macro
+    use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
+    -- 快速移动
+    use 'ggandor/lightspeed.nvim'
     -- c/c++
     use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
@@ -70,11 +75,9 @@ require("packer").startup({
     -- latex
     use 'lervag/vimtex'
     -- 其他
-    use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
     use 'h-hg/fcitx.nvim' -- 自动切换输入法
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
-    use 'AckslD/nvim-neoclip.lua' -- 保存历史的 macro
   end,
 })

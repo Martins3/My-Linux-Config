@@ -103,7 +103,6 @@ let s:coc_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-ci',
       \ 'coc-snippets',
-      \ 'coc-smartf',
       \ 'coc-go',
       \ 'coc-sh',
       \ 'coc-diagnostic',

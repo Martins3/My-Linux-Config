@@ -65,18 +65,6 @@ let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
 let g:floaterm_keymap_toggle = '<C-t>'
 
-" 使用 f/F 来快速移动
-" press <esc> to cancel.
-nmap f <Plug>(coc-smartf-forward)
-nmap F <Plug>(coc-smartf-backward)
-nmap ; <Plug>(coc-smartf-repeat)
-" nmap , <Plug>(coc-smartf-repeat-opposite)
-
-augroup Smartf
-  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=pink
-  autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
-augroup end
-
 let g:git_messenger_no_default_mappings = v:true
 
 " 使用 gx 在 vim 中间直接打开链接

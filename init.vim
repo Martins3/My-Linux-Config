@@ -48,6 +48,13 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
+map r <Plug>Lightspeed_s
+map R <Plug>Lightspeed_S
+map r <Plug>Lightspeed_x
+map R <Plug>Lightspeed_X
+noremap s s
+noremap S S
+
 " 使用 z a 打开和关闭 fold
 set foldlevelstart=99
 set foldmethod=expr
