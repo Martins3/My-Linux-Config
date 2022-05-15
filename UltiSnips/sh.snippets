@@ -42,22 +42,27 @@ done
 endsnippet
 
 snippet note_getoption "参数选项"
-function usage () {
-	echo "Usage :  $0 [options] [--]
+function usage() {
+  echo "Usage :   [options] [--]
 
-	Options:
-	-h|help       Display this message"
+    Options:
+    -h|help       Display this message"
 }
 
-while getopts ":hv" opt
-do
-	case \$opt in
-	h)  usage; exit 0   ;;
-	* )  echo -e "\n  Option does not exist : OPTARG\n"
-		usage; exit 1   ;;
-	esac    # --- end of case ---
+while getopts ":hv" opt; do
+  case \$opt in
+  h)
+    usage
+    exit 0
+    ;;
+  *)
+    echo -e "\n  Option does not exist : OPTARG\n"
+    usage
+    exit 1
+    ;;
+  esac # --- end of case ---
 done
-shift $((OPTIND-1))
+shift $((OPTIND - 1))
 endsnippet
 
 snippet note_showprocesstree "显示进程状态的继承关系"
