@@ -46,6 +46,7 @@
     * [一键注释代码](#一键注释代码)
     * [markdown 集成](#markdown-集成)
     * [代码折叠](#代码折叠)
+    * [Session](#session)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -253,7 +254,7 @@ sudo apt install bear
 注：使用 bear 生成 `compile_commands.json` 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 `compile_commands.json`, 直接拷贝到项目的顶层目录就可以了。
-2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 compile_commands.json 的脚本
+2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 `compile_commands.json` 的脚本
 4. see [ccls documentation](https://github.com/MaskRay/ccls/wiki/Project-Setup) for more
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
@@ -549,6 +550,11 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | `z` `R` | 打开所有的 fold             |
 | `z` `M` | 关闭所有的 fold             |
 
+### Session
+在每一个文件夹会自动创建 session，这样当 nvim 重新打开的时候，window 还是上次关闭的样子.
+
+使用命令 DeleteSession 可以删除掉保存的 session 。
+
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
@@ -658,7 +664,6 @@ setxkbmap -option caps:swapescape
 - [nvim-gps](https://github.com/SmiteshP/nvim-gps) 在 statusline 中显示当前的函数
 - [present.nvim](https://github.com/Chaitanyabsprip/present.nvim): 在 nvim 放播放 ppt
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
-- [解决中文输入法](https://github.com/h-hg/fcitx.nvim)
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -679,6 +684,7 @@ setxkbmap -option caps:swapescape
 4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键跳转和移动 :star:
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
+7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 
 [^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
