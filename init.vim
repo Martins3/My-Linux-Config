@@ -48,10 +48,10 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
-map r <Plug>Lightspeed_s
-map R <Plug>Lightspeed_S
-map r <Plug>Lightspeed_x
-map R <Plug>Lightspeed_X
+map f <Plug>Lightspeed_s
+map F <Plug>Lightspeed_S
+map f <Plug>Lightspeed_x
+map F <Plug>Lightspeed_X
 noremap s s
 noremap S S
 
