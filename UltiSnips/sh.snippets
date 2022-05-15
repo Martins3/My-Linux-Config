@@ -51,7 +51,7 @@ function usage () {
 
 while getopts ":hv" opt
 do
-	case $opt in
+	case \$opt in
 	h)  usage; exit 0   ;;
 	* )  echo -e "\n  Option does not exist : OPTARG\n"
 		usage; exit 1   ;;
