@@ -42,15 +42,10 @@ done
 endsnippet
 
 snippet note_getoption "参数选项"
-function usage() {
-  echo "Usage :   [options] [--]
-
-    Options:
-    -h|help       Display this message"
-}
-
-while getopts ":hv" opt; do
+cmd=""
+while getopts "hc:" opt; do
   case \$opt in
+  c) cmd=\${OPTARG} ;;
   h)
     usage
     exit 0
