@@ -48,6 +48,7 @@
     * [Latex 集成](#latex-集成)
     * [代码折叠](#代码折叠)
     * [Session](#session)
+    * [wakatime](#wakatime)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -286,7 +287,7 @@ nvim
 
 然后就可以看到插件的正常安装:
 <details> <summary>click me</summary> <p align="center"> <img src="./img/install.png" /> </p> </details>
-[wakatime](https://wakatime.com/settings/account) 需要输入 api key
+[wakatime](https://wakatime.com/settings/account) 需要输入 api key，wakatime 是统计时间用的，如果你喜欢，可以到 neovim/lua/plugins.lua 中搜索 wakatime 的那一行删除，然后重新执行 `PackerInstall`
 <details> <summary>click me</summary> <p align="center"> <img src="./img/waka.png" /> </p> </details>
 
 当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
@@ -584,6 +585,15 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 使用命令 DeleteSession 可以删除掉保存的 session 。
 
+### wakatime
+这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到远程，也可以自己搭建本地的 server
+
+- repo url: https://github.com/muety/wakapi
+- 操作方法:
+    - 安装并且启动
+    - 在浏览器中登录 http://127.0.0.1:3000
+    - 设置 ~/.wakatime.cfg
+
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
@@ -609,7 +619,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
     - VSCode 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 可以更加简洁, 灵活和高效。
     - VSCode 的功能非常强大，几乎发
 - 我应该使用这个配置吗 ?
-    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
+    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 - 为什么不使用 built-in lsp?
     - 首先可以看看[这个教程](https://climatechangechat.com/setting_up_lsp_nvim-lspconfig_and_perl_in_neovim.html)，分析如何在 neovim 使用 built-in lsp 的
     - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
