@@ -45,6 +45,7 @@
     * [一键运行代码](#一键运行代码)
     * [一键注释代码](#一键注释代码)
     * [markdown 集成](#markdown-集成)
+    * [Latex 集成](#latex-集成)
     * [代码折叠](#代码折叠)
     * [Session](#session)
 * [本配置源代码解释](#本配置源代码解释)
@@ -272,7 +273,7 @@ nvim 的配置在 ~/.config/nvim 中，
 mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
 git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
-ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
+ln -s ~/.dotfiles/neovim ~/.config/nvim # 创建一个软链接指向此处
 nvim
 ```
 
@@ -541,6 +542,25 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 |-------------------|----------------------|
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
+
+### Latex 集成
+通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
+- 自动补全
+- 静态检查
+- 实时编译预览
+
+下图是自动补全的效果:
+<details> <summary>click me</summary> <p align="center"> <img src="./img/latex-preview.png" /> </p> </details>
+
+下图预览的效果:
+<details> <summary>click me</summary> <p align="center"> <img src="./img/latex-cmp.png" /> </p> </details>
+
+主要使用两个快捷键:
+
+| binding           | function                                             |
+|-------------------|------------------------------------------------------|
+| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
+| `<space>` `l` `p` | 使用 zathura 预览                                    |
 
 ### 代码折叠
 
