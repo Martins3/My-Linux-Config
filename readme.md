@@ -22,10 +22,10 @@
 ```sh
 cd ~
 git clone https://github.com/Martins3/My-Linux-config .dotfiles
-ln -s ~/.dotfiles/scripts/tmux.conf .tmux.conf
-ln -s ~/.dotfiles/scripts/alacritty.yml .alacritty.yml
-ln -s ~/.dotfiles/scripts/tigrc.conf .tigrc
-ln -s ~/.dotfiles/scripts/zathurarc ~/.config/zathura/zathurarc
+ln -sf ~/.dotfiles/conf/tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
+ln -sf ~/.dotfiles/conf/tigrc.conf ~/.tigrc
+ln -sf ~/.dotfiles/conf/zathurarc ~/.config/zathura/zathurarc
 ```
 neovim config is a little complex, see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
 
