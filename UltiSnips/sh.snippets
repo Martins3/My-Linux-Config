@@ -19,6 +19,21 @@ snippet note_here "heredoc"
 # $ echo 'hi there' | cat
 endsnippet
 
+snippet note_case "switch case"
+case "$action" in
+a | b)
+  echo for a or b
+  ;;&
+b | c)
+  echo for c or b
+  ;;&
+a | b | c) ;;
+*)
+  echo for everything ELSE
+  ;;
+esac
+endsnippet
+
 
 snippet note_glob "C style for loop"
 # ?(pattern-list)：匹配零个或一个模式。
@@ -42,6 +57,13 @@ done
 endsnippet
 
 snippet note_getoption "参数选项"
+function usage() {
+  echo "Usage :   [options] [--]
+
+    Options:
+    -h|help       Display this message"
+}
+
 cmd=""
 while getopts "hc:" opt; do
   case \$opt in
