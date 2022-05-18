@@ -48,19 +48,12 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
-map f <Plug>Lightspeed_s
-map F <Plug>Lightspeed_S
-map f <Plug>Lightspeed_x
-map F <Plug>Lightspeed_X
-noremap s s
-noremap S S
-
 " 使用 z a 打开和关闭 fold
 set foldlevelstart=99
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-" 加载各种插件的配置, 参考 https://github.com/jdhao/nvim-config
+" 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'misc.vim',
       \ 'coc.vim',

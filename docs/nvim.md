@@ -59,6 +59,7 @@
 * [blog](#blog)
 * [学习](#学习)
 * [主题](#主题)
+* [常见问题](#常见问题)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
@@ -389,6 +390,12 @@ map <leader>d "+d
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `n` 在需要重命名的元素上，即可批量重命名。
 
 ### 字符串搜索和替换
+vim 内置了强大的搜索替换功能
+- `/` `?` 分别向前和向后搜索
+- 在 visual block 中可以使用 norm 来进行插入或者使用宏
+- 替换的语法 `%s/pattern/replace/g`
+
+上面说明的都是单文件的，通过插件，可以容易的实现多文件的搜索和替换。
 
 | key binding      | function                                        |
 |------------------|-------------------------------------------------|
@@ -564,6 +571,8 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 ### 代码折叠
 
+利用上 treesitter ，vim 内置的折叠变得非常易用。
+
 | binding | function                    |
 |---------|-----------------------------|
 | `z` `a` | 打开或者关闭光标所在的 fold |
@@ -684,6 +693,8 @@ setxkbmap -option caps:swapescape
 - [nvim-gps](https://github.com/SmiteshP/nvim-gps) 在 statusline 中显示当前的函数
 - [present.nvim](https://github.com/Chaitanyabsprip/present.nvim): 在 nvim 放播放 ppt
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
+- [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
+- [distant.nvim](https://github.com/chipsenkbeil/distant.nvim) : 使用本地配置编辑远程文件（插件似乎不是很稳定的样子）
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -697,6 +708,12 @@ setxkbmap -option caps:swapescape
 ## 主题
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 
+## 常见问题
+- [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
+    - 没有区别，除了拼写不同
+- [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
+    - `w !sudo tee %`
+
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
@@ -708,6 +725,7 @@ setxkbmap -option caps:swapescape
 
 [^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
+[^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
 
