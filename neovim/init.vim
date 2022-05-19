@@ -79,3 +79,4 @@ lua require 'code-runner-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
 lua require('telescope').load_extension('neoclip')
+lua require 'treesitter-context'.setup { patterns = { default = { 'class', 'function', }, }, }
