@@ -264,3 +264,12 @@ tail() {
 	printf '%s\n' "${line[@]: -$1}"
 }
 endsnippet
+
+snippet bible_exits "tail lines of file"
+function exits() {
+  if ! [ -x "$(command -v $1)" ]; then
+    echo "Error: $1 is not installed." >&2
+    exit 1
+  fi
+}
+endsnippet

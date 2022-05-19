@@ -79,5 +79,6 @@ require("packer").startup({
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
     use 'h-hg/fcitx.nvim' -- 自动切换输入法
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
+    use 'nvim-treesitter/nvim-treesitter-context' -- 显示当前的函数
   end,
 })

@@ -700,7 +700,6 @@ setxkbmap -option caps:swapescape
 
 ## 值得关注的插件
 - [nlua](https://github.com/tjdevries/nlua.nvim) neovim 开发 lua 插件环境
-- [nvim-gps](https://github.com/SmiteshP/nvim-gps) 在 statusline 中显示当前的函数
 - [present.nvim](https://github.com/Chaitanyabsprip/present.nvim): 在 nvim 放播放 ppt
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
