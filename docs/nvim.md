@@ -586,13 +586,17 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 使用命令 DeleteSession 可以删除掉保存的 session 。
 
 ### wakatime
-这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到远程，也可以自己搭建本地的 server
+这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到[远程](https://wakatime.com/)，也可以自己搭建本地的 server
 
-- repo url: https://github.com/muety/wakapi
-- 操作方法:
-    - 安装并且启动
-    - 在浏览器中登录 http://127.0.0.1:3000
-    - 设置 ~/.wakatime.cfg
+- 方案一: https://github.com/muety/wakapi
+    - 操作方法:
+        - 安装并且启动
+        - 在浏览器中登录 http://127.0.0.1:3000
+        - 设置 ~/.wakatime.cfg
+
+- 方案二: https://github.com/mujx/hakatime
+    - 操作方法:
+        - TODO
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。

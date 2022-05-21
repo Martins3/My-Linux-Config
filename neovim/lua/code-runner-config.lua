@@ -5,7 +5,7 @@ require('code_runner').setup {
   },
   filetype = {
     python = "python3 $fileName",
-    c = "cd $dir && clang -lpthread -fno-omit-frame-pointer -g -lm $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
+    c = "cd $dir && clang -lpthread -fno-omit-frame-pointer -pg -g -lm $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     cpp = "cd $dir && clang++ -lpthread -g $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     html = "microsoft-edge $fileName",
     sh = "bash $file",
