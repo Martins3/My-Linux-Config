@@ -12,6 +12,7 @@ require('bufferline').setup {
     separator_style = "thin",
     left_trunc_marker = "",
     right_trunc_marker = "",
+    max_name_length = 80,
   },
   highlights = {
     fill = {
