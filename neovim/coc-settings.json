@@ -6,8 +6,6 @@
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "git.addGBlameToVirtualText": false,
   "git.virtualTextPrefix": "👋 ",
-  "smartf.jumpOnTrigger": false,
-  "smartf.wordJump": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",
