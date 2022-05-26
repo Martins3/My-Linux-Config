@@ -101,6 +101,7 @@ let s:coc_extensions = [
       \ 'coc-dictionary',
       \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
+      \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-go',
       \ 'coc-sh',
@@ -118,6 +119,10 @@ let s:coc_extensions = [
 for extension in s:coc_extensions
   call coc#add_extension(extension)
 endfor
+
+" 方便在中文中使用 w 和 b 移动
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
 
 " https://github.com/fannheyward/coc-pyright/issues/184
 call coc#config("python.pythonPath", "/bin/python3")
