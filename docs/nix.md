@@ -35,8 +35,16 @@ home-manager switch
 
 ## 网络代理
 似乎之要是 su - 之后添加 export 才会影响 sudo 命令的 export 吗 ?
+每次进入之后都是需要增加代理的
 
 ## 遇到的问题
 - file 'home-manager' was not found in the Nix search path
   - 只有更新来 channel 之后才可以安装 hoem manager
   - https://github.com/nix-community/home-manager/issues/487
+
+## 记录
+- [ ] 似乎只是 import 来一下 system.nix 之后，然后就感觉是完全的重新编译
+- nix-shell -p htop
+- 似乎 system.nix 中的清华镜像是有问题的
+  - [ ] 对于 system.nix 的任何修改是不是都需要进行一次 nixos-rebuild switch
+- /etc/nixos/configuration.nix 还是不要进行修改了
