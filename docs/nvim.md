@@ -708,6 +708,7 @@ setxkbmap -option caps:swapescape
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
 - [distant.nvim](https://github.com/chipsenkbeil/distant.nvim) : 使用本地配置编辑远程文件（插件似乎不是很稳定的样子）
+- nvim-treesitter/nvim-treesitter-context : 利用 treesitter 显示当前的上下文，但是在 UI 有点不是很简洁
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
