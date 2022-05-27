@@ -1,7 +1,14 @@
 # 问题
+- [x] system.nix 中，如果不去定义任何 users 的东西，会如何？
+  - 似乎问题不大
+- [ ] 不去安装 home manager 如何?
 
-- [ ] system.nix 中，如果不去定义任何 users 的东西，会如何？
-  - [ ] 不去安装 home manager 如何?
+## 添加一个新的用户
+
+```sh
+useradd -c 'Eelco Dolstra' -m eelco
+passwd eelco
+```
 
 ## 添加
 ```sh
@@ -12,7 +19,7 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/release-
 nix-channel --update
 ```
 
-## [ ] 两个 switch 应该是分别添加的
+##  两个 switch 是可以分别添加
 
 ```sh
 sudo nixos-rebuild switch # 仅NixOS
@@ -20,3 +27,16 @@ sudo nixos-rebuild switch # 仅NixOS
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
+这些所有的操作都是可以在 su - 下执行，除了
+
+```plain
+home-manager switch
+```
+
+## 网络代理
+似乎之要是 su - 之后添加 export 才会影响 sudo 命令的 export 吗 ?
+
+## 遇到的问题
+- file 'home-manager' was not found in the Nix search path
+  - 只有更新来 channel 之后才可以安装 hoem manager
+  - https://github.com/nix-community/home-manager/issues/487
