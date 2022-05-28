@@ -48,3 +48,11 @@ home-manager switch
 - 似乎 system.nix 中的清华镜像是有问题的
   - [ ] 对于 system.nix 的任何修改是不是都需要进行一次 nixos-rebuild switch
 - /etc/nixos/configuration.nix 还是不要进行修改了
+
+- [ ] 似乎是无法正确加载的 plugins.lua 的
+- [ ] 好像需要调整 nvim 的 plugins 的
+
+cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
+
+- [ ] 测试 alacritty 的
+- [ ] tmux 的设置位置
