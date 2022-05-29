@@ -55,4 +55,17 @@ home-manager switch
 cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
 
 - [ ] 测试 alacritty 的
-- [ ] tmux 的设置位置
+- [ ] tmux 的测试
+
+## 最开始的 tmux 操作
+
+```c
+#!/bin/bash
+
+sudo -i
+parted /dev/sda -- mklabel msdos
+parted /dev/sda -- mkpart primary 1MiB -8GiB
+mkfs.ext4 -L nixos /dev/sda1
+mount /dev/disk/by-label/nixos /mnt
+nixos-generate-config --root /mnt
+```
