@@ -92,7 +92,7 @@ wk.register({
     ['l'] = {
       name = "+language",
       c = { "<cmd>Commentary<cr>", "comment code" },
-      f = { "<cmd>call CocAction('format')<cr>", "format current buffer" },
+      f = { "<cmd>call CocActionAsync('format')<cr>", "format current buffer" },
       n = { "<Plug>(coc-rename)", "rename" },
       r = { "<cmd>call QuickRun()<cr>", "run code" },
       p = { "<cmd>call Preivew()<cr>", "preview" },

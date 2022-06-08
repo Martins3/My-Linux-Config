@@ -49,6 +49,7 @@
     * [代码折叠](#代码折叠)
     * [Session](#session)
     * [wakatime](#wakatime)
+    * [Scala 集成](#scala-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -597,6 +598,24 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 - 方案二: https://github.com/mujx/hakatime
     - 操作方法:
         - TODO
+
+### Scala 集成
+<!-- TMP_TODO -->
+
+使用插件: https://github.com/scalameta/nvim-metals
+```sh
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
+chmod +x cs
+./cs setup
+```
+
+暂时的方案: coc-metals
+
+https://docs.scala-lang.org/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html
+
+```sh
+cs install scalafix
+```
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
