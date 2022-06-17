@@ -6,10 +6,9 @@
 
 忽然对于 Nix 有点兴趣，感觉自从用了 Ubuntu 之后，被各种 Linux Distribution 毒打的记忆逐渐模糊，现在想去尝试一下，
 但是 Ian Henry 的[How to Learn Nix](https://ianthehenry.com/posts/how-to-learn-nix/) 写的好长啊，
-首先在 QEMU 上尝试一下效果，记录一踩的坑。
 
-
-- [ ]  https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
+我发现，在 Ubuntu 安装我现在的 nvim 配置很麻烦，虽然可以写脚本，但是更多的时候是
+忘记了曾经安装过的软件。
 
 ## 问题
 nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
@@ -19,13 +18,9 @@ nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
 - [ ] https://nixos.org/learn.html#learn-guides
 - [ ] https://nixos.org/ 包含了一堆 examples
 
+- [ ]  https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
 
 ## 似乎我不会安装啊
-> You must set the option boot.loader.systemd-boot.enable to true. nixos-generate-config should do this automatically for new configurations when booted in UEFI mode.
->
-> You may want to look at the options starting with boot.loader.efi and boot.loader.systemd-boot as well.[^1]
-
-https://www.cs.fsu.edu/~langley/CNT4603/2019-Fall/assignment-nixos-2019-fall.html
 
 - [ ] 不要再使用完整的来作为 install 了，使用命令行可以加速调试
 - [ ] https://alexpearce.me/2021/07/managing-dotfiles-with-nix/
@@ -49,11 +44,5 @@ https://github.com/nixos-cn/flakes : nixos 中文社区
 https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
 https://github.com/mitchellh/nixos-config
 
-[^1]: https://nixos.org/manual/nixos/stable/index.html#sec-installation
-
-## nixOS
+[^1]:
 https://github.com/xieby1/nix_config
-
-## 从 bak 开始
-- 进入 root tear
-- 创建一个用户，然后重启

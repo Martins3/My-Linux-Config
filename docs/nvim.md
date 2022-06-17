@@ -45,11 +45,11 @@
     * [一键运行代码](#一键运行代码)
     * [一键注释代码](#一键注释代码)
     * [markdown 集成](#markdown-集成)
-    * [Latex 集成](#latex-集成)
+    * [[可选] Latex 集成](#可选-latex-集成)
     * [代码折叠](#代码折叠)
     * [Session](#session)
-    * [wakatime](#wakatime)
-    * [Scala 集成](#scala-集成)
+    * [[可选] wakatime](#可选-wakatime)
+    * [[可选] Scala 集成](#可选-scala-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -552,7 +552,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
 
-### Latex 集成
+### [可选] Latex 集成
 通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
 - 自动补全
 - 静态检查
@@ -586,7 +586,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 使用命令 DeleteSession 可以删除掉保存的 session 。
 
-### wakatime
+### [可选] wakatime
 这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到[远程](https://wakatime.com/)，也可以自己搭建本地的 server
 
 - 方案一: https://github.com/muety/wakapi
@@ -599,7 +599,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
     - 操作方法:
         - TODO
 
-### Scala 集成
+### [可选] Scala 集成
 <!-- TMP_TODO -->
 
 使用插件: https://github.com/scalameta/nvim-metals
@@ -776,5 +776,11 @@ setxkbmap -option caps:swapescape
         crossorigin="anonymous"
         async>
 </script>
+
+<!-- TMP_TODO
+1. luaSnip 有什么优势吗? 使用 treesitter ? https://www.youtube.com/watch?v=KtQZRAkgLqo
+2. Rust 中 go to definitions 的功能，对于 Trait 中的函数，总是跳转到 Trait 最开始的定义，而不是具体函数的定义中
+-->
+
 
 本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。

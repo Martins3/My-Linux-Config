@@ -114,6 +114,8 @@ set cursorline
 set termguicolors
 " 因为失去焦点就会自动保存，所以没有必要使用 swapfile
 set noswapfile
+" TMP_TODO 如果打开 set cmdheight=0 选项，那么 gg 这个命令无法正确工作
+" set cmdheight=0
 " 让退出 vim 之后 undo 消息不消失
 set undofile
 " 只有一个全局 status line，而不是每一个 window 一个

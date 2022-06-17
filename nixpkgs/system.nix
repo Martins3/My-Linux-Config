@@ -15,4 +15,10 @@
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
+
+  users.extraUsers.martin = {
+      isNormalUser = true;
+      home = "/home/martin";
+      extraGroups = [ "wheel" ];
+  }
 }

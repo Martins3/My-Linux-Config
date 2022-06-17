@@ -5,7 +5,7 @@ QEMU=qemu-system-x86_64
 # KERNEL=/home/maritns3/core/ubuntu-linux/arch/x86/boot/bzImage
 ISO=/home/maritns3/arch/nixos-gnome-21.11.334247.573095944e7-x86_64-linux.iso
 
-disk_img=/home/maritns3/hack/nix/fresh.qcow2
+disk_img=/home/maritns3/hack/vm/nix.qcow2
 
 if [[ ! -f $disk_img ]]; then
   qemu-img create -f qcow2 "$disk_img" 100G

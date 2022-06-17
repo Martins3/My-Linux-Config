@@ -36,9 +36,7 @@ endf
 func! QuickRun()
   exec "w"
   let ext = expand("%:e")
-  if ext ==# "lua"
-    exec "source %"
-  elseif ext ==# "tex"
+  if ext ==# "tex"
     exec "VimtexCompile"
   else
     exec "RunCode"

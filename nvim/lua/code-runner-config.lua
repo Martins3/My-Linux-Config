@@ -10,6 +10,7 @@ require('code_runner').setup {
     html = "microsoft-edge $fileName",
     sh = "bash $file",
     rust = "cargo run",
-    r = "Rscript $fileName"
+    r = "Rscript $file",
+    lua = "lua $file",
   },
 }
