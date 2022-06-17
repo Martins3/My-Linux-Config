@@ -24,7 +24,7 @@
     gdb
     alacritty
     tig
-    golang
+    go
     zsh
     /* (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) */
   ];

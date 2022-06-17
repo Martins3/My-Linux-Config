@@ -84,6 +84,8 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
+rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/dotfiles
+
 ## zsh
 
 ## [ ] 测试 alacritty
