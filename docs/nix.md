@@ -84,14 +84,9 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
-## 网络代理
-似乎之要是 su - 之后添加 export 才会影响 sudo 命令的 export 吗 ?
-每次进入之后都是需要增加代理的
+## zsh
 
-## 遇到的问题
-- file 'home-manager' was not found in the Nix search path
-  - 只有更新来 channel 之后才可以安装 hoem manager
-  - https://github.com/nix-community/home-manager/issues/487
+## [ ] 测试 alacritty
 
 ## 记录
 - [ ] 似乎只是 import 来一下 system.nix 之后，然后就感觉是完全的重新编译
@@ -107,5 +102,6 @@ home-manager switch
 cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
 ```
 
-- [ ] 测试 alacritty 的
 - [ ] tmux 的测试
+
+## 需要一个 nixos 的测试

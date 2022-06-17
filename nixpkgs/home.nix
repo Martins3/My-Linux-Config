@@ -17,15 +17,15 @@
     cmake
     gnumake
     capstone
-    ## python
     python3
     nodejs
-    ## c
     binutils
     gcc
     gdb
     alacritty
     tig
+    golang
+    zsh
     /* (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) */
   ];
 
@@ -56,6 +56,15 @@ home.file.tmux = {
 home.file.tig= {
     source = ../conf/tigrc.conf;
     target = ".tigrc";
+};
+
+programs.zsh = {
+
+  oh-my-zsh = {
+    enable = true;
+    plugins = [ "git" "thefuck" ];
+    theme = "robbyrussell";
+  };
 };
 
   # allow unfree software
