@@ -42,46 +42,39 @@ environment.systemPackages = with pkgs; [
 - 在 QEMU 中 UEFI 暂时没有成功过，使用 legacy bios
 - QEMU 的参数中不要增加 `-kernel`，否则无法正确启动，因为 Nix 对于内核版本也是存在管理的，所以不能随意指定
 
-## 创建普通用户
-
-使用 root 作为用户名和刚刚你设置的密码登录进去，执行如下命令
-
-```sh
-useradd -c 'martin three' -m martins3
-passwd martins3 # 设置用户的密码
-usermod -aG sudo username
-reboot
-```
-- [ ] 这步操作有问题，导致 martins3 没有在 sudo files
-
 ## 初始化环境
 
-导入本配置的操作:
+使用 root 用户登录进去：
+
+1. 设置用户密码
+```sh
+passwd sh
+```
+
+
+重新使用普通用户登入，密码为刚刚设置的:
+
+1. 添加软件源
+```sh
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixos # 对于NixOS
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixpkgs # 对于Nix
+# 添加home manager 源
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+sudo nix-channel --update
+```
+
+2. 导入本配置的操作:
 ```sh
 cd ~
 git clone https://github.com/Martins3/My-Linux-Config
 ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
+- 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martin 改成你的用户名**
+- 你可能需要修改一下 system.nix 中的用户名
 
-修该 `/etc/nixos/configuration.nix`，让其 import `/home/martins3/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
-
-### 添加软件源
-- [ ] 一定需要设置代理吗?
-
+3. 初始化配置
 ```sh
-su -
-nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixos # 对于NixOS
-nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixpkgs # 对于Nix
-# 添加home manager 源
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
-nix-channel --update
-```
-
-### 部署配置
-
-```sh
-su -
-nixos-rebuild switch # 仅NixOS
+sudo nixos-rebuild switch # 仅NixOS
 ```
 
 ### 部署 nixos 配置

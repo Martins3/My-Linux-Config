@@ -20,5 +20,5 @@
       isNormalUser = true;
       home = "/home/martin";
       extraGroups = [ "wheel" ];
-  }
+  };
 }
