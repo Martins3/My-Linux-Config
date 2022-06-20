@@ -33,6 +33,7 @@ environment.systemPackages = with pkgs; [
   git
   wget
   firefox
+  zsh
 ];
 ```
 
@@ -84,26 +85,72 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
-rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/dotfiles
-
-## zsh
+此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
 ## [ ] 测试 alacritty
+- [ ] 为什么不是默认全屏的哇?
+  - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
+- [ ] 不是半透明的了
 
-## 记录
-- [ ] 似乎只是 import 来一下 system.nix 之后，然后就感觉是完全的重新编译
-- nix-shell -p htop
-- 似乎 system.nix 中的清华镜像是有问题的
-  - [ ] 对于 system.nix 的任何修改是不是都需要进行一次 nixos-rebuild switch
-- /etc/nixos/configuration.nix 还是不要进行修改了
+## [ ] tmux 的测试
+- 为什么无法拷贝，tmux 的插件没有安装吗
+  - [ ] 似乎插件是无法正常使用的
 
+## [ ] gdb 的配置
+
+## nvim
 - [ ] 似乎是无法正确加载的 plugins.lua 的
 - [ ] 好像需要调整 nvim 的 plugins 的
+
+安装到此处就可以了:
+/home/maritns3/.local/share/nvim/site/pack/packer/opt/packer.nvim
+
+## [ ] git 的 config
 
 ```sh
 cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
 ```
 
-- [ ] tmux 的测试
+rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
 
-## 需要一个 nixos 的测试
+## [ ] 是否可以自动下载 github 仓库的哇
+
+## [ ] 在 QEMU 中，似乎无法正确的执行 setxkbmap
+所以，配置这个东西就更加没有希望了
+
+## [ ] 为什么无法代理
+wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
+
+因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
+
+## cpp
+- https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
+- https://www.breakds.org/post/nix-based-c++-workflow/
+- https://nixos.wiki/wiki/C
+
+别人也遇到了类似的问题:
+- https://github.com/NixOS/nixpkgs/issues/9230
+- https://www.reddit.com/r/NixOS/comments/vft54v/cmake_not_finding_boost_as_a_library/
+
+所以这才是正确的操作吗?
+https://www.reddit.com/r/NixOS/comments/fdi3jb/gcc1_doesnt_work_gives_weird_internalish_errors/
+
+似乎这个东西叫做 user environment:
+https://nixos.wiki/wiki/User_Environment
+
+https://xieby1.github.io/scripts/index.html
+
+```sh
+nix-shell '<nixpkgs>' -A lua --command zsh
+```
+
+## [ ] 找到 Rust 类似的开发环境
+
+## [ ] Rime 输入法
+
+## [ ] neovide
+可以正常下载，但是图标很丑，而且无法运行 nix
+
+## [ ] gs 命令未找到
+
+应该是 zsh plugin 没有安装吧

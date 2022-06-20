@@ -118,7 +118,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     # family: monospace
-    family: Hasklug Nerd Font
+    family: FiraCode Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -465,7 +465,7 @@ colors:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
- program: /usr/bin/zsh
+ program: zsh
  args:
     - -l
     - -c

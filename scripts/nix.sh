@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 QEMU=/home/maritns3/core/kvmqemu/build/x86_64-softmmu/qemu-system-x86_64
 QEMU=qemu-system-x86_64
@@ -15,5 +15,5 @@ if [[ ! -f $disk_img ]]; then
 fi
 
 # qemu-system-x86_64 -enable-kvm -m 8192 -boot d -cdrom $ISO -hda ${disk_img}
-$QEMU -hda ${disk_img} -enable-kvm -cpu host -m 8G -smp 8 -vga virtio
+$QEMU -hda ${disk_img} -enable-kvm -cpu host -m 8G -smp 8 -display gtk,window-close=off -vga virtio
 # qemu-system-x86_64 -enable-kvm -m 8192 -kernel ${KERNEL} -drive file=${disk_img},format=qcow2  -append "root=/dev/sda1"

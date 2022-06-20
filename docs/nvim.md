@@ -600,22 +600,20 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
         - TODO
 
 ### [可选] Scala 集成
-<!-- TMP_TODO -->
+参考 https://github.com/scalameta/nvim-metals 中的文档:
 
-使用插件: https://github.com/scalameta/nvim-metals
+安装 cs
 ```sh
 curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
 chmod +x cs
 ./cs setup
 ```
 
-暂时的方案: coc-metals
-
-https://docs.scala-lang.org/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html
-
+以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
 ```sh
-cs install scalafix
+sbt bloopInstall
 ```
+然后就可以自动索引了.
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -727,7 +725,9 @@ setxkbmap -option caps:swapescape
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
 - [distant.nvim](https://github.com/chipsenkbeil/distant.nvim) : 使用本地配置编辑远程文件（插件似乎不是很稳定的样子）
-- nvim-treesitter/nvim-treesitter-context : 利用 treesitter 显示当前的上下文，但是在 UI 有点不是很简洁
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) : 利用 treesitter 显示当前的上下文，但是在 UI 有点不是很简洁
+- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 本配置默认使用 treesitter 实现折叠，但是此插件是利用 lsp 实现折叠的
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -776,11 +776,5 @@ setxkbmap -option caps:swapescape
         crossorigin="anonymous"
         async>
 </script>
-
-<!-- TMP_TODO
-1. luaSnip 有什么优势吗? 使用 treesitter ? https://www.youtube.com/watch?v=KtQZRAkgLqo
-2. Rust 中 go to definitions 的功能，对于 Trait 中的函数，总是跳转到 Trait 最开始的定义，而不是具体函数的定义中
--->
-
 
 本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。

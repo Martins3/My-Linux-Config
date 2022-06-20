@@ -16,9 +16,17 @@
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
 
+  programs.zsh.enable = true;
+
   users.extraUsers.martin = {
       isNormalUser = true;
+      shell = pkgs.zsh;
       home = "/home/martin";
       extraGroups = [ "wheel" ];
+  };
+
+  services.xserver = {
+    enable=true;
+    xkbOptions = "caps:swapescape";
   };
 }
