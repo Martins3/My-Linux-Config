@@ -83,6 +83,7 @@ programs.zsh = {
     fd="fdfind";
     c="clear";
     du="ncdu";
+    z="j";
     mc="make clean";
     sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
   };
