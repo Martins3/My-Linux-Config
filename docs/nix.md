@@ -87,6 +87,10 @@ home-manager switch
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
+## [ ] git 的 config
+将 git 的配置放过来之后，之后只是 QEMU 中编辑了。
+- [ ] 安装 delta
+
 ## [ ] 测试 alacritty
 - [ ] 为什么不是默认全屏的哇?
   - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
@@ -105,18 +109,12 @@ home-manager switch
 安装到此处就可以了:
 /home/maritns3/.local/share/nvim/site/pack/packer/opt/packer.nvim
 
-## [ ] git 的 config
-
-```sh
-cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
-```
-
-rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
 
 ## [ ] 是否可以自动下载 github 仓库的哇
 
 ## [ ] 在 QEMU 中，似乎无法正确的执行 setxkbmap
-所以，配置这个东西就更加没有希望了
+
+似乎需要 QEMU grab 进去才可以的
 
 ## [ ] 为什么无法代理
 wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
@@ -154,3 +152,13 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ## [ ] gs 命令未找到
 
 应该是 zsh plugin 没有安装吧
+
+## 一些同步技术
+```sh
+cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
+```
+
+rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
+
+
+https://martins3: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@github.com

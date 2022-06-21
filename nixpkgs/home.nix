@@ -31,6 +31,7 @@
     nix-index
     fd
     ncdu
+    delta
     # lib
     readline.dev
     SDL2.dev
@@ -115,4 +116,42 @@ programs.zsh = {
   nixpkgs.config.allowUnfree = true;
 
   programs.home-manager.enable = true;
+
+  programs.git = {
+    enable = true;
+    userEmail = "hubachelar@gmail.com";
+    userName = "martins3";
+    extraConfig = {
+      # https://github.com/dandavison/delta
+      # --- begin
+      core = {
+        editor = "nvim";
+        pager = "delta";
+      };
+      interactive = {
+      diffFilter="delta --color-only";
+      };
+      delta = {
+        navigate="true";
+        light="false";
+      };
+      merge={
+        conflictstyle = "diff3";
+      };
+      diff= {
+        colorMoved = "default";
+      };
+      # --- end
+
+      http={
+	proxy = "http://10.0.2.2:8889";
+      };
+      https={
+	proxy = "http://10.0.2.2:8889";
+      };
+      credential={
+	helper = "store";
+      };
+    };
+  };
 }

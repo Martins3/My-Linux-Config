@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 QEMU=/home/maritns3/core/kvmqemu/build/x86_64-softmmu/qemu-system-x86_64
-QEMU=qemu-system-x86_64
+# QEMU=qemu-system-x86_64
 # KERNEL=/home/maritns3/core/ubuntu-linux/arch/x86/boot/bzImage
 ISO=/home/maritns3/arch/nixos-gnome-21.11.334247.573095944e7-x86_64-linux.iso
 
