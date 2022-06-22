@@ -69,6 +69,10 @@ ssh -X -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
 使用 -X 是远程的剪切板和本地是同步的，但是需要在远程机器上的一点点设置。
 https://superuser.com/questions/806637/xauth-not-creating-xauthority-file
 
+2. tmux list-keys
+
+用于查看已经绑定的快捷键
+
 <script src="https://utteranc.es/client.js" repo="Martins3/My-Linux-Config" issue-term="url" theme="github-light" crossorigin="anonymous" async> </script>
 
 [^1]: [zt/zz/zb 似乎没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)

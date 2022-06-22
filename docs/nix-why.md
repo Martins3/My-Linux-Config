@@ -14,10 +14,8 @@
 nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
 
 ## TODO
-- [ ] 真的可以替代 docker 吗?
 - [ ] https://nixos.org/learn.html#learn-guides
 - [ ] https://nixos.org/ 包含了一堆 examples
-
 - [ ]  https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
 
 ## 似乎我不会安装啊
@@ -44,5 +42,5 @@ https://github.com/nixos-cn/flakes : nixos 中文社区
 https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
 https://github.com/mitchellh/nixos-config
 
-[^1]:
+## 关键参考
 https://github.com/xieby1/nix_config

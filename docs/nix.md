@@ -88,13 +88,11 @@ home-manager switch
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
 ## tmux 的测试
-- [ ] 似乎插件是无法正常使用的
+第一个插件需要手动安装，可以修复吗?
 
 ## [ ] python 插件
 
 ## [ ] gdb 的配置
-
-## [ ] 是否可以自动下载 github 仓库的哇
 
 ## cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
@@ -152,6 +150,9 @@ https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/
 ```sh
 nix hash-file --sri microsoft-edge-dev_xx.xx.xx.xx-1_amd64.deb
 ```
+
+实际上需要看这个东西:
+https://gitlab.com/zanc/overlays/-/blob/master/edge/update.sh
 
 ## 为什么无法代理
 - 大写

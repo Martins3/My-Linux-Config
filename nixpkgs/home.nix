@@ -1,7 +1,11 @@
 { config, pkgs, stdenv, lib, ... }:
 let
   feishu = pkgs.callPackage ./programs/feishu.nix {};
-  microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {};
+  /* microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {}; */
+  nixpkgs_unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/ac608199012d63453ed251b1e09784cd841774e5.tar.gz";
+    sha256 = "0bcy5aw85f9kbyx6gv6ck23kccs92z46mjgid3gky8ixjhj6a8vr";
+  }) {config.allowUnfree = true;};
 in
 {
   fonts.fontconfig.enable = true;
@@ -35,9 +39,9 @@ in
     fd
     ncdu
     delta
-    microsoft-edge-dev
     feishu
     wpsoffice
+    nixpkgs_unstable.microsoft-edge-dev
     # lib
     readline.dev
     SDL2.dev
@@ -152,14 +156,27 @@ programs.zsh = {
       # --- end
 
       http={
-	proxy = "http://10.0.2.2:8889";
+        proxy = "http://10.0.2.2:8889";
       };
       https={
-	proxy = "http://10.0.2.2:8889";
+        proxy = "http://10.0.2.2:8889";
       };
       credential={
-	helper = "store";
+        helper = "store";
       };
     };
+  };
+
+  home.file.gdbinit = {
+    source = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/2b107b27949d13f6ef041de6eec1ad2e5f7b4cbf/.gdbinit";
+      sha256 = "02rxyk8hmk7xk1pyhnc5z6a2kqyd63703rymy9rfmypn6057i4sr";
+      name = "gdbinit";
+    };
+    target = ".gdbinit";
+  };
+  home.file.gdb_dashboard_init = {
+    source = ../conf/gdbinit;
+    target = ".gdbinit.d/init";
   };
 }
