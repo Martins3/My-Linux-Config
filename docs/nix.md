@@ -87,12 +87,25 @@ home-manager switch
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
+### 更新 Nixos
+和设置源相同
+```nix
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixos # 对于NixOS
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixpkgs # 对于Nix
+# 添加home manager 源 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+sudo nix-channel --update
+```
+
 ## tmux 的测试
 第一个插件需要手动安装，可以修复吗?
 
 ## [ ] python 插件
 
-## [ ] gdb 的配置
+## [ ] nvim 中的 lightspeed 无法正确工作的呀
+
+## [ ] 没有声音啊
+
+## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
 
 ## cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
@@ -118,10 +131,6 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ## [ ] 找到 Rust 类似的开发环境
 
 ## [ ] Rime 输入法
-
-## neovide
-可以正常下载，但是图标很丑，而且无法运行 nix
-
 ## [ ] i3 比我想想的要简单很多，值得尝试
 https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 

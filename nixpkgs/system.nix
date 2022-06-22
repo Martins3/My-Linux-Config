@@ -50,8 +50,6 @@
     */
   };
 
-  i18n.defaultLocale = "en.UTF-8";
-
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [

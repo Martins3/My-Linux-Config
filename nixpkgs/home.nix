@@ -1,6 +1,10 @@
 { config, pkgs, stdenv, lib, ... }:
 let
-  feishu = pkgs.callPackage ./programs/feishu.nix {};
+  feishu = pkgs.callPackage ( pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/xieby1/nix_config/main/usr/gui/feishu.nix";
+    sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
+  }) {};
+
   /* microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {}; */
   nixpkgs_unstable = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/ac608199012d63453ed251b1e09784cd841774e5.tar.gz";
@@ -41,7 +45,7 @@ in
     delta
     feishu
     wpsoffice
-    nixpkgs_unstable.microsoft-edge-dev
+    microsoft-edge-dev
     # lib
     readline.dev
     SDL2.dev
