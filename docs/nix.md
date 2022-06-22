@@ -87,12 +87,8 @@ home-manager switch
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
-## [ ] git 的 config
-将 git 的配置放过来之后，之后只是 QEMU 中编辑了。
-- [ ] 安装 delta
-
 ## [ ] 测试 alacritty
-- [ ] 为什么不是默认全屏的哇?
+- [ ] 为什么不是默认全屏的哇?https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
   - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
 - [ ] 不是半透明的了
 
@@ -102,19 +98,15 @@ home-manager switch
 
 ## [ ] gdb 的配置
 
-## nvim
-- [ ] 似乎是无法正确加载的 plugins.lua 的
-- [ ] 好像需要调整 nvim 的 plugins 的
-
-安装到此处就可以了:
-/home/maritns3/.local/share/nvim/site/pack/packer/opt/packer.nvim
-
-
 ## [ ] 是否可以自动下载 github 仓库的哇
 
-## [ ] 在 QEMU 中，似乎无法正确的执行 setxkbmap
+## [ ] 如何安装 microsoft-edge / wps
+- https://matthewrhone.dev/nixos-edge-browser
 
-似乎需要 QEMU grab 进去才可以的
+https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/
+```sh
+nix hash-file --sri microsoft-edge-dev_xx.xx.xx.xx-1_amd64.deb
+```
 
 ## [ ] 为什么无法代理
 wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
@@ -149,9 +141,8 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ## [ ] neovide
 可以正常下载，但是图标很丑，而且无法运行 nix
 
-## [ ] gs 命令未找到
-
-应该是 zsh plugin 没有安装吧
+## [ ] i3 比我想想的要简单很多，值得尝试
+https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 
 ## 一些同步技术
 ```sh
@@ -162,3 +153,11 @@ rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
 
 
 https://martins3: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@github.com
+
+## nvim
+安装到此处就可以了:
+/home/maritns3/.local/share/nvim/site/pack/packer/opt/packer.nvim
+
+## 在 QEMU 中，似乎无法正确的执行 setxkbmap
+
+似乎需要 QEMU grab 进去才可以的

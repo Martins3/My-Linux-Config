@@ -1,5 +1,8 @@
 { config, pkgs, stdenv, lib, ... }:
-
+let
+  feishu = pkgs.callPackage ./programs/feishu.nix {};
+  microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {};
+in
 {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
@@ -32,9 +35,13 @@
     fd
     ncdu
     delta
+    microsoft-edge-dev
+    feishu
     # lib
     readline.dev
     SDL2.dev
+    nload # network
+    neovide
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
