@@ -195,8 +195,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 ```sh
 nvm install v16
-RUN apt install -y npm
-RUN npm install --global yarn
+sudo apt install -y npm
+sudo npm install --global yarn
 ```
 
 保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).

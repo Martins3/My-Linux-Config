@@ -37,6 +37,7 @@ in
     delta
     microsoft-edge-dev
     feishu
+    wpsoffice
     # lib
     readline.dev
     SDL2.dev
@@ -80,8 +81,9 @@ home.file.tig= {
 programs.zsh = {
   enable = true;
   shellAliases = {
-    update-sys = "sudo nixos-rebuild switch";
-    update-home = "home-manager switch";
+    sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
+    update-sys = "sync-config && sudo nixos-rebuild switch";
+    update-home = "sync-config && home-manager switch";
     px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889";
     q="exit";
     v="nvim";
@@ -93,7 +95,6 @@ programs.zsh = {
     du="ncdu";
     z="j";
     mc="make clean";
-    sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
   };
 
   initExtra= "

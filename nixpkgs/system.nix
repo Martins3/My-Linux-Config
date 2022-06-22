@@ -49,4 +49,31 @@
     };
     */
   };
+
+  i18n.defaultLocale = "en.UTF-8";
+
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      noto-fonts
+      sarasa-gothic  #更纱黑体
+      source-code-pro
+      hack-font
+      jetbrains-mono
+    ];
+  };
+
+  i18n.inputMethod = {
+     enabled = "fcitx5";
+     fcitx5.addons = with pkgs; [
+       fcitx5-rime
+     ];
+
+    # 我现在用 ibus
+    /* enabled = "ibus"; */
+    /* ibus.engines = with pkgs.ibus-engines; [ */
+    /*   libpinyin */
+    /*   rime */
+    /* ]; */
+  };
 }

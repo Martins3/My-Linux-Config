@@ -87,31 +87,14 @@ home-manager switch
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
-## [ ] 测试 alacritty
-- [ ] 为什么不是默认全屏的哇?https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
-  - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
-- [ ] 不是半透明的了
+## tmux 的测试
+- [ ] 似乎插件是无法正常使用的
 
-## [ ] tmux 的测试
-- 为什么无法拷贝，tmux 的插件没有安装吗
-  - [ ] 似乎插件是无法正常使用的
+## [ ] python 插件
 
 ## [ ] gdb 的配置
 
 ## [ ] 是否可以自动下载 github 仓库的哇
-
-## [ ] 如何安装 microsoft-edge / wps
-- https://matthewrhone.dev/nixos-edge-browser
-
-https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/
-```sh
-nix hash-file --sri microsoft-edge-dev_xx.xx.xx.xx-1_amd64.deb
-```
-
-## [ ] 为什么无法代理
-wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
-
-因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
 
 ## cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
@@ -138,7 +121,7 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 
 ## [ ] Rime 输入法
 
-## [ ] neovide
+## neovide
 可以正常下载，但是图标很丑，而且无法运行 nix
 
 ## [ ] i3 比我想想的要简单很多，值得尝试
@@ -161,3 +144,24 @@ https://martins3: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@github.com
 ## 在 QEMU 中，似乎无法正确的执行 setxkbmap
 
 似乎需要 QEMU grab 进去才可以的
+
+## 如何安装 microsoft-edge
+- https://matthewrhone.dev/nixos-edge-browser
+
+https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/
+```sh
+nix hash-file --sri microsoft-edge-dev_xx.xx.xx.xx-1_amd64.deb
+```
+
+## 为什么无法代理
+- 大写
+- nload 检查一下网速
+
+wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
+
+因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
+
+## [ ] 测试 alacritty
+- 为什么不是默认全屏的哇?https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+  - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
+- [ ] 不是半透明的了
