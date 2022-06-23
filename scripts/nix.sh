@@ -15,5 +15,10 @@ if [[ ! -f $disk_img ]]; then
 fi
 
 # qemu-system-x86_64 -enable-kvm -m 8192 -boot d -cdrom $ISO -hda ${disk_img}
-$QEMU -hda ${disk_img} -enable-kvm -cpu host -m 8G -smp 8 -display gtk,window-close=off -vga virtio
+$QEMU -drive file=${disk_img},if=virtio,format=qcow2 \
+  -machine type=q35,accel=kvm -cpu host -m 8G -smp 8 -display gtk -vga virtio \
+  -device vfio-pci,host=00:1f.3
+
 # qemu-system-x86_64 -enable-kvm -m 8192 -kernel ${KERNEL} -drive file=${disk_img},format=qcow2  -append "root=/dev/sda1"
+
+# https://www.kraxel.org/blog/2020/01/qemu-sound-audiodev/

@@ -99,11 +99,19 @@ sudo nix-channel --update
 ## tmux 的测试
 第一个插件需要手动安装，可以修复吗?
 
+## [ ] 输入法配置
+
 ## [ ] python 插件
+python virtual env 如何构建
 
 ## [ ] nvim 中的 lightspeed 无法正确工作的呀
 
-## [ ] 没有声音啊
+## [ ] sublime merge 的安装
+
+## [ ] clash
+
+## 没有声音啊
+使用直通解决吧
 
 ## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
 
@@ -133,6 +141,7 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ## [ ] Rime 输入法
 ## [ ] i3 比我想想的要简单很多，值得尝试
 https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+## [ ] nix prefetch
 
 ## 一些同步技术
 ```sh
