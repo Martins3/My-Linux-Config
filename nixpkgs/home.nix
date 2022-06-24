@@ -44,16 +44,33 @@ in
     nload # network
     neovide
     clash
+    variety
+    gh
+    dijo
     # nix
     nix-index
     feishu
     wpsoffice
     microsoft-edge-dev
     sublime-merge
+    cargo
+    rustc
     # lib
     readline.dev
     SDL2.dev
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    # wm
+    rofi
+    # --- ?
+    feh
+    compton
+    picom
+    polybar
+    xmobar
+    lemonbar
+    conky
+    dmenu
+    # --- ?
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
@@ -75,6 +92,11 @@ xdg.configFile."nvim" = {
 
 xdg.configFile."alacritty.yml" = { source = ../conf/alacritty.yml; };
 
+# TMP_TODO 实际上，可以逐步的将整个文件夹管理起来，也不是使用 leftwm 的管理器
+xdg.configFile."leftwm/config.toml" = {
+  source = ../conf/leftwm.toml;
+};
+
 home.file.tmux = {
     source = ../conf/tmux.conf;
     target = ".tmux.conf";
@@ -94,7 +116,7 @@ programs.zsh = {
     sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
     update-sys = "sync-config && sudo nixos-rebuild switch";
     update-home = "sync-config && home-manager switch";
-    px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889";
+    px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889";
     q="exit";
     v="nvim";
     ls="lsd";
@@ -184,6 +206,11 @@ programs.zsh = {
   home.file.gdb_dashboard_init = {
     source = ../conf/gdbinit;
     target = ".gdbinit.d/init";
+  };
+
+  home.file.cargo_conf = {
+    source = ../conf/cargo.conf;
+    target = ".cargo/config";
   };
 
   systemd.user.services.clash = {

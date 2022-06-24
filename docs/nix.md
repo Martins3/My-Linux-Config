@@ -96,11 +96,10 @@ sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22
 sudo nix-channel --update
 ```
 
-## [ ] 输入法配置
-- 首先在 ubuntu 中配置好再说吧
-  - [ ] 添加字库
-
 ## [ ] 昨天点赞的三个项目需要看看
+
+## [ ] Rime 输入法
+- 将 ubuntu 中切换过来
 
 ## [ ] wallpaper 的那个软件叫啥来着
 
@@ -114,6 +113,7 @@ python virtual env 如何构建
 ## [ ] microsoft-edge-dev 有时候会崩溃，也许切换一下版本吧
 - 切换版本没用的啊
 
+
 ## [ ] clash
 好吧，clash 尚未成功
 
@@ -122,9 +122,6 @@ python virtual env 如何构建
 ## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
 
 ## [ ] 找到 Rust 类似的开发环境
-
-## [ ] Rime 输入法
-- [ ] 启动的时候会报错
 
 ## alacritty
 - 为什么不是默认全屏的哇? https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
@@ -201,6 +198,8 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 - [ ] i3 比我想想的要简单很多，值得尝试
 https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 - [ ] 也许还是使用 awesome 吧
+
+git clone https://github.com/leftwm/leftwm-theme
 
 ## sublime merge 的安装
 - 开箱就得到了一个更新提示

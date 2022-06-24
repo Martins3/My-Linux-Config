@@ -48,6 +48,18 @@
      ];
     };
     */
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+        defaultSession = "none+leftwm";
+    };
+
+    windowManager.leftwm = {
+      enable = true;
+    };
   };
 
   fonts = {
