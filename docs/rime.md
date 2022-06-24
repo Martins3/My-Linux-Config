@@ -43,6 +43,25 @@ ctrl `
 - https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/
 - https://www.jianshu.com/p/300bbe1602d4
 
+1. 在 `luna_pinyin_simp.custom.yaml` 中增加
+```yaml
+  translator:
+    dictionary : luna_pinyin.my_words
+```
+2. 创建 `luna_pinyin.my_words.dict.yaml`
+3. 增加 `luna_pinyin.genshin.dict.yaml` ，其头需要有:
+```yaml
+---
+name: luna_pinyin.genshin
+version: "1.0"
+sort: by_weight
+use_preset_vocabulary: true
+...
+```
+
+获取词库:
+- https://github.com/studyzy/imewlconverter : 装换
+
 ## 设置皮肤
 默认皮肤就很简洁，没有必要浪费时间。
 

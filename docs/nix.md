@@ -100,6 +100,10 @@ sudo nix-channel --update
 - 首先在 ubuntu 中配置好再说吧
   - [ ] 添加字库
 
+## [ ] 昨天点赞的三个项目需要看看
+
+## [ ] wallpaper 的那个软件叫啥来着
+
 ## [ ] python 插件
 python virtual env 如何构建
 
