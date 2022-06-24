@@ -96,24 +96,35 @@ sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22
 sudo nix-channel --update
 ```
 
-## tmux 的测试
-第一个插件需要手动安装，可以修复吗?
-
 ## [ ] 输入法配置
+- 首先在 ubuntu 中配置好再说吧
+  - [ ] 添加字库
 
 ## [ ] python 插件
 python virtual env 如何构建
 
 ## [ ] nvim 中的 lightspeed 无法正确工作的呀
 
-## [ ] sublime merge 的安装
+## [ ] github cli
+
+## [ ] microsoft-edge-dev 有时候会崩溃，也许切换一下版本吧
+- 切换版本没用的啊
 
 ## [ ] clash
+好吧，clash 尚未成功
 
-## 没有声音啊
-使用直通解决吧
+> 手动将机场提供 clash 的 config.yaml 放在`~/.config/clash/config.yaml`即可。
 
 ## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
+
+## [ ] 找到 Rust 类似的开发环境
+
+## [ ] Rime 输入法
+- [ ] 启动的时候会报错
+
+## alacritty
+- 为什么不是默认全屏的哇? https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+  - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
 
 ## cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
@@ -135,13 +146,6 @@ https://xieby1.github.io/scripts/index.html
 ```sh
 nix-shell '<nixpkgs>' -A lua --command zsh
 ```
-
-## [ ] 找到 Rust 类似的开发环境
-
-## [ ] Rime 输入法
-## [ ] i3 比我想想的要简单很多，值得尝试
-https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
-## [ ] nix prefetch
 
 ## 一些同步技术
 ```sh
@@ -180,7 +184,64 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 
 因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
 
-## [ ] 测试 alacritty
-- 为什么不是默认全屏的哇?https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
-  - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
-- [ ] 不是半透明的了
+## 没有声音啊
+使用直通解决吧
+
+## tmux 的测试
+第一个插件需要手动安装，可以修复吗?
+- 当然是可以的，但是没必要
+
+## nix-prefetch-url 可以同时下载和获取 sha
+
+## 桌面环境
+- [ ] i3 比我想想的要简单很多，值得尝试
+https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+- [ ] 也许还是使用 awesome 吧
+
+## sublime merge 的安装
+- 开箱就得到了一个更新提示
+  - 既然如此，可以总是只有部分软件使用 unstable 的，例如 neovim 的
+
+## [x] 为什么直通只有左边的耳机才有声音啊
+- 真的需要添加四个设备吗?
+  - 有的似乎根本不相关啊
+
+## [x] 每次启动都是需要 30s 的时间
+
+```txt
+➜  ~ sudo systemctl status dhcpcd.service
+[sudo] password for martin:
+● dhcpcd.service - DHCP Client
+     Loaded: loaded (/etc/systemd/system/dhcpcd.service; enabled; vendor preset>
+     Active: active (running) since Fri 2022-06-24 10:16:48 CST; 3min 31s ago
+    Process: 783 ExecStart=dhcpcd --quiet --config /nix/store/23mah319pvq76qvn4>
+   Main PID: 793 (dhcpcd)
+         IP: 3.7K in, 0B out
+         IO: 472.0K read, 0B written
+      Tasks: 4 (limit: 9529)
+     Memory: 1.5M
+        CPU: 47ms
+     CGroup: /system.slice/dhcpcd.service
+             ├─793 "dhcpcd: [manager] [ip4] [ip6]"
+             ├─794 "dhcpcd: [privileged proxy]"
+             ├─795 "dhcpcd: [network proxy]"
+             └─796 "dhcpcd: [control proxy]"
+
+Jun 24 18:16:17 nixos systemd[1]: Starting DHCP Client...
+Jun 24 18:16:17 nixos dhcpcd[783]: dhcpcd-9.4.1 starting
+Jun 24 18:16:17 nixos dhcpcd[794]: dev: loaded udev
+Jun 24 18:16:17 nixos dhcpcd[794]: DUID 00:01:00:01:2a:3f:0d:23:52:54:00:12:34:>
+Jun 24 18:16:17 nixos dhcpcd[783]: no valid interfaces found
+Jun 24 18:16:17 nixos dhcpcd[794]: no valid interfaces found
+Jun 24 10:16:48 nixos dhcpcd[794]: timed out
+```
+
+增加这个也是没用的:
+```nix
+  networking.interfaces.enp0s2.useDHCP = true;
+```
+
+关键参考:
+- https://www.reddit.com/r/NixOS/comments/pglkii/system_starts_really_slowly_because_of_one_process/
+
+原来是不能切换主板为 q35, 怀疑是因为安装时候的主板和之后执行的主板不能切换.

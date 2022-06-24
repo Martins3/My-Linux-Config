@@ -38,19 +38,21 @@ in
     bear
     tree
     jump
-    # nix
-    nix-index
     fd
     ncdu
-    delta
+    delta # git
+    nload # network
+    neovide
+    clash
+    # nix
+    nix-index
     feishu
     wpsoffice
     microsoft-edge-dev
+    sublime-merge
     # lib
     readline.dev
     SDL2.dev
-    nload # network
-    neovide
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
@@ -182,5 +184,24 @@ programs.zsh = {
   home.file.gdb_dashboard_init = {
     source = ../conf/gdbinit;
     target = ".gdbinit.d/init";
+  };
+
+  systemd.user.services.clash = {
+    Unit = {
+      Description = "Auto start clash";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.clash.outPath}/bin/clash";
+    };
+  };
+
+  xdg.desktopEntries = {
+    clash = {
+      name = "clash";
+      exec = "qutebrowser http://clash.razord.top";
+    };
   };
 }

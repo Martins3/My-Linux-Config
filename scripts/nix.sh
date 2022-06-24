@@ -16,8 +16,9 @@ fi
 
 # qemu-system-x86_64 -enable-kvm -m 8192 -boot d -cdrom $ISO -hda ${disk_img}
 $QEMU -drive file=${disk_img},if=virtio,format=qcow2 \
-  -machine type=q35,accel=kvm -cpu host -m 8G -smp 8 -display gtk -vga virtio \
-  -device vfio-pci,host=00:1f.3
+  -enable-kvm -cpu host -m 8G -smp 8 -display gtk -vga virtio \
+  -device vfio-pci,host=00:1f.3 \
+  -nic user,model=virtio-net-pci
 
 # qemu-system-x86_64 -enable-kvm -m 8192 -kernel ${KERNEL} -drive file=${disk_img},format=qcow2  -append "root=/dev/sda1"
 

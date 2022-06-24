@@ -11,11 +11,14 @@ patch:
 
   switches:
     - name: ascii_mode
-      reset: 0                         # 默认中文
+      reset: 0
       states: [ 中文, 英文 ]
     - name: full_shape
+      reset: 0
       states: [ 半角, 全角 ]
     - name: zh_simp
-      states: [ 漢字, 汉字 ]
+      reset: 1
+      states: [ 汉字, 漢字]
     - name: ascii_punct
+      reset: 0
       states: [ 。，, ．， ]
