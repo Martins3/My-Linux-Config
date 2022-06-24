@@ -73,5 +73,4 @@ use_preset_vocabulary: true
 - [ ] 有没有自动 correction 的操作
 - [ ] 如何保持总是只有 rime,似乎从 vim 切换到 chrome 中的时候,会切换成系统的英文输入法
 - [ ] rime 能不能像 sogou 一样又一个明显一点的 indicator 说明当前是中文还是英文
-- [ ] 安装一下计算机的词库
 - [ ] 统计字数是个好东西啊，但是统计中文的行为很奇怪。

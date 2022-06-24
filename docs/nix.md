@@ -96,23 +96,14 @@ sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22
 sudo nix-channel --update
 ```
 
-## [ ] 昨天点赞的三个项目需要看看
-
 ## [ ] Rime 输入法
 - 将 ubuntu 中切换过来
-
-## [ ] wallpaper 的那个软件叫啥来着
 
 ## [ ] python 插件
 python virtual env 如何构建
 
-## [ ] nvim 中的 lightspeed 无法正确工作的呀
-
-## [ ] github cli
-
 ## [ ] microsoft-edge-dev 有时候会崩溃，也许切换一下版本吧
 - 切换版本没用的啊
-
 
 ## [ ] clash
 好吧，clash 尚未成功

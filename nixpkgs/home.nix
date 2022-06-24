@@ -44,7 +44,7 @@ in
     nload # network
     neovide
     clash
-    variety
+    variety # wallpaper
     gh
     dijo
     # nix

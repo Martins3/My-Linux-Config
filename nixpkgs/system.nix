@@ -49,6 +49,7 @@
     };
     */
 
+    # -- leftwm begin
     desktopManager = {
       xterm.enable = false;
     };
@@ -60,6 +61,7 @@
     windowManager.leftwm = {
       enable = true;
     };
+    # -- leftwm end
   };
 
   fonts = {
