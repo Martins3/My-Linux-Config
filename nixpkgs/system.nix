@@ -49,7 +49,8 @@
     };
     */
 
-    # -- leftwm begin
+    /*
+    # leftwm begin
     desktopManager = {
       xterm.enable = false;
     };
@@ -61,7 +62,22 @@
     windowManager.leftwm = {
       enable = true;
     };
-    # -- leftwm end
+    # leftwm end
+    */
+
+    # leftwm begin
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+        defaultSession = "none+awesome";
+    };
+
+    windowManager.awesome = {
+      enable = true;
+    };
+    # leftwm end
   };
 
   fonts = {

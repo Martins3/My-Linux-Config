@@ -28,10 +28,11 @@ in
     nodejs
     binutils
     gcc
+    go
+    lua
     gdb
     alacritty
     tig
-    go
     lsd
     xclip
     ccls
@@ -39,6 +40,7 @@ in
     tree
     jump
     fd
+    file
     ncdu
     delta # git
     nload # network
@@ -61,16 +63,8 @@ in
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     # wm
     rofi
-    # --- ?
-    feh
-    compton
     picom
-    polybar
-    xmobar
-    lemonbar
-    conky
-    dmenu
-    # --- ?
+    inter
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */

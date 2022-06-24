@@ -110,6 +110,26 @@ python virtual env 如何构建
 
 > 手动将机场提供 clash 的 config.yaml 放在`~/.config/clash/config.yaml`即可。
 
+## [ ] coc-Lua 的插件工作的不正常啊
+
+## wm
+这个是一个非常通用的问题了，那就是插件下载的二进制是无法使用的
+
+```sh
+git clone --depth 1 https://github.com/manilarome/the-glorious-dotfiles/
+```
+这个就
+
+```sh
+git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
+mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
+```
+
+- 其中存在很多小问题需要进行修复的。
+  - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
+
+### [ ] 应该还是存在多核好玩的东西的
+
 ## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
 
 ## [ ] 找到 Rust 类似的开发环境
