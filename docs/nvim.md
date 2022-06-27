@@ -33,6 +33,7 @@
     * [file tree](#file-tree)
     * [window](#window)
     * [buffer](#buffer)
+    * [文件搜索](#文件搜索)
     * [导航](#导航)
     * [文档](#文档)
     * [代码段](#代码段)
@@ -40,7 +41,7 @@
     * [Git 集成](#git-集成)
     * [Github 集成](#github-集成)
     * [调试](#调试)
-    * [vim cmdline](#vim-cmdline)
+    * [vim cmdline 自动补全](#vim-cmdline-自动补全)
     * [终端](#终端)
     * [一键运行代码](#一键运行代码)
     * [一键注释代码](#一键注释代码)
@@ -50,6 +51,7 @@
     * [Session](#session)
     * [[可选] wakatime](#可选-wakatime)
     * [[可选] Scala 集成](#可选-scala-集成)
+    * [快速移动](#快速移动)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -319,9 +321,11 @@ nvim
 let g:mapleader = ','
 ```
 
-快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，当按下 `,` 之后，经过 `timeoutlen` 之后，
-就会出现弹出下面的窗口显示进一步的使用:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/key.png" /> </p> </details>
+快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，
+
+| 当按下 `,` 之后，经过 `timeoutlen` 之后， 弹出下面的窗口显示下一步的按键 |
+|--------------------------------------------------------------------------|
+| <p align="center"> <img src="./img/key.png" />                           |
 
 ### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
@@ -357,11 +361,13 @@ map <leader>d "+d
 | `,` `o`     | 在当前文件中间搜索该符号 |
 | `,` `s`     | 整个工程中间搜索该符号   |
 
-在 fork.c 中间搜索 `_x64_sys_fork` 这个符号:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/workspace-symbols.png" /> </p> </details>
+| 在 fork.c 中间搜索 `_x64_sys_fork` 这个符号                  |
+|--------------------------------------------------------------|
+| <p align="center"> <img src="./img/workspace-symbols.png" /> |
 
-在整个 Linux 工程中间搜索 sysclone 这个符号:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/outline-symbols.png" /> </p> </details>
+| 在整个 Linux 工程中间搜索 sysclone 这个符号                |
+|------------------------------------------------------------|
+| <p align="center"> <img src="./img/outline-symbols.png" /> |
 
 ### 定义和引用
 
@@ -376,7 +382,9 @@ map <leader>d "+d
 |-------------|------------------------------------------------------|
 | `K`         | 可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。 |
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/comment.png" /> </p> </details>
+| 展示 `put_swap_page` 的注释                        |
+|----------------------------------------------------|
+| <p align="center"> <img src="./img/comment.png" /> |
 
 ### 格式化
 
@@ -421,6 +429,7 @@ vim 内置了强大的搜索替换功能
 | `a`             | 创建文件(如果输入的名称结尾有 / ，那么就是创建文件夹) |
 
 ### window
+
 因为 window leader 键位被我重新映射为 `c`
 
 | key binding | function       |
@@ -433,20 +442,26 @@ vim 内置了强大的搜索替换功能
 
 ### buffer
 
-| key binding       | function                                                                  |
-|-------------------|---------------------------------------------------------------------------|
-| `,` `b`           | 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下 |
-| `,` num           | 切换当前窗口到第 num 个 buffer                                            |
-| `<Space>` `b` `c` | 关闭其他已经保存的 buffer                                                 |
-| `<Space>` `b` `d` | 关闭当前 buffer                                                           |
+| key binding       | function                       |
+|-------------------|--------------------------------|
+| `,` `b`           | 搜索 buffer                    |
+| `,` num           | 切换当前窗口到第 num 个 buffer |
+| `<Space>` `b` `c` | 关闭其他已经保存的 buffer      |
+| `<Space>` `b` `d` | 关闭当前 buffer                |
+
+### 文件搜索
+telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
+
+| 文件搜索                                                |
+|---------------------------------------------------------|
+| <p align="center"> <img src="./img/search-files.png" /> |
 
 ### 导航
-1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/search-files.png" /> </p> </details>
+利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
-2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
-use 'navarasu/onedark.nvim'
-<details> <summary>click me</summary> <p align="center"> <img src="./img/outline.png" /> </p> </details>
+| 基于 liuchengxu/vista.vim 的导航栏                 |
+|----------------------------------------------------|
+| <p align="center"> <img src="./img/outline.png" /> |
 
 ### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
@@ -499,8 +514,9 @@ endsnippet
 1. 安装 github cli 参考[这里](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 2. 使用方法参考 octo.nvim 的 README.md
 
-例如可以直接查看本项目中的 issue
-<details> <summary>click me</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
+| 直接查看本项目中的 issue                                        |
+|-----------------------------------------------------------------|
+| <p align="center"> <img src="./img/octo.png" /> |
 
 ### 调试
 一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
@@ -510,10 +526,12 @@ endsnippet
 
 但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试[^2]。
 
-### vim cmdline
+### vim cmdline 自动补全
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/wilder.png" /> </p> </details>
+| 利用 wilder.nvim 在命令模式自动补全               |
+|---------------------------------------------------|
+| <p align="center"> <img src="./img/wilder.png" /> |
 
 ### 终端
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
@@ -521,8 +539,9 @@ endsnippet
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
 
-下面是在打开悬浮终端，并且运行 htop 的结果:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/floaterm.png" /> </p> </details>
+| 打开悬浮终端，并且运行 htop 的结果                  |
+|-----------------------------------------------------|
+| <p align="center"> <img src="./img/floaterm.png" /> |
 
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
@@ -533,11 +552,14 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 |-------------------|--------------------------|
 | `<space>` `l` `r` | 根据文件类型，执行该文件 |
 
-例如对于 C 语言项目，从上到下三个箭头分别指向:
+| C 语言文件一键运行                                     |
+|--------------------------------------------------------|
+| <p align="center"> <img src="./img/code-runner.png" /> |
+
+从上到下三个箭头分别指向:
 - 源代码
 - 运行结果
 - 运行使用的命令
-<details> <summary>click me</summary> <p align="center"> <img src="./img/code-runner.png" /> </p> </details>
 
 ### 一键注释代码
 
@@ -558,11 +580,13 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 - 静态检查
 - 实时编译预览
 
-下图是自动补全的效果:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/latex-preview.png" /> </p> </details>
+| 自动补全的效果                                           |
+|----------------------------------------------------------|
+| <p align="center"> <img src="./img/latex-preview.png" /> |
 
-下图预览的效果:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/latex-cmp.png" /> </p> </details>
+| 预览的效果                                           |
+|------------------------------------------------------|
+| <p align="center"> <img src="./img/latex-cmp.png" /> |
 
 主要使用两个快捷键:
 
@@ -614,6 +638,21 @@ chmod +x cs
 sbt bloopInstall
 ```
 然后就可以自动索引了.
+
+### 快速移动
+我之前认为 vim 基本的移动技术，例如 e b w G gg 之类的，已经很高效，但是接触到 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+
+| 例子                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------|
+| <p align="center"> <img src="https://github.com/ggandor/lightspeed.nvim/raw/media/quick_example_2.png?raw=true" /> |
+
+按 s 开始跳转，然后搜索第一个字母 m，会出现三种选择:
+- me : 两个都是白色，此时再按 e，那么可以直接跳转到其上
+- mes : 需要按 es 才可以，原因是存在多个满足 m?s 形式的字符。
+- met : 其 t 被高亮的，直接按 t 就可以了，无需按 s ，因为 met 的三个字母是唯一的。
+
+<!-- TMP_TODO 说明一下 space 的使用 -->
+<!-- TMP_TODO 说明一下如何使用两个 -->
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。

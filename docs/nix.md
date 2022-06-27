@@ -96,8 +96,12 @@ sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22
 sudo nix-channel --update
 ```
 
+## [ ] gnome-setting 现在没有了
+- [ ] 在 nix 中设置 proxy 吧
+
 ## [ ] Rime 输入法
-- 将 ubuntu 中切换过来
+- [ ] 不知道配置文件放到什么位置
+  - 可以使用 plum 尝试一下
 
 ## [ ] python 插件
 python virtual env 如何构建
@@ -111,6 +115,7 @@ python virtual env 如何构建
 > 手动将机场提供 clash 的 config.yaml 放在`~/.config/clash/config.yaml`即可。
 
 ## [ ] coc-Lua 的插件工作的不正常啊
+- 似乎是动态库不能正确加载的
 
 ## wm
 这个是一个非常通用的问题了，那就是插件下载的二进制是无法使用的
@@ -128,7 +133,7 @@ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 - 其中存在很多小问题需要进行修复的。
   - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
 
-### [ ] 应该还是存在多核好玩的东西的
+### [ ] 应该还是存在很多好玩的东西的
 
 ## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
 

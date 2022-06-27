@@ -65,7 +65,8 @@
     # leftwm end
     */
 
-    # leftwm begin
+    /*
+    # awesome begin
     desktopManager = {
       xterm.enable = false;
     };
@@ -77,7 +78,8 @@
     windowManager.awesome = {
       enable = true;
     };
-    # leftwm end
+    # awesome end
+    */
   };
 
   fonts = {
