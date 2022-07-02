@@ -277,31 +277,42 @@ nvim 的配置在 ~/.config/nvim 中，
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
-git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
-ln -s ~/.dotfiles/neovim ~/.config/nvim # 创建一个软链接指向此处
-nvim
 ```
 
 刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/first-time.png" /> </p> </details>
+<!-- -- TMP_TODO 需要重新截图 -- -->
+<!-- -- TMP_TODO 补充说明一下自动安装的时候等待-- -->
+<!-- ```c -->
+<!-- git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字 -->
+<!-- ln -s ~/.dotfiles/neovim ~/.config/nvim # 创建一个软链接指向此处 -->
+<!-- nvim -->
+<!-- ``` -->
 
-输入命令 `:PackerInstall` 来安装插件:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/PackerInstall.png" /> </p> </details>
+| 输入命令 `:PackerInstall` 来安装插件                          |
+|---------------------------------------------------------------|
+| <p align="center"> <img src="./img/PackerInstall.png" /> </p> |
 
-然后就可以看到插件的正常安装:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/install.png" /> </p> </details>
+| 插件的正常安装                                          |
+|---------------------------------------------------------|
+| <p align="center"> <img src="./img/install.png" /> </p> |
+
 [wakatime](https://wakatime.com/settings/account) 需要输入 api key，wakatime 是统计时间用的，如果你喜欢，可以到 neovim/lua/plugins.lua 中搜索 wakatime 的那一行删除，然后重新执行 `PackerInstall`
-<details> <summary>click me</summary> <p align="center"> <img src="./img/waka.png" /> </p> </details>
+
+<p align="center"> <img src="./img/waka.png" /> </p>
 
 当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
 再次打开之后，coc 的各种插件会自动安装:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/coc-install.png" /> </p> </details>
+
+| coc 插件的自动安装                                          |
+|-------------------------------------------------------------|
+| <p align="center"> <img src="./img/coc-install.png" /> </p> |
 
 ### checkhealth 检查
 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
 
-例如下面是我的配置的截图。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/checkhealth.png" /> </p> </details>
+| 我的配置的截图                                              |
+|-------------------------------------------------------------|
+| <p align="center"> <img src="./img/checkhealth.png" /> </p> |
 
 ## 升级
 本项目之前是基于 SpaceVim 的，之后移除了，如果想要升级，除了 `git pull origin master` 之外
@@ -640,7 +651,11 @@ sbt bloopInstall
 然后就可以自动索引了.
 
 ### 快速移动
-我之前认为 vim 基本的移动技术，例如 e b w G gg 之类的，已经很高效，但是接触到 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+
+vim 基本的移动技术，例如 e b w G gg 之类的，，
+
+下面简单说明一些更加高级的技术
+1. [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
 
 | 例子                                                                                                               |
 |--------------------------------------------------------------------------------------------------------------------|
@@ -652,7 +667,16 @@ sbt bloopInstall
 - met : 其 t 被高亮的，直接按 t 就可以了，无需按 s ，因为 met 的三个字母是唯一的。
 
 <!-- TMP_TODO 说明一下 space 的使用 -->
-<!-- TMP_TODO 说明一下如何使用两个 -->
+<!-- TMP_TODO 说明一下为什么会出现后续的继续搜索的情况 -->
+<!-- ctrl i 的使用方法 -->
+
+| binding  | function                                                                    |
+|----------|-----------------------------------------------------------------------------|
+| `CTRL-o` | 跳转的位置的回溯                                                            |
+| `g;`     | 跳转到刚刚编辑的位置                                                        |
+| `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                    |
+| `gf`     | 打开光标所在文件                                                            |
+| `%`      | 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转 |
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -715,11 +739,7 @@ sbt bloopInstall
 ```txt
 setxkbmap -option caps:swapescape
 ```
-- `CTRL-o` 和 `CTRL-i` 跳转的位置的回溯
-- `g;` 跳转到刚刚编辑的位置
-- `gi` 跳转到刚刚编辑的位置，并且进入到插入模式
-- `gf` 打开当前文件
-- `%` 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转
+
 - `:w !sudo tee %` 来保存一个 readonly 文件
 - `:g/pattern/command` 可以用于对于匹配的模式操作
   - `:g!/pattern/command` 对于不匹配的操作

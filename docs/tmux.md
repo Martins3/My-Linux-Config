@@ -39,7 +39,10 @@
 - 使用 `y` 复制并且继续停留在 copy mode 中，使用 `enter` 复制，但是进入到 normal mode
 - 使用 `ctrl shift v` 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的
 
-当然，如果感觉太麻烦,使用鼠标选中之后,也是自动复制出来的.
+当然，如果感觉太麻烦，使用鼠标选中之后，也是自动复制出来的。
+
+<!-- 嵌套 tmux 的赋值粘贴好诡异啊，需要 y 然后 enter 才可以 -->
+<!-- 也许可以 hacking alacritty, 让其直接运行 ssh -t tmux remote 的行为从而避免 tmux 嵌套 -->
 
 ## 插件管理
 

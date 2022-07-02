@@ -96,15 +96,10 @@ sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22
 sudo nix-channel --update
 ```
 
-## [ ] gnome-setting 现在没有了
-- [ ] 在 nix 中设置 proxy 吧
-
-## [ ] Rime 输入法
-- [ ] 不知道配置文件放到什么位置
-  - 可以使用 plum 尝试一下
-
 ## [ ] python 插件
 python virtual env 如何构建
+
+https://akrabat.com/creating-virtual-environments-with-pyenv/
 
 ## [ ] microsoft-edge-dev 有时候会崩溃，也许切换一下版本吧
 - 切换版本没用的啊
@@ -116,6 +111,9 @@ python virtual env 如何构建
 
 ## [ ] coc-Lua 的插件工作的不正常啊
 - 似乎是动态库不能正确加载的
+- [ ] 似乎只是需要重新编译就可以了
+
+## [ ] 能不能在 Mac OS 的虚拟机中构建出来这个虚拟机环境
 
 ## wm
 这个是一个非常通用的问题了，那就是插件下载的二进制是无法使用的
@@ -133,11 +131,9 @@ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 - 其中存在很多小问题需要进行修复的。
   - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
 
-### [ ] 应该还是存在很多好玩的东西的
-
-## [ ] 下一步，还是阅读 Boom 吧，将其中的环境搭建起来
-
-## [ ] 找到 Rust 类似的开发环境
+## [ ] TODO
+- 搭建 Boom 的阅读环境
+- 搭建 Rust 的开发环境
 
 ## alacritty
 - 为什么不是默认全屏的哇? https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
@@ -264,3 +260,13 @@ Jun 24 10:16:48 nixos dhcpcd[794]: timed out
 - https://www.reddit.com/r/NixOS/comments/pglkii/system_starts_really_slowly_because_of_one_process/
 
 原来是不能切换主板为 q35, 怀疑是因为安装时候的主板和之后执行的主板不能切换.
+
+## Rime 输入法
+```sh
+git clone https://github.com/rime/plum
+cd plum
+rime_dir="$HOME/.local/share/fcitx5/rime" bash rime-install
+```
+- `rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
+
+参考 [这篇 blog](http://t.zoukankan.com/jrri-p-12427956.html) 通过配置 fcitx5 的 UI

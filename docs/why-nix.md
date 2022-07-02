@@ -13,6 +13,10 @@
 ## 问题
 nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
 
+## 这个操作几乎完美符合要求啊
+- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
+- https://github.com/gvolpe/nix-config : 这个也非常不错
+
 ## TODO
 - [ ] https://nixos.org/learn.html#learn-guides
 - [ ] https://nixos.org/ 包含了一堆 examples
@@ -36,6 +40,8 @@ nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
   - 简单的介绍 qubes ，nixso and  SpectrumOS
   - 对应的讨论: https://news.ycombinator.com/item?id=26378854
 - https://matklad.github.io//2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html ： rust 大佬解决 nix 的问题 blog
+
+- https://github.com/NixOS/nix/issues/6210 : 有趣
 
 ## 资源
 https://github.com/nixos-cn/flakes : nixos 中文社区

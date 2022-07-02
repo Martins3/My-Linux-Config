@@ -86,11 +86,6 @@ xdg.configFile."nvim" = {
 
 xdg.configFile."alacritty.yml" = { source = ../conf/alacritty.yml; };
 
-# TMP_TODO 实际上，可以逐步的将整个文件夹管理起来，也不是使用 leftwm 的管理器
-xdg.configFile."leftwm/config.toml" = {
-  source = ../conf/leftwm.toml;
-};
-
 home.file.tmux = {
     source = ../conf/tmux.conf;
     target = ".tmux.conf";
@@ -197,6 +192,7 @@ programs.zsh = {
     };
     target = ".gdbinit";
   };
+
   home.file.gdb_dashboard_init = {
     source = ../conf/gdbinit;
     target = ".gdbinit.d/init";
