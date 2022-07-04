@@ -3,6 +3,7 @@
 
 {
   # TMP_TODO i think there's no need to include gui.nix
+  # 非常神奇，如果含有 gui.nix 之后，那么就会 UI 界面
   imports = [
     ./sys/cli.nix
     /* ./sys/gui.nix */
