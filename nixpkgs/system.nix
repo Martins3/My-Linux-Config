@@ -5,7 +5,7 @@
   # TMP_TODO i think there's no need to include gui.nix
   imports = [
     ./sys/cli.nix
-    ./sys/gui.nix
+    /* ./sys/gui.nix */
   ];
 
   nix.binaryCaches = [
