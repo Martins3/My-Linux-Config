@@ -50,7 +50,12 @@ environment.systemPackages = with pkgs; [
 
 1. 设置用户密码
 ```sh
+useradd -c 'martins three' -m martins3
 passwd martins3
+```
+2. 切换到普通用户
+```sh
+su -l martins3
 ```
 
 重新使用普通用户登入，密码为刚刚设置的:
