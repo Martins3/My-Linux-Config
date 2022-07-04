@@ -1,3 +1,6 @@
+{ config, pkgs, ... }:
+
+{
   services.xserver = {
     enable=true;
     xkbOptions = "caps:swapescape";
@@ -79,3 +82,4 @@
     /*   rime */
     /* ]; */
   };
+}

@@ -58,9 +58,20 @@ passwd martins3
 su -l martins3
 ```
 
-重新使用普通用户登入，密码为刚刚设置的:
+2. 导入本配置的操作:
+```sh
+cd ~
+git clone https://github.com/Martins3/My-Linux-Config
+ln ~/My-Linux-Config ~/.config/nixpkgs
+```
 
-1. 添加软件源
+
+3. 重新进入到 sudo 中
+```
+su -
+```
+
+4. 执行 ./scripts/nix-channel.sh 切换源
 ```sh
 sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixos # 对于NixOS
 sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixpkgs # 对于Nix
@@ -69,16 +80,9 @@ sudo nix-channel --add https://github.com/nix-community/home-manager/archive/rel
 sudo nix-channel --update
 ```
 
-2. 导入本配置的操作:
-```sh
-cd ~
-git clone https://github.com/Martins3/My-Linux-Config
-ln ~/My-Linux-Config ~/.config/nixpkgs
-```
-- 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martin 改成你的用户名**
-- 你可能需要修改一下 system.nix 中的用户名
+5. 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
 
-3. 初始化配置
+6. 初始化配置
 ```sh
 sudo nixos-rebuild switch # 仅NixOS
 ```
