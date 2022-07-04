@@ -151,12 +151,15 @@ programs.zsh = {
       };
       # --- end
 
+      # TMP_TODO : make this a configuration
+      /*
       http={
         proxy = "http://10.0.2.2:8889";
       };
       https={
         proxy = "http://10.0.2.2:8889";
       };
+      */
       credential={
         helper = "store";
       };
