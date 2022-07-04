@@ -44,6 +44,9 @@
     readline.dev
     SDL2.dev
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    # kernel
+    flex
+    bison
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */

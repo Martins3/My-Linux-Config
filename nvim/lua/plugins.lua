@@ -84,7 +84,6 @@ require("packer").startup({
     use 'andymass/vim-matchup' -- 高亮匹配的元素，例如 #if 和 #endif
     -- 时间管理
     use 'nvim-orgmode/orgmode' -- 日程管理
-    use 'wakatime/vim-wakatime' -- 用于统计代码时间
     -- latex
     use 'lervag/vimtex'
     -- 其他
