@@ -50,3 +50,6 @@ https://github.com/mitchellh/nixos-config
 
 ## 关键参考
 https://github.com/xieby1/nix_config
+
+## similar project
+- https://github.com/linuxkit/linuxkit

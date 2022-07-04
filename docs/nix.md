@@ -34,6 +34,7 @@ environment.systemPackages = with pkgs; [
   wget
   firefox
   zsh
+  rsync
 ];
 ```
 
@@ -49,18 +50,17 @@ environment.systemPackages = with pkgs; [
 
 1. 设置用户密码
 ```sh
-passwd sh
+passwd martins3
 ```
-
 
 重新使用普通用户登入，密码为刚刚设置的:
 
 1. 添加软件源
 ```sh
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixos # 对于NixOS
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-21.11 nixpkgs # 对于Nix
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixos # 对于NixOS
+sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixpkgs # 对于Nix
 # 添加home manager 源
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz home-manager
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
 sudo nix-channel --update
 ```
 
@@ -89,12 +89,6 @@ home-manager switch
 
 ### 更新 Nixos
 和设置源相同
-```nix
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixos # 对于NixOS
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixpkgs # 对于Nix
-# 添加home manager 源 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
-sudo nix-channel --update
-```
 
 ## [ ] python 插件
 python virtual env 如何构建
