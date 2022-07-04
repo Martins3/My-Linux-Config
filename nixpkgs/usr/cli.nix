@@ -59,19 +59,19 @@ programs.neovim = {
 };
 
 xdg.configFile."nvim" = {
-    source = ../nvim;
+    source = ../../nvim;
     recursive = true;
 };
 
-xdg.configFile."alacritty.yml" = { source = ../conf/alacritty.yml; };
+xdg.configFile."alacritty.yml" = { source = ../../conf/alacritty.yml; };
 
 home.file.tmux = {
-    source = ../conf/tmux.conf;
+    source = ../../conf/tmux.conf;
     target = ".tmux.conf";
 };
 
 home.file.tig= {
-    source = ../conf/tigrc.conf;
+    source = ../../conf/tigrc.conf;
     target = ".tigrc";
 };
 
@@ -173,12 +173,12 @@ programs.zsh = {
   };
 
   home.file.gdb_dashboard_init = {
-    source = ../conf/gdbinit;
+    source = ../../conf/gdbinit;
     target = ".gdbinit.d/init";
   };
 
   home.file.cargo_conf = {
-    source = ../conf/cargo.conf;
+    source = ../../conf/cargo.conf;
     target = ".cargo/config";
   };
 }
