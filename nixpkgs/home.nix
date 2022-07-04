@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./usr/cli.nix
+    ./home/cli.nix
   ] ++ (if (builtins.getEnv "DISPLAY")!=""
   then [
-    ./usr/gui.nix
+    ./home/gui.nix
   ] else []);
 
   # allow unfree software

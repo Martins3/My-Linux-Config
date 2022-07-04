@@ -20,10 +20,10 @@
 
   programs.zsh.enable = true;
 
-  users.extraUsers.martin3 = {
+  users.extraUsers.martins3 = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      home = "/home/martin3";
+      home = "/home/martins3";
       extraGroups = [ "wheel" ];
   };
 }

@@ -216,6 +216,8 @@ https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 
 git clone https://github.com/leftwm/leftwm-theme
 
+## [ ] 为什么默认是 bash 的环境
+
 ## sublime merge 的安装
 - 开箱就得到了一个更新提示
   - 既然如此，可以总是只有部分软件使用 unstable 的，例如 neovim 的
@@ -223,6 +225,7 @@ git clone https://github.com/leftwm/leftwm-theme
 ## [x] 为什么直通只有左边的耳机才有声音啊
 - 真的需要添加四个设备吗?
   - 有的似乎根本不相关啊
+- q35 导致的
 
 ## [x] 每次启动都是需要 30s 的时间
 
