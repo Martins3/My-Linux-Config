@@ -47,6 +47,8 @@
     # kernel
     flex
     bison
+    # qemu
+    ninja
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */

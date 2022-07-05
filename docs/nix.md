@@ -170,9 +170,6 @@ cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_key
 
 rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
 
-
-https://martins3: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@github.com
-
 ## nvim
 安装到此处就可以了:
 /home/maritns3/.local/share/nvim/site/pack/packer/opt/packer.nvim
