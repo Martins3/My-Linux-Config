@@ -29,6 +29,7 @@
     tree
     jump
     fd
+    cloc
     file
     ncdu
     delta # git
@@ -49,6 +50,9 @@
     bison
     # qemu
     ninja
+    libvirt
+    # vim
+    shellcheck
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */

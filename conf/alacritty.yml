@@ -469,7 +469,8 @@ shell:
  args:
     - -l
     - -c
-    - "tmux attach || tmux"
+    - "ssh -X -t martins3@192.168.23.126 \"tmux attach || /usr/bin/env tmxu\""
+    # - "tmux attach || /usr/bin/env tmxu"
 
 # Startup directory
 #
@@ -797,6 +798,9 @@ key_bindings:
   - { key: J,     mods: Alt,     chars: "\x1bj"                           }
   - { key: K,     mods: Alt,     chars: "\x1bk"                           }
   - { key: L,     mods: Alt,     chars: "\x1bl"                           }
+  - { key: F,     mods: Alt,     chars: "\x1bf"                           }
+  - { key: B,     mods: Alt,     chars: "\x1bb"                           }
+  - { key: D,     mods: Alt,     chars: "\x1bd"                           }
   # TMP_TODO key binding for how to move quickly in shell
   # TMP_TODO key binding for copy and paste
   # TMP_TODO we have to test the in ubutun before release
