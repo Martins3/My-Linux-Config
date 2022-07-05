@@ -20,10 +20,12 @@
 
   programs.zsh.enable = true;
 
+  virtualisation.docker.enable = true;
+
   users.extraUsers.martins3 = {
       isNormalUser = true;
       shell = pkgs.zsh;
       home = "/home/martins3";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel", "docker" ];
   };
 }
