@@ -1,30 +1,33 @@
  patch:
-   # -----------候选框样式 ------------
+
+  show_notifications_via_notification_center: true
+
    style:
-     color_scheme: clean_white                 # 当前使用的配色方案
-   
-   preset_color_schemes:                       # 预设的配色方案
-     clean_white:                              # 配色方案id
-       name: "简白"                            # 配色方案名称
-       author: ""                              # 配色方案作者 
-       text_color: 0x000000                    # 颜色 - 输入中 - 文字
-       candidate_text_color: 0x888888          # 颜色 - 其它候选词 - 文字
-       back_color: 0xefeff4                    # 颜色 - 面板背景
-       border_color: 0x8e8e93                  # 颜色 - 边框
-       hilited_text_color: 0x8e8e93            # 颜色 - 输入中 - 编码
-       hilited_back_color: 0xefeff4            # 颜色 - 输入中 - 背景
-       hilited_candidate_text_color: 0x333333  # 颜色 - 首选候选词 - 文字
-       hilited_candidate_back_color: 0x00ffff  # 颜色 - 首选候选词 - 背景
-       hilited_candidate_label_color: 0x888888 # 颜色 - 首选候选词 - 序号
+      color_scheme: apathy
 
-
-app_options:
- org.vim.MacVim:
-  ascii_punct: true
-  vim_mode: true
- vim:
-  ascii_punct: true
-  vim_mode: true
- neovim:
-  ascii_punct: true
-  vim_mode: true
+    preset_color_schemes:
+      mojave_dark:
+        name: "沙漠夜／Mojave Dark"
+        author: "xiehuc <xiehuc@gmail.com>"
+        horizontal: true
+        inline_preedit: true
+        candidate_format: "%c %@"
+        corner_radius: 5
+        hilited_corner_radius: 0
+        border_height: 6
+        border_width: 12
+        border_color_width: 0
+        font_face: PingFangSC
+        font_point: 16
+        label_font_point: 13
+        text_color: 0xdedddd
+        back_color: 0x3c3c3c
+        label_color: 0x888785
+        border_color: 0x3c3c3c
+        candidate_text_color: 0xdedddd
+        hilited_text_color: 0xdedddd
+        hilited_back_color: 0x3c3c3c
+        hilited_candidate_text_color: 0xefefef
+        # hilited_candidate_back_color: 0xcb5d00
+        hilited_candidate_label_color: 0xefefef
+        comment_text_color: 0xdedddd

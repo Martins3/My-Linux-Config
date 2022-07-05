@@ -26,6 +26,8 @@
       isNormalUser = true;
       shell = pkgs.zsh;
       home = "/home/martins3";
-      extraGroups = [ "wheel", "docker" ];
+      # TMP_TODO 补充文档
+      # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
+      extraGroups = [ "wheel" "docker" ];
   };
 }

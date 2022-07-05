@@ -65,8 +65,26 @@ use_preset_vocabulary: true
 ## 设置皮肤
 默认皮肤就很简洁，没有必要浪费时间。
 
-## Rime
+## Mac 中
 - https://rime.im/download/
+- 配置只是地址不同而已，可以参考
+- 使用 rime/mac-install.sh 安装，其实也就是地址不同而已
+  - rime/squirrel.custom.yaml 中配置其中的
+
+为了可以在 vim 中自动切换，使用上: https://github.com/xcodebuild/fcitx-remote-for-osx
+
+```sh
+git clone https://github.com/xcodebuild/fcitx-remote-for-osx.git
+cd fcitx-remote-for-osx
+./build.py build all abc
+# squirrel for example
+cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
+```
+
+`TMP_TODO` 不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH 
+```sh
+export PATH="$PATH:/usr/local/bin"
+```
 
 ## 参考 && TODO
 - https://github.com/BlueSky-07/Shuang 双拼練習
