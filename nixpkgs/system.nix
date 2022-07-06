@@ -21,6 +21,8 @@
   programs.zsh.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
 
   users.extraUsers.martins3 = {
       isNormalUser = true;
@@ -28,6 +30,11 @@
       home = "/home/martins3";
       # TMP_TODO 补充文档
       # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
-      extraGroups = [ "wheel" "docker" ];
+      # 使用上密码
+      # TMP_TODO mkpasswd -m sha-512
+      extraGroups =
+       [ "qemu-libvirtd" "libvirtd" 
+         "wheel" "video" "audio" "disk" "networkmanager"  "docker"
+       ]; 
   };
 }
