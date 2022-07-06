@@ -89,6 +89,7 @@ home.file.tig= {
     target = ".tigrc";
 };
 
+/* 不知道什么原因，vim 中的 floterm  的 shell 不对 */
 /* loongson_server="loongson@10.90.50.30" */
 /* alias la="ssh -X -t ${loongson_server} \"tmux attach || /usr/bin/tmux\"" */
 /* alias sshfs_la="sshfs ${loongson_server}:/home/loongson ~/core/5000" */
@@ -104,7 +105,6 @@ programs.zsh = {
     ls="lsd";
     m="make -j";
     gs="tig status";
-    fd="fdfind";
     c="clear";
     du="ncdu";
     z="j";

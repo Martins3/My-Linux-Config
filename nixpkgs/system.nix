@@ -21,7 +21,11 @@
 
   virtualisation.docker.enable = true;
   # https://nixos.wiki/wiki/Virt-manager
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    extraConfig = "--listen";
+  }
+  # TMP_TODO 但是还是需要手动 sudo systemctl start libvirtd, 是因为需要重启的，如果启用你新的 service
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [ virt-manager ];
 
