@@ -52,8 +52,10 @@
     # qemu
     ninja
     libvirt
+    virt-manager
     # vim
     shellcheck
+    shfmt
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
