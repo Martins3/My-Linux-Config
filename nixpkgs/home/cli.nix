@@ -35,7 +35,7 @@
     delta # git
     # network
     nload
-    ifload
+    iftop
     gh
     dijo
     # nix
