@@ -470,7 +470,7 @@ shell:
     - -l
     - -c
     - "ssh -X -t martins3@192.168.23.126 \"tmux attach || /usr/bin/env tmux\""
-    # - "tmux attach || /usr/bin/env tmxu"
+    # - "tmux attach || /usr/bin/env tmux"
 
 # Startup directory
 #

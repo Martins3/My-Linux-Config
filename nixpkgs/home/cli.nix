@@ -33,8 +33,9 @@
     file
     ncdu
     delta # git
-    nload # network
-    variety # wallpaper
+    # network
+    nload
+    ifload
     gh
     dijo
     # nix

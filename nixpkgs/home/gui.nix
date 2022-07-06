@@ -26,6 +26,8 @@ in
     rofi
     picom
     inter
+    # wallpaper
+    variety
   ]
 
   systemd.user.services.clash = {
