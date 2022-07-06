@@ -20,9 +20,9 @@
     go
     lua
     gdb
-    alacritty
     tig
     lsd
+    lsof
     ccls
     xclip
     bear
@@ -77,7 +77,6 @@ xdg.configFile."nvim" = {
     recursive = true;
 };
 
-xdg.configFile."alacritty.yml" = { source = ../../conf/alacritty.yml; };
 
 home.file.tmux = {
     source = ../../conf/tmux.conf;
@@ -134,10 +133,7 @@ programs.zsh = {
   };
 };
 
-  # allow unfree software
-  nixpkgs.config.allowUnfree = true;
-
-  programs.home-manager.enable = true;
+# TMP_TODO 应该设置 npm 的 register 一下
 
   programs.git = {
     enable = true;

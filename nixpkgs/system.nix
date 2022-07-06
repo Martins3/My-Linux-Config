@@ -24,7 +24,12 @@
   virtualisation.libvirtd = {
     enable = true;
     # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/virtualization_host_configuration_and_guest_installation_guide/app_tcp_ports
-    extraConfig = "LIBVIRTD_ARGS=\"--listen\"";
+    extraConfig = "
+    LIBVIRTD_ARGS=\"--listen\"
+    listen_tls = 1
+    listen_tcp = 1
+    listen_addr = \"0.0.0.0\"
+    ";
   };
   # TMP_TODO 但是还是需要手动 sudo systemctl start libvirtd, 是因为需要重启的，如果启用你新的 service
   programs.dconf.enable = true;

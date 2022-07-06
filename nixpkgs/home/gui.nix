@@ -26,9 +26,12 @@ in
     rofi
     picom
     inter
+    alacritty
     # wallpaper
     variety
   ]
+
+  xdg.configFile."alacritty.yml" = { source = ../../conf/alacritty.yml; };
 
   systemd.user.services.clash = {
     Unit = {
