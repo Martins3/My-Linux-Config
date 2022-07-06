@@ -469,8 +469,9 @@ shell:
  args:
     - -l
     - -c
-    - "ssh -X -t martins3@192.168.23.126 \"tmux attach || /usr/bin/env tmux\""
-    # - "tmux attach || /usr/bin/env tmux"
+    # - "ssh -X -t martins3@192.168.23.126 \"tmux attach || /usr/bin/env tmux\"" # code
+    # - "ssh -X -t martins3@192.168.24.108 \"tmux attach || /usr/bin/env tmux\"" # A
+    - "tmux attach || /usr/bin/env tmux"
 
 # Startup directory
 #

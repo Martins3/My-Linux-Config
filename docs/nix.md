@@ -46,7 +46,6 @@ environment.systemPackages = with pkgs; [
 
 使用 root 用户登录进去：
 
-
 <!-- 1. 设置用户密码 -->
 <!-- ```sh -->
 <!-- useradd -c 'martins three' -m martins3 -->
@@ -56,6 +55,7 @@ environment.systemPackages = with pkgs; [
 <!-- ```sh -->
 <!-- su -l martins3 -->
 <!-- ``` -->
+TMP_TODO 直接 clone 到 root 中的某个位置也是不错的，虽然之后需要修改 /etc/nixos/configuration.nix
 
 2. 导入本配置的操作:
 ```sh
@@ -91,6 +91,9 @@ sudo nixos-rebuild switch # 仅NixOS
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
+<!-- 上面的 nix-shell 命令都看不懂啊 --> 
+
+
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
