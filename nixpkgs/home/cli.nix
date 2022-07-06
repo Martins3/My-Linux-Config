@@ -50,6 +50,8 @@
     flex
     bison
     # qemu
+    qemu
+    qemu-utils
     ninja
     libvirt
     virt-manager
