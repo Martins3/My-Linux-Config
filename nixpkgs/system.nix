@@ -29,7 +29,7 @@
     listen_tcp = 1
     listen_addr = \"0.0.0.0\"
     ";
-     extraOptions = " LIBVIRTD_ARGS=\"--listen\" ";
+     extraOptions = [ "LIBVIRTD_ARGS=\"--listen\""];
   };
 
   # 
