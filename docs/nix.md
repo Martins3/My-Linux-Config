@@ -32,9 +32,7 @@ environment.systemPackages = with pkgs; [
   vim
   git
   wget
-  firefox
   zsh
-  rsync
 ];
 ```
 
@@ -48,15 +46,16 @@ environment.systemPackages = with pkgs; [
 
 使用 root 用户登录进去：
 
-1. 设置用户密码
-```sh
-useradd -c 'martins three' -m martins3
-passwd martins3
-```
-2. 切换到普通用户
-```sh
-su -l martins3
-```
+
+<!-- 1. 设置用户密码 -->
+<!-- ```sh -->
+<!-- useradd -c 'martins three' -m martins3 -->
+<!-- passwd martins3 -->
+<!-- ``` -->
+<!-- 2. 切换到普通用户 -->
+<!-- ```sh -->
+<!-- su -l martins3 -->
+<!-- ``` -->
 
 2. 导入本配置的操作:
 ```sh
@@ -64,7 +63,6 @@ cd ~
 git clone https://github.com/Martins3/My-Linux-Config
 ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
-
 
 3. 重新进入到 sudo 中
 ```

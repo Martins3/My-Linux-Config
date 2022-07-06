@@ -14,7 +14,6 @@
     "https://cache.nixos.org/"
   ];
 
-  # Set your time zone.
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
 
@@ -22,14 +21,17 @@
 
   virtualisation.docker.enable = true;
 
-  users.extraUsers.martins3 = {
+  users.mutableUsers = false;
+  # mkpasswd -m sha-512
+  users.users.root.hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
+  users.users.martins3 = {
       isNormalUser = true;
       shell = pkgs.zsh;
       home = "/home/martins3";
       # TMP_TODO 补充文档
       # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
-      # 使用上密码
-      # TMP_TODO mkpasswd -m sha-512
       extraGroups = [ "wheel" "docker" ];
+      hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
+
   };
 }
