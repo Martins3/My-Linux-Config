@@ -20,6 +20,10 @@
   programs.zsh.enable = true;
 
   virtualisation.docker.enable = true;
+  # https://nixos.wiki/wiki/Virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+  environment.systemPackages = with pkgs; [ virt-manager ];
 
   users.mutableUsers = false;
   # mkpasswd -m sha-512
@@ -30,7 +34,7 @@
       home = "/home/martins3";
       # TMP_TODO 补充文档
       # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [ "wheel" "docker" "libvirtd" ];
       hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
 
   };
