@@ -55,29 +55,17 @@ environment.systemPackages = with pkgs; [
 <!-- ```sh -->
 <!-- su -l martins3 -->
 <!-- ``` -->
-TMP_TODO 直接 clone 到 root 中的某个位置也是不错的，虽然之后需要修改 /etc/nixos/configuration.nix
+<!-- TMP_TODO 直接 clone 到 root 中的某个位置也是不错的，虽然之后需要修改 /etc/nixos/configuration.nix -->
 
 2. 导入本配置的操作:
 ```sh
-cd ~
+mkdir -p /home/martins3
+cd /home/martins3
+
 git clone https://github.com/Martins3/My-Linux-Config
 ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
-
-3. 重新进入到 sudo 中
-```
-su -
-```
-
 4. 执行 ./scripts/nix-channel.sh 切换源
-```sh
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixos # 对于NixOS
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-22.05 nixpkgs # 对于Nix
-# 添加home manager 源
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
-sudo nix-channel --update
-```
-
 5. 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
 
 6. 初始化配置

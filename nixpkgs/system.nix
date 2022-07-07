@@ -32,12 +32,16 @@
      extraOptions = [ "LIBVIRTD_ARGS=\"--listen\""];
   };
 
-  # 
-
-
   # TMP_TODO 但是还是需要手动 sudo systemctl start libvirtd, 是因为需要重启的，如果启用你新的 service
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  # TMP_TODO 如果出现重复会有什么问题吗？和 /etc/nixos/configuration.nix 中的
+  environment.systemPackages = with pkgs; [ 
+    virt-manager
+    vim
+    git
+    wget
+    zsh
+  ];
 
   users.mutableUsers = false;
   # mkpasswd -m sha-512
