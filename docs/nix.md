@@ -46,36 +46,37 @@ environment.systemPackages = with pkgs; [
 
 使用 root 用户登录进去：
 
-<!-- 1. 设置用户密码 -->
-<!-- ```sh -->
-<!-- useradd -c 'martins three' -m martins3 -->
-<!-- passwd martins3 -->
-<!-- ``` -->
-<!-- 2. 切换到普通用户 -->
-<!-- ```sh -->
-<!-- su -l martins3 -->
-<!-- ``` -->
+1. 创建用户和密码
+```sh
+useradd -c 'martins three' -m martins3
+passwd martins3
+```
+2. 切换到普通用户
+```sh
+su -l martins3
+```
 <!-- TMP_TODO 直接 clone 到 root 中的某个位置也是不错的，虽然之后需要修改 /etc/nixos/configuration.nix -->
 
 2. 导入本配置的操作:
 ```sh
-mkdir -p /home/martins3
-cd /home/martins3
-
 git clone https://github.com/Martins3/My-Linux-Config
 ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
 4. 执行 ./scripts/nix-channel.sh 切换源
+
 5. 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
+  - 进入的时候为 su - ，因为 martins3 还不是 sudo files 中。
 
 6. 初始化配置
 ```sh
 sudo nixos-rebuild switch # 仅NixOS
 ```
 
-### 部署 nixos 配置
+7. 部署 nixos 配置
+
 ```sh
 # 安装home-manager
+ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
@@ -262,3 +263,9 @@ rime_dir="$HOME/.local/share/fcitx5/rime" bash rime-install
 - `rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
 
 参考 [这篇 blog](http://t.zoukankan.com/jrri-p-12427956.html) 通过配置 fcitx5 的 UI
+
+## 安装特定版本
+
+nix-env -qaP | grep 'gcc[0-9]\>'
+
+nix-env -qaP elfutils
