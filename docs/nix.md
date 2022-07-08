@@ -269,3 +269,6 @@ rime_dir="$HOME/.local/share/fcitx5/rime" bash rime-install
 nix-env -qaP | grep 'gcc[0-9]\>'
 
 nix-env -qaP elfutils
+
+## 自动安装 tmux
+- [ ] tmux 似乎对于到底是谁在加载，其实并不在乎的，所以插件是可以让 nix 管理起来

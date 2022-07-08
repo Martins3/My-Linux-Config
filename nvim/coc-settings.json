@@ -48,5 +48,6 @@
     "sh": "shfmt"
   },
   "sumneko-lua.enableNvimLuaDev": true,
-  "Lua.telemetry.enable": true
+  "Lua.telemetry.enable": true,
+  "imselect.defaultInput": "com.apple.keylayout.ABC"
 }

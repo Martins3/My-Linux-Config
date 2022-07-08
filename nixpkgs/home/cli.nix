@@ -37,7 +37,7 @@
     nload
     iftop
     gh
-    dijo
+    tcpdump
     # nix
     nix-index
     cargo
@@ -65,9 +65,18 @@
     pkgconfig
     ncurses
     openssl
-    elfutils
+    elfutils # TMP_TODO 似乎 Nix 中的库总是需要依赖一下 default.nix 的
     bc
+    # tlpi
+    libcap
+    acl
+    # trace
+    perf-tools
+    iperf
   ];
+  # TMP_TODO 我的是非常迷茫啊
+/* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */        
+
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
 nixpkgs.overlays = [
