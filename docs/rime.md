@@ -81,10 +81,14 @@ cd fcitx-remote-for-osx
 cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
 ```
 
-`TMP_TODO` 不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH 
+`TMP_TODO` 不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH
 ```sh
 export PATH="$PATH:/usr/local/bin"
 ```
+
+原理:
+- 在终端中运行 `remote-fcitx -c` 和 `remote-fcitx -o` 
+- 手动切换输入法，然后运行 `remote-fcitx` ，观察结果。
 
 ## 参考 && TODO
 - https://github.com/BlueSky-07/Shuang 双拼練習
@@ -95,4 +99,4 @@ export PATH="$PATH:/usr/local/bin"
 - [ ] 如何保持总是只有 rime,似乎从 vim 切换到 chrome 中的时候,会切换成系统的英文输入法
 - [ ] rime 能不能像 sogou 一样又一个明显一点的 indicator 说明当前是中文还是英文
 - [ ] 统计字数是个好东西啊，但是统计中文的行为很奇怪。
-<!-- TMP_TODO mac 上的删除会将之前的字符删除掉，很烦 --> 
+<!-- TMP_TODO mac 上的删除会将之前的字符删除掉，很烦 -->

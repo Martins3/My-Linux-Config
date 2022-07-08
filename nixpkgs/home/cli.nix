@@ -58,6 +58,15 @@
     # vim
     shellcheck
     shfmt
+    # linux
+    bison
+    flex
+    lzop
+    pkgconfig
+    ncurses
+    openssl
+    elfutils
+    bc
   ];
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
