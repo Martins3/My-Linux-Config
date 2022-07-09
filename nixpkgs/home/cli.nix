@@ -56,7 +56,6 @@
     libvirt
     virt-manager
     # vim
-    neovim
     shellcheck
     shfmt
     # linux
@@ -76,11 +75,11 @@
     iperf
   ];
   # TMP_TODO 我的是非常迷茫啊
-/* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */        
+/* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */
 
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
-/* TMP_TODO 调查一下，这种方法的原理是什么。
+# TMP_TODO 调查一下，这是个什么原理?
 nixpkgs.overlays = [
   (import (builtins.fetchTarball {
     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -91,13 +90,11 @@ programs.neovim = {
   enable = true;
   package = pkgs.neovim-nightly;
 };
-*/
 
 xdg.configFile."nvim" = {
     source = ../../nvim;
     recursive = true;
 };
-
 
 
 home.file.tmux = {
@@ -110,10 +107,6 @@ home.file.tig= {
     target = ".tigrc";
 };
 
-/* 不知道什么原因，vim 中的 floterm  的 shell 不对 */
-/* loongson_server="loongson@10.90.50.30" */
-/* alias la="ssh -X -t ${loongson_server} \"tmux attach || /usr/bin/tmux\"" */
-/* alias sshfs_la="sshfs ${loongson_server}:/home/loongson ~/core/5000" */
 programs.zsh = {
   enable = true;
   shellAliases = {
@@ -146,6 +139,7 @@ programs.zsh = {
           rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
         };
       }
+      # @todo 增加这个 plugin 吧 https://github.com/Aloxaf/fzf-tab
     ];
 
   oh-my-zsh = {

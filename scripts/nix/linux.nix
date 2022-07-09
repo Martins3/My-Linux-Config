@@ -18,6 +18,3 @@ pkgs.mkShell rec {
    ];
   buildInputs = with pkgs; [ zlib ];
 }
-# TMP_TODO what does this mean ?
-/* warning: not including '/nix/store/ins8q19xkjh21fhlzrxv0dwhd4wq936s-nix-shell' in the user environment because it's not a directory */
-

@@ -13,6 +13,50 @@
 ## 问题
 nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
 
+## 文档
+
+### manual : https://nixos.org/manual/nix/stable/introduction.html
+
+> This means that it treats packages like values in purely functional programming languages such as Haskell — they are built by functions that don’t have side-effects, and they never change after they have been built.
+充满了哲学的感觉啊。
+
+For example, the following command gets all dependencies of the Pan newsreader, as described by its Nix expression:
+
+- https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/newsreaders/pan/default.nix
+```sh
+nix-shell '<nixpkgs>' -A pan
+```
+
+The main command for package management is nix-env.
+
+Components are installed from a set of Nix expressions that tell Nix how to build those packages, including, if necessary, their dependencies. There is a collection of Nix expressions called the Nixpkgs package collection that contains packages ranging from basic development stuff such as GCC and Glibc, to end-user applications like Mozilla Firefox. (Nix is however not tied to the Nixpkgs package collection; you could write your own Nix expressions based on Nixpkgs, or completely new ones.)
+> 1. Nix Expressions 实际上是在描述一个包是如何构建的
+> 2. Nixpkgs 是一堆社区构建好的
+> 3. 完全可以自己来构建这些内容
+
+You can view the set of available packages in Nixpkgs:
+```c
+nix-env -qaP
+```
+The flag -q specifies a query operation, -a means that you want to show the “available” (i.e., installable) packages, as opposed to the installed packages, and -P prints the attribute paths that can be used to unambiguously select a package for installation (listed in the first column).
+
+You can install a package using nix-env -iA. For instance,
+```c
+nix-env -iA nixpkgs.subversion
+```
+
+Profiles and user environments are Nix’s mechanism for implementing the ability to allow different users to have different configurations, and to do atomic upgrades and rollbacks.
+
+#### 直接跳转到 Chapter 5
+
+使用 https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/misc/hello/default.nix 作为例子。
+
+需要看看的语法:
+- [ ] let in 语法
+
+### manual : https://nixos.org/manual/nixpkgs/stable/
+- [ ] 这个是侧重什么东西啊?
+
 ## 这个操作几乎完美符合要求啊
 - https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
 - https://github.com/gvolpe/nix-config : 这个也非常不错
@@ -53,3 +97,16 @@ https://github.com/xieby1/nix_config
 
 ## similar project
 - https://github.com/linuxkit/linuxkit
+
+## 问题
+- [ ] nix-shell 和 nix-env 各自侧重什么方向啊
+- [ ] 什么是 flake 啊？
+- [ ] 按照现在的配置，每次在 home-manager switch 的时候，都会出现下面的警告。
+```txt
+warning: not including '/nix/store/ins8q19xkjh21fhlzrxv0dwhd4wq936s-nix-shell' in the user environment because it's not a directory
+```
+
+- [ ] 下面的这两个流程是什么意思
+# nix-env -f ./linux.nix -i
+# shell-nix --cmd zsh
+之的发发

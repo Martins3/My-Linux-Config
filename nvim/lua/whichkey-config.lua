@@ -150,3 +150,6 @@ wk.register({
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
+
+-- TMP_TODO 增加一个 jzz 的映射
+-- TMP_TODO 能不能在 vim 中直接定义 @j 这个 macro 啊

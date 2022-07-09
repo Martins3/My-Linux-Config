@@ -93,6 +93,9 @@ require("packer").startup({
     use 'h-hg/fcitx.nvim' -- 自动切换输入法
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
     -- TMP_TODO unable to install
+    -- TMP_TODO 有一个插件，当光标进入到最下面位置的括号的时候，其会让 status line 消失，这很糟糕。
+    -- TMP_TODO 我们发现 markdown-preview 不能正常工作，最后参考这里解决的 https://stackoverflow.com/questions/52801814/this-syntax-requires-an-imported-helper-but-module-tslib-cannot-be-found-wit
+    -- 通过 npm -i
     -- use 'inkarkat/vim-mark'
   end,
 })
