@@ -90,7 +90,7 @@ require("packer").startup({
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
     -- TMP_TODO coc-imselect 也可以直接解决 Linux 上的问题，那么就不需要这些复杂的事情了
-    -- use 'h-hg/fcitx.nvim' -- 自动切换输入法
+    use 'h-hg/fcitx.nvim' -- 自动切换输入法
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
     -- TMP_TODO unable to install
     -- use 'inkarkat/vim-mark'

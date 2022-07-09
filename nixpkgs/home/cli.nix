@@ -56,6 +56,7 @@
     libvirt
     virt-manager
     # vim
+    neovim
     shellcheck
     shfmt
     # linux
@@ -79,6 +80,7 @@
 
 
 /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
+/* TMP_TODO 调查一下，这种方法的原理是什么。
 nixpkgs.overlays = [
   (import (builtins.fetchTarball {
     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -89,11 +91,13 @@ programs.neovim = {
   enable = true;
   package = pkgs.neovim-nightly;
 };
+*/
 
 xdg.configFile."nvim" = {
     source = ../../nvim;
     recursive = true;
 };
+
 
 
 home.file.tmux = {
