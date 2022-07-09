@@ -50,5 +50,5 @@
   "sumneko-lua.enableNvimLuaDev": true,
   "Lua.telemetry.enable": true,
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "imselect.enableFloating": false
+  "imselect.enableFloating": true
 }
