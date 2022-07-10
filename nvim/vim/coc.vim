@@ -115,7 +115,6 @@ let s:coc_extensions = [
       \ 'coc-vimtex',
       \ 'coc-texlab',
       \ 'coc-metals',
-      \ 'coc-imselect',
       \]
 
 for extension in s:coc_extensions

@@ -135,3 +135,6 @@ $ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildIn
 
 ## 到底如何编译 Linux 内核
 https://ryantm.github.io/nixpkgs/builders/packages/linux/
+
+## 可以继续 QEMU 来继续 hacking NixOS
+https://gist.github.com/citruz/9896cd6fb63288ac95f81716756cb9aa
