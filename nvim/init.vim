@@ -42,6 +42,9 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
+" 让远程的 server 内容拷贝到系统剪切板中
+vnoremap <leader>c :OSCYank<CR>
+
 " 使用 z a 打开和关闭 fold
 set foldlevelstart=99
 set foldmethod=expr

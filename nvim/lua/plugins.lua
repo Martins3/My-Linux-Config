@@ -97,5 +97,6 @@ require("packer").startup({
     -- TMP_TODO 我们发现 markdown-preview 不能正常工作，最后参考这里解决的 https://stackoverflow.com/questions/52801814/this-syntax-requires-an-imported-helper-but-module-tslib-cannot-be-found-wit
     -- 通过 npm -i
     -- use 'inkarkat/vim-mark'
+    use 'ojroques/vim-oscyank'
   end,
 })
