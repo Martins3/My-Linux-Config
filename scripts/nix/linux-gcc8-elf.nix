@@ -1,6 +1,6 @@
 let
     pkgs = import (builtins.fetchTarball {
-        url =q "https://github.com/NixOS/nixpkgs/archive/66c745e30d26ee30de4a6fa4dfc7862b48ee2697.tar.gz";
+        url = "https://github.com/NixOS/nixpkgs/archive/66c745e30d26ee30de4a6fa4dfc7862b48ee2697.tar.gz";
     }) {};
 
     myPkg = pkgs.elfutils;
@@ -8,7 +8,7 @@ in
 
  with import <nixpkgs> {}; {
   qpidEnv = stdenvNoCC.mkDerivation {
-    name = "my-gcc8-environment";
+    name = "gcc8-env";
     buildInputs = [
         gcc8
         bison
@@ -25,3 +25,4 @@ in
     ];
   };
 }
+

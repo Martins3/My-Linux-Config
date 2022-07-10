@@ -57,6 +57,8 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 ### manual : https://nixos.org/manual/nixpkgs/stable/
 - [ ] 这个是侧重什么东西啊?
 
+### manual :  https://nixos.org/manual/nixpkgs/unstable/
+
 ## 这个操作几乎完美符合要求啊
 - https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
 - https://github.com/gvolpe/nix-config : 这个也非常不错
@@ -88,15 +90,23 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 - https://github.com/NixOS/nix/issues/6210 : 有趣
 
 ## 资源
-https://github.com/nixos-cn/flakes : nixos 中文社区
-https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
-https://github.com/mitchellh/nixos-config
+- https://github.com/nixos-cn/flakes : nixos 中文社区
+- https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
+- https://github.com/mitchellh/nixos-config
+
+## 目前最好的教程，应该上手完成之后，就使用这个
+- https://scrive.github.io/nix-workshop/01-getting-started/03-resources.html 资源合集
+
 
 ## 关键参考
 https://github.com/xieby1/nix_config
 
 ## similar project
 - https://github.com/linuxkit/linuxkit
+
+## 一个快速的教程
+https://nixery.dev/nix-1p.html
+
 
 ## 问题
 - [ ] nix-shell 和 nix-env 各自侧重什么方向啊
@@ -107,6 +117,21 @@ warning: not including '/nix/store/ins8q19xkjh21fhlzrxv0dwhd4wq936s-nix-shell' i
 ```
 
 - [ ] 下面的这两个流程是什么意思
-# nix-env -f ./linux.nix -i
-# shell-nix --cmd zsh
-之的发发
+```sh
+nix-env -f ./linux.nix -i
+shell-nix --cmd zsh
+```
+- [ ] 无法理解这是什么安装方法，可以假如到 home.nix 中吗?
+```sh
+nix-env -i -f https://github.com/nix-community/rnix-lsp/archive/master.tar.gz
+```
+
+- [ ] 理解一下什么叫做 overriding 啊
+```sh
+$ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildInputs=o.nativeBuildInputs ++ [ pkgconfig ncurses ];})'
+[nix-shell] $ unpackPhase && cd linux-*
+[nix-shell] $ make menuconfig
+```
+
+## 到底如何编译 Linux 内核
+https://ryantm.github.io/nixpkgs/builders/packages/linux/

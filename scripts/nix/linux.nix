@@ -1,8 +1,7 @@
 # nix-env -f ./linux.nix -i
 # shell-nix --cmd zsh
 let
-pkgs = import <nixpkgs> {
-};
+pkgs = import <nixpkgs> {};
 in
 
 pkgs.mkShell rec {

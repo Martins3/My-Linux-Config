@@ -270,5 +270,7 @@ nix-env -qaP | grep 'gcc[0-9]\>'
 
 nix-env -qaP elfutils
 
-## 自动安装 tmux
+使用这个网站: https://lazamar.co.uk/nix-versions/
+
+## 自动安装 tmux 的插件
 - [ ] tmux 似乎对于到底是谁在加载，其实并不在乎的，所以插件是可以让 nix 管理起来
