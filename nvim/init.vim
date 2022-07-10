@@ -42,8 +42,9 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
-" 让远程的 server 内容拷贝到系统剪切板中
-vnoremap <leader>c :OSCYank<CR>
+" 让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
+autocmd TextYankPost * if v:event.operator is 'd' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
 
 " 使用 z a 打开和关闭 fold
 set foldlevelstart=99
