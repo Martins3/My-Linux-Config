@@ -49,6 +49,8 @@
     # kernel
     flex
     bison
+    numactl
+    numastat
     # qemu
     qemu
     qemu-utils
@@ -113,6 +115,7 @@ programs.zsh = {
     sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
     update-sys = "sync-config && sudo nixos-rebuild switch";
     update-home = "sync-config && home-manager switch";
+    ns = "nix-shell -p zsh"; # TMP_TODO 没有更好的方法吗，有 nix-shell 和没有会导致 linux 重新索引，应该一开始就提醒的
     px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889";
     q="exit";
     v="nvim";
@@ -192,6 +195,8 @@ programs.zsh = {
     };
   };
 
+  # TMP_TODO 需要自动安装 https://pre-commit.com/
+  # 以及中文的检测工具: https://github.com/lint-md/cli
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/2b107b27949d13f6ef041de6eec1ad2e5f7b4cbf/.gdbinit";

@@ -9,6 +9,7 @@ pkgs.mkShell rec {
     glib
     pixman
     xorg.libX11.dev
+    rdma-core
    ];
   buildInputs = with pkgs; [ zlib ];
 }

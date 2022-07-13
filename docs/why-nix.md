@@ -133,6 +133,9 @@ $ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildIn
 [nix-shell] $ make menuconfig
 ```
 
+- [ ] tlpi-dist 无法完全编译出来。
+- [ ] https://github.com/fannheyward/coc-pyright 描述了 python 的工作环境
+
 ## 到底如何编译 Linux 内核
 https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
