@@ -9,7 +9,7 @@ in
   home.packages = with pkgs; [
     # TMP_TODO 原理需要深入分析
     # https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
-    import (fetchTarball “https://github.com/nix-community/rnix-lsp/archive/master.tar.gz”)
+    import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz")
     tmux
     htop
     xclip
