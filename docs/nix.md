@@ -272,3 +272,6 @@ nix-env -qaP elfutils
 
 ## 自动安装 tmux 的插件
 - [ ] tmux 似乎对于到底是谁在加载，其实并不在乎的，所以插件是可以让 nix 管理起来
+
+## 在 nix 中搭建内核调试的环境
+- https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU

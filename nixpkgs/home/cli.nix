@@ -1,6 +1,16 @@
 { config, pkgs, stdenv, lib, ... }:
 
+let
+  # first evaluated yesterday
+  rnix-lsp = import "${builtins.fetchTarball https://github.com/nix-community/rnix-lsp/archive/master.tar.gz}";
+in
 {
+  # TMP_TODO 这个语法也是无法理解哇
+  nix = {
+      command = "${rnix-lsp}/bin/rnix-lsp";
+      filetypes = ["nix"];
+  };
+
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     tmux
