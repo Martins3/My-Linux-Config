@@ -1,3 +1,11 @@
+# Terminal Emulator 评测
+
+## Deepin Terminal
+
+## Tabby
+
+## Kitty
+
 ## 极简 Alacritty 配置
 
 对我而言，Alacritty 最大的改变在于，在一个大文件中，再也没有打字的延迟了。
@@ -16,13 +24,7 @@ cargo build --release --no-default-features --features=x11
 
 具体细节和 [官方默认配置](https://github.com/alacritty/alacritty/releases/download/v0.10.1/alacritty.yml) diff 一下就可以知道了。
 
-## 其他的记录
-- Ubuntu 修改默认 terminal emulator
-```c
-sudo update-alternatives --config x-terminal-emulator
-```
-
-### Gnome terminal
+## Gnome terminal
 Gnome terminal 我也使用过非常长的时间，这里记录一下主要是因为在[龙芯平台上我编不出来 alacritty](https://martins3.github.io/loongarch/neovim.html)
 
 原来的 Gnome terminal 的配色我不是很喜欢，以及
@@ -32,4 +34,10 @@ Gnome terminal 我也使用过非常长的时间，这里记录一下主要是�
 ```sh
 dconf dump /org/gnome/terminal/legacy/profiles:/:32d12ada-ed49-4c3d-8436-0f64853f7579/ > ~/.dotfiles/scripts/gnome.conf
 dconf load /org/gnome/terminal/legacy/profiles:/:32d12ada-ed49-4c3d-8436-0f64853f7579/ < ~/.dotfiles/scripts/gnome.conf
+```
+
+gnome terminal d
+- Ubuntu 修改默认 terminal emulator
+```sh
+sudo update-alternatives --config x-terminal-emulator
 ```

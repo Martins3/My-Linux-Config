@@ -50,7 +50,7 @@
     flex
     bison
     numactl
-    numastat
+    # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
     qemu-utils

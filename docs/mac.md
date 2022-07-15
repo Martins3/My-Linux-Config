@@ -12,3 +12,8 @@
 
 - Python 暂时无法索引，即使是增加了这个到 coc-setting.json 中间:
   - "python.pythonPath" : "/opt/homebrew/bin/python3"
+
+## 获取 ip addr
+
+- 打开 https://superuser.com/questions/104929/how-do-you-run-a-ssh-server-on-mac-os-x
+- https://www.hellotech.com/guide/for/how-to-find-ip-address-on-mac

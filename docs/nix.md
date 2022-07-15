@@ -80,7 +80,7 @@ ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
-<!-- 上面的 nix-shell 命令都看不懂啊 --> 
+<!-- 上面的 nix-shell 命令都看不懂啊 -->
 
 
 
@@ -157,8 +157,6 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ```sh
 cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
 ```
-
-rsync --delete -avzh --filter="dir-merge,- .gitignore" maritns3@10.0.2.2 ~/
 
 ## nvim
 安装到此处就可以了:
