@@ -90,7 +90,8 @@ nixpkgs.overlays = [
 
 programs.neovim = {
   enable = true;
-  package = pkgs.neovim-nightly;
+  # TMP_TODO 2022/7/15 的时候无法正确编译了
+  # package = pkgs.neovim-nightly;
 };
 
 xdg.configFile."nvim" = {
