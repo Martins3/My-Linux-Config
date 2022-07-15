@@ -125,6 +125,22 @@ shell-nix --cmd zsh
 ```sh
 nix-env -i -f https://github.com/nix-community/rnix-lsp/archive/master.tar.gz
 ```
+之后重新安装之后，就可以出现:
+```txt
+Oops, Nix failed to install your new Home Manager profile!
+
+Perhaps there is a conflict with a package that was installed using
+"nix-env -i"? Try running
+
+    nix-env -q
+
+and if there is a conflicting package you can remove it with
+
+    nix-env -e {package name}
+
+Then try activating your Home Manager configuration again.
+```
+
 
 - [ ] 理解一下什么叫做 overriding 啊
 ```sh
