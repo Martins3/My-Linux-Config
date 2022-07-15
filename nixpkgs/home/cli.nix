@@ -1,18 +1,15 @@
 { config, pkgs, stdenv, lib, ... }:
 
 let
-  # first evaluated yesterday
-  rnix-lsp = import "${builtins.fetchTarball https://github.com/nix-community/rnix-lsp/archive/master.tar.gz}";
+
 in
 {
-  # TMP_TODO 这个语法也是无法理解哇
-  nix = {
-      command = "${rnix-lsp}/bin/rnix-lsp";
-      filetypes = ["nix"];
-  };
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    # TMP_TODO 原理需要深入分析
+    # https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
+    import (fetchTarball “https://github.com/nix-community/rnix-lsp/archive/master.tar.gz”)
     tmux
     htop
     xclip
