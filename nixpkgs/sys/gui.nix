@@ -2,59 +2,59 @@
 
 {
   services.xserver = {
-    enable=true;
+    enable = true;
     xkbOptions = "caps:swapescape";
 
     /**
-    desktopManager = {
+      desktopManager = {
       xterm.enable = false;
-    };
+      };
 
-    displayManager = {
-        defaultSession = "none+i3";
-    };
+      displayManager = {
+      defaultSession = "none+i3";
+      };
 
-    windowManager.i3 = {
+      windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
-        dmenu #application launcher most people use
-        i3status # gives you the default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks #if you are planning on using i3blocks over i3status
-     ];
-    };
+      dmenu #application launcher most people use
+      i3status # gives you the default i3 status bar
+      i3lock #default i3 screen locker
+      i3blocks #if you are planning on using i3blocks over i3status
+      ];
+      };
     */
 
     /*
-    # leftwm begin
-    desktopManager = {
+      # leftwm begin
+      desktopManager = {
       xterm.enable = false;
-    };
+      };
 
-    displayManager = {
-        defaultSession = "none+leftwm";
-    };
+      displayManager = {
+      defaultSession = "none+leftwm";
+      };
 
-    windowManager.leftwm = {
+      windowManager.leftwm = {
       enable = true;
-    };
-    # leftwm end
+      };
+      # leftwm end
     */
 
     /*
-    # awesome begin
-    desktopManager = {
+      # awesome begin
+      desktopManager = {
       xterm.enable = false;
-    };
+      };
 
-    displayManager = {
-        defaultSession = "none+awesome";
-    };
+      displayManager = {
+      defaultSession = "none+awesome";
+      };
 
-    windowManager.awesome = {
+      windowManager.awesome = {
       enable = true;
-    };
-    # awesome end
+      };
+      # awesome end
     */
   };
 
@@ -62,7 +62,7 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       noto-fonts
-      sarasa-gothic  #更纱黑体
+      sarasa-gothic #更纱黑体
       source-code-pro
       hack-font
       jetbrains-mono
@@ -70,10 +70,10 @@
   };
 
   i18n.inputMethod = {
-     enabled = "fcitx5";
-     fcitx5.addons = with pkgs; [
-       fcitx5-rime
-     ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
 
     # 我现在用 ibus
     /* enabled = "ibus"; */

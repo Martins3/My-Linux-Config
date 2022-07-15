@@ -29,13 +29,13 @@
     listen_tcp = 1
     listen_addr = \"0.0.0.0\"
     ";
-     extraOptions = [ "LIBVIRTD_ARGS=\"--listen\""];
+    extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
   };
 
   # TMP_TODO 但是还是需要手动 sudo systemctl start libvirtd, 是因为需要重启的，如果启用你新的 service
   programs.dconf.enable = true;
   # TMP_TODO 如果出现重复会有什么问题吗？和 /etc/nixos/configuration.nix 中的
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     virt-manager
     vim
     git
@@ -47,13 +47,13 @@
   # mkpasswd -m sha-512
   users.users.root.hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
   users.users.martins3 = {
-      isNormalUser = true;
-      shell = pkgs.zsh;
-      home = "/home/martins3";
-      # TMP_TODO 补充文档
-      # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
-      extraGroups = [ "wheel" "docker" "libvirtd" ];
-      hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    home = "/home/martins3";
+    # TMP_TODO 补充文档
+    # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
+    extraGroups = [ "wheel" "docker" "libvirtd" ];
+    hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
 
   };
 }

@@ -3,10 +3,10 @@
 {
   imports = [
     ./home/cli.nix
-  ] ++ (if (builtins.getEnv "DISPLAY")!=""
+  ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
     ./home/gui.nix
-  ] else []);
+  ] else [ ]);
 
   # allow unfree software
   nixpkgs.config.allowUnfree = true;
