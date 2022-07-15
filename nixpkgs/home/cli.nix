@@ -88,11 +88,15 @@ nixpkgs.overlays = [
   }))
 ];
 
+# TMP_TODO 2022/7/15 的时候无法正确编译了
+# 暂时使用这个安装，也不知道这个安装是个什么含义的。
+# https://search.nixos.org/packages?channel=22.05&show=neovim&from=0&size=50&sort=relevance&type=packages&query=neovim
+/*
 programs.neovim = {
   enable = true;
-  # TMP_TODO 2022/7/15 的时候无法正确编译了
-  # package = pkgs.neovim-nightly;
+  package = pkgs.neovim-nightly;
 };
+*/
 
 xdg.configFile."nvim" = {
     source = ../../nvim;
@@ -116,7 +120,7 @@ programs.zsh = {
     sync-config="rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
     update-sys = "sync-config && sudo nixos-rebuild switch";
     update-home = "sync-config && home-manager switch";
-    ns = "nix-shell -p zsh"; # TMP_TODO 没有更好的方法吗，有 nix-shell 和没有会导致 linux 重新索引，应该一开始就提醒的
+    ns = "nix-shell --command zsh"; # TMP_TODO 没有更好的方法吗，有 nix-shell 和没有会导致 linux 重新索引，应该一开始就提醒的
     px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889";
     q="exit";
     v="nvim";
