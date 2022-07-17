@@ -45,7 +45,7 @@
 
   users.mutableUsers = false;
   # mkpasswd -m sha-512
-  users.users.root.hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
+  users.users.root.hashedPassword = "$6$xJlhvb6Y83BiCZXi$SKNZ5oC4gudBJEwGr9YZvaWnQxwGik/saFmJb4IoRwJx2mH9gOCtVJhR16xbd.EgzrLdESwv03/01dMsyBxtf.";
   users.users.martins3 = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -53,7 +53,6 @@
     # TMP_TODO 补充文档
     # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    hashedPassword = "$6$BaiPGeHpOxvyBgnZ$QluKBieW8RcDkhhJgXBIOkFc/2hmLmTNOkazEkhC/OQIBIFf7ZAPRFZoFVgJNk.jGS4Q7G2xqlf2WrXGNrmfT/";
-
+    hashedPassword = "$6$xJlhvb6Y83BiCZXi$SKNZ5oC4gudBJEwGr9YZvaWnQxwGik/saFmJb4IoRwJx2mH9gOCtVJhR16xbd.EgzrLdESwv03/01dMsyBxtf.";
   };
 }

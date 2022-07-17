@@ -90,9 +90,12 @@ home-manager switch
 和设置源相同
 
 ## [ ] python 插件
-python virtual env 如何构建
+- python virtual env 如何构建
+  - 参考 coc-pyright
 
-https://akrabat.com/creating-virtual-environments-with-pyenv/
+- https://akrabat.com/creating-virtual-environments-with-pyenv/
+- https://github.com/FRidh/python-on-nix/blob/master/tutorial.md
+  - [ ] 参考这个方法只能安装和 python 版本绑定的包
 
 ## [ ] microsoft-edge-dev 有时候会崩溃，也许切换一下版本吧
 - 切换版本没用的啊

@@ -64,6 +64,7 @@ in
     ninja
     libvirt
     virt-manager
+    meson
     # vim
     shellcheck
     shfmt
@@ -82,6 +83,8 @@ in
     # trace
     perf-tools
     iperf
+    # dpdk
+    dpdk
   ];
   # TMP_TODO 我的是非常迷茫啊
   /* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */
