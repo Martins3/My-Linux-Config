@@ -1,6 +1,9 @@
 # add this file to /etc/nixos/configuration.nix: imports
 { config, pkgs, ... }:
 
+let
+  passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
+in
 {
   # TMP_TODO i think there's no need to include gui.nix
   # 非常神奇，如果含有 gui.nix 之后，那么就会 UI 界面
@@ -45,7 +48,7 @@
 
   users.mutableUsers = false;
   # mkpasswd -m sha-512
-  users.users.root.hashedPassword = "$6$xJlhvb6Y83BiCZXi$SKNZ5oC4gudBJEwGr9YZvaWnQxwGik/saFmJb4IoRwJx2mH9gOCtVJhR16xbd.EgzrLdESwv03/01dMsyBxtf.";
+  users.users.root.hashedPassword = passwd;
   users.users.martins3 = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -53,6 +56,6 @@
     # TMP_TODO 补充文档
     # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    hashedPassword = "$6$xJlhvb6Y83BiCZXi$SKNZ5oC4gudBJEwGr9YZvaWnQxwGik/saFmJb4IoRwJx2mH9gOCtVJhR16xbd.EgzrLdESwv03/01dMsyBxtf.";
+    hashedPassword = passwd;
   };
 }

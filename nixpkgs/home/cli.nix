@@ -113,6 +113,13 @@ in
     recursive = true;
   };
 
+  # TMP_TODO tpm 通过 github 下载，其他插件需要使用 prefix I 来下载，也许存在更好的方法
+  home.file.".tmux/plugins/tpm" = {
+    source = builtins.fetchGit {
+      url = "https://github.com/tmux-plugins/tpm";
+      rev = "b699a7e01c253ffb7818b02d62bce24190ec1019"; # updated at 2022/7/17
+    };
+  };
 
   home.file.tmux = {
     source = ../../conf/tmux.conf;
