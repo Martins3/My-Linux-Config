@@ -24,3 +24,7 @@ pkgs.mkShell {
     bc
   ]);
 }
+
+# 编译内核的方法
+# ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnu- make defconfig
+# ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnu- make

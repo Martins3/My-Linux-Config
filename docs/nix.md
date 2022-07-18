@@ -49,7 +49,7 @@ environment.systemPackages = with pkgs; [
 1. 创建用户和密码
 ```sh
 useradd -c 'martins three' -m martins3
-passwd martins3
+passwd martins3 # TMP_TODO 不需要设置密码吧！
 ```
 2. 切换到普通用户
 ```sh
@@ -64,7 +64,7 @@ ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
 4. 执行 ./scripts/nix-channel.sh 切换源
 
-5. 修该 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
+5. 修改 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
   - 进入的时候为 su - ，因为 martins3 还不是 sudo files 中。
 
 6. 初始化配置
@@ -76,12 +76,10 @@ sudo nixos-rebuild switch # 仅NixOS
 
 ```sh
 # 安装home-manager
-ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
-<!-- 上面的 nix-shell 命令都看不懂啊 -->
-
+<!-- TMP_TODO 上面的 nix-shell 命令都看不懂啊 -->
 
 
 此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。

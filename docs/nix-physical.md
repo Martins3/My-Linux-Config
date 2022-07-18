@@ -12,3 +12,6 @@ wget -P ~/.config/clash subscribe_url
 ```sh
 http://clash.razord.top/#/settings
 ```
+
+## Docker
+我发现根本办法正确编译 x86 3.10 的内核，就更加不要说是交叉编译 arm64 3.10 内核了。
