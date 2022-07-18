@@ -21,8 +21,9 @@ in
         # https://www.spinics.net/lists/kernel/msg3797871.html
         /* "elfutils-0.185" */
         bc
-        myPkg
+        # TMP_TODO 反正都是需要增加一个 patch 的，不如增加上一个这个：
+        # https://mudongliang.github.io/2021/01/20/error-new-address-family-defined-please-update-secclass_map.html
+        # myPkg
     ];
   };
 }
-

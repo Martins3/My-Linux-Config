@@ -86,7 +86,7 @@ in
     # dpdk
     dpdk
   ];
-  # TMP_TODO 我的是非常迷茫啊
+  # TMP_TODO 我的是非常迷茫啊，为什么不能自动安装内核对应的 perf 版本。
   /* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */
 
 
