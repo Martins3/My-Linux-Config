@@ -6,9 +6,13 @@
     name = "gcc8-env";
     buildInputs = [
         gcc8
-        openssl
-        elfutils
-        bc
+    flex
+    lzop
+    pkgconfig
+    ncurses
+    openssl
+    elfutils
+    bc
     ];
   };
 }

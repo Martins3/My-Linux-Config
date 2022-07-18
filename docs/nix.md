@@ -265,7 +265,7 @@ rime_dir="$HOME/.local/share/fcitx5/rime" bash rime-install
 
 参考 [这篇 blog](http://t.zoukankan.com/jrri-p-12427956.html) 通过配置 fcitx5 的 UI
 
-## 安装特定版本
+## [ ] 安装特定版本
 
 nix-env -qaP | grep 'gcc[0-9]\>'
 
@@ -273,8 +273,15 @@ nix-env -qaP elfutils
 
 使用这个网站: https://lazamar.co.uk/nix-versions/
 
+- [ ] 我无法理解，为什么 gcc 的特定版本只是需要
+gcc
+
 ## 自动安装 tmux 的插件
 - [ ] tmux 似乎对于到底是谁在加载，其实并不在乎的，所以插件是可以让 nix 管理起来
 
 ## 在 nix 中搭建内核调试的环境
 - https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
+
+## 交叉编译
+- https://xieby1.github.io/Distro/Nix/cross.html
+- https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/
