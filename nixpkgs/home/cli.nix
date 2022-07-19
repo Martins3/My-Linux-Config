@@ -56,7 +56,7 @@ in
     flex
     bison
     numactl
-    exec-tools
+    kexec-tools
     # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
