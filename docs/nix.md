@@ -280,6 +280,12 @@ gcc
 ## 在 nix 中搭建内核调试的环境
 - https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
 
+## [x] 如何让 nixos 完全使用重新编译的内核
+参考 https://nixos.wiki/wiki/Linux_kernel 中
+Booting a kernel from a custom source 的，以及其他的章节，
+使用自定义内核，不难的。
+
+
 ## 交叉编译
 - https://xieby1.github.io/Distro/Nix/cross.html
 - https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/

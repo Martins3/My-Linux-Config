@@ -28,3 +28,7 @@ pkgs.mkShell {
 # 编译内核的方法
 # ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnu- make defconfig
 # ARCH=arm64 CROSS_COMPILE=aarch64-unknown-linux-gnu- make
+
+# 正常的系统中是这个，TMP_TODO 为什么如此，调查一下
+# ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make defconfig
+# ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make

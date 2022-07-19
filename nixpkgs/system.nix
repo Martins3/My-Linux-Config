@@ -2,6 +2,7 @@
 { config, pkgs, ... }:
 
 let
+  # mkpasswd -m sha-512
   passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
 in
 {
@@ -47,7 +48,6 @@ in
   ];
 
   users.mutableUsers = false;
-  # mkpasswd -m sha-512
   users.users.root.hashedPassword = passwd;
   users.users.martins3 = {
     isNormalUser = true;
@@ -58,4 +58,6 @@ in
     extraGroups = [ "wheel" "docker" "libvirtd" ];
     hashedPassword = passwd;
   };
+
+  boot.crashDump.enable = true;
 }

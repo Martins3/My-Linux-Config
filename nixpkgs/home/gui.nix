@@ -27,6 +27,7 @@ in
     sublime-merge
     microsoft-edge-dev
     # wm
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     rofi
     picom
     inter

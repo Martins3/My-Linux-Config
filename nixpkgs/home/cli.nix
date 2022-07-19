@@ -52,7 +52,6 @@ in
     # lib
     readline.dev
     SDL2.dev
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     # kernel
     flex
     bison
@@ -68,16 +67,7 @@ in
     # vim
     shellcheck
     shfmt
-    # linux
-    bison
-    flex
-    lzop
-    pkgconfig
-    ncurses
-    openssl
-    elfutils # TMP_TODO 似乎 Nix 中的库总是需要依赖一下 default.nix 的
-    bc
-    # tlpi
+    # tlpi # TMP_TODO 既没有找到正确的 tlpi，也无法将所有的 tlpi 都编译成功。
     libcap
     acl
     # trace
