@@ -60,6 +60,7 @@ in
     # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
+    neovim
     qemu-utils
     ninja
     libvirt
