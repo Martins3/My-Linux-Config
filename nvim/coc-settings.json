@@ -27,6 +27,9 @@
         "highlight": {
           "lsRanges": true
         },
+        "index": {
+          "threads": 8
+        },
         "client": {
           "snippetSupport": true
         },

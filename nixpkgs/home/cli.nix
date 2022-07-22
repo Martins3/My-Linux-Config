@@ -7,9 +7,6 @@ in
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    # TMP_TODO 原理需要深入分析
-    # https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
-    rnix-lsp
     tmux
     htop
     xclip
@@ -39,36 +36,42 @@ in
     cloc
     file
     ncdu
-    delta # git
+    autoconf
+    automake
+    # git
+    delta
+    gh
     # network
     nload
     iftop
-    gh
     tcpdump
+    ethtool
     # nix
     nix-index
+    # rust
     cargo
     rustc
     # lib
     readline.dev
     SDL2.dev
     # kernel
-    flex
-    bison
     numactl
     kexec-tools
     # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
-    neovim
     qemu-utils
     ninja
     libvirt
     virt-manager
     meson
     # vim
+    neovim
     shellcheck
     shfmt
+    # TMP_TODO 原理需要深入分析
+    # https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
+    rnix-lsp
     # tlpi # TMP_TODO 既没有找到正确的 tlpi，也无法将所有的 tlpi 都编译成功。
     libcap
     acl
@@ -84,6 +87,7 @@ in
 
   /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
   # TMP_TODO 调查一下，这是个什么原理?
+  # 才发现，这个是可以自动 override 上面的 neovim 的编译的
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
