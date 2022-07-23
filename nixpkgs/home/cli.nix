@@ -17,7 +17,6 @@ in
     clang-tools
     cmake
     gnumake
-    python3
     nodejs
     binutils
     gcc
@@ -82,10 +81,17 @@ in
     bpftrace
     # dpdk
     dpdk
+    (
+      let
+        my-python-packages = python-packages: with python-packages; [
+          pandas
+          pygal
+        ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+      python-with-my-packages
+    )
   ];
-  # TMP_TODO 我的是非常迷茫啊，为什么不能自动安装内核对应的 perf 版本。
-  /* nix-shell -p linuxKernel.packages.linux_5_18.perf --command zsh */
-
 
   /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
   # TMP_TODO 调查一下，这是个什么原理?

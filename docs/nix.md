@@ -285,6 +285,11 @@ gcc
 Booting a kernel from a custom source 的，以及其他的章节，
 使用自定义内核，不难的。
 
+## [ ] nix 和 Python 开发
+https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
+
+## [ ] 使用 nix 语言写一个 web server
+https://blog.replit.com/nix_web_app
 
 ## 交叉编译
 - https://xieby1.github.io/Distro/Nix/cross.html
