@@ -77,7 +77,9 @@ in
     acl
     # trace
     perf-tools
+    linuxKernel.packages.linux_5_15.perf
     iperf
+    bpftrace
     # dpdk
     dpdk
   ];
