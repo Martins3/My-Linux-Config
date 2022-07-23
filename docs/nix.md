@@ -294,3 +294,7 @@ https://blog.replit.com/nix_web_app
 ## 交叉编译
 - https://xieby1.github.io/Distro/Nix/cross.html
 - https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/
+
+## 关键提醒
+nixos 默认是打开防火墙的：
+- https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable

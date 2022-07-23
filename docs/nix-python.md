@@ -6,7 +6,8 @@ pip install http # 会提升你，需要安装 setuptools
 pip install setuptools # 结果 readonly 文件系统
 ```
 
-https://nixos.wiki/wiki/Python
+参考[这里](https://nixos.wiki/wiki/Python) 在 home/cli.nix 中添加上内容，但是会遇到这个问题，
+
 
 ```txt
 building '/nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'...
@@ -19,3 +20,9 @@ in-python3-3.9.13/bin/idle3.9'
        For full logs, run 'nix log /nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'.
 error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647-home-manager-generation.drv' failed to build
 ```
+
+发现原来是需要将
+```c
+  home.packages = with pkgs; [
+```
+中的内容删除。
