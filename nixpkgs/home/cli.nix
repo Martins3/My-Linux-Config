@@ -90,12 +90,11 @@ in
   /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
   # TMP_TODO 调查一下，这是个什么原理?
   # 才发现，这个是可以自动 override 上面的 neovim 的编译的
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
-
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
   # TMP_TODO 2022/7/15 的时候无法正确编译了
   # 暂时使用这个安装，也不知道这个安装是个什么含义的。
   # https://search.nixos.org/packages?channel=22.05&show=neovim&from=0&size=50&sort=relevance&type=packages&query=neovim
