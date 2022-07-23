@@ -76,8 +76,8 @@ in
     libcap
     acl
     # trace
-    perf-tools
-    linuxKernel.packages.linux_5_15.perf
+    # perf-tools
+    linuxKernel.packages.linux_5_15.perf # TMP_TODO 不知道如何实现和内核版本的自动跟随
     iperf
     bpftrace
     # dpdk
@@ -90,6 +90,7 @@ in
   /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
   # TMP_TODO 调查一下，这是个什么原理?
   # 才发现，这个是可以自动 override 上面的 neovim 的编译的
+  #   - 后面重新测试了一下，发现并不是如此的，现在这里感觉非常的混乱。
   # nixpkgs.overlays = [
   #   (import (builtins.fetchTarball {
   #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
