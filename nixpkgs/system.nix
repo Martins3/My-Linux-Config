@@ -60,6 +60,7 @@ in
   };
 
   boot.crashDump.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.openssh.enable = true;
   networking.firewall.enable = false;

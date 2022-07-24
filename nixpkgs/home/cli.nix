@@ -76,7 +76,8 @@ in
     acl
     # trace
     # perf-tools
-    linuxKernel.packages.linux_5_15.perf # TMP_TODO 不知道如何实现和内核版本的自动跟随
+    # linuxKernel.packages.linux_5_15.perf # TMP_TODO 不知道如何实现和内核版本的自动跟随
+    pkgs.linuxPackages_latest.perf
     iperf
     bpftrace
     # dpdk
