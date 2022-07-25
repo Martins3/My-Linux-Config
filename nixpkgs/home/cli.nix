@@ -45,6 +45,7 @@ in
     iftop
     tcpdump
     ethtool
+    sshpass
     # nix
     nix-index
     # rust

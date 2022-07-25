@@ -28,7 +28,7 @@
           "lsRanges": true
         },
         "index": {
-          "threads": 8
+          "threads": 64
         },
         "client": {
           "snippetSupport": true
