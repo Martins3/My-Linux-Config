@@ -158,18 +158,6 @@ in
     initExtra = "
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-
-# TMP_TODO 查看一下，在 nixos 中是否更加优雅的 zsh 函数的方法
-function gscp() {
-    file_name=$1
-    if [ -z "file_name" ]; then
-        echo $0 file
-        return 1
-    fi
-    ip=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
-    file_path=$(readlink -f $file_name)
-    echo  scp -r $(whoami)@${ip}:$file_path .
-}
   ";
 
     plugins = [

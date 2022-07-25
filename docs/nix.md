@@ -303,3 +303,19 @@ nixos 默认是打开防火墙的：
 ## 如何编译 kernel module
 - 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
 - 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
+
+## zsh
+
+`TMP_TODO` 查看一下，让 nixos 中包含一下函数
+```sh
+function gscp() {
+    file_name=$1
+    if [ -z "file_name" ]; then
+        echo $0 file
+        return 1
+    fi
+    ip=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
+    file_path=$(readlink -f $file_name)
+    echo  scp -r $(whoami)@${ip}:$file_path .
+}
+```
