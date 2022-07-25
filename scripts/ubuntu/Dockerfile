@@ -85,7 +85,7 @@ WORKDIR /home/docker
 RUN git clone https://github.com/bminor/musl
 WORKDIR /home/docker/musl
 RUN ./configure
-RUN bear make -j
+RUN bear -- make -j
 
 # 安装字体，之后在 terminal 的设置中设置字体为 nerdfont
 WORKDIR /home/docker

@@ -298,3 +298,8 @@ https://blog.replit.com/nix_web_app
 ## 关键提醒
 nixos 默认是打开防火墙的：
 - https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
+
+
+## 如何编译 kernel module
+- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
+- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
