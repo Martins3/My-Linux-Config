@@ -45,6 +45,8 @@ in
     git
     wget
     zsh
+    # To make SMB mounting easier on the command line
+    cifs-utils
   ];
 
   users.mutableUsers = false;
@@ -88,18 +90,8 @@ in
     };
   };
 
-
-
   # Curiously, `services.samba` does not automatically open
   # the needed ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 445 139 ];
   # networking.firewall.allowedUDPPorts = [ 137 138 ];
-
-
-
-  # To make SMB mounting easier on the command line
-  environment.systemPackages = with pkgs; [
-    cifs-utils
-  ];
-
 }
