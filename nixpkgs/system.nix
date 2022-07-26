@@ -46,6 +46,7 @@ in
     wget
     zsh
     # To make SMB mounting easier on the command line
+    # TMP_TODO 这个工具的功能是啥来着
     cifs-utils
   ];
 
@@ -71,14 +72,24 @@ in
   services.samba = {
     enable = true;
 
-    syncPasswordsByPam = true;
+    /* syncPasswordsByPam = true; */
     # You will still need to set up the user accounts to begin with:
+    # TMP_TODO 在文档中描述一下，是需要密码的
     # $ sudo smbpasswd -a yourusername
 
     # This adds to the [global] section:
     extraConfig = ''
       browseable = yes
-      smb encrypt = required
+      # smb encrypt = required
+      # suggestions here:
+      # https://superuser.com/questions/713248/home-file-server-using-samba-has-slow-read-and-write-speed
+      read raw = Yes
+      write raw = Yes
+      socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072
+      min receivefile size = 16384
+      use sendfile = true
+      aio read size = 16384
+      aio write size = 16384
     '';
 
     shares = {

@@ -319,3 +319,7 @@ function gscp() {
     echo  scp -r $(whoami)@${ip}:$file_path .
 }
 ```
+## syncthing
+
+- https://wes.today/nixos-syncthing/
+- https://nixos.wiki/wiki/Syncthing : 非常的详细，晚上的时候搞搞的。

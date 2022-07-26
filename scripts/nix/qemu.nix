@@ -1,6 +1,5 @@
 let
-pkgs = import <nixpkgs> {
-};
+  pkgs = import <nixpkgs> { };
 in
 pkgs.mkShell rec {
   nativeBuildInputs = with pkgs.buildPackages; [
@@ -10,6 +9,7 @@ pkgs.mkShell rec {
     pixman
     xorg.libX11.dev
     rdma-core
-   ];
+    liburing
+  ];
   buildInputs = with pkgs; [ zlib ];
 }
