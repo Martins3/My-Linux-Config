@@ -7,6 +7,15 @@ in
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    # compiler
+    gcc
+    go
+    lua
+    clang-tools
+    cargo
+    rustc
+    # unix tools
+    jq
     tmux
     htop
     xclip
@@ -14,14 +23,10 @@ in
     ripgrep
     tree
     yarn
-    clang-tools
+    nodejs
     cmake
     gnumake
-    nodejs
     binutils
-    gcc
-    go
-    lua
     gdb
     tig
     lsd
@@ -48,9 +53,6 @@ in
     sshpass
     # nix
     nix-index
-    # rust
-    cargo
-    rustc
     # lib
     readline.dev
     SDL2.dev
