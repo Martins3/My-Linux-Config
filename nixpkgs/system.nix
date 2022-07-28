@@ -105,4 +105,16 @@ in
   # the needed ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 445 139 ];
   # networking.firewall.allowedUDPPorts = [ 137 138 ];
+  services.syncthing = {
+    enable = true;
+    systemService = true;
+    # TMP_TODO 这个选项是做啥的
+    # relay.enable = true;
+    user = "martins3";
+    dataDir = "/home/martins3";
+    overrideDevices = false;
+    overrideFolders = false;
+    guiAddress = "0.0.0.0:8384";
+  };
+
 }

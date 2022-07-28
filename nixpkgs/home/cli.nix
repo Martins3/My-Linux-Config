@@ -7,32 +7,32 @@ in
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    # compiler
+    # compiler && builder
+    autoconf
+    automake
     gcc
     go
     lua
     clang-tools
     cargo
     rustc
+    cmake
+    gnumake
+    yarn
+    nodejs
     # unix tools
     jq
     tmux
     htop
-    xclip
     fzf
     ripgrep
     tree
-    yarn
-    nodejs
-    cmake
-    gnumake
     binutils
     gdb
     tig
     lsd
     lsof
     ccls
-    xclip
     bear
     tree
     jump
@@ -40,13 +40,12 @@ in
     cloc
     file
     ncdu
-    autoconf
-    automake
+    socat # unix domain
     # git
     delta
     gh
     # network
-    nload
+    nload # TMP_TODO 这个软件无法正确工作
     iftop
     tcpdump
     ethtool
@@ -156,6 +155,7 @@ in
       du = "ncdu";
       z = "j";
       mc = "make clean";
+      k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
     };
 
     initExtra = "

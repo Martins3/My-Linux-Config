@@ -305,8 +305,8 @@ nixos 默认是打开防火墙的：
 - 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
 
 ## zsh
+- `TMP_TODO` 查看一下，让 nixos 中包含一下函数
 
-`TMP_TODO` 查看一下，让 nixos 中包含一下函数
 ```sh
 function gscp() {
     file_name=$1
@@ -320,6 +320,9 @@ function gscp() {
 }
 ```
 ## syncthing
-
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing : 非常的详细，晚上的时候搞搞的。
+
+似乎每次 sudo nixos-rebuild swich 一次之后，都会导致重新配置：
+- [ ] 不过也许是因为配置有点问题，没有正确的设置 dataDir
+- [ ] 重启之后，网页的网址需要重新配置
