@@ -262,38 +262,10 @@ nix-env -qaP elfutils
 
 使用这个网站: https://lazamar.co.uk/nix-versions/
 
-- [ ] 我无法理解，为什么 gcc 的特定版本只是需要
-gcc
-
-## 自动安装 tmux 的插件
-- [ ] tmux 似乎对于到底是谁在加载，其实并不在乎的，所以插件是可以让 nix 管理起来
-
-## 在 nix 中搭建内核调试的环境
-- https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
-
-## [x] 如何让 nixos 完全使用重新编译的内核
-参考 https://nixos.wiki/wiki/Linux_kernel 中
-Booting a kernel from a custom source 的，以及其他的章节，
-使用自定义内核，不难的。
-
-## [ ] nix 和 Python 开发
-https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
+- [ ] 我无法理解，为什么 gcc 的特定版本只是需要 gcc8 的
 
 ## [ ] 使用 nix 语言写一个 web server
 https://blog.replit.com/nix_web_app
-
-## 交叉编译
-- https://xieby1.github.io/Distro/Nix/cross.html
-- https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/
-
-## 关键提醒
-nixos 默认是打开防火墙的：
-- https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
-
-
-## 如何编译 kernel module
-- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
-- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
 
 ## zsh
 - `TMP_TODO` 查看一下，让 nixos 中包含一下函数
@@ -323,12 +295,15 @@ function gscp() {
 ```sh
 nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 ```
-
 - 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径山进行如下操作:
 ```sh
 echo "use nix" >> .envrc
 direnv allow
 ```
+- nixos 默认是打开防火墙的
+  - https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
+
+
 
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
@@ -388,6 +363,74 @@ programs.neovim = {
 
 ## 问题
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
+- [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
+## Python
+```txt
+pip3 install http # 会提示你，说无法可以安装 python39Packages.pip
+nix-shell -p python39Packages.pip # 好的，安装了
+pip install http # 会提升你，需要安装 setuptools
+pip install setuptools # 结果 readonly 文件系统
+```
+
+参考[这里](https://nixos.wiki/wiki/Python) 在 home/cli.nix 中添加上内容，但是会遇到这个问题，
+
+
+```txt
+building '/nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'...
+error: collision between `/nix/store/012yj020ia28qi5nag3j5rfjpzdly0ww-python3-3.9.13-env/bin/idle3.9' and `/nix/store/7l0dc127v4c2m3yar0bmqy9q6sfmypin-python
+3-3.9.13/bin/idle3.9'
+error: builder for '/nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv' failed with exit code 25;
+       last 1 log lines:
+       > error: collision between `/nix/store/012yj020ia28qi5nag3j5rfjpzdly0ww-python3-3.9.13-env/bin/idle3.9' and `/nix/store/7l0dc127v4c2m3yar0bmqy9q6sfmyp
+in-python3-3.9.13/bin/idle3.9'
+       For full logs, run 'nix log /nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'.
+error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647-home-manager-generation.drv' failed to build
+```
+
+发现原来是需要将
+```c
+  home.packages = with pkgs; [
+```
+中的 python 删除就可以了。
+
+## compile linux kernel
+- 内核的依赖是: elfutils
+  - 参考: https://github.com/NixOS/nixpkgs/issues/91609
+
+- 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
+
+使用这个仓库: https://github.com/a13xp0p0v/kernel-build-containers
+
+```sh
+docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/martins3/src kernel-build-container:gcc-7
+```
+
+> -t 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
+> 
+> https://stackoverflow.com/questions/32269810/understanding-docker-v-command
+
+编译之后，在 host 中执行 ./script/clang-tools/gen-compile-commands.py
+
+可能需要将 compile-commands.json 中将 aarch-gnu-gcc 替换为 gcc，否则 ccls 拒绝开始索引。
+
+## install custom kernel
+参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
+
+## 在 nix 中搭建内核调试的环境
+- [ ] https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
+  - `TMP_TODO` 关键参考了
+
+## 交叉编译
+参考:
+- https://xieby1.github.io/Distro/Nix/cross.html
+- https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/
+
+## 如何编译 kernel module
+- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
+- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
+
+## tmux
+为了让 tmux 配置的兼容其他的 distribution ，所以 tpm 让 nixos 安装，而剩下的 tmux 插件由 tmp 安装。
 
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
