@@ -3,7 +3,10 @@
 ARM 还是不错的。
 
 吐槽一下，虽然有很多提升，但是
-- 合上盖子，必须插上电源
+- 合上盖子，必须插上电源。
+- 对于无线鼠标的支持非常差。
+- 没有 sshfs，难以同步
+
 
 <!-- - TMP_TODO -->
 - workspace 的切换
@@ -19,3 +22,4 @@ ARM 还是不错的。
 
 - 打开 https://superuser.com/questions/104929/how-do-you-run-a-ssh-server-on-mac-os-x
 - https://www.hellotech.com/guide/for/how-to-find-ip-address-on-mac
+

@@ -673,6 +673,8 @@ vim 基本的移动技术，例如 e b w G gg 之类的，，
 <!-- TMP_TODO 说明一下 space 的使用 -->
 <!-- ctrl i 的使用方法 -->
 <!-- 我发现在 tmux.md 的开始位置是无法跳转到 51 行的 git 三个字符的 -->
+<!-- 我发现在 vn/...v2.md 的开始位置是无法跳转到 41 行的 tobe continue  -->
+<!-- TMP_TODO 应该理解一下 text obj 的含义 https://www.reddit.com/r/neovim/comments/wa819w/miniai_extend_and_create_ai_textobjects_like/  -->
 
 
 | binding  | function                                                                    |

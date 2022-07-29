@@ -6,8 +6,7 @@
 
 https://github.com/a13xp0p0v/kernel-build-containers
 
-kernel-build-containers git:(master) ✗ docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/martins3/src ke
-rnel-build-container:gcc-7
+kernel-build-containers git:(master) ✗ docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/martins3/src kernel-build-container:gcc-7
 
 > -t 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
 > https://stackoverflow.com/questions/32269810/understanding-docker-v-command

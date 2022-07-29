@@ -1,7 +1,7 @@
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 
-" 调节 window 大小
+" 使用 c a 调节 window 大小
 let g:winresizer_start_key = 'ca'
 " If you cancel and quit window resize mode by `q` (keycode 113)
 let g:winresizer_keycode_cancel = 113
@@ -62,6 +62,9 @@ let g:vista_finder_alternative_executives = 'ctags'
 let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
 let g:floaterm_keymap_toggle = '<C-t>'
+# TMP_TODO 不知道为什么，在 nixos 中，floaterm 默认打开的 shell 是 bash
+# 暂时使用这个方法 work around 一下，似乎这个方法还是无法正确修复的。
+let g:floaterm_shell = 'zsh' 
 
 let g:git_messenger_no_default_mappings = v:true
 

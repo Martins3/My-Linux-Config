@@ -7,6 +7,9 @@ require 'nvim-treesitter.configs'.setup {
     disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
     additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
+  -- TMP_TODO 是不是，ensure_installed 直接添加就可以了?
+  -- bash nix lua rust golang scala java c cpp
+  -- TMP_TODO 顺便说一下，shell check 中，处理一下 config.sh 的。
   -- ensure_installed = "maintained",
   ensure_installed = { 'org' },
 }
