@@ -14,5 +14,6 @@ require('code_runner').setup {
     rust = "cargo run",
     r = "Rscript $file",
     lua = "lua $file",
+    nix = "nix repl $file",
   },
 }

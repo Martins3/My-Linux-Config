@@ -205,8 +205,8 @@ sudo npm install --global yarn
 保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
 
 ```sh
-npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
-yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
+npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
 ```
 
 安装完成之后检查:

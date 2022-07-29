@@ -186,15 +186,6 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 
 因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
 
-## 没有声音啊
-使用直通解决吧
-
-## tmux 的测试
-第一个插件需要手动安装，可以修复吗?
-- 当然是可以的，但是没必要
-
-## nix-prefetch-url 可以同时下载和获取 sha
-
 ## 桌面环境
 - [ ] i3 比我想想的要简单很多，值得尝试
 https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
@@ -326,3 +317,78 @@ function gscp() {
 似乎每次 sudo nixos-rebuild swich 一次之后，都会导致重新配置：
 - [ ] 不过也许是因为配置有点问题，没有正确的设置 dataDir
 - [ ] 重启之后，网页的网址需要重新配置
+
+## 基础知识
+- nix-prefetch-url 同时下载和获取 hash 数值
+```sh
+nix-prefetch-url https://github.com/Aloxaf/fzf-tab
+```
+
+- 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径山进行如下操作:
+```sh
+echo "use nix" >> .envrc
+direnv allow
+```
+
+## samba
+参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
+
+但是没有 syncthing 好用：
+```nix
+  services.samba = {
+    enable = true;
+
+    /* syncPasswordsByPam = true; */
+    # You will still need to set up the user accounts to begin with:
+    # TMP_TODO 在文档中描述一下，是需要密码的
+    # $ sudo smbpasswd -a yourusername
+
+    # This adds to the [global] section:
+    extraConfig = ''
+      browseable = yes
+      smb encrypt = required
+    '';
+
+    shares = {
+      homes = {
+        browseable = "no";  # note: each home will be browseable; the "homes" share will not.
+        "read only" = "no";
+        "guest ok" = "no";
+      };
+    };
+  };
+```
+
+## npm
+使用这个来搜索包[^1]:
+```sh
+nix-env -qaPA nixos.nodePackages
+```
+但是只有非常少的包。
+
+- [ ] 展示无法正确安装
+  - https://github.com/lint-md/cli
+- [ ] 注册 npm 和 yarm 的源
+
+## 安装最新的 neovim
+参考这个[^2] 来设置，这个库的更新非常激进，这意味着你的很多次 home-manager switch 都会触发 neovim 的自动编译。
+
+```nix
+nixpkgs.overlays = [
+  (import (builtins.fetchTarball {
+    url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  }))
+];
+
+programs.neovim = {
+  enable = true;
+  package = pkgs.neovim-nightly;
+};
+```
+
+## 问题
+- [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
+
+
+[^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
+[^2]: https://breuer.dev/blog/nixos-home-manager-neovim

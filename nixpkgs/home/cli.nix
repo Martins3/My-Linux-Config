@@ -70,8 +70,6 @@ in
     neovim
     shellcheck
     shfmt
-    # TMP_TODO 原理需要深入分析
-    # https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
     rnix-lsp
     # tlpi # TMP_TODO 既没有找到正确的 tlpi，也无法将所有的 tlpi 都编译成功。
     libcap
@@ -86,34 +84,17 @@ in
     dpdk
     (
       let
-        my-python-packages = python-packages: with python-packages; [
+        py-pkgs = pkgs: with pkgs; [
           pandas
           pygal
+          pre-commit
         ];
-        python-with-my-packages = python3.withPackages my-python-packages;
+        python-with-my-packages = python3.withPackages py-pkgs;
       in
       python-with-my-packages
     )
+    pkgs.nodePackages."@lint-md/cli"
   ];
-
-  /* reference: https://breuer.dev/blog/nixos-home-manager-neovim */
-  # TMP_TODO 调查一下，这是个什么原理?
-  # 才发现，这个是可以自动 override 上面的 neovim 的编译的
-  #   - 后面重新测试了一下，发现并不是如此的，现在这里感觉非常的混乱。
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-  #   }))
-  # ];
-  # TMP_TODO 2022/7/15 的时候无法正确编译了
-  # 暂时使用这个安装，也不知道这个安装是个什么含义的。
-  # https://search.nixos.org/packages?channel=22.05&show=neovim&from=0&size=50&sort=relevance&type=packages&query=neovim
-  /*
-    programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-nightly;
-    };
-  */
 
   xdg.configFile."nvim" = {
     source = ../../nvim;
@@ -161,7 +142,8 @@ in
     initExtra = "
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-  ";
+    eval \"$(direnv hook zsh)\"
+    ";
 
     plugins = [
       {
@@ -172,7 +154,6 @@ in
           rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
         };
       }
-      # @todo 增加这个 plugin 吧 https://github.com/Aloxaf/fzf-tab
     ];
 
     oh-my-zsh = {
@@ -181,8 +162,6 @@ in
       theme = "robbyrussell";
     };
   };
-
-  # TMP_TODO 应该设置 npm 的 register 一下
 
   programs.git = {
     enable = true;
@@ -210,7 +189,6 @@ in
       };
       # --- end
 
-      # TMP_TODO : make this a configuration
       /*
         http={
         proxy = "http://10.0.2.2:8889";
@@ -225,8 +203,6 @@ in
     };
   };
 
-  # TMP_TODO 需要自动安装 https://pre-commit.com/
-  # 以及中文的检测工具: https://github.com/lint-md/cli
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/2b107b27949d13f6ef041de6eec1ad2e5f7b4cbf/.gdbinit";
@@ -245,4 +221,7 @@ in
     source = ../../conf/cargo.conf;
     target = ".cargo/config";
   };
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 }
