@@ -52,7 +52,7 @@
   * [[可选] Scala 集成](#可选-scala-集成)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
-  * [远程的 server 上使用](#远程的-server-上使用)
+  * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -158,7 +158,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 ```
 
 ### 安装 nvim
-- 当前配置需要 neovim 0.5 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.7 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
 ```sh
@@ -655,10 +655,9 @@ sbt bloopInstall
 
 ### 快速移动
 
-vim 基本的移动技术，例如 e b w G gg 之类的，，
+vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简单说明一些有趣的的技术：
 
-下面简单说明一些更加高级的技术
-1. [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+在我使用 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
 
 | 例子                                                                                                               |
 |--------------------------------------------------------------------------------------------------------------------|
@@ -687,15 +686,35 @@ vim 基本的移动技术，例如 e b w G gg 之类的，，
 
 
 ### 输入法自动切换
-<!-- TMP_TODO : 补充一下文档 -->
-- https://github.com/neoclide/coc-imselect
+在 vim 中使用中文输入法，如果打字完成，进入 normal 模式，使用 gg 想要移动到文件的第一行，结果发现 gg 被中文输入法截断了。
+所以需要一个插件可以在进入 normal 的模式的时候中文输入法切走。
 
-### 远程的 server 上使用
-总算是解决了:
+可以使用两套方案，但是原理都是相同的，
+- 方案 1:
+  - 使用 [fcitx.nvim](https://github.com/h-hg/fcitx.nvim)，其代码相当简洁优雅。
+  - 如果是在 MacOS 上，需要在系统中安装 [fcitx-remote-for-osx](https://github.com/xcodebuild/fcitx-remote-for-osx) 来切换输入法。
+- 方案 2:
+  - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
+
+当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
+### 远程 server 上复制粘贴
+在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
+
+如果两台电脑都是 Linux 而且桌面环境都是 x11 的，那么在 ssh 的增加上 -X 的选项勉强维持生活。
+```txt
+     -X      Enables X11 forwarding.  This can also be specified on a per-host basis in a configuration
+             file.
+```
+这种方案的限制太强了。
+
+使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
+
+原理上参考:
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
-<!-- TMP_TODO : 补充一下文档 -->
+但是还是存在一些问题，不过暂时可以接受
+- 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
