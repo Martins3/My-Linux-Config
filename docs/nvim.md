@@ -17,10 +17,8 @@
   * [安装 nerdfonts](#安装-nerdfonts)
   * [[可选] 安装 github cli](#可选-安装-github-cli)
   * [安装 bear](#安装-bear)
-  * [安装包管理器 Packer](#安装包管理器-packer)
   * [安装本配置](#安装本配置)
   * [checkhealth 检查](#checkhealth-检查)
-* [升级](#升级)
 * [基本操作](#基本操作)
   * [退出](#退出)
   * [复制粘贴](#复制粘贴)
@@ -59,18 +57,22 @@
 * [调试 vim 配置](#调试-vim-配置)
 * [Changelog](#changelog)
   * [2022](#2022)
+  * [2022.8](#20228)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [blog](#blog)
 * [学习](#学习)
 * [主题](#主题)
-* [常见问题](#常见问题)
+* [常见知识点](#常见知识点)
+* [问题](#问题)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
 
 
-![](./img/overview.png)
+| 整体效果                                                 |
+|----------------------------------------------------------|
+| <p align="center"> <img src="./img/overview.png" /> </p> |
 
 ## 前言
 <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">有些看似不起眼的“小工具”或“小技巧”，实质上可以强烈影响到你的工作效率或开发理念，强到你的职业生涯甚至可以拿它当分界线，分为泾渭分明的两块：“学会 XXX 前” vs “学会 XXX 之后”。<br><br>对我来说，“tmux”、“VIM”、“写好的单元测试”、“完全使用英文搜索技术问题”均属于此类。</p>&mdash; piglei (@Piglei) <a href="https://twitter.com/Piglei/status/1501389100074500098?ref_src=twsrc%5Etfw">March 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -266,11 +268,6 @@ sudo apt install bear
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
-### 安装包管理器 Packer
-```sh
-git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
-```
-
 ### 安装本配置
 
 nvim 的配置在 ~/.config/nvim 中，
@@ -280,14 +277,18 @@ mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
 ```
 
-刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了:
-<!-- -- TMP_TODO 需要重新截图 -- -->
-<!-- -- TMP_TODO 补充说明一下自动安装的时候等待-- -->
-<!-- ```c -->
-<!-- git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字 -->
-<!-- ln -s ~/.dotfiles/neovim ~/.config/nvim # 创建一个软链接指向此处 -->
-<!-- nvim -->
-<!-- ``` -->
+```sh
+git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
+ln -s ~/.dotfiles/nvim ~/.config/nvim # 创建一个软链接指向此处
+nvim
+```
+
+然后打开 nvim，nvim 会检查包管理器 Packer 是否存在，如果不存在，那么开始安装，自动执行下面的命令：
+```sh
+git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+```
+
+当 clone Packer 成功之后，执行 `PackerInstall`。
 
 | 输入命令 `:PackerInstall` 来安装插件                          |
 |---------------------------------------------------------------|
@@ -297,9 +298,6 @@ cd ~ # 保证在根目录下
 |---------------------------------------------------------|
 | <p align="center"> <img src="./img/install.png" /> </p> |
 
-[wakatime](https://wakatime.com/settings/account) 需要输入 api key，wakatime 是统计时间用的，如果你喜欢，可以到 neovim/lua/plugins.lua 中搜索 wakatime 的那一行删除，然后重新执行 `PackerInstall`
-
-<p align="center"> <img src="./img/waka.png" /> </p>
 
 当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
 再次打开之后，coc 的各种插件会自动安装:
@@ -314,10 +312,6 @@ cd ~ # 保证在根目录下
 | 我的配置的截图                                              |
 |-------------------------------------------------------------|
 | <p align="center"> <img src="./img/checkhealth.png" /> </p> |
-
-## 升级
-本项目之前是基于 SpaceVim 的，之后移除了，如果想要升级，除了 `git pull origin master` 之外
-需要操作一遍 [安装本配置](#安装本配置)。
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
@@ -669,11 +663,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 - met : 其 t 被高亮的，直接按 t 就可以了，无需按 s ，因为 met 的三个字母是唯一的。
 
 进行跳转的时候，前两个字符可以直接敲下去，而第三个字符需要看 easy mothion 的设置。
-<!-- TMP_TODO 说明一下 space 的使用 -->
-<!-- ctrl i 的使用方法 -->
-<!-- 我发现在 tmux.md 的开始位置是无法跳转到 51 行的 git 三个字符的 -->
-<!-- 我发现在 vn/...v2.md 的开始位置是无法跳转到 41 行的 tobe continue  -->
-<!-- TMP_TODO 应该理解一下 text obj 的含义 https://www.reddit.com/r/neovim/comments/wa819w/miniai_extend_and_create_ai_textobjects_like/  -->
 
 
 | binding  | function                                                                    |
@@ -811,6 +800,9 @@ setxkbmap -option caps:swapescape
 - 需要移动手掌，不是很高效
 - 有的键盘是没有 Fn 键的，按 Fn 键需要低效的组合键
 
+### 2022.8
+- 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
+
 ## 值得一看的配置
 - [cosynvim](https://github.com/glepnir/cosynvim) : 纯 lua 配置模板
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
@@ -839,11 +831,15 @@ setxkbmap -option caps:swapescape
 ## 主题
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 
-## 常见问题
+## 常见知识点
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
     - 没有区别，除了拼写不同
 - [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
     - `w !sudo tee %`
+
+## 问题
+- [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
+- [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
