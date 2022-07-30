@@ -75,8 +75,6 @@ in
     libcap
     acl
     # trace
-    # perf-tools
-    # linuxKernel.packages.linux_5_15.perf # TMP_TODO 不知道如何实现和内核版本的自动跟随
     pkgs.linuxPackages_latest.perf
     iperf
     bpftrace
@@ -88,12 +86,12 @@ in
           pandas
           pygal
           pre-commit
+          pypinyin
         ];
         python-with-my-packages = python3.withPackages py-pkgs;
       in
       python-with-my-packages
     )
-    pkgs.nodePackages."@lint-md/cli"
   ];
 
   xdg.configFile."nvim" = {
@@ -101,7 +99,6 @@ in
     recursive = true;
   };
 
-  # TMP_TODO tpm 通过 github 下载，其他插件需要使用 prefix I 来下载，也许存在更好的方法
   home.file.".tmux/plugins/tpm" = {
     source = builtins.fetchGit {
       url = "https://github.com/tmux-plugins/tpm";

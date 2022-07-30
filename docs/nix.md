@@ -364,6 +364,7 @@ programs.neovim = {
 ## 问题
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
+- [ ] linuxKernel.packages.linux_5_15.perf # 不知道如何实现和内核版本的自动跟随
 ## Python
 ```txt
 pip3 install http # 会提示你，说无法可以安装 python39Packages.pip
