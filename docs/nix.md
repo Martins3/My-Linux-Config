@@ -310,6 +310,10 @@ direnv allow
 
 但是没有 syncthing 好用：
 ```nix
+  environment.systemPackages = with pkgs; [
+    cifs-utils
+  }
+
   services.samba = {
     enable = true;
 

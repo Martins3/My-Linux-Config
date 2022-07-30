@@ -45,9 +45,6 @@ in
     git
     wget
     zsh
-    # To make SMB mounting easier on the command line
-    # TMP_TODO 这个工具的功能是啥来着
-    cifs-utils
   ];
 
   users.mutableUsers = false;
@@ -56,8 +53,6 @@ in
     isNormalUser = true;
     shell = pkgs.zsh;
     home = "/home/martins3";
-    # TMP_TODO 补充文档
-    # https://stackoverflow.com/questions/51342810/how-to-fix-dial-unix-var-run-docker-sock-connect-permission-denied-when-gro
     extraGroups = [ "wheel" "docker" "libvirtd" ];
     hashedPassword = passwd;
   };
@@ -71,7 +66,6 @@ in
   services.syncthing = {
     enable = true;
     systemService = true;
-    # TMP_TODO 这个选项是做啥的
     # relay.enable = true;
     user = "martins3";
     dataDir = "/home/martins3";
