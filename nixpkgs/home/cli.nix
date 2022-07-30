@@ -145,6 +145,17 @@ in
       pinyin=$(pypinyin -s NORMAL $1)
       printf \"%s\t%s\t1\n\" \"$1\" \"$pinyin\" >> ~/.dotfiles/rime/luna_pinyin.martins3.dict.yaml
     }
+
+    function gscp() {
+        file_name=$1
+        if [ -z \"file_name\" ]; then
+            echo $0 file
+            return 1
+        fi
+        ip=$(ip a | grep -v vir | grep -o \"192\..*\" | cut -d/ -f1)
+        file_path=$(readlink -f $file_name)
+        echo  scp -r $(whoami)@${ip}:$file_path .
+    }
     ";
 
     plugins = [

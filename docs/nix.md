@@ -107,8 +107,6 @@ home-manager switch
 - 似乎是动态库不能正确加载的
 - [ ] 似乎只是需要重新编译就可以了
 
-## [ ] 能不能在 Mac OS 的虚拟机中构建出来这个虚拟机环境
-
 ## wm
 这个是一个非常通用的问题了，那就是插件下载的二进制是无法使用的
 
@@ -125,39 +123,9 @@ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 - 其中存在很多小问题需要进行修复的。
   - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
 
-## [ ] TODO
-- 搭建 Boom 的阅读环境
-- 搭建 Rust 的开发环境
-
 ## alacritty
 - 为什么不是默认全屏的哇? https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
   - 似乎如果将 -vga virtio 修改为 -vga std 就可以解决
-
-## cpp
-- https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
-- https://www.breakds.org/post/nix-based-c++-workflow/
-- https://nixos.wiki/wiki/C
-
-别人也遇到了类似的问题:
-- https://github.com/NixOS/nixpkgs/issues/9230
-- https://www.reddit.com/r/NixOS/comments/vft54v/cmake_not_finding_boost_as_a_library/
-
-所以这才是正确的操作吗?
-https://www.reddit.com/r/NixOS/comments/fdi3jb/gcc1_doesnt_work_gives_weird_internalish_errors/
-
-似乎这个东西叫做 user environment:
-https://nixos.wiki/wiki/User_Environment
-
-https://xieby1.github.io/scripts/index.html
-
-```sh
-nix-shell '<nixpkgs>' -A lua --command zsh
-```
-
-## 一些同步技术
-```sh
-cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_keys && echo "Key copied"'
-```
 
 ## nvim
 安装到此处就可以了:
@@ -166,17 +134,6 @@ cat ~/.ssh/id_rsa.pub | ssh martins3:192.168.125.102 'cat >> .ssh/authorized_key
 ## 在 QEMU 中，似乎无法正确的执行 setxkbmap
 
 似乎需要 QEMU grab 进去才可以的
-
-## 如何安装 microsoft-edge
-- https://matthewrhone.dev/nixos-edge-browser
-
-https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/
-```sh
-nix hash-file --sri microsoft-edge-dev_xx.xx.xx.xx-1_amd64.deb
-```
-
-实际上需要看这个东西:
-https://gitlab.com/zanc/overlays/-/blob/master/edge/update.sh
 
 ## 为什么无法代理
 - 大写
@@ -192,57 +149,6 @@ https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 - [ ] 也许还是使用 awesome 吧
 
 git clone https://github.com/leftwm/leftwm-theme
-
-## [ ] 为什么默认是 bash 的环境
-
-## sublime merge 的安装
-- 开箱就得到了一个更新提示
-  - 既然如此，可以总是只有部分软件使用 unstable 的，例如 neovim 的
-
-## [x] 为什么直通只有左边的耳机才有声音啊
-- 真的需要添加四个设备吗?
-  - 有的似乎根本不相关啊
-- q35 导致的
-
-## [x] 每次启动都是需要 30s 的时间
-
-```txt
-➜  ~ sudo systemctl status dhcpcd.service
-[sudo] password for martin:
-● dhcpcd.service - DHCP Client
-     Loaded: loaded (/etc/systemd/system/dhcpcd.service; enabled; vendor preset>
-     Active: active (running) since Fri 2022-06-24 10:16:48 CST; 3min 31s ago
-    Process: 783 ExecStart=dhcpcd --quiet --config /nix/store/23mah319pvq76qvn4>
-   Main PID: 793 (dhcpcd)
-         IP: 3.7K in, 0B out
-         IO: 472.0K read, 0B written
-      Tasks: 4 (limit: 9529)
-     Memory: 1.5M
-        CPU: 47ms
-     CGroup: /system.slice/dhcpcd.service
-             ├─793 "dhcpcd: [manager] [ip4] [ip6]"
-             ├─794 "dhcpcd: [privileged proxy]"
-             ├─795 "dhcpcd: [network proxy]"
-             └─796 "dhcpcd: [control proxy]"
-
-Jun 24 18:16:17 nixos systemd[1]: Starting DHCP Client...
-Jun 24 18:16:17 nixos dhcpcd[783]: dhcpcd-9.4.1 starting
-Jun 24 18:16:17 nixos dhcpcd[794]: dev: loaded udev
-Jun 24 18:16:17 nixos dhcpcd[794]: DUID 00:01:00:01:2a:3f:0d:23:52:54:00:12:34:>
-Jun 24 18:16:17 nixos dhcpcd[783]: no valid interfaces found
-Jun 24 18:16:17 nixos dhcpcd[794]: no valid interfaces found
-Jun 24 10:16:48 nixos dhcpcd[794]: timed out
-```
-
-增加这个也是没用的:
-```nix
-  networking.interfaces.enp0s2.useDHCP = true;
-```
-
-关键参考:
-- https://www.reddit.com/r/NixOS/comments/pglkii/system_starts_really_slowly_because_of_one_process/
-
-原来是不能切换主板为 q35, 怀疑是因为安装时候的主板和之后执行的主板不能切换.
 
 ## Rime 输入法
 ```sh
@@ -267,21 +173,6 @@ nix-env -qaP elfutils
 ## [ ] 使用 nix 语言写一个 web server
 https://blog.replit.com/nix_web_app
 
-## zsh
-- `TMP_TODO` 查看一下，让 nixos 中包含一下函数
-
-```sh
-function gscp() {
-    file_name=$1
-    if [ -z "file_name" ]; then
-        echo $0 file
-        return 1
-    fi
-    ip=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
-    file_path=$(readlink -f $file_name)
-    echo  scp -r $(whoami)@${ip}:$file_path .
-}
-```
 ## syncthing
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing : 非常的详细，晚上的时候搞搞的。
@@ -304,38 +195,37 @@ direnv allow
   - https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
 
 
-
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
 
 但是没有 syncthing 好用：
 ```nix
-  environment.systemPackages = with pkgs; [
-    cifs-utils
-  }
+environment.systemPackages = with pkgs; [
+  cifs-utils
+}
 
-  services.samba = {
-    enable = true;
+services.samba = {
+  enable = true;
 
-    /* syncPasswordsByPam = true; */
-    # You will still need to set up the user accounts to begin with:
-    # TMP_TODO 在文档中描述一下，是需要密码的
-    # $ sudo smbpasswd -a yourusername
+  /* syncPasswordsByPam = true; */
+  # You will still need to set up the user accounts to begin with:
+  # TMP_TODO 在文档中描述一下，是需要密码的
+  # $ sudo smbpasswd -a yourusername
 
-    # This adds to the [global] section:
-    extraConfig = ''
-      browseable = yes
-      smb encrypt = required
-    '';
+  # This adds to the [global] section:
+  extraConfig = ''
+    browseable = yes
+    smb encrypt = required
+  '';
 
-    shares = {
-      homes = {
-        browseable = "no";  # note: each home will be browseable; the "homes" share will not.
-        "read only" = "no";
-        "guest ok" = "no";
-      };
+  shares = {
+    homes = {
+      browseable = "no";  # note: each home will be browseable; the "homes" share will not.
+      "read only" = "no";
+      "guest ok" = "no";
     };
   };
+};
 ```
 
 ## npm
@@ -369,7 +259,10 @@ programs.neovim = {
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
 - [ ] linuxKernel.packages.linux_5_15.perf # 不知道如何实现和内核版本的自动跟随
-## Python
+- [ ] 搭建 Boom 的阅读环境
+- [ ] 搭建 Rust 的开发环境
+
+## python
 ```txt
 pip3 install http # 会提示你，说无法可以安装 python39Packages.pip
 nix-shell -p python39Packages.pip # 好的，安装了
@@ -397,6 +290,28 @@ error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647
   home.packages = with pkgs; [
 ```
 中的 python 删除就可以了。
+
+## cpp
+- https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
+- https://www.breakds.org/post/nix-based-c++-workflow/
+- https://nixos.wiki/wiki/C
+
+别人也遇到了类似的问题:
+- https://github.com/NixOS/nixpkgs/issues/9230
+- https://www.reddit.com/r/NixOS/comments/vft54v/cmake_not_finding_boost_as_a_library/
+
+所以这才是正确的操作吗?
+https://www.reddit.com/r/NixOS/comments/fdi3jb/gcc1_doesnt_work_gives_weird_internalish_errors/
+
+似乎这个东西叫做 user environment:
+https://nixos.wiki/wiki/User_Environment
+
+https://xieby1.github.io/scripts/index.html
+
+```sh
+nix-shell '<nixpkgs>' -A lua --command zsh
+```
+
 
 ## compile linux kernel
 - 内核的依赖是: elfutils

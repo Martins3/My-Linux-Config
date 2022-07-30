@@ -6,12 +6,12 @@ let
   passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
 in
 {
-  # TMP_TODO i think there's no need to include gui.nix
-  # 非常神奇，如果含有 gui.nix 之后，那么就会 UI 界面
   imports = [
     ./sys/cli.nix
-    /* ./sys/gui.nix */
-  ];
+  ] ++ (if (builtins.getEnv "DISPLAY") != ""
+  then [
+    ./sys/gui.nix
+  ] else [ ]);
 
   nix.binaryCaches = [
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
