@@ -140,6 +140,11 @@ in
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
     eval \"$(direnv hook zsh)\"
+
+    function edward() {
+      pinyin=$(pypinyin -s NORMAL $1)
+      printf \"%s\t%s\t1\n\" \"$1\" \"$pinyin\" >> ~/.dotfiles/rime/luna_pinyin.martins3.dict.yaml
+    }
     ";
 
     plugins = [
