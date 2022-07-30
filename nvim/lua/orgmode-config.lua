@@ -1,22 +1,8 @@
 require('orgmode').setup_ts_grammar()
 
-require 'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
-  },
-  -- TMP_TODO 是不是，ensure_installed 直接添加就可以了?
-  -- bash nix lua rust golang scala java c cpp
-  -- TMP_TODO 顺便说一下，shell check 中，处理一下 config.sh 的。
-  -- ensure_installed = "maintained",
-  ensure_installed = { 'org' },
-}
-
 require('orgmode').setup({
-  org_agenda_files = { '~/Dropbox/org/*' },
-  org_default_notes_file = '~/Dropbox/org/refile.org',
+  org_agenda_files = { '~/core/org-mode/*' },
+  org_default_notes_file = '~/core/org-mode/refile.org',
   mappings = {
     global = {
       org_agenda = '<space>oa',

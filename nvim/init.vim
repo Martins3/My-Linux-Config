@@ -59,6 +59,7 @@ lua require 'telescope-config'
 lua require 'tree-config'
 lua require 'whichkey-config'
 lua require 'code-runner-config'
+lua require 'treesitter-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
 lua require('telescope').load_extension('neoclip')
@@ -81,6 +82,12 @@ endfor
 
 " 设置主题，最下面的会生效
 colorscheme tokyonight
+
 let g:everforest_background = 'hard'
 colorscheme everforest
+
 colorscheme gruvbox
+
+lua vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+lua require("catppuccin").setup()
+lua vim.cmd [[colorscheme catppuccin]]

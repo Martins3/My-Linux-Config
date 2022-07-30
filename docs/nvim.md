@@ -840,6 +840,7 @@ setxkbmap -option caps:swapescape
 ## 问题
 - [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
+- [ ] 暂时无法实现 shellcheck 的 include 其他的文件。
 
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示

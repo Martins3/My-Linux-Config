@@ -19,10 +19,12 @@ require("packer").startup({
     -- 基础
     use 'nvim-lua/plenary.nvim' -- 很多 lua 插件依赖的库
     use { 'neoclide/coc.nvim', branch = 'release' } -- lsp
-    use 'nvim-treesitter/nvim-treesitter' -- 基于语义的高亮
     use 'kyazdani42/nvim-web-devicons' -- 显示图标
     use 'folke/which-key.nvim' -- 用于配置和提示快捷键
     use 'tami5/sqlite.lua' -- 数据库
+    -- treesitter
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语义的高亮
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
@@ -39,6 +41,7 @@ require("packer").startup({
     use 'folke/tokyonight.nvim'
     use 'morhetz/gruvbox'
     use 'sainnhe/everforest'
+    use { "catppuccin/nvim", as = "catppuccin" }
     -- git 管理
     use 'tpope/vim-fugitive' -- 显示 git blame，实现一些基本操作的快捷执行
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
