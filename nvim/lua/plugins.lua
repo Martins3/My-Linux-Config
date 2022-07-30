@@ -23,8 +23,8 @@ require("packer").startup({
     use 'folke/which-key.nvim' -- 用于配置和提示快捷键
     use 'tami5/sqlite.lua' -- 数据库
     -- treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语义的高亮
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
+    use 'RRethy/nvim-treesitter-textsubjects'
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
