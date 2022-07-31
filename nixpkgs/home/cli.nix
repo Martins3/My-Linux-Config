@@ -20,9 +20,11 @@ in
     gnumake
     yarn
     nodejs
+    # tmux
+    tmux
+    tmuxinator
     # unix tools
     jq
-    tmux
     htop
     fzf
     ripgrep

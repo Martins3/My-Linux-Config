@@ -1,19 +1,21 @@
-# nix-env -f ./linux.nix -i
-# shell-nix --cmd zsh
-let
-pkgs = import <nixpkgs> {};
-in
+{ pkgs ? import <nixpkgs> { } }:
 
-pkgs.mkShell rec {
-  nativeBuildInputs = with pkgs.buildPackages; [
-    bison
+pkgs.stdenv.mkDerivation {
+  name = "linux-kernel-build";
+  nativeBuildInputs = with pkgs; [
+    getopt
     flex
-    lzop
-    pkgconfig
+    bison
+    gcc
+    gnumake
+    bc
+    pkg-config
+    binutils
+  ];
+  buildInputs = with pkgs; [
+    elfutils
     ncurses
     openssl
-    elfutils
-    bc
-   ];
-  buildInputs = with pkgs; [ zlib ];
+    zlib
+  ];
 }

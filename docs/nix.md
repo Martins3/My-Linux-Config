@@ -276,5 +276,9 @@ docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/
 - [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
 - [ ] 使用 nix 语言写一个 web server ：https://blog.replit.com/nix_web_app
 
+## 其他有趣的 Linux Distribution
+- https://kisslinux.org/install
+- [guix](https://boilingsteam.com/i-love-arch-but-gnu-guix-is-my-new-distro/)
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
 [^2]: https://breuer.dev/blog/nixos-home-manager-neovim

@@ -81,6 +81,9 @@ ssh -X -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
     - 以前是 prefix c 可以创建一个窗口，为了给内层 tmux 创建一个窗口，现在需要按 prefix prefix c，当然也许修改 prefix 也可以。
     - 到底是进入的外层还是内层的 tmux 的 vi mode 也是经常搞混的事情。
 
+## 扩展
+- [tmuxinator](https://github.com/tmuxinator/tmuxinator) 可以实现 kitty 的 session 的管理
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="

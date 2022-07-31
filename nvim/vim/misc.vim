@@ -1,11 +1,6 @@
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 
-" 使用 c a 调节 window 大小
-let g:winresizer_start_key = 'ca'
-" If you cancel and quit window resize mode by `q` (keycode 113)
-let g:winresizer_keycode_cancel = 113
-
 " 默认 markdown preview 在切换到其他的 buffer 或者 vim
 " 失去焦点的时候会自动关闭 preview
 let g:mkdp_auto_close = 0
