@@ -23,11 +23,18 @@
 cd ~
 git clone https://github.com/Martins3/My-Linux-config .dotfiles
 ln -sf ~/.dotfiles/conf/tmux.conf ~/.tmux.conf
-ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
 ln -sf ~/.dotfiles/conf/tigrc.conf ~/.tigrc
+ln -sf ~/.dotfiles/conf/kitty ~/.config/kitty
+ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/conf/zathurarc ~/.config/zathura/zathurarc
+
+# ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
 ```
-neovim config is a little complex, see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
+
+Actually, neovim configuration is a little of complex:
+  - see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
+  - read the [documentation](./docs/nvim.md)
+  - try [nix](./docs/nix.md)
 
 ## 🤝 Contributing
 
