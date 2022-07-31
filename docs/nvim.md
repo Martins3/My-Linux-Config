@@ -35,7 +35,7 @@
   * [导航](#导航)
   * [文档](#文档)
   * [代码段](#代码段)
-  * [自动补全](#自动补全)
+  * [代码补全](#代码补全)
   * [Git 集成](#git-集成)
   * [Github 集成](#github-集成)
   * [调试](#调试)
@@ -70,9 +70,9 @@
 <!-- vim-markdown-toc -->
 
 
-| 整体效果                                                 |
-|----------------------------------------------------------|
-| <p align="center"> <img src="./img/overview.png" /> </p> |
+| 整体效果                         |
+|----------------------------------|
+| <img src="./img/overview.png" /> |
 
 ## 前言
 <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">有些看似不起眼的“小工具”或“小技巧”，实质上可以强烈影响到你的工作效率或开发理念，强到你的职业生涯甚至可以拿它当分界线，分为泾渭分明的两块：“学会 XXX 前” vs “学会 XXX 之后”。<br><br>对我来说，“tmux”、“VIM”、“写好的单元测试”、“完全使用英文搜索技术问题”均属于此类。</p>&mdash; piglei (@Piglei) <a href="https://twitter.com/Piglei/status/1501389100074500098?ref_src=twsrc%5Etfw">March 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -81,6 +81,7 @@
 1. vim 新手
 2. 正在使用 [cscope](http://cscope.sourceforge.net/) / [ctags](https://github.com/universal-ctags/ctags) / [gtags](https://github.com/SpaceVim/SpaceVim/issues/4389) / [nerdtree](https://github.com/preservim/nerdtree) / [YCM](https://github.com/ycm-core/YouCompleteMe) 的 vimer
 3. 不了解 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) (下简称 lsp ) 等新特性的 vimer
+4. 没有使用过 [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 
@@ -292,11 +293,11 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 
 | 输入命令 `:PackerInstall` 来安装插件                          |
 |---------------------------------------------------------------|
-| <p align="center"> <img src="./img/PackerInstall.png" /> </p> |
+| <img src="./img/PackerInstall.png" /> |
 
 | 插件的正常安装                                          |
 |---------------------------------------------------------|
-| <p align="center"> <img src="./img/install.png" /> </p> |
+| <img src="./img/install.png" /> |
 
 
 当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
@@ -304,14 +305,14 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 
 | coc 插件的自动安装                                          |
 |-------------------------------------------------------------|
-| <p align="center"> <img src="./img/coc-install.png" /> </p> |
+| <img src="./img/coc-install.png" /> |
 
 ### checkhealth 检查
 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
 
 | 我的配置的截图                                              |
 |-------------------------------------------------------------|
-| <p align="center"> <img src="./img/checkhealth.png" /> </p> |
+| <img src="./img/checkhealth.png" /> |
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
@@ -331,7 +332,7 @@ let g:mapleader = ','
 
 | 当按下 `,` 之后，经过 `timeoutlen` 之后， 弹出下面的窗口显示下一步的按键 |
 |--------------------------------------------------------------------------|
-| <p align="center"> <img src="./img/key.png" />                           |
+| <img src="./img/key.png" />                           |
 
 ### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
@@ -369,11 +370,11 @@ map <leader>d "+d
 
 | 在 fork.c 中间搜索 `_x64_sys_fork` 这个符号                  |
 |--------------------------------------------------------------|
-| <p align="center"> <img src="./img/workspace-symbols.png" /> |
+| <img src="./img/workspace-symbols.png" /> |
 
 | 在整个 Linux 工程中间搜索 sysclone 这个符号                |
 |------------------------------------------------------------|
-| <p align="center"> <img src="./img/outline-symbols.png" /> |
+| <img src="./img/outline-symbols.png" /> |
 
 ### 定义和引用
 
@@ -390,7 +391,7 @@ map <leader>d "+d
 
 | 展示 `put_swap_page` 的注释                        |
 |----------------------------------------------------|
-| <p align="center"> <img src="./img/comment.png" /> |
+| <img src="./img/comment.png" /> |
 
 ### 格式化
 
@@ -460,14 +461,14 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 | 文件搜索                                                |
 |---------------------------------------------------------|
-| <p align="center"> <img src="./img/search-files.png" /> |
+| <img src="./img/search-files.png" /> |
 
 ### 导航
 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
 | 基于 liuchengxu/vista.vim 的导航栏                 |
 |----------------------------------------------------|
-| <p align="center"> <img src="./img/outline.png" /> |
+| <img src="./img/outline.png" /> |
 
 ### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
@@ -476,7 +477,9 @@ pip install cppman
 cppman -c
 ```
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/cppman.png" /> </p> </details>
+| 使用 cppman 查询结果           |
+|--------------------------------|
+| <img src="./img/cppman.png" /> |
 
 和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
@@ -498,12 +501,16 @@ int main(){
 endsnippet
 ```
 
-这样，然后每次只需要输入 import 这些内容就自动出现了，效果如下。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/snippet.png" /> </p> </details>
+| 输入 import 这些内容就自动补全                  |
+|-------------------------------------------------|
+| <img src="./img/snippet.png" /> |
 
-### 自动补全
-自动补全是自动触发的，coc.nvim 无需另外的配置，效果如下。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/autocomplete.png" /> </p> </details>
+### 代码补全
+coc.nvim 无需另外的配置
+
+| 代码补全                             |
+|--------------------------------------|
+| <img src="./img/autocomplete.png" /> |
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
 
@@ -522,13 +529,15 @@ endsnippet
 
 | 直接查看本项目中的 issue                                        |
 |-----------------------------------------------------------------|
-| <p align="center"> <img src="./img/octo.png" /> |
+| <img src="./img/octo.png" /> |
 
 ### 调试
 一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
 ，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)，其效果如下
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/debug.png" /> </p> </details>
+| 使用内置的 Termdebug 进行调试 |
+|-------------------------------|
+| <img src="./img/debug.png" /> |
 
 但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试[^2]。
 
@@ -537,7 +546,7 @@ endsnippet
 
 | 利用 wilder.nvim 在命令模式自动补全               |
 |---------------------------------------------------|
-| <p align="center"> <img src="./img/wilder.png" /> |
+| <img src="./img/wilder.png" /> |
 
 ### 终端
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
@@ -547,7 +556,7 @@ endsnippet
 
 | 打开悬浮终端，并且运行 htop 的结果                  |
 |-----------------------------------------------------|
-| <p align="center"> <img src="./img/floaterm.png" /> |
+| <img src="./img/floaterm.png" /> |
 
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
@@ -560,7 +569,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 | C 语言文件一键运行                                     |
 |--------------------------------------------------------|
-| <p align="center"> <img src="./img/code-runner.png" /> |
+| <img src="./img/code-runner.png" /> |
 
 从上到下三个箭头分别指向:
 - 源代码
@@ -588,11 +597,11 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 | 自动补全的效果                                           |
 |----------------------------------------------------------|
-| <p align="center"> <img src="./img/latex-preview.png" /> |
+| <img src="./img/latex-preview.png" /> |
 
 | 预览的效果                                           |
 |------------------------------------------------------|
-| <p align="center"> <img src="./img/latex-cmp.png" /> |
+| <img src="./img/latex-cmp.png" /> |
 
 主要使用两个快捷键:
 
@@ -653,9 +662,9 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 在我使用 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
 
-| 例子                                                                                                               |
-|--------------------------------------------------------------------------------------------------------------------|
-| <p align="center"> <img src="https://github.com/ggandor/lightspeed.nvim/raw/media/quick_example_2.png?raw=true" /> |
+| 例子                                                                                            |
+|-------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/ggandor/lightspeed.nvim/raw/media/quick_example_2.png?raw=true" /> |
 
 按 s 开始跳转，然后搜索第一个字母 m，会出现三种选择:
 - me : 两个都是白色，此时再按 e，那么可以直接跳转到其上
