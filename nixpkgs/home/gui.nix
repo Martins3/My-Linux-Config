@@ -26,6 +26,7 @@ in
     feishu
     wpsoffice
     sublime-merge
+    drawio
     microsoft-edge-dev
     # wm
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
