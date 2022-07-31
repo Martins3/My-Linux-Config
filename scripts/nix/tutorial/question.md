@@ -1,3 +1,32 @@
+```c
+environment.systemPackages = with pkgs; [
+```
+- 在一个文件中不能重复定义， /etc/nixos/configuration.nix 中已经定义过一次
+
+## gcc8
+```nix
+/* TMP_TODO 理解为什么是这个样子的 */
+/* https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell */
+ with import <nixpkgs> {}; {
+  qpidEnv = stdenvNoCC.mkDerivation {
+    name = "gcc8-env";
+    buildInputs = [
+        gcc8
+    flex
+    lzop
+    pkgconfig
+    ncurses
+    openssl
+    elfutils
+    bc
+    ];
+  };
+}
+```
+
+## gcc8 arm
+
+```nix
 # failed
 let
     pkgs = import (builtins.fetchTarball {
@@ -28,3 +57,17 @@ in
     ];
   };
 }
+```
+
+## 如何理解 '<>'
+
+nix-shell '<home-manager>' -A install
+
+## 差别
+nix-env -f ./libllvm13_debug.nix -i
+
+nix-shell # 当目录中存在 default.nix 的时候
+
+## nix develop 是做什么的
+
+## 我记得曾经有一个 vim 有 nix 的配置的

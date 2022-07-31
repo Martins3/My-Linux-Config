@@ -79,10 +79,6 @@ sudo nixos-rebuild switch # 仅NixOS
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
-<!-- TMP_TODO 上面的 nix-shell 命令都看不懂啊 -->
-
-
-此处踩的坑，即使是修改了 alacritty.yml 也是需要重新编译的。
 
 ## 基础知识
 - nix-prefetch-url 同时下载和获取 hash 数值

@@ -37,7 +37,6 @@ in
   };
 
   programs.dconf.enable = true;
-  # TMP_TODO 如果出现重复会有什么问题吗？和 /etc/nixos/configuration.nix 中的
   environment.systemPackages = with pkgs; [
     virt-manager
     vim
