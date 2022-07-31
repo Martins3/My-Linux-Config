@@ -12,6 +12,7 @@ cd plum
 rime_dir="$HOME/.config/fcitx/rime" bash rime-install
 ```
 
+`rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
 ## 配置一下 fcitx
 <details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" /> </p> </details>
 
@@ -58,7 +59,6 @@ use_preset_vocabulary: true
 
 ## Mac 中
 - https://rime.im/download/
-- 配置只是地址不同而已，可以参考
 - 使用 rime/mac-install.sh 安装，其实也就是地址不同而已
   - rime/squirrel.custom.yaml 中配置其中的
 
@@ -72,7 +72,7 @@ cd fcitx-remote-for-osx
 cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
 ```
 
-`TMP_TODO` 不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH
+不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH
 ```sh
 export PATH="$PATH:/usr/local/bin"
 ```

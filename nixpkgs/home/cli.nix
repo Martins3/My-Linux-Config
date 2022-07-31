@@ -45,7 +45,7 @@ in
     delta
     gh
     # network
-    nload # TMP_TODO 这个软件无法正确工作
+    nethogs
     iftop
     tcpdump
     ethtool
@@ -122,7 +122,6 @@ in
       sync-config = "rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
       update-sys = "sync-config && sudo nixos-rebuild switch";
       update-home = "sync-config && home-manager switch";
-      ns = "nix-shell --command zsh"; # TMP_TODO 没有更好的方法吗，有 nix-shell 和没有会导致 linux 重新索引，应该一开始就提醒的
       px = "export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889";
       q = "exit";
       v = "nvim";

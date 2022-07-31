@@ -50,19 +50,18 @@ environment.systemPackages = with pkgs; [
 1. 创建用户和密码
 ```sh
 useradd -c 'martins three' -m martins3
-passwd martins3 # TMP_TODO 不需要设置密码吧！
 ```
 2. 切换到普通用户
 ```sh
 su -l martins3
 ```
-<!-- TMP_TODO 直接 clone 到 root 中的某个位置也是不错的，虽然之后需要修改 /etc/nixos/configuration.nix -->
 
-2. 导入本配置的操作:
+3. 导入本配置的操作:
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
 ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
+
 4. 执行 ./scripts/nix-channel.sh 切换源
 
 5. 修改 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
@@ -90,7 +89,7 @@ home-manager switch
 ```sh
 nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 ```
-- 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径山进行如下操作:
+- 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径上进行如下操作:
 ```sh
 echo "use nix" >> .envrc
 direnv allow
@@ -105,6 +104,7 @@ nix-env -qaP | grep 'gcc[0-9]\>'
 nix-env -qaP elfutils
 ```
   - 使用网站: https://search.nixos.org/packages
+- 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
 
 ## 无法代理的解决
 - 注意 export https_proxy 和 export HTTPS_PROXY 都是需要设置的
@@ -114,36 +114,15 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 
 因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
 
-## Rime 输入法
-```sh
-git clone https://github.com/rime/plum
-cd plum
-rime_dir="$HOME/.local/share/fcitx5/rime" bash rime-install
-```
-- `rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
-
-参考 [这篇 blog](http://t.zoukankan.com/jrri-p-12427956.html) 通过配置 fcitx5 的 UI
-
-## 安装特定版本
-
-使用这个网站: https://lazamar.co.uk/nix-versions/
-
-- [ ] 我无法理解，为什么 gcc 的特定版本只是需要 gcc8 的
-  - 应该是这几个的包都是恰好做好的
-
-
 ## syncthing
+强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
 - https://wes.today/nixos-syncthing/
-- https://nixos.wiki/wiki/Syncthing : 非常的详细，晚上的时候搞搞的。
+- https://nixos.wiki/wiki/Syncthing
 
-似乎每次 sudo nixos-rebuild swich 一次之后，都会导致重新配置：
-- [ ] 不过也许是因为配置有点问题，没有正确的设置 dataDir
-- [ ] 重启之后，网页的网址需要重新配置
-
+@todo 暂时没有搞文件夹配置，还是在网页上配置的。
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
 
-但是没有 syncthing 好用：
 ```nix
 environment.systemPackages = with pkgs; [
   cifs-utils
@@ -153,9 +132,6 @@ services.samba = {
   enable = true;
 
   /* syncPasswordsByPam = true; */
-  # You will still need to set up the user accounts to begin with:
-  # TMP_TODO 在文档中描述一下，是需要密码的
-  # $ sudo smbpasswd -a yourusername
 
   # This adds to the [global] section:
   extraConfig = ''
@@ -173,6 +149,12 @@ services.samba = {
 };
 ```
 
+注意，smbp 是需要
+```sh
+sudo smbpasswd -a yourusername
+```
+
+没有 syncthing 是更加好用的，因为 samba 所有的访问多是需要经过网络，没有缓存，而 syncthing 是将内容同步到本地的。
 ## npm 包管理
 支持的不是很好，需要手动安装
 

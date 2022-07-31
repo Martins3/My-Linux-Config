@@ -42,6 +42,5 @@ command! TrimWhitespace call TrimWhitespace()
 
 fun! GetFilePath()
   exec "Redir echo expand('%:p')"
-  " call system("fcitx-remote -o") TMP_TODO
 endfun
 command! GetFilePath call GetFilePath()
