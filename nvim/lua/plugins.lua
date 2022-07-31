@@ -93,14 +93,9 @@ require("packer").startup({
     -- 其他
     use 'CoatiSoftware/vim-sourcetrail' -- sourcetrail 插件
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
-    -- TMP_TODO coc-imselect 也可以直接解决 Linux 上的问题，那么就不需要这些复杂的事情了
     use 'martins3/fcitx.nvim' -- 自动切换输入法
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
-    -- TMP_TODO unable to install
-    -- TMP_TODO 有一个插件，当光标进入到最下面位置的括号的时候，其会让 status line 消失，这很糟糕。
-    -- TMP_TODO 我们发现 markdown-preview 不能正常工作，最后参考这里解决的 https://stackoverflow.com/questions/52801814/this-syntax-requires-an-imported-helper-but-module-tslib-cannot-be-found-wit
-    -- 通过 npm -i
-    -- use 'inkarkat/vim-mark'
+    -- use 'inkarkat/vim-mark' --- 高亮多个搜索的内容 @todo 暂时安装不上
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
   end,
 })

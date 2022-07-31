@@ -29,7 +29,7 @@ wk.register({
     i = { "<cmd>Octo issue list<cr>", "list github issue" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
-    m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
+    M = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
@@ -150,6 +150,3 @@ wk.register({
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
-
--- TMP_TODO 增加一个 jzz 的映射
--- TMP_TODO 能不能在 vim 中直接定义 @j 这个 macro 啊

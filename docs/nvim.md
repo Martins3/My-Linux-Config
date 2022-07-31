@@ -757,8 +757,8 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 | Ctrl + d    | 向前滚动一屏，光标在屏幕的位置保持不变 |
 | Ctrl + b    | 向后滚动一屏，但是光标在底部           |
 | Ctrl + u    | 向后滚动半屏，光标在屏幕的位置保持不变 |
-| Ctrl + e    | 向上滚动                               |
-| Ctrl + y    | 向下滚动                               |
+| Ctrl + e    | 丝般顺滑地向上滚动                     |
+| Ctrl + y    | 丝般顺滑地向下滚动                     |
 
 - vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
 - 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
