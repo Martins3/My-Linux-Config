@@ -154,7 +154,7 @@ in
         fi
         ip=$(ip a | grep -v vir | grep -o \"192\..*\" | cut -d/ -f1)
         file_path=$(readlink -f $file_name)
-        echo  scp -r $(whoami)@${ip}:$file_path .
+        echo  scp -r $(whoami)@\${ip}:$file_path .
     }
     ";
 
