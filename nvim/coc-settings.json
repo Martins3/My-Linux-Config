@@ -1,0 +1,61 @@
+{
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.addGBlameToVirtualText": false,
+  "git.virtualTextPrefix": "👋 ",
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        "compile_commands.json",
+        ".git/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "highlight": {
+          "lsRanges": true
+        },
+        "index": {
+          "threads": 64
+        },
+        "client": {
+          "snippetSupport": true
+        },
+        "clang": {
+          "extraArgs": [
+            "-Wall"
+          ]
+        }
+      }
+    },
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": [
+        "nix"
+      ]
+    }
+  },
+  "translator.engines": [
+    "youdao"
+  ],
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "sumneko-lua.enableNvimLuaDev": true,
+  "Lua.telemetry.enable": true
+}

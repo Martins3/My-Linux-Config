@@ -1,4 +1,8 @@
-# tig 配置
+# 基于 tig 的 git workflow
+
+## git 基础使用
+
+## github 基础使用
 
 经常使用 git ，每一个操作都是类似下面这种全部都敲一遍，会很累，很容易出错，而且记不住这么长的命令。
 ```sh
@@ -23,7 +27,7 @@ bind status D ?@rm %(file)
 - `@` : 表示在 background 中运行
 
 ## 配合 vim 使用
-- 在 diff view 中 使用 e 可以让直接跳转到该行
+- 在 diff view 中使用 e 可以让直接跳转到该行
 
 ## TODO
 - [ ] 介绍一下 uu(x) ur ul 的使用

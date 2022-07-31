@@ -1,0 +1,10 @@
+---
+name: luna_pinyin.my_words    # 词库名称，与文件名一致
+version: "1.0"                # 版本号，任填
+sort: by_weight               # 排序依据，by_weight表示按权重（词频）排序
+use_preset_vocabulary: true   # 是否使用预置发音，一般选true
+import_tables:
+  - luna_pinyin               # 预置的朙月拼音词库
+  - luna_pinyin.genshin
+  - luna_pinyin.martins3
+...

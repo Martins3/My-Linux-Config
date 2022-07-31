@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 lint_md_output=$(lint-md ./docs -c .lintmdrc.json)
 echo "$lint_md_output"

@@ -10,24 +10,30 @@
 * 中文文档
   * [2022 年 vim 的 C/C++ 配置](./docs/nvim.md)
   * [极简 Tmux 配置](./docs/tmux.md)
-  * [Rime 输入法配置](./docs/rime.md)
   * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
-  * [极简 Alacritty 配置](./docs/alacritty.md)
-  * zathura
-  * Awesome 桌面环境配置
-  * NixOs 配置
+  * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
+  * [Rime 输入法配置](./docs/rime.md)
+  * [NixOs 初步尝试](./docs/nix.md)
 * English version comming soon.
 
 ## ⚙ Install
+
 ```sh
 cd ~
 git clone https://github.com/Martins3/My-Linux-config .dotfiles
-ln -s ~/.dotfiles/scripts/tmux.conf .tmux.conf
-ln -s ~/.dotfiles/scripts/alacritty.yml .alacritty.yml
-ln -s ~/.dotfiles/scripts/tigrc.conf .tigrc
-ln -s ~/.dotfiles/scripts/zathurarc ~/.config/zathura/zathurarc
+ln -sf ~/.dotfiles/conf/tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/conf/tigrc.conf ~/.tigrc
+ln -sf ~/.dotfiles/conf/kitty ~/.config/kitty
+ln -sf ~/.dotfiles/nvim ~/.config/nvim
+ln -sf ~/.dotfiles/conf/zathurarc ~/.config/zathura/zathurarc
+
+# ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
 ```
-neovim config is a little complex, see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
+
+Actually, neovim configuration is a little of complex:
+  - see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
+  - read the [documentation](./docs/nvim.md)
+  - try [nix](./docs/nix.md)
 
 ## 🤝 Contributing
 

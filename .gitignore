@@ -1,3 +1,5 @@
 .ccls-cache
 plugin
 .vim-bookmarks
+.DS_Store
+.stfolder

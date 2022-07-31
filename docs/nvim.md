@@ -3,66 +3,76 @@
 <!-- vim-markdown-toc GitLab -->
 
 * [前言](#前言)
-* [背景](#背景)
-* [关于如何入门 vim](#关于如何入门-vim)
+* [入门 vim](#入门-vim)
 * [终极解决方案: lsp](#终极解决方案-lsp)
 * [丝般顺滑: async](#丝般顺滑-async)
 * [智能高亮: treesitter](#智能高亮-treesitter)
 * [为什么使用 coc.nvim](#为什么使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
-    * [安装各种依赖](#安装各种依赖)
-    * [安装 nvim](#安装-nvim)
-    * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
-    * [安装 ccls](#安装-ccls)
-    * [安装 nerdfonts](#安装-nerdfonts)
-    * [[可选] 安装 github cli](#可选-安装-github-cli)
-    * [安装 bear](#安装-bear)
-    * [安装包管理器 Packer](#安装包管理器-packer)
-    * [安装本配置](#安装本配置)
-    * [checkhealth 检查](#checkhealth-检查)
-* [升级](#升级)
+  * [安装各种依赖](#安装各种依赖)
+  * [安装 nvim](#安装-nvim)
+  * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
+  * [安装 ccls](#安装-ccls)
+  * [安装 nerdfonts](#安装-nerdfonts)
+  * [[可选] 安装 github cli](#可选-安装-github-cli)
+  * [安装 bear](#安装-bear)
+  * [安装本配置](#安装本配置)
+  * [checkhealth 检查](#checkhealth-检查)
 * [基本操作](#基本操作)
-    * [退出](#退出)
-    * [复制粘贴](#复制粘贴)
-    * [符号搜索](#符号搜索)
-    * [定义和引用](#定义和引用)
-    * [注释](#注释)
-    * [格式化](#格式化)
-    * [重命名](#重命名)
-    * [字符串搜索和替换](#字符串搜索和替换)
-    * [file tree](#file-tree)
-    * [window](#window)
-    * [buffer](#buffer)
-    * [导航](#导航)
-    * [文档](#文档)
-    * [代码段](#代码段)
-    * [自动补全](#自动补全)
-    * [git 集成](#git-集成)
-    * [github 集成](#github-集成)
-    * [调试集成](#调试集成)
-    * [vim cmdline](#vim-cmdline)
-    * [终端](#终端)
-    * [一键运行代码](#一键运行代码)
-    * [一键注释代码](#一键注释代码)
-    * [markdown 集成](#markdown-集成)
+  * [退出](#退出)
+  * [复制粘贴](#复制粘贴)
+  * [符号搜索](#符号搜索)
+  * [定义和引用](#定义和引用)
+  * [注释](#注释)
+  * [格式化](#格式化)
+  * [重命名](#重命名)
+  * [字符串搜索和替换](#字符串搜索和替换)
+  * [file tree](#file-tree)
+  * [window](#window)
+  * [buffer](#buffer)
+  * [文件搜索](#文件搜索)
+  * [导航](#导航)
+  * [文档](#文档)
+  * [代码段](#代码段)
+  * [自动补全](#自动补全)
+  * [Git 集成](#git-集成)
+  * [Github 集成](#github-集成)
+  * [调试](#调试)
+  * [vim cmdline 自动补全](#vim-cmdline-自动补全)
+  * [终端](#终端)
+  * [一键运行代码](#一键运行代码)
+  * [一键注释代码](#一键注释代码)
+  * [markdown 集成](#markdown-集成)
+  * [[可选] Latex 集成](#可选-latex-集成)
+  * [代码折叠](#代码折叠)
+  * [Session](#session)
+  * [[可选] Scala 集成](#可选-scala-集成)
+  * [快速移动](#快速移动)
+  * [输入法自动切换](#输入法自动切换)
+  * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
 * [调试 vim 配置](#调试-vim-配置)
 * [Changelog](#changelog)
-    * [2022](#2022)
+  * [2022](#2022)
+  * [2022.8](#20228)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [blog](#blog)
 * [学习](#学习)
 * [主题](#主题)
+* [常见知识点](#常见知识点)
+* [问题](#问题)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
 
 
-![](./img/overview.png)
+| 整体效果                                                 |
+|----------------------------------------------------------|
+| <p align="center"> <img src="./img/overview.png" /> </p> |
 
 ## 前言
 <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">有些看似不起眼的“小工具”或“小技巧”，实质上可以强烈影响到你的工作效率或开发理念，强到你的职业生涯甚至可以拿它当分界线，分为泾渭分明的两块：“学会 XXX 前” vs “学会 XXX 之后”。<br><br>对我来说，“tmux”、“VIM”、“写好的单元测试”、“完全使用英文搜索技术问题”均属于此类。</p>&mdash; piglei (@Piglei) <a href="https://twitter.com/Piglei/status/1501389100074500098?ref_src=twsrc%5Etfw">March 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -75,16 +85,8 @@
 本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
 
 任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
-## 背景
-我平时主要写 C/C++, 最开始的配置是参考 [github : use vim as ide](https://github.com/yangyangwithgnu/use_vim_as_ide) 写的，
-在处理几个文件的小项目时候，比如刷刷 leetcode 之类的，还是勉强够用，但是等到处理 Linux 内核这种超大型的项目的时候，
-我发现 gtags / cscope 这种符号索引工具，YouCompleteMe 类似的补全静态检查的工具很难配置，nerdtree 在打开一个含有很多目录的文件的时候，
-整个 vim 都会变卡。
 
-曾经为了在 vim 中间写 C/C++，你需要安装 ctags 生成索引，需要安装 ctags 的 vim 插件在 vim 中间使用 ctags，需要安装自动更新索引数据库的插件，安装 YCM 实现静态检查，你还会发现 ctags 存在好几个版本，安装不对，对应的插件也没有办法正常工作。
-最最让人崩溃的是，那一天你忽然想使用 vim 写一个新的语言，比如 Java，类似的操作你又需要重新走一遍，而且还要手动映射快捷键，来保证这些快捷键不会互相冲突。
-
-## 关于如何入门 vim
+## 入门 vim
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
 1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
@@ -158,7 +160,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 ```
 
 ### 安装 nvim
-- 当前配置需要 neovim 0.5 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.7 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
 ```sh
@@ -198,15 +200,15 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 ```sh
 nvm install v16
-RUN apt install -y npm
-RUN npm install --global yarn
+sudo apt install -y npm
+sudo npm install --global yarn
 ```
 
 保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
 
 ```sh
-npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
-yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
+npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
 ```
 
 安装完成之后检查:
@@ -261,15 +263,10 @@ sudo apt install bear
 注：使用 bear 生成 `compile_commands.json` 是一种通用的方法，但是不同的 build 工具和项目还存在一些捷径可走:
 1. linux 内核使用自带的脚本 `scripts/clang-tools/gen_compile_commands.py`，具体可以参考[这里](https://patchwork.kernel.org/patch/10717125/)，这样的话就不用更改一次 .config 就重新编译整个内核。
 2. QEMU 项目使用 meson 构建的，其会自动在 build 文件夹中生成 `compile_commands.json`, 直接拷贝到项目的顶层目录就可以了。
-2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 compile_commands.json 的脚本
+2. [cmake](https://stackoverflow.com/questions/23960835/cmake-not-generating-compile-commands-json) 和 [ninja](https://ninja-build.org/manual.html) 都有生成 `compile_commands.json` 的脚本
 4. see [ccls documentation](https://github.com/MaskRay/ccls/wiki/Project-Setup) for more
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
-
-### 安装包管理器 Packer
-```sh
-git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
-```
 
 ### 安装本配置
 
@@ -278,35 +275,43 @@ nvim 的配置在 ~/.config/nvim 中，
 ```sh
 mv ~/.config/nvim ~/.config/nvim.bak # 保存原有配置
 cd ~ # 保证在根目录下
+```
+
+```sh
 git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
-ln -s ~/.dotfiles ~/.config/nvim # 创建一个软链接指向此处
+ln -s ~/.dotfiles/nvim ~/.config/nvim # 创建一个软链接指向此处
 nvim
 ```
 
-刚刚打开的时候出现报错是正常的，因为插件没有安装，但是插件的配置脚本已经开始执行了:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/first-time.png" /> </p> </details>
+然后打开 nvim，nvim 会检查包管理器 Packer 是否存在，如果不存在，那么开始安装，自动执行下面的命令：
+```sh
+git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+```
 
-输入命令 `:PackerInstall` 来安装插件:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/PackerInstall.png" /> </p> </details>
+当 clone Packer 成功之后，执行 `PackerInstall`。
 
-然后就可以看到插件的正常安装:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/install.png" /> </p> </details>
-[wakatime](https://wakatime.com/settings/account) 需要输入 api key
-<details> <summary>click me</summary> <p align="center"> <img src="./img/waka.png" /> </p> </details>
+| 输入命令 `:PackerInstall` 来安装插件                          |
+|---------------------------------------------------------------|
+| <p align="center"> <img src="./img/PackerInstall.png" /> </p> |
+
+| 插件的正常安装                                          |
+|---------------------------------------------------------|
+| <p align="center"> <img src="./img/install.png" /> </p> |
+
 
 当然如果你不想用这个时间统计插件，可以在 ./lua/plugins.lua 中将其删除。
 再次打开之后，coc 的各种插件会自动安装:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/coc-install.png" /> </p> </details>
+
+| coc 插件的自动安装                                          |
+|-------------------------------------------------------------|
+| <p align="center"> <img src="./img/coc-install.png" /> </p> |
 
 ### checkhealth 检查
 在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
 
-例如下面是我的配置的截图。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/checkhealth.png" /> </p> </details>
-
-## 升级
-本项目之前是基于 SpaceVim 的，之后移除了，如果想要升级，除了 `git pull origin master` 之外
-需要操作一遍 [安装本配置](#安装本配置)。
+| 我的配置的截图                                              |
+|-------------------------------------------------------------|
+| <p align="center"> <img src="./img/checkhealth.png" /> </p> |
 
 ## 基本操作
 基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
@@ -322,9 +327,11 @@ nvim
 let g:mapleader = ','
 ```
 
-快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，当按下 `,` 之后，经过 `timeoutlen` 之后，
-就会出现弹出下面的窗口显示进一步的使用:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/key.png" /> </p> </details>
+快捷键的配置使用 [which-key.nvim](https://github.com/folke/which-key.nvim)，
+
+| 当按下 `,` 之后，经过 `timeoutlen` 之后， 弹出下面的窗口显示下一步的按键 |
+|--------------------------------------------------------------------------|
+| <p align="center"> <img src="./img/key.png" />                           |
 
 ### 退出
 虽然我使用了很长时间的 vim，但是两个东西我依旧觉得非常坑，那就是退出和复制。关于 vim 如何退出，闹出很多笑话，比如有人创建一个[仓库](https://github.com/hakluke/how-to-exit-vim)用于收集各种退出的方法。stackoverflow 的报告说，其帮助了一百万人次如何退出 vim 。
@@ -360,11 +367,13 @@ map <leader>d "+d
 | `,` `o`     | 在当前文件中间搜索该符号 |
 | `,` `s`     | 整个工程中间搜索该符号   |
 
-在 fork.c 中间搜索 `_x64_sys_fork` 这个符号:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/workspace-symbols.png" /> </p> </details>
+| 在 fork.c 中间搜索 `_x64_sys_fork` 这个符号                  |
+|--------------------------------------------------------------|
+| <p align="center"> <img src="./img/workspace-symbols.png" /> |
 
-在整个 Linux 工程中间搜索 sysclone 这个符号:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/outline-symbols.png" /> </p> </details>
+| 在整个 Linux 工程中间搜索 sysclone 这个符号                |
+|------------------------------------------------------------|
+| <p align="center"> <img src="./img/outline-symbols.png" /> |
 
 ### 定义和引用
 
@@ -379,7 +388,9 @@ map <leader>d "+d
 |-------------|------------------------------------------------------|
 | `K`         | 可以查询函数，变量，宏等，注释将会显示在悬浮窗口上。 |
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/comment.png" /> </p> </details>
+| 展示 `put_swap_page` 的注释                        |
+|----------------------------------------------------|
+| <p align="center"> <img src="./img/comment.png" /> |
 
 ### 格式化
 
@@ -395,6 +406,12 @@ map <leader>d "+d
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `n` 在需要重命名的元素上，即可批量重命名。
 
 ### 字符串搜索和替换
+vim 内置了强大的搜索替换功能
+- `/` `?` 分别向前和向后搜索
+- 在 visual block 中可以使用 norm 来进行插入或者使用宏
+- 替换的语法 `%s/pattern/replace/g`
+
+上面说明的都是单文件的，通过插件，可以容易的实现多文件的搜索和替换。
 
 | key binding      | function                                        |
 |------------------|-------------------------------------------------|
@@ -418,32 +435,39 @@ map <leader>d "+d
 | `a`             | 创建文件(如果输入的名称结尾有 / ，那么就是创建文件夹) |
 
 ### window
+
 因为 window leader 键位被我重新映射为 `c`
 
 | key binding | function       |
 |-------------|----------------|
 | `<Tab>`     | 进入下一个窗口 |
 | `c` `g`     | 水平拆分窗口   |
-| `c` `v`     | 垂直拆分窗口   |
+| `c` `f`     | 垂直拆分窗口   |
 | `q`         | 关闭窗口       |
 | `c` `m`     | 当前窗口最大化 |
 
 ### buffer
 
-| key binding       | function                                                                  |
-|-------------------|---------------------------------------------------------------------------|
-| `,` `b`           | 搜索 buffer，前面提到过的，这个主要用于打开的 buffer 的数量非常多的情况下 |
-| `,` num           | 切换当前窗口到第 num 个 buffer                                            |
-| `<Space>` `b` `c` | 关闭其他已经保存的 buffer                                                 |
-| `<Space>` `b` `d` | 关闭当前 buffer                                                           |
+| key binding       | function                       |
+|-------------------|--------------------------------|
+| `,` `b`           | 搜索 buffer                    |
+| `,` num           | 切换当前窗口到第 num 个 buffer |
+| `<Space>` `b` `c` | 关闭其他已经保存的 buffer      |
+| `<Space>` `b` `d` | 关闭当前 buffer                |
+
+### 文件搜索
+telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
+
+| 文件搜索                                                |
+|---------------------------------------------------------|
+| <p align="center"> <img src="./img/search-files.png" /> |
 
 ### 导航
-1. telescope 同样可以用于搜索文件使用 `,` `f` + 文件名, 同样的，搜索 buffer 的方法类似 : `,` `b` + buffer 名称。
-<details> <summary>click me</summary> <p align="center"> <img src="./img/search-files.png" /> </p> </details>
+利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
-2. 利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
-use 'navarasu/onedark.nvim'
-<details> <summary>click me</summary> <p align="center"> <img src="./img/outline.png" /> </p> </details>
+| 基于 liuchengxu/vista.vim 的导航栏                 |
+|----------------------------------------------------|
+| <p align="center"> <img src="./img/outline.png" /> |
 
 ### 文档
 在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
@@ -483,39 +507,37 @@ endsnippet
 
 使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
 
-### git 集成
+### Git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
 1. [tig](https://github.com/jonas/tig)，利用 [floaterm](https://github.com/voldikss/vim-floaterm)，在 vim 中间运行。
 2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
 3. [vim-fugitive](https://github.com/tpope/vim-fugitive) : 查看每一行的 blame, 提交代码等
 
-### github 集成
+### Github 集成
 通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
 而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
 
 1. 安装 github cli 参考[这里](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
 2. 使用方法参考 octo.nvim 的 README.md
 
-例如可以直接查看本项目中的 issue
-<details> <summary>click me</summary> <p align="center"> <img src="./img/octo.png" /> </p> </details>
+| 直接查看本项目中的 issue                                        |
+|-----------------------------------------------------------------|
+| <p align="center"> <img src="./img/octo.png" /> |
 
-### 调试集成
-现在还没有很好的方法实现调试继承。我个人平时使用下面两个项目辅助 gdb 的使用:
-1. https://github.com/cyrus-and/gdb-dashboard
-2. https://www.gdbgui.com/
+### 调试
+一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
+，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)，其效果如下
 
-更多的参考 : https://scattered-thoughts.net/writing/the-state-of-linux-debuggers/
+<details> <summary>click me</summary> <p align="center"> <img src="./img/debug.png" /> </p> </details>
 
-如果恰好用的是 rust, 可以参考: https://github.com/simrat39/rust-tools.nvim
+但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试[^2]。
 
-一些其他的调试器:
-- http://qira.me/
-- https://github.com/osandov/drgn : meta 写的侧重于编程的 debuggers
-
-### vim cmdline
+### vim cmdline 自动补全
 通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
 
-<details> <summary>click me</summary> <p align="center"> <img src="./img/wilder.png" /> </p> </details>
+| 利用 wilder.nvim 在命令模式自动补全               |
+|---------------------------------------------------|
+| <p align="center"> <img src="./img/wilder.png" /> |
 
 ### 终端
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
@@ -523,23 +545,27 @@ endsnippet
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
 
-下面是在打开悬浮终端，并且运行 htop 的结果:
-<details> <summary>click me</summary> <p align="center"> <img src="./img/floaterm.png" /> </p> </details>
+| 打开悬浮终端，并且运行 htop 的结果                  |
+|-----------------------------------------------------|
+| <p align="center"> <img src="./img/floaterm.png" /> |
 
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
-vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
+vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
 | binding           | function                 |
 |-------------------|--------------------------|
 | `<space>` `l` `r` | 根据文件类型，执行该文件 |
 
-例如对于 C 语言项目，从上到下三个箭头分别指向:
+| C 语言文件一键运行                                     |
+|--------------------------------------------------------|
+| <p align="center"> <img src="./img/code-runner.png" /> |
+
+从上到下三个箭头分别指向:
 - 源代码
 - 运行结果
 - 运行使用的命令
-<details> <summary>click me</summary> <p align="center"> <img src="./img/code-runner.png" /> </p> </details>
 
 ### 一键注释代码
 
@@ -554,20 +580,147 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
 
+### [可选] Latex 集成
+通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
+- 自动补全
+- 静态检查
+- 实时编译预览
+
+| 自动补全的效果                                           |
+|----------------------------------------------------------|
+| <p align="center"> <img src="./img/latex-preview.png" /> |
+
+| 预览的效果                                           |
+|------------------------------------------------------|
+| <p align="center"> <img src="./img/latex-cmp.png" /> |
+
+主要使用两个快捷键:
+
+| binding           | function                                             |
+|-------------------|------------------------------------------------------|
+| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
+| `<space>` `l` `p` | 使用 zathura 预览                                    |
+
+### 代码折叠
+
+利用上 treesitter ，vim 内置的折叠变得非常易用。
+
+| binding | function                    |
+|---------|-----------------------------|
+| `z` `a` | 打开或者关闭光标所在的 fold |
+| `z` `R` | 打开所有的 fold             |
+| `z` `M` | 关闭所有的 fold             |
+
+### Session
+在每一个文件夹会自动创建 session，这样当 nvim 重新打开的时候，window 还是上次关闭的样子.
+
+使用命令 DeleteSession 可以删除掉保存的 session 。
+
+
+<!-- ### [可选] wakatime -->
+<!-- 这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到[远程](https://wakatime.com/)，也可以自己搭建本地的 server -->
+
+<!-- - 方案一: https://github.com/muety/wakapi -->
+<!--     - 操作方法: -->
+<!--         - 安装并且启动 -->
+<!--         - 在浏览器中登录 http://127.0.0.1:3000 -->
+<!--         - 设置 ~/.wakatime.cfg -->
+
+<!-- - 方案二: https://github.com/mujx/hakatime -->
+<!--     - 操作方法: -->
+<!--         - TODO -->
+<!--         - 除非是搞定了在本地搭建，否则难以接受将数据外传 -->
+
+### [可选] Scala 集成
+参考 https://github.com/scalameta/nvim-metals 中的文档:
+
+安装 cs
+```sh
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
+chmod +x cs
+./cs setup
+```
+
+以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
+```sh
+sbt bloopInstall
+```
+然后就可以自动索引了.
+
+### 快速移动
+
+vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简单说明一些有趣的的技术：
+
+在我使用 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+
+| 例子                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------|
+| <p align="center"> <img src="https://github.com/ggandor/lightspeed.nvim/raw/media/quick_example_2.png?raw=true" /> |
+
+按 s 开始跳转，然后搜索第一个字母 m，会出现三种选择:
+- me : 两个都是白色，此时再按 e，那么可以直接跳转到其上
+- mes : 需要按 es 才可以，原因是存在多个满足 m?s 形式的字符。
+- met : 其 t 被高亮的，直接按 t 就可以了，无需按 s ，因为 met 的三个字母是唯一的。
+
+进行跳转的时候，前两个字符可以直接敲下去，而第三个字符需要看 easy mothion 的设置。
+
+
+| binding  | function                                                                    |
+|----------|-----------------------------------------------------------------------------|
+| `CTRL-o` | 跳转的位置的回溯                                                            |
+| `g;`     | 跳转到刚刚编辑的位置                                                        |
+| `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                    |
+| `gf`     | 打开光标所在文件                                                            |
+| `%`      | 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转 |
+
+
+### 输入法自动切换
+在 vim 中使用中文输入法，如果打字完成，进入 normal 模式，使用 gg 想要移动到文件的第一行，结果发现 gg 被中文输入法截断了。
+所以需要一个插件可以在进入 normal 的模式的时候中文输入法切走。
+
+可以使用两套方案，但是原理都是相同的，
+- 方案 1:
+  - 使用 [fcitx.nvim](https://github.com/h-hg/fcitx.nvim)，其代码相当简洁优雅。
+  - 如果是在 MacOS 上，需要在系统中安装 [fcitx-remote-for-osx](https://github.com/xcodebuild/fcitx-remote-for-osx) 来切换输入法。
+- 方案 2:
+  - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
+
+当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
+### 远程 server 上复制粘贴
+在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
+
+如果两台电脑都是 Linux 而且桌面环境都是 x11 的，那么在 ssh 的增加上 -X 的选项勉强维持生活。
+```txt
+     -X      Enables X11 forwarding.  This can also be specified on a per-host basis in a configuration
+             file.
+```
+这种方案的限制太强了。
+
+使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
+
+原理上参考:
+- https://news.ycombinator.com/item?id=32037489
+- https://github.com/ojroques/vim-oscyank/issues/24
+
+但是还是存在一些问题，不过暂时可以接受
+- 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
+
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
-- init.vim : vim 的基础选项
-- vim
+- init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/ 下的配置文件
+- vim/
   - coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-  - coc-config.vim : coc.nvim 对于插件的配置
   - ccls.vim : ccls 增加的一些快捷键
   - debug.vim : 定义了两个函数
-- lua
+  - misc.vim : 各种插件的细微的修改
+- lua/
   - plugins.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - whichkey-config.lua : 快捷键的配置
-  - tree-config.lua / orgmode-config.lua / ... : 各种插件的默认配置的调整，都非常短
+  - tree-config.lua / orgmode-config.lua / ... : 插件的默认配置的调整，都非常短
+- coc-setting.json : coc 的配置
+- UltiSnips/ : 自定义的代码段
 
 ## FAQ
 - 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
@@ -577,7 +730,7 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
     - VSCode 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 可以更加简洁, 灵活和高效。
     - VSCode 的功能非常强大，几乎发
 - 我应该使用这个配置吗 ?
-    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 use_vim_as_ide, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
+    - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 - 为什么不使用 built-in lsp?
     - 首先可以看看[这个教程](https://climatechangechat.com/setting_up_lsp_nvim-lspconfig_and_perl_in_neovim.html)，分析如何在 neovim 使用 built-in lsp 的
     - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
@@ -604,8 +757,8 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 | Ctrl + d    | 向前滚动一屏，光标在屏幕的位置保持不变 |
 | Ctrl + b    | 向后滚动一屏，但是光标在底部           |
 | Ctrl + u    | 向后滚动半屏，光标在屏幕的位置保持不变 |
-| Ctrl + e    | 向上滚动                               |
-| Ctrl + y    | 向下滚动                               |
+| Ctrl + e    | 丝般顺滑地向上滚动                     |
+| Ctrl + y    | 丝般顺滑地向下滚动                     |
 
 - vim 下的 Man 命令打开的 manual 是带高亮和符号跳转的，比在终端中间直接使用 man 好多了
 - 在最后一行添加相同的字符 `Ctrl + v` `$` `A` `string appended`，[参考](https://stackoverflow.com/questions/594448/how-can-i-add-a-string-to-the-end-of-each-line-in-vim)。
@@ -613,12 +766,7 @@ vim 中利用 [code_runner.nvim](https://github.com/CRAG666/code_runner.nvim) �
 ```txt
 setxkbmap -option caps:swapescape
 ```
-- `CTRL-o` 和 `CTRL-i` 跳转的位置的回溯
-- `g;` 跳转到刚刚编辑的位置
-- `gi` 跳转到刚刚编辑的位置，并且进入到插入模式
-- `gf` 打开当前文件
-- `{` `}` 分别向上向下跳转到空行
-- `%` 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转
+
 - `:w !sudo tee %` 来保存一个 readonly 文件
 - `:g/pattern/command` 可以用于对于匹配的模式操作
   - `:g!/pattern/command` 对于不匹配的操作
@@ -626,6 +774,13 @@ setxkbmap -option caps:swapescape
 - `:put =range(1, 10)` 插入 1 到 10 的数值
 - 对于选中的 visual block `S` `str` 可以在 visual block 两侧添加 `str`. ([ref](https://github.com/tpope/vim-surround/issues/220))
 - [获取历史命令](https://stackoverflow.com/questions/13405959/how-do-i-get-a-list-of-the-history-of-all-the-vim-commands-i-ran) `,``q``:`
+- 使用 `[` `{` `(` 快速移动
+
+| binding     | function                       |
+|-------------|--------------------------------|
+| `{` / `}`   | 分别向上向下跳转到空行         |
+| `{` / `}`   | 分别向上向下跳转到空格         |
+| `[[` / `]]` | 分别向上或向下跳转最外层的 `{` |
 
 参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
@@ -645,17 +800,24 @@ setxkbmap -option caps:swapescape
 - 需要移动手掌，不是很高效
 - 有的键盘是没有 Fn 键的，按 Fn 键需要低效的组合键
 
+### 2022.8
+- 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
+
 ## 值得一看的配置
+- [cosynvim](https://github.com/glepnir/cosynvim) : 纯 lua 配置模板
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
 ## 值得关注的插件
 - [nlua](https://github.com/tjdevries/nlua.nvim) neovim 开发 lua 插件环境
-- [nvim-gps](https://github.com/SmiteshP/nvim-gps) 在 statusline 中显示当前的函数
 - [present.nvim](https://github.com/Chaitanyabsprip/present.nvim): 在 nvim 放播放 ppt
 - [heirline](https://github.com/rebelot/heirline.nvim): 简洁高效的 statusline
-- [解决中文输入法](https://github.com/h-hg/fcitx.nvim)
+- [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
+- [distant.nvim](https://github.com/chipsenkbeil/distant.nvim) : 使用本地配置编辑远程文件（插件似乎不是很稳定的样子）
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) : 利用 treesitter 显示当前的上下文，但是在 UI 有点不是很简洁
+- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 本配置默认使用 treesitter 实现折叠，但是此插件是利用 lsp 实现折叠的
+- [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -669,14 +831,29 @@ setxkbmap -option caps:swapescape
 ## 主题
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 
+## 常见知识点
+- [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
+    - 没有区别，除了拼写不同
+- [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
+    - `w !sudo tee %`
+
+## 问题
+- [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
+- [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
+- [ ] 暂时无法实现 shellcheck 的 include 其他的文件。
+
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
 2. [vim.wasm](https://github.com/rhysd/vim.wasm) : 在 vim 在网页中间使用
 3. [neovide](https://github.com/Kethku/neovide) : 一个酷炫的 GUI 客户端
 4. [vimium-c](https://github.com/gdh1995/vimium-c) : 在浏览器中使用 vim 快捷键跳转和移动 :star:
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
+6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
+7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 
-[^1]: https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/
+[^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
+[^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
+[^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)
 [^8]: [what is the purpose of swap files](https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files)
 

@@ -1,0 +1,22 @@
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.{c,h,c.inc,h.inc}]
+indent_style = space
+indent_size = 2
+emacs_mode = c
+
+[*.sh]
+indent_style = space
+indent_size = 2
+
+[*.json]
+indent_style = space
+emacs_mode = python
+
+[*.yaml]
+indent_style = tab

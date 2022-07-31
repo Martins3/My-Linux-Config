@@ -21,7 +21,7 @@ docker build --network=host --tag ${image_name} - < ${docker_file}
 
 # 创建 container
 # docker run -it --name ${container_name}  -v /root/huxueshi/linux/:/home/martin/linux -d archvim
-docker run -t --network=host -it --name ${container_name} -d ${image_name}
+docker run --network=host -it --name ${container_name} -d ${image_name}
 
 # 进入
 docker exec -it ${container_name} /bin/bash
