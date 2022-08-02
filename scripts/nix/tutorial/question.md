@@ -71,3 +71,6 @@ nix-shell # 当目录中存在 default.nix 的时候
 ## nix develop 是做什么的
 
 ## 我记得曾经有一个 vim 有 nix 的配置的
+
+## 如何安装 `kvm_stat`
+- https://command-not-found.com/kvm_stat

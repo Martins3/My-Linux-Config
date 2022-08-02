@@ -60,6 +60,8 @@ in
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
+  # TMP_TODO 如何打开 cgroup
+  /* services.cgroups.enable = true; */
 
   services.syncthing = {
     enable = true;

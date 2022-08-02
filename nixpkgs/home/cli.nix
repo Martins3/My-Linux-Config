@@ -23,7 +23,8 @@ in
     # tmux
     tmux
     tmuxinator
-    # unix tools
+    # cli tools
+    xclip
     jq
     htop
     fzf
@@ -60,6 +61,7 @@ in
     # kernel
     numactl
     kexec-tools
+    libcgroup # taskset
     # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
@@ -80,6 +82,7 @@ in
     pkgs.linuxPackages_latest.perf
     iperf
     bpftrace
+    sysstat
     # dpdk
     dpdk
     (
