@@ -20,7 +20,6 @@ in
 
 
   home.packages = with pkgs; [
-    xclip
     neovide
     clash
     feishu
