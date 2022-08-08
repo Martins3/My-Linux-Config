@@ -74,3 +74,10 @@ nix-shell # 当目录中存在 default.nix 的时候
 
 ## 如何安装 `kvm_stat`
 - https://command-not-found.com/kvm_stat
+o
+
+
+## 如何交叉编译 ARM 的 QEMU
+- 到底是否存在 aarch64-unknown-linux-gnu-pkg-config
+  - https://www.google.com.hk/search?q=aarch64-unknown-linux-gnu-pkg-config&oq=aarch64-unknown-linux-gnu-pkg&aqs=edge.0.69i59j69i57j0i546l5j69i60l2.5563j0j1&sourceid=chrome&ie=UTF-8
+- 也许阅读一下，ARM kvm 无法打开的原因是什么，也许根本就不是交叉编译的问题。

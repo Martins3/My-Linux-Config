@@ -74,4 +74,5 @@ in
     guiAddress = "0.0.0.0:8384";
   };
 
+  documentation.dev.enable = true;
 }

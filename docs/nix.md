@@ -85,11 +85,6 @@ home-manager switch
 ```sh
 nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 ```
-- 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径上进行如下操作:
-```sh
-echo "use nix" >> .envrc
-direnv allow
-```
 - nixos 默认是打开防火墙的
   - https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
 - 更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
@@ -101,6 +96,14 @@ nix-env -qaP elfutils
 ```
   - 使用网站: https://search.nixos.org/packages
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
+
+## 自动环境加载
+- 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径上进行如下操作:
+```sh
+echo "use nix" >> .envrc
+direnv allow
+```
+
 
 ## 无法代理的解决
 - 注意 export https_proxy 和 export HTTPS_PROXY 都是需要设置的
@@ -114,6 +117,8 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing
+
+使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要编辑同一个文件，否则存在冲突。
 
 @todo 暂时没有搞文件夹配置，还是在网页上配置的。
 ## samba
@@ -236,7 +241,7 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 使用这个仓库: https://github.com/a13xp0p0v/kernel-build-containers
 
 ```sh
-docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/martins3/src kernel-build-container:gcc-7
+docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-build-container:gcc-7
 ```
 
 > -t 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
@@ -246,6 +251,10 @@ docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/
 编译之后，在 host 中执行 ./script/clang-tools/gen-compile-commands.py
 
 可能需要将 compile-commands.json 中将 aarch-gnu-gcc 替换为 gcc，否则 ccls 拒绝开始索引。
+
+
+同样的，可以构建一个 centos 环境来编译内核:
+
 
 ## install custom kernel
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
@@ -266,6 +275,10 @@ docker run -it --rm -u $(id -u):$(id -g) -v /home/martins3/linux-4.18-arm:/home/
 
 ## tmux
 为了让 tmux 配置的兼容其他的 distribution ，所以 tpm 让 nixos 安装，而剩下的 tmux 插件由 tmp 安装。
+
+## gui
+虽然暂时没有 gui 的需求，但是还是收集一下，以后在搞:
+- [reddit : i3， polybar rofi](https://www.reddit.com/r/NixOS/comments/wih19c/ive_been_using_nix_for_a_little_over_a_month_and/)
 
 ## 问题
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager

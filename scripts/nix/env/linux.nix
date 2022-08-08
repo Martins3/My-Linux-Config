@@ -9,6 +9,9 @@ pkgs.stdenv.mkDerivation {
     gcc
     gnumake
     bc
+    rpm
+ dpkg
+    pahole
     pkg-config
     binutils
   ];
