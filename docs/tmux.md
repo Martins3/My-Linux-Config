@@ -65,11 +65,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了
 ```sh
-ssh -X -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
+ssh -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
 ```
-
-使用 -X 是远程的剪切板和本地是同步的，但是需要在远程机器上的一点点设置，具体参考:
-- https://superuser.com/questions/806637/xauth-not-creating-xauthority-file
+当然，如果你恰好使用 kitty，可以将这个行为定义为一个快捷键。
 
 2. tmux list-keys
 

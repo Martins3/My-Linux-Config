@@ -11,7 +11,7 @@ local list = {
   { key = "d", action = "remove" },
   { key = "r", action = "rename" },
   { key = "I", action = "toggle_git_ignored" },
-  { key = "W", action = "collapse_all" },
+  { key = "R", action = "collapse_all" },
   { key = "?", action = "toggle_help" },
 }
 

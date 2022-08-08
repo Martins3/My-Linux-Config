@@ -61,6 +61,7 @@ in
     # kernel
     numactl
     kexec-tools
+    rpm
     libcgroup # taskset
     # numastat TMP_TODO 如何安装这个包
     # qemu
@@ -97,6 +98,9 @@ in
       in
       python-with-my-packages
     )
+    man-pages
+    man-pages-posix
+    lazydocker
   ];
 
   xdg.configFile."nvim" = {
@@ -138,6 +142,8 @@ in
       z = "j";
       mc = "make clean";
       k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
+      en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
+      env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
     };
 
     initExtra = "
@@ -241,4 +247,5 @@ in
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+
 }
