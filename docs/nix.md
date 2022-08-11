@@ -288,6 +288,8 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] 搭建 Rust 的开发环境
 - [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
 - [ ] 使用 nix 语言写一个 web server ：https://blog.replit.com/nix_web_app
+- [ ] 无法正确安装 crash
+- [ ] https://github.com/astro/microvm.nix 可以和 firecracker 联动一下
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install
