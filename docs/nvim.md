@@ -827,6 +827,7 @@ setxkbmap -option caps:swapescape
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) : 利用 treesitter 显示当前的上下文，但是在 UI 有点不是很简洁
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 本配置默认使用 treesitter 实现折叠，但是此插件是利用 lsp 实现折叠的
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
+  - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -850,6 +851,9 @@ setxkbmap -option caps:swapescape
 - [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无处处理 source 其他的文件的情况。
+- [ ] 关注 text-object
+  - https://this-week-in-neovim.org/2022/Aug/08 最后的 tips 简介一些
+  - 使用 ccls 的确可以在 c/cpp 中快速跳转到 header 中，但是这占据了 x ，而且不能通用
 
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示

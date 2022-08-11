@@ -4,7 +4,6 @@ let
 
 in
 {
-
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     # compiler && builder
@@ -93,6 +92,7 @@ in
           pygal
           pre-commit
           pypinyin
+          ipython
         ];
         python-with-my-packages = python3.withPackages py-pkgs;
       in
@@ -135,6 +135,7 @@ in
       q = "exit";
       v = "nvim";
       ls = "lsd";
+      ldc = "lazydocker";
       m = "make -j";
       gs = "tig status";
       c = "clear";

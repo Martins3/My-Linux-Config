@@ -5,7 +5,7 @@ let
     #   builtins.currentSystem
     crossSystem = "aarch64-linux";
   };
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> { };
 in
 pkgs.mkShell {
   buildInputs = with pkgs_arm_cross; [

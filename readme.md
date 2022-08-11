@@ -13,7 +13,7 @@
   * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
   * [Rime 输入法配置](./docs/rime.md)
-  * [NixOs 初步尝试](./docs/nix.md)
+  * [NixOS 初步尝试](./docs/nix.md)
 * English version comming soon.
 
 ## ⚙ Install
