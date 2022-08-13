@@ -6,7 +6,6 @@ nn <silent> xk :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>
 nn <silent> xj :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<cr>
 nn <silent> xh :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
 
-noremap x <Nop>
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance')<cr>
 " bases of up to 3 levels
 nn <silent> xb :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<cr>
