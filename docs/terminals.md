@@ -61,6 +61,9 @@ cargo build --release --no-default-features --features=x11
 
 而且 kitty 支持 session 的概念，配置之后，每次 terminal 可以自动 attach 本地和远程 server 的 tmux 。
 
+## 其他
+- [wezterm](https://github.com/wez/wezterm) 尚未尝试
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="

@@ -15,6 +15,7 @@ in
     clang-tools
     cargo
     rustc
+    rust-analyzer
     cmake
     gnumake
     yarn
@@ -80,6 +81,7 @@ in
     acl
     # trace
     pkgs.linuxPackages_latest.perf
+    # TMP_TODO 安装一下 fcsk
     iperf
     bpftrace
     sysstat
@@ -101,6 +103,8 @@ in
     man-pages
     man-pages-posix
     lazydocker
+    # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
+    /* mandoc */
   ];
 
   xdg.configFile."nvim" = {
@@ -147,6 +151,7 @@ in
       env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
     };
 
+    # TMP 这样写是非常不优雅的
     initExtra = "
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
@@ -158,16 +163,22 @@ in
     }
 
     function gscp() {
-        file_name=$1
-        if [ -z \"file_name\" ]; then
-            echo $0 file
-            return 1
-        fi
-        ip=$(ip a | grep -v vir | grep -o \"192\..*\" | cut -d/ -f1)
-        file_path=$(readlink -f $file_name)
-        echo  scp -r $(whoami)@\${ip}:$file_path .
+      file_name=$1
+      if [ -z \"file_name\" ]; then
+        echo $0 file
+        return 1
+      fi
+      ip=$(ip a | grep -v vir | grep -o \"192\..*\" | cut -d/ -f1)
+      file_path=$(readlink -f $file_name)
+      echo scp -r $(whoami)@\${ip}:$file_path .
+    }
+
+    function rpm_extract() {
+      rpm2cpio $1 | cpio -idmv
     }
     ";
+    # 增加一个这个
+    # ln -sf ~/.dotfiles/scripts/nix/env/shim.nix default.nix
 
     plugins = [
       {
