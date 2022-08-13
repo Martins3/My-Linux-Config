@@ -10,7 +10,7 @@ pkgs.stdenv.mkDerivation {
     gnumake
     bc
     rpm
- dpkg
+    dpkg
     pahole
     pkg-config
     binutils

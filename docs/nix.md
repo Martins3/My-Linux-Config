@@ -285,15 +285,16 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
 - [ ] linuxKernel.packages.linux_5_15.perf # 不知道如何实现和内核版本的自动跟随
 - [ ] 搭建 Boom 的阅读环境
-- [ ] 搭建 Rust 的开发环境
 - [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
 - [ ] 使用 nix 语言写一个 web server ：https://blog.replit.com/nix_web_app
 - [ ] 无法正确安装 crash
 - [ ] https://github.com/astro/microvm.nix 可以和 firecracker 联动一下
+- [ ] 能不能将 nix-shell '<nixpkgs>' -A lua --command zsh 转换为 envdir 的操作
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install
 - [guix](https://boilingsteam.com/i-love-arch-but-gnu-guix-is-my-new-distro/)
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
 [^2]: https://breuer.dev/blog/nixos-home-manager-neovim
