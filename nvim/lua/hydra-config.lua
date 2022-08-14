@@ -15,12 +15,12 @@ Hydra({
 Hydra({
   name = 'Window size',
   mode = 'n',
-  body = 'c',
+  body = 'ca',
   heads = {
-    { '+', '5<C-w>+' },
-    { '-', '5<C-w>-', { desc = '←/→ height' } },
-    { '<', '5<C-w>>', },
-    { '>', '5<C-w><', { desc = ' ←/→ width' } },
+    { 'k', '5<C-w>+' },
+    { 'j', '5<C-w>-', { desc = 'j/k height' } },
+    { 'h', '5<C-w>>', },
+    { 'l', '5<C-w><', { desc = ' h/l width' } },
   }
 })
 
