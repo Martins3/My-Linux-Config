@@ -9,6 +9,7 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = { 'org', 'lua', 'java', 'rust', 'c', 'nix', 'bash', 'go', 'scala', 'cpp' },
 }
 
+-- 从 https://github.com/nvim-treesitter/nvim-treesitter-textobjects 拷贝过来的配置
 require('nvim-treesitter.configs').setup {
   textsubjects = {
     enable = true,
@@ -17,6 +18,31 @@ require('nvim-treesitter.configs').setup {
       ['.'] = 'textsubjects-smart',
       [';'] = 'textsubjects-container-outer',
       ['i;'] = 'textsubjects-container-inner',
+    },
+  },
+}
+
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
     },
   },
 }
