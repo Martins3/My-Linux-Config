@@ -161,3 +161,4 @@ https://github.com/utmapp/UTM
 
 ## 有趣
 - 如果不执行 nix-shell ，ccls 索引都可以失败。
+- WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
