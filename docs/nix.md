@@ -280,6 +280,9 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 虽然暂时没有 gui 的需求，但是还是收集一下，以后在搞:
 - [reddit : i3， polybar rofi](https://www.reddit.com/r/NixOS/comments/wih19c/ive_been_using_nix_for_a_little_over_a_month_and/)
 
+## 安装 unstable 的包
+- https://www.joseferben.com/posts/installing_only_certain_packages_form_an_unstable_nixos_channel/
+
 ## 问题
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
@@ -290,6 +293,9 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] 无法正确安装 crash
 - [ ] https://github.com/astro/microvm.nix 可以和 firecracker 联动一下
 - [ ] 能不能将 nix-shell '<nixpkgs>' -A lua --command zsh 转换为 envdir 的操作
+- [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
+  - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
+- [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install

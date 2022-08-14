@@ -1,7 +1,7 @@
 { config, pkgs, stdenv, lib, ... }:
 
 let
-
+  unstable = import <unstable> { };
 in
 {
   fonts.fontconfig.enable = true;
@@ -87,6 +87,7 @@ in
     sysstat
     # dpdk
     dpdk
+    # python
     (
       let
         py-pkgs = pkgs: with pkgs; [
@@ -105,6 +106,8 @@ in
     lazydocker
     # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
     /* mandoc */
+    nixos-generators
+    unstable.gum
   ];
 
   xdg.configFile."nvim" = {
@@ -234,6 +237,15 @@ in
       */
       credential = {
         helper = "store";
+      };
+
+      alias = {
+        # 查询一个 merge commit 中的数值
+        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
+        log-merge = "!f() { git log --oneline --graph --stat \"$1^..$1\"; }; f";
+        # 优雅的打印
+        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
+        adog = "log --all --decorate --oneline --graph";
       };
     };
   };

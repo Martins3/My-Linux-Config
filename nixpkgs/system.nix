@@ -75,4 +75,16 @@ in
   };
 
   documentation.dev.enable = true;
+
+  systemd.services.syncKernel = {
+    enable = true;
+    description = "synchronize kernel every day";
+    unitConfig = { };
+    serviceConfig = {
+      ExecStart = "/home/martins3/.dotfiles/scripts/sync-kernel.sh";
+      Restart = "always";
+      RuntimeMaxSec = "1d";
+      User = "martins3";
+    };
+  };
 }
