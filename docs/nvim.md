@@ -735,9 +735,9 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 - 为什么不使用 IDE，比如 [CLion](https://www.jetbrains.com/clion/)?
     - 恰恰相反，我反对新手一开始就折腾 vim ，刚开始学编程，CLion 我认为是最好的 IDE 。[Code::Blocks](https://www.codeblocks.org/) 过于陈旧，[Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 是 Windows 平台独占。而 CLion 保持了 jetbrains 的一贯高水平，简单易用，不要需要掌握太多 gcc 工具链的知识，只要点击一下 绿色的小三角就可以运行代码，而且使用校园邮箱是可以申请免费使用的。 但是，对于老司机，IDE 提供了太多了太多我们不需要的功能，可定制太差，如果我同时想要写多门语言，那么就要同时购买多个 IDE 。
     - 我认为当你掌握了一门语言，比如 C 语言，可以写超过千行的项目的时候，是入手的好时间。
-- 为什么不使用 VSCode ?
-    - VSCode 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 内部是可以继承 vim 的。VSCode 因为是基于 electron 的，甚至可以在一个 window 编辑 markdown, 一个 window 实时预览 markdown 。但是 vim 可以更加简洁, 灵活和高效。
-    - VSCode 的功能非常强大，几乎发
+- 为什么不使用 VS Code ?
+    - VS Code 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 可以集成 vim 。因为 VSCode 是基于 electron 的，甚至可以在一个 window 中编辑 markdown, 一个 window 实时预览 markdown 。
+    - 但是 vim 可以更加简洁, 灵活和高效。
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 - 为什么不使用 built-in lsp?
