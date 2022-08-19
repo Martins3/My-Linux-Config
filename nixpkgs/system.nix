@@ -76,15 +76,23 @@ in
 
   documentation.dev.enable = true;
 
-  systemd.services.syncKernel = {
+  systemd.services.kernel = {
     enable = true;
     description = "synchronize kernel every day";
     unitConfig = { };
     serviceConfig = {
-      ExecStart = "/home/martins3/.dotfiles/scripts/sync-kernel.sh";
-      Restart = "always";
-      RuntimeMaxSec = "1d";
       User = "martins3";
+      WorkingDirectory = "/home/martins3/core/linux";
+      Type = "forking";
+      # RemainAfterExit = true;
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s ccls '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
+      Restart = "no";
     };
+  };
+
+  systemd.timers.kernel = {
+    enable = true;
+    timerConfig = { OnCalendar = "*-*-* 9:00:00"; };
+    wantedBy = [ "timers.target" ];
   };
 }

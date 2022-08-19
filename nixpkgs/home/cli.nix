@@ -23,16 +23,18 @@ in
     # tmux
     tmux
     tmuxinator
+    tig
     # cli tools
     xclip
     jq
     htop
+    # search
     fzf
     ripgrep
+    silver-searcher
     tree
     binutils
     gdb
-    tig
     lsd
     lsof
     ccls
@@ -88,19 +90,13 @@ in
     # dpdk
     dpdk
     # python
-    (
-      let
-        py-pkgs = pkgs: with pkgs; [
-          pandas
-          pygal
-          pre-commit
-          pypinyin
-          ipython
-        ];
-        python-with-my-packages = python3.withPackages py-pkgs;
-      in
-      python-with-my-packages
-    )
+    (python3.withPackages (p: with p; [
+      pandas
+      pygal
+      pre-commit
+      pypinyin
+      ipython
+    ]))
     man-pages
     man-pages-posix
     lazydocker
@@ -108,6 +104,8 @@ in
     /* mandoc */
     nixos-generators
     unstable.gum
+    # acpi
+    acpica-tools
   ];
 
   xdg.configFile."nvim" = {
