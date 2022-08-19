@@ -283,6 +283,7 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 ## 安装 unstable 的包
 - https://www.joseferben.com/posts/installing_only_certain_packages_form_an_unstable_nixos_channel/
 
+
 ## 问题
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
@@ -296,6 +297,9 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
   - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
+- [ ] https://github.com/nix-community/home-manager/issues/1668
+  - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+  - 无法同时安装 gcc 和 clang
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install

@@ -188,7 +188,7 @@ Run :checkhealth for more info
 ### 安装 yarn 和 Node.js
 coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
 
-使用 nvm 来安装获取 nodejs
+使用 nvm 来安装获取 Node.js
 ```sh
 # https://github.com/nvm-sh/nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
