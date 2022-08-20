@@ -15,3 +15,6 @@ pkgs.mkShell {
     libuuid
   ]);
 }
+
+# ➜ source edksetup.sh
+# ➜ export GCC5_AARCH64_PREFIX=aarch64-unknown-linux-gnu-  # nixos 中

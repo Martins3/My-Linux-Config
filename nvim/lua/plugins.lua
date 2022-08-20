@@ -72,7 +72,7 @@ require("packer").startup({
     use 'honza/vim-snippets' -- 安装公共的的 snippets
     use 'mbbill/undotree' -- 显示编辑的历史记录
     use 'mg979/vim-visual-multi' -- 同时编辑多个位置
-    use 'AckslD/nvim-neoclip.lua' -- 保存历史的 macro
+    use 'AckslD/nvim-neoclip.lua' -- 保存 macro
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     -- 快速移动
     use 'ggandor/lightspeed.nvim'

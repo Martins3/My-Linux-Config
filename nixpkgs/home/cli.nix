@@ -64,7 +64,7 @@ in
     numactl
     kexec-tools
     rpm
-    libcgroup # taskset
+    stress
     # numastat TMP_TODO 如何安装这个包
     # qemu
     qemu
@@ -83,7 +83,6 @@ in
     acl
     # trace
     pkgs.linuxPackages_latest.perf
-    # TMP_TODO 安装一下 fcsk
     iperf
     bpftrace
     sysstat
@@ -96,6 +95,7 @@ in
       pre-commit
       pypinyin
       ipython
+      filelock
     ]))
     man-pages
     man-pages-posix
@@ -150,6 +150,7 @@ in
       k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
       en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
       env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
+      news = "~/.dotfiles/scripts/systemd/kernel-news.sh";
     };
 
     # TMP 这样写是非常不优雅的

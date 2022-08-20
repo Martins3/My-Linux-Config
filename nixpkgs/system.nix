@@ -43,6 +43,7 @@ in
     git
     wget
     zsh
+    libcgroup # taskset cgcreate
   ];
 
   users.mutableUsers = false;
@@ -60,8 +61,9 @@ in
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
-  # TMP_TODO 如何打开 cgroup
-  /* services.cgroups.enable = true; */
+
+  # 目录折叠之后，和大多数教材样子都不同了
+  systemd.enableUnifiedCgroupHierarchy = false;
 
   services.syncthing = {
     enable = true;
