@@ -300,6 +300,7 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] https://github.com/nix-community/home-manager/issues/1668
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
+- [ ] 为什么 nix-shell --command "echo $PATH" 的结果中，$PATH 并没有刷新，这导致内核脚本无法正确工作
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install
