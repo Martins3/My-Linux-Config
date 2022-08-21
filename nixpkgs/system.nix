@@ -78,12 +78,12 @@ in
 
   documentation.dev.enable = true;
 
-  systemd.services.kernel = {
+  systemd.user.services.kernel = {
     enable = true;
     description = "synchronize kernel every day";
     unitConfig = { };
     serviceConfig = {
-      User = "martins3";
+      # User = "martins3";
       WorkingDirectory = "/home/martins3/core/linux";
       Type = "forking";
       # RemainAfterExit = true;
@@ -92,9 +92,10 @@ in
     };
   };
 
-  systemd.timers.kernel = {
+  systemd.user.timers.kernel = {
     enable = true;
     timerConfig = { OnCalendar = "*-*-* 9:00:00"; };
     wantedBy = [ "timers.target" ];
   };
+
 }

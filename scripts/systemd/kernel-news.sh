@@ -24,7 +24,7 @@ sure() {
   case $yn in
   [Yy]*) return ;;
   [Nn]*) exit ;;
-  *) echo "Please answer yes or no." ;;
+  *) return ;;
   esac
 }
 
