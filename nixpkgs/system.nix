@@ -65,6 +65,9 @@ in
   # 目录折叠之后，和大多数教材样子都不同了
   systemd.enableUnifiedCgroupHierarchy = false;
 
+  # nixos 的 tmp 居然不是 tmpfs
+  boot.cleanTmpDir = true;
+
   services.syncthing = {
     enable = true;
     systemService = true;
@@ -97,5 +100,4 @@ in
     timerConfig = { OnCalendar = "*-*-* 9:00:00"; };
     wantedBy = [ "timers.target" ];
   };
-
 }

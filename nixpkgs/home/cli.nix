@@ -150,8 +150,10 @@ in
       k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
       en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
       env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
-      news = "~/.dotfiles/scripts/systemd/kernel-news.sh";
+      knews = "~/.dotfiles/scripts/systemd/news.sh kernel";
+      qnews = "~/.dotfiles/scripts/systemd/news.sh qemu";
       ck = "systemctl --user start kernel";
+      cq = "systemctl --user start qemu";
     };
 
     # TMP 这样写是非常不优雅的
