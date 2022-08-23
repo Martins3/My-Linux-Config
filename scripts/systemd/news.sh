@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-cd ~/core/linux || exit 1
+if [[ $1 == "qemu" ]]; then
+  cd ~/core/qemu || exit 1
+elif [[ $1 == "kernel" ]]; then
+  cd ~/core/linux || exit 1
+fi
+
 # latest_commit=$(git rev-parse --abbrev-ref HEAD)
 # git log -1
 # git log HEAD --pretty=format:"%h"
