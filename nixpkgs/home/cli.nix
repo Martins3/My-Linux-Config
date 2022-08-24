@@ -67,6 +67,7 @@ in
     stress
     # numastat TMP_TODO 如何安装这个包
     # qemu
+    # OVMF # 安装了，但是 OVMF.fd 没有找到
     qemu
     qemu-utils
     ninja

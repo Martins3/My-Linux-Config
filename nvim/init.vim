@@ -80,8 +80,6 @@ for s:fname in s:core_conf_files
 endfor
 
 " 设置主题，最下面的会生效
-colorscheme tokyonight
-
 let g:everforest_background = 'hard'
 colorscheme everforest
 
@@ -90,3 +88,5 @@ colorscheme gruvbox
 lua vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 lua require("catppuccin").setup()
 lua vim.cmd [[colorscheme catppuccin]]
+
+colorscheme tokyonight

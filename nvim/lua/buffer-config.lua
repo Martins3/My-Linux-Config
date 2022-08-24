@@ -8,7 +8,6 @@ require('bufferline').setup {
     diagnostics = false,
     show_buffer_close_icons = false,
     show_close_icon = false,
-    indicator_icon = '',
     separator_style = "thin",
     left_trunc_marker = "",
     right_trunc_marker = "",
@@ -16,7 +15,7 @@ require('bufferline').setup {
   },
   highlights = {
     fill = {
-      guibg = colors.bg_dark,
+      bg = colors.bg_dark,
     },
   }
 }

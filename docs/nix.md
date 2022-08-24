@@ -301,6 +301,12 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
 - [ ] 为什么 nix-shell --command "echo $PATH" 的结果中，$PATH 并没有刷新，这导致内核脚本无法正确工作
+- [ ] 为什么每次 home-manager 都是会出现这个问题
+```txt
+warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
+these 2 derivations will be built:
+```
+- [ ] 我感觉软链接还是更加好用一点，每次 home-manager switch 太慢了
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install
