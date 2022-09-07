@@ -60,7 +60,6 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 ### manual :  https://nixos.org/manual/nixpkgs/unstable/
 
 ## 这个操作几乎完美符合要求啊
-- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
 - https://github.com/gvolpe/nix-config : 这个也非常不错
 
 ## TODO
@@ -160,5 +159,5 @@ https://gist.github.com/citruz/9896cd6fb63288ac95f81716756cb9aa
 https://github.com/utmapp/UTM
 
 ## 有趣
-- 如果不执行 nix-shell ，ccls 索引都可以失败。
 - WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
+- https://github.com/jetpack-io/devbox

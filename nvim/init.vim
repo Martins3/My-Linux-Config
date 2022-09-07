@@ -63,6 +63,10 @@ lua require 'treesitter'
 lua require 'hydra-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
+lua require('gitsigns').setup{}
+lua require('mind').setup{}
+lua require('spellsitter').setup{}
+lua require("nvim-surround").setup{}
 
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
@@ -78,15 +82,5 @@ let s:core_conf_files = [
 for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
-
-" 设置主题，最下面的会生效
-let g:everforest_background = 'hard'
-colorscheme everforest
-
-colorscheme gruvbox
-
-lua vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-lua require("catppuccin").setup()
-lua vim.cmd [[colorscheme catppuccin]]
 
 colorscheme tokyonight

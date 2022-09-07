@@ -14,6 +14,12 @@ pkgs.stdenv.mkDerivation {
     pahole
     pkg-config
     binutils
+
+    # selftests
+    alsa-lib
+    libcap
+    libmnl
+    libcap_ng
   ];
   buildInputs = with pkgs; [
     elfutils
