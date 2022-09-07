@@ -32,7 +32,6 @@ in
     fzf
     ripgrep
     silver-searcher
-    tree
     binutils
     gdb
     lsd
@@ -81,6 +80,7 @@ in
     shellcheck
     shfmt
     rnix-lsp
+    tree-sitter
     # tlpi # TMP_TODO 既没有找到正确的 tlpi，也无法将所有的 tlpi 都编译成功。
     libcap
     acl

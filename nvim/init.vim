@@ -64,7 +64,6 @@ lua require 'hydra-config'
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
 lua require('gitsigns').setup{}
-lua require('mind').setup{}
 lua require('spellsitter').setup{}
 lua require("nvim-surround").setup{}
 
@@ -73,7 +72,6 @@ let s:core_conf_files = [
       \ 'misc.vim',
       \ 'coc.vim',
       \ 'debug.vim',
-      \ 'ccls.vim',
       \ 'wilder.vim',
       \ 'startify.vim',
       \ 'airline.vim',
