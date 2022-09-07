@@ -25,7 +25,7 @@ require("packer").startup({
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
     use 'RRethy/nvim-treesitter-textsubjects'
-    use 'mizlan/iswap.nvim' -- 交换 syntax 元素
+    use 'lewis6991/spellsitter.nvim' -- 当检查拼写的时候，仅仅检查注释
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
     use 'kyazdani42/nvim-tree.lua' -- 文件树
@@ -39,13 +39,10 @@ require("packer").startup({
     use 'xiyaowong/nvim-transparent' -- 可以移除掉背景色，让 vim 透明
     -- 颜色主题
     use 'folke/tokyonight.nvim'
-    use 'morhetz/gruvbox'
-    use 'sainnhe/everforest'
-    use { "catppuccin/nvim", as = "catppuccin" }
     -- git 管理
     use 'tpope/vim-fugitive' -- 显示 git blame，实现一些基本操作的快捷执行
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
-    use 'pwntester/octo.nvim' -- 在 neovim 中使用 github cli
+    use 'lewis6991/gitsigns.nvim' -- 显示改动的信息
     -- 基于 telescope 的搜索
     use 'nvim-telescope/telescope.nvim'
     use { 'nvim-telescope/telescope-fzf-native.nvim',
@@ -65,7 +62,7 @@ require("packer").startup({
     use 'xiyaowong/telescope-emoji.nvim' -- 使用 telescope 搜索 emoji 表情
     -- 高效编辑
     use 'tpope/vim-commentary' -- 快速注释代码
-    use 'tpope/vim-surround' -- 快速编辑单词两侧的符号
+    use 'kylechui/nvim-surround' -- 快速编辑单词两侧的符号
     use 'tpope/vim-sleuth' -- 自动设置 tabstop 之类的
     use 'tpope/vim-repeat' -- 更加强大的 `.`
     use 'windwp/nvim-autopairs' -- 自动括号匹配

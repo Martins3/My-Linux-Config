@@ -35,6 +35,7 @@ in
     alacritty
     # wallpaper
     variety
+    gource
   ];
 
   xdg.configFile."alacritty.yml" = { source = ../../conf/alacritty.yml; };

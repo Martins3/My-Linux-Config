@@ -285,6 +285,7 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 
 ## 问题
+- [ ] https://github.com/blitz/x86-manpages-nix : 靠，这个软件不知道如何安装
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
 - [ ] linuxKernel.packages.linux_5_15.perf # 不知道如何实现和内核版本的自动跟随
@@ -307,6 +308,39 @@ warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwk
 these 2 derivations will be built:
 ```
 - [ ] 我感觉软链接还是更加好用一点，每次 home-manager switch 太慢了
+- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
+- [ ] https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
+  - 我意识到实际上，gcc 的版本选择和其他的不同
+- [ ] https://stackoverflow.com/questions/62592923/nix-how-to-change-stdenv-in-nixpkgs-mkshell
+  - stdenv 中到底持有了啥
+- https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
+- https://news.ycombinator.com/item?id=32501448
+- https://github.com/wtfutil/wtf : 无法安装
+- https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
+- https://github.com/Mic92/nixos-shell
+
+## 下一个项目
+- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
+  - https://nixos.wiki/wiki/NixOS_on_ARM
+  - https://www.sevarg.net/2021/01/09/arm-mac-mini-and-boinc/
+
+- UTM 的启动参数:
+```txt
+qemu-system-aarch64 -L /Applications/UTM.app/Contents/Resources/qemu -S -qmp tcp:127.0.0.1:4444,server,nowait -nodefaults -vga none -spice "unix=on,addr=/Users/hu
+xueshi/Library/Group Containers/WDNLXAD4W8.com.utmapp.UTM/F1B45A9C-BFF6-4780-BCA7-E752ECA5426D.spice,disable-ticketing=on,image-compression=off,playback-compressi
+on=off,streaming-video=off,gl=on" -device virtio-ramfb-gl -cpu host -smp cpus=8,sockets=1,cores=8,threads=1 -machine virt, -accel hvf -accel tcg,tb-size=2048 -dri
+ve if=pflash,format=raw,unit=0,file=/Applications/UTM.app/Contents/Resources/qemu/edk2-aarch64-code.fd,readonly=on -drive if=pflash,unit=1,file=/Users/huxueshi/Li
+brary/Containers/com.utmapp.UTM/Data/Documents/Linux.utm/Images/efi_vars.fd -boot menu=on -m 8192 -device intel-hda -device hda-duplex -name Linux -device nec-usb
+-xhci,id=usb-bus -device usb-tablet,bus=usb-bus.0 -device usb-mouse,bus=usb-bus.0 -device usb-kbd,bus=usb-bus.0 -device qemu-xhci,id=usb-controller-0 -chardev spi
+cevmc,name=usbredir,id=usbredirchardev0 -device usb-redir,chardev=usbredirchardev0,id=usbredirdev0,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbre
+dirchardev1 -device usb-redir,chardev=usbredirchardev1,id=usbredirdev1,bus=usb-controller-0.0 -chardev spicevmc,name=usbredir,id=usbredirchardev2 -device usb-redi
+r,chardev=usbredirchardev2,id=usbredirdev2,bus=usb-controller-0.0 -device usb-storage,drive=cdrom0,removable=true,bootindex=0,bus=usb-bus.0 -drive if=none,media=c
+drom,id=cdrom0 -device virtio-blk-pci,drive=drive0,bootindex=1 -drive if=none,media=disk,id=drive0,file=/Users/huxueshi/Library/Containers/com.utmapp.UTM/Data/Doc
+uments/Linux.utm/Images/data.qcow2,discard=unmap,detect-zeroes=unmap -device virtio-net-pci,mac=46:64:B8:E0:06:D5,netdev=net0 -netdev vmnet-shared,id=net0 -device
+ virtio-serial -device virtserialport,chardev=vdagent,name=com.redhat.spice.0 -chardev spicevmc,id=vdagent,debug=0,name=vdagent -device virtserialport,chardev=cha
+rchannel1,id=channel1,name=org.spice-space.webdav.0 -chardev spiceport,name=org.spice-space.webdav.0,id=charchannel1 -uuid F1B45A9C-BFF6-4780-BCA7-E752ECA5426D -d
+evice virtio-rng-pci%
+```
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install

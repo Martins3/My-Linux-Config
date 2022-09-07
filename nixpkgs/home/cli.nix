@@ -48,6 +48,7 @@ in
     socat # unix domain
     # git
     delta
+    git-secrets
     gh
     # network
     nethogs
@@ -55,6 +56,7 @@ in
     tcpdump
     ethtool
     sshpass
+    gping
     # nix
     nix-index
     # lib
@@ -100,6 +102,7 @@ in
     ]))
     man-pages
     man-pages-posix
+    # x86-manpages 不知道如何安装
     lazydocker
     # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
     /* mandoc */
@@ -107,12 +110,11 @@ in
     unstable.gum
     # acpi
     acpica-tools
+    asciidoc
+    # fun
+    genact
+    czkawka
   ];
-
-  xdg.configFile."nvim" = {
-    source = ../../nvim;
-    recursive = true;
-  };
 
   home.file.".tmux/plugins/tpm" = {
     source = builtins.fetchGit {
@@ -120,6 +122,13 @@ in
       rev = "b699a7e01c253ffb7818b02d62bce24190ec1019"; # updated at 2022/7/17
     };
   };
+
+  /*
+    xdg.configFile."nvim" = {
+    source = ../../nvim;
+    recursive = true;
+    };
+  */
 
   home.file.tmux = {
     source = ../../conf/tmux.conf;

@@ -110,7 +110,6 @@ let s:coc_extensions = [
       \ 'coc-diagnostic',
       \ 'coc-sumneko-lua',
       \ 'coc-xml',
-      \ 'coc-git',
       \ 'coc-json',
       \ 'coc-translator',
       \ 'coc-r-lsp',

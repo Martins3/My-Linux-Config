@@ -65,7 +65,7 @@ in
   # 目录折叠之后，和大多数教材样子都不同了
   systemd.enableUnifiedCgroupHierarchy = false;
 
-  # nixos 的 tmp 居然不是 tmpfs
+  # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
   boot.cleanTmpDir = true;
 
   services.syncthing = {
@@ -80,6 +80,10 @@ in
   };
 
   documentation.dev.enable = true;
+
+  services.earlyoom = {
+    enable = true;
+  };
 
   systemd.user.services.kernel = {
     enable = true;
@@ -99,5 +103,17 @@ in
     enable = true;
     timerConfig = { OnCalendar = "*-*-* 9:00:00"; };
     wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.httpd = {
+    enable = true;
+    description = "export home dir to LAN";
+    serviceConfig = {
+      WorkingDirectory = "/home/martins3/";
+      Type = "simple";
+      ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server";
+      Restart = "no";
+    };
+    wantedBy = [ "multi-user.target" ];
   };
 }

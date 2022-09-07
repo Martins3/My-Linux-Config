@@ -15,7 +15,6 @@
   * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
   * [安装 ccls](#安装-ccls)
   * [安装 nerdfonts](#安装-nerdfonts)
-  * [[可选] 安装 github cli](#可选-安装-github-cli)
   * [安装 bear](#安装-bear)
   * [安装本配置](#安装本配置)
   * [checkhealth 检查](#checkhealth-检查)
@@ -193,7 +192,7 @@ coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
 # https://github.com/nvm-sh/nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
-把这个放到你的 .bashrc (或者 .zshrc 中，如果你使用 zsh，其他的 shell 类似)
+把这个放到你的 .bashrc (如果你使用 zsh 放到发 .zshrc 中，其他的 shell 类似)
 ```sh
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -242,16 +241,6 @@ sudo make install
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
 unzip Hasklig.zip -d ~/.fonts
 fc-cache -fv
-```
-
-### [可选] 安装 github cli
-通过 pwntester/octo.nvim 可以在 neovim 中使用 github cli
-
-```sh
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-sudo apt install gh
 ```
 
 ### 安装 bear
@@ -813,6 +802,8 @@ setxkbmap -option caps:swapescape
 - 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
 
 ## 值得一看的配置
+- [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
+- [NvChad](https://github.com/NvChad/NvChad) 同上
 - [cosynvim](https://github.com/glepnir/cosynvim) : 纯 lua 配置模板
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
@@ -847,13 +838,20 @@ setxkbmap -option caps:swapescape
 - [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
     - `w !sudo tee %`
 
+<!--
+
 ## 问题
 - [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无处处理 source 其他的文件的情况。
 - [ ] 关注 text-object
+  - ci' 可以将 'hello/world' 修改为 ''
+    - 总体来说，i(nside) a(round) t(o) f(orward)
   - https://this-week-in-neovim.org/2022/Aug/08 最后的 tips 简介一些
+  - :h nvim-surround.usage 来学习如何使用 surround 键盘
   - 使用 ccls 的确可以在 c/cpp 中快速跳转到 header 中，但是这占据了 x ，而且不能通用
+
+-->
 
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示

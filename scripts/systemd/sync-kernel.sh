@@ -3,7 +3,7 @@ set -ex
 export PATH="$PATH:/run/wrappers/bin:/home/martins3/.nix-profile/bin"
 export PATH="$PATH:/run/current-system/sw/bin/"
 function finish {
-  sleep infinity
+  sleep 600
 }
 trap finish EXIT
 
@@ -66,15 +66,88 @@ CONFIG_IRQ_BYPASS_MANAGER=y
 # CONFIG_RAID6_PQ_BENCHMARK=y
 # CONFIG_ZSTD_COMPRESS=y
 
-# sshfs
+# sshfs 需要
 CONFIG_FUSE_FS=y
 # CONFIG_CUSE is not set
 # CONFIG_VIRTIO_FS is not set
+
+# 分析 transparent huge page
+CONFIG_ARCH_ENABLE_THP_MIGRATION=y
+CONFIG_TRANSPARENT_HUGEPAGE=y
+CONFIG_TRANSPARENT_HUGEPAGE_ALWAYS=y
+# CONFIG_TRANSPARENT_HUGEPAGE_MADVISE is not set
+CONFIG_THP_SWAP=y
+# CONFIG_READ_ONLY_THP_FOR_FS is not set
+
+# 分析 damon
+CONFIG_PAGE_IDLE_FLAG=y
+CONFIG_DAMON=y
+CONFIG_DAMON_VADDR=y
+CONFIG_DAMON_PADDR=y
+CONFIG_DAMON_SYSFS=y
+CONFIG_DAMON_DBGFS=y
+CONFIG_DAMON_RECLAIM=y
+CONFIG_DAMON_LRU_SORT=y
+
+# 分析 userfault fd
+CONFIG_USERFAULTFD=y
+CONFIG_HAVE_ARCH_USERFAULTFD_WP=y
+CONFIG_HAVE_ARCH_USERFAULTFD_MINOR=y
+CONFIG_PTE_MARKER=y
+CONFIG_PTE_MARKER_UFFD_WP=y
+
+CONFIG_MEMORY_ISOLATION=y
+CONFIG_PAGE_REPORTING=y
+CONFIG_CONTIG_ALLOC=y
+CONFIG_KSM=y
+# cma
+CONFIG_CMA=y
+CONFIG_CMA_DEBUG=y
+CONFIG_CMA_DEBUGFS=y
+CONFIG_CMA_SYSFS=y
+CONFIG_CMA_AREAS=19
+CONFIG_IDLE_PAGE_TRACKING=y
+# CONFIG_DMA_CMA is not set
+
+# balloon
+CONFIG_MEMORY_BALLOON=y
+CONFIG_BALLOON_COMPACTION=y
+CONFIG_VIRTIO_BALLOON=y
+
+# hotplug / virtio-mem / virtio-pmem
+# CONFIG_ARCH_MEMORY_PROBE is not set
+CONFIG_RANDOMIZE_MEMORY_PHYSICAL_PADDING=0xa
+# CONFIG_ACPI_HOTPLUG_MEMORY is not set
+CONFIG_NUMA_KEEP_MEMINFO=y
+CONFIG_HAVE_BOOTMEM_INFO_NODE=y
+CONFIG_ARCH_ENABLE_MEMORY_HOTREMOVE=y
+CONFIG_MEMORY_HOTPLUG=y
+CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=y
+CONFIG_MEMORY_HOTREMOVE=y
+CONFIG_MHP_MEMMAP_ON_MEMORY=y
+# CONFIG_ZONE_DEVICE is not set
+CONFIG_VIRTIO_PMEM=y
+CONFIG_VIRTIO_MEM=y
+CONFIG_LIBNVDIMM=y
+CONFIG_BLK_DEV_PMEM=y
+CONFIG_ND_CLAIM=y
+CONFIG_ND_BTT=y
+CONFIG_BTT=y
+CONFIG_DAX=y
+# CONFIG_DEV_DAX is not set
+CONFIG_MEMREGION=y
+
+CONFIG_ACPI_HOTPLUG_MEMORY=y
 
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 nix-shell --command "make -j32"
-./scripts/clang-tools/gen_compile_commands.py
+nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
+# nix-shell --command "make binrpm-pkg -j"
+
+# 1. 启动虚拟机，让 Guest 安装对应的内核
+# 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
+# 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 # nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 60, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
