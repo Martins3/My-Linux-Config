@@ -124,6 +124,9 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 ## 智能高亮: treesitter
 [treesitter](https://github.com/tree-sitter/tree-sitter) 通过解析语法树，让文本的高亮更加的智能和高效。
 
+举个例子，如果想要跳转到函数头，在 vim 中使用默认提供 [`[` `m`](https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim)，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
+对于文件的格式有要求，但是如何使用上 [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)，这个问题就不存在了，你总是可以跳转到函数的开始位置。
+
 ## 为什么使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
 coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
@@ -837,9 +840,10 @@ setxkbmap -option caps:swapescape
     - 没有区别，除了拼写不同
 - [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
     - `w !sudo tee %`
+- [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
+  - `:%norm dw`
 
 <!--
-
 ## 问题
 - [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
@@ -850,7 +854,8 @@ setxkbmap -option caps:swapescape
   - https://this-week-in-neovim.org/2022/Aug/08 最后的 tips 简介一些
   - :h nvim-surround.usage 来学习如何使用 surround 键盘
   - 使用 ccls 的确可以在 c/cpp 中快速跳转到 header 中，但是这占据了 x ，而且不能通用
-
+- [ ] CocLocations 更新之后才发现是存在直接跳转到对应位置的方法的
+- [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
 -->
 
 ## 衍生

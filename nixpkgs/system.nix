@@ -87,24 +87,43 @@ in
 
   systemd.user.services.kernel = {
     enable = true;
-    description = "synchronize kernel every day";
     unitConfig = { };
     serviceConfig = {
       # User = "martins3";
       WorkingDirectory = "/home/martins3/core/linux";
       Type = "forking";
       # RemainAfterExit = true;
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s ccls '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
       Restart = "no";
     };
   };
 
+  # systemctl --user list-timers --all
   systemd.user.timers.kernel = {
     enable = true;
-    timerConfig = { OnCalendar = "*-*-* 9:00:00"; };
+    timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
     wantedBy = [ "timers.target" ];
   };
 
+  systemd.user.services.qemu = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      WorkingDirectory = "/home/martins3/core/qemu";
+      Type = "forking";
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s qemu '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-qemu.sh'";
+      Restart = "no";
+    };
+  };
+
+  # TMP_TODO 似乎还需要手动 enable，很烦
+  systemd.user.timers.qemu = {
+    enable = true;
+    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  # TMP_TODO 不知道为什么这个不是自动启动的，但是 kernel.service 是的
   systemd.user.services.httpd = {
     enable = true;
     description = "export home dir to LAN";
@@ -114,6 +133,10 @@ in
       ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server";
       Restart = "no";
     };
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.services.iscsid = {
+    enable = true;
   };
 }

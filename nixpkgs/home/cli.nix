@@ -9,6 +9,7 @@ in
     # compiler && builder
     autoconf
     automake
+    pkg-config
     gcc
     go
     lua
@@ -28,6 +29,7 @@ in
     xclip
     jq
     htop
+    unzip
     # search
     fzf
     ripgrep
@@ -48,7 +50,7 @@ in
     # git
     delta
     git-secrets
-    gh
+    gh # gh extension install dlvhdr/gh-dash
     # network
     nethogs
     iftop
@@ -56,6 +58,7 @@ in
     ethtool
     sshpass
     gping
+    nbd
     # nix
     nix-index
     # lib
@@ -66,6 +69,7 @@ in
     kexec-tools
     rpm
     stress
+    numatop
     # numastat TMP_TODO 如何安装这个包
     # qemu
     # OVMF # 安装了，但是 OVMF.fd 没有找到
@@ -91,6 +95,7 @@ in
     sysstat
     # dpdk
     dpdk
+
     # python
     (python3.withPackages (p: with p; [
       pandas
@@ -102,7 +107,7 @@ in
     ]))
     man-pages
     man-pages-posix
-    # x86-manpages 不知道如何安装
+    # x86-manpages TMP_TODO 不知道如何安装
     lazydocker
     # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
     /* mandoc */
@@ -111,6 +116,9 @@ in
     # acpi
     acpica-tools
     asciidoc
+    # iscsi # TMP_TODO iscsi 没有完全搞明白，所以在 nixos 上更加不会
+    targetcli
+    fio
     # fun
     genact
     czkawka
@@ -158,6 +166,7 @@ in
       z = "j";
       mc = "make clean";
       k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
+      flamegraph="/home/martins3/Sync/vn/docs/kernel/code/flamegraph.sh";
       en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
       env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
       knews = "~/.dotfiles/scripts/systemd/news.sh kernel";
