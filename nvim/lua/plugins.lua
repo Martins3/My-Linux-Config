@@ -25,6 +25,7 @@ require("packer").startup({
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
     use 'RRethy/nvim-treesitter-textsubjects'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'lewis6991/spellsitter.nvim' -- 当检查拼写的时候，仅仅检查注释
     -- ui
     use 'liuchengxu/vista.vim' -- 导航栏
@@ -33,7 +34,7 @@ require("packer").startup({
     use 'vim-airline/vim-airline' -- 状态栏
     use 'vim-airline/vim-airline-themes' -- 状态栏的主题
     use 'akinsho/bufferline.nvim' -- buffer
-    use 'kazhala/close-buffers.nvim' -- 实现删除不可见 buffer 的功能
+    use 'kazhala/close-buffers.nvim' -- 一键删除不可见 buffer
     use 'gelguy/wilder.nvim' -- 更加智能的命令窗口
     use 'romgrk/fzy-lua-native' -- wilder.nvim 的依赖
     use 'xiyaowong/nvim-transparent' -- 可以移除掉背景色，让 vim 透明

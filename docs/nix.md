@@ -318,6 +318,7 @@ these 2 derivations will be built:
 - https://github.com/wtfutil/wtf : 无法安装
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://github.com/Mic92/nixos-shell
+- 也许一举切换为 wayland
 
 ## 下一个项目
 - https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
