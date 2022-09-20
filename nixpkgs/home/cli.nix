@@ -35,6 +35,7 @@ in
     ripgrep
     silver-searcher
     binutils
+    starship
     gdb
     lsd
     lsof
@@ -101,13 +102,14 @@ in
       pandas
       pygal
       pre-commit
-      pypinyin
       ipython
       filelock
+      autopep8
     ]))
     man-pages
     man-pages-posix
-    # x86-manpages TMP_TODO 不知道如何安装
+    # x86-manpages TMP_TODO 不知道如何安装，目前使用这种方法安装
+    # nix-env -if https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz
     lazydocker
     # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
     /* mandoc */
@@ -180,6 +182,7 @@ in
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
     eval \"$(direnv hook zsh)\"
+    eval \"$(starship init zsh)\"
 
     function edward() {
       pinyin=$(pypinyin -s NORMAL $1)
