@@ -21,3 +21,8 @@ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 
 - 其中存在很多小问题需要进行修复的。
   - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
+
+## 组件
+- polybar
+- rofi
+- picom
