@@ -62,8 +62,8 @@ in
   services.openssh.enable = true;
   networking.firewall.enable = false;
 
-  # 目录折叠之后，和大多数教材样子都不同了
-  systemd.enableUnifiedCgroupHierarchy = false;
+  # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
+  systemd.enableUnifiedCgroupHierarchy = true; # cgroup v2
 
   # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
   boot.cleanTmpDir = true;
@@ -79,7 +79,7 @@ in
     guiAddress = "0.0.0.0:8384";
   };
 
-  documentation.dev.enable = true;
+  documentation.enable = true;
 
   services.earlyoom = {
     enable = true;
@@ -116,7 +116,6 @@ in
     };
   };
 
-  # TMP_TODO 似乎还需要手动 enable，很烦
   systemd.user.timers.qemu = {
     enable = true;
     timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
