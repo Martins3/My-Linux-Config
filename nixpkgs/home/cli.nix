@@ -23,7 +23,7 @@ in
     nodejs
     # tmux
     tmux
-    tmuxinator
+    tmuxp
     tig
     # cli tools
     xclip
@@ -51,7 +51,6 @@ in
     # git
     delta
     git-secrets
-    gh # gh extension install dlvhdr/gh-dash
     # network
     nethogs
     iftop
@@ -69,7 +68,7 @@ in
     numactl
     kexec-tools
     rpm
-    stress
+    stress-ng
     numatop
     # numastat TMP_TODO 如何安装这个包
     # qemu
@@ -93,7 +92,7 @@ in
     pkgs.linuxPackages_latest.perf
     iperf
     bpftrace
-    sysstat
+    sysstat # sar, iostat and pidstat mpstat
     # dpdk
     dpdk
 
