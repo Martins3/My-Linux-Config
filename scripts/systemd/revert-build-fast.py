@@ -18,14 +18,16 @@ def repalce_include_with_file(file):
             r1 = re.findall(r"#include \"(.*\.c)\"", l)
             r2 = re.findall(r"# include \"(.*\.c)\"", l)
 
-            source = None
+            source_files = None
             if r1:
-                source = r1[0]
+                source_files = r1[0]
             if r2:
-                source = r2[0]
+                source_files = r2[0]
 
-            if source:
-                add_file_to_arr(working_dir + source, new_lines)
+            if source_files:
+                l = "// ============> " + l
+                new_lines.append(l)
+                add_file_to_arr(working_dir + source_files, new_lines)
             else:
                 new_lines.append(l)
 
@@ -43,8 +45,6 @@ def revert(file):
     write_arr_to_file(file, lines)
 
 
-# TMP_TODO 让每天的内核首先 revert 掉，然后 pull ，然后构建
-# 最后 add 这两个文件
 if __name__ == "__main__":
     working_dir = "/home/martins3/core/linux/kernel/sched/"
     revert(working_dir + "build_policy.c")

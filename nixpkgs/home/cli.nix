@@ -21,16 +21,13 @@ in
     gnumake
     yarn
     nodejs
-    # tmux
     tmux
     tmuxp
     tig
-    # cli tools
     xclip
     jq
     htop
     unzip
-    # search
     fzf
     ripgrep
     silver-searcher
@@ -48,16 +45,14 @@ in
     file
     ncdu
     socat # unix domain
-    # git
-    delta
+    delta # git diff
     git-secrets
-    # network
     nethogs
     iftop
     tcpdump
     ethtool
     sshpass
-    gping
+    gping # better ping
     nbd
     # nix
     nix-index
@@ -132,13 +127,6 @@ in
     };
   };
 
-  /*
-    xdg.configFile."nvim" = {
-    source = ../../nvim;
-    recursive = true;
-    };
-  */
-
   home.file.tmux = {
     source = ../../conf/tmux.conf;
     target = ".tmux.conf";
@@ -183,11 +171,6 @@ in
     eval \"$(direnv hook zsh)\"
     eval \"$(starship init zsh)\"
 
-    function edward() {
-      pinyin=$(pypinyin -s NORMAL $1)
-      printf \"%s\t%s\t1\n\" \"$1\" \"$pinyin\" >> ~/.dotfiles/rime/luna_pinyin.martins3.dict.yaml
-    }
-
     function gscp() {
       file_name=$1
       if [ -z \"file_name\" ]; then
@@ -203,8 +186,6 @@ in
       rpm2cpio $1 | cpio -idmv
     }
     ";
-    # 增加一个这个
-    # ln -sf ~/.dotfiles/scripts/nix/env/shim.nix default.nix
 
     plugins = [
       {

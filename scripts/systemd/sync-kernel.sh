@@ -13,7 +13,18 @@ if [[ $branch != master ]]; then
   echo "checkout to master"
 fi
 
+# 内核为了编译速度，使用 #include 直接包含 .c 文件，
+# 将这些文件展开，从而可以正确跳转
+git restore --staged kernel/sched/build_utility.c
+git restore --staged kernel/sched/build_policy.c
+git checkout -- kernel/sched/build_utility.c
+git checkout -- kernel/sched/build_policy.c
+
 git pull
+
+python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
+git add kernel/sched/build_utility.c
+git add kernel/sched/build_policy.c
 
 cat <<_EOF_ >kernel/configs/martins3.config
 CONFIG_DEBUG_INFO=y
@@ -168,6 +179,28 @@ CONFIG_RT_GROUP_SCHED=y
 CONFIG_UCLAMP_TASK_GROUP=y
 
 CONFIG_INTEL_IDLE=y
+
+CONFIG_ZPOOL=y
+CONFIG_ZSWAP=y
+# CONFIG_ZSWAP_DEFAULT_ON is not set
+# CONFIG_ZSWAP_COMPRESSOR_DEFAULT_DEFLATE is not set
+CONFIG_ZSWAP_COMPRESSOR_DEFAULT_LZO=y
+# CONFIG_ZSWAP_COMPRESSOR_DEFAULT_842 is not set
+# CONFIG_ZSWAP_COMPRESSOR_DEFAULT_LZ4 is not set
+# CONFIG_ZSWAP_COMPRESSOR_DEFAULT_LZ4HC is not set
+# CONFIG_ZSWAP_COMPRESSOR_DEFAULT_ZSTD is not set
+CONFIG_ZSWAP_COMPRESSOR_DEFAULT="lzo"
+CONFIG_ZSWAP_ZPOOL_DEFAULT_ZBUD=y
+# CONFIG_ZSWAP_ZPOOL_DEFAULT_Z3FOLD is not set
+# CONFIG_ZSWAP_ZPOOL_DEFAULT_ZSMALLOC is not set
+CONFIG_ZSWAP_ZPOOL_DEFAULT="zbud"
+CONFIG_ZBUD=y
+# CONFIG_Z3FOLD is not set
+# CONFIG_ZSMALLOC is not set
+CONFIG_FRONTSWAP=y
+# CONFIG_ZRAM is not set
+CONFIG_CRYPTO_LZO=y
+
 
 _EOF_
 
