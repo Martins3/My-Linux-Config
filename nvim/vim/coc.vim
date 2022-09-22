@@ -117,6 +117,7 @@ let s:coc_extensions = [
       \ 'coc-texlab',
       \ 'coc-metals',
       \ 'coc-tsserver',
+      \ 'coc-markmap',
       \]
 
 for extension in s:coc_extensions

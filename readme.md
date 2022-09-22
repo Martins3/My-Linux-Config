@@ -26,9 +26,9 @@ ln -sf ~/.dotfiles/conf/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/conf/kitty ~/.config/kitty
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/conf/zathurarc ~/.config/zathura/zathurarc
-
-# ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
 ```
+
+<!-- ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml -->
 
 Actually, neovim configuration is a little of complex:
   - see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
