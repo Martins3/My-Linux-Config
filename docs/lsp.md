@@ -1,5 +1,7 @@
 # 一些 native lsp 的资源
 
+显然，lsp 的易用还没有到 coc.nvim 的程度。
+
 - https://github.com/kosayoda/nvim-lightbulb : 左边搞个灯泡，可以永远展示可用的代码提示，类似 VSCode 中的
 
 - [ ] https://github.com/hrsh7th/nvim-cmp
@@ -12,7 +14,6 @@
 - [ ] https://github.com/ChristianChiarulli/nvim
 - [ ] https://github.com/simrat39/symbols-outline.nvim
 
-- [x] https://github.com/hrsh7th/nvim-compe
 
 - https://crispgm.com/page/neovim-is-overpowering.html
 - https://github.com/SmiteshP/nvim-navic
@@ -20,3 +21,5 @@
 - https://github.com/scalameta/nvim-metals/discussions/39 : 这个插件将 coc 切换为原生的了，如果这种事情继续发生，那么就只能切换成为原生的 lsp 了。
 - https://github.com/SmiteshP/nvim-navic : 类似 VsCode 的将当前的信息显示到 winbar 中，但是依赖 lspconfig
 - [ ]https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
+
+- [x] https://github.com/hrsh7th/nvim-compe
