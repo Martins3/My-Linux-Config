@@ -82,3 +82,6 @@ for s:fname in s:core_conf_files
 endfor
 
 colorscheme tokyonight
+
+" 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx
+nn xx x
