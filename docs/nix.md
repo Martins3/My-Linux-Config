@@ -320,6 +320,7 @@ these 2 derivations will be built:
 - https://github.com/Mic92/nixos-shell
 - 也许一举切换为 wayland
 - [ ] 无法处理内核
+- https://github.com/nix-community/awesome-nix
 
 ## 下一个项目
 - https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
