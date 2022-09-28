@@ -10,6 +10,7 @@ pkgs.mkShell rec {
     xorg.libX11.dev
     rdma-core
     liburing
+    libiscsi
   ];
   buildInputs = with pkgs; [ zlib ];
 }
