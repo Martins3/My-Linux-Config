@@ -11,6 +11,7 @@ pkgs.mkShell rec {
     rdma-core
     liburing
     libiscsi
+    libslirp
   ];
   buildInputs = with pkgs; [ zlib ];
 }

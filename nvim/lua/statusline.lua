@@ -1,4 +1,4 @@
--- 这两个函数从这里超过来的,在 statusline 中检查 space tab 混用和尾部空格
+-- 这两个函数从这里抄过来的,在 statusline 中检查 space tab 混用和尾部空格
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets
 local function indent()
   local space_pat = [[\v^ +]]
