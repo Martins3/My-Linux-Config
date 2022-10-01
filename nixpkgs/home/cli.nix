@@ -165,7 +165,7 @@ in
       git_ignore="echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore";
     };
 
-    # TMP 这样写是非常不优雅的
+    # TMP_TODO 这样写是非常不优雅的
     initExtra = "
     eval \"$(jump shell)\"
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
