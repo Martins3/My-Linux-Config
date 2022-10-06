@@ -156,7 +156,6 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 ## 可以继续 QEMU 来继续 hacking NixOS
 https://gist.github.com/citruz/9896cd6fb63288ac95f81716756cb9aa
-https://github.com/utmapp/UTM
 
 ## 有趣
 - WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
