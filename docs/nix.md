@@ -283,12 +283,24 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 ## 安装 unstable 的包
 - https://www.joseferben.com/posts/installing_only_certain_packages_form_an_unstable_nixos_channel/
 
+## 学习 nix 语言
+搭建环境:
+
+需要在 system.nix 中设置
+```nix
+  nix.settings.experimental-features = "nix-command flakes";
+```
+
+然后就可以使用
+
+```sh
+nix eval -f begin.nix
+```
 
 ## 问题
 - [ ] https://github.com/blitz/x86-manpages-nix : 靠，这个软件不知道如何安装
 - [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
-- [ ] linuxKernel.packages.linux_5_15.perf # 不知道如何实现和内核版本的自动跟随
 - [ ] 搭建 Boom 的阅读环境
 - [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
 - [ ] 使用 nix 语言写一个 web server ：https://blog.replit.com/nix_web_app
@@ -301,7 +313,6 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [ ] https://github.com/nix-community/home-manager/issues/1668
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
-- [ ] 为什么 nix-shell --command "echo $PATH" 的结果中，$PATH 并没有刷新，这导致内核脚本无法正确工作
 - [ ] 为什么每次 home-manager 都是会出现这个问题
 ```txt
 warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
