@@ -348,40 +348,51 @@ nix eval -f begin.nix
 主要参考语言:
 - https://nixos.wiki/wiki/Overview_of_the_Nix_Language
 
+## gcc 和 clang 是冲突的
+
+- https://github.com/nix-community/home-manager/issues/1668
+  - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+  - 无法同时安装 gcc 和 clang
+
+## coc-sumneko-lua
+- 暂时的水平难以解决 : https://github.com/xiyaowong/coc-sumneko-lua/issues/22
+
+## MAC 中使用 nix
+存在很多麻烦的地方:
+- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
+  - https://nixos.wiki/wiki/NixOS_on_ARM
+  - https://www.sevarg.net/2021/01/09/arm-mac-mini-and-boinc/
+
 ## nix pill
 https://nixos.org/guides/nix-pills/index.html
 
 ## how to learn nix
 https://ianthehenry.com/posts/how-to-learn-nix/
 
+## 使用特定版本的 gcc 或者 llvm
+切换 gcc 的方法:
+- https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
+
+切换 llvm 的方法参考 libbpf.nix
+
 ## 问题
-- [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
 - [ ] 搭建 Boom 的阅读环境
-- [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
-- [ ] 使用 nix 语言写一个 web server ：https://blog.replit.com/nix_web_app
 - [ ] 无法正确安装 crash
 - [ ] https://github.com/astro/microvm.nix 可以和 firecracker 联动一下
-- [ ] 能不能将 nix-shell '<nixpkgs>' -A lua --command zsh 转换为 envdir 的操作
 - [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
   - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
+- [ ] 我感觉软链接还是更加好用一点，每次 home-manager switch 太慢了
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
-- [ ] https://github.com/nix-community/home-manager/issues/1668
-  - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
-  - 无法同时安装 gcc 和 clang
 - [ ] 为什么每次 home-manager 都是会出现这个问题
 ```txt
 warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
 these 2 derivations will be built:
 ```
-- [ ] 我感觉软链接还是更加好用一点，每次 home-manager switch 太慢了
 - [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
-- [ ] https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
-  - 我意识到实际上，gcc 的版本选择和其他的不同
 - [ ] https://stackoverflow.com/questions/62592923/nix-how-to-change-stdenv-in-nixpkgs-mkshell
   - stdenv 中到底持有了啥
 - https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
 - https://news.ycombinator.com/item?id=32501448
-- https://github.com/wtfutil/wtf : 无法安装
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://github.com/Mic92/nixos-shell
 - 也许一举切换为 wayland
@@ -393,10 +404,6 @@ these 2 derivations will be built:
 ## 测试一下，到底放不方便修改内核
 - 如果想要一份本地的源码，来安装，如何 ?
 
-## 下一个项目
-- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
-  - https://nixos.wiki/wiki/NixOS_on_ARM
-  - https://www.sevarg.net/2021/01/09/arm-mac-mini-and-boinc/
 
 ## 其他有趣的 Linux Distribution
 - https://kisslinux.org/install

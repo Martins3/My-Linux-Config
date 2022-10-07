@@ -16,6 +16,7 @@ in
     gcc
     go
     lua
+    unstable.sumneko-lua-language-server
     clang-tools
     cargo
     rustc
@@ -110,6 +111,7 @@ in
     fio
     # fun
     genact # A nonsense activity generator
+    wtf # The personal information dashboard for your terminal
   ];
 
   home.file.".tmux/plugins/tpm" = {
