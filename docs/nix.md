@@ -233,20 +233,6 @@ linux.overrideAttrs (o: {
 })
 ```
 
-## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
-- https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
-
-> For ephemeral environments mkShell is probably easier to use, as it is meant to be used just for this.
->
-> If you though have something you want to build and want to derive an exact build environment without any extras from it, then use mkDerivation to build the final package and get the Dev env for free from it.
-
-
-- https://ryantm.github.io/nixpkgs/builders/special/mkshell/
-
-> pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
-
-
-
 ### 编译老内核
 - 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
 
@@ -266,9 +252,24 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 同样的，可以构建一个 centos 环境来编译内核。
 
-
-## install custom kernel
+## 安装自定义的内核
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
+
+## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
+- https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
+
+> For ephemeral environments mkShell is probably easier to use, as it is meant to be used just for this.
+>
+> If you though have something you want to build and want to derive an exact build environment without any extras from it, then use mkDerivation to build the final package and get the Dev env for free from it.
+
+
+- https://ryantm.github.io/nixpkgs/builders/special/mkshell/
+
+> pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
+
+## 安装特定版本的程序
+- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
+- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
 
 ## 在 nix 中搭建内核调试的环境
 参考 https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
@@ -370,44 +371,52 @@ https://nixos.org/guides/nix-pills/index.html
 https://ianthehenry.com/posts/how-to-learn-nix/
 
 ## 使用特定版本的 gcc 或者 llvm
-切换 gcc 的方法:
 - https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
+  - 切换 gcc 的方法:
 
-切换 llvm 的方法参考 libbpf.nix
+- https://stackoverflow.com/questions/62592923/nix-how-to-change-stdenv-in-nixpkgs-mkshell
+  - 参考 libbpf.nix 中的
+
+## shell.nix 和 default.nix 的区别
+- https://stackoverflow.com/questions/44088192/when-and-how-should-default-nix-shell-nix-and-release-nix-be-used
+
+## 有趣的项目
+
+### [ ] nixos-shell
+- https://github.com/Mic92/nixos-shell
+
+### [ ] microvm.nix
+- https://github.com/astro/microvm.nix
+
+### nixos-generators
+- [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
+  - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
+
+### nixpacks
+使用 nix 创建 OCI images
+- https://news.ycombinator.com/item?id=32501448
+
+## 其他有趣的 Linux Distribution
+- https://kisslinux.org/install
+- [guix](https://boilingsteam.com/i-love-arch-but-gnu-guix-is-my-new-distro/)
+
+## 值得一看的资料
+- https://github.com/nix-community/awesome-nix
+- https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
+
 
 ## 问题
 - [ ] 搭建 Boom 的阅读环境
 - [ ] 无法正确安装 crash
-- [ ] https://github.com/astro/microvm.nix 可以和 firecracker 联动一下
-- [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
-  - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
-- [ ] 我感觉软链接还是更加好用一点，每次 home-manager switch 太慢了
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 - [ ] 为什么每次 home-manager 都是会出现这个问题
 ```txt
 warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
 these 2 derivations will be built:
 ```
-- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
-- [ ] https://stackoverflow.com/questions/62592923/nix-how-to-change-stdenv-in-nixpkgs-mkshell
-  - stdenv 中到底持有了啥
-- https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
-- https://news.ycombinator.com/item?id=32501448
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
-- https://github.com/Mic92/nixos-shell
 - 也许一举切换为 wayland
-- [ ] 无法处理内核
-- https://github.com/nix-community/awesome-nix
-- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
-- https://stackoverflow.com/questions/44088192/when-and-how-should-default-nix-shell-nix-and-release-nix-be-used
-
-## 测试一下，到底放不方便修改内核
-- 如果想要一份本地的源码，来安装，如何 ?
-
-
-## 其他有趣的 Linux Distribution
-- https://kisslinux.org/install
-- [guix](https://boilingsteam.com/i-love-arch-but-gnu-guix-is-my-new-distro/)
-
+- 测试一下，到底放不方便修改内核
+  - 如果想要一份本地的源码，来安装，如何 ?
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

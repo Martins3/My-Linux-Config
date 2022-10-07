@@ -112,6 +112,7 @@ in
     # fun
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
+    unstable.nixos-shell
   ];
 
   home.file.".tmux/plugins/tpm" = {
