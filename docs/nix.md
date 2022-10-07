@@ -217,9 +217,37 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 
 
 ## compile linux kernel
+目前的方法是使用 linux.nix 操作的，其中注意:
 - 内核的依赖是: elfutils
   - 参考: https://github.com/NixOS/nixpkgs/issues/91609
 
+
+另一种方法是直接复用 nixpkgs 中的配置:
+- https://ryantm.github.io/nixpkgs/using/overrides/
+- https://ryantm.github.io/nixpkgs/builders/packages/linux/#sec-linux-kernel
+
+```nix
+with import <nixpkgs> { };
+linux.overrideAttrs (o: {
+  nativeBuildInputs = o.nativeBuildInputs ++ [ pkgconfig ncurses ];
+})
+```
+
+## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
+- https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
+
+> For ephemeral environments mkShell is probably easier to use, as it is meant to be used just for this.
+>
+> If you though have something you want to build and want to derive an exact build environment without any extras from it, then use mkDerivation to build the final package and get the Dev env for free from it.
+
+
+- https://ryantm.github.io/nixpkgs/builders/special/mkshell/
+
+> pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
+
+
+
+### 编译老内核
 - 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
 
 使用这个仓库: https://github.com/a13xp0p0v/kernel-build-containers
@@ -236,8 +264,7 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 可能需要将 compile-commands.json 中将 aarch-gnu-gcc 替换为 gcc，否则 ccls 拒绝开始索引。
 
-
-同样的，可以构建一个 centos 环境来编译内核:
+同样的，可以构建一个 centos 环境来编译内核。
 
 
 ## install custom kernel
@@ -280,6 +307,11 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 但是更加简单的是直接 install :
 - https://www.joseferben.com/posts/installing_only_certain_packages_form_an_unstable_nixos_channel/
 
+## [ ] 如何安装 tarball 的包
+按照 https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
+的提示，
+rnix-lsp 可以，但是 x86-manpages 不可以
+
 ## 安装 feishu
 
   feishu = pkgs.callPackage
@@ -288,6 +320,15 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
       sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
     })
     { };
+
+
+## 常用 lib
+
+```nix
+readline.dev
+SDL2.dev
+```
+
 
 
 ## 学习 nix 语言
@@ -310,9 +351,10 @@ nix eval -f begin.nix
 ## nix pill
 https://nixos.org/guides/nix-pills/index.html
 
+## how to learn nix
+https://ianthehenry.com/posts/how-to-learn-nix/
+
 ## 问题
-- [ ] https://github.com/blitz/x86-manpages-nix : 靠，这个软件不知道如何安装
-- [ ] https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 - [ ] https://datakurre.pandala.org/2015/10/nix-for-python-developers.html/
 - [ ] 搭建 Boom 的阅读环境
 - [ ] coc-Lua 是自动下载的二进制文件是没有办法正常工作的
