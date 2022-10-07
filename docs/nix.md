@@ -118,9 +118,8 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing
 
-使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要编辑同一个文件，否则存在冲突。
+使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
 
-@todo 暂时没有搞文件夹配置，还是在网页上配置的。
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
 
@@ -156,6 +155,7 @@ sudo smbpasswd -a yourusername
 ```
 
 没有 syncthing 是更加好用的，因为 samba 所有的访问多是需要经过网络，没有缓存，而 syncthing 是将内容同步到本地的。
+
 ## npm 包管理
 支持的不是很好，需要手动安装
 
@@ -164,22 +164,6 @@ sudo smbpasswd -a yourusername
 nix-env -qaPA nixos.nodePackages
 ```
 但是只有非常少的包。
-
-## 安装最新的 neovim
-参考这个[^2] 来设置，这个库的更新非常激进，这意味着你的很多次 home-manager switch 都会触发 neovim 的自动编译。
-
-```nix
-nixpkgs.overlays = [
-  (import (builtins.fetchTarball {
-    url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-  }))
-];
-
-programs.neovim = {
-  enable = true;
-  package = pkgs.neovim-nightly;
-};
-```
 
 ## python
 ```txt
@@ -281,7 +265,30 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 - [reddit : i3， polybar rofi](https://www.reddit.com/r/NixOS/comments/wih19c/ive_been_using_nix_for_a_little_over_a_month_and/)
 
 ## 安装 unstable 的包
+
+一种方法是:
+```nix
+  /* microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {}; */
+  nixpkgs_unstable = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/ac608199012d63453ed251b1e09784cd841774e5.tar.gz";
+      sha256 = "0bcy5aw85f9kbyx6gv6ck23kccs92z46mjgid3gky8ixjhj6a8vr";
+    })
+    { config.allowUnfree = true; };
+```
+
+但是更加简单的是直接 install :
 - https://www.joseferben.com/posts/installing_only_certain_packages_form_an_unstable_nixos_channel/
+
+## 安装 feishu
+
+  feishu = pkgs.callPackage
+    (pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/xieby1/nix_config/main/usr/gui/feishu.nix";
+      sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
+    })
+    { };
+
 
 ## 学习 nix 语言
 搭建环境:
@@ -296,6 +303,12 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 ```sh
 nix eval -f begin.nix
 ```
+
+主要参考语言:
+- https://nixos.wiki/wiki/Overview_of_the_Nix_Language
+
+## nix pill
+https://nixos.org/guides/nix-pills/index.html
 
 ## 问题
 - [ ] https://github.com/blitz/x86-manpages-nix : 靠，这个软件不知道如何安装
@@ -349,4 +362,3 @@ these 2 derivations will be built:
 
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
-[^2]: https://breuer.dev/blog/nixos-home-manager-neovim

@@ -69,13 +69,12 @@ in
     # qemu
     # OVMF # 安装了，但是 OVMF.fd 没有找到
     qemu
-    qemu-utils
     ninja
     libvirt
     virt-manager
     meson
     # vim
-    neovim
+    unstable.neovim
     shellcheck
     shfmt
     rnix-lsp
@@ -102,11 +101,10 @@ in
     ]))
     man-pages
     man-pages-posix
-    # x86-manpages TMP_TODO 不知道如何安装，目前使用这种方法安装
+    /* x86-manpages */
     # nix-env -if https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz
+    /* import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz") */
     lazydocker
-    # TMP_TODO 在处理 efivar 的编译的时候，引入这个，但是似乎有问题
-    /* mandoc */
     nixos-generators
     unstable.gum
     # acpi
@@ -116,8 +114,7 @@ in
     targetcli
     fio
     # fun
-    genact
-    czkawka
+    genact # A nonsense activity generator
   ];
 
   home.file.".tmux/plugins/tpm" = {
@@ -155,14 +152,14 @@ in
       z = "j";
       mc = "make clean";
       k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
-      flamegraph="/home/martins3/Sync/vn/docs/kernel/code/flamegraph.sh";
+      flamegraph = "/home/martins3/Sync/vn/docs/kernel/code/flamegraph.sh";
       en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
       env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
       knews = "~/.dotfiles/scripts/systemd/news.sh kernel";
       qnews = "~/.dotfiles/scripts/systemd/news.sh qemu";
       ck = "systemctl --user start kernel";
       cq = "systemctl --user start qemu";
-      git_ignore="echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore";
+      git_ignore = "echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore";
     };
 
     # TMP_TODO 这样写是非常不优雅的
