@@ -2,9 +2,12 @@
 
 let
   unstable = import <unstable> { };
+  rnix-lsp2 = import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz");
+  x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 in
 {
   fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     # compiler && builder
     autoconf
@@ -56,18 +59,14 @@ in
     nbd
     # nix
     nix-index
-    # lib
-    readline.dev
-    SDL2.dev
     # kernel
     numactl
     kexec-tools
     rpm
     stress-ng
     numatop
-    # numastat TMP_TODO 如何安装这个包
     # qemu
-    # OVMF # 安装了，但是 OVMF.fd 没有找到
+    # OVMF # TMP_TODO 安装了，但是 OVMF.fd 没有找到
     qemu
     ninja
     libvirt
@@ -77,11 +76,8 @@ in
     unstable.neovim
     shellcheck
     shfmt
-    rnix-lsp
+    rnix-lsp2
     tree-sitter
-    # tlpi # TMP_TODO 既没有找到正确的 tlpi，也无法将所有的 tlpi 都编译成功。
-    libcap
-    acl
     # trace
     pkgs.linuxPackages_latest.perf
     iperf
@@ -101,9 +97,8 @@ in
     ]))
     man-pages
     man-pages-posix
-    /* x86-manpages */
-    # nix-env -if https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz
-    /* import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz") */
+    # TMP_TODO 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
+    # x86-manpages
     lazydocker
     nixos-generators
     unstable.gum
@@ -251,6 +246,7 @@ in
       };
     };
   };
+
 
   home.file.gdbinit = {
     source = pkgs.fetchurl {

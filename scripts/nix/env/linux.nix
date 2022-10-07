@@ -2,7 +2,7 @@
 
 pkgs.stdenv.mkDerivation {
   name = "linux-kernel-build";
-  nativeBuildInputs = with pkgs; [
+  buildInputs = with pkgs; [
     getopt
     flex
     bison
@@ -20,8 +20,7 @@ pkgs.stdenv.mkDerivation {
     libcap
     libmnl
     libcap_ng
-  ];
-  buildInputs = with pkgs; [
+
     elfutils
     ncurses
     openssl

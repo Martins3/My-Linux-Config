@@ -1,8 +1,10 @@
 let
   pkgs = import <nixpkgs> { };
 in
-pkgs.mkShell rec {
-  nativeBuildInputs = with pkgs.buildPackages; [
+pkgs.stdenv.mkDerivation {
+  name = "martins3's QEMU";
+  buildInputs = with pkgs; [
+    zlib
     pkgconfig
     ninja
     glib
@@ -13,5 +15,4 @@ pkgs.mkShell rec {
     libiscsi
     libslirp
   ];
-  buildInputs = with pkgs; [ zlib ];
 }
