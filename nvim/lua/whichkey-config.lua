@@ -26,10 +26,9 @@ wk.register({
     g = { "<cmd>Telescope live_grep<cr>", "live grep" },
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
-    i = { "<cmd>Octo issue list<cr>", "list github issue" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
-    M = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
+    m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },

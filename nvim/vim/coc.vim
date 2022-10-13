@@ -127,9 +127,3 @@ endfor
 " 方便在中文中使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
-
-" 默认是不需要设置这个的，但是如果遇到 missing import error
-" 多半是这个没有正确设置，参考:
-" - https://github.com/fannheyward/coc-pyright/issues/184
-" - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
-" call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")

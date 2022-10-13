@@ -858,6 +858,12 @@ setxkbmap -option caps:swapescape
   - 使用 ccls 的确可以在 c/cpp 中快速跳转到 header 中，但是这占据了 x ，而且不能通用
 - [ ] CocLocations 更新之后才发现是存在直接跳转到对应位置的方法的
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
+
+" 默认是不需要设置这个的，但是如果遇到 missing import error
+" 多半是这个没有正确设置，参考:
+" - https://github.com/fannheyward/coc-pyright/issues/184
+" - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
+" call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")
 -->
 
 ## 衍生
