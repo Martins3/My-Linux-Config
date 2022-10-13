@@ -194,7 +194,7 @@ error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647
 ```
 中的 python 删除就可以了。
 
-## cpp
+## [ ] cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
 - https://www.breakds.org/post/nix-based-c++-workflow/
 - https://nixos.wiki/wiki/C
@@ -215,8 +215,10 @@ https://xieby1.github.io/scripts/index.html
 nix-shell '<nixpkgs>' -A lua --command zsh
 ```
 
+## kernel
+- https://nixos.wiki/wiki/Linux_kernel
 
-## compile linux kernel
+### 编译内核
 目前的方法是使用 linux.nix 操作的，其中注意:
 - 内核的依赖是: elfutils
   - 参考: https://github.com/NixOS/nixpkgs/issues/91609
@@ -252,8 +254,13 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 同样的，可以构建一个 centos 环境来编译内核。
 
-## 安装自定义的内核
+### 安装自定义的内核
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
+
+### [ ] 调试内核
+
+- [ ] 对于一下 redhat 的工具，似乎当 kernel 挂掉之后难以正确的处理
+  - [ ] https://github.com/crash-utility/crash
 
 ## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
 - https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
@@ -364,11 +371,18 @@ nix eval -f begin.nix
   - https://nixos.wiki/wiki/NixOS_on_ARM
   - https://www.sevarg.net/2021/01/09/arm-mac-mini-and-boinc/
 
-## nix pill
-https://nixos.org/guides/nix-pills/index.html
+## tutorial
+### nix pill
+- https://nixos.org/guides/nix-pills/index.html
 
-## how to learn nix
-https://ianthehenry.com/posts/how-to-learn-nix/
+### how to learn nix
+- https://ianthehenry.com/posts/how-to-learn-nix/
+
+### nix.dev
+- https://nix.dev/tutorials/dev-environment
+
+可以关注一下:
+https://nix.dev/anti-patterns/language
 
 ## 使用特定版本的 gcc 或者 llvm
 - https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
@@ -404,9 +418,9 @@ https://ianthehenry.com/posts/how-to-learn-nix/
 - https://github.com/nix-community/awesome-nix
 - https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
 
+## [ ] 搭建 Boom 的阅读环境
 
 ## 问题
-- [ ] 搭建 Boom 的阅读环境
 - [ ] 无法正确安装 crash
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 - [ ] 为什么每次 home-manager 都是会出现这个问题
@@ -415,6 +429,7 @@ warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwk
 these 2 derivations will be built:
 ```
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
+- https://www.ertt.ca/nix/shell-scripts/
 - 也许一举切换为 wayland
 - 测试一下，到底放不方便修改内核
   - 如果想要一份本地的源码，来安装，如何 ?

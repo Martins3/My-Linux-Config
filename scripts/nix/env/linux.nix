@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.stdenv.mkDerivation {
-  name = "linux-kernel-build";
+  name = "kernel";
   buildInputs = with pkgs; [
     getopt
     flex
@@ -11,19 +11,19 @@ pkgs.stdenv.mkDerivation {
     bc
     rpm
     dpkg
-    pahole
+    pahole # bpf
     pkg-config
     binutils
+
+    elfutils
+    ncurses
+    openssl
+    zlib
 
     # selftests
     alsa-lib
     libcap
     libmnl
     libcap_ng
-
-    elfutils
-    ncurses
-    openssl
-    zlib
   ];
 }

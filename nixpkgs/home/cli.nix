@@ -57,6 +57,7 @@ in
     ethtool
     sshpass
     gping # better ping
+    unstable.pingu
     nbd
     # nix
     nix-index
@@ -84,10 +85,7 @@ in
     iperf
     bpftrace
     sysstat # sar, iostat and pidstat mpstat
-    # dpdk
     dpdk
-
-    # python
     (python3.withPackages (p: with p; [
       pandas
       pygal
@@ -96,6 +94,7 @@ in
       filelock
       autopep8
     ]))
+    perl
     man-pages
     man-pages-posix
     # TMP_TODO 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
@@ -158,6 +157,9 @@ in
       ck = "systemctl --user start kernel";
       cq = "systemctl --user start qemu";
       git_ignore = "echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore";
+      # TMP_TODO 继承一下这个
+      /* git describe --contains 5de97c9f6d85fd83af76e09e338b18e7adb1ae60 */
+      # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
     };
 
     # TMP_TODO 这样写是非常不优雅的
