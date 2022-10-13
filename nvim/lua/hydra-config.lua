@@ -1,7 +1,27 @@
 local Hydra = require('hydra')
 
+-- 首先按 c a ，然后就可以使用 hjkl 来调整窗口大小
+
+local hint = [[
+ Adjust window size^^^^^^
+ ^ ^ _k_ ^ ^
+ _h_ ^ ^ _l_
+ ^ ^ _j_ ^ ^     _<Esc>_ to exit
+]]
+
 Hydra({
-  name = 'Window size',
+  name = 'Draw Diagram',
+  hint = hint,
+  config = {
+    color = 'pink',
+    invoke_on_body = true,
+    hint = {
+      border = 'rounded'
+    },
+    on_enter = function()
+      vim.o.virtualedit = 'all'
+    end,
+  },
   mode = 'n',
   body = 'ca',
   heads = {
@@ -9,6 +29,8 @@ Hydra({
     { 'j', '5<C-w>-', { desc = 'j/k height' } },
     { 'h', '5<C-w>>', },
     { 'l', '5<C-w><', { desc = ' h/l width' } },
+    { '<Esc>', nil, { exit = true } },
+    { '<cr>', nil, { exit = true } },
   }
 })
 
