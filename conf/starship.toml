@@ -66,6 +66,7 @@ $custom\
 $sudo\
 $cmd_duration\
 $jobs\
+$line_break\
 $battery\
 $time\
 $status\

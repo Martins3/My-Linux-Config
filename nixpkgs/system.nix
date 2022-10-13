@@ -141,4 +141,7 @@ in
     enable = true;
   };
   nix.settings.experimental-features = "nix-command flakes";
+
+  # TMP_TODO 如何增加模块
+  /* boot.extraModulePackages = with config.boot.kernelPackages; [ mce-inject ]; */
 }

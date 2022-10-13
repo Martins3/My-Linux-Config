@@ -7,6 +7,7 @@ ln -sf ~/.dotfiles/conf/kitty ~/.config/kitty
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/conf/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/conf/zathurarc ~/.config/zathura/zathurarc
+ln -sf ~/.dotfiles/conf/starship.toml ~/.config/starship.toml
 
 # kitty is used to substitute alacritty
 # ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
