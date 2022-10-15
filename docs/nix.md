@@ -235,6 +235,8 @@ linux.overrideAttrs (o: {
 })
 ```
 
+### [ ] 编译内核模块
+
 ### 编译老内核
 - 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
 
@@ -257,10 +259,9 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 ### 安装自定义的内核
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
 
-### [ ] 调试内核
-
+### [ ] crash
 - [ ] 对于一下 redhat 的工具，似乎当 kernel 挂掉之后难以正确的处理
-  - [ ] https://github.com/crash-utility/crash
+  - [ ] https://github.com/crash-utility/crash 无法正确安装
 
 ## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
 - https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
@@ -419,6 +420,11 @@ https://nix.dev/anti-patterns/language
 - https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
 
 ## [ ] 搭建 Boom 的阅读环境
+
+## [ ] flake.nix
+实验特性
+
+- https://nixos.wiki/wiki/Flakes
 
 ## 问题
 - [ ] 无法正确安装 crash

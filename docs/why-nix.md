@@ -51,9 +51,6 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 
 使用 https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/misc/hello/default.nix 作为例子。
 
-需要看看的语法:
-- [ ] let in 语法
-
 ### manual : https://nixos.org/manual/nixpkgs/stable/
 - [ ] 这个是侧重什么东西啊?
 
@@ -92,6 +89,7 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 - https://github.com/nixos-cn/flakes : nixos 中文社区
 - https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
 - https://github.com/mitchellh/nixos-config
+- https://github.com/Misterio77/nix-starter-configs : Simple and documented config templates to help you get started with NixOS + home-manager + flakes. All the boilerplate you need!
 
 ## 目前最好的教程，应该上手完成之后，就使用这个
 - https://scrive.github.io/nix-workshop/01-getting-started/03-resources.html 资源合集
