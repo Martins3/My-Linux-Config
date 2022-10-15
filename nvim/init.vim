@@ -77,6 +77,7 @@ lua require 'whichkey-config'
 lua require 'code-runner-config'
 lua require 'treesitter'
 lua require 'hydra-config'
+lua require "debugxx"
 lua require 'colorizer'.setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
 lua require('nvim-autopairs').setup{}
 lua require('gitsigns').setup{}

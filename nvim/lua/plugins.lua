@@ -95,5 +95,26 @@ require("packer").startup({
     use 'anuvyklack/hydra.nvim' -- 消除重复快捷键，可以用于调整 window 大小等
     -- use 'inkarkat/vim-mark' --- 高亮多个搜索的内容 @todo 暂时安装不上
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
+
+    use "ravenxrz/DAPInstall.nvim" -- help us install several debuggers
+    use "ravenxrz/nvim-dap"
+    use "theHamsta/nvim-dap-virtual-text"
+    use "rcarriga/nvim-dap-ui"
+    use "nvim-telescope/telescope-dap.nvim"
   end,
 })
+
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+keymap("n", "<leader>ib", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<leader>iB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", opts)
+keymap("n", "<leader>ir", "lua require'dap'.repl.open()<cr>", opts)
+keymap("n", "<leader>il", "lua require'dap'.run_last()<cr>", opts)
+keymap('n', '<F10>', '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>', opts)
+keymap("n", "<F4>", "<cmd>lua require'dap'.terminate()<cr>", opts)
+keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", opts)
+keymap("n", "<F6>", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<F7>", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<F8>", "<cmd>lua require'dap'.step_out()<cr>", opts)
+keymap("n", "K", "<cmd>lua require'dapui'.eval()<cr>", opts)
+-- /Users/huxueshi/.local/share/nvim/dapinstall/ccppr_vsc/extension/debugAdapters/bin/OpenDebugAD7: ENOENT: no such file or directory
