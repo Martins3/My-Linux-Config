@@ -426,7 +426,11 @@ https://nix.dev/anti-patterns/language
 
 - https://nixos.wiki/wiki/Flakes
 
+## [ ] rpm 构建的出来的 rpmbuild 权限不对
+
 ## 问题
+- [ ] 直接下载的 vs debug adaptor 无法正确使用:
+  - https://github.com/Martins3/My-Linux-Config/issues/14
 - [ ] 无法正确安装 crash
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 - [ ] 为什么每次 home-manager 都是会出现这个问题
@@ -439,5 +443,6 @@ these 2 derivations will be built:
 - 也许一举切换为 wayland
 - 测试一下，到底放不方便修改内核
   - 如果想要一份本地的源码，来安装，如何 ?
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

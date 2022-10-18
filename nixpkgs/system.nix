@@ -87,6 +87,10 @@ in
     enable = true;
   };
 
+  services.jenkins = {
+    enable = true;
+  };
+
   systemd.user.services.kernel = {
     enable = true;
     unitConfig = { };

@@ -85,6 +85,7 @@ in
     iperf
     bpftrace
     sysstat # sar, iostat and pidstat mpstat
+    pstree
     dpdk
     (python3.withPackages (p: with p; [
       pandas
@@ -112,6 +113,7 @@ in
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
+    viddy # A modern watch command.
   ];
 
   home.file.".tmux/plugins/tpm" = {
@@ -206,7 +208,7 @@ in
   programs.git = {
     enable = true;
     userEmail = "hubachelar@gmail.com";
-    userName = "martins3";
+    userName = "xueshi.hu";
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin
