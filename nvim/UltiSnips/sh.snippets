@@ -1,6 +1,6 @@
 priority -50
 # notes based on https://wangdoc.com/bash/
-# bible based on https://github.com/dylanaraps/pure-bash-bible
+# note based on https://github.com/dylanaraps/pure-bash-note
 
 snippet note_here "heredoc"
 # 如果不希望发生变量替换，可以把 Here 文档的开始标记放在单引号之中。
@@ -213,7 +213,7 @@ for i in "${array[@]}"; do
 done
 endsnippet
 
-snippet bible_trim_string "trim string"
+snippet note_trim_string "trim string"
 # Usage: trim_string "   example   string    "
 function trim_string() {
 	: "${1#"${1%%[![:space:]]*}"}"
@@ -222,7 +222,7 @@ function trim_string() {
 }
 endsnippet
 
-snippet bible_trim_all "trim all"
+snippet note_trim_all "trim all"
 # shellcheck disable=SC2086,SC2048
 # Usage: trim_all "   example   string    "
 function trim_all() {
@@ -233,7 +233,7 @@ function trim_all() {
 }
 endsnippet
 
-snippet bible_split "split"
+snippet note_split "split"
 # Usage: split "string" "delimiter"
 function split() {
 	IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
@@ -241,7 +241,7 @@ function split() {
 }
 endsnippet
 
-snippet bible_iter_dir "iter dir recursively"
+snippet note_iter_dir "iter dir recursively"
 shopt -s globstar
 for file in "$(pwd)"/**; do
 	printf '%s\n' "$file"
@@ -249,7 +249,7 @@ done
 shopt -u globstar
 endsnippet
 
-snippet bible_head "head lines of file"
+snippet note_head "head lines of file"
 # Usage: head "n" "file"
 head() {
 	mapfile -tn "$1" line <"$2"
@@ -257,7 +257,7 @@ head() {
 }
 endsnippet
 
-snippet bible_tail "tail lines of file"
+snippet note_tail "tail lines of file"
 tail() {
 	# Usage: tail "n" "file"
 	mapfile -tn 0 line < "$2"
@@ -265,11 +265,17 @@ tail() {
 }
 endsnippet
 
-snippet bible_exits "tail lines of file"
+snippet note_exits "tail lines of file"
 function exits() {
   if ! [ -x "$(command -v $1)" ]; then
     echo "Error: $1 is not installed." >&2
     exit 1
   fi
 }
+endsnippet
+
+snippet note_secure "make bash more secure"
+# -u ：试图使用未定义的变量，就立即退出。
+# -o pipefail ： 只要管道中的一个子命令失败，整个管道命令就失败。
+set -e -u -o pipefail
 endsnippet

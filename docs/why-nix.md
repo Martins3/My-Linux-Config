@@ -73,8 +73,7 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 * TODO https://ianthehenry.com/posts/how-to-learn-nix/ : 在 QEMU 中间首先测试一下，看看 zhihu 上的大佬的说明
   [2021-12-13 Mon]
 
-- https://github.com/nix-community/home-manager : 管理 ~ 的工具?
-  - https://github.com/Misterio77/nix-colors : 主题
+- https://github.com/Misterio77/nix-colors : 主题
 
 ## 文摘
 - [ ] https://christine.website/blog/nix-flakes-2-2022-02-27 : xe 写的
