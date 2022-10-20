@@ -128,7 +128,6 @@ in
     wantedBy = [ "timers.target" ];
   };
 
-  # TMP_TODO 不知道为什么这个不是自动启动的，但是 kernel.service 是的
   systemd.user.services.httpd = {
     enable = true;
     description = "export home dir to LAN";
@@ -145,7 +144,4 @@ in
     enable = true;
   };
   nix.settings.experimental-features = "nix-command flakes";
-
-  # TMP_TODO 如何增加模块
-  /* boot.extraModulePackages = with config.boot.kernelPackages; [ mce-inject ]; */
 }

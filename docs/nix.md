@@ -235,6 +235,12 @@ linux.overrideAttrs (o: {
 })
 ```
 
+
+## [ ] 如何增加模块
+
+或者说，这个配置是做什么的
+/* boot.extraModulePackages = with config.boot.kernelPackages; [ mce-inject ]; */
+
 ### [ ] 编译内核模块
 
 ### 编译老内核
