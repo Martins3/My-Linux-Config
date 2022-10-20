@@ -9,11 +9,11 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    # compiler && builder
     autoconf
     automake
     pkg-config
     gcc
+    mold
     go
     lua
     unstable.sumneko-lua-language-server
@@ -31,6 +31,7 @@ in
     xclip
     jq
     htop
+    btop
     unzip
     fzf
     ripgrep

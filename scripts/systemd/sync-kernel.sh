@@ -240,6 +240,8 @@ CONFIG_BOOTPARAM_HARDLOCKUP_PANIC=y
 CONFIG_IRQ_TIME_ACCOUNTING=y
 CONFIG_HAVE_SCHED_AVG_IRQ=y
 
+# try to learn scsi
+CONFIG_SCSI_LOGGING=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
