@@ -59,7 +59,7 @@ wk.register({
     ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9" },
     ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0" },
 
-    ['a'] = {
+    a = {
       name = "+misc",
       a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server" },
       d = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space" },
@@ -67,18 +67,18 @@ wk.register({
       s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server" },
       t = { "<Plug>(coc-translator-p)", "translate current word" },
     },
-    ['b'] = {
+    b = {
       name = "+buffer",
-      ["c"] = { "<cmd>BDelete hidden<cr>", "close invisible buffers" },
-      ["d"] = { "<cmd>bdelete %<cr>", "close current buffers" },
+      c = { "<cmd>BDelete hidden<cr>", "close invisible buffers" },
+      d = { "<cmd>bdelete %<cr>", "close current buffers" },
     },
-    ["f"] = {
+    f = {
       name = "+file",
       o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
       s = { "<cmd>w<cr>", "save file" },
       t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" }
     },
-    ["g"] = {
+    g = {
       name = "+git",
       a = { "<cmd>Git add -A<cr>", "git stage all changes" },
       b = { "<cmd>Git blame<cr>", "git blame" },
@@ -89,7 +89,7 @@ wk.register({
       p = { "<cmd>Git push<cr>", "git push" },
       s = { "<cmd>FloatermNew tig status<cr>", "git status" },
     },
-    ['l'] = {
+    l = {
       name = "+language",
       c = { "<cmd>Commentary<cr>", "comment code" },
       f = { "<cmd>call CocActionAsync('format')<cr>", "format current buffer" },
@@ -98,30 +98,31 @@ wk.register({
       p = { "<cmd>call Preivew()<cr>", "preview" },
     },
     -- o 被 orgmode 使用
-    ["q"] = { "<cmd>qa<cr>", "close vim" },
-    ["s"] = {
+    q = { "<cmd>qa<cr>", "close vim" },
+    s = {
       name = "+search",
       P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
         "search cursor word in project" },
       p = { "<cmd>lua require('spectre').open()<cr>", "search in project" }
     },
-    ["t"] = {
+    t = {
       name = "+toggle",
       ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
-      ["b"] = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
-      ["s"] = { "<cmd>set spell!<cr>", "spell check" },
-      ["w"] = { "<cmd>set wrap!<cr>", "wrap line" },
-      ["h"] = { "<cmd>noh<cr>", "Stop the highlighting" },
-      ["m"] = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
-      ["t"] = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
+      b = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
+      s = { "<cmd>set spell!<cr>", "spell check" },
+      w = { "<cmd>set wrap!<cr>", "wrap line" },
+      h = { "<cmd>noh<cr>", "Stop the highlighting" },
+      m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
+      t = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
-    ["x"] = { "<cmd>FloatermNew ipython<cr>", "calculated" },
+    x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
   q = { "<cmd>q<cr>", "close window" },
-  ["c"] = {
+  c = {
     name = "+window",
+    -- i f a t 被 textobject 所使用
     g = { "<cmd>vsp<cr>", "vertical split window" },
-    f = { "<cmd>sp<cr>", "horizontal split window" },
+    h = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "delete other window" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { "<cmd>Vista!!<cr>", "toggle vista navigator" },
@@ -130,7 +131,7 @@ wk.register({
     K = { "<C-w>k", "go to the window up" },
     L = { "<C-w>l", "go to the window right" },
   },
-  ["m"] = {
+  m = {
     name = "+bookmarks",
     a = { "<cmd>Telescope vim_bookmarks all<cr>", "list marks in project" },
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
@@ -141,11 +142,11 @@ wk.register({
 
 wk.register({
   ["<space>"] = {
-    ["l"] = {
-      ["c"] = { ":Commentary<cr>", "comment code" },
-      ["f"] = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
+    l = {
+      c = { ":Commentary<cr>", "comment code" },
+      f = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
     },
-    ["s"] = { "<cmd>lua require('spectre').open_visual()<cr>", "search" }
+    s = { "<cmd>lua require('spectre').open_visual()<cr>", "search" }
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })

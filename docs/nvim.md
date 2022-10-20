@@ -785,7 +785,35 @@ setxkbmap -option caps:swapescape
 | `{` / `}`   | 分别向上向下跳转到空格         |
 | `[[` / `]]` | 分别向上或向下跳转最外层的 `{` |
 
-参考:
+- 在 vim 中可以通过`:help v_g_CTRL-A` 输入连续的数字
+
+- text-object
+  - 动词 : c(hange) d(elete)
+  - 副词 : i(nside) a(round) t(o) f(orward)
+  - 名词 : w(ord) s(entence) p(aragraph) t(ag) \` ' " [ ( {
+    - tag 是 markup 语言中的 tag，例如 `<h2> hi </h2>`
+
+| Old text           | Command | New text         |
+|--------------------|---------|------------------|
+| 'hello/wo*rld'     | ci'     | ''               |
+| \<*h2\> hi \</h2\> | dit     | \<*h2\>  \</h2\> |
+
+- 通过 [nvim-surround](https://github.com/kylechui/nvim-surround) 插件，可以增加 surround 语义，表中的 * 表示光标的位置:
+
+> | Old text                      | Command   | New text                  |
+> |-------------------------------|-----------|---------------------------|
+> | surr*ound_words               | ysiw)     | (surround_words)          |
+> | *make strings                 | ys$"      | "make strings"            |
+> | [delete ar*ound me!]          | ds]       | delete around me!         |
+> | remove \<b\>HTML t*ags\</b\>` | dst       | remove HTML tags          |
+> | 'change quot*es'              | cs'"      | "change quotes"           |
+> | \<b\>or tag* types\</b\>      | csth1<CR> | \<h1\>or tag types\</h1\> |
+> | delete(functi*on calls)       | dsf       | function calls            |
+
+其中 y 是增加，d 删除，c 修改 的语义。
+
+
+以上技巧，部分参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
 ## 调试 vim 配置
@@ -850,13 +878,6 @@ setxkbmap -option caps:swapescape
 - [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无处处理 source 其他的文件的情况。
-- [ ] 关注 text-object
-  - ci' 可以将 'hello/world' 修改为 ''
-    - 总体来说，i(nside) a(round) t(o) f(orward)
-  - https://this-week-in-neovim.org/2022/Aug/08 最后的 tips 简介一些
-  - :h nvim-surround.usage 来学习如何使用 surround 键盘
-  - 使用 ccls 的确可以在 c/cpp 中快速跳转到 header 中，但是这占据了 x ，而且不能通用
-- [ ] CocLocations 更新之后才发现是存在直接跳转到对应位置的方法的
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
