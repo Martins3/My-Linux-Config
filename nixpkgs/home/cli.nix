@@ -115,6 +115,7 @@ in
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
     viddy # A modern watch command.
+    mcfly # better ctrl-r for shell
   ];
 
   home.file.".tmux/plugins/tpm" = {
@@ -171,6 +172,7 @@ in
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
     eval \"$(direnv hook zsh)\"
     eval \"$(starship init zsh)\"
+    eval \"$(mcfly init zsh)\"
 
     function gscp() {
       file_name=$1
