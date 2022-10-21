@@ -4,9 +4,9 @@
 
 * [前言](#前言)
 * [入门 vim](#入门-vim)
-* [终极解决方案: lsp](#终极解决方案-lsp)
-* [纵享丝滑: async](#纵享丝滑-async)
-* [精准与否，是屠宰和手术的区别: treesitter](#精准与否是屠宰和手术的区别-treesitter)
+* [Language Server Protocal](#language-server-protocal)
+* [Async](#async)
+* [Treesitter](#treesitter)
 * [为什么使用 coc.nvim](#为什么使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
@@ -96,7 +96,7 @@
 
 vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
 
-## 终极解决方案: lsp
+## Language Server Protocal
 lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
 1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust 语言采用 [rust analyzer](https://github.com/rust-analyzer/rust-analyzer), 官方列举了很多 [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)。
 2. 不同的编辑按照 lsp 的规范和 language server 通信
@@ -113,21 +113,23 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 +------------------------+    +---------------+
 ```
 
-## 纵享丝滑: async
-另一个新特性是 async 。async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
+## Async
+async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
 
 文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开 Linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
 直到将 nerdtree 替换为 [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua) 之类的
 
 关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
 
-## 精准与否，是屠宰和手术的区别: treesitter
+## Treesitter
 [treesitter](https://github.com/tree-sitter/tree-sitter) 通过语法分析，而不是词法分析，这让很多事情都非常精确。
 
 1. 更加的智能和高效的高亮。原始的 vim 中只能按照正则匹配来高亮关键字，但是 treesitter 可以区分什么是函数，成员，类，宏等定义。
 2. 如果想要跳转到函数头，在 vim 中使用默认提供 [`[` `m`](https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim)，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
 对于文件的格式有要求，但是如何使用上 [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)，这个问题就不存在了，你总是可以跳转到函数的开始位置。
 3. 精确的拼写检查。[spellsitter](https://www.reddit.com/r/neovim/comments/x7k7r7/spellsitter_merged_to_neovim_core/) 可以让拼写检查仅仅检查注释中内容，而默认的检查会检查所有的单词，包括各种缩写函数名，那些检查大部分都是误报。
+
+通过 Treesitter ，[有的插件](https://github.com/ThePrimeagen/refactoring.nvim)可以做到超乎想象的事情，甚至是将《重构，改善既有代码》的操作集成到 vim 中。
 
 ## 为什么使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
