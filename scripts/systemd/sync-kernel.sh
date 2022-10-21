@@ -254,4 +254,4 @@ nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
 # 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-# nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 60, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 60, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
