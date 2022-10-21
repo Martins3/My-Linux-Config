@@ -1,22 +1,3 @@
-" 检查 nvim 版本
-lua << EOF
-local function get_nvim_version()
-  local actual_ver = vim.version()
-
-  local nvim_ver_str = string.format("%d.%d.%d", actual_ver.major, actual_ver.minor, actual_ver.patch)
-  return nvim_ver_str
-end
-
-local expected_ver = "0.8.0"
-local nvim_ver = get_nvim_version()
-
-if nvim_ver ~= expected_ver then
-  local msg = string.format("Unsupported nvim version: expect %s, but got %s instead!\n", expected_ver, nvim_ver)
-  vim.api.nvim_err_writeln(msg)
-end
-
-EOF
-
 syntax enable
 " 鼠标可以移动，调整窗口等
 set mouse=a
@@ -68,6 +49,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " 加载 lua 配置
+lua require 'version'
 lua require 'plugins'
 lua require 'buffer-config'
 lua require 'orgmode-config'
