@@ -2,6 +2,14 @@ priority -50
 # notes based on https://wangdoc.com/bash/
 # note based on https://github.com/dylanaraps/pure-bash-note
 
+snippet note_variable "variable"
+# 如果 varname 不是"存在且不为空"
+#   ${varname:-word} : 那么得到 word
+#   ${varname:=word} : 那么得到 word，并且 varname=word
+#   ${varname:?message} : 那么展示 message
+# ${varname:+word} 和 - 反过来的
+endsnippet
+
 snippet note_here "heredoc"
 # 如果不希望发生变量替换，可以把 Here 文档的开始标记放在单引号之中。
 # << '_EOF_'
@@ -52,7 +60,7 @@ endsnippet
 snippet fori "C style for loop"
 VAR=50
 for ((i=0;i<=VAR;i=i + 4)); do
-	printf '%s\n' "$i"
+        printf '%s\n' "$i"
 done
 endsnippet
 
@@ -82,24 +90,20 @@ done
 shift $((OPTIND - 1))
 endsnippet
 
-snippet note_showprocesstree "显示进程状态的继承关系"
-ps -auxf
-endsnippet
-
 snippet note_readfile "read file line by line"
 # https://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable
 while read -r line; do
-	read -ra array <<< "$line"
-	for w in "${array[@]}"; do
-		echo "[$w]"
-	done
+        read -ra array <<< "$line"
+        for w in "${array[@]}"; do
+                echo "[$w]"
+        done
 done <ByMyWill.md
 endsnippet
 
 snippet note_issubstr "is substring"
 string='My long string'
 if [[ $string == *"My long"* ]]; then
-	echo "It's there!"
+        echo "It's there!"
 fi
 endsnippet
 
@@ -127,13 +131,18 @@ ${variable/pattern/string}
 # 如果 pattern 匹配变量 variable 的一部分，
 # 最长匹配（贪婪匹配）的那部分被 string 替换，所有匹配都替换
 ${variable//pattern/string}
+
+# 经典案例
+# filename=$(basename -- "$fullfile")
+# extension="${filename##*.}"
+# filename="${filename%.*}"
 endsnippet
 
 snippet note_cmpbool "compare file"
 the_world_is_flat=true
 # ...do something interesting...
 if [ "$the_world_is_flat" = true ] ; then
-	echo 'Be careful not to fall off!'
+        echo 'Be careful not to fall off!'
 fi
 
 endsnippet
@@ -175,6 +184,7 @@ snippet note_cmpstring "compare string"
 # [ string1 != string2 ]：如果string1和string2不相同，则判断为真。
 # [ string1 '>' string2 ]：如果按照字典顺序string1排列在string2之后，则判断为真。
 # [ string1 '<' string2 ]：如果按照字典顺序string1排列在string2之前，则判断为真。
+# [ string1 =~ string2 ]：判断 string2 是不是 string1 的 substring。
 endsnippet
 
 snippet note_cmpint "compare int"
@@ -189,19 +199,19 @@ endsnippet
 snippet note_select "compare int"
 select brand in Samsung Sony iphone symphony Walton
 do
-	echo "You have chosen $brand"
+        echo "You have chosen $brand"
 done
 endsnippet
 
 snippet note_forarray "for every element in array"
 for i in "${array[@]}"; do
-	echo "$i"
+        echo "$i"
 done
 endsnippet
 
 snippet note_forarrayindex "for every element in array"
 for ((i=0;i<${#arr[@]};i++)); do
-	printf '%s\n' "${arr[i]}"
+        printf '%s\n' "${arr[i]}"
 done
 endsnippet
 
@@ -209,16 +219,16 @@ snippet note_readintoarray "read into array"
 array=()
 read -r -a array
 for i in "${array[@]}"; do
-	echo "$i"
+        echo "$i"
 done
 endsnippet
 
 snippet note_trim_string "trim string"
 # Usage: trim_string "   example   string    "
 function trim_string() {
-	: "${1#"${1%%[![:space:]]*}"}"
-	: "${_%"${_##*[![:space:]]}"}"
-	printf '%s\n' "$_"
+        : "${1#"${1%%[![:space:]]*}"}"
+        : "${_%"${_##*[![:space:]]}"}"
+        printf '%s\n' "$_"
 }
 endsnippet
 
@@ -226,25 +236,25 @@ snippet note_trim_all "trim all"
 # shellcheck disable=SC2086,SC2048
 # Usage: trim_all "   example   string    "
 function trim_all() {
-	set -f
-	set -- $*
-	printf '%s\n' "$*"
-	set +f
+        set -f
+        set -- $*
+        printf '%s\n' "$*"
+        set +f
 }
 endsnippet
 
 snippet note_split "split"
 # Usage: split "string" "delimiter"
 function split() {
-	IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
-	printf '%s\n' "${arr[@]}"
+        IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
+        printf '%s\n' "${arr[@]}"
 }
 endsnippet
 
 snippet note_iter_dir "iter dir recursively"
 shopt -s globstar
 for file in "$(pwd)"/**; do
-	printf '%s\n' "$file"
+        printf '%s\n' "$file"
 done
 shopt -u globstar
 endsnippet
@@ -252,16 +262,16 @@ endsnippet
 snippet note_head "head lines of file"
 # Usage: head "n" "file"
 head() {
-	mapfile -tn "$1" line <"$2"
-	printf '%s\n' "${line[@]}"
+        mapfile -tn "$1" line <"$2"
+        printf '%s\n' "${line[@]}"
 }
 endsnippet
 
 snippet note_tail "tail lines of file"
 tail() {
-	# Usage: tail "n" "file"
-	mapfile -tn 0 line < "$2"
-	printf '%s\n' "${line[@]: -$1}"
+        # Usage: tail "n" "file"
+        mapfile -tn 0 line < "$2"
+        printf '%s\n' "${line[@]: -$1}"
 }
 endsnippet
 
@@ -277,5 +287,40 @@ endsnippet
 snippet note_secure "make bash more secure"
 # -u ：试图使用未定义的变量，就立即退出。
 # -o pipefail ： 只要管道中的一个子命令失败，整个管道命令就失败。
-set -e -u -o pipefail
+set -E -e -u -o pipefail
+endsnippet
+
+snippet note_find "find checksheet"
+# - find /tmp -size 0 -print0 -delete : 删除大小为 0 的文件
+# - find 和 xargs 混合使用的时候，分别加上 -print0 和 -0
+#   - find . -type f -print0 | xargs -0 md5sum
+#   - https://www.shellcheck.net/wiki/SC2038
+# - hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum
+endsnippet
+
+snippet note_sed "sed"
+# sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
+endsnippet
+
+snippet note_template "template"
+#!/usr/bin/env bash
+
+set -E -e -u -o pipefail
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(readlink -m $(dirname $0))
+readonly ARGS="$@"
+endsnippet
+
+snippet note_split_to_array "template"
+# The shell scans the results of parameter expansion,
+# command substitution, and arithmetic expansion
+# that did not occur within double quotes for word splitting.
+s='foo bar baz'
+a=( $s ) # a=( "$s" )
+echo ${a[0]}
+
+# 正确的写法是:
+var="a aba a a a "
+IFS=" " read -r -a array <<< "$var"
+echo ${array[0]}
 endsnippet
