@@ -3,8 +3,12 @@ set -ex
 export PATH="$PATH:/run/wrappers/bin:/home/martins3/.nix-profile/bin"
 export PATH="$PATH:/run/current-system/sw/bin/"
 function finish {
-  sleep 600
+  if [[ $? == 0 ]]; then
+    sleep 600
+  fi
+  sleep infinity
 }
+
 trap finish EXIT
 
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
@@ -246,7 +250,7 @@ _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 nix-shell --command "make -j32"
-nix-shell --command "rm -r .ccls-cache"
+# nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # nix-shell --command "make binrpm-pkg -j"
 
@@ -254,4 +258,4 @@ nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
 # 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 60, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

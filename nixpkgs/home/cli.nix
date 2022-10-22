@@ -188,6 +188,8 @@ in
     function rpm_extract() {
       rpm2cpio $1 | cpio -idmv
     }
+
+    source /home/martins3/core/zsh/zsh
     ";
 
     plugins = [
@@ -211,7 +213,7 @@ in
   programs.git = {
     enable = true;
     userEmail = "hubachelar@gmail.com";
-    userName = "xueshi.hu";
+    userName = "bachelor hu";
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin
