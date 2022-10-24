@@ -75,7 +75,6 @@ require("packer").startup({
     -- 快速移动
     use 'ggandor/lightspeed.nvim'
     -- c/c++
-    use 'jackguo380/vim-lsp-cxx-highlight' -- 为 c/cpp 提供基于 lsp 的高亮
     use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
     -- 书签
     use 'MattesGroeger/vim-bookmarks'
