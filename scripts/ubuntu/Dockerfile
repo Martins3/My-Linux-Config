@@ -46,7 +46,6 @@ RUN git config --global https.proxy https://127.0.0.1:8889
 # https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip3 install neovim
-RUN pip3 install cppman
 
 # export http_proxy=http://127.0.0.1:8889 && export https_proxy=http://127.0.0.1:8889
 ENV http_proxy=http://127.0.0.1:8889

@@ -7,10 +7,6 @@ let g:mkdp_auto_close = 0
 " 书签选中之后自动关闭 quickfix window
 let g:bookmark_auto_close = 1
 
-" ctrl + ] 查询 cppman
-" 如果想让该快捷键自动查询 man，将Cppman 替换为 Cppman!
-autocmd FileType c,cpp noremap <C-]> <Esc>:execute "Cppman " . expand("<cword>")<CR>
-
 " 让光标自动进入到 popup window 中间
 let g:git_messenger_always_into_popup = v:true
 

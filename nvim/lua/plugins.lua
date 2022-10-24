@@ -74,8 +74,6 @@ require("packer").startup({
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     -- 快速移动
     use 'ggandor/lightspeed.nvim'
-    -- c/c++
-    use 'skywind3000/vim-cppman' -- http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
     -- 书签
     use 'MattesGroeger/vim-bookmarks'
     use 'tom-anders/telescope-vim-bookmarks.nvim' -- 辅助书签的搜索
