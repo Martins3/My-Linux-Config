@@ -32,7 +32,6 @@
   * [buffer](#buffer)
   * [文件搜索](#文件搜索)
   * [导航](#导航)
-  * [文档](#文档)
   * [代码段](#代码段)
   * [代码补全](#代码补全)
   * [Git 集成](#git-集成)
@@ -465,19 +464,6 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 | 基于 liuchengxu/vista.vim 的导航栏                 |
 |----------------------------------------------------|
 | <img src="./img/outline.png" /> |
-
-### 文档
-在需要查询的函数上 : `Ctrl` `]`，相关文档将会显示在窗口上方。使用本功能需要安装[cppman](https://github.com/aitjcize/cppman) 以及缓存文档。
-```sh
-pip install cppman
-cppman -c
-```
-
-| 使用 cppman 查询结果           |
-|--------------------------------|
-| <img src="./img/cppman.png" /> |
-
-和`查找注释`的功能区别在于，`K`是找到该函数的定义，然后显示函数或者变量"附近"(函数上方或者变量右侧的注释)，而查找文档是从 http://cplusplus.com/ 和 http://cppreference.com/ 中间获取文档。
 
 ### 代码段
 基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
