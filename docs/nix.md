@@ -9,12 +9,17 @@
 
 
 创建分区，安装操作系统，并且初始化 nixos
+
+因为是在 QEMU 中，所以暂时使用的 MBR 的分区，而不是 GPT
 ```sh
 sudo -i
-parted /dev/sda -- mklabel msdos
-parted /dev/sda -- mkpart primary 1MiB 100%
-mkfs.ext4 -L nixos /dev/sda1
+parted /dev/vda -- mklabel msdos
+parted /dev/vda -- mkpart primary 1MiB -20GB
+parted /dev/vda -- mkpart primary linux-swap -20GB 100%
+mkfs.ext4 -L nixos /dev/vda1
 mount /dev/disk/by-label/nixos /mnt
+mkswap -L swap /dev/vda2
+swapon /dev/vda2
 nixos-generate-config --root /mnt
 ```
 
@@ -23,9 +28,9 @@ nixos-generate-config --root /mnt
 vim /mnt/etc/nixos/configuration.nix
 ```
 
-1. 注释掉这个从而可以使用 grub
+1. 取消掉这行的注释，从而有 grub
 ```sh
-boot.loader.grub.device = "/dev/sda";
+# boot.loader.grub.device = "/dev/vda";
 ```
 2. 添加基本的工具方便之后使用
 ```nix
@@ -37,11 +42,13 @@ environment.systemPackages = with pkgs; [
 ];
 ```
 
-最后，执行 `nixos-install`，然后就是等待，最后你需要输入密码，这是 root 的密码。
+最后，执行 `nixos-install`，然后就是等待，最后你需要输入密码，这是 root 的密码，然后重启，进入下一个阶段。
 
 我在这里踩的坑
+- 以上使用的是 vda , 具体是什么，以 lsblk 为例子
 - 在 QEMU 中 UEFI 暂时没有成功过，使用 legacy bios
 - QEMU 的参数中不要增加 `-kernel`，否则无法正确启动，因为 Nix 对于内核版本也是存在管理的，所以不能随意指定
+- 可以使用 ssh 远程链接安装的机器，这样就会有曾经熟悉的环境
 
 ### 初始化环境
 
@@ -59,13 +66,11 @@ su -l martins3
 3. 导入本配置的操作:
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
-ln ~/My-Linux-Config ~/.config/nixpkgs
 ```
 
-4. 执行 ./scripts/nix-channel.sh 切换源
+4. exit 到 root 执行，然后 ./scripts/nix-channel.sh 切换源
 
-5. 修改 `/etc/nixos/configuration.nix`，让其 import `/home/martin/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
-  - 进入的时候为 su - ，因为 martins3 还不是 sudo files 中。
+5. 修改 `/etc/nixos/configuration.nix`，让其 import `/home/martins3/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
 
 6. 初始化配置
 ```sh
