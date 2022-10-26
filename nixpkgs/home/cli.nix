@@ -17,10 +17,10 @@ in
     go
     lua
     unstable.sumneko-lua-language-server
-    clang-tools
+    unstable.clang-tools
     cargo
     rustc
-    rust-analyzer
+    unstable.rust-analyzer
     cmake
     gnumake
     yarn
