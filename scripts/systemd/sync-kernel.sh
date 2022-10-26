@@ -5,6 +5,7 @@ export PATH="$PATH:/run/current-system/sw/bin/"
 function finish {
   if [[ $? == 0 ]]; then
     sleep 600
+    exit 0
   fi
   sleep infinity
 }
