@@ -12,6 +12,15 @@ function finish {
 
 trap finish EXIT
 
+if cd /home/martins3/core/linux; then
+  echo "kernel already setup"
+else
+  mkdir -p /home/martins3/core/
+  cd /home/martins3/core
+  git clone https://github.com/torvalds/linux
+  cd linux
+fi
+
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch != master ]]; then
