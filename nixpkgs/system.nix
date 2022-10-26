@@ -96,7 +96,6 @@ in
     unitConfig = { };
     serviceConfig = {
       # User = "martins3";
-      WorkingDirectory = "/home/martins3/core/linux";
       Type = "forking";
       # RemainAfterExit = true;
       ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
@@ -115,7 +114,6 @@ in
     enable = true;
     unitConfig = { };
     serviceConfig = {
-      WorkingDirectory = "/home/martins3/core/qemu";
       Type = "forking";
       ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s qemu '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-qemu.sh'";
       Restart = "no";

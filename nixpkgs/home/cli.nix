@@ -79,7 +79,9 @@ in
     unstable.neovim
     shellcheck
     shfmt
-    rnix-lsp2
+    # TMP_TODO 通过这种方法会失败，似乎是从 crates.io 下载的问题
+    # rnix-lsp2
+    rnix-lsp
     tree-sitter
     # trace
     pkgs.linuxPackages_latest.perf
