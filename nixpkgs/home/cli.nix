@@ -125,16 +125,6 @@ in
     };
   };
 
-  home.file.tmux = {
-    source = ../../conf/tmux.conf;
-    target = ".tmux.conf";
-  };
-
-  home.file.tig = {
-    source = ../../conf/tigrc.conf;
-    target = ".tigrc";
-  };
-
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -270,13 +260,8 @@ in
   };
 
   home.file.gdb_dashboard_init = {
-    source = ../../conf/gdbinit;
+    source = ../../config/gdbinit;
     target = ".gdbinit.d/init";
-  };
-
-  home.file.cargo_conf = {
-    source = ../../conf/cargo.conf;
-    target = ".cargo/config";
   };
 
   programs.direnv.enable = true;
