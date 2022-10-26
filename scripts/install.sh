@@ -4,6 +4,8 @@ if [[ ! -d ~/.dotfiles ]]; then
   git clone https://github.com/Martins3/My-Linux-config .dotfiles
 fi
 mkdir -p ~/.config
+mkdir -p ~/.carfig/wtf
+mkdir -p ~/.cargo
 
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
