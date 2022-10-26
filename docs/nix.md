@@ -74,10 +74,10 @@ git clone https://github.com/Martins3/My-Linux-Config
 
 6. 初始化配置
 ```sh
-sudo nixos-rebuild switch # 仅NixOS
+nixos-rebuild switch # 仅NixOS，其实在 root 状态下
 ```
 
-7. 部署 nixos 配置
+7. 切换为 martins3，开始部署 home-manager 配置
 
 ```sh
 # 安装home-manager

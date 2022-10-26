@@ -13,9 +13,8 @@ ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
 ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
+ln -sf ~/.dotfiles/config/cargo.conf ~/.cargo/config
 
-# TMP_TODO tmux 的安装需要什么特殊的
-# TMP_TODO 会失败吗?
-
+echo "tmux plugin install : prefix + I"
 # kitty is used to substitute alacritty
 # ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
