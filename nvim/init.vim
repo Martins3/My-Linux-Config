@@ -73,6 +73,7 @@ let s:core_conf_files = [
       \ 'wilder.vim',
       \ 'startify.vim',
       \ 'airline.vim',
+      \ 'del-buffer.vim',
       \ ]
 
 for s:fname in s:core_conf_files
