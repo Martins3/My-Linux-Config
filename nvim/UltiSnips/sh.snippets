@@ -307,7 +307,7 @@ snippet note_template "template"
 
 set -E -e -u -o pipefail
 readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(readlink -m $(dirname $0))
+readonly PROGDIR=$(readlink -m "$(dirname $0)")
 readonly ARGS="$@"
 endsnippet
 

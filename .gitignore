@@ -3,3 +3,4 @@ plugin
 .vim-bookmarks
 .DS_Store
 .stfolder
+.syncthing.*

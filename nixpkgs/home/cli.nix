@@ -30,6 +30,7 @@ in
     tig
     xclip
     jq
+    xplr
     htop
     btop
     unzip
@@ -129,58 +130,9 @@ in
 
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      sync-config = "rsync --delete -avzh --filter=\"dir-merge,- .gitignore\" maritns3@10.0.2.2:~/.dotfiles ~/";
-      update-sys = "sync-config && sudo nixos-rebuild switch";
-      update-home = "sync-config && home-manager switch";
-      px = "export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889";
-      q = "exit";
-      v = "nvim";
-      ls = "lsd";
-      ldc = "lazydocker";
-      m = "make -j";
-      gs = "tig status";
-      c = "clear";
-      du = "ncdu";
-      z = "j";
-      mc = "make clean";
-      k = "/home/martins3/Sync/vn/docs/qemu/sh/alpine.sh";
-      flamegraph = "/home/martins3/Sync/vn/docs/kernel/code/flamegraph.sh";
-      en_direnv = "echo \"use nix\" >> .envrc && direnv allow";
-      env_docker = "docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src"; # kernel-build-container:gcc-7
-      knews = "~/.dotfiles/scripts/systemd/news.sh kernel";
-      qnews = "~/.dotfiles/scripts/systemd/news.sh qemu";
-      ck = "systemctl --user start kernel";
-      cq = "systemctl --user start qemu";
-      git_ignore = "echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore";
-      # TMP_TODO 继承一下这个
-      /* git describe --contains 5de97c9f6d85fd83af76e09e338b18e7adb1ae60 */
-      # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
-    };
-
-    # TMP_TODO 这样写是非常不优雅的
+    shellAliases = { };
     initExtra = "
-    eval \"$(jump shell)\"
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-    eval \"$(direnv hook zsh)\"
-    eval \"$(starship init zsh)\"
-    eval \"$(mcfly init zsh)\"
-
-    function gscp() {
-      file_name=$1
-      if [ -z \"file_name\" ]; then
-        echo $0 file
-        return 1
-      fi
-      ip=$(ip a | grep -v vir | grep -o \"192\..*\" | cut -d/ -f1)
-      file_path=$(readlink -f $file_name)
-      echo scp -r $(whoami)@\${ip}:$file_path .
-    }
-
-    function rpm_extract() {
-      rpm2cpio $1 | cpio -idmv
-    }
-
+    source /home/martins3/.dotfiles/config/zsh
     source /home/martins3/core/zsh/zsh
     ";
 
