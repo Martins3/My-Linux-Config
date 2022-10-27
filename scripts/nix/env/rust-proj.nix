@@ -1,5 +1,5 @@
 # https://discourse.nixos.org/t/how-can-i-set-up-my-rust-programming-environment/4501/6
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <unstable> { } }:
 
 pkgs.mkShell {
   buildInputs = [

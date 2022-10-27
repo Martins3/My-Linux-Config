@@ -1,0 +1,44 @@
+eval "$(jump shell)"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
+eval "$(mcfly init zsh)"
+
+function gscp() {
+  file_name=$1
+  if [ -z "$file_name" ]; then
+    echo $0 file
+    return 1
+  fi
+  ip_addr=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
+  file_path=$(readlink -f $file_name)
+  echo scp -r $(whoami)@${ip_addr}:$file_path .
+}
+
+function rpm_extract() {
+  rpm2cpio $1 | cpio -idmv
+}
+
+alias px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889"
+alias q="exit"
+alias v="nvim"
+alias ls="lsd"
+alias ldc="lazydocker"
+alias m="make -j"
+alias gs="tig status"
+alias c="clear"
+alias du="ncdu"
+alias z="j"
+alias mc="make clean"
+alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
+alias en_direnv="echo \"use nix\" >> .envrc && direnv allow"
+alias env_docker="docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src" # kernel-build-container:gcc-7
+alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
+alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
+alias ck="systemctl --user start kernel"
+alias cq="systemctl --user start qemu"
+alias git_ignore="echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore"
+# TMP_TODO 继承一下这个
+# git describe --contains 5de97c9f6d85fd83af76e09e338b18e7adb1ae60
+# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it

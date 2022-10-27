@@ -15,4 +15,4 @@ pkgs.stdenv.mkDerivation {
 
 # autoreconf -vfi
 # ./configure --enable-sqlite3  --enable-aer --enable-mce
-# make
+# bear -- make -j
