@@ -17,6 +17,10 @@ ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
 ln -sf ~/.dotfiles/config/cargo.conf ~/.cargo/config
 
-echo "tmux plugin install : prefix + I"
+if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "tmux plugin install : prefix + I"
+fi
+
 # kitty is used to substitute alacritty
 # ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml

@@ -31,3 +31,5 @@ fi
 git pull
 
 nix-shell --command "mkdir -p build && cd build && ../configure --target-list=x86_64-softmmu --disable-werror && cp compile_commands.json .. && make -j"
+# TMP_TODO aarch64 support
+# nix-shell --command "mkdir -p build && cd build && ../configure --target-list=aarch64-softmmu --disable-werror && cp compile_commands.json .. && make -j"

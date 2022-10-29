@@ -306,9 +306,10 @@ snippet note_template "template"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
-readonly PROGNAME=$(basename $0)
-readonly PROGDIR=$(readlink -m "$(dirname $0)")
+readonly PROGNAME=$(basename \$0)
+readonly PROGDIR=$(readlink -m "$(dirname \$0)")
 readonly ARGS="$@"
+cd "$(dirname "\$0")"
 endsnippet
 
 snippet note_split_to_array "template"

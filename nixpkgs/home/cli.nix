@@ -17,7 +17,7 @@ in
     go
     lua
     unstable.sumneko-lua-language-server
-    unstable.clang-tools
+    clang-tools
     cargo
     rustc
     unstable.rust-analyzer
