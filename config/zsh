@@ -1,8 +1,11 @@
 eval "$(jump shell)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-eval "$(direnv hook zsh)"
+source /etc/os-release
+if [[ $ID == "nixos" ]];then
+  eval "$(direnv hook zsh)"
+  eval "$(mcfly init zsh)"
+fi
 eval "$(starship init zsh)"
-eval "$(mcfly init zsh)"
 
 function gscp() {
   file_name=$1
@@ -38,7 +41,8 @@ alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
-alias git_ignore="echo \"$(git status --porcelain | grep '^??' | cut -c4-)\" > .gitignore"
+alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
+alias guest="ssh -p5556 root@localhost"
 # TMP_TODO 继承一下这个
 # git describe --contains 5de97c9f6d85fd83af76e09e338b18e7adb1ae60
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
