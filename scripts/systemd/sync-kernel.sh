@@ -259,6 +259,7 @@ CONFIG_SCSI_LOGGING=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
+nix-shell --command "make clean"
 nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 4))"
 # nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
