@@ -14,10 +14,10 @@ wk.register({
     b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = {
       name = "+coc",
-      x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
+      a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line" },
       c = { "<Plug>(coc-codeaction)", "applying codeAction to the current buffer" },
       f = { "<Plug>(coc-fix-current)", "apply AutoFix to problem on the current line" },
-      a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line" }
+      x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
     },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
