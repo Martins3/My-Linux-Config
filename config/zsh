@@ -6,14 +6,17 @@ if [[ $ID == "nixos" ]];then
   eval "$(mcfly init zsh)"
 
   function en_direnv() {
+    set -x
     dir="$(basename "$(pwd)")"
     nix=$HOME/.dotfiles/scripts/nix/env/"$dir".nix
     if [[ -f $nix ]]; then
       ln -s "$nix" default.nix
-      echo \"use nix\" >>.envrc && direnv allow
+      echo "use nix" >> .envrc && direnv allow
     else
+      # maybe use fzf to choose one
       echo "$dir not found"
     fi
+    set +x
   }
 fi
 eval "$(starship init zsh)"
