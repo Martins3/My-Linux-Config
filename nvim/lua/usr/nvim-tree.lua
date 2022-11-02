@@ -1,5 +1,5 @@
 -- change default mappings
-local list = {
+local keymap_list = {
   { key = { "<CR>", "o", "l", "<2-LeftMouse>" }, action = "edit" },
   { key = "h", action = "close_node" },
   { key = "p", action = "preview" },
@@ -20,7 +20,7 @@ require 'nvim-tree'.setup {
     side = 'right',
     mappings = {
       custom_only = true,
-      list = list
+      list = keymap_list
     },
   },
   actions = {
@@ -30,5 +30,5 @@ require 'nvim-tree'.setup {
         enable = false,
       }
     }
-  }
+  },
 }

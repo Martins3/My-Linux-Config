@@ -18,6 +18,5 @@
   },
   "sumneko-lua.enableNvimLuaDev": true,
   "Lua.telemetry.enable": true,
-  "semanticTokens.enable": true,
-  "clangd.arguments": ["-j=20"]
+  "semanticTokens.enable": true
 }
