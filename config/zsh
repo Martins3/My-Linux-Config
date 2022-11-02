@@ -4,6 +4,17 @@ source /etc/os-release
 if [[ $ID == "nixos" ]];then
   eval "$(direnv hook zsh)"
   eval "$(mcfly init zsh)"
+
+  function en_direnv() {
+    dir="$(basename "$(pwd)")"
+    nix=$HOME/.dotfiles/scripts/nix/env/"$dir".nix
+    if [[ -f $nix ]]; then
+      ln -s "$nix" default.nix
+      echo \"use nix\" >>.envrc && direnv allow
+    else
+      echo "$dir not found"
+    fi
+  }
 fi
 eval "$(starship init zsh)"
 
@@ -35,14 +46,11 @@ alias z="j"
 alias mc="make clean"
 alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
 alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
-alias en_direnv="echo \"use nix\" >> .envrc && direnv allow"
-alias env_docker="docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src" # kernel-build-container:gcc-7
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias guest="ssh -p5556 root@localhost"
-# TMP_TODO 继承一下这个
-# git describe --contains 5de97c9f6d85fd83af76e09e338b18e7adb1ae60
+alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
