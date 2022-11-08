@@ -36,24 +36,33 @@ function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
 }
 
-alias px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889"
-alias q="exit"
-alias v="nvim"
-alias ls="lsd"
-alias ldc="lazydocker"
-alias m="make -j"
-alias gs="tig status"
+function t() {
+  if [[ -z $1 ]]; then
+    echo "need argument"
+  else
+    sudo bpftrace -e "kprobe:$1 {  @[kstack] = count(); }"
+  fi
+}
+
 alias c="clear"
-alias du="ncdu"
-alias z="j"
-alias mc="make clean"
-alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
-alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
-alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
-alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
+alias du="ncdu"
+alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
+alias gs="tig status"
 alias guest="ssh -p5556 root@localhost"
+alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
 alias kernel_version="git describe --contains"
+alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
+alias ldc="lazydocker"
+alias ls="lsd"
+alias m="make -j"
+alias mc="make clean"
+alias px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889"
+alias q="exit"
+alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
+alias v="nvim"
+alias vim=nvim
+alias z="j"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
