@@ -13,7 +13,6 @@
   * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
   * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
-  * [安装 ccls](#安装-ccls)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
   * [安装本配置](#安装本配置)
@@ -56,6 +55,7 @@
 * [Changelog](#changelog)
   * [2022](#2022)
   * [2022.8](#20228)
+  * [2022.9](#20229)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [blog](#blog)
@@ -97,7 +97,7 @@ vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记�
 
 ## Language Server Protocal
 lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
-1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 [ccls](https://github.com/MaskRay/ccls), Rust 语言采用 [rust analyzer](https://github.com/rust-analyzer/rust-analyzer), 官方列举了很多 [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)。
+1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 [clangd](https://clangd.llvm.org/), Rust 语言采用 [rust analyzer](https://github.com/rust-analyzer/rust-analyzer), 官方列举了很多 [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)。
 2. 不同的编辑按照 lsp 的规范和 language server 通信
 
 他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
@@ -107,7 +107,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 |      Editor            |    |Language Server|
 +------------------------+    +---------------+
 |     Emacs              |    |               |
-|     Neovim(coc.nvim)   +--> |      ccls     |
+|     Neovim(coc.nvim)   +--> |      clangd   |
 |     Visual Studio Code |    |               |
 +------------------------+    +---------------+
 ```
@@ -150,16 +150,13 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 1. **代理** : 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
 2. 软件版本 : 有的软件没有被 apt 收录进去，有的版本太低，这导致少数几个软件需要手动编译，下面以 Ubuntu 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
 
-整个环境的安装主要是 neovim coc.nvim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
+整个环境的安装主要是 neovim coc.nvim clangd，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
 基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
 
 ### 安装各种依赖
 ```sh
 sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
-
-# 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
-sudo apt install -y libclang-10-dev clang llvm
 
 # 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
@@ -224,21 +221,6 @@ https://registry.npm.taobao.org
 https://registry.npm.taobao.org/
 ```
 
-### 安装 ccls
-```txt
-➜  Vn git:(master) ✗ sudo apt install ccls
-```
-
-也可以参考其[官方文档](https://github.com/MaskRay/ccls/wiki/Build)手动编译获取最新版。
-```sh
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-cd ccls
-cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release
-cmake --build Release
-cd Release
-sudo make install
-```
-
 ### 安装 nerdfonts
 先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
 
@@ -250,7 +232,7 @@ fc-cache -fv
 ```
 
 ### 安装 bear
-ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
+clangd 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
 
 ```sh
 sudo apt install bear
@@ -310,7 +292,7 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 | <img src="./img/checkhealth.png" /> |
 
 ## 基本操作
-基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim，ccls 以及特定插件的文档。
+基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim 以及对应的插件的文档。
 
 三个最核心的 leader 键:
 
@@ -677,6 +659,7 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
   - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
 
 当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
+
 ### 远程 server 上复制粘贴
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
 
@@ -700,16 +683,15 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 本配置的主要组成:
-- init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/ 下的配置文件
+- init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
-  - coc.vim : coc.nvim 和 ccls 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 和 [ccls 提供给 coc.nvim 的标准配置](https://github.com/MaskRay/ccls/wiki/coc.nvim) 的复制粘贴。
-  - ccls.vim : ccls 增加的一些快捷键
+  - coc.vim : coc.nvim 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 的复制粘贴。
   - debug.vim : 定义了两个函数
   - misc.vim : 各种插件的细微的修改
-- lua/
-  - plugins.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
-  - whichkey-config.lua : 快捷键的配置
-  - tree-config.lua / orgmode-config.lua / ... : 插件的默认配置的调整，都非常短
+- lua/usr
+  - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
+  - which-key.lua : 快捷键的配置
+  - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短
 - coc-setting.json : coc 的配置
 - UltiSnips/ : 自定义的代码段
 
@@ -821,6 +803,12 @@ setxkbmap -option caps:swapescape
 
 ### 2022.8
 - 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
+
+### 2022.9
+将 ccls 替换为 clangd，虽然我是 MaskRay 的忠实粉丝，但是:
+  - ccls 最近更新的比较慢
+  - clangd 无需额外的插件实现高亮
+目前知道 clangd 存在一些细微的 bug，但是无伤大雅。
 
 ## 值得一看的配置
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
