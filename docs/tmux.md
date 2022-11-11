@@ -1,7 +1,6 @@
 # 极简 Tmux 配置
 
-其实我很长时间都是不使用 tmux 的,感觉 deepin-terminal 的 window 基本够用了，导致我发生转变的是 alacritty，因为这个 terminal emulator 没有 tab 的功能.
-但是，一旦开始使用上 tmux， 我只能说相见恨晚，其灵活性远远要超过 terminal emulator 内置的 tab 。
+其实我很长时间都是不使用 tmux 的，因为很多终端模拟器中已经包含了 Tab 和 Windows 的功能，但是使用了 tmux 之后，发现 tmux 非常灵活，尤其是在远程的 server 中使用。
 
 ## 先用起来再说
 没有必要阅读 [tmux 之道](https://leanpub.com/the-tao-of-tmux/read) 这种很厚的书，会被直接劝退的。
@@ -38,11 +37,9 @@
 >  https://dev.to/iggredible/the-easy-way-to-copy-text-in-tmux-319g
 
 - `V` 行选，`v` 字符选，`ctrl-v` 不支持
-- [zt/zz/zb 似乎没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)
-- 使用 `y` 复制并且继续停留在 copy mode 中，使用 `enter` 复制。
+- [zt/zz/zb 没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)
+- 使用 `y` 或者 `enter` 或者鼠标选中，可以复制
 - 使用 `ctrl shift v` （MacOS 上 `ctrl-v`) 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的。
-
-当然，如果感觉太麻烦，使用鼠标选中之后，也是自动复制出来的。
 
 ## 插件管理
 

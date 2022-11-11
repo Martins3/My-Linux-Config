@@ -87,8 +87,9 @@ in
     enable = true;
   };
 
+  # TODO 并不知道这个东西如何用上
   services.jenkins = {
-    enable = true;
+    enable = false;
   };
 
   systemd.user.services.kernel = {
