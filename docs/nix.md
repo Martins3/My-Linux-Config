@@ -249,23 +249,7 @@ linux.overrideAttrs (o: {
 ### [ ] 编译内核模块
 
 ### 编译老内核
-- 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
-
-使用这个仓库: https://github.com/a13xp0p0v/kernel-build-containers
-
-```sh
-docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-build-container:gcc-7
-```
-
-> -t 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
->
-> https://stackoverflow.com/questions/32269810/understanding-docker-v-command
-
-编译之后，在 host 中执行 ./script/clang-tools/gen-compile-commands.py
-
-可能需要将 compile-commands.json 中将 aarch-gnu-gcc 替换为 gcc，否则 ccls 拒绝开始索引。
-
-同样的，可以构建一个 centos 环境来编译内核。
+使用 docker 吧
 
 ### 安装自定义的内核
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
