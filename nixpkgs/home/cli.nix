@@ -42,7 +42,6 @@ in
     gdb
     lsd
     lsof
-    ccls
     bear
     tree
     jump

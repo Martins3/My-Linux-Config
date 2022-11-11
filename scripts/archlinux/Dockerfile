@@ -18,7 +18,6 @@ RUN pacman -Syu --needed --noconfirm \
   llvm \
   clang \
   lsd \
-  ccls \
   curl \
   nodejs \
   yarn \

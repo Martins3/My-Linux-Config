@@ -25,9 +25,6 @@ RUN apt-get install -y tzdata
 
 RUN apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep zathura
 
-# 安装 ccls 的依赖 https://github.com/MaskRay/ccls/wiki/Build
-RUN apt install -y libclang-10-dev clang llvm
-
 # 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 RUN apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 RUN apt install -y npm
@@ -69,15 +66,6 @@ RUN ln -s ~/mylc ~/.config/nvim # 创建一个软链接指向此处
 
 RUN npm config set registry https://registry.npm.taobao.org/  # 设置npm镜像源为淘宝镜像
 RUN yarn config set registry https://registry.npm.taobao.org/  # 设置yarn镜像源为淘宝镜像
-
-# 手动编译 ccls
-WORKDIR /home/docker
-RUN git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-WORKDIR /home/docker/ccls
-RUN cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release
-RUN cmake --build Release
-WORKDIR /home/docker/ccls/Release
-RUN echo docker | sudo -S make install
 
 # 使用 musl 作为测试
 WORKDIR /home/docker
