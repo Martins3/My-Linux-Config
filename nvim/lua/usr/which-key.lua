@@ -103,7 +103,9 @@ wk.register({
       name = "+search",
       P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
         "search cursor word in project" },
-      p = { "<cmd>lua require('spectre').open()<cr>", "search in project" }
+      p = { "<cmd>lua require('spectre').open()<cr>", "search in project" },
+      b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search in current buffer" },
+      g = { "<cmd>Telescope git_status<cr>", "search git status" }
     },
     t = {
       name = "+toggle",
