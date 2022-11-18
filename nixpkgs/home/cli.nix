@@ -90,6 +90,7 @@ in
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk
+    inetutils
     (python3.withPackages (p: with p; [
       pandas
       pygal
@@ -97,7 +98,9 @@ in
       ipython
       filelock
       autopep8
+      sphinx
     ]))
+    graphviz
     perl
     man-pages
     man-pages-posix
