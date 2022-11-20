@@ -49,21 +49,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " 加载 lua 配置
-lua require 'usr.bufferline'
-lua require 'usr.code_runner'
-lua require 'usr.hydra'
-lua require 'usr.nvim-tree'
-lua require 'usr.nvim-treesitter'
-lua require 'usr.orgmode'
-lua require 'usr.packer'
-lua require 'usr.telescope'
-lua require 'usr.version'
-lua require 'usr.which-key'
-lua require("colorizer").setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
-lua require("nvim-surround").setup{}
-lua require('gitsigns').setup{}
-lua require('nvim-autopairs').setup{}
-lua require('spellsitter').setup{}
+lua require 'usr'
 
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
