@@ -73,7 +73,7 @@ require("packer").startup({
     use 'AckslD/nvim-neoclip.lua' -- 保存 macro
     use 'windwp/nvim-spectre' -- 媲美 vscode 的多文件替换
     -- 快速移动
-    use 'ggandor/lightspeed.nvim'
+    use 'ggandor/leap.nvim'
     -- 书签
     use 'MattesGroeger/vim-bookmarks'
     use 'tom-anders/telescope-vim-bookmarks.nvim' -- 辅助书签的搜索
@@ -92,5 +92,8 @@ require("packer").startup({
     use 'anuvyklack/hydra.nvim' -- 消除重复快捷键，可以用于调整 window 大小等
     -- use 'inkarkat/vim-mark' --- 高亮多个搜索的内容 @todo 暂时安装不上
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
+    use { 'glepnir/hlsearch.nvim', event = 'BufRead', config = function()
+      require('hlsearch').setup()
+    end }
   end,
 })

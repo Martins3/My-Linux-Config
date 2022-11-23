@@ -11,5 +11,6 @@ require 'usr.which-key'
 require("colorizer").setup { 'css'; 'javascript'; 'vim'; html = { mode = 'foreground'; } }
 require("nvim-surround").setup {}
 require('gitsigns').setup {}
+require('leap').add_default_mappings()
 require('nvim-autopairs').setup {}
 require('spellsitter').setup {}

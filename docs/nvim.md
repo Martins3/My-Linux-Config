@@ -624,7 +624,8 @@ sbt bloopInstall
 
 vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简单说明一些有趣的的技术：
 
-在我使用 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+在我使用 [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim) 之后，有种全新的体验，跳转到任何位置，之需要按下 `s`，然后连续按下该位置开始的两个字符，
+接下来会提示按什么就可以直接跳转到该位置。
 
 | 例子                                                                                            |
 |-------------------------------------------------------------------------------------------------|
@@ -851,9 +852,8 @@ setxkbmap -option caps:swapescape
 
 <!--
 ## 问题
-- [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
-- [ ] shellcheck 无处处理 source 其他的文件的情况。
+- [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
