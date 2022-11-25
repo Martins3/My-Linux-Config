@@ -1,5 +1,7 @@
 eval "$(jump shell)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+export PATH="$HOME/.npm-packages/bin:$PATH"
+
 source /etc/os-release
 if [[ $ID == "nixos" ]];then
   eval "$(direnv hook zsh)"

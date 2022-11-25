@@ -3,7 +3,6 @@
 - [ ] 制作 USB 启动盘
 - [ ] clash 的安装
   - 也许尝试一下这个: https://github.com/zzzgydi/clash-verge
-- [ ] 但是如何实现最初的网络代理
 
 ```sh
 wget -P ~/.config/clash subscribe_url
@@ -13,3 +12,7 @@ wget -P ~/.config/clash subscribe_url
 ```sh
 http://clash.razord.top/#/settings
 ```
+
+## 如何处理 4k 屏幕
+可能的一些解决方法:
+- https://gist.github.com/domenkozar/b3c945035af53fa816e0ac460f1df853

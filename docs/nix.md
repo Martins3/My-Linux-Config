@@ -170,6 +170,9 @@ nix-env -qaPA nixos.nodePackages
 ```
 但是只有非常少的包。
 
+但是可以通过这个方法来使用传统方法安装:
+- https://stackoverflow.com/questions/56813273/how-to-install-npm-end-user-packages-on-nixos
+
 ## python
 ```txt
 pip3 install http # 会提示你，说无法可以安装 python39Packages.pip

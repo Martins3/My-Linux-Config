@@ -19,4 +19,4 @@ indent_style = space
 emacs_mode = python
 
 [*.yaml]
-indent_style = tab
+indent_style = space

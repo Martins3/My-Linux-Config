@@ -228,6 +228,11 @@ in
     target = ".gdbinit.d/init";
   };
 
+  home.file.npm= {
+    source = ../../config/npmrc;
+    target = ".npmrc";
+  };
+
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 }
