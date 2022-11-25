@@ -48,12 +48,12 @@
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-- prefix + I
+- `prefix + I`
   - Installs new plugins from GitHub or any other git repository
   - Refreshes TMUX environment
-- prefix + U
+- `prefix + U`
   - updates plugin(s)
-- prefix + alt + u
+- `prefix + alt + u`
   - remove/uninstall plugins not on the plugin list
 
 ## 定制 statusline
