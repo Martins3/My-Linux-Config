@@ -63,6 +63,7 @@ in
     # nix
     nix-index
     # kernel
+    kmon # 方便的管理内核模块
     numactl
     kexec-tools
     rpm
@@ -99,6 +100,13 @@ in
       filelock
       autopep8
       sphinx
+      libvirt
+      mock
+      grpcio
+      pytest
+      unittest2
+      monotonic
+      libxml2
     ]))
     graphviz
     perl

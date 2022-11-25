@@ -423,6 +423,21 @@ https://nix.dev/anti-patterns/language
 
 ## [ ] rpm 构建的出来的 rpmbuild 权限不对
 
+## [ ] 无法使用 libvirt 正确实现热迁移
+
+```txt
+  virtualisation.libvirtd = {
+    enable = true;
+    # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/virtualization_host_configuration_and_guest_installation_guide/app_tcp_ports
+    extraConfig = "
+    listen_tls = 1
+    listen_tcp = 1
+    listen_addr = \"0.0.0.0\"
+    ";
+    extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
+  };
+```
+
 ## 问题
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
   - https://github.com/Martins3/My-Linux-Config/issues/14
@@ -438,6 +453,5 @@ these 2 derivations will be built:
 - 也许一举切换为 wayland
 - 测试一下，到底放不方便修改内核
   - 如果想要一份本地的源码，来安装，如何 ?
-
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

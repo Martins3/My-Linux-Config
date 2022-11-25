@@ -26,16 +26,10 @@ in
   programs.zsh.enable = true;
 
   virtualisation.docker.enable = true;
+
   # https://nixos.wiki/wiki/Virt-manager
   virtualisation.libvirtd = {
     enable = true;
-    # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/virtualization_host_configuration_and_guest_installation_guide/app_tcp_ports
-    extraConfig = "
-    listen_tls = 1
-    listen_tcp = 1
-    listen_addr = \"0.0.0.0\"
-    ";
-    extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
   };
 
   programs.dconf.enable = true;
