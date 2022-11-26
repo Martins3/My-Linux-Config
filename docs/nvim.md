@@ -522,7 +522,7 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 | <img src="./img/wilder.png" /> |
 
 ### 终端
-利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
+利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
@@ -865,12 +865,14 @@ setxkbmap -option caps:swapescape
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
+- [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
 " 多半是这个没有正确设置，参考:
 " - https://github.com/fannheyward/coc-pyright/issues/184
 " - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
 " call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")
+
 -->
 
 ## 衍生
