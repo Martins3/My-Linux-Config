@@ -173,6 +173,11 @@ nix-env -qaPA nixos.nodePackages
 但是可以通过这个方法来使用传统方法安装:
 - https://stackoverflow.com/questions/56813273/how-to-install-npm-end-user-packages-on-nixos
 
+之后，安装无需使用 sudo 了
+```sh
+npm install -g @lint-md/cli@beta
+```
+
 ## python
 ```txt
 pip3 install http # 会提示你，说无法可以安装 python39Packages.pip
@@ -321,13 +326,14 @@ rnix-lsp 可以，但是 x86-manpages 不可以
 
 ## 安装 feishu
 
+```nix
   feishu = pkgs.callPackage
     (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/xieby1/nix_config/main/usr/gui/feishu.nix";
       sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
     })
     { };
-
+```
 
 ## 常用 lib
 
@@ -440,6 +446,18 @@ https://nix.dev/anti-patterns/language
     extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
   };
 ```
+
+## switch tab
+https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
+
+需要:
+```sh
+gsettings reset org.gnome.desktop.input-sources xkb-options
+gsettings reset org.gnome.desktop.input-sources sources
+```
+
+## 处理实际问题
+https://www.zhihu.com/column/c_1471621862853189632
 
 ## 问题
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:

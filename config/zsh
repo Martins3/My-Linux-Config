@@ -46,6 +46,18 @@ function t() {
   fi
 }
 
+function px(){
+  PROXY_SERVER_IP=$1
+  if [[ -z $PROXY_SERVER_IP ]];then
+    echo "usage:"
+    echo "px \$proxy_server_ip"
+  fi
+  export https_proxy=$PROXY_SERVER_IP:8889
+  export http_proxy=$PROXY_SERVER_IP:8889
+  export HTTPS_PROXY=$PROXY_SERVER_IP:8889
+  export HTTP_PROXY=$PROXY_SERVER_IP:8889
+}
+
 alias c="clear"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
@@ -61,7 +73,6 @@ alias ldc="lazydocker"
 alias ls="lsd"
 alias m="make -j"
 alias mc="make clean"
-alias px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889"
 alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"

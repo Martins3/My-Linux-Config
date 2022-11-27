@@ -42,6 +42,8 @@ in
     gdb
     lsd
     lsof
+    lshw
+    neofetch
     bear
     tree
     jump
@@ -131,13 +133,6 @@ in
     mcfly # better ctrl-r for shell
   ];
 
-  home.file.".tmux/plugins/tpm" = {
-    source = builtins.fetchGit {
-      url = "https://github.com/tmux-plugins/tpm";
-      rev = "b699a7e01c253ffb7818b02d62bce24190ec1019"; # updated at 2022/7/17
-    };
-  };
-
   programs.zsh = {
     enable = true;
     shellAliases = { };
@@ -212,7 +207,6 @@ in
       };
     };
   };
-
 
   home.file.gdbinit = {
     source = pkgs.fetchurl {
