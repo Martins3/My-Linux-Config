@@ -28,7 +28,8 @@ in
     tmux
     tmuxp
     tig
-    xclip
+    xclip # x clipboard
+    wl-clipboard # wayland clipboard
     jq
     xplr
     htop
@@ -185,14 +186,14 @@ in
       };
       # --- end
 
-      /*
-        http={
-        proxy = "http://10.0.2.2:8889";
-        };
-        https={
-        proxy = "http://10.0.2.2:8889";
-        };
-      */
+      http = {
+        proxy = "http://127.0.0.1:8889";
+      };
+
+      https = {
+        proxy = "http://127.0.0.1:8889";
+      };
+
       credential = {
         helper = "store";
       };
@@ -222,7 +223,7 @@ in
     target = ".gdbinit.d/init";
   };
 
-  home.file.npm= {
+  home.file.npm = {
     source = ../../config/npmrc;
     target = ".npmrc";
   };
