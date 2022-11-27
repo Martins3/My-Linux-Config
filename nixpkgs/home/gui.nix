@@ -30,6 +30,7 @@ in
     unstable.sublime-merge
     unstable.firefox
     drawio
+    gparted
     unstable.microsoft-edge-dev
     nur.repos.linyinfeng.wemeet
     # wm
@@ -61,6 +62,26 @@ in
     clash = {
       name = "clash";
       exec = "microsoft-edge-dev http://clash.razord.top";
+    };
+
+    todo = {
+      name = "Microsoft To Do";
+      genericName = "ToDo";
+      exec = "microsoft-edge-dev https://to-do.live.com/";
+      icon = (pkgs.fetchurl {
+        url = "https://todo.microsoft.com/favicon.ico";
+        sha256 = "1742330y3fr79aw90bysgx9xcfx833n8jqx86vgbcp21iqqxn0z8";
+      }).outPath;
+    };
+
+    webweixin = {
+      name = "网页微信";
+      genericName = "wechat";
+      exec = "microsoft-edge-dev  https://wx.qq.com/";
+      icon = (pkgs.fetchurl {
+        url = "https://cdn.cdnlogo.com/logos/w/79/wechat.svg";
+        sha256 = "1xk1dsia6favc3p1rnmcncasjqb1ji4vkmlajgbks0i3xf60lskw";
+      }).outPath;
     };
   };
 }
