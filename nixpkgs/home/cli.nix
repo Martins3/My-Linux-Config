@@ -41,9 +41,9 @@ in
     binutils
     starship
     gdb
-    lsd
     lsof
     lshw
+    exa # more powerful ls
     neofetch
     bear
     tree

@@ -20,6 +20,8 @@ if [[ $ID == "nixos" ]];then
     fi
     set +x
   }
+
+  export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
 eval "$(starship init zsh)"
 
@@ -67,10 +69,11 @@ alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .git
 alias gs="tig status"
 alias guest="ssh -p5556 root@localhost"
 alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
-alias ls="lsd"
+alias ls="exa --icons"
 alias m="make -j"
 alias mc="make clean"
 alias q="exit"

@@ -23,24 +23,24 @@ in
   ];
 
   home.packages = with pkgs; [
-    weixin
-    neovide
+    unstable.neovide
     unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
     unstable.firefox
     unstable.flameshot
-    drawio
-    /* gparted # 需要 GTK，使用 disk 也不错 */
+    unstable.zotero
+    unstable.slack
+    unstable.netease-cloud-music-gtk
+    unstable.drawio
+    unstable.variety # wallpaper
+    unstable.kitty
+    unstable.gource
+    weixin
     unstable.microsoft-edge-dev
     nur.repos.linyinfeng.wemeet
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    # wallpaper
-    variety
-    gource
-    kitty
-    unstable.slack
-    unstable.netease-cloud-music-gtk
+    /* gparted # 需要 GTK，使用 disk 也不错 */
   ];
 
   systemd.user.services.clash = {

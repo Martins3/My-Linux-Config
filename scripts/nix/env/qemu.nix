@@ -14,5 +14,6 @@ pkgs.stdenv.mkDerivation {
     liburing
     libiscsi
     libslirp
+    gtk3
   ];
 }
