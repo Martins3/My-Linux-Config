@@ -9,8 +9,8 @@
   ++ (with pkgs.gnomeExtensions; [
     # system-monitor
     unite
-    /* clipboard-indicator */
-    /* bing-wallpaper-changer */
+    clipboard-indicator
+    bing-wallpaper-changer
     gtile
     # hide-top-bar
     lightdark-theme-switcher
@@ -34,11 +34,11 @@
 
       ## dock icons
       favorite-apps = [
-        "org.gnome.Nautilus.desktop"
         "google-chrome.desktop"
         "firefox.desktop"
-        "spotify.desktop"
+        "microsoft-edge-dev.desktop"
         "todo.desktop"
+        "kitty.desktop"
       ];
     };
     ## extensions settings

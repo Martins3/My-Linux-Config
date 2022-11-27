@@ -9,10 +9,13 @@
 ```sh
 git clone https://github.com/rime/plum
 cd plum
-rime_dir="$HOME/.config/fcitx/rime" bash rime-install
+rime_dir="$HOME/.local/share/fcitx5" bash rime-install
 ```
 
 `rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
+- fcitx4: $HOME/.config/fcitx/rime
+- fcitx5: mkdir $HOME/.local/share/fcitx5/rime/
+
 ## 配置一下 fcitx
 <details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" /> </p> </details>
 
@@ -80,6 +83,9 @@ export PATH="$PATH:/usr/local/bin"
 原理:
 - 在终端中运行 `remote-fcitx -c` 和 `remote-fcitx -o`
 - 手动切换输入法，然后运行 `remote-fcitx` ，观察结果。
+
+## nix
+本来以为会特别麻烦，参考 https://zhuanlan.zhihu.com/p/463403799 配置，然后和普通的配置没有什么区别。
 
 ## 参考 && TODO
 - https://github.com/BlueSky-07/Shuang 双拼練習
