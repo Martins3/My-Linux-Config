@@ -447,10 +447,10 @@ https://nix.dev/anti-patterns/language
   };
 ```
 
-## switch tab
+## switch caps 和 escape
 https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
 
-需要:
+似乎需要:
 ```sh
 gsettings reset org.gnome.desktop.input-sources xkb-options
 gsettings reset org.gnome.desktop.input-sources sources
