@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
-CONFIG_DIR=~/.config/fcitx # fcitx4
+CONFIG_DIR=~/.config/fcitx5 # fcitx4
 
 shopt -s extglob nullglob
 echo "Notice : run the program in ~/.dotfiles"
