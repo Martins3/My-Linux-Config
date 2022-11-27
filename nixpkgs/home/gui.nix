@@ -29,15 +29,12 @@ in
     unstable.wpsoffice
     unstable.sublime-merge
     unstable.firefox
+    unstable.flameshot
     drawio
-    gparted
+    /* gparted # 需要 GTK，使用 disk 也不错 */
     unstable.microsoft-edge-dev
     nur.repos.linyinfeng.wemeet
-    # wm
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    rofi
-    picom
-    inter
     # wallpaper
     variety
     gource

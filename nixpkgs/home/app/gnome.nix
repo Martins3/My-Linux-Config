@@ -121,6 +121,15 @@
       move-to-workspace-left = [ "<Control>Home" ];
       move-to-workspace-right = [ "<Control>End" ];
     };
+
+    /* @todo 不清楚如何使用 nix 配置快捷键，但是可以在图形界面中配置
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/settings-shortcuts" = {
+      name = [ "'terminal'" ];
+      command = [ "'kitty'" ];
+      binding = [ "'<Control><Shift>t'" ];
+      };
+    */
+
     "org/gnome/shell/extensions/clipboard-indicator" =
       {
         move-item-first = true;
