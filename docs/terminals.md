@@ -31,7 +31,7 @@ Manjaro 的内置 terminal，大约使用了几个月，之所以切换为 Tilix
 Gnome terminal 我也使用过非常长的时间，主要是因为在[龙芯平台上我编不出来 alacritty](https://martins3.github.io/loongarch/neovim.html) 以及有一段时间 alacritty 无法正确的处理
 
 原来的 Gnome terminal 的配色我不是很喜欢，以及
-为了让 terminal 一打开就会自动执行 tmux，需要在配置上进行一些[调整](https://github.com/Martins3/My-Linux-Config/blob/master/config/gnome.dconf)
+为了让 terminal 一打开就会自动执行 tmux，需要在配置上进行一些[调整](https://github.com/Martins3/My-Linux-Config/blob/master/config/gnome-terminal.dconf)
 
 保存和加载配置的方法为(假设将本仓库 clone 到了 ~/.dotfils 上):
 ```sh

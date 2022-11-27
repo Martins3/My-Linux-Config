@@ -67,6 +67,7 @@ su -l martins3
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
 ```
+执行 ./scripts/install.sh 将本配置的文件软链接到特定的为止。
 
 4. exit 到 root 执行，然后 ./scripts/nix-channel.sh 切换源
 
@@ -459,6 +460,9 @@ gsettings reset org.gnome.desktop.input-sources sources
 ## 处理实际问题
 https://www.zhihu.com/column/c_1471621862853189632
 
+## nix
+- https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
+
 ## 问题
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
   - https://github.com/Martins3/My-Linux-Config/issues/14
@@ -471,8 +475,14 @@ these 2 derivations will be built:
 ```
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
-- 也许一举切换为 wayland
 - 测试一下，到底放不方便修改内核
   - 如果想要一份本地的源码，来安装，如何 ?
+- [ ] 挂载磁盘 https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
+
+## 需要验证的问题
+- [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
+
+## 如何添加 rime 的支持
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
