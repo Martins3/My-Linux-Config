@@ -4,6 +4,9 @@
   services.xserver = {
     enable = true;
     xkbOptions = "caps:swapescape";
+    /* displayManager.gdm.enable = true; */
+    /* displayManager.gdm.wayland = false; */
+    /* desktopManager.gnome.enable = true; */
 
     /**
       desktopManager = {
@@ -71,6 +74,8 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
+    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
       fcitx5-rime
     ];
