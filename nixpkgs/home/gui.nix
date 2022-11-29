@@ -27,7 +27,6 @@ in
     unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
-    unstable.firefox
     unstable.flameshot
     unstable.zotero
     unstable.slack
@@ -36,8 +35,11 @@ in
     unstable.variety # wallpaper
     unstable.kitty
     unstable.gource
-    weixin
+    unstable.firefox
     unstable.microsoft-edge-dev
+    unstable.google-chrome
+    unstable.thunderbird
+    weixin
     nur.repos.linyinfeng.wemeet
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     /* gparted # 需要 GTK，使用 disk 也不错 */

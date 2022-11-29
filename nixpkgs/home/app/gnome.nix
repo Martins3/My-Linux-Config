@@ -19,6 +19,10 @@
   # Setting: `gsettings set <key(dot)> <value>`
   # Getting: `dconf dump /<key(path)>`
   dconf.settings = {
+    "org/gnome/mutter" = {
+      experimental-features = [ "scale-monitor-framebuffer" ];
+    };
+
     "org/gnome/shell" = {
       ## enabled gnome extensions
       disable-user-extensions = false;

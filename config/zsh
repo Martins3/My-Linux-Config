@@ -51,8 +51,7 @@ function t() {
 function px(){
   PROXY_SERVER_IP=$1
   if [[ -z $PROXY_SERVER_IP ]];then
-    echo "usage:"
-    echo "px \$proxy_server_ip"
+    PROXY_SERVER_IP="127.0.0.1"
   fi
   export https_proxy=$PROXY_SERVER_IP:8889
   export http_proxy=$PROXY_SERVER_IP:8889
