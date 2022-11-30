@@ -105,6 +105,7 @@ in
       sphinx
       libvirt
       mock
+      filelock
       grpcio
       pytest
       unittest2

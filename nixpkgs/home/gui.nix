@@ -39,6 +39,7 @@ in
     unstable.microsoft-edge-dev
     unstable.google-chrome
     unstable.thunderbird
+    /* unstable.openvpn */
     weixin
     nur.repos.linyinfeng.wemeet
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })

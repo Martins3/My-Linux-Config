@@ -6,6 +6,10 @@
     xkbOptions = "caps:swapescape";
   };
 
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = false;
+  services.xserver.desktopManager.gnome.enable = true;
+
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
