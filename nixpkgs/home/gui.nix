@@ -35,12 +35,13 @@ in
     unstable.variety # wallpaper
     unstable.kitty
     unstable.gource
-    unstable.firefox
+    /* unstable.firefox */
     unstable.microsoft-edge-dev
-    unstable.google-chrome
+    /* unstable.google-chrome */
     unstable.thunderbird
     unstable.alacritty
     unstable.openvpn
+    unstable.wezterm
     weixin
     nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows

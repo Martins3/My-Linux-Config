@@ -38,11 +38,7 @@
 
       ## dock icons
       favorite-apps = [
-        "google-chrome.desktop"
-        "firefox.desktop"
         "microsoft-edge-dev.desktop"
-        "todo.desktop"
-        "kitty.desktop"
       ];
     };
     ## extensions settings
@@ -132,6 +128,8 @@
       command = [ "'kitty'" ];
       binding = [ "'<Control><Shift>t'" ];
       };
+
+      @todo 配置 power 选项，再图形界面中的总是会被重置
     */
 
     "org/gnome/shell/extensions/clipboard-indicator" =
