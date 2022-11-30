@@ -39,31 +39,17 @@ in
     unstable.microsoft-edge-dev
     unstable.google-chrome
     unstable.thunderbird
-    /* unstable.openvpn */
+    unstable.alacritty
+    unstable.openvpn
     weixin
     nur.repos.linyinfeng.wemeet
+    nur.repos.linyinfeng.clash-for-windows
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     /* gparted # 需要 GTK，使用 disk 也不错 */
+    telegraf
   ];
 
-  systemd.user.services.clash = {
-    Unit = {
-      Description = "Auto start clash";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.clash.outPath}/bin/clash";
-    };
-  };
-
   xdg.desktopEntries = {
-    clash = {
-      name = "clash";
-      exec = "microsoft-edge-dev http://clash.razord.top";
-    };
-
     todo = {
       name = "Microsoft To Do";
       genericName = "ToDo";

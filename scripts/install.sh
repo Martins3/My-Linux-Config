@@ -13,6 +13,7 @@ ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
+ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml
 ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
@@ -23,5 +24,3 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   echo "tmux plugin install : prefix + I"
 fi
 
-# kitty is used to substitute alacritty
-# ln -sf ~/.dotfiles/conf/alacritty.yml ~/.alacritty.yml
