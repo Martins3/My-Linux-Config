@@ -8,6 +8,10 @@ in
 {
   fonts.fontconfig.enable = true;
 
+  home.stateVersion="21.11";
+  home.username="martins3";
+  home.homeDirectory="/home/martins3";
+
   home.packages = with pkgs; [
     autoconf
     automake
@@ -61,7 +65,7 @@ in
     ethtool
     sshpass
     gping # better ping
-    unstable.pingu
+    unstable.pingu # interesting ping
     nbd
     # nix
     nix-index

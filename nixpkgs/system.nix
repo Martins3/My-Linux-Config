@@ -61,8 +61,8 @@ in
   services.openssh.enable = true;
   networking.firewall.enable = false;
 
-  # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
-  systemd.enableUnifiedCgroupHierarchy = true; # cgroup v2
+  systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
+  # systemd.enableUnifiedCgroupHierarchy = true; # cgroup v2
 
   # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
   boot.cleanTmpDir = true;
@@ -140,4 +140,5 @@ in
     enable = true;
   };
   nix.settings.experimental-features = "nix-command flakes";
+  system.autoUpgrade.enable = true;
 }

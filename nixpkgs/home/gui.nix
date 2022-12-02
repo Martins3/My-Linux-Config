@@ -34,20 +34,20 @@ in
     unstable.variety # wallpaper
     unstable.kitty
     unstable.gource
-    /* unstable.firefox */
+    unstable.firefox
     unstable.microsoft-edge-dev
-    /* unstable.google-chrome */
+    # unstable.google-chrome
     unstable.thunderbird
     unstable.alacritty
     unstable.openvpn
     unstable.wezterm
     weixin
-    nur.repos.linyinfeng.wemeet
+    # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
-    /* unstable.netease-cloud-music-gtk */
+    # unstable.netease-cloud-music-gtk
     nur.repos.eh5.netease-cloud-music
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    /* gparted # 需要 GTK，使用 disk 也不错 */
+    # gparted # 需要 GTK，使用 disk 也不错
     telegraf
   ];
 
