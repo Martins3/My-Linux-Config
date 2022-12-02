@@ -14,12 +14,15 @@
 
 ## 默认常用操作
 - `prefix d` : 等价于 tmux detach
-- `prefix l` : 切换到 last window
 - `prefix &` : kill 当前的 window
 - `prefix x` : kill 当前的 pane
 - `prefix R` : 重新加载配置
+
+## 默认不怎么常用操作
+- `prefix l` : 切换到 last window
 - `prefix Space` : 切换下一个 pane layout
 - `prefix z` : 最大化当前的 pane
+- `prefix !` : 将 pane 转换为 window
 
 ## copy mode
 默认可以编辑的状态 tmux 称为 normal mode，使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式
