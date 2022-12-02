@@ -12,7 +12,7 @@
     clipboard-indicator
     bing-wallpaper-changer
     gtile
-    # hide-top-bar
+    hide-top-bar
     lightdark-theme-switcher
   ]);
 

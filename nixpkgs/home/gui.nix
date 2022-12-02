@@ -30,7 +30,6 @@ in
     unstable.flameshot
     unstable.zotero
     unstable.slack
-    unstable.netease-cloud-music-gtk
     unstable.drawio
     unstable.variety # wallpaper
     unstable.kitty
@@ -45,6 +44,8 @@ in
     weixin
     nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
+    /* unstable.netease-cloud-music-gtk */
+    nur.repos.eh5.netease-cloud-music
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     /* gparted # 需要 GTK，使用 disk 也不错 */
     telegraf

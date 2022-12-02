@@ -133,6 +133,7 @@ in
     unstable.nixos-shell
     viddy # A modern watch command.
     mcfly # better ctrl-r for shell
+    pciutils
   ];
 
   programs.zsh = {
