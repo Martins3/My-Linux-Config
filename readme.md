@@ -18,9 +18,8 @@
 
 ## ⚙ Install
 see scripts/install.sh, just a bunch of symbol links execpt neovim configuration is a little of complex:
-  - see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
   - read the [documentation](./docs/nvim.md)
-  - try [nix](./docs/nix.md)
+  - try [nixos](./docs/nix.md)
 
 ## 🤝 Contributing
 
