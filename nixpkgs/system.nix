@@ -55,8 +55,12 @@ in
     hashedPassword = passwd;
   };
 
-  boot.crashDump.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    crashDump.enable = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+    # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
+    cleanTmpDir = true;
+  };
 
   services.openssh.enable = true;
   networking.firewall.enable = false;
@@ -64,8 +68,6 @@ in
   systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
   # systemd.enableUnifiedCgroupHierarchy = true; # cgroup v2
 
-  # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
-  boot.cleanTmpDir = true;
 
   services.syncthing = {
     enable = true;

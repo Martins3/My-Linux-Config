@@ -458,7 +458,8 @@ gsettings reset org.gnome.desktop.input-sources sources
 ```
 
 ## 处理实际问题
-https://www.zhihu.com/column/c_1471621862853189632
+- https://www.zhihu.com/column/c_1471621862853189632
+  - 安装双系统 : https://zhuanlan.zhihu.com/p/560014206 
 
 ## nix
 - https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
@@ -468,11 +469,6 @@ https://www.zhihu.com/column/c_1471621862853189632
   - https://github.com/Martins3/My-Linux-Config/issues/14
 - [ ] 无法正确安装 crash
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
-- [ ] 为什么每次 home-manager 都是会出现这个问题
-```txt
-warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
-these 2 derivations will be built:
-```
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
 - 测试一下，到底放不方便修改内核
@@ -669,6 +665,13 @@ https://www.youtube.com/@NixCon
 内容参考这里:
 - https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
 - https://news.ycombinator.com/item?id=33815085
+
+## 垃圾清理
+sudo nix-collect-garbage -d
+
+## 包搜索
+ nix search nixpkgs markdown | fzf
+
 
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
