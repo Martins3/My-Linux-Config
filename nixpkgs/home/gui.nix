@@ -46,7 +46,6 @@ in
     nur.repos.linyinfeng.clash-for-windows
     # unstable.netease-cloud-music-gtk
     nur.repos.eh5.netease-cloud-music
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     # gparted # 需要 GTK，使用 disk 也不错
     telegraf
   ];
