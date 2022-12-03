@@ -58,6 +58,7 @@
   * [2022.9](#20229)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
+* [有趣的插件](#有趣的插件)
 * [blog](#blog)
 * [学习](#学习)
 * [主题](#主题)
@@ -839,6 +840,10 @@ setxkbmap -option caps:swapescape
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 本配置默认使用 treesitter 实现折叠，但是此插件是利用 lsp 实现折叠的
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
+
+## 有趣的插件
+- [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
+- [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)

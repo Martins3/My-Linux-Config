@@ -66,7 +66,7 @@ for s:fname in s:core_conf_files
 endfor
 
 colorscheme tokyonight
-" keymapping by whichkey doesn't work in neovim 0.8
+" this keymapping originally set by whichkey doesn't work in neovim 0.8
 noremap <Space>bc :BDelete hidden<cr>
 
 " 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx

@@ -603,6 +603,7 @@ warning: not including '/nix/store/ins8q19xkjh21fhlzrxv0dwhd4wq936s-nix-shell' i
 nix-env -f ./linux.nix -i
 shell-nix --cmd zsh
 ```
+
 - [ ] 无法理解这是什么安装方法，可以假如到 home.nix 中吗?
 ```sh
 nix-env -i -f https://github.com/nix-community/rnix-lsp/archive/master.tar.gz
@@ -634,43 +635,40 @@ $ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildIn
 - [ ] tlpi-dist 无法完全编译出来。
 - [ ] https://github.com/fannheyward/coc-pyright 描述了 python 的工作环境
 
+## nur
+https://nur.nix-community.org/
+
 ## 到底如何编译 Linux 内核
 https://ryantm.github.io/nixpkgs/builders/packages/linux/
-
-## 可以继续 QEMU 来继续 hacking NixOS
-https://gist.github.com/citruz/9896cd6fb63288ac95f81716756cb9aa
 
 ## 有趣
 - WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
 - https://github.com/jetpack-io/devbox
 
-
 ## 桌面环境
-- [ ] i3 比我想想的要简单很多，值得尝试
-https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
-- [ ] 也许还是使用 awesome 吧
-
-git clone https://github.com/leftwm/leftwm-theme
-
-## awesome
-这个是一个非常通用的问题了，那就是插件下载的二进制是无法使用的
-
-```sh
-git clone --depth 1 https://github.com/manilarome/the-glorious-dotfiles/
-```
-这个就
+- https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+- https://github.com/leftwm/leftwm-theme
+- https://github.com/manilarome/the-glorious-dotfiles/
 
 ```sh
 git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
 mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 ```
 
-- 其中存在很多小问题需要进行修复的。
-  - 好的，已经被我修复了: https://github.com/lcpz/lain/issues/503
+- 其中存在很多[小问题](https://github.com/lcpz/lain/issues/503)
 
 ## 组件
 - polybar
 - rofi
 - picom
+
+## nixos 的
+https://www.youtube.com/@NixCon
+
+## 更新 nixos 为 22.11
+内容参考这里:
+- https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
+- https://news.ycombinator.com/item?id=33815085
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
