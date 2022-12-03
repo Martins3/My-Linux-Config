@@ -76,14 +76,14 @@
     };
 
     "org/gnome/desktop/session" = {
-      idle-delay = lib.hm.gvariant.mkUint32 0; # never turn off screen
+      idle-delay = lib.hm.gvariant.mkUint32 900; # dim the screen after 15 mins
     };
     "org/gnome/settings-daemon/plugins/power" = {
       ambient-enabled = false;
-      idle-dim = false;
+      idle-dim = true;
       power-button-action = "suspend";
-      sleep-inactive-ac-timeout = 3600;
-      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-ac-timeout = 3600; # suspend the machine after 1 hour
+      sleep-inactive-ac-type = "suspend";
       sleep-inactive-battery-type = "suspend";
     };
     "org/gnome/shell/extensions/hidetopbar" = {
@@ -122,15 +122,17 @@
       move-to-workspace-right = [ "<Control>End" ];
     };
 
-    /* @todo 不清楚如何使用 nix 配置快捷键，但是可以在图形界面中配置
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/settings-shortcuts" = {
-      name = [ "'terminal'" ];
-      command = [ "'kitty'" ];
-      binding = [ "'<Control><Shift>t'" ];
-      };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
 
-      @todo 配置 power 选项，再图形界面中的总是会被重置
-    */
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Control><Alt>t";
+      command = "alacritty";
+      name = "open-terminal";
+    };
 
     "org/gnome/shell/extensions/clipboard-indicator" =
       {
