@@ -54,8 +54,7 @@ require("packer").startup({
     use 'voldikss/vim-floaterm' -- 以悬浮窗口的形式打开终端
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
     -- markdown
-    use({ "iamcco/markdown-preview.nvim", ft = "markdown",
-      run = "cd app && yarn install" }) -- 预览
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
     use 'mzlogin/vim-markdown-toc' -- 自动目录生成
     use 'dhruvasagar/vim-table-mode' -- 快速编辑 markdown 的表格
     use 'crispgm/telescope-heading.nvim' -- Telescope coc 没有 outline，所以只好使用这个
