@@ -16,9 +16,9 @@ in
 {
   fonts.fontconfig.enable = true;
 
-  home.stateVersion="21.11";
-  home.username="martins3";
-  home.homeDirectory="/home/martins3";
+  home.stateVersion = "21.11";
+  home.username = "martins3";
+  home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
     autoconf
@@ -146,6 +146,7 @@ in
     viddy # A modern watch command.
     mcfly # better ctrl-r for shell
     pciutils
+    powertop # 分析功耗
   ];
 
   programs.zsh = {

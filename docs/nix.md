@@ -281,7 +281,9 @@ linux.overrideAttrs (o: {
 
 ## 安装特定版本的程序
 - https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
+  - https://lazamar.co.uk/nix-versions/ : 使用这个网站
 - [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
+  - 这个文摘暂时没有看懂
 
 ## 在 nix 中搭建内核调试的环境
 参考 https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
@@ -367,9 +369,6 @@ nix eval -f begin.nix
 - https://github.com/nix-community/home-manager/issues/1668
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
-
-## coc-sumneko-lua
-- 暂时的水平难以解决 : https://github.com/xiyaowong/coc-sumneko-lua/issues/22
 
 ## MAC 中使用 nix
 存在很多麻烦的地方:
@@ -642,17 +641,20 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 - https://github.com/jetpack-io/devbox
 
 ## 桌面环境
+
+曾经简单的尝试过如下:
 - https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
 - https://github.com/leftwm/leftwm-theme
 - https://github.com/manilarome/the-glorious-dotfiles/
+- https://github.com/lcpz/awesome-copycats.git
 
-```sh
-git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
-mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
-```
+但是发现其中存在很多[小问题](https://github.com/lcpz/lain/issues/503)，很多配置也是没怎么维护，所以还是使用默认的 gnome 了。
 
-- 其中存在很多[小问题](https://github.com/lcpz/lain/issues/503)
+## 4k 屏幕
+虽然，我没有做过图形开发，但是我估计适配 4k 屏幕是个非常复杂的问题
+- https://news.ycombinator.com/item?id=25970690
 
+例如
 ## 组件
 - polybar
 - rofi
@@ -671,6 +673,12 @@ sudo nix-collect-garbage -d
 
 ## 包搜索
  nix search nixpkgs markdown | fzf
+
+## 静态编译
+- 似乎安装这个是不行的: glibc.static
+
+应该使用这种方法:
+nix-shell -p gcc glibc.static
 
 
 
