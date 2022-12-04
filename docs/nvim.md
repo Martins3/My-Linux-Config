@@ -878,6 +878,8 @@ setxkbmap -option caps:swapescape
 " - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
 " call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")
 
+- [ ] 如何让 statusline 统计字数
+
 -->
 
 ## 衍生

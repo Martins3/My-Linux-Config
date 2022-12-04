@@ -651,7 +651,7 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 但是发现其中存在很多[小问题](https://github.com/lcpz/lain/issues/503)，很多配置也是没怎么维护，所以还是使用默认的 gnome 了。
 
 ## 4k 屏幕
-虽然，我没有做过图形开发，但是我估计适配 4k 屏幕是个非常复杂的问题
+虽然，我没有做过图形开发，但是我估计适配 4k 屏幕是个非常复杂的问题，Linux 目前对于这个问题处理的也不是很好:
 - https://news.ycombinator.com/item?id=25970690
 
 例如

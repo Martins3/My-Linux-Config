@@ -24,8 +24,8 @@ rime_dir="$HOME/.local/share/fcitx5" bash rime-install
 ## 添加自己的配置
 参考了一下 [Iorest](https://github.com/Iorest/rime-setting)，感觉有点庞杂，所以我自己写了[一个](https://github.com/Martins3/My-Linux-Config/tree/master/rime)
 
-## 重启
-fcitx -r
+## 重启才会生效
+fcitx5 -r
 
 ## 设置
 在出现 ui 的时候, Fn4 可以调整, 或者使用
@@ -58,9 +58,12 @@ use_preset_vocabulary: true
 - https://github.com/studyzy/imewlconverter : 装换
 
 ## 设置皮肤
-默认皮肤就很简洁，没有必要浪费时间。
+- 暂时在 Linux 中:
+  - https://github.com/fkxxyz/ssfconv
+- 在 mac 中的参考很多，例如:
+  - https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more
 
-## Mac 中
+## Mac 的使用
 - https://rime.im/download/
 - 使用 rime/mac-install.sh 安装，其实也就是地址不同而已
   - rime/squirrel.custom.yaml 中配置其中的
@@ -91,7 +94,3 @@ export PATH="$PATH:/usr/local/bin"
 - https://github.com/BlueSky-07/Shuang 双拼練習
 - https://mogeko.me/posts/zh-cn/031/
 - [ ] https://sspai.com/post/63916
-- [ ] 有没有自动 correction 的操作
-- [ ] 如何保持总是只有 rime,似乎从 vim 切换到 chrome 中的时候,会切换成系统的英文输入法
-- [ ] rime 能不能像 sogou 一样又一个明显一点的 indicator 说明当前是中文还是英文
-- [ ] 统计字数是个好东西啊，但是统计中文的行为很奇怪。

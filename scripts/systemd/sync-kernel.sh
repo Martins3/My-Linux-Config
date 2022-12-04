@@ -259,7 +259,7 @@ CONFIG_SCSI_LOGGING=y
 
 CONFIG_ZSWAP_DEFAULT_ON=y
 
-
+CONFIG_BLK_DEV_UBLK=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"

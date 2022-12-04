@@ -94,5 +94,6 @@ require("packer").startup({
     use { 'glepnir/hlsearch.nvim', event = 'BufRead', config = function()
       require('hlsearch').setup()
     end }
+    use 'azabiong/vim-highlighter'
   end,
 })

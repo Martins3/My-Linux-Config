@@ -105,7 +105,7 @@ in
 
   # systemctl --user list-timers --all
   systemd.user.timers.kernel = {
-    enable = true;
+    enable = false;
     timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
     wantedBy = [ "timers.target" ];
   };
@@ -121,7 +121,7 @@ in
   };
 
   systemd.user.timers.qemu = {
-    enable = true;
+    enable = false;
     timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
     wantedBy = [ "timers.target" ];
   };
