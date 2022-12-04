@@ -62,6 +62,31 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ## 定制 statusline
 感觉没必要，浪费时间
 
+## session 管理
+
+通过 tmuxp 创建一个 session 并且自动执行初始化命令:
+
+例如，如下命令可以自动创建两个 window 并且分别打开对应的仓库
+```sh
+tmuxp load -d ./tmux-session.yaml
+```
+
+cat tmux-session.yaml
+```txt
+session_name: note
+windows:
+  - window_name: org-mode
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/org-mode
+      - nvim
+  - window_name: .dotfiles
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/.dotfiles
+      - nvim
+```
+
 ## 一些小技巧
 
 1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了

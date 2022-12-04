@@ -71,6 +71,7 @@ function px() {
   export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
 }
 
+alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
