@@ -42,7 +42,7 @@ in
     git
     wget
     zsh
-    unstable.libcgroup # taskset cgcreate
+    libcgroup # taskset cgcreate
   ];
 
   users.mutableUsers = false;
@@ -65,9 +65,8 @@ in
   services.openssh.enable = true;
   networking.firewall.enable = false;
 
-  systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
-  # systemd.enableUnifiedCgroupHierarchy = true; # cgroup v2
-
+  # 默认是 cgroup v2
+  # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
 
   services.syncthing = {
     enable = true;
@@ -142,5 +141,9 @@ in
     enable = true;
   };
   nix.settings.experimental-features = "nix-command flakes";
-  system.autoUpgrade.enable = true;
+  # 因为使用的最新内核，打开这个会导致更新过于频繁
+  system.autoUpgrade.enable = false;
+
+  nixpkgs.config.allowUnfree = true;
+  programs.steam.enable = true; 
 }

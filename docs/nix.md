@@ -680,6 +680,22 @@ sudo nix-collect-garbage -d
 应该使用这种方法:
 nix-shell -p gcc glibc.static
 
+## 如何安装 nixos 主题
+- https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/icons/whitesur-icon-theme/default.nix
 
+## 如何安装 nixos
+- [Installing Steam on NixOS in 50 simple steps](https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html)
+
+但是社区感觉实在是太复杂了，所以存在一个专门的 hacking：
+```nix
+nixpkgs.config.allowUnfree = true;
+programs.steam.enable = true; 
+```
+
+## 自定义字体 
+- 参考： https://www.adaltas.com/en/2022/03/29/nix-package-creation-install-font/
+- 安装 : https://github.com/atelier-anchor/smiley-sans
+
+但是不知道如何指定安装这个!
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

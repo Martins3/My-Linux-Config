@@ -21,9 +21,6 @@ in
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
-    autoconf
-    automake
-    pkg-config
     gcc
     mold
     go
@@ -147,6 +144,7 @@ in
     mcfly # better ctrl-r for shell
     pciutils
     powertop # 分析功耗
+    lm_sensors # 获取 CPU 温度
   ];
 
   programs.zsh = {
