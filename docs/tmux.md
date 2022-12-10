@@ -87,6 +87,14 @@ windows:
       - nvim
 ```
 
+## screen
+screen 是一个类似的程序，常见的使用方法如下:
+
+- screen -d -m sleep 1000
+- screen -list           
+- screen -r   
+- screen -list
+
 ## 一些小技巧
 
 1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了

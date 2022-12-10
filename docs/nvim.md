@@ -148,12 +148,11 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 ## 安装
 安装成功需要注意两点:
-1. **代理** : 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
-2. 软件版本 : 有的软件没有被 apt 收录进去，有的版本太低，这导致少数几个软件需要手动编译，下面以 Ubuntu 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
+1. **代理** : 实现代理的方法在 github 上有很多教程。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
+2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 20.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
+当然滚动更新的 Linux Distribution，类似 Arch 一般存在这些问题。
 
 整个环境的安装主要是 neovim coc.nvim clangd，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
-
-基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
 
 ### 安装各种依赖
 ```sh
@@ -164,7 +163,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 ```
 
 ### 安装 nvim
-- 当前配置需要 neovim 0.7 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.8 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
 ```sh
