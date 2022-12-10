@@ -36,6 +36,7 @@ in
     nodejs
     tmux
     tmuxp
+    screen
     tig
     xclip # x clipboard
     wl-clipboard # wayland clipboard
@@ -72,9 +73,6 @@ in
     gping # better ping
     unstable.pingu # interesting ping
     nbd
-    # nix
-    nix-index
-    # kernel
     kmon # 方便的管理内核模块
     numactl
     kexec-tools
@@ -111,7 +109,7 @@ in
       ipython
       filelock
       autopep8
-      sphinx
+      sphinx #  @todo kernel doc
       libvirt
       mock
       filelock
@@ -121,7 +119,7 @@ in
       monotonic
       libxml2
     ]))
-    graphviz
+    graphviz # @todo kernel doc
     perl
     man-pages
     man-pages-posix

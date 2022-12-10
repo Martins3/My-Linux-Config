@@ -71,6 +71,32 @@ function px() {
   export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
 }
 
+function martins3_prepare_qemu(){
+  echo "gdb debug kernel"
+  if pgrep qemu-system-x86 ; then
+    echo "there's qemu process, maybe kill it firstly"
+    echo "pkill qemu-system-x86"
+    sleep infinity
+  fi
+}
+
+function dk(){
+  martins3_prepare_qemu
+  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
+  /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
+  pkill qemu-system-x86
+}
+
+function k(){
+  martins3_prepare_qemu
+  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+  sleep 2
+  until ssh -p5556 root@localhost; do
+    sleep 1
+  done
+  pkill qemu-system-x86
+}
+
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"
 alias ck="systemctl --user start kernel"
@@ -80,7 +106,6 @@ alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
 alias ge="ssh -p5556 root@localhost"
-alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"

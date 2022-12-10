@@ -1,6 +1,15 @@
 # NixOS 初步尝试
 
-使用 QEMU 运行参考[我写的脚本](https://github.com/Martins3/My-Linux-Config/scripts/qemu-run-nix.sh)
+声明：
+- NixOS 是给程序员准备的，你需要掌握你们新的函数式编程语言。
+- 其次，NixOS 的入门曲线非常的陡峭。
+
+我在使用 NixOS 的时候，一度想要放弃，但是最终还是检查下来了。
+因为 NixOS 非常符合计算机的思维，相同的问题仅仅解决一次，而这个问题是
+环境配置。
+
+## 优缺点对比
+1. escape 和 Caps 之间互相切换
 
 ## 安装
 ### 安装系统
@@ -691,6 +700,8 @@ nix-shell -p gcc glibc.static
 nixpkgs.config.allowUnfree = true;
 programs.steam.enable = true; 
 ```
+
+## nix-index 是做什么的
 
 ## 自定义字体 
 - 参考： https://www.adaltas.com/en/2022/03/29/nix-package-creation-install-font/
