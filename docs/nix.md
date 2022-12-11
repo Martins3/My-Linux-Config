@@ -9,7 +9,11 @@
 环境配置。
 
 ## 优缺点对比
-1. escape 和 Caps 之间互相切换
+### 优点
+1. escape 和 Caps 之间互相切换更加简单
+
+### 缺点
+1. crash 无法安装
 
 ## 安装
 ### 安装系统
@@ -467,7 +471,7 @@ gsettings reset org.gnome.desktop.input-sources sources
 
 ## 处理实际问题
 - https://www.zhihu.com/column/c_1471621862853189632
-  - 安装双系统 : https://zhuanlan.zhihu.com/p/560014206 
+  - 安装双系统 : https://zhuanlan.zhihu.com/p/560014206
 
 ## nix
 - https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
@@ -698,12 +702,12 @@ nix-shell -p gcc glibc.static
 但是社区感觉实在是太复杂了，所以存在一个专门的 hacking：
 ```nix
 nixpkgs.config.allowUnfree = true;
-programs.steam.enable = true; 
+programs.steam.enable = true;
 ```
 
 ## nix-index 是做什么的
 
-## 自定义字体 
+## 自定义字体
 - 参考： https://www.adaltas.com/en/2022/03/29/nix-package-creation-install-font/
 - 安装 : https://github.com/atelier-anchor/smiley-sans
 

@@ -81,6 +81,7 @@ in
 
   documentation.enable = true;
 
+  # @todo 实际上，这个程序根本没啥用途
   services.earlyoom = {
     enable = true;
   };
@@ -137,6 +138,18 @@ in
     wantedBy = [ "timers.target" ];
   };
 
+  systemd.user.services.kernel_doc = {
+    enable = true;
+    description = "export kernel doc at 127.0.0.1:3434";
+    serviceConfig = {
+      WorkingDirectory = "/home/martins3/core/linux/Documentation/output";
+      Type = "simple";
+      ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server 3434";
+      Restart = "no";
+    };
+    wantedBy = [ "timers.target" ];
+  };
+
   systemd.services.iscsid = {
     enable = true;
   };
@@ -145,5 +158,5 @@ in
   system.autoUpgrade.enable = false;
 
   nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true; 
+  programs.steam.enable = true;
 }

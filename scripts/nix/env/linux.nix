@@ -36,6 +36,12 @@ pkgs.stdenv.mkDerivation {
     pkgs.openssl
     pkgs.pkg-config
 
+    pkgs.graphviz
+
+    (python3.withPackages (p: with p; [
+      sphinx
+    ]))
+
   ];
 
   # TMP_TODO

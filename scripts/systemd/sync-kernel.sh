@@ -265,6 +265,7 @@ _EOF_
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 # nix-shell --command "make clean"
 nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 # nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # nix-shell --command "make binrpm-pkg -j"

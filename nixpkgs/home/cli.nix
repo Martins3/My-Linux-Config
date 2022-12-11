@@ -109,7 +109,6 @@ in
       ipython
       filelock
       autopep8
-      sphinx #  @todo kernel doc
       libvirt
       mock
       filelock
@@ -119,7 +118,6 @@ in
       monotonic
       libxml2
     ]))
-    graphviz # @todo kernel doc
     perl
     man-pages
     man-pages-posix

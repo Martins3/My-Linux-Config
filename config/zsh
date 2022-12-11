@@ -82,7 +82,7 @@ function martins3_prepare_qemu(){
 
 function dk(){
   martins3_prepare_qemu
-  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
+  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
   /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
   pkill qemu-system-x86
 }
