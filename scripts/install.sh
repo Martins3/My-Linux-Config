@@ -23,3 +23,18 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   echo "tmux plugin install : prefix + I"
 fi
+
+
+function k(){
+  martins3_prepare_qemu
+  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+  ## ssh 还是不好用，也许还是将 console 接管吧!
+  for((i=0; i < 2; i++)); do
+    sleep 2
+    if ssh -p5556 root@localhost ;then
+      pkill qemu-system-x86
+    fi
+  done
+}
+
+fori

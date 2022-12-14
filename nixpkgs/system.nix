@@ -5,7 +5,7 @@ let
   # mkpasswd -m sha-512
   passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
 
-  unstable = import <unstable> { };
+  unstable = import <nixos-unstable> { };
 in
 {
   imports = [
@@ -149,6 +149,18 @@ in
     };
     wantedBy = [ "timers.target" ];
   };
+
+  systemd.services.hugepage = {
+    enable = true;
+    description = "make user process access hugepage";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/chmod o+w /dev/hugepages/";
+      Restart = "no";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
 
   systemd.services.iscsid = {
     enable = true;

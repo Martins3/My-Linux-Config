@@ -713,4 +713,28 @@ programs.steam.enable = true;
 
 但是不知道如何指定安装这个!
 
+## [ ] openvpn
+- 直接使用是存在问题的 : https://github.com/OpenVPN/openvpn3-linux/issues/42
+- 之后修复了
+  - https://github.com/NixOS/nixpkgs/pull/120352
+  - https://github.com/NixOS/nixpkgs/pull/173937
+
+从 pull request 中看，应该配置方法是:
+```nix
+  services.openvpn3.enable = true;
+```
+
+但是实际上应该是这样的:
+```nix
+  programs.openvpn3.enable = true;
+```
+
+最后，在 ubuntu 上可以正确执行的，结果在 nixos 上总是卡住的:
+```txt
+🧀  openvpn3 log session-start --config client.ovpn
+Waiting for session to start ...
+```
+
+有时间，我想直接切换为 wireguard 吧
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

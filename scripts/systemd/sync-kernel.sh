@@ -260,12 +260,31 @@ CONFIG_SCSI_LOGGING=y
 CONFIG_ZSWAP_DEFAULT_ON=y
 
 CONFIG_BLK_DEV_UBLK=y
+
+# -- @todo remove this if the survey is over
+CONFIG_FUNCTION_ERROR_INJECTION=y
+CONFIG_FAULT_INJECTION=y
+CONFIG_FAILSLAB=y
+CONFIG_FAIL_PAGE_ALLOC=y
+CONFIG_FAULT_INJECTION_USERCOPY=y
+CONFIG_FAIL_MAKE_REQUEST=y
+CONFIG_FAIL_IO_TIMEOUT=y
+CONFIG_FAIL_FUTEX=y
+CONFIG_FAULT_INJECTION_DEBUG_FS=y
+
+CONFIG_FAIL_FUNCTION=y
+# ---
+
+CONFIG_BPF_KPROBE_OVERRIDE=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 # nix-shell --command "make clean"
 nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
-nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# 编译的速度太慢了，不想每次都等那么久
+if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
+  nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+fi
 # nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # nix-shell --command "make binrpm-pkg -j"

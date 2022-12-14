@@ -91,10 +91,10 @@
 1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
 
-如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后
-使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的。
+如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后，之后可以
+使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的那几个。
 
-vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
+vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习曲线就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。实不相瞒，我用 vim 好几年，至今不会写超过 5 行的 vimscript 。
 
 ## Language Server Protocal
 lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
@@ -872,7 +872,7 @@ setxkbmap -option caps:swapescape
 - [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
-" 多半是这个没有正确设置，参考:
+" 多fail_futex半是这个没有正确设置，参考:
 " - https://github.com/fannheyward/coc-pyright/issues/184
 " - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
 " call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")

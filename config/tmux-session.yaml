@@ -1,5 +1,10 @@
 session_name: note
 windows:
+  - window_name: vn
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/vn
+      - nvim
   - window_name: .dotfiles
     layout: tiled
     shell_command_before:

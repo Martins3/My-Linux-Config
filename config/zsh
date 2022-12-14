@@ -51,15 +51,26 @@ function t() {
 function px() {
   PROXY_SERVER_IP="http://127.0.0.1"
   PROXY_SERVER_PORT=8889
-  while getopts "g" opt; do
+  while getopts "ga:p:h" opt; do
     case $opt in
-    g)
-      PROXY_SERVER_IP="http://10.0.2.2"
-      PROXY_SERVER_PORT=8889
-      ;;
-    *)
-      exit 1
-      ;;
+      g)
+        PROXY_SERVER_IP="http://10.0.2.2"
+        PROXY_SERVER_PORT=8889
+        ;;
+      a)
+        PROXY_SERVER_IP=${OPTARG}
+        ;;
+      p)
+        PROXY_SERVER_PORT=${OPTARG}
+        ;;
+      h)
+        echo "-g : use this in QEMU"
+        echo "-a : ip address"
+        echo "-p : ip port"
+        ;;
+      *)
+        exit 1
+        ;;
     esac # --- end of case ---
   done
 
@@ -80,6 +91,9 @@ function martins3_prepare_qemu(){
   fi
 }
 
+
+alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
+
 function dk(){
   martins3_prepare_qemu
   screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
@@ -90,12 +104,21 @@ function dk(){
 function k(){
   martins3_prepare_qemu
   screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
-  sleep 2
-  until ssh -p5556 root@localhost; do
-    sleep 1
+  ## ssh 还是不好用，也许还是将 console 接管吧!
+  for i in x y; do
+    sleep 2
+    ssh -p5556 root@localhost
+    if [[ $? != 255 ]] ;then
+      echo "good"
+      pkill qemu-system-x86
+      break
+    fi
+    echo "try again"
   done
-  pkill qemu-system-x86
 }
+
+alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
+alias ge="ssh -p5556 root@localhost"
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"
@@ -105,7 +128,6 @@ alias du="ncdu"
 alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
-alias ge="ssh -p5556 root@localhost"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"

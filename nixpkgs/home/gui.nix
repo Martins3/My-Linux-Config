@@ -39,7 +39,6 @@ in
     # unstable.google-chrome
     unstable.thunderbird
     unstable.alacritty
-    unstable.openvpn
     unstable.wezterm
     weixin
     # nur.repos.linyinfeng.wemeet
