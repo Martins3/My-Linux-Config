@@ -257,11 +257,9 @@ CONFIG_HAVE_SCHED_AVG_IRQ=y
 # try to learn scsi
 CONFIG_SCSI_LOGGING=y
 
-CONFIG_ZSWAP_DEFAULT_ON=y
-
 CONFIG_BLK_DEV_UBLK=y
 
-# -- @todo remove this if the survey is over
+# -- @todo remove this if the survey is over --
 CONFIG_FUNCTION_ERROR_INJECTION=y
 CONFIG_FAULT_INJECTION=y
 CONFIG_FAILSLAB=y
@@ -273,9 +271,50 @@ CONFIG_FAIL_FUTEX=y
 CONFIG_FAULT_INJECTION_DEBUG_FS=y
 
 CONFIG_FAIL_FUNCTION=y
-# ---
+# --------------------------------------------
 
 CONFIG_BPF_KPROBE_OVERRIDE=y
+
+# ----- iscsi targetcli 需要 begin ------
+# 1. configfs
+# 2. target_core
+# 3. iscsi_target
+CONFIG_CONFIGFS_FS=y
+
+CONFIG_TARGET_CORE=y
+CONFIG_CRYPTO_CRCT10DIF=y
+CONFIG_CRC_T10DIF=y
+
+CONFIG_ISCSI_TARGET=y
+CONFIG_CRYPTO_CRC32C_INTEL=y
+
+CONFIG_BLK_DEV_INTEGRITY=y
+CONFIG_BLK_DEV_INTEGRITY_T10=y
+CONFIG_TCM_IBLOCK=y
+CONFIG_TCM_FILEIO=y
+CONFIG_TCM_PSCSI=y
+CONFIG_LOOPBACK_TARGET=y
+CONFIG_CRYPTO_CRC64_ROCKSOFT=y
+CONFIG_CRC64_ROCKSOFT=y
+CONFIG_CRC64=y
+
+CONFIG_BLK_DEV_BSGLIB=y
+CONFIG_SCSI_ISCSI_ATTRS=y
+CONFIG_ISCSI_TCP=y
+# ----- iscsi targetcli 需要 end ------
+
+# 增加一个专门用于调试的 scsi 设备
+CONFIG_SCSI_DEBUG=y
+
+# 支持 cgroup 中 io.max
+CONFIG_BLK_CGROUP_RWSTAT=y
+CONFIG_BLK_DEV_THROTTLING=y
+CONFIG_BLK_DEV_THROTTLING_LOW=y
+CONFIG_BLK_WBT=y
+CONFIG_BLK_WBT_MQ=y
+
+# 网络模拟
+CONFIG_NET_SCH_NETEM=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"

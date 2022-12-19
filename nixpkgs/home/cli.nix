@@ -141,6 +141,7 @@ in
     pciutils
     powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
+    libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
   ];
 
   programs.zsh = {

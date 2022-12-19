@@ -83,14 +83,10 @@ function px() {
 }
 
 function martins3_prepare_qemu(){
-  echo "gdb debug kernel"
   if pgrep qemu-system-x86 ; then
-    echo "there's qemu process, maybe kill it firstly"
-    echo "pkill qemu-system-x86"
-    sleep infinity
+    gum confirm "there's qemu process, maybe kill it firstly" && pkill qemu-system-x86
   fi
 }
-
 
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 
@@ -98,7 +94,7 @@ function dk(){
   martins3_prepare_qemu
   screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
   /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-  pkill qemu-system-x86
+  gum confirm "Kill the machine?" && pkill qemu-system-x86
 }
 
 function k(){
@@ -106,14 +102,13 @@ function k(){
   screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
   ## ssh 还是不好用，也许还是将 console 接管吧!
   for i in x y; do
-    sleep 2
+    gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
     ssh -p5556 root@localhost
     if [[ $? != 255 ]] ;then
-      echo "good"
-      pkill qemu-system-x86
+      gum confirm "Kill the vm?" && pkill qemu-system-x86
       break
     fi
-    echo "try again"
+    echo "try to connect to vm"
   done
 }
 
@@ -122,6 +117,7 @@ alias ge="ssh -p5556 root@localhost"
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"
+alias f="/home/martins3/core/vn/docs/kernel/flamegraph/flamegraph.sh"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
 alias du="ncdu"
