@@ -2,7 +2,7 @@ require 'nvim-treesitter.configs'.setup {
   -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
   highlight = {
     enable = true,
-    disable = { 'org', 'c', 'cpp' },
+    disable = { 'org', 'c', 'cpp', 'diff', 'markdown' },
     additional_vim_regex_highlighting = { 'org' },
   },
   -- ensure_installed = "maintained", 这个可以安装目前维护的所有语言 treesitter 插件。
