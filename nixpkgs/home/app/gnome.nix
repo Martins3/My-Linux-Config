@@ -7,7 +7,6 @@
     gnome.gnome-sound-recorder
   ])
   ++ (with pkgs.gnomeExtensions; [
-    # system-monitor
     unite
     clipboard-indicator
     bing-wallpaper-changer
@@ -31,7 +30,6 @@
         "clipboard-indicator@tudmotu.com"
         "gTile@vibou"
         "hidetopbar@mathieu.bidon.ca"
-        "system-monitor@paradoxxx.zero.gmail.com"
         "unite@hardpixel.eu"
         "theme-switcher@fthx"
       ];
