@@ -54,7 +54,9 @@ require("packer").startup({
     use 'voldikss/vim-floaterm' -- 以悬浮窗口的形式打开终端
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
     -- markdown
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" })
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" }) -- 预览
+    -- 如果 markdown-preview.nvim 安装有问题，可以尝试
+    -- 进入到 ~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim 中手动执行 cd app && npm install
     use 'mzlogin/vim-markdown-toc' -- 自动目录生成
     use 'dhruvasagar/vim-table-mode' -- 快速编辑 markdown 的表格
     use 'crispgm/telescope-heading.nvim' -- Telescope coc 没有 outline，所以只好使用这个
@@ -90,9 +92,6 @@ require("packer").startup({
     use 'rmagatti/auto-session' -- 打开 vim 的时候，自动回复上一次打开的样子
     use 'anuvyklack/hydra.nvim' -- 消除重复快捷键，可以用于调整 window 大小等
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
-    use { 'glepnir/hlsearch.nvim', event = 'BufRead', config = function()
-      require('hlsearch').setup()
-    end }
     use 'azabiong/vim-highlighter' -- 高亮多个搜索内容
   end,
 })
