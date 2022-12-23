@@ -114,8 +114,6 @@
       switch-applications-backward = [ ];
       switch-windows = [ "<Super>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
-      maximize = [ "<Super>Up" ];
-      unmaximize = [ "<Super>Down" ];
       move-to-workspace-left = [ "<Control>Home" ];
       move-to-workspace-right = [ "<Control>End" ];
     };
