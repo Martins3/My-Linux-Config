@@ -80,7 +80,7 @@ su -l martins3
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
 ```
-执行 ./scripts/install.sh 将本配置的文件软链接到特定的为止。
+执行 ./scripts/install.sh 将本配置的文件软链接的位置。
 
 4. exit 到 root 执行，然后 ./scripts/nix-channel.sh 切换源
 

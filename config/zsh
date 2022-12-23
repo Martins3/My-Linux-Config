@@ -92,14 +92,14 @@ alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 
 function dk(){
   martins3_prepare_qemu
-  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
+  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r"
   /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
   gum confirm "Kill the machine?" && pkill qemu-system-x86
 }
 
 function k(){
   martins3_prepare_qemu
-  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
   ## ssh 还是不好用，也许还是将 console 接管吧!
   for i in x y; do
     gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
