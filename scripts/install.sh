@@ -5,6 +5,7 @@ if [[ ! -d ~/.dotfiles ]]; then
 fi
 mkdir -p ~/.config
 mkdir -p ~/.config/wtf
+mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 
@@ -18,6 +19,7 @@ ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
 ln -sf ~/.dotfiles/config/cargo.conf ~/.cargo/config
+ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
