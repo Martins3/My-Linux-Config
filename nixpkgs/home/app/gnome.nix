@@ -112,6 +112,10 @@
     "org/gnome/desktop/wm/keybindings" = {
       switch-applications = [ ];
       switch-applications-backward = [ ];
+      switch-to-application-1 = [ ];
+      switch-to-application-2 = [ ];
+      switch-to-application-3 = [ ];
+      switch-to-application-4 = [ ];
       switch-windows = [ "<Super>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
       move-to-workspace-left = [ "<Control>Home" ];
@@ -126,8 +130,9 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Control><Alt>t";
+      command = "wezterm";
       command = "alacritty";
-      name = "open-terminal";
+      /* name = "open-terminal"; */
     };
 
     "org/gnome/shell/extensions/clipboard-indicator" =

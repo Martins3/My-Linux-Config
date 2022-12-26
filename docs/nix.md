@@ -737,4 +737,7 @@ Waiting for session to start ...
 
 有时间，我想直接切换为 wireguard 吧
 
+## [ ] devenv
+- https://shyim.me/blog/devenv-compose-developer-environment-for-php-with-nix/
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

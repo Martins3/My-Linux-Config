@@ -13,19 +13,14 @@ return {
     { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
     { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
     {
-      key = "y", -- @todo 为什么不能切换为 2 ?
+      key = "y", -- ctrl-shift-num 已经默认是跳转到 tab 了
       mods = 'CTRL|SHIFT',
       action = wezterm.action.SpawnCommandInNewTab {
         args = { 'ssh', '-t', 'martins3@192.168.26.81', 'tmux attach || /usr/bin/env tmux' },
       },
     },
-    {
-      key = "u",
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.SpawnCommandInNewTab {
-        args = { 'htop' },
-      },
-    },
+    { key = "j", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
     {
       key = "LeftArrow",
       mods = 'CTRL|SHIFT',
@@ -44,9 +39,7 @@ return {
   window_background_opacity = 0.9,
   font = wezterm.font_with_fallback {
     'FiraCode Nerd Font',
-    { family = 'LXGW WenKai', scale = 1, weight = 'Bold', },
+    { family = 'LXGW WenKai', scale = 1 },
   },
-  -- @todo 不知道为什么，重启之后 wezterm 无法输入中文了
-  -- @todo super + number 老是被 gnome 截断，尝试了一下，失败了
-  -- @todo tab 的样式也许可以调整一下
+  use_fancy_tab_bar = false
 }
