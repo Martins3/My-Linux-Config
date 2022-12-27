@@ -57,11 +57,13 @@ in
     neofetch
     bear
     tree
-    jump
     fd
     cloc
     file
-    ncdu
+    duf # 更好的 df -h
+    zoxide # better jump
+    ncdu # 更好 du 更加易用
+    du-dust # 比 ncdu 更快
     socat # unix domain
     delta # git diff
     git-secrets
@@ -71,7 +73,7 @@ in
     ethtool
     sshpass
     gping # better ping
-    unstable.pingu # interesting ping
+    pingu # interesting ping
     nbd
     kmon # 方便的管理内核模块
     numactl
@@ -80,17 +82,17 @@ in
     stress-ng
     numatop
     # qemu
-    # OVMF # TMP_TODO 安装了，但是 OVMF.fd 没有找到
+    # OVMF # @todo 安装了，但是 OVMF.fd 没有找到
     qemu
     ninja
     libvirt
     virt-manager
     meson
     # vim
-    unstable.neovim
+    neovim
     shellcheck
     shfmt
-    # TMP_TODO 通过这种方法会失败，似乎是从 crates.io 下载的问题
+    # @todo 通过这种方法会失败，似乎是从 crates.io 下载的问题
     # rnix-lsp2
     rnix-lsp
     tree-sitter
@@ -121,7 +123,7 @@ in
     perl
     man-pages
     man-pages-posix
-    # TMP_TODO 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
+    # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     # x86-manpages
     lazydocker
     nixos-generators
@@ -129,7 +131,7 @@ in
     # acpi
     acpica-tools
     asciidoc
-    # iscsi # TMP_TODO iscsi 没有完全搞明白，所以在 nixos 上更加不会
+    # iscsi # @todo iscsi 没有完全搞明白，所以在 nixos 上更加不会
     targetcli
     fio
     # fun
@@ -142,6 +144,9 @@ in
     powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
+    # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
+    libcgroup
+    (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
   ];
 
   programs.zsh = {
@@ -173,7 +178,7 @@ in
   programs.git = {
     enable = true;
     userEmail = "hubachelar@gmail.com";
-    userName = "bachelor hu";
+    userName = "Martins3";
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin

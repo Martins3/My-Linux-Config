@@ -47,6 +47,8 @@ in
     nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     telegraf
+    scrcpy # @todo 尝试使用一下，有趣的
+    unstable.obsidian # @todo 1.18 中有 canvas 的功能，看上去还不错
   ];
 
   xdg.desktopEntries = {

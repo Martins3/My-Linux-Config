@@ -1,4 +1,4 @@
-eval "$(jump shell)"
+eval "$(zoxide init zsh)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 export PATH="$HOME/.npm-packages/bin:$PATH"
 
@@ -135,5 +135,4 @@ alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias vim=nvim
-alias z="j"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it

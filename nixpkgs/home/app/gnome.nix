@@ -131,8 +131,8 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Control><Alt>t";
       command = "wezterm";
-      command = "alacritty";
-      /* name = "open-terminal"; */
+      /* command = "alacritty"; */
+      name = "open-terminal";
     };
 
     "org/gnome/shell/extensions/clipboard-indicator" =
