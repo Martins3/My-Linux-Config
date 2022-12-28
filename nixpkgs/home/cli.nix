@@ -62,13 +62,14 @@ in
     file
     duf # 更好的 df -h
     zoxide # better jump
-    ncdu # 更好 du 更加易用
+    ncdu # 更加易用的 du
     du-dust # 比 ncdu 更快
     socat # unix domain
     delta # git diff
     git-secrets
     nethogs
     iftop
+    speedtest-cli # @todo 尝试使用下
     tcpdump
     ethtool
     sshpass

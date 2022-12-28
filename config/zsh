@@ -99,8 +99,7 @@ function dk(){
 
 function k(){
   martins3_prepare_qemu
-  screen -d -m "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
-  ## ssh 还是不好用，也许还是将 console 接管吧!
+  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
   for i in x y; do
     gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
     ssh -p5556 root@localhost
@@ -114,6 +113,7 @@ function k(){
 
 alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
 alias ge="ssh -p5556 root@localhost"
+alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"

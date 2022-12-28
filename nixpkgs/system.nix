@@ -27,22 +27,18 @@ in
 
   virtualisation.docker.enable = true;
 
-  # https://nixos.wiki/wiki/Virt-manager
-  virtualisation.libvirtd = {
-    enable = true;
-  };
-
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # https://nixos.wiki/wiki/Virt-manager
+  virtualisation.libvirtd = { enable = true; };
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    virt-manager
+    virt-manager # @todo 什么尝试一下使用 libvirtd 的基本使用吧
     vim
     git
     wget
     zsh
-    libcgroup # taskset cgcreate
   ];
 
   users.mutableUsers = false;
@@ -86,7 +82,7 @@ in
     enable = true;
   };
 
-  # TODO 并不知道这个东西如何用上
+  # @todo 并不知道这个东西如何用上
   services.jenkins = {
     enable = false;
   };

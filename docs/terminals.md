@@ -10,7 +10,8 @@
 * [Alacritty : 2020-2022](#alacritty-2020-2022)
 * [Kitty : 2022-现在](#kitty-2022-现在)
 * [Tabby : 几分钟](#tabby-几分钟)
-* [尚未尝试](#尚未尝试)
+* [wezterm](#wezterm)
+* [总结](#总结)
 
 <!-- vim-markdown-toc -->
 
@@ -68,8 +69,16 @@ Alacritty 的优点:
 
 非常的酷炫，但是性能不行。
 
-## 尚未尝试
-- [wezterm](https://github.com/wez/wezterm)
+## wezterm
+
+我发现我切换到 nixos 之后，kitty 中不能输入中文了，所以就换成了 [wezterm](https://github.com/wez/wezterm) 。
+配置大约花费了半个消失，最后 tab 栏有点臭，其他还好。
+
+## 总结
+目前，我推荐的 terminal 是:
+- kitty
+- wezterm
+- alacritty
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
