@@ -48,7 +48,7 @@ in
     /*     # https://www.spinics.net/lists/kernel/msg3797871.html */
     /*     /1* "elfutils-0.185" *1/ */
     /*     bc */
-    /*     # TMP_TODO 反正都是需要增加一个 patch 的，不如增加上一个这个： */
+    /*     # @todo 反正都是需要增加一个 patch 的，不如增加上一个这个： */
     /*     # https://mudongliang.github.io/2021/01/20/error-new-address-family-defined-please-update-secclass_map.html */
     /*     # myPkg */
     /* ]; */

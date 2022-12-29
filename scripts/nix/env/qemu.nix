@@ -16,5 +16,6 @@ pkgs.stdenv.mkDerivation {
     libcap_ng
     libslirp
     gtk3
+    libaio
   ];
 }
