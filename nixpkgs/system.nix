@@ -58,7 +58,7 @@ in
     cleanTmpDir = true;
   };
 
-  boot.kernelParams = [ "transparent_hugepage=never" ];
+  boot.kernelParams = [ "transparent_hugepage=always" ];
 
   services.openssh.enable = true;
   networking.firewall.enable = false;

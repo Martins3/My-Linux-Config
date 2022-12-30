@@ -124,8 +124,7 @@ in
     perl
     man-pages
     man-pages-posix
-    # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
-    # x86-manpages
+    # x86-manpages @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
     nixos-generators
     unstable.gum
@@ -135,21 +134,22 @@ in
     # iscsi # @todo iscsi 没有完全搞明白，所以在 nixos 上更加不会
     targetcli
     fio
-    # fun
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
     viddy # A modern watch command.
-    mcfly # better ctrl-r for shell
+    # mcfly # better ctrl-r for shell
+    unstable.atuin
     pciutils
     powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
     libcgroup
-    bat
-    xcp
+    bat # better cat
+    xcp # better cp
     procs # better ps
+    cloc
     tokei # 代码统计工具，比 cloc 性能好
     zellij # tmux 替代品
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？

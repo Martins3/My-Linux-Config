@@ -96,7 +96,13 @@ screen 是一个类似的程序，常见的使用方法如下:
 - screen -list
 
 ## zellij
-<!-- @todo -->
+看上去很不错，但是没有深入研究过。
+
+- https://zellij.dev/documentation/introduction.html
+- https://news.ycombinator.com/item?id=26902430
+  - 大家的评价是，技术体系很新
+
+但是估计从 tmux 到 zellij 迁移难度比较大。
 
 ## 一些小技巧
 

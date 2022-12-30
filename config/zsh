@@ -1,11 +1,17 @@
 eval "$(zoxide init zsh)"
+
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+
+bindkey '^r' _atuin_search_widget
+# eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(mcfly init zsh)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 export PATH="$HOME/.npm-packages/bin:$PATH"
 
 source /etc/os-release
 if [[ $ID == "nixos" ]];then
   eval "$(direnv hook zsh)"
-  eval "$(mcfly init zsh)"
 
   function en_direnv() {
     set -x
