@@ -87,7 +87,7 @@ wk.register({
       L = { "<cmd>FloatermNew tig<cr>", "log of project" },
       m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
       p = { "<cmd>Git push<cr>", "git push" },
-      s = { "<cmd>FloatermNew tig status<cr>", "git status" },
+      -- s : show git status with tig
     },
     l = {
       name = "+language",
@@ -140,6 +140,9 @@ wk.register({
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
   ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
+  ["<C-t>"] = { "<cmd>ToggleTerm<cr>", "open floaterm" },
+  ["<C-p>"] = { "<cmd>1ToggleTerm<cr>", "open floaterm" },
+  ["<C-n>"] = { "<cmd>2ToggleTerm<cr>", "open floaterm" },
 })
 
 wk.register({
