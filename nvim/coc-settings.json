@@ -19,8 +19,9 @@
   "sumneko-lua.enableNvimLuaDev": true,
   "Lua.telemetry.enable": true,
   "semanticTokens.enable": true,
+  "inlayHint.enable": false,
   "clangd.fallbackFlags": [
     "-Wall",
     "-Wextra"
-  ]
+  ],
 }

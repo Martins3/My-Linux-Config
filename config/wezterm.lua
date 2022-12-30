@@ -111,6 +111,10 @@ return {
       label = 'QEMU',
       args = { 'ssh', '-t', '-p5556', 'root@localhost', 'tmux attach || tmux' },
     },
+
+    {
+      args = { 'zellij' },
+    },
   },
 
   colors = {
