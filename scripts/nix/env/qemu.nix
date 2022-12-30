@@ -17,5 +17,10 @@ pkgs.stdenv.mkDerivation {
     libslirp
     gtk3
     libaio
+    libnfs
+    libseccomp
+    libssh
+    libbpf
+    zstd
   ];
 }

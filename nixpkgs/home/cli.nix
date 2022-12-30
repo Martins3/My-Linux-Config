@@ -67,6 +67,7 @@ in
     socat # unix domain
     delta # git diff
     git-secrets
+    bpftool
     nethogs
     iftop
     speedtest-cli # @todo 尝试使用下
@@ -100,7 +101,7 @@ in
     # trace
     pkgs.linuxPackages_latest.perf
     iperf
-    bpftrace
+    unstable.bpftrace # bpftrace 新版本才支持 kfunc
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk

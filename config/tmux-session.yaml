@@ -15,3 +15,8 @@ windows:
     shell_command_before:
       - cd ~/core/org-mode
       - nvim
+  - window_name: draft
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/draft
+      - nvim
