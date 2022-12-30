@@ -91,9 +91,12 @@ windows:
 screen 是一个类似的程序，常见的使用方法如下:
 
 - screen -d -m sleep 1000
-- screen -list           
-- screen -r   
 - screen -list
+- screen -r
+- screen -list
+
+## zellij
+<!-- @todo -->
 
 ## 一些小技巧
 

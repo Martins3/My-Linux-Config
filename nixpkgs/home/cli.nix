@@ -58,7 +58,6 @@ in
     bear
     tree
     fd
-    cloc
     file
     duf # 更好的 df -h
     zoxide # better jump
@@ -148,6 +147,11 @@ in
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
     libcgroup
+    bat
+    xcp
+    procs # better ps
+    tokei # 代码统计工具，比 cloc 性能好
+    zellij # tmux 替代品
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
   ];
 
