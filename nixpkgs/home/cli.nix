@@ -88,6 +88,7 @@ in
     virt-manager
     meson
     neovim
+    # wakatime
     shellcheck
     shfmt
     rnix-lsp # nix 语言的 lsp
@@ -125,7 +126,7 @@ in
     # acpi
     acpica-tools
     asciidoc
-    # iscsi # @todo iscsi 没有完全搞明白，所以在 nixos 上更加不会
+    # iscsi # @todo 尚未使用过
     targetcli
     fio
     genact # A nonsense activity generator

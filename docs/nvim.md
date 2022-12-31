@@ -598,8 +598,9 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 使用命令 DeleteSession 可以删除掉保存的 session 。
 
-
 <!-- ### [可选] wakatime -->
+<!-- 可以直接在 packer.lua 将这个插件删除掉，如果你感觉没必要。 -->
+
 <!-- 这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到[远程](https://wakatime.com/)，也可以自己搭建本地的 server -->
 
 <!-- - 方案一: https://github.com/muety/wakapi -->
@@ -607,11 +608,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 <!--         - 安装并且启动 -->
 <!--         - 在浏览器中登录 http://127.0.0.1:3000 -->
 <!--         - 设置 ~/.wakatime.cfg -->
-
 <!-- - 方案二: https://github.com/mujx/hakatime -->
-<!--     - 操作方法: -->
-<!--         - TODO -->
-<!--         - 除非是搞定了在本地搭建，否则难以接受将数据外传 -->
 
 ### [可选] Scala 集成
 参考 https://github.com/scalameta/nvim-metals 中的文档:
