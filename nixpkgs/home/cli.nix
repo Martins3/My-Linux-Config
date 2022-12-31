@@ -69,7 +69,6 @@ in
     bpftool
     nethogs
     iftop
-    speedtest-cli # @todo 尝试使用下
     tcpdump
     ethtool
     sshpass
@@ -82,22 +81,17 @@ in
     rpm
     stress-ng
     numatop
-    # qemu
-    # OVMF # @todo 安装了，但是 OVMF.fd 没有找到
+    OVMFFull # 存储在 run/libvirt/nix-ovmf/ 下
     qemu
     ninja
     libvirt
     virt-manager
     meson
-    # vim
     neovim
     shellcheck
     shfmt
-    # @todo 通过这种方法会失败，似乎是从 crates.io 下载的问题
-    # rnix-lsp2
-    rnix-lsp
+    rnix-lsp # nix 语言的 lsp
     tree-sitter
-    # trace
     pkgs.linuxPackages_latest.perf
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc

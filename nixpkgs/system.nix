@@ -30,11 +30,12 @@ in
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # virt manager 是一个图形化的 virsh ，用于创建和管理虚拟机
   # https://nixos.wiki/wiki/Virt-manager
-  virtualisation.libvirtd = { enable = true; };
+  virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    virt-manager # @todo 什么尝试一下使用 libvirtd 的基本使用吧
+    virtmanager
     vim
     git
     wget
@@ -79,14 +80,13 @@ in
 
   documentation.enable = true;
 
-  # @todo 实际上，这个程序根本没啥用途
+  # 检查方法 sudo journalctl -u earlyoom | grep sending
   services.earlyoom = {
     enable = true;
   };
 
-  # @todo 并不知道这个东西如何用上
   services.jenkins = {
-    enable = false;
+    enable = true;
   };
 
   systemd.user.services.kernel = {

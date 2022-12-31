@@ -37,13 +37,14 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local edge_foreground = background
   local process_name = tab.active_pane.foreground_process_name
   local exec_name = basename(process_name)
-  local title_with_icon
-
-  -- @todo 如何才可以实现自定义 lable name 的，使用 launch menu 的名称
-  title_with_icon = exec_name
+  local title_with_icon = exec_name
   local left_arrow = SOLID_LEFT_ARROW
   if tab.tab_index == 0 then
     left_arrow = SOLID_LEFT_MOST
+  end
+
+  if tab.tab_index == 0 then
+    title_with_icon = "Martins3"
   end
 
   local id = SUB_IDX[tab.tab_index + 1]
