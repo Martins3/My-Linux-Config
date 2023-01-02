@@ -8,7 +8,7 @@ require 'usr.orgmode'
 require 'usr.telescope'
 require 'usr.version'
 require 'usr.which-key'
-require 'usr.toggleterm'
+-- require 'usr.toggleterm' @todo term
 require("colorizer").setup { 'css'; 'javascript'; 'vim'; html = { mode = 'foreground'; } }
 require("nvim-surround").setup {}
 require('gitsigns').setup {}

@@ -51,7 +51,8 @@ require("packer").startup({
     use 'fannheyward/telescope-coc.nvim' -- 搜索 coc 提供的符号
     use 'dhruvmanila/telescope-bookmarks.nvim' -- 搜索 bookmarks
     -- 命令执行
-    use 'akinsho/toggleterm.nvim' -- 内置终端
+    use 'voldikss/vim-floaterm' -- 终端
+    use 'akinsho/toggleterm.nvim' -- 性能好点，但是易用性差点
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
     -- markdown
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" }) -- 预览

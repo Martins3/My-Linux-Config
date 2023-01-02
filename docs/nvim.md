@@ -879,6 +879,7 @@ setxkbmap -option caps:swapescape
 
 - [ ] 将终端更新为 akinsho/toggleterm.nvim，但是 <space>gl 如何实现?
   - [ ] 切换为下一个终端如何实现，这个看来是需要增加 patch 了吧!
+  - [ ] gc 自动进入到 terminal 中
 -->
 
 ## 衍生
