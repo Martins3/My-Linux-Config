@@ -877,6 +877,8 @@ setxkbmap -option caps:swapescape
 
 - [ ] 如何让 statusline 统计字数
 
+- [ ] 将终端更新为 akinsho/toggleterm.nvim，但是 <space>gl 如何实现?
+  - [ ] 切换为下一个终端如何实现，这个看来是需要增加 patch 了吧!
 -->
 
 ## 衍生

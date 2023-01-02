@@ -47,7 +47,6 @@ in
     unzip
     fzf
     ripgrep
-    silver-searcher
     binutils
     starship
     gdb

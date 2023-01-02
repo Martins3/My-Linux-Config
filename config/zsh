@@ -47,11 +47,20 @@ function rpm_extract() {
 }
 
 function t() {
-  if [[ -z $1 ]]; then
-    echo "need argument"
-  else
-    sudo bpftrace -e "kprobe:$1 {  @[kstack] = count(); }"
-  fi
+  while getopts "rh" opt; do
+    case $opt in
+      r)
+        sudo bpftrace -e "kretprobe:${@: -1} { printf(\"returned: %lx\\n\", retval); }"
+        return
+        ;;
+      h)
+        ;;
+      *)
+        exit 1
+        ;;
+    esac # --- end of case ---
+  done
+  sudo bpftrace -e "kprobe:${@: -1} {  @[kstack] = count(); }"
 }
 
 function px() {
@@ -141,4 +150,5 @@ alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias vim=nvim
+alias ag=rg
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
