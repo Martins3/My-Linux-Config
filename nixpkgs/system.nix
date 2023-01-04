@@ -60,11 +60,10 @@ in
   };
 
   boot.kernelParams = [
-    "transparent_hugepage=always"
+    # "transparent_hugepage=always"
+    "transparent_hugepage=never"
     # https://gist.github.com/rizalp/ff74fd9ededb076e6102fc0b636bd52b
-    # 关闭前 echo '2 minutes and 11 seconds elapsed.'
-    # 关闭后 echo '1 minutes and 39 seconds elapsed.'
-    # 性能提升 30%
+    # @todo 太随机了
     "noibpb"
     "nopti"
     "nospectre_v2"

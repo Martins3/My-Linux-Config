@@ -90,7 +90,7 @@ return {
     { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
-  default_prog = { '/home/martins3/.nix-profile/bin/zsh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
+  default_prog = { '/home/martins3/.nix-profile/bin/zsh', '-l', '-c', 'zellij tmux || /usr/bin/env tmux' },
   color_scheme = "Solarized Dark (base16)",
   font_size = 9.2,
   window_background_opacity = 0.8,

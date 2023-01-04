@@ -141,6 +141,7 @@ alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .git
 alias gs="tig status"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
+# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
 alias ls="exa --icons"
@@ -151,4 +152,4 @@ alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias vim=nvim
 alias ag=rg
-# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
+alias cat=bat

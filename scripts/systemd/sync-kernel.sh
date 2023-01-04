@@ -310,8 +310,8 @@ CONFIG_SCSI_DEBUG=y
 CONFIG_BLK_CGROUP_RWSTAT=y
 CONFIG_BLK_DEV_THROTTLING=y
 CONFIG_BLK_DEV_THROTTLING_LOW=y
-CONFIG_BLK_WBT=y
-CONFIG_BLK_WBT_MQ=y
+# CONFIG_BLK_WBT=y
+# CONFIG_BLK_WBT_MQ=y
 
 # 网络模拟
 CONFIG_NET_SCH_NETEM=y
@@ -320,7 +320,7 @@ _EOF_
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 # nix-shell --command "make clean"
 SECONDS=0
-nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 0))"
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 # 编译的速度太慢了，不想每次都等那么久

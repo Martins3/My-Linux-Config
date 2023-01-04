@@ -312,16 +312,9 @@ readonly ARGS="$@"
 cd "$(dirname "\$0")"
 endsnippet
 
-snippet note_split_to_array "template"
-# The shell scans the results of parameter expansion,
-# command substitution, and arithmetic expansion
-# that did not occur within double quotes for word splitting.
-s='foo bar baz'
-a=( $s ) # a=( "$s" )
-echo ${a[0]}
-
-# 正确的写法是:
-var="a aba a a a "
-IFS=" " read -r -a array <<< "$var"
-echo ${array[0]}
+snippet note_split_string_to_array "split string to array"
+IFS=';' read -ra ADDR <<< "$IN"
+for i in "${ADDR[@]}"; do
+  # process "$i"
+done
 endsnippet

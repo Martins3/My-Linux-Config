@@ -737,4 +737,7 @@ Waiting for session to start ...
 ## [ ] 修改默认的 image 打开程序
 默认是 microsoft-edge，但是我希望是 eog
 
+## nix M1
+- https://github.com/tpwrules/nixos-m1/blob/main/docs/uefi-standalone.md
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

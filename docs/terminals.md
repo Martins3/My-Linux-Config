@@ -74,6 +74,7 @@ Alacritty 的优点:
 我发现我切换到 nixos 之后，kitty 中不能输入中文了，所以就换成了 [wezterm](https://github.com/wez/wezterm) 。
 配置大约花费了半个消失，最后 tab 栏有点臭，其他还好。
 
+<!-- @todo 不知道为什么，最下面有一大片空白的无法被 zellij 或者 nvim 填满 -->
 ## 总结
 目前，我推荐的 terminal 是:
 - kitty

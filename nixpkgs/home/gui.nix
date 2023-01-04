@@ -47,6 +47,7 @@ in
     nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     telegraf
+    rofi # @todo rofi
     scrcpy # Android 的投屏工具
     unstable.obsidian
   ];

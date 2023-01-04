@@ -102,7 +102,11 @@ screen 是一个类似的程序，常见的使用方法如下:
 - https://news.ycombinator.com/item?id=26902430
   - 大家的评价是，技术体系很新
 
-但是估计从 tmux 到 zellij 迁移难度比较大。
+<!-- @todo -->
+但是估计从 tmux 到 zellij 迁移难度比较大，需要完成如下工作：
+- [ ] 快速切换 session
+- [ ] 自动修改 tab 的名称
+- [ ] 使用 ctrl+shift+arrow 移动 tab
 
 ## 一些小技巧
 

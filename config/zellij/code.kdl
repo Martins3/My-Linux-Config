@@ -1,0 +1,5 @@
+layout {
+    tab name="linux" cwd="/home/martins3/core/linux" {
+        pane command="nvim"
+    }
+}

@@ -1,0 +1,5 @@
+layout {
+    tab name="my amazing tab" cwd="/home/martins3/core/vn" {
+        pane command="nvim"
+    }
+}
