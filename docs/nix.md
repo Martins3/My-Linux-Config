@@ -342,17 +342,6 @@ linux.overrideAttrs (o: {
 的提示，
 rnix-lsp 可以，但是 x86-manpages 不可以
 
-## 安装 feishu
-
-```nix
-  feishu = pkgs.callPackage
-    (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/xieby1/nix_config/main/usr/gui/feishu.nix";
-      sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
-    })
-    { };
-```
-
 ## 常用 lib
 
 ```nix

@@ -77,6 +77,11 @@ in
     "mitigations=off"
   ];
 
+  # @todo 这个设置没有任何用
+  # 这里的讨论看了下，也是没用的
+  # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
+  boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+
   services.openssh.enable = true;
   networking.firewall.enable = false;
 
@@ -174,7 +179,6 @@ in
     };
     wantedBy = [ "multi-user.target" ];
   };
-
 
   systemd.services.iscsid = {
     enable = true;

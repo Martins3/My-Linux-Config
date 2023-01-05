@@ -1,5 +1,8 @@
 layout {
-    tab name="linux" cwd="/home/martins3/core/linux" {
-        pane command="nvim"
+    pane
+    pane size=1 borderless=true {
+        plugin location="file:///USER_HOME/.zellij/plugins/z-tab-bar.wasm"
     }
 }
+session_name "martins3"
+attach_to_session true

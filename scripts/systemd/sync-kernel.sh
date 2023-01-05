@@ -315,6 +315,9 @@ CONFIG_BLK_DEV_THROTTLING_LOW=y
 
 # 网络模拟
 CONFIG_NET_SCH_NETEM=y
+
+CONFIG_PSI=y
+# CONFIG_PSI_DEFAULT_DISABLED is not set
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"

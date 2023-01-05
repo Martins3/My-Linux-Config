@@ -31,13 +31,11 @@ keybinds clear-defaults=true {
         bind "J" { MovePane "Down"; }
         bind "K" { MovePane "Up"; }
         bind "L" { MovePane "Right"; }
+
+        bind "C" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "t" { ToggleTab; }
     }
-    tab {
-        bind "Ctrl l" { SwitchToMode "Normal"; } // @todo 暂时使用 l 吧
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; } // @todo 这个是做啥的
-        bind "Tab" { ToggleTab; }
-    }
+
     scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
@@ -107,7 +105,6 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
@@ -130,18 +127,18 @@ keybinds clear-defaults=true {
     shared_except "pane" "locked" {
         bind "Ctrl b" { SwitchToMode "Pane"; }
     }
-    shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
-    }
+    // shared_except "resize" "locked" {
+    //     bind "Ctrl n" { SwitchToMode "Resize"; }
+    // }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
     }
     // shared_except "session" "locked" {
     //     bind "Ctrl o" { SwitchToMode "Session"; }
     // }
-    shared_except "tab" "locked" {
-        bind "Ctrl l" { SwitchToMode "Tab"; } // @todo 暂时为 l
-    }
+    // shared_except "tab" "locked" {
+    //     bind "Ctrl l" { SwitchToMode "Tab"; }
+    // }
     // shared_except "move" "locked" {
     //     bind "Ctrl b" { SwitchToMode "Move"; }
     // }
@@ -153,7 +150,6 @@ keybinds clear-defaults=true {
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
-    strider { path "strider"; }
     compact-bar { path "compact-bar"; }
 }
 
@@ -212,7 +208,7 @@ theme "solarized-dark"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+/* default_layout "compact" */
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal

@@ -147,6 +147,7 @@ in
     tokei # 代码统计工具，比 cloc 性能好
     zellij # tmux 替代品
     sshfs
+    firecracker
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
   ];
 

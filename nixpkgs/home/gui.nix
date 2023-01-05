@@ -40,6 +40,7 @@ in
     unstable.thunderbird
     unstable.alacritty
     unstable.wezterm
+    unstable.feishu
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows

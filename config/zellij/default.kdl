@@ -1,0 +1,8 @@
+layout {
+  tab name="martins3 yyds" cwd="/home/martins3/core/" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane
+  }
+}
