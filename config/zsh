@@ -14,17 +14,7 @@ if [[ $ID == "nixos" ]];then
   eval "$(direnv hook zsh)"
 
   function en_direnv() {
-    set -x
-    dir="$(basename "$(pwd)")"
-    nix=$HOME/.dotfiles/scripts/nix/env/"$dir".nix
-    if [[ -f $nix ]]; then
-      ln -s "$nix" default.nix
-      echo "use nix" >> .envrc && direnv allow
-    else
-      # maybe use fzf to choose one
-      echo "$dir not found"
-    fi
-    set +x
+    echo "use nix" >> .envrc && direnv allow
   }
 
   export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
@@ -128,6 +118,8 @@ function k(){
 
 alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
 alias ge="ssh -p5556 root@localhost"
+alias ge2="ssh -p5557 root@localhost"
+alias ge3="ssh -p5558 root@localhost"
 alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"

@@ -24,4 +24,8 @@
     "-Wall",
     "-Wextra"
   ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "clangd.arguments": [
+    "-j=32"
+  ],
 }

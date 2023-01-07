@@ -30,7 +30,8 @@ pkgs.mkShell rec {
     readline
     xhtml1
     yajl
+    libtirpc
   ];
 }
-# meson build
+# meson build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
 # cp build/compile_commands.json .

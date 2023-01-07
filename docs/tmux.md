@@ -107,6 +107,8 @@ screen 是一个类似的程序，常见的使用方法如下:
 - [ ] 快速切换 session
 - [ ] 自动修改 tab 的名称
 - [ ] 使用 ctrl+shift+arrow 移动 tab
+- [ ] 切换 tab 总是自动回到第一个 pane 中的
+- [ ] 当 zellij 通过 ssh 在远程打开的时候，是没有办法拷贝的
 
 ## 一些小技巧
 

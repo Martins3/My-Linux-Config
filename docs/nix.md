@@ -311,8 +311,22 @@ linux.overrideAttrs (o: {
 在 :broom: remove cross-compile nix config 的提交中删除两个配置。
 
 ## 如何编译 kernel module
+
 - 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
 - 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
+
+没必要那么复杂，参考这个，中的 : Developing out-of-tree kernel modules
+- https://nixos.wiki/wiki/Linux_kernel
+
+```sh
+nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
+make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
+
+
+make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
+```
+
+- [ ] 搞清楚 kbuild 也许会让问题容易很多吧
 
 ## tmux
 为了让 tmux 配置的兼容其他的 distribution ，所以 tpm 让 nixos 安装，而剩下的 tmux 插件由 tmp 安装。
@@ -725,6 +739,9 @@ Waiting for session to start ...
 
 ## [ ] 修改默认的 image 打开程序
 默认是 microsoft-edge，但是我希望是 eog
+
+## 和各种 dotfile manager 的关系是什么
+- https://www.chezmoi.io/
 
 ## nix M1
 - https://github.com/tpwrules/nixos-m1/blob/main/docs/uefi-standalone.md

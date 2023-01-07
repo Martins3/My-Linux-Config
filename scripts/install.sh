@@ -8,7 +8,7 @@ mkdir -p ~/.config/wtf
 mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
-mkdir -p ~/.config/atuin/config.toml
+mkdir -p ~/.config/atuin/
 
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
