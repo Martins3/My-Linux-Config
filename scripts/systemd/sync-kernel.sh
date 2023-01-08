@@ -335,11 +335,13 @@ CONFIG_VFIO_MDEV=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
-# nix-shell --command "make clean"
+nix-shell --command "make clean"
 SECONDS=0
-nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 0))"
+nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 duration=$SECONDS
 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+echo "$(date) : $duration : " >> /home/martins3/core/compile-linux/database
+cat /proc/cmdline >> /home/martins3/core/compile-linux/database
 # 编译的速度太慢了，不想每次都等那么久
 if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
   nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"

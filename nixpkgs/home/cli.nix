@@ -99,6 +99,7 @@ in
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
     unstable.bcc
+    sqlite
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk

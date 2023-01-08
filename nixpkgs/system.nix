@@ -76,7 +76,7 @@ in
   networking.firewall = {
     # enable the firewall
     # @todo 为什么允许了端口还是不可以
-    enable = false;
+    enable = true;
 
     # always allow traffic from your Tailscale network
     trustedInterfaces = [ "tailscale0" ];
@@ -93,8 +93,7 @@ in
     ];
   };
 
-  # @tod 完整的思考下如何处理 wifi 吧
-  # networking.bridges.br0.interfaces = [ "wlo1" "enp4s0" ];
+  networking.bridges.br0.interfaces = [ "enp4s0" ];
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = passwd;
@@ -154,8 +153,9 @@ in
 
   documentation.enable = true;
 
-  # 检查方法 sudo journalctl -u earlyoom | grep sending
-  services.earlyoom = {
+  # earlyoom 检查方法 sudo journalctl -u earlyoom | grep sending
+  # @ services 和 systemd 的差别是什么?
+  systemd.oomd = {
     enable = true;
   };
 

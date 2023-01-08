@@ -322,11 +322,12 @@ linux.overrideAttrs (o: {
 nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
 make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
 
-
 make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
 ```
 
+
 - [ ] 搞清楚 kbuild 也许会让问题容易很多吧
+- [ ] 似乎现在是没有办法手动编译的
 
 ## tmux
 为了让 tmux 配置的兼容其他的 distribution ，所以 tpm 让 nixos 安装，而剩下的 tmux 插件由 tmp 安装。
@@ -745,5 +746,9 @@ Waiting for session to start ...
 
 ## nix M1
 - https://github.com/tpwrules/nixos-m1/blob/main/docs/uefi-standalone.md
+
+## vpn
+- tailscale : https://tailscale.com/blog/nixos-minecraft/
+- wireguard
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

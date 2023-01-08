@@ -110,7 +110,7 @@ return {
 
     {
       label = 'M2',
-      args = { 'ssh', '-t', 'martins3@192.168.11.99', 'tmux attach || tmux' },
+      args = { 'ssh', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
     },
     {
       label = 'QEMU',
