@@ -75,7 +75,6 @@ in
 
   networking.firewall = {
     # enable the firewall
-    # @todo 为什么允许了端口还是不可以
     enable = true;
 
     # always allow traffic from your Tailscale network
@@ -233,6 +232,7 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
+  # @todo 使用下吧
   systemd.services.iscsid = {
     enable = true;
   };

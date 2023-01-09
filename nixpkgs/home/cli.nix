@@ -155,6 +155,7 @@ in
     firecracker
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
+    # cudatoolkit
   ];
 
   programs.zsh = {

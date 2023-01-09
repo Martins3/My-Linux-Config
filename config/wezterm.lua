@@ -101,16 +101,15 @@ return {
   use_fancy_tab_bar = false,
   launch_menu = {
     {
+      label = 'M2',
+      args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
+    },
+    {
       args = { "zsh" },
     },
     {
       label = 'Arm Ubuntu Server',
       args = { 'ssh', '-t', 'martins3@192.168.26.81', 'tmux attach || tmux' },
-    },
-
-    {
-      label = 'M2',
-      args = { 'ssh', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
     },
     {
       label = 'QEMU',
