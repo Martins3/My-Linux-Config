@@ -117,7 +117,8 @@ return {
     },
 
     {
-      args = { 'zellij' },
+      label = 'zellij',
+      args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij'  },
     },
   },
 
