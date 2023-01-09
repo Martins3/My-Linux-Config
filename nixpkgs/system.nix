@@ -23,6 +23,12 @@ in
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
 
+  # nvidia GPU card configuration, for details,
+  # see https://nixos.wiki/wiki/Nvidia
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+
   programs.zsh.enable = true;
 
   virtualisation.docker.enable = true;
