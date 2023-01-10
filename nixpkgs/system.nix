@@ -98,6 +98,9 @@ in
     ];
   };
 
+  # https://nixos.wiki/wiki/Fwupd
+  services.fwupd.enable = true;
+
   networking.bridges.br0.interfaces = [ "enp4s0" ];
 
   users.mutableUsers = false;

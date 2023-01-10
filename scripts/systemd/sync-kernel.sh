@@ -333,7 +333,7 @@ CONFIG_VFIO_PCI=y
 CONFIG_VFIO_PCI_IGD=y
 CONFIG_VFIO_MDEV=y
 
-# 如何使用 @todo
+# @todo 如何使用
 CONFIG_PARAVIRT_DEBUG=y
 # @todo 原理
 CONFIG_PARAVIRT_SPINLOCKS=y
@@ -343,6 +343,9 @@ CONFIG_PARAVIRT_TIME_ACCOUNTING=y
 CONFIG_JAILHOUSE_GUEST=y
 # @todo 尝试使用下
 CONFIG_ACRN_GUEST=y
+
+CONFIG_MODVERSIONS=y
+CONFIG_ASM_MODVERSIONS=y
 _EOF_
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"

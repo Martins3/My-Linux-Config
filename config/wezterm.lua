@@ -120,6 +120,10 @@ return {
       label = 'zellij',
       args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij'  },
     },
+    {
+      label = 'tmux',
+      args = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux'  },
+    },
   },
 
   colors = {

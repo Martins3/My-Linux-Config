@@ -41,14 +41,16 @@ in
     unstable.alacritty
     unstable.wezterm
     unstable.feishu
+    nur.repos.xddxdd.wechat-uos
+    # nur.repos.xddxdd.qq
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
     # unstable.netease-cloud-music-gtk
     nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
-    telegraf
-    rofi # @todo rofi
+    telegraf # @todo
+    rofi # @todo rofi 的使用
     scrcpy # Android 的投屏工具
     unstable.obsidian
   ];
@@ -61,16 +63,6 @@ in
       icon = (pkgs.fetchurl {
         url = "https://todo.microsoft.com/favicon.ico";
         sha256 = "1742330y3fr79aw90bysgx9xcfx833n8jqx86vgbcp21iqqxn0z8";
-      }).outPath;
-    };
-
-    webweixin = {
-      name = "网页微信";
-      genericName = "wechat";
-      exec = "microsoft-edge-dev  https://wx.qq.com/";
-      icon = (pkgs.fetchurl {
-        url = "https://cdn.cdnlogo.com/logos/w/79/wechat.svg";
-        sha256 = "1xk1dsia6favc3p1rnmcncasjqb1ji4vkmlajgbks0i3xf60lskw";
       }).outPath;
     };
   };
