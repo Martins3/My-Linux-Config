@@ -41,6 +41,7 @@ in
     unstable.alacritty
     unstable.wezterm
     unstable.feishu
+    tdesktop
     nur.repos.xddxdd.wechat-uos
     # nur.repos.xddxdd.qq
     # weixin # 有趣，但是不稳定
