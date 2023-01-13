@@ -80,7 +80,7 @@ in
     rpm
     stress-ng
     numatop
-    OVMFFull # 存储在 run/libvirt/nix-ovmf/ 下
+    OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     qemu
     ninja
     libvirt

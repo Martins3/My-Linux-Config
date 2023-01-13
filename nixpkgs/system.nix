@@ -94,12 +94,18 @@ in
       22 # ssh
       5201 # iperf
       8889 # clash
-      8384 # syncthing
+      8384
+      22000 # syncthing
     ];
   };
 
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;
+
+  # @todo 如何处理总是等待 /sys/subsystem/net/devices/enp4s0 的问题
+  # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
+  # tailscale0 建立的网卡是什么原理，真有趣啊
+  # networking.interfaces.enp4s0.useDHCP = false;
 
   networking.bridges.br0.interfaces = [ "enp4s0" ];
 

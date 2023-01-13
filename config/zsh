@@ -8,6 +8,7 @@ bindkey '^r' _atuin_search_widget
 # eval "$(mcfly init zsh)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 source /etc/os-release
 if [[ $ID == "nixos" ]];then
@@ -118,8 +119,6 @@ function k(){
 
 alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
 alias ge="ssh -p5556 root@localhost"
-alias ge2="ssh -p5557 root@localhost"
-alias ge3="ssh -p5558 root@localhost"
 alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"

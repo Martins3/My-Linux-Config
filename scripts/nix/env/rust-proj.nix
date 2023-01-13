@@ -11,9 +11,8 @@ pkgs.mkShell {
     pkgs.openssl
     pkgs.pkg-config
 
-    # @todo 暂时没有搞清楚 wasm 的编译
-    # https://github.com/casonadams/z-tab-bar
-    # pkgs.wasm-pack
+    pkgs.wasm-pack
+    pkgs.rustup
     # pkgs.wasmer
     # pkgs.wasmtime
   ];

@@ -751,4 +751,14 @@ Waiting for session to start ...
 - tailscale : https://tailscale.com/blog/nixos-minecraft/
 - wireguard
 
+## wasm
+似乎 wasm 的配置很复杂，连最基本的配置都搞不定:
+- https://rustwasm.github.io/docs/book/game-of-life/hello-world.html
+
+这个人解决了问题，最后的评论中看到了 flake.nix，还有 flake.lock，我的鬼鬼！
+- https://gist.github.com/573/885a062ca49d2db355c22004cc395066
+
+如果彻底搞定后，可以尝试下这个:
+https://github.com/casonadams/z-tab-bar
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
