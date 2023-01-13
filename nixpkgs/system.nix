@@ -106,8 +106,16 @@ in
   # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
   # tailscale0 建立的网卡是什么原理，真有趣啊
   # networking.interfaces.enp4s0.useDHCP = false;
+  networking.bridges.br0.interfaces = [ "enp5s0" ];
+  # sudo ip ad add 10.0.0.1/24 dev enp5s0
 
-  networking.bridges.br0.interfaces = [ "enp4s0" ];
+  # @todo 这个配置为什么不行
+  networking.interfaces.enp5s0.ipv4.addresses = [{
+    address = "10.0.0.1";
+    prefixLength = 24;
+  }];
+
+  /* systemd.network.wait-online.ignoredInterfaces = [ "enp5s0" ]; */
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = passwd;

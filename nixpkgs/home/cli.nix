@@ -27,6 +27,7 @@ in
     lua
     unstable.sumneko-lua-language-server
     clangd13
+    ccls
     cargo
     rustc
     unstable.rust-analyzer
