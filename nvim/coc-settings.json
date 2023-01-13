@@ -5,6 +5,39 @@
       "filetypes": [
         "nix"
       ]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        "compile_commands.json",
+        ".git/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "highlight": {
+          "lsRanges": true
+        },
+        "index": {
+          "threads": 0
+        },
+        "client": {
+          "snippetSupport": true
+        },
+        "clang": {
+          "extraArgs": [
+            "-Wall"
+          ]
+        }
+      }
     }
   },
   "translator.engines": [
@@ -28,4 +61,5 @@
   "clangd.arguments": [
     "-j=32"
   ],
+
 }

@@ -94,5 +94,6 @@ require("packer").startup({
     use 'anuvyklack/hydra.nvim' -- 消除重复快捷键，可以用于调整 window 大小等
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
     use 'azabiong/vim-highlighter' -- 高亮多个搜索内容
+    use 'jackguo380/vim-lsp-cxx-highlight' -- ccls 高亮需要
   end,
 })
