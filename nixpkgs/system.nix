@@ -25,9 +25,9 @@ in
 
   # nvidia GPU card configuration, for details,
   # see https://nixos.wiki/wiki/Nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # services.xserver.videoDrivers = [ "nvidia" ];
+  # hardware.opengl.enable = true;
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   programs.zsh.enable = true;
 
@@ -94,7 +94,7 @@ in
       22 # ssh
       5201 # iperf
       8889 # clash
-      8384
+      8384 # syncthing
       22000 # syncthing
     ];
   };
@@ -110,12 +110,14 @@ in
   # sudo ip ad add 10.0.0.1/24 dev enp5s0
 
   # @todo 这个配置为什么不行
-  networking.interfaces.enp5s0.ipv4.addresses = [{
-    address = "10.0.0.1";
-    prefixLength = 24;
-  }];
+  /* networking.interfaces.enp5s0.ipv4.addresses = [{ */
+  /*   address = "10.0.0.1"; */
+  /*   prefixLength = 24; */
+  /* }]; */
 
-  /* systemd.network.wait-online.ignoredInterfaces = [ "enp5s0" ]; */
+  # wireless and wired coexist
+  # @todo disable this temporarily
+  systemd.network.wait-online.timeout = 0;
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = passwd;

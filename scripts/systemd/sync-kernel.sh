@@ -363,6 +363,8 @@ fi
 # nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # nix-shell --command "make binrpm-pkg -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+#
+# Documentation/conf.py 中修改主题 html_theme = 'sphinx_rtd_theme'
 
 # 1. 启动虚拟机，让 Guest 安装对应的内核
 # 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
