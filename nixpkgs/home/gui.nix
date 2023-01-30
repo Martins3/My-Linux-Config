@@ -47,7 +47,6 @@ in
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
-    # unstable.netease-cloud-music-gtk
     nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     telegraf # @todo
@@ -58,9 +57,9 @@ in
 
   xdg.desktopEntries = {
     todo = {
-      name = "Microsoft To Do";
+      name = "Todoist";
       genericName = "ToDo";
-      exec = "microsoft-edge-dev https://to-do.live.com/";
+      exec = "microsoft-edge-dev https://todoist.com/app/today";
       icon = (pkgs.fetchurl {
         url = "https://todo.microsoft.com/favicon.ico";
         sha256 = "1742330y3fr79aw90bysgx9xcfx833n8jqx86vgbcp21iqqxn0z8";
