@@ -267,4 +267,6 @@ in
 
   nixpkgs.config.allowUnfree = true;
   programs.steam.enable = true;
+
+  boot.blacklistedKernelModules = [ "nouveau" ];
 }

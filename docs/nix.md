@@ -221,6 +221,13 @@ error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647
 ```
 中的 python 删除就可以了。
 
+
+如果一个包安装不上，可以在这里:
+```txt
+python -m venv .venv
+source .venv/bin/activate
+```
+
 ## [ ] cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
 - https://www.breakds.org/post/nix-based-c++-workflow/

@@ -346,16 +346,41 @@ CONFIG_ACRN_GUEST=y
 
 CONFIG_MODVERSIONS=y
 CONFIG_ASM_MODVERSIONS=y
+
+# @todo 这里有好几个选项都是看不懂的哇
+# CONFIG_BRIDGE_NF_EBTABLES is not set
+CONFIG_STP=y
+CONFIG_BRIDGE=y
+CONFIG_BRIDGE_IGMP_SNOOPING=y
+# CONFIG_BRIDGE_MRP is not set
+# CONFIG_BRIDGE_CFM is not set
+CONFIG_LLC=y
+
+# @todo 为什么 ovs 会自动打开这几个选项
+CONFIG_NF_NAT_OVS=y
+CONFIG_OPENVSWITCH=y
+CONFIG_MPLS=y
+CONFIG_NET_MPLS_GSO=y
+# CONFIG_MPLS_ROUTING is not set
+CONFIG_NET_NSH=y
 _EOF_
 
+RECORD_TIME=false
+
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
-nix-shell --command "make clean"
-SECONDS=0
+if [[ $RECORD_TIME == true ]]; then
+  nix-shell --command "make clean"
+  SECONDS=0
+fi
 nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
-duration=$SECONDS
-echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
-echo "$(date) : $duration : " >> /home/martins3/core/compile-linux/database
-cat /proc/cmdline >> /home/martins3/core/compile-linux/database
+
+if [[ $RECORD_TIME == true ]]; then
+  duration=$SECONDS
+  echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+  echo "$(date) : $duration : " >>/home/martins3/core/compile-linux/database
+  cat /proc/cmdline >>/home/martins3/core/compile-linux/database
+fi
+
 # 编译的速度太慢了，不想每次都等那么久
 if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
   nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
@@ -370,4 +395,5 @@ nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
 # 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
-nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+# @todo 等 ccls 的 bug 被修复再说吧
+# nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

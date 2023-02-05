@@ -121,7 +121,7 @@ in
       monotonic
       libxml2
     ]))
-    perl
+    # perl
     man-pages
     man-pages-posix
     # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
@@ -156,8 +156,9 @@ in
     firecracker
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
-    swtpm
+    swtpm # windows 11 启动
     grafterm # @todo
+    nushell # @todo 尝试切换过去
   ];
 
   programs.zsh = {

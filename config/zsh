@@ -143,3 +143,4 @@ alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias vim=nvim
 alias ag=rg
+alias cp=xcp

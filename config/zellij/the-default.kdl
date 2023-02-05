@@ -1,0 +1,30 @@
+layout {
+  tab name="martins3 yyds" cwd="/home/martins3/core/" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane
+  }
+}
+
+# tmux alike
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+}
+
+#
+layout {
+    tab name="my amazing tab" cwd="/home/martins3/core/vn" {
+        pane command="nvim"
+    }
+}
+
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+}

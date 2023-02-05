@@ -10,13 +10,13 @@ windows:
     shell_command_before:
       - cd ~/.dotfiles
       - nvim
-  - window_name: org-mode
-    layout: tiled
-    shell_command_before:
-      - cd ~/core/org-mode
-      - nvim
   - window_name: draft
     layout: tiled
     shell_command_before:
       - cd ~/core/draft
+      - nvim
+  - window_name: org-mode
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/org-mode
       - nvim
