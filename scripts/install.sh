@@ -10,6 +10,7 @@ mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
 
+ln -sf ~/.dotfiles/config/nushell ~/.config/nushell
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf

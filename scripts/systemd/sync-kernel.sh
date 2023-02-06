@@ -372,7 +372,7 @@ if [[ $RECORD_TIME == true ]]; then
   nix-shell --command "make clean"
   SECONDS=0
 fi
-nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ $RECORD_TIME == true ]]; then
   duration=$SECONDS
@@ -396,4 +396,4 @@ nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
 # 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 # @todo 等 ccls 的 bug 被修复再说吧
-# nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

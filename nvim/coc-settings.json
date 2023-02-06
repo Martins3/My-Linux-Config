@@ -27,7 +27,7 @@
           "lsRanges": true
         },
         "index": {
-          "threads": 0
+          "threads": 0,
         },
         "client": {
           "snippetSupport": true
@@ -57,9 +57,8 @@
     "-Wall",
     "-Wextra"
   ],
-  "snippets.ultisnips.pythonPrompt": false,
   "clangd.arguments": [
     "-j=32"
   ],
-
+  "snippets.ultisnips.pythonPrompt": false,
 }

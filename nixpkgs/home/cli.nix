@@ -158,7 +158,8 @@ in
     bridge-utils
     swtpm # windows 11 启动
     grafterm # @todo
-    nushell # @todo 尝试切换过去
+    nushell
+    libnotify
   ];
 
   programs.zsh = {

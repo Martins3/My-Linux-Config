@@ -152,6 +152,9 @@ in
     "tsx=on"
     "tsx_async_abort=off"
     "mitigations=off"
+
+    "intel_iommu=on"
+    "iommu=pt"
   ];
 
   # @todo 这个设置没有任何用
@@ -268,5 +271,8 @@ in
   nixpkgs.config.allowUnfree = true;
   programs.steam.enable = true;
 
+  # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
+  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  boot.initrd.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
 }
