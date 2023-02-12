@@ -160,6 +160,11 @@ in
     grafterm # @todo
     nushell
     libnotify
+
+    containerd # @todo 测试下
+    nerdctl
+
+    usbutils
   ];
 
   programs.zsh = {

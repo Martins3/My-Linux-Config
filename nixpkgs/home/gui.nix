@@ -53,6 +53,7 @@ in
     rofi # @todo rofi 的使用
     scrcpy # Android 的投屏工具
     unstable.obsidian
+    rustdesk
   ];
 
   xdg.desktopEntries = {

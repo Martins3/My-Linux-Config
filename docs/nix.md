@@ -142,38 +142,12 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
 
-```nix
-environment.systemPackages = with pkgs; [
-  cifs-utils
-}
-
-services.samba = {
-  enable = true;
-
-  /* syncPasswordsByPam = true; */
-
-  # This adds to the [global] section:
-  extraConfig = ''
-    browseable = yes
-    smb encrypt = required
-  '';
-
-  shares = {
-    homes = {
-      browseable = "no";  # note: each home will be browseable; the "homes" share will not.
-      "read only" = "no";
-      "guest ok" = "no";
-    };
-  };
-};
-```
-
-注意，smbp 是需要
+此外，在 Linux 中设置
 ```sh
-sudo smbpasswd -a yourusername
+sudo smbpasswd -a martins3
 ```
 
-没有 syncthing 是更加好用的，因为 samba 所有的访问多是需要经过网络，没有缓存，而 syncthing 是将内容同步到本地的。
+在 windows Guest 中，右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
 
 ## npm 包管理
 支持的不是很好，需要手动安装

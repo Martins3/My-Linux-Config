@@ -30,7 +30,11 @@ fi
 
 git pull
 # --disable-tcg
-QEMU_options="--target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --enable-trace-backends=nop"
+# --enable-trace-backends=nop
+# @todo 用上 virtfs 的
+
+mkdir -p /home/martins3/core/qemu/instsall
+QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --disable-tcg --enable-libusb"
 
 nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. && make -j"
 nvim "+let g:auto_session_enabled = v:false" -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

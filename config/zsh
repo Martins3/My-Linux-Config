@@ -89,6 +89,7 @@ function px() {
 }
 
 function martins3_prepare_qemu(){
+  # @todo 这种检测方式有问题
   if pgrep qemu-system-x86 ; then
     gum confirm "there's qemu process, maybe kill it firstly" && pkill qemu-system-x86
   fi

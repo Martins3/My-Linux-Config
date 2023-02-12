@@ -21,6 +21,7 @@ pkgs.stdenv.mkDerivation {
     libseccomp
     libssh
     libbpf
+    libusb
     zstd
   ];
 }

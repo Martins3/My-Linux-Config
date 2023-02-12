@@ -79,7 +79,6 @@ CONFIG_IRQ_BYPASS_MANAGER=y
 # sshfs 需要
 CONFIG_FUSE_FS=y
 # CONFIG_CUSE is not set
-# CONFIG_VIRTIO_FS is not set
 
 # 分析 transparent huge page
 CONFIG_ARCH_ENABLE_THP_MIGRATION=y
@@ -134,7 +133,6 @@ CONFIG_MEMORY_HOTPLUG=y
 CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=y
 CONFIG_MEMORY_HOTREMOVE=y
 CONFIG_MHP_MEMMAP_ON_MEMORY=y
-# CONFIG_ZONE_DEVICE is not set
 CONFIG_VIRTIO_PMEM=y
 CONFIG_VIRTIO_MEM=y
 CONFIG_LIBNVDIMM=y
@@ -363,16 +361,36 @@ CONFIG_MPLS=y
 CONFIG_NET_MPLS_GSO=y
 # CONFIG_MPLS_ROUTING is not set
 CONFIG_NET_NSH=y
+
+
+# https://virtio-fs.gitlab.io/howto-qemu.html
+# 为了支持 virtiofs 共享目录
+CONFIG_VIRTIO_FS=y
+
+# @todo zone device 到底是什么？为什么和 DAX 有关
+CONFIG_DEVICE_MIGRATION=y
+CONFIG_ZONE_DEVICE=y
+# CONFIG_DEVICE_PRIVATE is not set
+# CONFIG_PCI_P2PDMA is not set
+CONFIG_ND_PFN=y
+CONFIG_NVDIMM_PFN=y
+CONFIG_NVDIMM_DAX=y
+
+# @todo fs 为什么可以用来 DAX
+CONFIG_FS_DAX=y
+CONFIG_FS_DAX_PMD=y
+CONFIG_FUSE_DAX=y
+
 _EOF_
 
-RECORD_TIME=false
+RECORD_TIME=true
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 if [[ $RECORD_TIME == true ]]; then
   nix-shell --command "make clean"
   SECONDS=0
 fi
-# nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ $RECORD_TIME == true ]]; then
   duration=$SECONDS

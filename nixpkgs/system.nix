@@ -47,6 +47,7 @@ in
     wget
     zsh
     unstable.tailscale
+    cifs-utils
   ];
   services.tailscale.enable = true;
 
@@ -140,18 +141,17 @@ in
     # "transparent_hugepage=always"
     "transparent_hugepage=never"
     # https://gist.github.com/rizalp/ff74fd9ededb076e6102fc0b636bd52b
-    # @todo 太随机了
-    "noibpb"
-    "nopti"
-    "nospectre_v2"
-    "nospectre_v1"
-    "l1tf=off"
-    "nospec_store_bypass_disable"
-    "no_stf_barrier"
-    "mds=off"
-    "tsx=on"
-    "tsx_async_abort=off"
-    "mitigations=off"
+    /* "noibpb" */
+    /* "nopti" */
+    /* "nospectre_v2" */
+    /* "nospectre_v1" */
+    /* "l1tf=off" */
+    /* "nospec_store_bypass_disable" */
+    /* "no_stf_barrier" */
+    /* "mds=off" */
+    /* "tsx=on" */
+    /* "tsx_async_abort=off" */
+    /* "mitigations=off" */
 
     "intel_iommu=on"
     "iommu=pt"
@@ -161,6 +161,11 @@ in
   # 这里的讨论看了下，也是没用的
   # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
   boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+
+  # GPU passthrough with vfio need memlock
+  security.pam.loginLimits = [
+    { domain = "*"; type = "-"; item = "memlock"; value = "infinity"; }
+  ];
 
   services.openssh.enable = true;
 
@@ -275,4 +280,29 @@ in
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.initrd.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
+
+  services.samba = {
+    enable = true;
+
+    /* syncPasswordsByPam = true; */
+
+    # This adds to the [global] section:
+    extraConfig = ''
+      browseable = yes
+      smb encrypt = required
+    '';
+
+    shares = {
+      public = {
+        path = "/home/martins3/core/winshare";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        /* "create mask" = "0644"; */
+        /* "directory mask" = "0755"; */
+        /* "force user" = "username"; */
+        /* "force group" = "groupname"; */
+      };
+    };
+  };
 }
