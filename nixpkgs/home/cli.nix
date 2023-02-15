@@ -68,6 +68,8 @@ in
     git-secrets
     bpftool
     nethogs
+    nmap
+    # dhcpcd # 这个东西和 nixos 不兼容
     iftop
     tcpdump
     ethtool
@@ -120,6 +122,7 @@ in
       unittest2
       monotonic
       libxml2
+      ansible # 自动化运维
     ]))
     # perl
     man-pages
@@ -156,15 +159,16 @@ in
     firecracker
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
-    swtpm # windows 11 启动
-    grafterm # @todo
+    swtpm # windows 11 启动需要
     nushell
     libnotify
 
     containerd # @todo 测试下
     nerdctl
 
+    telegraf # @todo 这个和 service 是什么关系？
     usbutils
+    # 测试下 ovs @todo
   ];
 
   programs.zsh = {

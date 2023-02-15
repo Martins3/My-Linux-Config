@@ -742,4 +742,8 @@ Waiting for session to start ...
 如果彻底搞定后，可以尝试下这个:
 https://github.com/casonadams/z-tab-bar
 
+## nixops
+- https://github.com/NixOS/nixops
+
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

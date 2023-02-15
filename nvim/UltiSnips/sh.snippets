@@ -318,3 +318,7 @@ for i in "${ADDR[@]}"; do
   # process "$i"
 done
 endsnippet
+
+snippet note_awk "读取一行中的第二个"
+awk -F '"' '{print $2}' your_input_file
+endsnippet

@@ -103,6 +103,7 @@ in
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;
 
+  # @todo ----- 将这块代码移动到设备专用的地方去 -------
   # @todo 如何处理总是等待 /sys/subsystem/net/devices/enp4s0 的问题
   # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
   # tailscale0 建立的网卡是什么原理，真有趣啊
@@ -115,6 +116,17 @@ in
   /*   address = "10.0.0.1"; */
   /*   prefixLength = 24; */
   /* }]; */
+
+  # @todo 比较一下启动的速度，如果是使用 sata 和 nvme 的环境
+  # https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
+  fileSystems."/home/martins3/hack/mnt" = {
+    device = "/dev/sda";
+    fsType = "auto";
+    # @todo 这里的参数真的是个迷惑
+    options = [ "defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
+  };
+  # -----------------------------------------------------------------
+
 
   # wireless and wired coexist
   # @todo disable this temporarily
@@ -186,7 +198,7 @@ in
   documentation.enable = true;
 
   # earlyoom 检查方法 sudo journalctl -u earlyoom | grep sending
-  # @ services 和 systemd 的差别是什么?
+  # @todo services 和 systemd 的差别是什么?
   systemd.oomd = {
     enable = true;
   };
@@ -278,8 +290,24 @@ in
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
   boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  # @todo 是因为打开了 vfio_virqfd 才导致的流程是这样的吗?
   boot.initrd.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  # @todo 对应的音频驱动是什么，也直接禁用吧
   boot.blacklistedKernelModules = [ "nouveau" ];
+
+  # services.telegraf.enable = true;
+  # services.influxdb2.enable = true;
+  # services.grafana = {
+  #   enable = true;
+  #   # Grafana needs to know on which domain and URL it's running:
+  #   settings.server = {
+  #     domain = "martins3.domain";
+  #     http_addr = "127.0.0.1";
+  #     port = 3000;
+  #   };
+  # };
+  # services.victoriametrics.enable = true;
+
 
   services.samba = {
     enable = true;

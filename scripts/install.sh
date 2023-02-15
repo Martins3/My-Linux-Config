@@ -9,7 +9,9 @@ mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
+mkdir -p ~/.telegraf
 
+ln -sf ~/.dotfiles/config/telegraf.conf ~/.telegraf/telegraf.conf
 ln -sf ~/.dotfiles/config/nushell ~/.config/nushell
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim

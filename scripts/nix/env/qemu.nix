@@ -23,5 +23,7 @@ pkgs.stdenv.mkDerivation {
     libbpf
     libusb
     zstd
+    virglrenderer
+    epoxy
   ];
 }

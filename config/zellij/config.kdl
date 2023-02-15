@@ -101,6 +101,7 @@ keybinds clear-defaults=true {
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "x" { CloseFocus; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
     shared_except "locked" {
