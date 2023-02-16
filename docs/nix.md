@@ -745,5 +745,16 @@ https://github.com/casonadams/z-tab-bar
 ## nixops
 - https://github.com/NixOS/nixops
 
+## 记录一次断电的处理
+因为小米智障插座，直接断电，导致磁盘信息不对。
+- 进入 grub ，e  增加参数 `init=/bin/sh`，enter
+- 输入
+```c
+export PATH=/nix/var/nix/profiles/system/sw/bin:/nix/var/nix/profiles/system/sw/sbin
+fsck -a /dev/nvme0n1p1
+fsck -a /dev/nvme0n1p2
+fsck -a /dev/nvme0n1p3
+```
+参考: https://www.reddit.com/r/NixOS/comments/4fnsxb/how_do_i_run_fsck_manually_on_root_in_nixos/
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

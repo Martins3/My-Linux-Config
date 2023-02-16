@@ -119,11 +119,11 @@ return {
 
     {
       label = 'zellij',
-      args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij'  },
+      args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
     },
     {
       label = 'tmux',
-      args = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux'  },
+      args = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
     },
   },
 
@@ -146,4 +146,6 @@ return {
   },
   tab_max_width = 60,
   freetype_load_target = "Normal",
+
+  enable_kitty_graphics = true
 }
