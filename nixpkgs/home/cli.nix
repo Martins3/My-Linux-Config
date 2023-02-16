@@ -84,9 +84,9 @@ in
     stress-ng
     numatop
     OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
-    qemu
     ninja
-    libvirt
+    libvirt # 提供 virsh
+    nix-index
     virt-manager
     meson
     neovim

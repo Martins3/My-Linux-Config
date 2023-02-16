@@ -37,6 +37,7 @@ in
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # virt manager 是一个图形化的 virsh ，用于创建和管理虚拟机
+  # @todo virt-manager 有意义吗？
   # https://nixos.wiki/wiki/Virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;

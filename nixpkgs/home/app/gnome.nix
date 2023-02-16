@@ -81,7 +81,7 @@
       idle-dim = true;
       power-button-action = "suspend";
       # @todo suspend 之后还可以 ping 通吗？
-      sleep-inactive-ac-timeout = 3600; # suspend the machine after 1 hour
+      sleep-inactive-ac-timeout = 0 ; # suspend the machine after 1 hour
       sleep-inactive-ac-type = "suspend";
       sleep-inactive-battery-type = "suspend";
     };

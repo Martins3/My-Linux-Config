@@ -34,4 +34,6 @@ pkgs.mkShell rec {
   ];
 }
 # meson build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
-# cp build/compile_commands.json .
+# cd build && ninja -j30
+# ninja -t compdb > compile_commands.json
+# cp compile_commands.json ..
