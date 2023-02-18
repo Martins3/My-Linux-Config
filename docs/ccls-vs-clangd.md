@@ -113,3 +113,20 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 ## clangd 做的好的地方
 1. 自动切换
 2. https://clangd.llvm.org/design/remote-index : 看上去不错，但是没有尝试
+
+<script src="https://giscus.app/client.js"
+        data-repo="Martins3/My-Linux-Config"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="
+        data-category="General"
+        data-category-id="MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyODc0NjA5"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。

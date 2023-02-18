@@ -52,10 +52,6 @@
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
 * [调试 vim 配置](#调试-vim-配置)
-* [Changelog](#changelog)
-  * [2022](#2022)
-  * [2022.8](#20228)
-  * [2022.9](#20229)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [有趣的插件](#有趣的插件)
@@ -670,20 +666,13 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 ### 远程 server 上复制粘贴
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
 
-如果两台电脑都是 Linux 而且桌面环境都是 x11 的，那么在 ssh 的增加上 -X 的选项勉强维持生活。
-```txt
-     -X      Enables X11 forwarding.  This can also be specified on a per-host basis in a configuration
-             file.
-```
-这种方案的限制太强了。
-
 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
-但是还是存在一些问题，不过暂时可以接受
+但是还是存在一些问题，不过暂时可以接受:
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
 ## 本配置源代码解释
@@ -722,6 +711,8 @@ nvim 配置在仓库的位置为 ./nvim
     - 支持 Windows ，但是需要少量的调整，主要是安装方面。
     - 对于 x86 Linux / Mac 完整的支持。
     - [龙芯架构 Linux](https://martins3.github.io/loongarch/neovim.html) 基本支持。
+- 使用 clangd 还是 ccls
+    - 两个都用过，推荐 ccls，具体原因看[这里](./ccls-vs-clangd.md)
 
 ## vim 的小技巧
 - 翻滚屏幕
@@ -797,26 +788,6 @@ setxkbmap -option caps:swapescape
 ## 调试 vim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
-
-## Changelog
-
-### 2022
-本配置之前一直是基于 [spacevim](https://spacevim.org/) spacevim 的，移除的原因主要是因为:
-- spacevim 的配置很多都是 vimscript 写的，我几乎看不懂，出现了问题无法快速独立解决
-- spacevim 为了兼容 vim，一些插件的选择和我有冲突，比如包管理器(dein.vim -> packer.nvim) 和文件树(defx -> nvim-tree)
-
-将 Fn 相关的快捷键全部去掉了:
-- 需要移动手掌，不是很高效
-- 有的键盘是没有 Fn 键的，按 Fn 键需要低效的组合键
-
-### 2022.8
-- 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
-
-### 2022.9
-将 ccls 替换为 clangd，虽然我是 MaskRay 的忠实粉丝，但是:
-  - ccls 最近更新的比较慢
-  - clangd 无需额外的插件实现高亮
-目前知道 clangd 存在一些细微的 bug，但是无伤大雅。
 
 ## 值得一看的配置
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
