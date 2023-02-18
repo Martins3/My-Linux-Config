@@ -14,12 +14,15 @@
 
 ## 默认常用操作
 - `prefix d` : 等价于 tmux detach
-- `prefix l` : 切换到 last window
 - `prefix &` : kill 当前的 window
 - `prefix x` : kill 当前的 pane
 - `prefix R` : 重新加载配置
+
+## 默认不怎么常用操作
+- `prefix l` : 切换到 last window
 - `prefix Space` : 切换下一个 pane layout
 - `prefix z` : 最大化当前的 pane
+- `prefix !` : 将 pane 转换为 window
 
 ## copy mode
 默认可以编辑的状态 tmux 称为 normal mode，使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式
@@ -48,16 +51,86 @@
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-- prefix + I
+- `prefix + I`
   - Installs new plugins from GitHub or any other git repository
   - Refreshes TMUX environment
-- prefix + U
+- `prefix + U`
   - updates plugin(s)
-- prefix + alt + u
+- `prefix + alt + u`
   - remove/uninstall plugins not on the plugin list
 
 ## 定制 statusline
 感觉没必要，浪费时间
+
+## session 管理
+
+通过 tmuxp 创建一个 session 并且自动执行初始化命令:
+
+例如，如下命令可以自动创建两个 window 并且分别打开对应的仓库
+```sh
+tmuxp load -d ./tmux-session.yaml
+```
+
+cat tmux-session.yaml
+```txt
+session_name: note
+windows:
+  - window_name: org-mode
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/org-mode
+      - nvim
+  - window_name: .dotfiles
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/.dotfiles
+      - nvim
+```
+
+## screen
+screen 是一个类似的程序，常见的使用方法如下:
+
+- screen -d -m sleep 1000
+- screen -r
+- screen -list
+
+## zellij
+- https://zellij.dev/documentation/introduction.html
+- https://news.ycombinator.com/item?id=26902430
+  - 大家的评价是，技术体系很新
+
+启动一个新的布局:
+zellij --layout /home/martins3/.dotfiles/config/zellij/docs.kdl
+
+config/zellij/default.kdl 是默认的启动布局。
+
+但是估计从 tmux 到 zellij 迁移难度比较大，需要完成如下工作：
+- [ ] 快速切换 session
+- [ ] 自动修改 tab 的名称
+- [ ] 使用 ctrl+shift+arrow 移动 tab
+- [ ] 为什么当一个 layout 含有:
+```txt
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+```
+nvim 的启动首先会卡住一下，是谁的问题
+- [ ] https://github.com/zellij-org/zellij/issues/1760 这个问题没有解决
+- [ ] 屏幕切换的时候，中文显示有问题。
+
+问题很多，没有时间一个个的修复了。
+
+## 最近遇到的 tmux 问题
+- 有时候，nvim 报告 Clipboard 是 tmux，但是实际上下面的才是正确的
+```txt
+## Clipboard (optional)
+  - OK: Clipboard tool found: xclip
+```
+- 登录远程终端，在远程终端中使用 clear 或者 vim 的时候遇到
+```txtxtxtxt
+'tmux-256color': unknown terminal type.
+```
+https://unix.stackexchange.com/questions/574669/clearing-tmux-terminal-throws-error-tmux-256color-unknown-terminal-type
 
 ## 一些小技巧
 

@@ -52,12 +52,9 @@
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
 * [调试 vim 配置](#调试-vim-配置)
-* [Changelog](#changelog)
-  * [2022](#2022)
-  * [2022.8](#20228)
-  * [2022.9](#20229)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
+* [有趣的插件](#有趣的插件)
 * [blog](#blog)
 * [学习](#学习)
 * [主题](#主题)
@@ -81,7 +78,7 @@
 3. 不了解 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) (下简称 lsp ) 等新特性的 vimer
 4. 没有使用过 [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
-本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 和 float window 等新特性，vim 一定的比你想象的酷炫和高效。
+本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 等新特性，vim 一定的比你想象的酷炫。
 
 任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
@@ -90,10 +87,10 @@
 1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
 
-如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后
-使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的。
+如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hikl 之类的操作之后，之后可以
+使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的那几个。
 
-vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。
+vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习曲线就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。实不相瞒，我用 vim 好几年，至今不会写超过 5 行的 vimscript 。
 
 ## Language Server Protocal
 lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
@@ -124,7 +121,7 @@ async 的效果当然就是快，当一个插件存在其 async 的版本，那�
 [treesitter](https://github.com/tree-sitter/tree-sitter) 通过语法分析，而不是词法分析，这让很多事情都非常精确。
 
 1. 更加的智能和高效的高亮。原始的 vim 中只能按照正则匹配来高亮关键字，但是 treesitter 可以区分什么是函数，成员，类，宏等定义。
-2. 如果想要跳转到函数头，在 vim 中使用默认提供 [`[` `m`](https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim)，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
+2. 如果想要跳转到函数头，在 vim 中使用默认提供 [`[``m`](https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim)，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
 对于文件的格式有要求，但是如何使用上 [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)，这个问题就不存在了，你总是可以跳转到函数的开始位置。
 3. 精确的拼写检查。[spellsitter](https://www.reddit.com/r/neovim/comments/x7k7r7/spellsitter_merged_to_neovim_core/) 可以让拼写检查仅仅检查注释中内容，而默认的检查会检查所有的单词，包括各种缩写函数名，那些检查大部分都是误报。
 
@@ -147,12 +144,11 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 
 ## 安装
 安装成功需要注意两点:
-1. **代理** : 实现代理的方法在 github 上有很多教程，也可以参考[我的 blog](https://martins3.github.io/gfw.html)。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
-2. 软件版本 : 有的软件没有被 apt 收录进去，有的版本太低，这导致少数几个软件需要手动编译，下面以 Ubuntu 20.04 作为例子，其他的 distribution 例如 Arch Linux, Manjaro 应该类似。
+1. **代理** : 实现代理的方法在 github 上有很多教程。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
+2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 20.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
+当然滚动更新的 Linux Distribution，类似 Arch 一般存在这些问题。
 
 整个环境的安装主要是 neovim coc.nvim clangd，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
-
-基于 Ubuntu 20.04 的安装我写了一个 [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu20/Dockerfile)，和下面的解释基本是一一对应的。
 
 ### 安装各种依赖
 ```sh
@@ -163,7 +159,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 ```
 
 ### 安装 nvim
-- 当前配置需要 neovim 0.7 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.8 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面三条命令
 ```sh
@@ -496,12 +492,21 @@ coc.nvim 无需另外的配置
 | <img src="./img/octo.png" /> |
 
 ### 调试
-一种强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，
-，我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard) 和 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)，其效果如下
+我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard)，不使用额外的 vim 配置。
+
+neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdebug/)，但是感觉功能比较初级。
 
 | 使用内置的 Termdebug 进行调试 |
 |-------------------------------|
 | <img src="./img/debug.png" /> |
+
+一种更强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，但是现在还不成熟:
+- 需要安装多个插件；
+- 配置文件比较复杂。
+
+尝试过一次，但是放弃了，对应的代码在[这个位置](https://github.com/Martins3/My-Linux-Config/tree/debug/nvim/lua/debugxx)。
+
+此外还有插件 [nvim-gdb](https://github.com/sakhnik/nvim-gdb) ，也许可以勉强维持生活。
 
 但是无论如何，使用 debugger 来找 bug 不是一个好习惯，应该是靠清晰的代码结构和单元测试[^2]。
 
@@ -513,7 +518,7 @@ coc.nvim 无需另外的配置
 | <img src="./img/wilder.png" /> |
 
 ### 终端
-利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，映射的快捷键分别为:
+利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:
 - `Ctrl` `n` : 创建新的 terminal window
 - `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
@@ -589,8 +594,9 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 使用命令 DeleteSession 可以删除掉保存的 session 。
 
-
 <!-- ### [可选] wakatime -->
+<!-- 可以直接在 packer.lua 将这个插件删除掉，如果你感觉没必要。 -->
+
 <!-- 这只是一个用于实现代码统计的辅助功能，插件是开源的，其数据可以上传到[远程](https://wakatime.com/)，也可以自己搭建本地的 server -->
 
 <!-- - 方案一: https://github.com/muety/wakapi -->
@@ -598,11 +604,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 <!--         - 安装并且启动 -->
 <!--         - 在浏览器中登录 http://127.0.0.1:3000 -->
 <!--         - 设置 ~/.wakatime.cfg -->
-
 <!-- - 方案二: https://github.com/mujx/hakatime -->
-<!--     - 操作方法: -->
-<!--         - TODO -->
-<!--         - 除非是搞定了在本地搭建，否则难以接受将数据外传 -->
 
 ### [可选] Scala 集成
 参考 https://github.com/scalameta/nvim-metals 中的文档:
@@ -618,13 +620,14 @@ chmod +x cs
 ```sh
 sbt bloopInstall
 ```
-然后就可以自动索引了.
+然后就可以自动索引了。
 
 ### 快速移动
 
 vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简单说明一些有趣的的技术：
 
-在我使用 [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) 之后，有种全新的体验:
+在我使用 [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim) 之后，有种全新的体验，跳转到任何位置，之需要按下 `s`，然后连续按下该位置开始的两个字符，
+接下来会提示按什么就可以直接跳转到该位置。
 
 | 例子                                                                                            |
 |-------------------------------------------------------------------------------------------------|
@@ -663,35 +666,29 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 ### 远程 server 上复制粘贴
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
 
-如果两台电脑都是 Linux 而且桌面环境都是 x11 的，那么在 ssh 的增加上 -X 的选项勉强维持生活。
-```txt
-     -X      Enables X11 forwarding.  This can also be specified on a per-host basis in a configuration
-             file.
-```
-这种方案的限制太强了。
-
 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
-但是还是存在一些问题，不过暂时可以接受
+但是还是存在一些问题，不过暂时可以接受:
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
-本配置的主要组成:
+nvim 配置在仓库的位置为 ./nvim
 - init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
   - coc.vim : coc.nvim 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 的复制粘贴。
   - debug.vim : 定义了两个函数
   - misc.vim : 各种插件的细微的修改
+- lua/init.lua : 加载其他的 lua 配置
 - lua/usr
   - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
-  - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短
+  - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短。
 - coc-setting.json : coc 的配置
 - UltiSnips/ : 自定义的代码段
 
@@ -714,6 +711,8 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
     - 支持 Windows ，但是需要少量的调整，主要是安装方面。
     - 对于 x86 Linux / Mac 完整的支持。
     - [龙芯架构 Linux](https://martins3.github.io/loongarch/neovim.html) 基本支持。
+- 使用 clangd 还是 ccls
+    - 两个都用过，推荐 ccls，具体原因看[这里](./ccls-vs-clangd.md)
 
 ## vim 的小技巧
 - 翻滚屏幕
@@ -790,26 +789,6 @@ setxkbmap -option caps:swapescape
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
 
-## Changelog
-
-### 2022
-本配置之前一直是基于 [spacevim](https://spacevim.org/) spacevim 的，移除的原因主要是因为:
-- spacevim 的配置很多都是 vimscript 写的，我几乎看不懂，出现了问题无法快速独立解决
-- spacevim 为了兼容 vim，一些插件的选择和我有冲突，比如包管理器(dein.vim -> packer.nvim) 和文件树(defx -> nvim-tree)
-
-将 Fn 相关的快捷键全部去掉了:
-- 需要移动手掌，不是很高效
-- 有的键盘是没有 Fn 键的，按 Fn 键需要低效的组合键
-
-### 2022.8
-- 现在仓库的内容不只是 neovim 相关的，还有 nixos 以及其他的各种配置，现在将所有的 vim 配置都放到 nvim 目录下了。
-
-### 2022.9
-将 ccls 替换为 clangd，虽然我是 MaskRay 的忠实粉丝，但是:
-  - ccls 最近更新的比较慢
-  - clangd 无需额外的插件实现高亮
-目前知道 clangd 存在一些细微的 bug，但是无伤大雅。
-
 ## 值得一看的配置
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
 - [NvChad](https://github.com/NvChad/NvChad) 同上
@@ -828,6 +807,11 @@ setxkbmap -option caps:swapescape
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 本配置默认使用 treesitter 实现折叠，但是此插件是利用 lsp 实现折叠的
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
+- [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
+
+## 有趣的插件
+- [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
+- [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 
 ## blog
 - [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
@@ -851,16 +835,23 @@ setxkbmap -option caps:swapescape
 
 <!--
 ## 问题
-- [ ] lightspeed.nvim 在处理含有 CJK 字符的时候有问题；
 - [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
-- [ ] shellcheck 无处处理 source 其他的文件的情况。
+- [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
+- [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
-" 多半是这个没有正确设置，参考:
+" 多fail_futex半是这个没有正确设置，参考:
 " - https://github.com/fannheyward/coc-pyright/issues/184
 " - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
 " call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")
+
+- [ ] 如何让 statusline 统计字数
+  - 尝试使用这个吧 https://github.com/spencerwooo/cwim
+
+- [ ] 将终端更新为 akinsho/toggleterm.nvim，但是 <space>gl 如何实现?
+  - [ ] 切换为下一个终端如何实现，这个看来是需要增加 patch 了吧!
+  - [ ] gc 自动进入到 terminal 中
 -->
 
 ## 衍生

@@ -302,7 +302,7 @@ snippet note_sed "sed"
 # sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
 endsnippet
 
-snippet note_template "template"
+snippet note_template "template for any bash script"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
@@ -312,16 +312,13 @@ readonly ARGS="$@"
 cd "$(dirname "\$0")"
 endsnippet
 
-snippet note_split_to_array "template"
-# The shell scans the results of parameter expansion,
-# command substitution, and arithmetic expansion
-# that did not occur within double quotes for word splitting.
-s='foo bar baz'
-a=( $s ) # a=( "$s" )
-echo ${a[0]}
+snippet note_split_string_to_array "split string to array"
+IFS=';' read -ra ADDR <<< "$IN"
+for i in "${ADDR[@]}"; do
+  # process "$i"
+done
+endsnippet
 
-# 正确的写法是:
-var="a aba a a a "
-IFS=" " read -r -a array <<< "$var"
-echo ${array[0]}
+snippet note_awk "读取一行中的第二个"
+awk -F '"' '{print \$2}' your_input_file
 endsnippet

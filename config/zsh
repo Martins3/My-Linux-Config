@@ -1,23 +1,24 @@
-eval "$(jump shell)"
+eval "$(zoxide init zsh)"
+
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+
+bindkey '^r' _atuin_search_widget
+# eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(mcfly init zsh)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 source /etc/os-release
 if [[ $ID == "nixos" ]];then
   eval "$(direnv hook zsh)"
-  eval "$(mcfly init zsh)"
 
   function en_direnv() {
-    set -x
-    dir="$(basename "$(pwd)")"
-    nix=$HOME/.dotfiles/scripts/nix/env/"$dir".nix
-    if [[ -f $nix ]]; then
-      ln -s "$nix" default.nix
-      echo "use nix" >> .envrc && direnv allow
-    else
-      # maybe use fzf to choose one
-      echo "$dir not found"
-    fi
-    set +x
+    echo "use nix" >> .envrc && direnv allow
   }
+
+  export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
 eval "$(starship init zsh)"
 
@@ -37,32 +38,109 @@ function rpm_extract() {
 }
 
 function t() {
-  if [[ -z $1 ]]; then
-    echo "need argument"
-  else
-    sudo bpftrace -e "kprobe:$1 {  @[kstack] = count(); }"
+  while getopts "rh" opt; do
+    case $opt in
+      r)
+        sudo bpftrace -e "kretprobe:${@: -1} { printf(\"returned: %lx\\n\", retval); }"
+        return
+        ;;
+      h)
+        ;;
+      *)
+        exit 1
+        ;;
+    esac # --- end of case ---
+  done
+  sudo bpftrace -e "kprobe:${@: -1} {  @[kstack] = count(); }"
+}
+
+function px() {
+  PROXY_SERVER_IP="http://127.0.0.1"
+  PROXY_SERVER_PORT=8889
+  while getopts "ga:p:h" opt; do
+    case $opt in
+      g)
+        PROXY_SERVER_IP="http://10.0.2.2"
+        PROXY_SERVER_PORT=8889
+        ;;
+      a)
+        PROXY_SERVER_IP=${OPTARG}
+        ;;
+      p)
+        PROXY_SERVER_PORT=${OPTARG}
+        ;;
+      h)
+        echo "-g : use this in QEMU"
+        echo "-a : ip address"
+        echo "-p : ip port"
+        ;;
+      *)
+        exit 1
+        ;;
+    esac # --- end of case ---
+  done
+
+  export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+  export http_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+  export HTTPS_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+  export HTTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+  export ftp_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+  export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
+}
+
+function martins3_prepare_qemu(){
+  # @todo 这种检测方式有问题
+  if pgrep qemu-system-x86 ; then
+    gum confirm "there's qemu process, maybe kill it firstly" && pkill qemu-system-x86
   fi
 }
 
+alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
+
+function dk(){
+  martins3_prepare_qemu
+  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r"
+  /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
+  gum confirm "Kill the machine?" && pkill qemu-system-x86
+}
+
+function k(){
+  martins3_prepare_qemu
+  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
+  for i in x y; do
+    gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
+    ssh -p5556 root@localhost
+    if [[ $? != 255 ]] ;then
+      gum confirm "Kill the vm?" && pkill qemu-system-x86
+      break
+    fi
+    echo "try to connect to vm"
+  done
+}
+
+alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
+alias ge="ssh -p5556 root@localhost"
+alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
+
+alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"
+alias f="/home/martins3/core/vn/docs/kernel/flamegraph/flamegraph.sh"
 alias ck="systemctl --user start kernel"
 alias cq="systemctl --user start qemu"
 alias du="ncdu"
 alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
-alias guest="ssh -p5556 root@localhost"
-alias k="/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
+# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
-alias ls="lsd"
-alias m="make -j"
+alias ls="exa --icons"
+alias m="make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 alias mc="make clean"
-alias px="export https_proxy=10.0.2.2:8889 && export http_proxy=10.0.2.2:8889 && export HTTPS_PROXY=10.0.2.2:8889 && export HTTP_PROXY=10.0.2.2:8889"
 alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
-alias vim=nvim
-alias z="j"
-# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
+alias ag=rg
+alias cp=xcp

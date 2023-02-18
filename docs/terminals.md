@@ -1,26 +1,38 @@
 # Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比
 
-自己大多数时间都是在 terminal 中套上 tmux，然后其中打开 vim 工作的，其中切换过多次的 terminal ，在这里总结一下。
+目前我使用的是 kitty 。
 
-## Tabby
+<!-- vim-markdown-toc GitLab -->
 
-非常的酷炫，但是性能不行。
+* [Deepin Terminal: 2016-2018](#deepin-terminal-2016-2018)
+* [Tilix: 2019](#tilix-2019)
+* [Gnome terminal : 2020](#gnome-terminal-2020)
+* [Alacritty : 2020-2022](#alacritty-2020-2022)
+* [Kitty : 2022-现在](#kitty-2022-现在)
+* [Tabby : 几分钟](#tabby-几分钟)
+* [wezterm](#wezterm)
+* [总结](#总结)
 
-## Deepin Terminal
+<!-- vim-markdown-toc -->
 
-大约使用过 2  年（2016 -2018）的 Deepin OS ，发现内置的 terminal 也就是 Deepin Terminal 很好用，
+我是 2015 年开始学习计算机的，第一年使用的 Windows，只是使用的
+
+## Deepin Terminal: 2016-2018
+
+大约使用过 2  年（2016-2018）的 Deepin OS ，发现内置的 terminal 也就是 Deepin Terminal 很好用，
 可以非常容易的切换主题，半透明，容易使用的 tab 和 window 等功能。
 
-## Tilix
+## Tilix: 2019
 
-Manjaro 的内置 terminal，大约使用了几个月，说实话，感觉没有什么特色。
+Manjaro 的内置 terminal，大约使用了几个月，之所以切换为 Tilix 是因为在 Manjaro 上无法成功安装 Deepin Terminal，
+而不是因为比 Deepin Terminal 更好。
 
-## Gnome terminal
+## Gnome terminal : 2020
 
-Gnome terminal 我也使用过非常长的时间，主要是因为在[龙芯平台上我编不出来 alacritty](https://martins3.github.io/loongarch/neovim.html) 以及有一段时间 alacritty 无法正确的
+Gnome terminal 我也使用过非常长的时间，主要是因为在[龙芯平台上我编不出来 alacritty](https://martins3.github.io/loongarch/neovim.html) 以及有一段时间 alacritty 无法正确的处理
 
 原来的 Gnome terminal 的配色我不是很喜欢，以及
-为了让 terminal 一打开就会自动执行 tmux，需要在配置上进行一些[调整](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/gnome.dconf)
+为了让 terminal 一打开就会自动执行 tmux，需要在配置上进行一些[调整](https://github.com/Martins3/My-Linux-Config/blob/master/config/gnome-terminal.dconf)
 
 保存和加载配置的方法为(假设将本仓库 clone 到了 ~/.dotfils 上):
 ```sh
@@ -34,25 +46,15 @@ gnome terminal d
 sudo update-alternatives --config x-terminal-emulator
 ```
 
-## Alacritty
+## Alacritty : 2020-2022
 
-对我而言，Alacritty 最大的改变在于，在一个大文件中，再也没有打字的延迟了。
+Alacritty 目前而言是我使用时间最长的 terminal 了，中间因为输入法的问题换成了 Gnome Terminal，后来解决之后，又切换回来了。
 
-我的 Alacritty 配置在[这里](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/alacritty.yml)，虽然非常的长，其实只是对于官方配置做了一些细小的调整，比如自动加载 tmux 之类的。
+Alacritty 的优点:
+- 对于 UI 可以高度的定制化，只是设置为真正的全屏模式
+- 性能很好。
 
-安装方法参考[官方文档](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
-```sh
-cargo build --release --no-default-features --features=x11
-```
-
-主要的改动为:
-- 采用的颜色主题为 [`solarized_dark`](https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_dark.yaml)
-- 修改字体为 Hasklug Nerd Font
-- 设置启动自动为 tmux
-
-具体细节和 [官方默认配置](https://github.com/alacritty/alacritty/releases/download/v0.10.1/alacritty.yml) diff 一下就可以知道了。
-
-## Kitty
+## Kitty : 2022-现在
 
 切换到 Mac 之后，我发现 alacritty 的两个问题让人很痛苦:
 - rime 输入法在输入的过程中无法显示已经输入的字母；
@@ -61,8 +63,23 @@ cargo build --release --no-default-features --features=x11
 
 而且 kitty 支持 session 的概念，配置之后，每次 terminal 可以自动 attach 本地和远程 server 的 tmux 。
 
-## 其他
-- [wezterm](https://github.com/wez/wezterm) 尚未尝试
+此外，kitty 的 log 是一只可爱的小猫咪，就凭这一点，我就直接给它打满分。
+
+## Tabby : 几分钟
+
+非常的酷炫，但是性能不行。
+
+## wezterm
+
+我发现我切换到 nixos 之后，kitty 中不能输入中文了，所以就换成了 [wezterm](https://github.com/wez/wezterm) 。
+配置大约花费了半个消失，最后 tab 栏有点臭，其他还好。
+
+<!-- @todo 不知道为什么，最下面有一大片空白的无法被 zellij 或者 nvim 填满 -->
+## 总结
+目前，我推荐的 terminal 是:
+- kitty
+- wezterm
+- alacritty
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

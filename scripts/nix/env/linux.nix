@@ -25,9 +25,10 @@ pkgs.stdenv.mkDerivation {
     libcap
     libmnl
     libcap_ng
+    liburing
 
     # rust language
-    # TMP_TODO 还没有太搞清楚如何索引 Rust 项目
+    # @todo 还没有太搞清楚如何索引 Rust 项目
     pkgs.cargo
     pkgs.rustc
     pkgs.rustfmt
@@ -36,6 +37,21 @@ pkgs.stdenv.mkDerivation {
     pkgs.openssl
     pkgs.pkg-config
 
+    pkgs.graphviz
+
+    (python3.withPackages (p: with p; [
+      sphinx
+      # 修改 Documentation/conf.py 中 html_theme = 'sphinx_rtd_theme'
+      sphinx-rtd-theme
+    ]))
+    libopcodes
+    numactl
+    /* numa_num_possible_cpus */
+    /* libperl */
+    libunwind
+    lzma
+    zstd
+    perl
   ];
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.

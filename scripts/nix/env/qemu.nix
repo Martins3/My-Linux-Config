@@ -13,6 +13,17 @@ pkgs.stdenv.mkDerivation {
     rdma-core
     liburing
     libiscsi
+    libcap_ng
     libslirp
+    gtk3
+    libaio
+    libnfs
+    libseccomp
+    libssh
+    libbpf
+    libusb
+    zstd
+    virglrenderer
+    epoxy
   ];
 }

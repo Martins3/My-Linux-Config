@@ -19,10 +19,16 @@ pkgs.mkShell rec {
     python3Packages.pyelftools
   ];
 
-  # TMP_TODO 不知道这个是什么原理?
+  # @todo 不知道这个是什么原理?
   NIX_CFLAGS_COMPILE = "-mssse3"; # Necessary to compile.
   # otherwise does not find strncpy when compiling
   NIX_LDFLAGS = "-lbsd";
 
   buildInputs = with pkgs; [ ];
 }
+
+/**
+  * git submodule update --init
+  * ./configure
+  * make
+*/

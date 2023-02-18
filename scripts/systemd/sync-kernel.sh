@@ -47,8 +47,8 @@ CONFIG_DEBUG_INFO_DWARF5=y
 # centos 需要
 CONFIG_XFS_FS=y
 
-CONFIG_MEMCG=y # TODO
-CONFIG_BPF_SYSCALL=y # TODO
+CONFIG_MEMCG=y
+CONFIG_BPF_SYSCALL=y
 
 CONFIG_GUEST_PERF_EVENTS=y
 CONFIG_HAVE_KVM_PFNCACHE=y
@@ -79,7 +79,6 @@ CONFIG_IRQ_BYPASS_MANAGER=y
 # sshfs 需要
 CONFIG_FUSE_FS=y
 # CONFIG_CUSE is not set
-# CONFIG_VIRTIO_FS is not set
 
 # 分析 transparent huge page
 CONFIG_ARCH_ENABLE_THP_MIGRATION=y
@@ -134,7 +133,6 @@ CONFIG_MEMORY_HOTPLUG=y
 CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=y
 CONFIG_MEMORY_HOTREMOVE=y
 CONFIG_MHP_MEMMAP_ON_MEMORY=y
-# CONFIG_ZONE_DEVICE is not set
 CONFIG_VIRTIO_PMEM=y
 CONFIG_VIRTIO_MEM=y
 CONFIG_LIBNVDIMM=y
@@ -204,16 +202,16 @@ CONFIG_ZSWAP_COMPRESSOR_DEFAULT_LZO=y
 # CONFIG_ZSWAP_COMPRESSOR_DEFAULT_LZ4HC is not set
 # CONFIG_ZSWAP_COMPRESSOR_DEFAULT_ZSTD is not set
 CONFIG_ZSWAP_COMPRESSOR_DEFAULT="lzo"
-CONFIG_ZSWAP_ZPOOL_DEFAULT_ZBUD=y
+CONFIG_ZSWAP_ZPOOL_DEFAULT_ZSMALLOC=y
+CONFIG_ZSWAP_ZPOOL_DEFAULT="zsmalloc"
+# CONFIG_ZSWAP_ZPOOL_DEFAULT_ZBUD is not set
 # CONFIG_ZSWAP_ZPOOL_DEFAULT_Z3FOLD is not set
-# CONFIG_ZSWAP_ZPOOL_DEFAULT_ZSMALLOC is not set
-CONFIG_ZSWAP_ZPOOL_DEFAULT="zbud"
 CONFIG_ZBUD=y
-# CONFIG_Z3FOLD is not set
-# CONFIG_ZSMALLOC is not set
 CONFIG_FRONTSWAP=y
 # CONFIG_ZRAM is not set
 CONFIG_CRYPTO_LZO=y
+CONFIG_Z3FOLD=y
+CONFIG_ZSMALLOC=y
 
 CONFIG_NUMA_BALANCING=y
 CONFIG_NUMA_BALANCING_DEFAULT_ENABLED=y
@@ -256,17 +254,164 @@ CONFIG_HAVE_SCHED_AVG_IRQ=y
 
 # try to learn scsi
 CONFIG_SCSI_LOGGING=y
+
+CONFIG_BLK_DEV_UBLK=y
+
+# --- fault inejction -------------------------
+CONFIG_FUNCTION_ERROR_INJECTION=y
+CONFIG_FAULT_INJECTION=y
+CONFIG_FAILSLAB=y
+CONFIG_FAIL_PAGE_ALLOC=y
+CONFIG_FAULT_INJECTION_USERCOPY=y
+CONFIG_FAIL_MAKE_REQUEST=y
+CONFIG_FAIL_IO_TIMEOUT=y
+CONFIG_FAIL_FUTEX=y
+CONFIG_FAULT_INJECTION_DEBUG_FS=y
+
+CONFIG_FAIL_FUNCTION=y
+# --------------------------------------------
+
+CONFIG_BPF_KPROBE_OVERRIDE=y
+
+# ----- iscsi targetcli 需要 begin ------
+# 1. configfs
+# 2. target_core
+# 3. iscsi_target
+CONFIG_CONFIGFS_FS=y
+
+CONFIG_TARGET_CORE=y
+CONFIG_CRYPTO_CRCT10DIF=y
+CONFIG_CRC_T10DIF=y
+
+CONFIG_ISCSI_TARGET=y
+CONFIG_CRYPTO_CRC32C_INTEL=y
+
+CONFIG_BLK_DEV_INTEGRITY=y
+CONFIG_BLK_DEV_INTEGRITY_T10=y
+CONFIG_TCM_IBLOCK=y
+CONFIG_TCM_FILEIO=y
+CONFIG_TCM_PSCSI=y
+CONFIG_LOOPBACK_TARGET=y
+CONFIG_CRYPTO_CRC64_ROCKSOFT=y
+CONFIG_CRC64_ROCKSOFT=y
+CONFIG_CRC64=y
+
+CONFIG_BLK_DEV_BSGLIB=y
+CONFIG_SCSI_ISCSI_ATTRS=y
+CONFIG_ISCSI_TCP=y
+# ----- iscsi targetcli 需要 end ------
+
+# 增加一个专门用于调试的 scsi 设备
+CONFIG_SCSI_DEBUG=y
+
+# 支持 cgroup 中 io.max
+CONFIG_BLK_CGROUP_RWSTAT=y
+CONFIG_BLK_DEV_THROTTLING=y
+CONFIG_BLK_DEV_THROTTLING_LOW=y
+# CONFIG_BLK_WBT=y
+# CONFIG_BLK_WBT_MQ=y
+
+# 网络模拟
+CONFIG_NET_SCH_NETEM=y
+
+CONFIG_PSI=y
+# CONFIG_PSI_DEFAULT_DISABLED is not set
+
+# CONFIG_DRM_I915_GVT_KVMGT is not set
+CONFIG_VFIO=y
+CONFIG_VFIO_CONTAINER=y
+CONFIG_VFIO_IOMMU_TYPE1=y
+# CONFIG_VFIO_NOIOMMU is not set
+CONFIG_VFIO_VIRQFD=y
+CONFIG_VFIO_PCI_CORE=y
+CONFIG_VFIO_PCI_MMAP=y
+CONFIG_VFIO_PCI_INTX=y
+CONFIG_VFIO_PCI=y
+# CONFIG_VFIO_PCI_VGA is not set
+CONFIG_VFIO_PCI_IGD=y
+CONFIG_VFIO_MDEV=y
+
+# @todo 如何使用
+CONFIG_PARAVIRT_DEBUG=y
+# @todo 原理
+CONFIG_PARAVIRT_SPINLOCKS=y
+# @todo 原理
+CONFIG_PARAVIRT_TIME_ACCOUNTING=y
+# @todo 尝试使用下
+CONFIG_JAILHOUSE_GUEST=y
+# @todo 尝试使用下
+CONFIG_ACRN_GUEST=y
+
+CONFIG_MODVERSIONS=y
+CONFIG_ASM_MODVERSIONS=y
+
+# @todo 这里有好几个选项都是看不懂的哇
+# CONFIG_BRIDGE_NF_EBTABLES is not set
+CONFIG_STP=y
+CONFIG_BRIDGE=y
+CONFIG_BRIDGE_IGMP_SNOOPING=y
+# CONFIG_BRIDGE_MRP is not set
+# CONFIG_BRIDGE_CFM is not set
+CONFIG_LLC=y
+
+# @todo 为什么 ovs 会自动打开这几个选项
+CONFIG_NF_NAT_OVS=y
+CONFIG_OPENVSWITCH=y
+CONFIG_MPLS=y
+CONFIG_NET_MPLS_GSO=y
+# CONFIG_MPLS_ROUTING is not set
+CONFIG_NET_NSH=y
+
+
+# https://virtio-fs.gitlab.io/howto-qemu.html
+# 为了支持 virtiofs 共享目录
+CONFIG_VIRTIO_FS=y
+
+# @todo zone device 到底是什么？为什么和 DAX 有关
+CONFIG_DEVICE_MIGRATION=y
+CONFIG_ZONE_DEVICE=y
+# CONFIG_DEVICE_PRIVATE is not set
+# CONFIG_PCI_P2PDMA is not set
+CONFIG_ND_PFN=y
+CONFIG_NVDIMM_PFN=y
+CONFIG_NVDIMM_DAX=y
+
+# @todo fs 为什么可以用来 DAX
+CONFIG_FS_DAX=y
+CONFIG_FS_DAX_PMD=y
+CONFIG_FUSE_DAX=y
+
 _EOF_
 
+RECORD_TIME=true
+
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
-nix-shell --command "make clean"
-nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 4))"
+if [[ $RECORD_TIME == true ]]; then
+  nix-shell --command "make clean"
+  SECONDS=0
+fi
+nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+
+if [[ $RECORD_TIME == true ]]; then
+  duration=$SECONDS
+  echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
+  echo "$(date) : $duration : " >>/home/martins3/core/compile-linux/database
+  cat /proc/cmdline >>/home/martins3/core/compile-linux/database
+fi
+
+# 编译的速度太慢了，不想每次都等那么久
+if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
+  nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+fi
 # nix-shell --command "rm -r .cache"
 nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
-# nix-shell --command "make binrpm-pkg -j"
+# nix-shell --command "make binrpm-pkg -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+#
+# Documentation/conf.py 中修改主题 html_theme = 'sphinx_rtd_theme'
 
 # 1. 启动虚拟机，让 Guest 安装对应的内核
 # 2. nixos 中无法成功运行 make -C tools/testing/selftests TARGETS=vm run_testsq
 # 3. 应该关注 linux-next 分支 : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
+# @todo 等 ccls 的 bug 被修复再说吧
 nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

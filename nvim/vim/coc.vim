@@ -118,7 +118,6 @@ let s:coc_extensions = [
       \ 'coc-metals',
       \ 'coc-tsserver',
       \ 'coc-markmap',
-      \ 'coc-clangd',
       \]
 
 for extension in s:coc_extensions

@@ -1,0 +1,32 @@
+layout {
+  tab name="vn" cwd="/home/martins3/core/vn" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane command="nvim"
+  }
+
+ //  tab name=".dotfiles" cwd="/home/martins3/.dotfiles" {
+ //    pane size=1 borderless=true {
+ //      plugin location="zellij:tab-bar"
+ //    }
+ //    pane command="nvim"
+ //  }
+
+ //  tab name="draft" cwd="/home/martins3/core/draft" {
+ //    pane size=1 borderless=true {
+ //      plugin location="zellij:tab-bar"
+ //    }
+ //    pane command="nvim"
+ //  }
+
+ //  tab name="orgmode" cwd="/home/martins3/core/org-mode" {
+
+ //    pane size=1 borderless=true {
+ //      plugin location="zellij:tab-bar"
+ //    }
+ //    pane command="nvim"
+ //  }
+}
+session_name "martins3 yyds"
+attach_to_session true

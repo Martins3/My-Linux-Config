@@ -10,17 +10,16 @@
 * 中文文档
   * [2022 年 vim 的 C/C++ 配置](./docs/nvim.md)
   * [极简 Tmux 配置](./docs/tmux.md)
-  * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
-  * [Rime 输入法配置](./docs/rime.md)
-  * [NixOS 初步尝试](./docs/nix.md)
+  *  🚧 [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
+  *  🚧 [Rime 输入法配置](./docs/rime.md)
+  *  🚧 [NixOS 初步尝试](./docs/nix.md)
 * English version comming soon.
 
 ## ⚙ Install
 see scripts/install.sh, just a bunch of symbol links execpt neovim configuration is a little of complex:
-  - see the [Dockerfile](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/ubuntu/Dockerfile)
   - read the [documentation](./docs/nvim.md)
-  - try [nix](./docs/nix.md)
+  - try [nixos](./docs/nix.md)
 
 ## 🤝 Contributing
 

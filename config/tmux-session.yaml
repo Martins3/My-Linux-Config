@@ -1,12 +1,22 @@
-# tmuxp load -d -s Martins3 ./tmux-session.yaml
-session_name: 4-pane-split
+session_name: note
 windows:
-  - window_name: dev window
+  - window_name: vn
     layout: tiled
     shell_command_before:
-      - cd ~/ # run as a first command in all panes
-    panes:
-      - shell_command: # pane no. 1
-          - cd /var/log # run multiple commands in this pane
-          - ls -al | grep \.log
-      - echo second pane # pane no. 2
+      - cd ~/core/vn
+      - nvim
+  - window_name: .dotfiles
+    layout: tiled
+    shell_command_before:
+      - cd ~/.dotfiles
+      - nvim
+  - window_name: draft
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/draft
+      - nvim
+  - window_name: org-mode
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/org-mode
+      - nvim

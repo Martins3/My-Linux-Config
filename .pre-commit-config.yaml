@@ -18,3 +18,4 @@ repos:
         description: check Chinese doc
         entry: scripts/lint-md.sh
         language: script
+        require_serial: true

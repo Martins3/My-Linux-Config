@@ -4,20 +4,22 @@ let
   unstable = import <unstable> { };
   rnix-lsp2 = import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz");
   x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
+
 in
 {
   fonts.fontconfig.enable = true;
 
+  home.stateVersion = "21.11";
+  home.username = "martins3";
+  home.homeDirectory = "/home/martins3";
+
   home.packages = with pkgs; [
-    autoconf
-    automake
-    pkg-config
     gcc
     mold
     go
     lua
     unstable.sumneko-lua-language-server
-    clang-tools
+    ccls
     cargo
     rustc
     unstable.rust-analyzer
@@ -27,8 +29,10 @@ in
     nodejs
     tmux
     tmuxp
+    screen
     tig
-    xclip
+    xclip # x clipboard
+    wl-clipboard # wayland clipboard
     jq
     xplr
     htop
@@ -36,60 +40,65 @@ in
     unzip
     fzf
     ripgrep
-    silver-searcher
     binutils
     starship
     gdb
-    lsd
     lsof
+    lshw
+    exa # more powerful ls
+    neofetch
     bear
     tree
-    jump
     fd
-    cloc
     file
-    ncdu
+    duf # 更好的 df -h
+    zoxide # better jump
+    ncdu # 更加易用的 du
+    du-dust # 比 ncdu 更快
     socat # unix domain
     delta # git diff
     git-secrets
+    bpftool
     nethogs
+    nmap
+    # dhcpcd # 这个东西和 nixos 不兼容
     iftop
     tcpdump
     ethtool
     sshpass
     gping # better ping
-    unstable.pingu
+    pingu # interesting ping
     nbd
-    # nix
-    nix-index
-    # kernel
+    kmon # 方便的管理内核模块
     numactl
     kexec-tools
     rpm
     stress-ng
     numatop
-    # qemu
-    # OVMF # TMP_TODO 安装了，但是 OVMF.fd 没有找到
-    qemu
+    OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     ninja
-    libvirt
+    libvirt # 提供 virsh
+    nix-index
     virt-manager
     meson
-    # vim
-    unstable.neovim
+    neovim
+    # wakatime
     shellcheck
     shfmt
-    # TMP_TODO 通过这种方法会失败，似乎是从 crates.io 下载的问题
-    # rnix-lsp2
-    rnix-lsp
+    rnix-lsp # nix 语言的 lsp
     tree-sitter
-    # trace
     pkgs.linuxPackages_latest.perf
+    # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇
+    # 这个东西其实自己生成一份
+    # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
     iperf
-    bpftrace
+    unstable.bpftrace # bpftrace 新版本才支持 kfunc
+    unstable.bcc
+    sqlite
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk
+    inetutils
     (python3.withPackages (p: with p; [
       pandas
       pygal
@@ -97,35 +106,62 @@ in
       ipython
       filelock
       autopep8
+      libvirt
+      mock
+      filelock
+      grpcio
+      pytest
+      unittest2
+      monotonic
+      libxml2
+      ansible # 自动化运维
     ]))
-    perl
+    # perl
     man-pages
     man-pages-posix
-    # TMP_TODO 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
-    # x86-manpages
+    # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
     nixos-generators
     unstable.gum
     # acpi
     acpica-tools
     asciidoc
-    # iscsi # TMP_TODO iscsi 没有完全搞明白，所以在 nixos 上更加不会
+    # iscsi # @todo 尚未使用过
     targetcli
     fio
-    # fun
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
     viddy # A modern watch command.
-    mcfly # better ctrl-r for shell
-  ];
+    # mcfly # better ctrl-r for shell
+    unstable.atuin
+    pciutils
+    powertop # 分析功耗
+    lm_sensors # 获取 CPU 温度
+    libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
+    # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
+    libcgroup
+    bat # better cat
+    xcp # better cp
+    procs # better ps
+    cloc
+    tokei # 代码统计工具，比 cloc 性能好
+    zellij # tmux 替代品
+    sshfs
+    firecracker
+    (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
+    bridge-utils
+    swtpm # windows 11 启动需要
+    nushell
+    libnotify
 
-  home.file.".tmux/plugins/tpm" = {
-    source = builtins.fetchGit {
-      url = "https://github.com/tmux-plugins/tpm";
-      rev = "b699a7e01c253ffb7818b02d62bce24190ec1019"; # updated at 2022/7/17
-    };
-  };
+    containerd # @todo 测试下
+    nerdctl
+
+    telegraf # @todo 这个和 service 是什么关系？
+    usbutils
+    # 测试下 ovs @todo
+  ];
 
   programs.zsh = {
     enable = true;
@@ -156,7 +192,7 @@ in
   programs.git = {
     enable = true;
     userEmail = "hubachelar@gmail.com";
-    userName = "bachelor hu";
+    userName = "Martins3";
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin
@@ -179,14 +215,14 @@ in
       };
       # --- end
 
-      /*
-        http={
-        proxy = "http://10.0.2.2:8889";
-        };
-        https={
-        proxy = "http://10.0.2.2:8889";
-        };
-      */
+      http = {
+        proxy = "http://127.0.0.1:8889";
+      };
+
+      https = {
+        proxy = "http://127.0.0.1:8889";
+      };
+
       credential = {
         helper = "store";
       };
@@ -202,7 +238,6 @@ in
     };
   };
 
-
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/2b107b27949d13f6ef041de6eec1ad2e5f7b4cbf/.gdbinit";
@@ -215,6 +250,11 @@ in
   home.file.gdb_dashboard_init = {
     source = ../../config/gdbinit;
     target = ".gdbinit.d/init";
+  };
+
+  home.file.npm = {
+    source = ../../config/npmrc;
+    target = ".npmrc";
   };
 
   programs.direnv.enable = true;

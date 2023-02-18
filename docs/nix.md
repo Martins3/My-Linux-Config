@@ -1,6 +1,19 @@
 # NixOS 初步尝试
 
-使用 QEMU 运行参考[我写的脚本](https://github.com/Martins3/My-Linux-Config/scripts/qemu-run-nix.sh)
+声明：
+- NixOS 是给程序员准备的，你需要掌握你们新的函数式编程语言。
+- 其次，NixOS 的入门曲线非常的陡峭。
+
+我在使用 NixOS 的时候，一度想要放弃，但是最终还是检查下来了。
+因为 NixOS 非常符合计算机的思维，相同的问题仅仅解决一次，而这个问题是
+环境配置。
+
+## 优缺点对比
+### 优点
+1. escape 和 Caps 之间互相切换更加简单
+
+### 缺点
+1. crash 无法安装
 
 ## 安装
 ### 安装系统
@@ -67,6 +80,7 @@ su -l martins3
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
 ```
+执行 ./scripts/install.sh 将本配置的文件软链接的位置。
 
 4. exit 到 root 执行，然后 ./scripts/nix-channel.sh 切换源
 
@@ -128,38 +142,12 @@ wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确�
 ## samba
 参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
 
-```nix
-environment.systemPackages = with pkgs; [
-  cifs-utils
-}
-
-services.samba = {
-  enable = true;
-
-  /* syncPasswordsByPam = true; */
-
-  # This adds to the [global] section:
-  extraConfig = ''
-    browseable = yes
-    smb encrypt = required
-  '';
-
-  shares = {
-    homes = {
-      browseable = "no";  # note: each home will be browseable; the "homes" share will not.
-      "read only" = "no";
-      "guest ok" = "no";
-    };
-  };
-};
-```
-
-注意，smbp 是需要
+此外，在 Linux 中设置
 ```sh
-sudo smbpasswd -a yourusername
+sudo smbpasswd -a martins3
 ```
 
-没有 syncthing 是更加好用的，因为 samba 所有的访问多是需要经过网络，没有缓存，而 syncthing 是将内容同步到本地的。
+在 windows Guest 中，右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
 
 ## npm 包管理
 支持的不是很好，需要手动安装
@@ -169,6 +157,14 @@ sudo smbpasswd -a yourusername
 nix-env -qaPA nixos.nodePackages
 ```
 但是只有非常少的包。
+
+但是可以通过这个方法来使用传统方法安装:
+- https://stackoverflow.com/questions/56813273/how-to-install-npm-end-user-packages-on-nixos
+
+之后，安装无需使用 sudo 了
+```sh
+npm install -g @lint-md/cli@beta
+```
 
 ## python
 ```txt
@@ -198,6 +194,13 @@ error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647
   home.packages = with pkgs; [
 ```
 中的 python 删除就可以了。
+
+
+如果一个包安装不上，可以在这里:
+```txt
+python -m venv .venv
+source .venv/bin/activate
+```
 
 ## [ ] cpp
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
@@ -249,23 +252,7 @@ linux.overrideAttrs (o: {
 ### [ ] 编译内核模块
 
 ### 编译老内核
-- 经过反复的尝试，发现无法搞定老内核的编译，但是发现使用 docker 是真的简单:
-
-使用这个仓库: https://github.com/a13xp0p0v/kernel-build-containers
-
-```sh
-docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-build-container:gcc-7
-```
-
-> -t 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i 则让容器的标准输入保持打开。
->
-> https://stackoverflow.com/questions/32269810/understanding-docker-v-command
-
-编译之后，在 host 中执行 ./script/clang-tools/gen-compile-commands.py
-
-可能需要将 compile-commands.json 中将 aarch-gnu-gcc 替换为 gcc，否则 ccls 拒绝开始索引。
-
-同样的，可以构建一个 centos 环境来编译内核。
+使用 docker 吧
 
 ### 安装自定义的内核
 参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
@@ -286,10 +273,6 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 > pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
 
-## 安装特定版本的程序
-- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
-- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
-
 ## 在 nix 中搭建内核调试的环境
 参考 https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
 
@@ -300,9 +283,26 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 
 但是不要妄想交叉编译老版本的内核，是一个时间黑洞。
 
+在 :broom: remove cross-compile nix config 的提交中删除两个配置。
+
 ## 如何编译 kernel module
+
 - 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
 - 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
+
+没必要那么复杂，参考这个，中的 : Developing out-of-tree kernel modules
+- https://nixos.wiki/wiki/Linux_kernel
+
+```sh
+nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
+make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
+
+make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
+```
+
+
+- [ ] 搞清楚 kbuild 也许会让问题容易很多吧
+- [ ] 似乎现在是没有办法手动编译的
 
 ## tmux
 为了让 tmux 配置的兼容其他的 distribution ，所以 tpm 让 nixos 安装，而剩下的 tmux 插件由 tmp 安装。
@@ -331,16 +331,6 @@ docker run -it --rm -u $(id -u):$(id -g) -v $(pwd):/home/martins3/src kernel-bui
 按照 https://unix.stackexchange.com/questions/646319/how-do-i-install-a-tarball-with-home-manager
 的提示，
 rnix-lsp 可以，但是 x86-manpages 不可以
-
-## 安装 feishu
-
-  feishu = pkgs.callPackage
-    (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/xieby1/nix_config/main/usr/gui/feishu.nix";
-      sha256 = "0j21j29phviw9gvf6f8fciylma82hc3k1ih38vfknxvz0cj3hvlv";
-    })
-    { };
-
 
 ## 常用 lib
 
@@ -374,9 +364,6 @@ nix eval -f begin.nix
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
 
-## coc-sumneko-lua
-- 暂时的水平难以解决 : https://github.com/xiyaowong/coc-sumneko-lua/issues/22
-
 ## MAC 中使用 nix
 存在很多麻烦的地方:
 - https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
@@ -396,7 +383,31 @@ nix eval -f begin.nix
 可以关注一下:
 https://nix.dev/anti-patterns/language
 
-## 使用特定版本的 gcc 或者 llvm
+
+## 安装特定版本的程序
+- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
+  - https://lazamar.co.uk/nix-versions/ : 使用这个网站
+- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
+  - 这个文摘暂时没有看懂
+
+- 还可以
+
+```nix
+let
+  old = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/7d7622909a38a46415dd146ec046fdc0f3309f44.tar.gz";
+    })
+    { };
+
+  clangd13 = old.clang-tools;
+in {
+  home.packages = with pkgs; [
+  clangd13
+```
+
+
+### 使用特定版本的 gcc 或者 llvm
 - https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
   - 切换 gcc 的方法:
 
@@ -439,21 +450,329 @@ https://nix.dev/anti-patterns/language
 
 ## [ ] rpm 构建的出来的 rpmbuild 权限不对
 
+## [ ] 无法使用 libvirt 正确实现热迁移
+
+```txt
+  virtualisation.libvirtd = {
+    enable = true;
+    # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/virtualization_host_configuration_and_guest_installation_guide/app_tcp_ports
+    extraConfig = "
+    listen_tls = 1
+    listen_tcp = 1
+    listen_addr = \"0.0.0.0\"
+    ";
+    extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
+  };
+```
+
+## switch caps 和 escape
+https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
+
+似乎需要:
+```sh
+gsettings reset org.gnome.desktop.input-sources xkb-options
+gsettings reset org.gnome.desktop.input-sources sources
+```
+
+## 处理实际问题
+- https://www.zhihu.com/column/c_1471621862853189632
+  - 安装双系统 : https://zhuanlan.zhihu.com/p/560014206
+
+## nix
+- https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
+
 ## 问题
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
   - https://github.com/Martins3/My-Linux-Config/issues/14
 - [ ] 无法正确安装 crash
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
-- [ ] 为什么每次 home-manager 都是会出现这个问题
-```txt
-warning: error: unable to download 'https://cache.nixos.org/1jqql9qml06xwdqdccwkm5a6ahrjvpns.narinfo': Couldn't resolve host name (6); retrying in 281 ms
-these 2 derivations will be built:
-```
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
-- 也许一举切换为 wayland
 - 测试一下，到底放不方便修改内核
   - 如果想要一份本地的源码，来安装，如何 ?
+- [ ] 挂载磁盘 https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
 
+## 需要验证的问题
+- [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
+
+## 如何添加 rime 的支持
+
+# Nix/NixOs 踩坑记录
+
+最近时不时的在 hacknews 上看到 nix 相关的讨论:
+- [Nixos-unstable’s iso_minimal.x86_64-linux is 100% reproducible!](https://news.ycombinator.com/item?id=27573393)
+- [Will Nix Overtake Docker?](https://news.ycombinator.com/item?id=29387137)
+
+忽然对于 Nix 有点兴趣，感觉自从用了 Ubuntu 之后，被各种 Linux Distribution 毒打的记忆逐渐模糊，现在想去尝试一下，
+但是 Ian Henry 的[How to Learn Nix](https://ianthehenry.com/posts/how-to-learn-nix/) 写的好长啊，
+
+我发现，在 Ubuntu 安装我现在的 nvim 配置很麻烦，虽然可以写脚本，但是更多的时候是
+忘记了曾经安装过的软件。
+
+## 问题
+nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
+
+## 文档
+
+### manual : https://nixos.org/manual/nix/stable/introduction.html
+
+> This means that it treats packages like values in purely functional programming languages such as Haskell — they are built by functions that don’t have side-effects, and they never change after they have been built.
+充满了哲学的感觉啊。
+
+For example, the following command gets all dependencies of the Pan newsreader, as described by its Nix expression:
+
+- https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/newsreaders/pan/default.nix
+```sh
+nix-shell '<nixpkgs>' -A pan
+```
+
+The main command for package management is nix-env.
+
+Components are installed from a set of Nix expressions that tell Nix how to build those packages, including, if necessary, their dependencies. There is a collection of Nix expressions called the Nixpkgs package collection that contains packages ranging from basic development stuff such as GCC and Glibc, to end-user applications like Mozilla Firefox. (Nix is however not tied to the Nixpkgs package collection; you could write your own Nix expressions based on Nixpkgs, or completely new ones.)
+> 1. Nix Expressions 实际上是在描述一个包是如何构建的
+> 2. Nixpkgs 是一堆社区构建好的
+> 3. 完全可以自己来构建这些内容
+
+You can view the set of available packages in Nixpkgs:
+```c
+nix-env -qaP
+```
+The flag -q specifies a query operation, -a means that you want to show the “available” (i.e., installable) packages, as opposed to the installed packages, and -P prints the attribute paths that can be used to unambiguously select a package for installation (listed in the first column).
+
+You can install a package using nix-env -iA. For instance,
+```c
+nix-env -iA nixpkgs.subversion
+```
+
+Profiles and user environments are Nix’s mechanism for implementing the ability to allow different users to have different configurations, and to do atomic upgrades and rollbacks.
+
+#### 直接跳转到 Chapter 5
+
+使用 https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/misc/hello/default.nix 作为例子。
+
+### manual : https://nixos.org/manual/nixpkgs/stable/
+- [ ] 这个是侧重什么东西啊?
+
+### manual :  https://nixos.org/manual/nixpkgs/unstable/
+
+## 这个操作几乎完美符合要求啊
+- https://github.com/gvolpe/nix-config : 这个也非常不错
+
+## TODO
+- [ ] https://nixos.org/learn.html#learn-guides
+- [ ] https://nixos.org/ 包含了一堆 examples
+- [ ]  https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
+
+## 文摘
+- [ ] https://christine.website/blog/nix-flakes-2-2022-02-27 : xe 写的
+- [ ] https://roscidus.com/blog/blog/2021/03/07/qubes-lite-with-kvm-and-wayland/
+  - 简单的介绍 qubes ，nixso and  SpectrumOS
+  - 对应的讨论: https://news.ycombinator.com/item?id=26378854
+- https://matklad.github.io//2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html ： rust 大佬解决 nix 的问题 blog
+
+- https://github.com/NixOS/nix/issues/6210 : 有趣
+- [ ] https://alexpearce.me/2021/07/managing-dotfiles-with-nix/
+  - Nix 下如何管理 package 的
+- https://github.com/Misterio77/nix-colors : 主题
+
+## 资源
+- https://github.com/nixos-cn/flakes : nixos 中文社区
+- https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
+- https://github.com/mitchellh/nixos-config
+- https://github.com/Misterio77/nix-starter-configs : Simple and documented config templates to help you get started with NixOS + home-manager + flakes. All the boilerplate you need!
+
+## 目前最好的教程，应该上手完成之后，就使用这个
+- https://scrive.github.io/nix-workshop/01-getting-started/03-resources.html 资源合集
+
+
+## 关键参考
+https://github.com/xieby1/nix_config
+
+## similar project
+- https://github.com/linuxkit/linuxkit
+
+## 一个快速的教程
+https://nixery.dev/nix-1p.html
+
+
+## 问题
+- [ ] nix-shell 和 nix-env 各自侧重什么方向啊
+- [ ] 什么是 flake 啊？
+- [ ] 按照现在的配置，每次在 home-manager switch 的时候，都会出现下面的警告。
+```txt
+warning: not including '/nix/store/ins8q19xkjh21fhlzrxv0dwhd4wq936s-nix-shell' in the user environment because it's not a directory
+```
+
+- [ ] 下面的这两个流程是什么意思
+```sh
+nix-env -f ./linux.nix -i
+shell-nix --cmd zsh
+```
+
+- [ ] 无法理解这是什么安装方法，可以假如到 home.nix 中吗?
+```sh
+nix-env -i -f https://github.com/nix-community/rnix-lsp/archive/master.tar.gz
+```
+之后重新安装之后，就可以出现:
+```txt
+Oops, Nix failed to install your new Home Manager profile!
+
+Perhaps there is a conflict with a package that was installed using
+"nix-env -i"? Try running
+
+    nix-env -q
+
+and if there is a conflicting package you can remove it with
+
+    nix-env -e {package name}
+
+Then try activating your Home Manager configuration again.
+```
+
+
+- [ ] 理解一下什么叫做 overriding 啊
+```sh
+$ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildInputs=o.nativeBuildInputs ++ [ pkgconfig ncurses ];})'
+[nix-shell] $ unpackPhase && cd linux-*
+[nix-shell] $ make menuconfig
+```
+
+- [ ] tlpi-dist 无法完全编译出来。
+- [ ] https://github.com/fannheyward/coc-pyright 描述了 python 的工作环境
+
+## nur
+https://nur.nix-community.org/
+
+## 到底如何编译 Linux 内核
+https://ryantm.github.io/nixpkgs/builders/packages/linux/
+
+## 有趣
+- WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
+- https://github.com/jetpack-io/devbox
+
+## 桌面环境
+
+曾经简单的尝试过如下:
+- https://github.com/denisse-dev/dotfiles/blob/main/.config/i3/config
+- https://github.com/leftwm/leftwm-theme
+- https://github.com/manilarome/the-glorious-dotfiles/
+- https://github.com/lcpz/awesome-copycats.git
+
+但是发现其中存在很多[小问题](https://github.com/lcpz/lain/issues/503)，很多配置也是没怎么维护，所以还是使用默认的 gnome 了。
+
+## 4k 屏幕
+虽然，我没有做过图形开发，但是我估计适配 4k 屏幕是个非常复杂的问题，Linux 目前对于这个问题处理的也不是很好:
+- https://news.ycombinator.com/item?id=25970690
+
+例如
+## 组件
+- polybar
+- rofi
+- picom
+
+## nixos 的
+https://www.youtube.com/@NixCon
+
+## 更新 nixos 为 22.11
+内容参考这里:
+- https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
+- https://news.ycombinator.com/item?id=33815085
+
+## 垃圾清理
+sudo nix-collect-garbage -d
+
+## 包搜索
+ nix search nixpkgs markdown | fzf
+
+## 静态编译
+- 似乎安装这个是不行的: glibc.static
+
+应该使用这种方法:
+nix-shell -p gcc glibc.static
+
+## 如何安装 nixos 主题
+- https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/icons/whitesur-icon-theme/default.nix
+
+## 如何安装 nixos
+- [Installing Steam on NixOS in 50 simple steps](https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html)
+
+但是社区感觉实在是太复杂了，所以存在一个专门的 hacking：
+```nix
+nixpkgs.config.allowUnfree = true;
+programs.steam.enable = true;
+```
+
+## nix-index 是做什么的
+
+## 自定义字体
+- 参考： https://www.adaltas.com/en/2022/03/29/nix-package-creation-install-font/
+- 安装 : https://github.com/atelier-anchor/smiley-sans
+
+但是不知道如何指定安装这个!
+
+## [ ] openvpn
+- 直接使用是存在问题的 : https://github.com/OpenVPN/openvpn3-linux/issues/42
+- 之后修复了
+  - https://github.com/NixOS/nixpkgs/pull/120352
+  - https://github.com/NixOS/nixpkgs/pull/173937
+
+从 pull request 中看，应该配置方法是:
+```nix
+  services.openvpn3.enable = true;
+```
+
+但是实际上应该是这样的:
+```nix
+  programs.openvpn3.enable = true;
+```
+
+最后，在 ubuntu 上可以正确执行的，结果在 nixos 上总是卡住的:
+```txt
+🧀  openvpn3 log session-start --config client.ovpn
+Waiting for session to start ...
+```
+
+有时间，我想直接切换为 wireguard 吧
+
+## [ ] devenv
+- https://shyim.me/blog/devenv-compose-developer-environment-for-php-with-nix/
+
+## [ ] 修改默认的 image 打开程序
+默认是 microsoft-edge，但是我希望是 eog
+
+## 和各种 dotfile manager 的关系是什么
+- https://www.chezmoi.io/
+
+## nix M1
+- https://github.com/tpwrules/nixos-m1/blob/main/docs/uefi-standalone.md
+
+## vpn
+- tailscale : https://tailscale.com/blog/nixos-minecraft/
+- wireguard
+
+## wasm
+似乎 wasm 的配置很复杂，连最基本的配置都搞不定:
+- https://rustwasm.github.io/docs/book/game-of-life/hello-world.html
+
+这个人解决了问题，最后的评论中看到了 flake.nix，还有 flake.lock，我的鬼鬼！
+- https://gist.github.com/573/885a062ca49d2db355c22004cc395066
+
+如果彻底搞定后，可以尝试下这个:
+https://github.com/casonadams/z-tab-bar
+
+## nixops
+- https://github.com/NixOS/nixops
+
+## 记录一次断电的处理
+因为小米智障插座，直接断电，导致磁盘信息不对。
+- 进入 grub ，e  增加参数 `init=/bin/sh`，enter
+- 输入
+```c
+export PATH=/nix/var/nix/profiles/system/sw/bin:/nix/var/nix/profiles/system/sw/sbin
+fsck -a /dev/nvme0n1p1
+fsck -a /dev/nvme0n1p2
+fsck -a /dev/nvme0n1p3
+```
+参考: https://www.reddit.com/r/NixOS/comments/4fnsxb/how_do_i_run_fsck_manually_on_root_in_nixos/
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

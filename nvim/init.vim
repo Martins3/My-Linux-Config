@@ -49,21 +49,7 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " 加载 lua 配置
-lua require 'usr.bufferline'
-lua require 'usr.code_runner'
-lua require 'usr.hydra'
-lua require 'usr.nvim-tree'
-lua require 'usr.nvim-treesitter'
-lua require 'usr.orgmode'
-lua require 'usr.packer'
-lua require 'usr.telescope'
-lua require 'usr.version'
-lua require 'usr.which-key'
-lua require("colorizer").setup{'css'; 'javascript'; 'vim'; html = { mode = 'foreground';}}
-lua require("nvim-surround").setup{}
-lua require('gitsigns').setup{}
-lua require('nvim-autopairs').setup{}
-lua require('spellsitter').setup{}
+lua require 'usr'
 
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
@@ -79,8 +65,21 @@ for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
 
+" patch for coc-sumneko-lua plugin on nixos
+" for details, see https://github.com/xiyaowong/coc-sumneko-lua/issues/22
+if $USERNAME == "martins3"
+  call coc#config("sumneko-lua.serverDir", "/home/martins3/.nix-profile/")
+  call coc#config("Lua.misc.parameters",
+        \ [ "--metapath",
+        \ "/home/martins3/.cache/sumneko_lua/meta",
+        \ "--logpath",
+        \ "/home/martins3/.cache/sumneko_lua/log"]
+        \)
+endif
+
+
 colorscheme tokyonight
-" keymapping by whichkey doesn't work in neovim 0.8
+" this keymapping originally set by whichkey doesn't work in neovim 0.8
 noremap <Space>bc :BDelete hidden<cr>
 
 " 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx

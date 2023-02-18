@@ -1,0 +1,9 @@
+layout {
+    pane
+    pane size=1 borderless=true {
+        // @todo 使用这个插件，应该就可以自动控制 tab 的名称了吧
+        plugin location="file:///USER_HOME/.zellij/plugins/z-tab-bar.wasm"
+    }
+}
+session_name "martins3"
+attach_to_session true

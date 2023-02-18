@@ -103,7 +103,9 @@ wk.register({
       name = "+search",
       P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
         "search cursor word in project" },
-      p = { "<cmd>lua require('spectre').open()<cr>", "search in project" }
+      p = { "<cmd>lua require('spectre').open()<cr>", "search in project" },
+      b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search in current buffer" },
+      g = { "<cmd>Telescope git_status<cr>", "search git status" },
     },
     t = {
       name = "+toggle",
@@ -138,6 +140,10 @@ wk.register({
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
   ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
+  -- @todo term
+  -- ["<C-t>"] = { "<cmd>ToggleTerm<cr>", "open floaterm" },
+  -- ["<C-p>"] = { "<cmd>1ToggleTerm<cr>", "open floaterm" },
+  -- ["<C-n>"] = { "<cmd>2ToggleTerm<cr>", "open floaterm" },
 })
 
 wk.register({
@@ -146,7 +152,10 @@ wk.register({
       c = { ":Commentary<cr>", "comment code" },
       f = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
     },
-    s = { "<cmd>lua require('spectre').open_visual()<cr>", "search" }
+    s = {
+      name = "+search",
+      p = { "<cmd>lua require('spectre').open_visual()<cr>", "search" },
+    }
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })

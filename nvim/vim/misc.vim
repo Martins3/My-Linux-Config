@@ -50,10 +50,6 @@ let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = 'ctags'
 
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<C-t>'
-
 let g:git_messenger_no_default_mappings = v:true
 
 " 使用 gx 在 vim 中间直接打开链接
@@ -66,6 +62,10 @@ let g:auto_session_pre_restore_cmds = ["BookmarkLoad .vim-bookmarks"]
 
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_no_default_key_mappings = 1
+
+let g:floaterm_keymap_prev   = '<C-p>'
+let g:floaterm_keymap_new    = '<C-n>'
+let g:floaterm_keymap_toggle = '<C-t>'
 
 " 默认不要折叠 markdown
 let g:vim_markdown_folding_disabled = 1

@@ -1,0 +1,9 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+}
+
+session_name "martins3 yyds"
+attach_to_session true
