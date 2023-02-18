@@ -5,13 +5,6 @@ let
   rnix-lsp2 = import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz");
   x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 
-  old = import
-    (builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/7d7622909a38a46415dd146ec046fdc0f3309f44.tar.gz";
-    })
-    { };
-
-  clangd13 = old.clang-tools;
 in
 {
   fonts.fontconfig.enable = true;
@@ -26,7 +19,6 @@ in
     go
     lua
     unstable.sumneko-lua-language-server
-    clangd13
     ccls
     cargo
     rustc

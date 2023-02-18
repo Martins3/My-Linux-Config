@@ -95,8 +95,6 @@ screen 是一个类似的程序，常见的使用方法如下:
 - screen -list
 
 ## zellij
-看上去很不错，但是没有深入研究过。
-
 - https://zellij.dev/documentation/introduction.html
 - https://news.ycombinator.com/item?id=26902430
   - 大家的评价是，技术体系很新
@@ -117,6 +115,10 @@ config/zellij/default.kdl 是默认的启动布局。
     }
 ```
 nvim 的启动首先会卡住一下，是谁的问题
+- [ ] https://github.com/zellij-org/zellij/issues/1760 这个问题没有解决
+- [ ] 屏幕切换的时候，中文显示有问题。
+
+问题很多，没有时间一个个的修复了。
 
 ## 最近遇到的 tmux 问题
 - 有时候，nvim 报告 Clipboard 是 tmux，但是实际上下面的才是正确的

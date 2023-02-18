@@ -273,12 +273,6 @@ linux.overrideAttrs (o: {
 
 > pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
 
-## 安装特定版本的程序
-- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
-  - https://lazamar.co.uk/nix-versions/ : 使用这个网站
-- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
-  - 这个文摘暂时没有看懂
-
 ## 在 nix 中搭建内核调试的环境
 参考 https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
 
@@ -389,7 +383,31 @@ nix eval -f begin.nix
 可以关注一下:
 https://nix.dev/anti-patterns/language
 
-## 使用特定版本的 gcc 或者 llvm
+
+## 安装特定版本的程序
+- https://unix.stackexchange.com/questions/529065/how-can-i-discover-and-install-a-specific-version-of-a-package
+  - https://lazamar.co.uk/nix-versions/ : 使用这个网站
+- [ ] https://lazamar.github.io/download-specific-package-version-with-nix/
+  - 这个文摘暂时没有看懂
+
+- 还可以
+
+```nix
+let
+  old = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/7d7622909a38a46415dd146ec046fdc0f3309f44.tar.gz";
+    })
+    { };
+
+  clangd13 = old.clang-tools;
+in {
+  home.packages = with pkgs; [
+  clangd13
+```
+
+
+### 使用特定版本的 gcc 或者 llvm
 - https://stackoverflow.com/questions/50277775/how-do-i-select-gcc-version-in-nix-shell
   - 切换 gcc 的方法:
 
