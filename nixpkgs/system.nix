@@ -118,17 +118,6 @@ in
   /*   prefixLength = 24; */
   /* }]; */
 
-  # @todo 比较一下启动的速度，如果是使用 sata 和 nvme 的环境
-  # https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
-  fileSystems."/home/martins3/hack/mnt" = {
-    device = "/dev/sda";
-    fsType = "auto";
-    # @todo 这里的参数真的是个迷惑
-    options = [ "defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
-  };
-  # -----------------------------------------------------------------
-
-
   # wireless and wired coexist
   # @todo disable this temporarily
   systemd.network.wait-online.timeout = 0;
@@ -170,15 +159,72 @@ in
     "iommu=pt"
   ];
 
-  # @todo 这个设置没有任何用
-  # 这里的讨论看了下，也是没用的
-  # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-  boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
     { domain = "*"; type = "-"; item = "memlock"; value = "infinity"; }
   ];
+
+  /* /dev/nvme1n2p3: BLOCK_SIZE="512" UUID="0470864A70864302" TYPE="ntfs" PARTUUID="8402854e-03" */
+  /* /dev/nvme1n2p1: LABEL="M-gM-3M-;M-gM-;M-^_M-dM-?M-^]M-gM-^UM-^Y" BLOCK_SIZE="512" UUID="409E41739E416310" TYPE="ntfs" PARTUUID="8402854e-01" */
+  /* /dev/nvme1n2p2: BLOCK_SIZE="512" UUID="02084242084234C7" TYPE="ntfs" PARTUUID="8402854e-02" */
+
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
+      # theme = pkgs.nixos-grub2-theme;
+      theme =
+        pkgs.fetchFromGitHub {
+          owner = "shvchk";
+          repo = "fallout-grub-theme";
+          rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+          sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+        };
+      # despite what the configuration.nix manpage seems to indicate,
+      # as of release 17.09, setting device to "nodev" will still call
+      # `grub-install` if efiSupport is true
+      # (the devices list is not used by the EFI grub install,
+      # but must be set to some value in order to pass an assert in grub.nix)
+      devices = [ "nodev" ];
+      efiSupport = true;
+
+useOSProber = true;
+
+      enable = true;
+      # set $FS_UUID to the UUID of the EFI partition
+      extraEntries = ''
+        menuentry "Windows" {
+          insmod part_gpt
+          insmod fat
+          insmod search_fs_uuid
+          insmod chain
+          insmod ntfs
+          search --fs-uuid --set=root 0470864A70864302
+          search --fs-uuid --set=root 409E41739E416310
+          search --fs-uuid --set=root 02084242084234C7
+          search --fs-uuid --set=root 8402854e-01
+          search --fs-uuid --set=root 8402854e-02
+          search --fs-uuid --set=root 8402854e-03
+          search --fs-uuid --set=root 9a74c193-c31e-4d18-a0ad-fe2c9f2529b6
+          search --fs-uuid --set=root 028ecfea-0f7b-4973-bd76-bc874ff044e8 
+          search --fs-uuid --set=root d3a8c0c4-3558-4798-b99a-96d605f4d3cf
+          search --fs-uuid --set=root c6f93495-0ccc-4309-9aa4-9ac46f7f2a46
+
+          search --fs-uuid --set=root d3a8c0c4-3558-4798-b99a-96d605f4d3cf
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+      version = 2;
+    };
+  };
+
 
   services.openssh.enable = true;
 

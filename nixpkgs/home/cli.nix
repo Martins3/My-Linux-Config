@@ -95,6 +95,8 @@ in
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
     unstable.bcc
     sqlite
+    parted
+    wirelesstools
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk

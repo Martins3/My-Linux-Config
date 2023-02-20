@@ -39,7 +39,7 @@ in
     # unstable.google-chrome
     unstable.thunderbird
     unstable.alacritty
-    unstable.wezterm
+    wezterm
     unstable.feishu
     tdesktop
     nur.repos.xddxdd.wechat-uos

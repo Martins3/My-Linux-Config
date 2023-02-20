@@ -43,6 +43,7 @@ git add kernel/sched/build_policy.c
 cat <<_EOF_ >kernel/configs/martins3.config
 CONFIG_DEBUG_INFO=y
 CONFIG_DEBUG_INFO_DWARF5=y
+CONFIG_GDB_SCRIPTS=y
 
 # centos 需要
 CONFIG_XFS_FS=y
