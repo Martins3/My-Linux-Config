@@ -118,6 +118,12 @@ function k(){
   done
 }
 
+function vfio_nvme(){
+  echo 0000:03:00.0 | sudo tee /sys/bus/pci/devices/0000:03:00.0/driver/unbind
+  echo 1e49 0071 | sudo tee /sys/bus/pci/drivers/vfio-pci/new_id
+  sudo chown martins3 /dev/vfio/17
+}
+
 alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
 alias ge="ssh -p5556 root@localhost"
 alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""

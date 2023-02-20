@@ -223,6 +223,15 @@ for i in "${array[@]}"; do
 done
 endsnippet
 
+snippet note_arrayprint "print array"
+# 默认情况下 echo $arr 是输出 arr 的第一个字符
+printf '%s\n' "${array[@]}"
+endsnippet
+
+snippet note_arraylen "get arraylen"
+echo ${#array[@]}
+endsnippet
+
 snippet note_trim_string "trim string"
 # Usage: trim_string "   example   string    "
 function trim_string() {
@@ -306,9 +315,11 @@ snippet note_template "template for any bash script"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
-readonly PROGNAME=$(basename \$0)
-readonly PROGDIR=$(readlink -m "$(dirname \$0)")
-readonly ARGS="$@"
+PROGNAME=$(basename "$0")
+PROGDIR=$(readlink -m "$(dirname "$0")")
+for i in "$@"; do
+  echo "$i"
+done
 cd "$(dirname "\$0")"
 endsnippet
 
@@ -321,4 +332,9 @@ endsnippet
 
 snippet note_awk "读取一行中的第二个"
 awk -F '"' '{print \$2}' your_input_file
+endsnippet
+
+snippet note_tee "如何 append"
+# 使用 -a
+cat /proc/cpuinfo | grep "$i" | tee -a a
 endsnippet

@@ -775,4 +775,25 @@ fsck -a /dev/nvme0n1p3
 ```
 参考: https://www.reddit.com/r/NixOS/comments/4fnsxb/how_do_i_run_fsck_manually_on_root_in_nixos/
 
+## 如何自动 mount
+
+- 参考 : https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
+
+尝试过，但是没有成功
+
+```nix
+  fileSystems."/home/martins3/hack/mnt" = {
+    device = "/dev/disk/by-uuid/f4f5d9b6-1006-49c4-8ed7-c0f2a1eec890";
+    fsType = "auto";
+    # @todo 这里的参数真的是个迷惑
+    # options = [ "nosuid" "nodev" "nofail" "x-gvfs-show" ];
+    # options = [ "defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
+    options = [ "uid=1000" "gid=1000" "dmask=007" "fmask=117" ];
+  };
+```
+
+## 如何编译一个静态的 QEMU
+
+
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
