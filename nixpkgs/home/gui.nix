@@ -42,6 +42,7 @@ in
     wezterm
     unstable.feishu
     tdesktop
+    unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
     nur.repos.xddxdd.wechat-uos
     # nur.repos.xddxdd.qq
     # weixin # 有趣，但是不稳定

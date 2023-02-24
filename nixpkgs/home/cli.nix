@@ -97,6 +97,7 @@ in
     sqlite
     parted
     wirelesstools
+    # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
     pstree
     dpdk

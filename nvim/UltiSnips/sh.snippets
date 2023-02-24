@@ -215,21 +215,14 @@ for ((i=0;i<${#arr[@]};i++)); do
 done
 endsnippet
 
-snippet note_readintoarray "read into array"
-array=()
-read -r -a array
-for i in "${array[@]}"; do
-        echo "$i"
-done
-endsnippet
-
 snippet note_arrayprint "print array"
 # 默认情况下 echo $arr 是输出 arr 的第一个字符
 printf '%s\n' "${array[@]}"
 endsnippet
 
-snippet note_arraylen "get arraylen"
+snippet note_array_access "访问 array 成员"
 echo ${#array[@]}
+echo ${array[-1]}
 endsnippet
 
 snippet note_trim_string "trim string"
@@ -249,14 +242,6 @@ function trim_all() {
         set -- $*
         printf '%s\n' "$*"
         set +f
-}
-endsnippet
-
-snippet note_split "split"
-# Usage: split "string" "delimiter"
-function split() {
-        IFS=$'\n' read -d "" -ra arr <<<"${1//$2/$'\n'}"
-        printf '%s\n' "${arr[@]}"
 }
 endsnippet
 
@@ -315,6 +300,9 @@ snippet note_template "template for any bash script"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
+# https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
+# -E : any trap on ERR is inherited
+# -u : 必须给变量赋值
 PROGNAME=$(basename "$0")
 PROGDIR=$(readlink -m "$(dirname "$0")")
 for i in "$@"; do
@@ -324,10 +312,7 @@ cd "$(dirname "\$0")"
 endsnippet
 
 snippet note_split_string_to_array "split string to array"
-IFS=';' read -ra ADDR <<< "$IN"
-for i in "${ADDR[@]}"; do
-  # process "$i"
-done
+IFS=';' read -r -a ADDR <<< "$IN"
 endsnippet
 
 snippet note_awk "读取一行中的第二个"
@@ -337,4 +322,24 @@ endsnippet
 snippet note_tee "如何 append"
 # 使用 -a
 cat /proc/cpuinfo | grep "$i" | tee -a a
+endsnippet
+
+snippet note_awk "awk 中 NR NF"
+# NR : 行号
+# NF : 该行一共存在多少的元素
+echo "one_two_three
+three_two
+four_gg_hi
+this_k" | awk -F'_' '{ print NR " " $1 "  "  NF " " $(NF-1)}'
+endsnippet
+
+snippet note_xargs "awk 中 NR NF"
+# -t : 将要执行的命令打印出来
+# -I % : 设置参数为 % 
+ls | xargs -t -I % sh -c 'echo %'
+endsnippet
+
+snippet note_basic "awk 中 NR NF"
+# 在 set -e 的时候，容忍一个 command 失败:
+# particular_script || true
 endsnippet
