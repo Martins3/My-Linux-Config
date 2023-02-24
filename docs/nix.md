@@ -792,8 +792,20 @@ fsck -a /dev/nvme0n1p3
   };
 ```
 
-## 如何编译一个静态的 QEMU
+## [ ] 如何编译一个静态的 QEMU
+参考 scripts/nix/pkg/static-qemu.nix
 
+## [] 为什么 ccls 总是在重新刷新
+- direnv: nix-direnv: renewed cache
 
+每次启动的时候
+```txt
+direnv: using nix
+direnv: nix-direnv: using cached dev shell
+```
+比较怀疑是和这个有关系。
+
+## [ ] nixos 没有 centos 中对应的 kernel-tools 包
+类似 kvm_stat 是没有现成的包，非常难受。
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
