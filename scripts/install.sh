@@ -12,7 +12,6 @@ mkdir -p ~/.config/atuin/
 mkdir -p ~/.telegraf
 
 ln -sf ~/.dotfiles/config/telegraf.conf ~/.telegraf/telegraf.conf
-ln -sf ~/.dotfiles/config/nushell ~/.config/nushell
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
@@ -30,4 +29,12 @@ ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   echo "tmux plugin install : prefix + I"
+fi
+
+if grep martins3 /home/martins3/.config/nushell/config.nu ;then
+  echo "source /home/martins3/.dotfiles/config/nushell/config.nu" >> /home/martins3/.config/nushell/config.nu
+fi 
+
+if grep martins3 /home/martins3/.config/nushell/env.nu ;then
+  echo "source /home/martins3/.dotfiles/config/nushell/env.nu" >> /home/martins3/.config/nushell/env.nu
 fi

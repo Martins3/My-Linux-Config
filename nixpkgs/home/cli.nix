@@ -155,7 +155,7 @@ in
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
     swtpm # windows 11 启动需要
-    nushell
+    unstable.nushell
     libnotify
 
     containerd # @todo 测试下
