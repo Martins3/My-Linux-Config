@@ -157,7 +157,6 @@ function e(){
   gum style \
     --foreground 212 --border-foreground 212 --border double \
     --align center --width 80 --margin "1 2" --padding "2 4" '
-# 需要确认
 | 单位    | 向左移动 | 向右移动 | 向左删除        | 向右删除 |
 |---------|----------|----------|-----------------|----------|
 | 字符    | Ctrl + B | Ctrl + F | Ctrl + H        | Ctrl + D |

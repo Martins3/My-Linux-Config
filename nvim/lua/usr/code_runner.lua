@@ -21,5 +21,6 @@ require('code_runner').setup {
     r = "Rscript $file",
     lua = "lua $file",
     nix = "nix eval -f $file",
+    nu = "nu $file"
   },
 }
