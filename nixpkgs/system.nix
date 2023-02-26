@@ -197,29 +197,16 @@ in
       devices = [ "nodev" ];
       efiSupport = true;
 
-useOSProber = true;
+      # useOSProber = true; # 没有说的那么不堪，还是很好用的
 
       enable = true;
       # set $FS_UUID to the UUID of the EFI partition
+      # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
       extraEntries = ''
         menuentry "Windows" {
           insmod part_gpt
           insmod fat
-          insmod search_fs_uuid
-          insmod chain
-          insmod ntfs
-          search --fs-uuid --set=root 0470864A70864302
-          search --fs-uuid --set=root 409E41739E416310
-          search --fs-uuid --set=root 02084242084234C7
-          search --fs-uuid --set=root 8402854e-01
-          search --fs-uuid --set=root 8402854e-02
-          search --fs-uuid --set=root 8402854e-03
-          search --fs-uuid --set=root 9a74c193-c31e-4d18-a0ad-fe2c9f2529b6
-          search --fs-uuid --set=root 028ecfea-0f7b-4973-bd76-bc874ff044e8 
-          search --fs-uuid --set=root d3a8c0c4-3558-4798-b99a-96d605f4d3cf
-          search --fs-uuid --set=root c6f93495-0ccc-4309-9aa4-9ac46f7f2a46
-
-          search --fs-uuid --set=root d3a8c0c4-3558-4798-b99a-96d605f4d3cf
+          search --fs-uuid --set=root 4957-45A0
           chainloader /EFI/Microsoft/Boot/bootmgfw.efi
         }
       '';
