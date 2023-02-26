@@ -38,7 +38,6 @@ alias knews = /home/martins3/.dotfiles/scripts/systemd/news.sh kernel
 alias ldc = lazydocker
 alias ls = exa --icons
 alias l = ls -lah
-alias m = make -j$(($(getconf _NPROCESSORS_ONLN) - 1))
 alias mc = make clean
 alias q = exit
 alias qnews = /home/martins3/.dotfiles/scripts/systemd/news.sh qemu
@@ -48,6 +47,12 @@ alias cp = xcp
 alias kvm_stat = /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat
 
 alias gc = git commit
+alias gp = git push
+
+def m [ ] {
+  let tmp = (getconf _NPROCESSORS_ONLN | into int) - 1
+  make $"-j($tmp)"
+}
 
 def e [] {
     let table =           "| 单位    | 向左移动 | 向右移动 | 向左删除  | 向右删除 |\n"
@@ -64,10 +69,14 @@ def rpm_extract [rpm] {
 
 alias rk = /home/martins3/core/vn/docs/qemu/sh/alpine.sh
 
-def alpine_clear_qemu [] {
+def alpine_clear_qemu [confirm=true] {
   try {
     let pid = (procs | grep qemu-system-x86_64 | grep alpine | awk '{print $1}' | into int)
-    gum confirm "kill qemu" ; kill -9 $pid
+    if ($confirm == true) {
+      gum confirm "kill qemu" ; kill -9 $pid
+    } else {
+      kill -9 $pid
+    }
   } catch {|e|
     print "no qemu process found"
     return
@@ -79,7 +88,7 @@ def dk [] {
 
     screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r"
     /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-    alpine_clear_qemu
+    alpine_clear_qemu false
 }
 
 def k [] {
@@ -96,7 +105,36 @@ let-env config = {
   cursor_shape: {
     emacs: block # block, underscore, line (line is the default)
   }
-  edit_mode: emacs # emacs, vi
   # @todo 这两个有什么区别吗？
+  edit_mode: emacs # emacs, vi
   show_banner: false # true or false to enable or disable the banner
+
+  completions: {
+    algorithm: "fuzzy"  # prefix or fuzzy
+  }
+
+  # @todo 无法理解为什么这样就可以让 direnv 工作了
+  hooks: {
+    pre_prompt: [{
+      code: "
+        let direnv = (direnv export json | from json)
+        let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+        $direnv | load-env
+      "
+    }]
+  }
 }
+
+source /home/martins3/core/zsh/nushell.nu
+
+def t [
+  function: string
+  --return (-r): bool
+] {
+    if  ( $return == true ) {
+        sudo bpftrace -e $"kretprobe:($function) { printf\(\"returned: %lx\\n\", retval\); }"
+    } else {
+        sudo bpftrace -e $"kprobe:($function) { @[kstack] = count\(\);}"
+    }
+}
+

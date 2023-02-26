@@ -474,10 +474,6 @@ gsettings reset org.gnome.desktop.input-sources xkb-options
 gsettings reset org.gnome.desktop.input-sources sources
 ```
 
-## 处理实际问题
-- https://www.zhihu.com/column/c_1471621862853189632
-  - 安装双系统 : https://zhuanlan.zhihu.com/p/560014206
-
 ## nix
 - https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
 
@@ -494,8 +490,6 @@ gsettings reset org.gnome.desktop.input-sources sources
 
 ## 需要验证的问题
 - [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
-
-## 如何添加 rime 的支持
 
 # Nix/NixOs 踩坑记录
 
