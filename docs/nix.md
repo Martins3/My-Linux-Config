@@ -164,6 +164,7 @@ nix-env -qaPA nixos.nodePackages
 之后，安装无需使用 sudo 了
 ```sh
 npm install -g @lint-md/cli@beta
+npm i -g bash-language-server
 ```
 
 ## python

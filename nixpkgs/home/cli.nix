@@ -157,6 +157,7 @@ in
     swtpm # windows 11 启动需要
     unstable.nushell
     libnotify
+    powershell # 才知道在 Linux 下也是可以用的 pwsh
 
     containerd # @todo 测试下
     nerdctl

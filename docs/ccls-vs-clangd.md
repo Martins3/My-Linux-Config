@@ -114,6 +114,10 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 1. 自动切换
 2. https://clangd.llvm.org/design/remote-index : 看上去不错，但是没有尝试
 
+## 切换回来
+- [patch one](https://github.com/Martins3/My-Linux-Config/commit/54e4d9ab33bf82890726c95df2226bc9f97f9bac)
+- [patch two](https://github.com/Martins3/My-Linux-Config/pull/114/commits/e8ce43aedb369854ab9f6652d141bf7b8455bf16)
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="
