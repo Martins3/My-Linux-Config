@@ -14,6 +14,7 @@
   *  🚧 [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   *  🚧 [Rime 输入法配置](./docs/rime.md)
   *  🚧 [NixOS 初步尝试](./docs/nix.md)
+  * [如何彻底征服 bash](./docs/nu.md)
 * English version comming soon.
 
 ## ⚙ Install

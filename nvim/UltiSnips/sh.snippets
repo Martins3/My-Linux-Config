@@ -25,6 +25,8 @@ snippet note_here "heredoc"
 # $ cat <<< 'hi there'
 # 等同于
 # $ echo 'hi there' | cat
+#
+# md5sum <<< 'ddd'
 endsnippet
 
 snippet note_case "switch case"
@@ -42,8 +44,24 @@ a | b | c) ;;
 esac
 endsnippet
 
+snippet note_glob_basic "glob basic"
+# Bash 是先进行扩展，再执行命令。因此，扩展的结果是由 Bash 负责的，与所要执行的命令无关。命令本身并不存在参数扩展，收到什么参数就原样执行。
+# 
+# 一共存在 8 中符号扩展
+# 1. ~ : 当前用户的 $HOME
+# 2. ? : 代表文件路径里面的任意单个字符，不包括空字符。 
+# 3. * : 字符代表文件路径里面的任意数量的任意字符，包括零个字符
+# 4. [ ] : 括号之中的任意一个字符
+#   - [start-end] : 方括号扩展有一个简写形式[start-end]
+# 5. {a, b, c} : 大括号扩展{...}表示分别扩展成大括号里面的所有值，各个值之间使用逗号分隔
+#     -  {start..end}: 大括号扩展有一个简写形式{start..end}，表示扩展成一个连续序列
+# 6. 变量扩展
+# 7. 子命令扩展
+# 8. 算术扩展
+endsnippet
 
-snippet note_glob "C style for loop"
+snippet note_glob_number "glob 量词"
+# glob 量词和 regex 中 ? * + 类似
 # ?(pattern-list)：匹配零个或一个模式。
 # *(pattern-list)：匹配零个或多个模式。
 # +(pattern-list)：匹配一个或多个模式。
@@ -55,6 +73,15 @@ snippet note_glob "C style for loop"
 # for i in rime/*.@(yaml|txt);do
 #   echo $i
 # done
+endsnippet
+
+snippet note_globstar "glob option"
+# 使用 globstar 可以匹配整个目下的所有文件，如果没有，只能匹配一层
+shopt -s globstar
+for file in "$(pwd)"/**; do
+    printf '%s\n' "$file"
+done
+shopt -u globstar
 endsnippet
 
 snippet fori "C style for loop"
@@ -141,59 +168,59 @@ endsnippet
 snippet note_cmpbool "compare file"
 the_world_is_flat=true
 # ...do something interesting...
-if [ "$the_world_is_flat" = true ] ; then
-        echo 'Be careful not to fall off!'
+if [[ "$the_world_is_flat" == true ]] ; then
+  echo 'Be careful not to fall off!'
 fi
 
 endsnippet
 
 snippet note_cmpfile "compare file"
 # https://wangdoc.com/bash/condition.html
-# [ -a file ]：如果 file 存在，则为true。
-# [ -b file ]：如果 file 存在并且是一个块（设备）文件，则为true。
-# [ -c file ]：如果 file 存在并且是一个字符（设备）文件，则为true。
-# [ -d file ]：如果 file 存在并且是一个目录，则为true。
-# [ -e file ]：如果 file 存在，则为true。
-# [ -f file ]：如果 file 存在并且是一个普通文件，则为true。
-# [ -g file ]：如果 file 存在并且设置了组 ID，则为true。
-# [ -G file ]：如果 file 存在并且属于有效的组 ID，则为true。
-# [ -h file ]：如果 file 存在并且是符号链接，则为true。
-# [ -k file ]：如果 file 存在并且设置了它的“sticky bit”，则为true。
-# [ -L file ]：如果 file 存在并且是一个符号链接，则为true。
-# [ -N file ]：如果 file 存在并且自上次读取后已被修改，则为true。
-# [ -O file ]：如果 file 存在并且属于有效的用户 ID，则为true。
-# [ -p file ]：如果 file 存在并且是一个命名管道，则为true。
-# [ -r file ]：如果 file 存在并且可读（当前用户有可读权限），则为true。
-# [ -s file ]：如果 file 存在且其长度大于零，则为true。
-# [ -S file ]：如果 file 存在且是一个网络 socket，则为true。
-# [ -t fd ]：如果 fd 是一个文件描述符，并且重定向到终端，则为true。 这可以用来判断是否重定向了标准输入／输出／错误。
-# [ -u file ]：如果 file 存在并且设置了 setuid 位，则为true。
-# [ -w file ]：如果 file 存在并且可写（当前用户拥有可写权限），则为true。
-# [ -x file ]：如果 file 存在并且可执行（有效用户有执行／搜索权限），则为true。
-# [ file1 -nt file2 ]：如果 FILE1 比 FILE2 的更新时间最近，或者 FILE1 存在而 FILE2 不存在，则为true。
-# [ file1 -ot file2 ]：如果 FILE1 比 FILE2 的更新时间更旧，或者 FILE2 存在而 FILE1 不存在，则为true。
-# [ FILE1 -ef FILE2 ]：如果 FILE1 和 FILE2 引用相同的设备和 inode 编号，则为true。
+# [[ -a file ]]：如果 file 存在，则为true。
+# [[ -b file ]]：如果 file 存在并且是一个块（设备）文件，则为true。
+# [[ -c file ]]：如果 file 存在并且是一个字符（设备）文件，则为true。
+# [[ -d file ]]：如果 file 存在并且是一个目录，则为true。
+# [[ -e file ]]：如果 file 存在，则为true。
+# [[ -f file ]]：如果 file 存在并且是一个普通文件，则为true。
+# [[ -g file ]]：如果 file 存在并且设置了组 ID，则为true。
+# [[ -G file ]]：如果 file 存在并且属于有效的组 ID，则为true。
+# [[ -h file ]]：如果 file 存在并且是符号链接，则为true。
+# [[ -k file ]]：如果 file 存在并且设置了它的“sticky bit”，则为true。
+# [[ -L file ]]：如果 file 存在并且是一个符号链接，则为true。
+# [[ -N file ]]：如果 file 存在并且自上次读取后已被修改，则为true。
+# [[ -O file ]]：如果 file 存在并且属于有效的用户 ID，则为true。
+# [[ -p file ]]：如果 file 存在并且是一个命名管道，则为true。
+# [[ -r file ]]：如果 file 存在并且可读（当前用户有可读权限），则为true。
+# [[ -s file ]]：如果 file 存在且其长度大于零，则为true。
+# [[ -S file ]]：如果 file 存在且是一个网络 socket，则为true。
+# [[ -t fd ]]：如果 fd 是一个文件描述符，并且重定向到终端，则为true。 这可以用来判断是否重定向了标准输入／输出／错误。
+# [[ -u file ]]：如果 file 存在并且设置了 setuid 位，则为true。
+# [[ -w file ]]：如果 file 存在并且可写（当前用户拥有可写权限），则为true。
+# [[ -x file ]]：如果 file 存在并且可执行（有效用户有执行／搜索权限），则为true。
+# [[ file1 -nt file2 ]]：如果 FILE1 比 FILE2 的更新时间最近，或者 FILE1 存在而 FILE2 不存在，则为true。
+# [[ file1 -ot file2 ]]：如果 FILE1 比 FILE2 的更新时间更旧，或者 FILE2 存在而 FILE1 不存在，则为true。
+# [[ FILE1 -ef FILE2 ]]：如果 FILE1 和 FILE2 引用相同的设备和 inode 编号，则为true。
 endsnippet
 
 snippet note_cmpstring "compare string"
-# [ string ]：如果string不为空（长度大于0），则判断为真。
-# [ -n string ]：如果字符串string的长度大于零，则判断为真。
-# [ -z string ]：如果字符串string的长度为零，则判断为真。
-# [ string1 = string2 ]：如果string1和string2相同，则判断为真。
-# [ string1 == string2 ] 等同于[ string1 = string2 ]。
-# [ string1 != string2 ]：如果string1和string2不相同，则判断为真。
-# [ string1 '>' string2 ]：如果按照字典顺序string1排列在string2之后，则判断为真。
-# [ string1 '<' string2 ]：如果按照字典顺序string1排列在string2之前，则判断为真。
-# [ string1 =~ string2 ]：判断 string2 是不是 string1 的 substring。
+# [[ string ]]：如果string不为空（长度大于0），则判断为真。
+# [[ -n string ]]：如果字符串string的长度大于零，则判断为真。
+# [[ -z string ]]：如果字符串string的长度为零，则判断为真。
+# [[ string1 = string2 ]]：如果string1和string2相同，则判断为真。
+# [[ string1 == string2 ]] 等同于[ string1 = string2 ]。
+# [[ string1 != string2 ]]：如果string1和string2不相同，则判断为真。
+# [[ string1 '>' string2 ]]：如果按照字典顺序string1排列在string2之后，则判断为真。
+# [[ string1 '<' string2 ]]：如果按照字典顺序string1排列在string2之前，则判断为真。
+# [[ string1 =~ string2 ]]：判断 string2 是不是 string1 的 substring。
 endsnippet
 
 snippet note_cmpint "compare int"
-# [ integer1 -eq integer2 ]：如果integer1等于integer2，则为true。
-# [ integer1 -ne integer2 ]：如果integer1不等于integer2，则为true。
-# [ integer1 -le integer2 ]：如果integer1小于或等于integer2，则为true。
-# [ integer1 -lt integer2 ]：如果integer1小于integer2，则为true。
-# [ integer1 -ge integer2 ]：如果integer1大于或等于integer2，则为true。
-# [ integer1 -gt integer2 ]：如果integer1大于integer2，则为true。
+# [[ integer1 -eq integer2 ]]：如果integer1等于integer2，则为true。
+# [[ integer1 -ne integer2 ]]：如果integer1不等于integer2，则为true。
+# [[ integer1 -le integer2 ]]：如果integer1小于或等于integer2，则为true。
+# [[ integer1 -lt integer2 ]]：如果integer1小于integer2，则为true。
+# [[ integer1 -ge integer2 ]]：如果integer1大于或等于integer2，则为true。
+# [[ integer1 -gt integer2 ]]：如果integer1大于integer2，则为true。
 endsnippet
 
 snippet note_select "compare int"
@@ -284,14 +311,6 @@ snippet note_secure "make bash more secure"
 set -E -e -u -o pipefail
 endsnippet
 
-snippet note_find "find checksheet"
-# - find /tmp -size 0 -print0 -delete : 删除大小为 0 的文件
-# - find 和 xargs 混合使用的时候，分别加上 -print0 和 -0
-#   - find . -type f -print0 | xargs -0 md5sum
-#   - https://www.shellcheck.net/wiki/SC2038
-# - hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum
-endsnippet
-
 snippet note_sed "sed"
 # sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
 endsnippet
@@ -336,10 +355,27 @@ endsnippet
 snippet note_xargs "awk 中 NR NF"
 # -t : 将要执行的命令打印出来
 # -I % : 设置参数为 % 
-ls | xargs -t -I % sh -c 'echo %'
+# ls | xargs -t -I % sh -c 'echo %'
+
+# 将一个仓库中所有的 apples 替换为 oranges
+# git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
+
+# 将 foo 下所有的 txt 都删除
+# find ./foo -type f -name "*.txt" -exec rm {} \;
+# find ./foo -type f -name "*.txt" | xargs rm
+
+# find . -type f -print | xargs stat -c '%a %n' 
 endsnippet
 
 snippet note_basic "awk 中 NR NF"
 # 在 set -e 的时候，容忍一个 command 失败:
 # particular_script || true
+endsnippet
+
+snippet note_redirect "重定向"
+# ls > a.txt
+# ls 2> a.txt
+# ls 2>&1
+# ls 2>&1 > a.txt
+# ls | tee > a.txt
 endsnippet
