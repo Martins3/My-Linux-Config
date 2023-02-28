@@ -66,5 +66,15 @@ in
         sha256 = "1742330y3fr79aw90bysgx9xcfx833n8jqx86vgbcp21iqqxn0z8";
       }).outPath;
     };
+
+    regex = {
+      name = "Regex";
+      genericName = "regex";
+      exec = "microsoft-edge-dev https://regexlearn.com/zh-cn/cheatsheet";
+      icon = (pkgs.fetchurl {
+        url = "https://cdn-icons-png.flaticon.com/512/9804/9804194.png";
+        sha256 = "1yh5lnimc0ra5lwmb7vi8yxz58knfwg27rs03xmh7v97324gw1v8";
+      }).outPath;
+    };
   };
 }

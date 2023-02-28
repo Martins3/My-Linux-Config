@@ -36,9 +36,6 @@ else
 fi
 ```
 
-## [ ] 这是什么高级操作
-sudo bpftrace -e "kretprobe:${@: -1} { printf(\"returned: %lx\\n\", retval); }"
-
 ## 到底什么时候添加双引号
 我认为 shellcheck 说不可以的都不可以。
 
@@ -72,3 +69,31 @@ if [[ $str =~ .*bc ]];then
 fi
 ```
 
+
+## 仅仅是 if else
+- [ bar = "$foo" ] && [ foo = "$bar" ] # Right! (POSIX)
+- [[ $foo = bar && $bar = foo ]]       # Also right! (Bash / Ksh)
+
+但是不可以是其他的风格:
+
+if [[ bar = "$foo" ]]; then …
+
+- 这里的讲究: 是所有的空格都不可以省掉。
+
+[[ $foo == $bar ]] 还是 [[ $foo == "$bar" ]]
+
+## 恐怖的双引号
+1. QEMU 中，曾经为什么使用 eval
+2. 如果想要让执行的命令看到双引号，应该如何操作？
+  - 如果不想，如何操作
+
+```txt
+function test_para() {
+  echo "$0"
+
+  for i in "${@:2}"; do
+    echo "$i"
+  done
+
+}
+```
