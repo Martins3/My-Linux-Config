@@ -76,9 +76,10 @@ def e [] {
 - rpm -ivh --force --nodeps url
 - rpm -qf 可以找到一个文件对应的包
 - yum install whatprovides xxd
+- rpm -q --changelog php
 "
       }
-      
+
       {
         name: find
         help: "
@@ -90,8 +91,17 @@ def e [] {
 - hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum
 "
       }
+
+      {
+        name: grep
+        help: "
+
+     -o, --only-matching : 仅仅打印匹配的部分而不是该行
+
+        "
+      }
       # @todo 补充一下 regex 的内容
-      # @todo printf 
+      # @todo printf
     ]
     let name = ($database | each { |it| $it.name } | str collect "\n" | fzf)
     let help = ($database | each { |it| if $it.name == $name { $it.help } } | str collect "\n")
@@ -172,7 +182,3 @@ def t [
         sudo bpftrace -e $"kprobe:($function) { @[kstack] = count\(\);}"
     }
 }
-
-
-
-

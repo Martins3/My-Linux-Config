@@ -41,7 +41,7 @@ function t() {
   while getopts "rh" opt; do
     case $opt in
       r)
-        sudo bpftrace -e "kretprobe:${@: -1} { printf(\"returned: %lx\\n\", retval); }"
+        sudo bpftrace -e "kretprobe:${@:1} { printf(\"returned: %lx\\n\", retval); }"
         return
         ;;
       h)
@@ -51,7 +51,7 @@ function t() {
         ;;
     esac # --- end of case ---
   done
-  sudo bpftrace -e "kprobe:${@: -1} {  @[kstack] = count(); }"
+  sudo bpftrace -e "kprobe:${@:1} {  @[kstack] = count(); }"
 }
 
 function px() {

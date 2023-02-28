@@ -46,10 +46,10 @@ endsnippet
 
 snippet note_glob_basic "glob basic"
 # Bash 是先进行扩展，再执行命令。因此，扩展的结果是由 Bash 负责的，与所要执行的命令无关。命令本身并不存在参数扩展，收到什么参数就原样执行。
-# 
+#
 # 一共存在 8 中符号扩展
 # 1. ~ : 当前用户的 $HOME
-# 2. ? : 代表文件路径里面的任意单个字符，不包括空字符。 
+# 2. ? : 代表文件路径里面的任意单个字符，不包括空字符。
 # 3. * : 字符代表文件路径里面的任意数量的任意字符，包括零个字符
 # 4. [ ] : 括号之中的任意一个字符
 #   - [start-end] : 方括号扩展有一个简写形式[start-end]
@@ -354,7 +354,7 @@ endsnippet
 
 snippet note_xargs "awk 中 NR NF"
 # -t : 将要执行的命令打印出来
-# -I % : 设置参数为 % 
+# -I % : 设置参数为 %
 # ls | xargs -t -I % sh -c 'echo %'
 
 # 将一个仓库中所有的 apples 替换为 oranges
@@ -364,7 +364,7 @@ snippet note_xargs "awk 中 NR NF"
 # find ./foo -type f -name "*.txt" -exec rm {} \;
 # find ./foo -type f -name "*.txt" | xargs rm
 
-# find . -type f -print | xargs stat -c '%a %n' 
+# find . -type f -print | xargs stat -c '%a %n'
 endsnippet
 
 snippet note_basic "awk 中 NR NF"
@@ -378,4 +378,24 @@ snippet note_redirect "重定向"
 # ls 2>&1
 # ls 2>&1 > a.txt
 # ls | tee > a.txt
+endsnippet
+
+snippet note_function "函数基本"
+# \$1~\$9：函数的第一个到第9个的参数。
+# \$0：函数所在的脚本名。
+# $#：函数的参数总数。
+# $@：函数的全部参数，参数之间使用空格分隔。
+# $*：函数的全部参数，参数之间使用变量$IFS值的第一个字符分隔，默认为空格，但是可以自定义。
+#
+# 从 "${@:2}" 从第三个参数开始:
+# function test_para() {
+#   echo "$0"
+#
+#   for i in "${@:2}"; do
+#     echo "$i"
+#   done
+#
+# }
+
+test_para 1 2 3 4 "5 6"
 endsnippet

@@ -10,6 +10,20 @@
 
 ## [ ] http://mywiki.wooledge.org/BashPitfalls
 
+1. Filenames with leading dashes
+  - cp -- "$file" "$target" : 使用 -- 来处理
+
+2. 不可以同时打开和重定向同一个文件
+  - cat file | sed s/foo/bar/ > file ：这个会导致 file 中的内容为空，最简单的是使用一个中间符号来代替。
+
+3. & 本身就是一个结束符号
+  - `for i in {1..10}; do ./something &; done` : 将 & 后的 ; 去掉
+
+@todo 从这里继续吧
+```txt
+34. if [[ $foo = $bar ]] (depending on intent)
+```
+
 ## [ ] https://mywiki.wooledge.org/BashFAQ
 
 ## Bash 的基本语法
@@ -233,9 +247,6 @@ https://wizardzines.com/comics/redirects/
 - take 创建并且进入目录
 - ctrl-x e 进入编辑模式
 
-## shell 中移动
-- http://blog.jcix.top/2021-10-05/shell-shortcuts/
-
 ## 一些库
 - [gum](https://github.com/charmbracelet/gum)
 - https://github.com/bats-core/bats-core : bash 测试框架
@@ -265,12 +276,9 @@ https://wizardzines.com/comics/redirects/
 history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 ```
 
-
 ## printf 有什么神奇的地方吗？
 
 ## shellcheck 也是有问题的
 1. common.sh 可以解决一下吗？
-2. 如果我就是想要 glob ，怎么操作
 
-3. bash 中的 regex 到底是什么样子的
-
+## 整理一下 coprocess 的内容

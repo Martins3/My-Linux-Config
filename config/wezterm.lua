@@ -73,10 +73,10 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   keys = {
-    { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
-    { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
-    { key = "j", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "k", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { mods = "CTRL|SHIFT", key = "-",           action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
+    { mods = "CTRL|SHIFT", key = "+",           action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
+    { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
     {
       key = "LeftArrow",
       mods = 'CTRL|SHIFT',
@@ -126,7 +126,6 @@ return {
       args = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
     },
   },
-
   colors = {
     tab_bar = {
       background = "#121212",
@@ -146,6 +145,8 @@ return {
   },
   tab_max_width = 60,
   freetype_load_target = "Normal",
-
-  enable_kitty_graphics = true
+  enable_kitty_graphics = true,
+  -- double 那个图标没有没办法正常渲染，也许参考这里解决下吧
+  -- https://wezfurlong.org/wezterm/config/fonts.html
+  warn_about_missing_glyphs = false
 }

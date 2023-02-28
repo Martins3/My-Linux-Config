@@ -164,7 +164,9 @@ in
 
     telegraf # @todo 这个和 service 是什么关系？
     usbutils
-    # 测试下 ovs @todo
+    # @todo 测试下 ovs
+
+    openjdk
   ];
 
   programs.zsh = {
