@@ -54,6 +54,18 @@ https://news.ycombinator.com/item?id=34588340
   - https://github.com/nushell/nushell/issues/4139
 2. 获取命令的输出 () 而不是 $()
 
+	print $"(ls)" -- 这个会执行 ls 命令的
+	print $"($command)" -- 这个才是
+	print $"$command" -- 输出 $command
+	print "($command)"
+	print "$command"
+
+
+```sh
+	 $"username : (git config user.name)"
+	 $"email : (git config user.email)"
+```
+
 ## 可以提的问题
 zoxide 的初始化脚本有问题
 
@@ -61,7 +73,7 @@ zoxide 的初始化脚本有问题
 - string : $"$(name)"
   - 小括号存在特殊含义的
 
-> It's easy to pipe text-speaking tools into Nu pipelines, and there's a built-in `lines` command that will split line-break-delimited text into a list of strings. 
+> It's easy to pipe text-speaking tools into Nu pipelines, and there's a built-in `lines` command that will split line-break-delimited text into a list of strings.
 
 
 - bash 的替代品: https://github.com/oilshell/oil/wiki/Alternative-Shells
@@ -89,3 +101,23 @@ for n in $database {
   name = ($name | prepend $n.name)
 }
 ```
+
+## 没有 format，没有 shellcheck ，好难受
+- [ ] 不能贴着函数名字
+
+## 为什么 module 不可以使用啊
+比如这个官方的例子:
+```nu
+module commands {
+    def animals [] {
+        ["cat", "dog", "eel" ]
+    }
+
+    export def my-command [animal: string@animals] {
+        print $animal
+    }
+}
+```
+
+## 如何实现多级命令的 switch
+- 例如 sx switch how-to-go

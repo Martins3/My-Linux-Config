@@ -11,13 +11,6 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
-function test_para() {
-  echo "$0"
-
-  for i in "${@:2}"; do
-    echo "$i"
-  done
-
-}
-
-test_para 1 2 3 4 "5 6"
+if ! cat g ;then
+  echo "good"
+fi

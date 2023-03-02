@@ -31,9 +31,10 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   echo "tmux plugin install : prefix + I"
 fi
 
+# @todo 没必要这样吧
 if grep martins3 /home/martins3/.config/nushell/config.nu ;then
   echo "source /home/martins3/.dotfiles/config/nushell/config.nu" >> /home/martins3/.config/nushell/config.nu
-fi 
+fi
 
 if grep martins3 /home/martins3/.config/nushell/env.nu ;then
   echo "source /home/martins3/.dotfiles/config/nushell/env.nu" >> /home/martins3/.config/nushell/env.nu
