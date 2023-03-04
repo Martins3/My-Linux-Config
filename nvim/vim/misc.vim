@@ -56,10 +56,6 @@ let g:git_messenger_no_default_mappings = v:true
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
-" 不要让进入 vim 的时候光标在 nvim-tree 中，所以默认关闭 bookmarks
-" let g:auto_session_pre_save_cmds = ["NvimTreeClose", "BookmarkSave.vim-bookmarks"]
-" let g:auto_session_pre_restore_cmds = ["BookmarkLoad .vim-bookmarks"]
-
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_no_default_key_mappings = 1
 
