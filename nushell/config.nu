@@ -1,3 +1,4 @@
+# https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_config.nu
 # startship
 let-env STARSHIP_SHELL = "nu"
 
@@ -116,6 +117,23 @@ let-env config = {
       "
     }]
   }
+
+  menus: [
+      {
+        name: history_menu
+        only_buffer_difference: true
+        marker: "> "
+        type: {
+            layout: list
+            page_size: 50
+        }
+        style: {
+            text: yellow
+            selected_text: green_reverse
+            description_text: yellow
+        }
+      }
+  ]
 }
 
 source /home/martins3/core/zsh/nushell.nu

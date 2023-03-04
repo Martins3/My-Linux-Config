@@ -11,14 +11,14 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
+function launch() {
+	str="${*:1}"
+        arr=( "${@:1}" )
+        arr2=( "${*:1}" )
+        # 默认情况下 echo $arr 是输出 arr 的第一个字符
+        printf '~~ %s ~~\n' "${arr[@]}"
+        printf '** %s **\n' "${str[@]}"
+        printf '** %s **\n' "${arr2[@]}"
+}
 
-
-foo=aabc
-bar=a?bc
-echo "$bar"
-
-if [[ $foo == a?bc ]];then
-  echo "good"
-else
-  echo "not match"
-fi
+launch a b "c d"

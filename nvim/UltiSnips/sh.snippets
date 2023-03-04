@@ -2,12 +2,30 @@ priority -50
 # notes based on https://wangdoc.com/bash/
 # note based on https://github.com/dylanaraps/pure-bash-note
 
-snippet note_variable "variable"
+snippet note_variable_default "变量默认值"
 # 如果 varname 不是"存在且不为空"
 #   ${varname:-word} : 那么得到 word
 #   ${varname:=word} : 那么得到 word，并且 varname=word
 #   ${varname:?message} : 那么展示 message
 # ${varname:+word} 和 - 反过来的
+endsnippet
+
+snippet note_variable_special "特殊变量"
+# $?为上一个命令的退出码
+# $$为当前 Shell 的进程 ID。
+# $_为上一个命令的最后一个参数。
+# $!为最近一个后台执行的异步命令的进程 ID。
+# $-为当前 Shell 的启动参数。
+endsnippet
+
+snippet note_cmpvar "变量比较"
+# 测试一个变量是否赋值否
+if [ -z ${var+x} ]; then echo "var is unset"; else echo "var is set to '$var'"; fi
+endsnippet
+
+snippet note_cmplogic "比较中的 and 和 or"
+# [[ $foo = bar && $bar = foo ]]
+# [[ $foo = bar || $bar = foo ]]
 endsnippet
 
 snippet note_here "heredoc"
@@ -73,9 +91,11 @@ snippet note_glob_number "glob 量词"
 # for i in rime/*.@(yaml|txt);do
 #   echo $i
 # done
+#
+# [[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
 endsnippet
 
-snippet note_globstar "glob option"
+snippet note_globstar "globstar"
 # 使用 globstar 可以匹配整个目下的所有文件，如果没有，只能匹配一层
 shopt -s globstar
 for file in "$(pwd)"/**; do
@@ -389,13 +409,29 @@ snippet note_function "函数基本"
 #
 # 从 "${@:2}" 从第三个参数开始:
 # function test_para() {
-#   echo "$0"
+#   for i in "${@:1}"; do
+#     echo "$i"
+#   done
 #
-#   for i in "${@:2}"; do
+#   for i in ${*:1}; do # 注意，没有双引号
 #     echo "$i"
 #   done
 #
 # }
 #
 # test_para 1 2 3 4 "5 6"
+# 以上是理论，但是更佳的理解是 :
+# $@ : 是数组
+# $* : 是单个数值
+# function launch() {
+# 	  str="${*:1}"
+#         arr=( "${@:1}" )
+#         arr2=( "${*:1}" )
+#         # 默认情况下 echo $arr 是输出 arr 的第一个字符
+#         printf '~~ %s ~~\n' "${arr[@]}"
+#         printf '** %s **\n' "${str[@]}"
+#         printf '** %s **\n' "${arr2[@]}"
+# }
+
+launch a b "c d"
 endsnippet

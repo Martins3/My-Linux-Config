@@ -13,7 +13,7 @@ mkdir -p ~/.telegraf
 
 mkdir -p ~/.config/nushell
 ln -sf ~/.dotfiles/nushell/config.nu ~/.config/nushell/config.nu
-ln -sf ~/.dotfiles/nushell/env.nu ~/.env/nushell/env.nu
+ln -sf ~/.dotfiles/nushell/env.nu ~/.config/nushell/env.nu
 
 ln -sf ~/.dotfiles/config/telegraf.conf ~/.telegraf/telegraf.conf
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
