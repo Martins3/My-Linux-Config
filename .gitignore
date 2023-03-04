@@ -4,7 +4,7 @@ plugin
 .DS_Store
 .stfolder
 .syncthing.*
-config/nushell/history.txt
+history.txt
 
 # Kernel Module Compile Results
 *.mod*

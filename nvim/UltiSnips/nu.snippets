@@ -1,1 +1,24 @@
+snippet changethis "variable"
+# @todo 改造一下
+function log_error() {
+	if [ $color -eq 1 ]; then
+		RED='\033[0;31m'
+		NC='\033[0m' # No Color
+	fi
+	echo -e "${RED} [$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*${NC}" >&2
+	exit 1
+}
 
+function log_info() {
+	if [ $color -eq 1 ]; then
+		GREEN='\033[0;32m'
+		NC='\033[0m' # No Color
+	fi
+	echo -e "${GREEN} [$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*${NC}"
+}
+endsnippet
+
+snippet todo "整理一下"
+let name = ($database | each { |it| $it.name } | str collect "\n" | fzf)
+let help = ($database | each { |it| if $it.name == $name { $it.help } } | str collect "\n")
+endsnippet
