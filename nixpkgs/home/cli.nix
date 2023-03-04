@@ -34,6 +34,7 @@ in
     xclip # x clipboard
     wl-clipboard # wayland clipboard
     jq
+    yq-go
     xplr
     htop
     btop

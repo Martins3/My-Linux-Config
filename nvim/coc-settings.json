@@ -54,4 +54,5 @@
   "semanticTokens.enable": true,
   "inlayHint.enable": false,
   "snippets.ultisnips.pythonPrompt": false,
+  "yaml.format.enable": true,
 }
