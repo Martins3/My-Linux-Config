@@ -20,7 +20,8 @@ source ~/.zoxide.nu
 
 alias qm = /home/martins3/core/vn/docs/qemu/sh/alpine.sh -m
 alias ge = ssh -p5556 root@localhost
-alias get = ssh -t -p5556 root@localhost 'tmux attach || tmux'
+# @todo 真的让人暴跳如雷，这种替换了，没有任何警告
+# alias get = ssh -t -p5556 root@localhost 'tmux attach || tmux'
 
 alias b = tmuxp load -d /home/martins3/.dotfiles/config/tmux-session.yaml
 alias c = clear
@@ -72,7 +73,6 @@ def alpine_clear_qemu [confirm=true] {
       kill -9 $pid
     }
   } catch {|e|
-    print "no qemu process found"
     return
   }
 }
@@ -89,8 +89,7 @@ def k [] {
   alpine_clear_qemu
 
     screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
-    gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
-    ssh -p5556 root@localhost
+    ssh -o 'ConnectionAttempts 10' -p5556 root@localhost
 
   alpine_clear_qemu
 }
@@ -120,7 +119,27 @@ let-env config = {
 }
 
 source /home/martins3/core/zsh/nushell.nu
-source /home/martins3/.dotfiles/config/nushell/sheet.nu
+
+# @todo printf
+# zat /boot/initramfs | cpio -idmv
+# systemctl list-units
+# Use docker ps to get the name of the existing container
+# Use the command docker exec -it <container name> /bin/bash to get a bash shell in the container
+
+
+def  read_key [ ] {
+  let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
+  let notes = ($notes | transpose key note | get key | sort)
+  $notes
+  # print $key
+  # yq -i  e '.docker += [ "rhpam-user1" ]' nushell/sheet.yaml
+}
+
+def e [command : string@read_key ] {
+  let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
+  let notes = ($notes | transpose key note | where key == $command)
+  echo $notes.note.0
+}
 
 def t [
   function: string
