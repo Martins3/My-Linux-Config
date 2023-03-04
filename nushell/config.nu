@@ -126,20 +126,25 @@ source /home/martins3/core/zsh/nushell.nu
 # Use docker ps to get the name of the existing container
 # Use the command docker exec -it <container name> /bin/bash to get a bash shell in the container
 
-
-def  read_key [ ] {
+def  sheet_key [ ] {
   let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
   let notes = ($notes | transpose key note | get key | sort)
   $notes
-  # print $key
-  # yq -i  e '.docker += [ "rhpam-user1" ]' nushell/sheet.yaml
 }
 
-def e [command : string@read_key ] {
-  let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
-  let notes = ($notes | transpose key note | where key == $command)
-  echo $notes.note.0
-}
+def e [
+  --edit(-e)
+  command : string@sheet_key
+  ] {
+    if $edit {
+      let SCOPE = (gum input --placeholder "sheet")
+      yq -i  e $".($command) += [ "($SCOPE)" ]" nushell/sheet.yaml
+    } else {
+      let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
+      let notes = ($notes | transpose key note | where key == $command)
+      echo $notes.note.0
+    }
+  }
 
 def t [
   function: string
