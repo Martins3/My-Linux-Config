@@ -11,12 +11,12 @@ vim.api.nvim_create_autocmd({ "User" }, {
   group = group,
   callback = function()
     vim.cmd "NvimTreeClose"
-    vim.cmd "BookmarkSave.vim-bookmarks"
+    vim.cmd "BookmarkSave .vim-bookmarks"
   end,
 })
 
 vim.api.nvim_create_autocmd({ "User" }, {
-  pattern = "PersistedSavePost",
+  pattern = "PersistedLoadPost",
   group = group,
   callback = function()
     vim.cmd "BookmarkLoad .vim-bookmarks"
