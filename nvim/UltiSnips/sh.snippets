@@ -400,14 +400,14 @@ snippet note_redirect "重定向"
 # ls | tee > a.txt
 endsnippet
 
-snippet note_function "函数基本"
+snippet note_function_para "函数基本"
 # \$1~\$9：函数的第一个到第9个的参数。
-# \$0：函数所在的脚本名。
-# $#：函数的参数总数。
-# $@：函数的全部参数，参数之间使用空格分隔。
-# $*：函数的全部参数，参数之间使用变量$IFS值的第一个字符分隔，默认为空格，但是可以自定义。
-#
+# \$0 : 函数所在的脚本名。
+# $# : 函数的参数总数。
 # 从 "${@:2}" 从第三个参数开始:
+# $@ : 是数组
+# $* : 是单个数值，这导致的参数中的 "a b" 被理解为单个数值
+#
 # function test_para() {
 #   for i in "${@:1}"; do
 #     echo "$i"
@@ -416,13 +416,9 @@ snippet note_function "函数基本"
 #   for i in ${*:1}; do # 注意，没有双引号
 #     echo "$i"
 #   done
-#
 # }
 #
 # test_para 1 2 3 4 "5 6"
-# 以上是理论，但是更佳的理解是 :
-# $@ : 是数组
-# $* : 是单个数值
 # function launch() {
 # 	  str="${*:1}"
 #         arr=( "${@:1}" )
@@ -434,4 +430,9 @@ snippet note_function "函数基本"
 # }
 
 launch a b "c d"
+endsnippet
+
+snippet note_function_return "关于函数返回值"
+bash 实际上不支持函数返回的操作，其返回值只是表示错误的
+set -e 之后，如果 function return 了非 0 ，那么认为是一个 command 失败，接着整个程序结束。
 endsnippet
