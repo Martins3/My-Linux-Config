@@ -57,19 +57,6 @@ declare "hello_$var=value"
 printf '%s\n' "$hello_world"
 ```
 
-## 字符串
-```sh
-数组长度
-${#name}
-```
-
-```sh
-STR="/path/to/foo.cpp"
-echo ${STR%.cpp}    # /path/to/foo
-echo ${STR##*.}     # cpp (extension)
-echo ${STR##*/}     # foo.cpp (basepath)
-```
-
 ## 数组
 拷贝:
 hobbies=( "${activities[@]}" )
@@ -77,63 +64,19 @@ hobbies=( "${activities[@]}" )
 hobbies=( "${activities[@]}" diving )
 myIndexedArray+=('six')
 用 unset 命令来从数组中删除一个元素：
-unset fruits[0]
-
-使用 @ 和 `*` 来循环数组是否存在双引号的情况各不相同。
-- 如果没有，忽视双引号，逐个拆开
-- 如果有，`*` 是一个，而 @ 不会逐个拆开
-
-```sh
-function xxx () {
-echo "Using \"\$*\":"
-for a in "$*"; do
-    echo $a;
-done
-
-echo -e "\nUsing \$*:"
-for a in $*; do
-    echo $a;
-done
-
-echo -e "\nUsing \"\$@\":"
-for a in "$@"; do
-    echo $a;
-done
-
-echo -e "\nUsing \$@:"
-for a in $@; do
-    echo $a;
-done
-
-}
-xxx one two "three four"
-```
-参考:
-- https://unix.stackexchange.com/questions/129072/whats-the-difference-between-and
-- https://stackoverflow.com/questions/12314451/accessing-bash-command-line-args-vs
-
-https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
-https://blog.k8s.li/shell-snippet.html
-- [x] 单引号和双引号的区别
-  - https://stackoverflow.com/questions/6697753/difference-between-single-and-double-quotes-in-bash
-  - 但是实际上，这个解释是有问题的, 实际上是三个特殊字符除外：美元符号（`$`）、反引号（`\`）和反斜杠（`\`) 其余都是在双引号被取消掉
-  - 而单引号会取消掉任何，甚至包括反斜杠
+unset -v 'fruits[0]'
 
 ## 有用的变量
 
-| var     |                                |
-|---------|--------------------------------|
-| SECCOND | 记录除了给上一次到这一次的时间 |
+- SECCOND :  记录除了给上一次到这一次的时间
+- "${FUNCNAME[@]}" : 调用栈
 
 ## eval 和 exec 的区别
 https://unix.stackexchange.com/questions/296838/whats-the-difference-between-eval-and-exec/296852
 
-- eval 相当于执行这个函数
-- exec 继续执行程序
-
-## 算术运算
-使用这个，而不是 let expr 之类的 $((1+2))
-
+功能都非常变态:
+- eval 相当于执行这个字符串
+- exec 将当前的 bash 替换为执行程序
 
 ## 常用工具
 
@@ -198,8 +141,6 @@ change_owner_of_file() {
     chown $user:$group $filename
 }
 ```
-2. 使用 set -x set +x 组合来调试特定位置的代码
-3. 打印函数名称和调用的参数
 
 ```sh
 temporary_files() {
@@ -276,11 +217,25 @@ https://wizardzines.com/comics/redirects/
 history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 ```
 
-## printf 有什么神奇的地方吗？
-
 ## shellcheck 也是有问题的
 1. common.sh 可以解决一下吗？
 
-## 整理一下 coprocess 的内容
+## [ ] 整理一下 coprocess 的内容
 
-## 整理一下 ${a:-1} 的操作
+## [ ] 整理一下 ${a:-1} 的操作
+
+## glob 中和字符串当时是使用的正则表达式吧
+
+1. glob 中是否支持 [a,b]*
+2. glob 只能处理文件是吗？
+
+## 任何时候都不要使用 [
+https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash
+
+## 整理下如下内容
+- bash 的替代品: https://github.com/oilshell/oil/wiki/Alternative-Shells
+
+真的见过无数个 bash 最佳实践的文章，说实话，为什么一个语言如此放纵非最佳实践。
+
+## shellcheck 让我必须将所有的变量全部使用双引号包含进来
+- http://www.oilshell.org/release/latest/doc/idioms.html#new-long-flags-on-the-read-builtin
