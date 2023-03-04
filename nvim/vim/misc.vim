@@ -75,3 +75,4 @@ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tab
 
 " 定义预先录制的 macro
 let @j = 'ysiw`\<Esc>' " 在一个 word 两侧添加上 `，例如将 abc 变为 `abc`
+let @k = 'ysiw"\<Esc>'

@@ -111,6 +111,7 @@ let s:coc_extensions = [
       \ 'coc-sumneko-lua',
       \ 'coc-xml',
       \ 'coc-json',
+      \ 'coc-yaml',
       \ 'coc-translator',
       \ 'coc-r-lsp',
       \ 'coc-vimtex',
