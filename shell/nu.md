@@ -119,5 +119,11 @@ module commands {
 }
 ```
 
-## 如何实现多级命令的 switch
+## 如何实现多级命令的自动补全
 - 例如 sx switch how-to-go
+
+## 没有 switch
+
+## record 获取数值
+$images.$i # 不可以
+let image_name = ($images | select $i) # 不可以

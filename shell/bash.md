@@ -282,3 +282,5 @@ history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/c
 1. common.sh 可以解决一下吗？
 
 ## 整理一下 coprocess 的内容
+
+## 整理一下 ${a:-1} 的操作
