@@ -11,7 +11,4 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
-a=(1 2 3)
-unset 'a[0]'
-
-echo "${a[@]}"
+echo "${m-}"

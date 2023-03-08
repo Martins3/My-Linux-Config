@@ -44,7 +44,8 @@
     "youdao"
   ],
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "nu": "nu-check --debug"
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"

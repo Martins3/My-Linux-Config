@@ -164,6 +164,29 @@ def e [
     }
   }
 
+
+def gscp [--show(-s), filename:string="."] {
+  if $show {
+    print `
+function gscp() {
+  file_name=$1
+  if [ -z "$file_name" ]; then
+    echo $0 file
+    return 1
+  fi
+  ip_addr=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
+  file_path=$(readlink -f $file_name)
+  echo scp -r $(whoami)@${ip_addr}:$file_path .
+}
+`
+    return
+  }
+  # @todo 为什么要将 grep  "" 替换为 ``
+  let ip_addr = (ip a | grep -v vir | grep -o `192\..*` | cut -d/ -f1)
+  let file_path = (readlink -f $filename)
+  echo $"scp -r (whoami)@($ip_addr):($file_path) ."
+}
+
 def t [
   function: string
   --return (-r): bool
