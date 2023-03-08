@@ -7,7 +7,7 @@ rpm:
   - "rpm -qa 查询当前系统中安装的所有的包"
   - "rpm -ivh --force --nodeps url"
   - "rpm -qf 可以找到一个文件对应的包"
-  - "yum install whatprovides xxd"
+  - "yum whatprovides xxd"
   - "rpm -q --changelog php"
 find:
   - "find /tmp -size 0 -print0 -delete: 删除大小为 0 的文件"
@@ -17,12 +17,16 @@ find:
   - "https://www.shellcheck.net/wiki/SC2038"
   - "hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum"
 git:
-  - 如何删除一个已经提交的行为
+  - -> 如何删除一个已经提交的行为
   - git reset --hard HEAD~1
   - git push -f <remote> <branch>
   - git tag -d tagname
   - git push --delete origin tagname
-  - git push origin tagname  仅仅 push 一个 tag
+  - -> 仅仅 push 一个 tag
+  - git push origin tagname
+  - -> 将本地设置为和远程完全相同
+  - git fetch origin
+  - git reset --hard origin/master
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"
@@ -31,3 +35,8 @@ grep:
   - "grep -nr 'yourString*' . : rg 没有的时候用下"
 printf:
   - 打印数组，是针对所有成员一次操作的
+curl:
+  - curl -LO --output-dir . www.baidu.com
+  - -L 如果发生了重定向，那么继续重定向
+  - -O 使用远程的名称
+  - --output-dir 只有比较新的版本才支持

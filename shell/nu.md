@@ -68,3 +68,4 @@ module commands {
 $images.$i # 不可以
 let image_name = ($images | select $i) # 不可以
 ```
+## nu-check --debug 结果完全是错的

@@ -224,6 +224,15 @@ history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/c
 
 ## [ ] 整理一下 ${a:-1} 的操作
 
+这个代码应该是不科学的吧
+```txt
+echo "${1-}"
+echo "${2-}"
+
+echo "${1}"
+echo "${2}"
+```
+
 ## glob 中和字符串当时是使用的正则表达式吧
 
 1. glob 中是否支持 [a,b]*

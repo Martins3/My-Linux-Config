@@ -21,6 +21,19 @@ require('code_runner').setup {
     r = "Rscript $file",
     lua = "lua $file",
     nix = "nix eval -f $file",
-    nu = "nu $file"
+    nu = "if (nu-check $file ) == false { nu $file }"
   },
 }
+
+vim.api.nvim_create_autocmd('FileType', {
+	desc = 'auto check nushell code on save',
+
+	pattern = 'nu',
+	group = vim.api.nvim_create_augroup('check nushell', { clear = true }),
+	callback = function (opts)
+		vim.api.nvim_create_autocmd('BufWritePost', {
+			buffer = opts.buf,
+			command = 'RunCode'
+		})
+	end,
+})
