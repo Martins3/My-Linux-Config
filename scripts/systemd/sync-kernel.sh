@@ -384,14 +384,14 @@ CONFIG_FUSE_DAX=y
 
 _EOF_
 
-RECORD_TIME=true
+RECORD_TIME=false
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 if [[ $RECORD_TIME == true ]]; then
   nix-shell --command "make clean"
   SECONDS=0
 fi
-nix-shell --command "make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+nix-shell --command "nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ $RECORD_TIME == true ]]; then
   duration=$SECONDS
