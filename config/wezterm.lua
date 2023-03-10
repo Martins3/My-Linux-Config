@@ -134,6 +134,8 @@ return {
       active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
     }
   },
+  -- 这两个配置是互斥的，等到什么时候找到至尊壁纸的时候再换吧
+  -- >>>>
   window_background_gradient = {
     orientation = "Vertical",
     interpolation = "Linear",
@@ -143,7 +145,18 @@ return {
       "#202020"
     }
   },
-  tab_max_width = 60,
+  -- ===
+  window_background_image = '/home/martins3/Pictures/BingWallpaper/20221127-RedPlanetDay_ZH-CN4913018041_UHD.jpg',
+  window_background_image_hsb = {
+    -- Darken the background image by reducing it to 1/3rd
+    brightness = 0.3,
+    -- You can adjust the hue by scaling its value.
+    -- a multiplier of 1.0 leaves the value unchanged.
+    hue = 1.0,
+    -- You can adjust the saturation also.
+    saturation = 1.0,
+  },
+  -- <<<<
   freetype_load_target = "Normal",
   enable_kitty_graphics = true,
   -- double 那个图标没有没办法正常渲染，也许参考这里解决下吧
