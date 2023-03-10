@@ -69,3 +69,15 @@ $images.$i # 不可以
 let image_name = ($images | select $i) # 不可以
 ```
 ## nu-check --debug 结果完全是错的
+
+## parse 的正则完全无法理解
+- https://www.nushell.sh/commands/docs/parse.html
+- "a  b           c" 都无法轻易的处理
+  - 还是得靠 awk
+
+
+## 这个功能无法实现的特别丑
+```c
+make -j`nproc` bindeb-pkg
+```
+这就是 bash 的灵活之处。

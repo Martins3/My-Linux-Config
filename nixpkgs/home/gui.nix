@@ -52,8 +52,8 @@ in
     # gparted # 需要 GTK，使用 disk 也不错
     rofi # @todo rofi 的使用
     scrcpy # Android 的投屏工具
-    unstable.obsidian
-    rustdesk
+    # obsidian
+    # rustdesk
   ];
 
   xdg.desktopEntries = {

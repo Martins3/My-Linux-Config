@@ -46,6 +46,8 @@ snippet note_here "heredoc"
 # $ echo 'hi there' | cat
 #
 # md5sum <<< 'ddd'
+
+# 注意: 第二个 _EOF_ 后面不能有空格
 endsnippet
 
 snippet note_case "switch case"
@@ -364,7 +366,7 @@ snippet note_tee "如何 append"
 cat /proc/cpuinfo | grep "$i" | tee -a a
 endsnippet
 
-snippet note_awk "awk 中 NR NF"
+snippet note_awk_nr_nf "awk 中 NR NF"
 # NR : 行号
 # NF : 该行一共存在多少的元素
 echo "one_two_three

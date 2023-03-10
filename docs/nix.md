@@ -770,7 +770,7 @@ fsck -a /dev/nvme0n1p3
 ```
 参考: https://www.reddit.com/r/NixOS/comments/4fnsxb/how_do_i_run_fsck_manually_on_root_in_nixos/
 
-## 如何自动 mount
+## [ ]  如何自动 mount
 
 - 参考 : https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
 
@@ -786,6 +786,7 @@ fsck -a /dev/nvme0n1p3
     options = [ "uid=1000" "gid=1000" "dmask=007" "fmask=117" ];
   };
 ```
+而且让机器启动都成问题。
 
 ## [ ] 如何编译一个静态的 QEMU
 参考 scripts/nix/pkg/static-qemu.nix
@@ -801,6 +802,14 @@ direnv: nix-direnv: using cached dev shell
 比较怀疑是和这个有关系。
 
 ## [ ] nixos 没有 centos 中对应的 kernel-tools 包
-类似 kvm_stat 是没有现成的包，非常难受。
+类似 kvm_stat 是没有现成的包，非常难受。nixmd
+
+## [ ] localsend 无法安装
+
+因为 flutter 版本太低了。
+
+## nixos 上无法安装 pytype
+使用 pyright 安装的时候，出现如下错误。
+libstdc++.so.6
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
