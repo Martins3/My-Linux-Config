@@ -3,20 +3,16 @@ windows:
   - window_name: vn
     layout: tiled
     shell_command_before:
-      - cd ~/core/vn
-      - nvim
+      - cd ~/core/vn; nvim
   - window_name: .dotfiles
     layout: tiled
     shell_command_before:
-      - cd ~/.dotfiles
-      - nvim
+      - cd ~/.dotfiles; nvim
   - window_name: draft
     layout: tiled
     shell_command_before:
-      - cd ~/core/draft
-      - nvim
+      - cd ~/core/draft; nvim
   - window_name: org-mode
     layout: tiled
     shell_command_before:
-      - cd ~/core/org-mode
-      - nvim
+      - cd ~/core/org-mode; nvim

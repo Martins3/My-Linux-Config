@@ -27,6 +27,8 @@ git:
   - -> 将本地设置为和远程完全相同
   - git fetch origin
   - git reset --hard origin/master
+  - -> 如果 git blame 一个已经被删除的内容
+  - git log -S <string> path/to/file
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"
@@ -40,3 +42,22 @@ curl:
   - -L 如果发生了重定向，那么继续重定向
   - -O 使用远程的名称
   - --output-dir 只有比较新的版本才支持
+dd:
+  - dd if=/dev/zero of=pmem count=4 bs=10M # 基本测试
+  - dd if=ubuntu-22.04.2-desktop-amd64.iso of=/dev/sdc # 使用 dd 安装系统
+
+ps:
+  - ps --ppid 2 -p 2 -o uname,pid,ppid,cmd,cls
+    - 列举出来所有的内核线程
+    - https://unix.stackexchange.com/questions/411159/linux-is-it-possible-to-see-only-kernel-space-threads-process
+    - # @todo 理解一下这是啥含义
+  - ps -elf # @todo 这个几个都是啥含义
+
+perf:
+  - ls # @todo 等待整理
+
+bpftrace:
+  - ls # @todo 等待整理
+
+todo:
+  - ls # @todo 将 sheet.md 中的内容整理到此处，一个各种诊断工具，例如 ptrace

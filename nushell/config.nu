@@ -105,6 +105,7 @@ let-env config = {
 
   completions: {
     algorithm: "fuzzy"  # prefix or fuzzy
+    partial: false  # set this to false to prevent partial filling of the prompt
   }
 
   # @todo 无法理解为什么这样就可以让 direnv 工作了
@@ -133,6 +134,22 @@ let-env config = {
             description_text: yellow
         }
       }
+  ]
+
+  # @todo 这个不是默认项目配置中的内容吗，为什么必须重新配置一次
+  keybindings: [
+    {
+      name: completion_menu
+      modifier: none
+      keycode: tab
+      mode: [emacs vi_normal vi_insert]
+      event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+        ]
+      }
+    }
   ]
 }
 

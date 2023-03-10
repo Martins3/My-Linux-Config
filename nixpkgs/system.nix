@@ -326,10 +326,10 @@ in
   programs.steam.enable = true;
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
-  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  # @todo 是因为打开了 vfio_virqfd 才导致的流程是这样的吗?
-  boot.initrd.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  # @todo 对应的音频驱动是什么，也直接禁用吧
+  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  # @todo 是因为打开了 vfio_virqfd 才导致中断直接进入到内核态中解决的吗?
+  # @todo vfio_virqfd 在让 6.2 内核无法正常编译了，为什么
+  boot.initrd.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   # services.telegraf.enable = true;
