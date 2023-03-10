@@ -73,8 +73,18 @@ in
       genericName = "regex";
       exec = "microsoft-edge-dev https://regexlearn.com/zh-cn/cheatsheet";
       icon = (pkgs.fetchurl {
-        url = "https://cdn-icons-png.flaticon.com/512/9804/9804194.png";
-        sha256 = "1yh5lnimc0ra5lwmb7vi8yxz58knfwg27rs03xmh7v97324gw1v8";
+        url = "https://img.icons8.com/color/512/todoist.png";
+        sha256 = "0cas4frxq6rrqbllgdk9wh7a4f8blszxcynsqzcsalc3q7xilkr5";
+      }).outPath;
+    };
+
+    docker = {
+      name = "Docker";
+      genericName = "docker";
+      exec = "microsoft-edge-dev https://dockerlabs.collabnix.com/docker/cheatsheet/";
+      icon = (pkgs.fetchurl {
+        url = "https://img.icons8.com/color/512/docker.png";
+        sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
       }).outPath;
     };
   };
