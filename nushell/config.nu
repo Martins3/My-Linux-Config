@@ -167,18 +167,18 @@ def  sheet_key [ ] {
   $notes
 }
 
-def e [
-  --edit(-e)
+def h [
   command : string@sheet_key
   ] {
-    if $edit {
-      let SCOPE = (gum input --placeholder "sheet")
-      yq -i  e $".($command) += [ "($SCOPE)" ]" nushell/sheet.yaml
-    } else {
       let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
       let notes = ($notes | transpose key note | where key == $command)
       echo $notes.note.0
-    }
+  }
+
+def he [ ] {
+      # let SCOPE = (gum input --placeholder "sheet")
+      # yq -i  e $".($command) += [ "($SCOPE)" ]" nushell/sheet.yaml
+      nvim +10000  /home/martins3/.dotfiles/nushell/sheet.yaml
   }
 
 

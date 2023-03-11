@@ -116,9 +116,10 @@ config/zellij/default.kdl 是默认的启动布局。
 ```
 nvim 的启动首先会卡住一下，是谁的问题
 - [x] https://github.com/zellij-org/zellij/issues/1760 这个问题没有解决
-  - 打开屏幕的一堆横线
+  - 打开屏幕的一堆横线，但是很快就被解决了
+  - [ ] 在 nvim 打开的一瞬间，还是存在很多横线
 - [ ] 屏幕切换的时候，中文显示有问题。
-- [ ] 无法使用鼠标调整 pane 的大小。
+- [ ] [无法使用鼠标调整 pane 的大小。](https://github.com/zellij-org/zellij/issues/1262)
 
 问题很多，没有时间一个个的修复了。
 
