@@ -94,6 +94,7 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 " coc.nvim 插件，用于支持 python java 等语言
+" coc-metals 时不时导致问题 #115，等到 hacking BOOM core 的时候再说吧
 let s:coc_extensions = [
       \ 'coc-pyright',
       \ 'coc-css',
@@ -116,7 +117,6 @@ let s:coc_extensions = [
       \ 'coc-r-lsp',
       \ 'coc-vimtex',
       \ 'coc-texlab',
-      \ 'coc-metals',
       \ 'coc-tsserver',
       \ 'coc-markmap',
       \]
