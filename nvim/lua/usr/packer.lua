@@ -88,6 +88,7 @@ require("packer").startup({
     -- latex
     use 'lervag/vimtex'
     -- 其他
+    -- @todo open-browser 这插件原版的有 bug ，可以使用 execsnoop 来继续调试这个问题
     use 'martins3/open-browser.vim' -- 使用 gx 打开链接
     use 'martins3/fcitx.nvim' -- 自动切换输入法
     use "olimorris/persisted.nvim" -- 打开 vim 的时候，自动回复上一次打开的样子

@@ -87,13 +87,6 @@ windows:
       - nvim
 ```
 
-## screen
-screen 是一个类似的程序，常见的使用方法如下:
-
-- screen -d -m sleep 1000
-- screen -r
-- screen -list
-
 ## zellij
 - https://zellij.dev/documentation/introduction.html
 - https://news.ycombinator.com/item?id=26902430
