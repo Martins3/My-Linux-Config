@@ -81,9 +81,10 @@ def alpine_clear_qemu [confirm=true] {
 def dk [] {
   alpine_clear_qemu
 
-    screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r"
-    /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-    alpine_clear_qemu false
+  # screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r -b"
+  zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
+  /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
+  alpine_clear_qemu false
 }
 
 def k [] {
@@ -204,12 +205,21 @@ function gscp() {
   echo $"scp -r (whoami)@($ip_addr):($file_path) ."
 }
 
+def defconfig [version:int=0] {
+  cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
+  cp /home/martins3/.dotfiles/scripts/systemd/init.sh .
+  echo "./init.sh 100"
+}
+
 def t [
   function: string
   --return (-r): bool
 ] {
     if  ( $return == true ) {
-        sudo bpftrace -e $"kretprobe:($function) { printf\(\"returned: %lx\\n\", retval\); }"
+        # 这个将每一个都输出
+        # sudo bpftrace -e $"kretprobe:($function) { printf\(\"returned: %lx\\n\", retval\); }"
+        # 输出统计数值
+        sudo bpftrace -e $"kretprobe:($function) { @process[comm] = stats\(retval\); }"
     } else {
         sudo bpftrace -e $"kprobe:($function) { @[kstack] = count\(\);}"
     }

@@ -20,6 +20,7 @@ wk.register({
       x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
     },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
+    -- @todo 这个功能似乎不能用了
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
     F = { "<cmd>Telescope git_files<cr>", "search files (exclude submodules)" },
