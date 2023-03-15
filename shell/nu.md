@@ -81,3 +81,12 @@ let image_name = ($images | select $i) # 不可以
 make -j`nproc` bindeb-pkg
 ```
 这就是 bash 的灵活之处。
+
+## 这个命令无法支持
+
+git am --keep-cr --signoff < ../b.diff
+
+nushell 正则无法自动补全
+
+## 内置的 mv 无法 move 多个成员
+- mv a.diff a.sh b.diff `2023-3-14/` 这个代码是会报错的

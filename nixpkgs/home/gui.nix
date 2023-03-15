@@ -63,8 +63,8 @@ in
       genericName = "ToDo";
       exec = "microsoft-edge-dev https://todoist.com/app/today";
       icon = (pkgs.fetchurl {
-        url = "https://todo.microsoft.com/favicon.ico";
-        sha256 = "1742330y3fr79aw90bysgx9xcfx833n8jqx86vgbcp21iqqxn0z8";
+        url = "https://img.icons8.com/color/512/todoist.png";
+        sha256 = "0cas4frxq6rrqbllgdk9wh7a4f8blszxcynsqzcsalc3q7xilkr5";
       }).outPath;
     };
 
@@ -73,8 +73,8 @@ in
       genericName = "regex";
       exec = "microsoft-edge-dev https://regexlearn.com/zh-cn/cheatsheet";
       icon = (pkgs.fetchurl {
-        url = "https://img.icons8.com/color/512/todoist.png";
-        sha256 = "0cas4frxq6rrqbllgdk9wh7a4f8blszxcynsqzcsalc3q7xilkr5";
+        url = "https://cdn-icons-png.flaticon.com/512/9804/9804194.png";
+        sha256 = "1yh5lnimc0ra5lwmb7vi8yxz58knfwg27rs03xmh7v97324gw1v8";
       }).outPath;
     };
 
