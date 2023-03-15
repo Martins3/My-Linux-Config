@@ -35,6 +35,7 @@ python:
 grep:
   - "-o, --only-matching : 仅仅打印匹配的部分而不是该行"
   - "grep -nr 'yourString*' . : rg 没有的时候用下"
+  - "@todo grep -e aaa -e bbb"
 printf:
   - 打印数组，是针对所有成员一次操作的
 curl:
