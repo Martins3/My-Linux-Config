@@ -20,7 +20,7 @@ if [[ $ID == "nixos" ]];then
 
   export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 function gscp() {
   file_name=$1

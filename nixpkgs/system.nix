@@ -128,8 +128,8 @@ in
   users.users.root.hashedPassword = passwd;
   users.users.martins3 = {
     isNormalUser = true;
-    # shell = pkgs.zsh;
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
+    # shell = pkgs.nushell;
     home = "/home/martins3";
     extraGroups = [ "wheel" "docker" "libvirtd" ];
     hashedPassword = passwd;
