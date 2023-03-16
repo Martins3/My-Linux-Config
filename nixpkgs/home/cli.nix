@@ -164,8 +164,6 @@ in
 
     containerd # @todo 测试下
     nerdctl
-
-    telegraf # @todo 这个和 service 是什么关系？
     usbutils
     # @todo 测试下 ovs
 

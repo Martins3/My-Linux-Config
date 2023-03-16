@@ -334,20 +334,6 @@ in
   boot.initrd.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  # services.telegraf.enable = true;
-  # services.influxdb2.enable = true;
-  # services.grafana = {
-  #   enable = true;
-  #   # Grafana needs to know on which domain and URL it's running:
-  #   settings.server = {
-  #     domain = "martins3.domain";
-  #     http_addr = "127.0.0.1";
-  #     port = 3000;
-  #   };
-  # };
-  # services.victoriametrics.enable = true;
-
-
   services.samba = {
     enable = true;
 
