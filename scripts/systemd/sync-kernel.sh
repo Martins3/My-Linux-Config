@@ -27,18 +27,27 @@ if [[ $branch != master ]]; then
   echo "checkout to master"
 fi
 
-# 内核为了编译速度，使用 #include 直接包含 .c 文件，
-# 将这些文件展开，从而可以正确跳转
-git restore --staged kernel/sched/build_utility.c
-git restore --staged kernel/sched/build_policy.c
-git checkout -- kernel/sched/build_utility.c
-git checkout -- kernel/sched/build_policy.c
+# 1. 内核为了编译速度，使用 #include 直接包含 .c 文件
+# 2. 为了消除重复代码，使用 #include 多次包含文件
+# 这些情况都让代码非常难以跳转
+special_files=(
+  kernel/sched/build_policy.c
+  kernel/sched/build_utility.c
+  arch/x86/kvm/mmu/mmu.c
+)
+for i in "${special_files[@]}"; do
+  echo "$i"
+  git restore --staged "$i"
+  git checkout -- "$i"
+done
 
 git pull
 
 python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
-git add kernel/sched/build_utility.c
-git add kernel/sched/build_policy.c
+# /home/martins3/.dotfiles/scripts/systemd/expand-paging_tmpl.sh
+for i in "${special_files[@]}"; do
+  git add "$i"
+done
 
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 
