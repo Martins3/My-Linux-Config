@@ -9,13 +9,11 @@ mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
-mkdir -p ~/.telegraf
 
 mkdir -p ~/.config/nushell
 ln -sf ~/.dotfiles/nushell/config.nu ~/.config/nushell/config.nu
 ln -sf ~/.dotfiles/nushell/env.nu ~/.config/nushell/env.nu
 
-ln -sf ~/.dotfiles/config/telegraf.conf ~/.telegraf/telegraf.conf
 ln -sf ~/.dotfiles/nixpkgs ~/.config/nixpkgs
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
