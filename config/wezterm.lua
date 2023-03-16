@@ -109,14 +109,9 @@ return {
       args = { "zsh" },
     },
     {
-      label = 'Arm Ubuntu Server',
-      args = { 'ssh', '-t', 'martins3@192.168.26.81', 'tmux attach || tmux' },
-    },
-    {
       label = 'QEMU',
-      args = { 'ssh', '-t', '-p5556', 'root@localhost', 'tmux attach || tmux' },
+      args = { 'ssh', '-t', '-p5556', 'root@localhost', 'zellij attach || zellij' },
     },
-
     {
       label = 'zellij',
       args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
