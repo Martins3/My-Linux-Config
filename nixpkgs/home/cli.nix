@@ -97,6 +97,7 @@ in
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
     unstable.bcc
+    # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
     parted
     wirelesstools
@@ -168,6 +169,8 @@ in
     # @todo 测试下 ovs
 
     openjdk
+    # dockerTools @todo # 使用 nixos 构建 docker
+    # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
   ];
 
   programs.zsh = {

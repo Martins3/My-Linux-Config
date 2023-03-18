@@ -105,6 +105,9 @@ for file in "$(pwd)"/**; do
     printf '%s\n' "$file"
 done
 shopt -u globstar
+
+# 匹配当前目录下的所有 sh 文件
+git checkout -- **/*.sh
 endsnippet
 
 snippet fori "C style for loop"
