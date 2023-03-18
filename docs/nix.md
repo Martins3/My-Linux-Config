@@ -788,7 +788,7 @@ fsck -a /dev/nvme0n1p3
 ```
 而且让机器启动都成问题。
 
-## [ ] 如何编译一个静态的 QEMU
+## [ ] 如何编译一个静态的 QEMU，测试启动速度
 参考 scripts/nix/pkg/static-qemu.nix
 
 ## [] 为什么 ccls 总是在重新刷新
@@ -811,5 +811,72 @@ direnv: nix-direnv: using cached dev shell
 ## nixos 上无法安装 pytype
 使用 pyright 安装的时候，出现如下错误。
 libstdc++.so.6
+
+## 使用 nixos 构建
+- https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
+
+虽然执行有点问题，但是值得借鉴:
+```sh
+#! /nix/store/96ky1zdkpq871h2dlk198fz0zvklr1dr-bash-5.1-p16/bin/bash
+
+export PATH=/nix/store/wxb674h6dp7h63na8z6jwpagps811jl7-coreutils-9.1/bin${PATH:+:}$PATH
+
+set -e
+
+NIX_DISK_IMAGE=$(readlink -f "${NIX_DISK_IMAGE:-./nixos.qcow2}")
+
+if ! test -e "$NIX_DISK_IMAGE"; then
+    /nix/store/zsf59dn5sak8pbq4l3g5kqp7adyv3fph-qemu-host-cpu-only-7.1.0/bin/qemu-img create -f qcow2 "$NIX_DISK_IMAGE" \
+      1024M
+fi
+
+# Create a directory for storing temporary data of the running VM.
+if [ -z "$TMPDIR" ] || [ -z "$USE_TMPDIR" ]; then
+    TMPDIR=$(mktemp -d nix-vm.XXXXXXXXXX --tmpdir)
+fi
+
+
+
+# Create a directory for exchanging data with the VM.
+mkdir -p "$TMPDIR/xchg"
+
+
+
+cd "$TMPDIR"
+
+
+
+
+# Start QEMU.
+exec /nix/store/zsf59dn5sak8pbq4l3g5kqp7adyv3fph-qemu-host-cpu-only-7.1.0/bin/qemu-kvm -cpu max \
+    -name nixos \
+    -m 1024 \
+    -smp 1 \
+    -device virtio-rng-pci \
+    -net nic,netdev=user.0,model=virtio -netdev user,id=user.0,"$QEMU_NET_OPTS" \
+    -virtfs local,path=/nix/store,security_model=none,mount_tag=nix-store \
+    -virtfs local,path="${SHARED_DIR:-$TMPDIR/xchg}",security_model=none,mount_tag=shared \
+    -virtfs local,path="$TMPDIR"/xchg,security_model=none,mount_tag=xchg \
+    -drive cache=writeback,file="$NIX_DISK_IMAGE",id=drive1,if=none,index=1,werror=report -device virtio-blk-pci,drive=drive1 \
+    -device virtio-keyboard \
+    -usb \
+    -device usb-tablet,bus=usb-bus.0 \
+    -kernel ${NIXPKGS_QEMU_KERNEL_nixos:-/nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/kernel} \
+    -initrd /nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/initrd \
+    -append "$(cat /nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/kernel-params) init=/nix/store/k9xnkgjs5dwjzw
+w8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/init regInfo=/nix/store/byyk6x729q54ys1dv8m852v5f7g39ssn-closure-info/registration consol
+e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
+    $QEMU_OPTS \
+    "$@"
+```
+
+## 桌面环境
+- https://wiki.hyprland.org/Nix/
+
+## 如何调试 host 内核
+参考 nixpkgs/pkgs/os-specific/linux/kernel/linux-6.2.nix ，我发现其
+
+- [ ] nixpkgs/pkgs/top-level/linux-kernels.nix 中应该会告诉是否打了 patch 以及函数的情况
+  - [ ] 使用 /proc/config.gz 维持下生活吧
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

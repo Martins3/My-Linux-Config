@@ -87,5 +87,16 @@ in
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
       }).outPath;
     };
+
+    # @todo 这些玩意儿可以做成模板吗？
+    bpftrace = {
+      name = "bpftrace";
+      genericName = "bpftrace";
+      exec = "microsoft-edge-dev https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md";
+      icon = (pkgs.fetchurl {
+        url = "https://img.icons8.com/color/512/docker.png";
+        sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
+      }).outPath;
+    };
   };
 }
