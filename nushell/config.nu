@@ -1,21 +1,21 @@
 # https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/sample_config/default_config.nu
 # startship
-# let-env STARSHIP_SHELL = "nu"
-#
-# def create_left_prompt [] {
-#     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
-# }
-#
-# # Use nushell functions to define your right and left prompt
-# let-env PROMPT_COMMAND = { create_left_prompt }
-# let-env PROMPT_COMMAND_RIGHT = ""
-#
-# # The prompt indicators are environmental variables that represent
-# # the state of the prompt
-# let-env PROMPT_INDICATOR = ""
-# let-env PROMPT_INDICATOR_VI_INSERT = ": "
-# let-env PROMPT_INDICATOR_VI_NORMAL = "〉"
-# let-env PROMPT_MULTILINE_INDICATOR = "::: "
+let-env STARSHIP_SHELL = "nu"
+
+def create_left_prompt [] {
+    starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+}
+
+# Use nushell functions to define your right and left prompt
+let-env PROMPT_COMMAND = { create_left_prompt }
+let-env PROMPT_COMMAND_RIGHT = ""
+
+# The prompt indicators are environmental variables that represent
+# the state of the prompt
+let-env PROMPT_INDICATOR = ""
+let-env PROMPT_INDICATOR_VI_INSERT = ": "
+let-env PROMPT_INDICATOR_VI_NORMAL = "〉"
+let-env PROMPT_MULTILINE_INDICATOR = "::: "
 
 source ~/.zoxide.nu
 
@@ -50,6 +50,7 @@ alias kvm_stat = /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat
 
 alias gc = git commit
 alias gp = git push
+alias a = zsh
 
 
 alias find = /run/current-system/sw/bin/find

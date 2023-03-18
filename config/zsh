@@ -20,7 +20,7 @@ if [[ $ID == "nixos" ]];then
 
   export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 function gscp() {
   file_name=$1
@@ -160,6 +160,7 @@ alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias ag=rg
 alias cp=xcp
+alias n=nu
 
 alias kvm_stat=/home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat
 
