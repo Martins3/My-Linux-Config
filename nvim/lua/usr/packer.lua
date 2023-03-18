@@ -21,7 +21,7 @@ require("packer").startup({
     use { 'neoclide/coc.nvim', branch = 'release' } -- lsp
     use 'kyazdani42/nvim-web-devicons' -- 显示图标
     use 'folke/which-key.nvim' -- 用于配置和提示快捷键
-    use 'tami5/sqlite.lua' -- 数据库
+    use 'kkharji/sqlite.lua' -- 数据库
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
     use 'RRethy/nvim-treesitter-textsubjects'
@@ -50,6 +50,7 @@ require("packer").startup({
       run = 'make' } -- telescope 搜索的插件，可以提升搜索效率
     use 'fannheyward/telescope-coc.nvim' -- 搜索 coc 提供的符号
     use 'dhruvmanila/telescope-bookmarks.nvim' -- 搜索 bookmarks
+    use 'nvim-telescope/telescope-frecency.nvim' -- 查找最近打开的文件
     -- 命令执行
     use 'voldikss/vim-floaterm' -- 终端
     use 'akinsho/toggleterm.nvim' -- 性能好点，但是易用性差点
