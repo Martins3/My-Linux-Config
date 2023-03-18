@@ -176,6 +176,7 @@ plugins {
 // Default: $SHELL
 //
 // default_shell "fish"
+default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
