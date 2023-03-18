@@ -128,6 +128,19 @@ nvim 的启动首先会卡住一下，是谁的问题
 ```
 https://unix.stackexchange.com/questions/574669/clearing-tmux-terminal-throws-error-tmux-256color-unknown-terminal-type
 
+
+## tmux 的悬浮窗口
+配置参考: https://gist.github.com/LintaoAmons/22f6184b26bd5b93d8fe9f9276f50f75
+```txt
+bind-key -n -N 'Toggle popup window' C-h if-shell -F '#{==:#{session_name},popup}' {
+    detach-client
+} {
+    display-popup -d "#{pane_current_path}" -xC -yC -w 60% -h 75% -E "tmux attach-session -t popup || tmux new-session -s popup"
+}
+```
+向比 zellij 好处是可以继续多开，但是问题是，让 switch to next session 命令完全混乱了。
+其实我们希望 popup 的是一个 pane 而不是 session 的。所以最后还是靠 nvim 的悬浮窗来解决问题吧。
+
 ## 一些小技巧
 
 1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了
