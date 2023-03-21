@@ -91,7 +91,7 @@ def dk [] {
 def k [] {
   alpine_clear_qemu
 
-    screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
+    zellij run --close-on-exit -- "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
     ssh -o 'ConnectionAttempts 10' -p5556 root@localhost
 
   alpine_clear_qemu
@@ -209,7 +209,7 @@ function gscp() {
 def defconfig [version:int=0] {
   cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
   cp /home/martins3/.dotfiles/scripts/systemd/init.sh .
-  echo "./init.sh 100"
+  echo "./init.sh"
 }
 
 def t [
