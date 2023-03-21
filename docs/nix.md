@@ -770,6 +770,9 @@ fsck -a /dev/nvme0n1p3
 ```
 参考: https://www.reddit.com/r/NixOS/comments/4fnsxb/how_do_i_run_fsck_manually_on_root_in_nixos/
 
+xfs_repair -L /dev/dm-1
+> -L : 最后的武器，会切掉部分日志
+
 ## [ ]  如何自动 mount
 
 - 参考 : https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
@@ -870,6 +873,39 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
     "$@"
 ```
 
+- [ ] [Kernel Debugging with QEMU](https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU) : 看上去这就是我们需要的，但是实际上，还是差点意思
+  - https://wiki.cont.run/kernel-development-with-nix/
+  - https://jade.fyi/blog/nixos-disk-images-m1/
+
+- https://hoverbear.org/blog/nix-flake-live-media/
+
+- [ ] https://jade.fyi/blog/nixos-disk-images-m1/
+
+- [ ] https://mattwidmann.net/notes/running-nixos-in-a-vm/
+- [ ] https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
+
+感觉目前的时机不成熟，或者我对于这个的理解有问题。
+- 因为 nixos 的 initrd 如果和 kernel 不匹配的话，应该启动不了
+  - 使用 execsnoop 看启动参数吧
+
+- 确实提供过如何制作 make-disk-image.nix 的操作，但是还是远远不够
+- https://github.com/NixOS/nixpkgs/blob/master/nixos/lib/make-disk-image.nix
+- https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/qemu-guest.nix
+
+- 有很多人介绍 nixos 如何制作出来 iso 的，然后再去安装，其实也算是一个路径，但是 -kernel 问题必须解决。
+
+总之，等我对于 nixos 理解在深入一点再来搞这个问题吧。
+
+而且，无论如何，都是需要在 guest 中使用 crash 的。
+
+在 guest 中使用 docker 环境？
+
+不要把简单问题复杂化了！
+
+使用 shell 初始化即可，遇到问题，以后再说。
+
+而且导致无法 dracut
+
 ## 桌面环境
 - https://wiki.hyprland.org/Nix/
 
@@ -878,5 +914,8 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 
 - [ ] nixpkgs/pkgs/top-level/linux-kernels.nix 中应该会告诉是否打了 patch 以及函数的情况
   - [ ] 使用 /proc/config.gz 维持下生活吧
+  - sudo insmod arch/x86/kvm/kvm-intel.ko # 似乎不行
+  - 修改一个字母，所有内容全部重新编译，这不科学啊！
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

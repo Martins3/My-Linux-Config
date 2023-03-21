@@ -248,3 +248,23 @@ https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-
 
 ## shellcheck 让我必须将所有的变量全部使用双引号包含进来
 - http://www.oilshell.org/release/latest/doc/idioms.html#new-long-flags-on-the-read-builtin
+
+## 迷茫啊，这个会因为双引号警告的
+```txt
+	if [[ ! $i =~ ".*debug.*" ]]; then
+		rpm_extract $i
+	fi
+```
+
+## 高级话题
+### trap
+
+### -E
+
+```txt
+
+-E      If  set,  any  trap  on  ERR is inherited by shell
+                      functions, command substitutions, and commands ex‐
+                      ecuted in a subshell environment.  The ERR trap is
+                      normally not inherited in such cases.
+``

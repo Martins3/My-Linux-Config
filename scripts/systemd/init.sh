@@ -6,16 +6,11 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
-version="$1"
-# @todo 判断一下，这个必须是 number
-
 function defconfig() {
-  # cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
   make defconfig kvm_guest.config martins3.config
-
-  if [[ -n ${version+x} ]]; then
-    sed -i "s/CONFIG_LOCALVERSION=\"\"/CONFIG_LOCALVERSION=\"$version\"/g" .config
-  fi
+  # 好像这个没啥用
+  # sed -i "s/CONFIG_LOCALVERSION=\"\"/CONFIG_LOCALVERSION=\"$version\"/g" .config
 }
 
 defconfig
+make binrpm-pkg -j32

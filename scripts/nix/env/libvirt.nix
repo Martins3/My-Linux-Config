@@ -29,7 +29,9 @@ pkgs.mkShell rec {
     python3
     readline
     xhtml1
+    numad
     yajl
+    # @todo 增加一个 WITH_NUMACTL
     libtirpc
   ];
 }
