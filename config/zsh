@@ -159,7 +159,8 @@ alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="nvim"
 alias ag=rg
-alias cp=xcp
+# @todo arm 环境中也许要有这个
+# alias cp=xcp
 alias n=nu
 
 alias kvm_stat=/home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat

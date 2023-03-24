@@ -261,10 +261,40 @@ https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-
 
 ### -E
 
+测试了一下，还是完全无法理解:
 ```txt
 
 -E      If  set,  any  trap  on  ERR is inherited by shell
                       functions, command substitutions, and commands ex‐
                       ecuted in a subshell environment.  The ERR trap is
                       normally not inherited in such cases.
-``
+```
+
+### 如何理解这个
+```sh
+bash <(curl -L zellij.dev/launch) 这个命令如何理解？
+```
+
+## grep 和 egrep 的差别
+
+## 经典作品，阅读一下 : https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md
+
+## 等于号叫我再次做人
+```c
+if ! [[ $number =~ $re ]] ; then
+  echo "not a number"
+fi
+```
+可以写成这个吗？
+```c
+if [[ ! $number =~ $re ]] ; then
+  echo "not a number"
+fi
+```
+
+多个链接到一起，如何
+```c
+if [[ ! $number =~ $re ]] ; then
+  echo "not a number"
+fi
+```

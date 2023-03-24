@@ -1,8 +1,10 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
+#include <asm/tsc.h>
 
 static int vermagic_init(void)
 {
+  pr_info("[huxueshi:%s:%d] %d\n", __FUNCTION__, __LINE__, cpu_khz);
   return 0;
 }
 

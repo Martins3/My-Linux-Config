@@ -11,8 +11,10 @@ history.txt
 *.cmd
 *.ko
 *.o
+*.o.d
 .tmp_versions/
 modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+compile_commands.json
