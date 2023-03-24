@@ -103,7 +103,9 @@ return {
   launch_menu = {
     {
       label = 'M2',
-      args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
+      -- @todo 怎么升级 zellij 来着？
+      args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'zellij attach || zellij' },
+      -- args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'tmux attach || tmux' },
     },
     {
       args = { "zsh" },

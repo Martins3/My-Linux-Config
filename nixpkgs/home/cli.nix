@@ -96,10 +96,13 @@ in
     # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
+    kernelshark # @todo 使用一下
     unstable.bcc
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
     parted
+    sysbench
+    linuxKernel.packages.linux_latest_libre.turbostat
     wirelesstools
     # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
@@ -155,7 +158,8 @@ in
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
     sshfs
-    firecracker
+    # firecracker
+    # kvmtool
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
     swtpm # windows 11 启动需要

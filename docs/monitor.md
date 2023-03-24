@@ -16,6 +16,7 @@ cd  VictoriaMetrics/deployment/docker
 docker compose up -d
 docker compose down # 删除
 ```
+登录 127.0.0.1:3000
 
 ## 需要统计的
 - 启动 qemu 次数

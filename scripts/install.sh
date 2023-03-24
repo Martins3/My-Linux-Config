@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -E -e -u -o pipefail
 cd ~ || exit 0
 if [[ ! -d ~/.dotfiles ]]; then
   git clone https://github.com/Martins3/My-Linux-config .dotfiles

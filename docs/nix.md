@@ -643,7 +643,8 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 ## 有趣
 - WSL 上使用 home-manager : https://github.com/viperML/home-manager-wsl
-- https://github.com/jetpack-io/devbox
+- [ ] https://github.com/jetpack-io/devbox
+  - 和 direnv 是啥关系？
 
 ## 桌面环境
 

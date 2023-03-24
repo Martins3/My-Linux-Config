@@ -176,7 +176,8 @@ plugins {
 // Default: $SHELL
 //
 // default_shell "fish"
-default_shell "nu"
+// @todo 因为 arm 的原因，这个不行
+// default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
