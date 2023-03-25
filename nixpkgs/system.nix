@@ -275,6 +275,16 @@ in
     };
   };
 
+  systemd.user.services.monitor = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
+      Restart = "no";
+    };
+  };
+
   systemd.user.timers.qemu = {
     enable = false;
     timerConfig = { OnCalendar = "*-*-* 4:30:00"; };

@@ -918,5 +918,7 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
   - sudo insmod arch/x86/kvm/kvm-intel.ko # 似乎不行
   - 修改一个字母，所有内容全部重新编译，这不科学啊！
 
+## cargo install 几乎没有成功过
+cargo install rusty-krab-manager
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

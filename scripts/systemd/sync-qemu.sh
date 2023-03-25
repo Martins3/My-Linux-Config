@@ -31,7 +31,7 @@ fi
 git pull
 # --disable-tcg
 # --enable-trace-backends=nop
-# @todo 用上 virtfs 的
+# @todo 用上 --enable-virtfs 是做啥的
 
 mkdir -p /home/martins3/core/qemu/instsall
 QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --enable-libusb --enable-virglrenderer --enable-opengl"
