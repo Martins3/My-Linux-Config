@@ -1,15 +1,50 @@
-local wk = require("which-key")
+-- toggleterm configuration
+-- becuase
+require("toggleterm").setup {
+  direction = 'float',
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 15
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  hide_numbers = false
+}
+local Terminal = require('toggleterm.terminal').Terminal
+local tig_status = Terminal:new({ cmd = "tig status", hidden = true })
+local tig_log_file_status = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true })
+local tig_log_project_status = Terminal:new({ cmd = "tig", hidden = true })
+local ipython = Terminal:new({ cmd = "ipython", hidden = true })
 
+function _tig_status_toggle()
+  tig_status:toggle()
+end
+
+function _tig_log_file_toggle()
+  tig_log_file_status:toggle()
+end
+
+function _tig_log_project_toggle()
+  tig_log_project_status:toggle()
+end
+
+function _ipython_toggle()
+  ipython:toggle()
+end
+
+-- whichkey configuration
+local wk = require("which-key")
 wk.setup({
   plugins = {
-    marks = false, -- shows a list of your marks on ' and `
+    marks = false,    -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
   }
 })
 
 wk.register({
   -- search
-  ["<leader>"] = {
+      ["<leader>"] = {
     a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action" },
     b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = {
@@ -20,7 +55,6 @@ wk.register({
       x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
     },
     d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
-    -- @todo 这个功能似乎不能用了
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
     F = { "<cmd>Telescope git_files<cr>", "search files (exclude submodules)" },
@@ -35,30 +69,29 @@ wk.register({
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
-    ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
-    ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "jump to buffer 2" },
-    ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "jump to buffer 3" },
-    ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "jump to buffer 4" },
-    ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "jump to buffer 5" },
-    ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "jump to buffer 6" },
-    ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "jump to buffer 7" },
-    ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "jump to buffer 8" },
-    ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "jump to buffer 9" },
-    ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
+        ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
+        ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "jump to buffer 2" },
+        ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "jump to buffer 3" },
+        ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "jump to buffer 4" },
+        ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "jump to buffer 5" },
+        ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "jump to buffer 6" },
+        ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "jump to buffer 7" },
+        ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "jump to buffer 8" },
+        ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "jump to buffer 9" },
+        ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
   },
-
   -- " 使用 space [number] 切换到第 [number] 个 window
-  ['<space>'] = {
-    ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1" },
-    ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2" },
-    ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3" },
-    ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4" },
-    ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5" },
-    ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6" },
-    ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7" },
-    ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8" },
-    ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9" },
-    ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0" },
+      ['<space>'] = {
+        ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1" },
+        ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2" },
+        ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3" },
+        ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4" },
+        ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5" },
+        ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6" },
+        ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7" },
+        ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8" },
+        ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9" },
+        ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0" },
 
     a = {
       name = "+misc",
@@ -84,11 +117,11 @@ wk.register({
       a = { "<cmd>Git add -A<cr>", "git stage all changes" },
       b = { "<cmd>Git blame<cr>", "git blame" },
       c = { "<cmd>Git commit<cr>", "git commit" },
-      l = { "<cmd>FloatermNew tig %<cr>", "log of file" },
-      L = { "<cmd>FloatermNew tig<cr>", "log of project" },
       m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
       p = { "<cmd>Git push<cr>", "git push" },
-      s = { "<cmd>FloatermNew tig status<cr>", "git status" },
+      l = { "<cmd>lua _tig_log_file_toggle()<cr>", "log of file" },
+      L = { "<cmd>lua _tig_log_project_toggle()<cr>", "log of project" },
+      s = { "<cmd>lua _tig_status_toggle()<cr>", "git status" },
     },
     l = {
       name = "+language",
@@ -110,7 +143,7 @@ wk.register({
     },
     t = {
       name = "+toggle",
-      ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
+          ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
       b = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
       s = { "<cmd>set spell!<cr>", "spell check" },
       w = { "<cmd>set wrap!<cr>", "wrap line" },
@@ -118,7 +151,7 @@ wk.register({
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       t = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
-    x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
+    x = { "<cmd> lua _ipython_toggle()<cr>", "calculation" },
   },
   q = { "<cmd>q<cr>", "close window" },
   c = {
@@ -140,7 +173,7 @@ wk.register({
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
-  ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
+      ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
   -- @todo term
   -- ["<C-t>"] = { "<cmd>ToggleTerm<cr>", "open floaterm" },
   -- ["<C-p>"] = { "<cmd>1ToggleTerm<cr>", "open floaterm" },
@@ -148,7 +181,7 @@ wk.register({
 })
 
 wk.register({
-  ["<space>"] = {
+      ["<space>"] = {
     l = {
       c = { ":Commentary<cr>", "comment code" },
       f = { "<Plug>(coc-format-selected)<cr>", "format selected code" },

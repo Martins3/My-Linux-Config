@@ -9,7 +9,6 @@ require 'usr.telescope'
 require 'usr.version'
 require 'usr.which-key'
 require 'usr.session'
--- require 'usr.toggleterm' -- toggleterm 还是没有 floaterm 好用
 require("colorizer").setup { 'css', 'javascript', 'vim', html = { mode = 'foreground', } }
 require("nvim-surround").setup {}
 require('gitsigns').setup {}
