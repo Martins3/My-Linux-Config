@@ -91,6 +91,7 @@ in
     systeroid # better systctl
     # systeroid -tui 简直就是神器
     pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
+    linuxPackages_latest.kernel.dev
     # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇
     # 这个东西其实自己生成一份
     # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
@@ -160,6 +161,7 @@ in
     sshfs
     # firecracker
     # kvmtool
+    packer # 制作 qcow2 镜像
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
     swtpm # windows 11 启动需要

@@ -2,7 +2,7 @@ local function microsoft_edge()
   if vim.fn.has('macunix') then
     return "/Applications/Microsoft\\ Edge.app/Contents/MacOS/Microsoft\\ Edge $file"
   else
-    return "microsoft-edge $fileName"
+    return "microsoft-edge-dev $fileName"
   end
 end
 

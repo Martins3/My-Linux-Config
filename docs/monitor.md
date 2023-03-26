@@ -11,8 +11,9 @@ done
 
 初始化
 ```sh
+cd ~
 git clone https://github.com/VictoriaMetrics/VictoriaMetrics
-cd  VictoriaMetrics/deployment/docker
+cd  ~/core/VictoriaMetrics/deployment/docker
 docker compose up -d
 docker compose down # 删除
 ```

@@ -43,6 +43,13 @@ done
 
 git pull
 
+
+# @todo 这几个也许要处理啊
+#include "tree_stall.h"
+#include "tree_exp.h"
+#include "tree_nocb.h"
+#include "tree_plugin.h"
+
 python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 # /home/martins3/.dotfiles/scripts/systemd/expand-paging_tmpl.sh
 for i in "${special_files[@]}"; do
