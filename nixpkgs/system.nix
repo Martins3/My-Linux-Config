@@ -223,16 +223,17 @@ in
   # 默认是 cgroup v2
   # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
 
-  services.syncthing = {
-    enable = true;
-    systemService = true;
-    # relay.enable = true;
-    user = "martins3";
-    dataDir = "/home/martins3";
-    overrideDevices = false;
-    overrideFolders = false;
-    guiAddress = "0.0.0.0:8384";
-  };
+  # 组装机器之后，这个需求并不强了
+  # services.syncthing = {
+  #   enable = true;
+  #   systemService = true;
+  #   # relay.enable = true;
+  #   user = "martins3";
+  #   dataDir = "/home/martins3";
+  #   overrideDevices = false;
+  #   overrideFolders = false;
+  #   guiAddress = "0.0.0.0:8384";
+  # };
 
   documentation.enable = true;
 

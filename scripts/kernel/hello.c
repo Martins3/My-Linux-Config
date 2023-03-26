@@ -5,6 +5,7 @@
 static int vermagic_init(void)
 {
   pr_info("[huxueshi:%s:%d] %d\n", __FUNCTION__, __LINE__, cpu_khz);
+  trace_printk("martins3 like %s\n", "ftrace");
   return 0;
 }
 

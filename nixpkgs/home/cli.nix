@@ -98,6 +98,7 @@ in
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
     kernelshark # @todo 使用一下
+    trace-cmd
     unstable.bcc
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
