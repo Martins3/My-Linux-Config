@@ -64,6 +64,8 @@ todo:
   - ls # @todo 将 sheet.md 中的内容整理到此处，一个各种诊断工具，例如 ptrace
 vimscript:
   - "调试方法 echom 然后 :message 查看，注意不能是 echo"
+nvim:
+  - vim.api.nvim_err_writeln("hello \n") -- 不要忘记 \n
 screen:
   - screen -d -m sleep 1000
   - screen -r

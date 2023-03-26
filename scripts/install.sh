@@ -29,6 +29,9 @@ ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 
+# dhruvmanila/browser-bookmarks.nvim
+ln -s ~/.config/microsoft-edge-dev ~/.config/microsoft-edge
+
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   echo "tmux plugin install : prefix + I"
