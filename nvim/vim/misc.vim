@@ -63,9 +63,9 @@ let g:bookmark_save_per_working_dir = 1
 let g:bookmark_no_default_key_mappings = 1
 
 " @todo toggleterm 搞的挺迷茫的
-" let g:floaterm_keymap_prev   = '<C-p>'
-" let g:floaterm_keymap_new    = '<C-n>'
-" let g:floaterm_keymap_toggle = '<C-t>'
+let g:floaterm_keymap_prev   = '<C-p>'
+let g:floaterm_keymap_new    = '<C-n>'
+let g:floaterm_keymap_toggle = '<C-t>'
 
 autocmd TermEnter term://*toggleterm#*
       \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>

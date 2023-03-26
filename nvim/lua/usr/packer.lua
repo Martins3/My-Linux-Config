@@ -53,7 +53,7 @@ require("packer").startup({
     use 'nvim-telescope/telescope-frecency.nvim' -- 查找最近打开的文件
     -- 命令执行
     use 'voldikss/vim-floaterm' -- 终端
-    use 'akinsho/toggleterm.nvim' -- 性能好点，但是易用性差点
+    use 'akinsho/toggleterm.nvim' -- 性能好点，但是易用性和稳定性都比较差
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
     -- markdown
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" }) -- 预览
@@ -100,5 +100,6 @@ require("packer").startup({
     -- 为了勉强支持 nushell 的高亮，虽然做的不好
     use 'LhKipp/nvim-nu'
     use 'jose-elias-alvarez/null-ls.nvim'
+    use 'dstein64/vim-startuptime' -- 分析 nvim 启动时间
   end,
 })

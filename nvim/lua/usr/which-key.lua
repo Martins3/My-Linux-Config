@@ -9,10 +9,18 @@ require("toggleterm").setup {
       return vim.o.columns * 0.4
     end
   end,
-  hide_numbers = false
+  hide_numbers = false,
+  float_opts = {
+    border = 'curved',
+    width = math.floor(vim.o.columns * 0.6),
+    -- height = <value>,
+    winblend = 10,
+    zindex = 100,
+  },
 }
 local Terminal = require('toggleterm.terminal').Terminal
 local tig_status = Terminal:new({ cmd = "tig status", hidden = true })
+-- TODO this doesn't work, it show the project history
 local tig_log_file_status = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true })
 local tig_log_project_status = Terminal:new({ cmd = "tig", hidden = true })
 local ipython = Terminal:new({ cmd = "ipython", hidden = true })
@@ -119,9 +127,12 @@ wk.register({
       c = { "<cmd>Git commit<cr>", "git commit" },
       m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
       p = { "<cmd>Git push<cr>", "git push" },
-      l = { "<cmd>lua _tig_log_file_toggle()<cr>", "log of file" },
-      L = { "<cmd>lua _tig_log_project_toggle()<cr>", "log of project" },
-      s = { "<cmd>lua _tig_status_toggle()<cr>", "git status" },
+      -- l = { "<cmd>lua _tig_log_file_toggle()<cr>", "log of file" },
+      -- L = { "<cmd>lua _tig_log_project_toggle()<cr>", "log of project" },
+      -- s = { "<cmd>lua _tig_status_toggle()<cr>", "git status" },
+      l = { "<cmd>FloatermNew tig %<cr>", "log of file" },
+      L = { "<cmd>FloatermNew tig<cr>", "log of project" },
+      s = { "<cmd>FloatermNew tig status<cr>", "git status" },
     },
     l = {
       name = "+language",
@@ -151,7 +162,8 @@ wk.register({
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       t = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
     },
-    x = { "<cmd> lua _ipython_toggle()<cr>", "calculation" },
+    -- x = { "<cmd> lua _ipython_toggle()<cr>", "calculation" },
+    x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
   q = { "<cmd>q<cr>", "close window" },
   c = {
@@ -174,10 +186,6 @@ wk.register({
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
       ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
-  -- @todo term
-  -- ["<C-t>"] = { "<cmd>ToggleTerm<cr>", "open floaterm" },
-  -- ["<C-p>"] = { "<cmd>1ToggleTerm<cr>", "open floaterm" },
-  -- ["<C-n>"] = { "<cmd>2ToggleTerm<cr>", "open floaterm" },
 })
 
 wk.register({
