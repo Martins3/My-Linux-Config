@@ -527,6 +527,14 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 |-----------------------------------------------------|
 | <img src="./img/floaterm.png" /> |
 
+关于 `voidkiss/floaterm` 和 `akinsho/toggleterm.nvim` 的对比:
+1. voidkiss 的更加稳定，功能更多。但是有严重的性能问题，例如编译内核的过程中，产生的 log 可能导致 nvim 卡死。
+2. akinsho 项目更加新，使用 lua 写的，在 UI 上更加灵活，但是存在一些细微的 bug 和功能缺失。
+  - 终端丢失。
+  - 切换终端的时候莫名奇妙进入 normal mode
+  - 如果同时使用多个终端，其管理难度简直逆天。
+  - 没有简洁的 voidkiss 中 FloatermNew 的功能。
+综上，我认为最近两年没有必要切换。
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
