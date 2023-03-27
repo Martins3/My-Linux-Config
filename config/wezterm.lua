@@ -73,10 +73,12 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   keys = {
-    { mods = "CTRL|SHIFT", key = "-",           action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
-    { mods = "CTRL|SHIFT", key = "+",           action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
-    { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" },           -- Ctrl-Shift-- (key with -)
+    { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" },           -- Ctrl-Shift-+ (key with =)
+    -- { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    -- { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "F7",          mods = "", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "F8",          mods = "", action = wezterm.action({ ActivateTabRelative = -1 }) },
     {
       key = "LeftArrow",
       mods = 'CTRL|SHIFT',
@@ -87,7 +89,8 @@ return {
       mods = 'CTRL|SHIFT',
       action = wezterm.action.DisableDefaultAssignment,
     },
-    { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncher },
+    -- { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncher },
+    { key = 'F2', mods = '', action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
   default_prog = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
