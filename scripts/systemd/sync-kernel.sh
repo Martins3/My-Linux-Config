@@ -66,6 +66,8 @@ if [[ $RECORD_TIME == true ]]; then
   SECONDS=0
 fi
 nix-shell --command "nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# @todo 真操蛋啊，系统的 perf 不能用了，需要手动编译一个
+nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ $RECORD_TIME == true ]]; then
   duration=$SECONDS

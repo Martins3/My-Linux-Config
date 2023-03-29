@@ -51,6 +51,7 @@ alias kvm_stat = /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat
 alias gc = git commit
 alias gp = git push
 alias a = zsh
+alias m2 = ssh martins3@10.0.0.2
 
 
 alias find = /run/current-system/sw/bin/find
