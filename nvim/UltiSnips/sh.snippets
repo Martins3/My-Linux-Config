@@ -273,11 +273,6 @@ snippet note_arrayprint "print array"
 printf '%s\n' "${array[@]}"
 endsnippet
 
-snippet note_array_access "访问 array 成员"
-echo ${#array[@]}
-echo ${array[-1]}
-endsnippet
-
 snippet note_trim_string "trim string"
 # Usage: trim_string "   example   string    "
 function trim_string() {
@@ -449,4 +444,21 @@ re='^[0-9]+$'
 if ! [[ $number =~ $re ]] ; then
   echo "not a number"
 fi
+endsnippet
+
+snippet note_array_basic "array basic"
+# 增加一个新元素
+ARRAY=()
+ARRAY+=('foo')
+ARRAY+=('bar')
+# 拷贝一个 array
+b=("${a[@]}")
+# 清空一个 array
+arr1=()
+# slice
+vm=("${vm[@]:1}")
+# 获取数组长度
+echo ${#array[@]}
+# 访问最后一个元素
+echo ${array[-1]}
 endsnippet

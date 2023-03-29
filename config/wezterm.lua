@@ -73,12 +73,15 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   keys = {
-    { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" },           -- Ctrl-Shift-- (key with -)
-    { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" },           -- Ctrl-Shift-+ (key with =)
-    -- { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    -- { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "F7",          mods = "", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "F8",          mods = "", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { mods = "CTRL|SHIFT", key = "-",           action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
+    { mods = "CTRL|SHIFT", key = "+",           action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
+    { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
+    -- @todo 不知道为什么，这个键映射不上去，而且相当于 backspace
+    -- { key = "8",          mods = "CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "9",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = -1 }) },
     {
       key = "LeftArrow",
       mods = 'CTRL|SHIFT',
@@ -97,7 +100,6 @@ return {
   -- default_prog = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
   color_scheme = "Solarized Dark (base16)",
   font_size = 9.2,
-  window_background_opacity = 0.8,
   font = wezterm.font_with_fallback {
     'FiraCode Nerd Font',
     { family = 'LXGW WenKai', scale = 1 },
@@ -136,20 +138,22 @@ return {
   },
   -- 这两个配置是互斥的，等到什么时候找到至尊壁纸的时候再换吧
   -- >>>>
-  window_background_gradient = {
-    orientation = "Vertical",
-    interpolation = "Linear",
-    blend = "Rgb",
-    colors = {
-      "#121212",
-      "#202020"
-    }
-  },
-  -- ===
-  window_background_image = '/home/martins3/Pictures/BingWallpaper/20221127-RedPlanetDay_ZH-CN4913018041_UHD.jpg',
+  -- window_background_opacity = 0.8,
+  -- window_background_gradient = {
+  --   orientation = "Vertical",
+  --   interpolation = "Linear",
+  --   blend = "Rgb",
+  --   colors = {
+  --     "#121212",
+  --     "#202020"
+  --   }
+  -- },
+  -- ================================================================
+  -- https://www.bing.com/th?id=OHR.WildGarlic_ZH-CN1869796625_UHD.jpg
+  window_background_image = '/home/martins3/Pictures/BingWallpaper/20230323-WildGarlic_ZH-CN1869796625_UHD.jpg',
   window_background_image_hsb = {
     -- Darken the background image by reducing it to 1/3rd
-    brightness = 0.3,
+    brightness = 0.04,
     -- You can adjust the hue by scaling its value.
     -- a multiplier of 1.0 leaves the value unchanged.
     hue = 1.0,

@@ -298,3 +298,11 @@ if [[ ! $number =~ $re ]] ; then
   echo "not a number"
 fi
 ```
+
+## 整理一下:
+- https://stackoverflow.com/questions/13335516/how-to-determine-whether-a-string-contains-newlines-by-using-the-grep-command
+  - 为什么这里必须存在一个双引号！
+
+## 实际上，我们发现 bash 的一个 philosophy
+- 很多常用命令不是熟练使用，还是痛苦面具
+  - https://dashdash.io/

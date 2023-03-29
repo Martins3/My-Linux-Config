@@ -52,6 +52,8 @@ pkgs.stdenv.mkDerivation {
     lzma
     zstd
     perl
+    # @todo 不知道为什么现在 perf 缺少这个库
+    libtraceevent
   ];
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.

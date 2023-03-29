@@ -53,7 +53,7 @@ ps:
     - https://unix.stackexchange.com/questions/411159/linux-is-it-possible-to-see-only-kernel-space-threads-process
     - # @todo 理解一下这是啥含义
   - ps -elf # @todo 这个几个都是啥含义
-
+  - ps aux --sort -rss # 对于内存数量排序
 perf:
   - ls # @todo 等待整理
 
@@ -70,3 +70,5 @@ screen:
   - screen -d -m sleep 1000
   - screen -r
   - screen -list
+stress:
+  - stress-ng --vm-bytes 40000M --vm-keep --vm 8
