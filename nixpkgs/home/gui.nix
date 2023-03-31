@@ -31,18 +31,18 @@ in
     unstable.zotero
     unstable.slack
     unstable.drawio
-    # variety # wallpaper
+    # variety # wallpaper 但是 bing wallpaper 已经够好了
     # kitty
     # gource
     unstable.firefox
     unstable.microsoft-edge-dev
     # unstable.google-chrome
-    unstable.thunderbird
+    # unstable.thunderbird
     # unstable.alacritty
     wezterm
     unstable.feishu
-    tdesktop
-    unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
+    # tdesktop # telegram
+    # unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
     # nur.repos.xddxdd.wechat-uos # 别整这些虚头巴脑了，还是虚拟机吧，解决一切问题。
     # nur.repos.xddxdd.qq
     # weixin # 有趣，但是不稳定
@@ -50,9 +50,9 @@ in
     nur.repos.linyinfeng.clash-for-windows
     nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
-    rofi # @todo rofi 的使用
+    # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具
-    xmind
+    # xmind
     # obsidian
     # rustdesk
   ];
