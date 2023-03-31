@@ -99,3 +99,10 @@ nushell 正则无法自动补全
 
 ## ps 命令的替换，实在是太傲慢了
 - ps 的复杂程度，不是他可以理解的
+
+## 似乎 python 的这个也不支持
+
+```txt
+python -m venv .venv
+source .venv/bin/activate
+```

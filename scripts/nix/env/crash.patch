@@ -1,0 +1,43 @@
+diff --git a/.gitignore b/.gitignore
+index f391c5d..ab089a6 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -26,3 +26,7 @@ TAGS
+
+ # Clang's compilation database file
+ /compile_commands.json
++.ccls-cache
++.direnv
++.envrc
++default.nix
+diff --git a/Makefile b/Makefile
+index a94a243..83d4d75 100644
+--- a/Makefile
++++ b/Makefile
+@@ -282,9 +282,8 @@ gdb_unzip:
+ 	@rm -f gdb.files
+ 	@for FILE in ${GDB_FILES} dummy; do\
+ 	  echo $$FILE >> gdb.files; done
+-	@if [ ! -f ${GDB}.tar.gz ] && [ ! -f /usr/bin/wget ]; then \
+-	  echo /usr/bin/wget is required to download ${GDB}.tar.gz; echo; exit 1; fi
+-	@if [ ! -f ${GDB}.tar.gz ] && [ -f /usr/bin/wget ]; then \
++
++	@if [ ! -f ${GDB}.tar.gz ]; then \
+ 	  [ ! -t 2 ] && WGET_OPTS="--progress=dot:mega"; \
+ 	  wget $$WGET_OPTS http://ftp.gnu.org/gnu/gdb/${GDB}.tar.gz; fi
+ 	@tar --exclude-from gdb.files -xzmf ${GDB}.tar.gz
+diff --git a/gdb-10.2.patch b/gdb-10.2.patch
+index 835aae9..3e4f97d 100644
+--- a/gdb-10.2.patch
++++ b/gdb-10.2.patch
+@@ -86,8 +86,8 @@ exit 0
+  	$(ECHO_CXXLD) $(CC_LD) $(INTERNAL_LDFLAGS) $(WIN32LDAPP) \
+ -		-o gdb$(EXEEXT) gdb.o $(LIBGDB_OBS) \
+ -		$(TDEPLIBS) $(TUI_LIBRARY) $(CLIBS) $(LOADLIBES)
+-+                -o $(shell /bin/cat mergeobj) $(LIBGDB_OBS) \
+-+                $(TDEPLIBS) $(TUI_LIBRARY) $(CLIBS) $(LOADLIBES) $(shell /bin/cat mergelibs)
+++                -o $(shell cat mergeobj) $(LIBGDB_OBS) \
+++                $(TDEPLIBS) $(TUI_LIBRARY) $(CLIBS) $(LOADLIBES) $(shell cat mergelibs)
+  ifneq ($(CODESIGN_CERT),)
+  	$(ECHO_SIGN) $(CODESIGN) -s $(CODESIGN_CERT) gdb$(EXEEXT)
+  endif

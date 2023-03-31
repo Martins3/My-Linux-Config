@@ -306,3 +306,32 @@ fi
 ## 实际上，我们发现 bash 的一个 philosophy
 - 很多常用命令不是熟练使用，还是痛苦面具
   - https://dashdash.io/
+
+http://mywiki.wooledge.org/BashPitfalls 其实没必要，使用 shellcheck 即可
+
+## 一个 AWK 痛苦面具问题
+```sh
+set -E -e -u -o pipefail
+grep vendor_id /proc/cpuinfo | awk 'NR==1{print $0; exit}'
+grep flags /proc/cpuinfo | awk 'NR==1{print $0; exit}'
+```
+我发现第一个 awk 不会让 exit non-zero，而第二个会。
+
+## bash 中的 map
+- https://stackoverflow.com/questions/1494178/how-to-define-hash-tables-in-bash
+  - 使用 cpu-flags 来分析吧
+
+## 全局变量和局部变量
+- [ ] 如果想要清理
+
+```sh
+for num in "${!number[@]}"; do
+	# flags=${number[$num]}
+
+	declare -A os
+	declare -A cpu
+
+	os_set=()
+	cpu_set=()
+```
+这样，os 和 cpu 在每次 forloop 的时候，都是为空吗？

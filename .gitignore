@@ -12,6 +12,7 @@ history.txt
 *.ko
 *.o
 *.o.d
+*.out
 .tmp_versions/
 modules.order
 Module.symvers
