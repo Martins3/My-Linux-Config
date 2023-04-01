@@ -106,3 +106,9 @@ nushell 正则无法自动补全
 python -m venv .venv
 source .venv/bin/activate
 ```
+
+
+## 其实补全系统其实还行
+相比而言，zsh 的补全似乎复杂很多
+- https://unix.stackexchange.com/questions/239528/dynamic-zsh-autocomplete-for-custom-commands
+- https://zsh.sourceforge.io/Doc/Release/Completion-System.html

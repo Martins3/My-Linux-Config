@@ -352,3 +352,6 @@ if [[ $RECORD_TIME == true ]]; then
   cat /proc/cmdline >>/home/martins3/core/compile-linux/database
 fi
 ```
+
+## 为什么 bash 的复制不能有空格
+因为不能区分到底是命令还是字符串
