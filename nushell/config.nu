@@ -164,7 +164,7 @@ source /home/martins3/core/zsh/nushell.nu
 # Use docker ps to get the name of the existing container
 # Use the command docker exec -it <container name> /bin/bash to get a bash shell in the container
 
-def  sheet_key [ ] {
+def sheet_key [ ] {
   let notes = (open /home/martins3/.dotfiles/nushell/sheet.yaml)
   let notes = ($notes | transpose key note | get key | sort)
   $notes
