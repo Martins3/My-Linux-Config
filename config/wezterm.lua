@@ -108,24 +108,15 @@ return {
   launch_menu = {
     {
       label = 'M2',
-      -- @todo 怎么升级 zellij 来着？
       args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'zellij attach || zellij' },
-      -- args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'tmux attach || tmux' },
-    },
-    {
-      args = { "zsh" },
-    },
-    {
-      label = 'QEMU',
-      args = { 'ssh', '-t', '-p5556', 'root@localhost', 'zellij attach || zellij' },
     },
     {
       label = 'zellij',
       args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
     },
     {
-      label = 'tmux',
-      args = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
+      label = 'QEMU',
+      args = { 'ssh', '-t', '-p5556', 'root@localhost', 'zellij attach || zellij' },
     },
   },
   colors = {
