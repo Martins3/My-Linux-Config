@@ -37,18 +37,11 @@ in
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # virt manager 是一个图形化的 virsh ，用于创建和管理虚拟机
-  # @todo virt-manager 有意义吗？
-  # https://nixos.wiki/wiki/Virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    virtmanager
     vim
     git
     wget
     zsh
-    unstable.nushell
     unstable.tailscale
     cifs-utils
   ];
@@ -342,7 +335,7 @@ in
   boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
   # @todo 是因为打开了 vfio_virqfd 才导致中断直接进入到内核态中解决的吗?
   # @todo vfio_virqfd 在让 6.2 内核无法正常编译了，为什么
-  boot.initrd.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio" ];
+  boot.initrd.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   services.samba = {

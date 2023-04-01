@@ -921,4 +921,12 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 ## cargo install 几乎没有成功过
 cargo install rusty-krab-manager
 
+## virt-manager 可以尝试一下
+https://nixos.wiki/wiki/Virt-manager
+```txt
+virtualisation.libvirtd.enable = true;
+programs.dconf.enable = true;
+environment.systemPackages = with pkgs; [ virt-manager ];
+```
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

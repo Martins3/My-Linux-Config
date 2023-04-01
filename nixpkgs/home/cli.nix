@@ -179,6 +179,7 @@ in
     openjdk
     # dockerTools @todo # 使用 nixos 构建 docker
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
+    asciiquarium
   ];
 
   programs.zsh = {
