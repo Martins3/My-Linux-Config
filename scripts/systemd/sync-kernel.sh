@@ -43,7 +43,6 @@ done
 
 git pull
 
-
 # @todo 这几个也许要处理啊
 #include "tree_stall.h"
 #include "tree_exp.h"
@@ -58,25 +57,14 @@ done
 
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 
-RECORD_TIME=false
 
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
-if [[ $RECORD_TIME == true ]]; then
-  nix-shell --command "make clean"
-  SECONDS=0
-fi
 nix-shell --command "nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
-# @todo 真操蛋啊，系统的 perf 不能用了，需要手动编译一个
-nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# @todo 真操蛋啊，系统的 perf 不能用了
+# @todo 真操蛋啊，这种方法编译 perf 必须首先 make clean
+# nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
-if [[ $RECORD_TIME == true ]]; then
-  duration=$SECONDS
-  echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
-  echo "$(date) : $duration : " >>/home/martins3/core/compile-linux/database
-  cat /proc/cmdline >>/home/martins3/core/compile-linux/database
-fi
-
-# 编译的速度太慢了，不想每次都等那么久
+# 编译文档的速度太慢了，不想每次都等那么久
 if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
   nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 fi

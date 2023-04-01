@@ -335,3 +335,20 @@ for num in "${!number[@]}"; do
 	cpu_set=()
 ```
 这样，os 和 cpu 在每次 forloop 的时候，都是为空吗？
+
+## 补充一个 bash 这也可以，那也可以的例子
+```c
+RECORD_TIME=false
+
+if [[ $RECORD_TIME == true ]]; then
+  nix-shell --command "make clean"
+  SECONDS=0
+fi
+
+if [[ $RECORD_TIME == true ]]; then
+  duration=$SECONDS
+  echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
+  echo "$(date) : $duration : " >>/home/martins3/core/compile-linux/database
+  cat /proc/cmdline >>/home/martins3/core/compile-linux/database
+fi
+```

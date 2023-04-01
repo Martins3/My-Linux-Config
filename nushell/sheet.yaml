@@ -66,6 +66,7 @@ vimscript:
   - "调试方法 echom 然后 :message 查看，注意不能是 echo"
 nvim:
   - vim.api.nvim_err_writeln("hello \n") -- 不要忘记 \n
+  - nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
 screen:
   - screen -d -m sleep 1000
   - screen -r
