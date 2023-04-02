@@ -79,6 +79,11 @@ snippet note_glob_basic "glob basic"
 # 6. 变量扩展
 # 7. 子命令扩展
 # 8. 算术扩展
+#
+# 因为 {start..end} 扩展，所以可以写这个:
+# for i in {1..30}; do
+#   echo "$i"
+# done
 endsnippet
 
 snippet note_glob_number "glob 量词"
@@ -461,4 +466,15 @@ vm=("${vm[@]:1}")
 echo ${#array[@]}
 # 访问最后一个元素
 echo ${array[-1]}
+endsnippet
+
+snippet note_trap "array basic"
+function finish {
+  if [[ $? == 0 ]]; then
+    echo "bad"
+  fi
+  echo "good"
+}
+
+trap finish EXIT
 endsnippet

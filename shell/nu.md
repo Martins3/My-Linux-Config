@@ -92,6 +92,7 @@ nushell 正则无法自动补全
 - mv a.diff a.sh b.diff `2023-3-14/` 这个代码是会报错的
 
 ## 内置的 ps 不知道如何替换回来
+而且内置的 ps 功能很弱
 
 ## kill -l 这个命令会出错
 
@@ -106,7 +107,19 @@ nushell 正则无法自动补全
 python -m venv .venv
 source .venv/bin/activate
 ```
+https://github.com/nushell/nushell/issues/852
 
+## 返回值和常规语言不同
+```nu
+def foo [] { return 12 }
+
+foo
+```
+
+## 如果一个命令返回为 non-zero ，那么必须借助 complete 非常烦人
+
+## 没有 nufmt
+https://github.com/nushell/nushell/issues/3938
 
 ## 其实补全系统其实还行
 相比而言，zsh 的补全似乎复杂很多

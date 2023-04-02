@@ -33,13 +33,13 @@ in
     unstable.drawio
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     # kitty
-    # wezterm
+    wezterm
+    # unstable.alacritty
     # gource
     unstable.firefox
     unstable.microsoft-edge-dev
     # unstable.google-chrome
     # unstable.thunderbird
-    unstable.alacritty
     unstable.feishu
     # tdesktop # telegram
     # unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
