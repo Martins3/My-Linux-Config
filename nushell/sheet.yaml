@@ -17,6 +17,7 @@ find:
   - "https://www.shellcheck.net/wiki/SC2038"
   - "hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum"
 git:
+  - git log --format="%h --> %B"
   - -> 如何删除一个已经提交的行为
   - git reset --hard HEAD~1
   - git push -f <remote> <branch>
