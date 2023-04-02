@@ -571,7 +571,6 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 - https://github.com/Misterio77/nix-colors : 主题
 
 ## 资源
-- https://github.com/nixos-cn/flakes : nixos 中文社区
 - https://github.com/mikeroyal/NixOS-Guide : 乱七八糟的，什么都有
 - https://github.com/mitchellh/nixos-config
 - https://github.com/Misterio77/nix-starter-configs : Simple and documented config templates to help you get started with NixOS + home-manager + flakes. All the boilerplate you need!
@@ -928,5 +927,9 @@ virtualisation.libvirtd.enable = true;
 programs.dconf.enable = true;
 environment.systemPackages = with pkgs; [ virt-manager ];
 ```
+
+## [NixOS 常见问题解答](https://github.com/nixos-cn/NixOS-FAQ)
+
+nixos 中文社区下的项目 https://github.com/nixos-cn/flakes :
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

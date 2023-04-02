@@ -29,6 +29,8 @@ git:
   - git reset --hard origin/master
   - -> 如果 git blame 一个已经被删除的内容
   - git log -S <string> path/to/file
+  - -> 如何将多个 commit squash 一下
+  - git reset --soft HEAD~3 && git commit
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"
@@ -73,3 +75,5 @@ screen:
   - screen -list
 stress:
   - stress-ng --vm-bytes 40000M --vm-keep --vm 8
+gnome:
+  - eog # 在终端中打开图片

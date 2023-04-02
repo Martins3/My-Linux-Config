@@ -118,6 +118,10 @@ return {
       label = 'QEMU',
       args = { 'ssh', '-t', '-p5556', 'root@localhost', 'zellij attach || zellij' },
     },
+    {
+      label = 'bare',
+      args = { 'zsh' },
+    },
   },
   colors = {
     tab_bar = {
