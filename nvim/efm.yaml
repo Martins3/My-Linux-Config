@@ -1,0 +1,40 @@
+version: 2
+root-markers:
+  - .git/
+lint-debounce: 0s
+log-file: /tmp/martins3-nvim-efm.log
+log-level: 1
+
+tools:
+  rst-lint: &rst-lint
+    lint-command: 'rst-lint'
+    lint-formats:
+      - '%tNFO %f:%l %m'
+      - '%tARNING %f:%l %m'
+      - '%tRROR %f:%l %m'
+      - '%tEVERE %f:%l %m'
+
+  rst-pandoc: &rst-pandoc
+    format-command: 'pandoc -f rst -t rst -s --columns=79'
+
+  sh-shellcheck: &sh-shellcheck
+    lint-command: 'shellcheck -f gcc -x'
+    lint-source: 'shellcheck'
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+
+  sh-shfmt: &sh-shfmt
+    format-command: 'shfmt -ci -s -bn'
+    format-stdin: true
+
+
+languages:
+  rst:
+    - <<: *rst-lint
+    - <<: *rst-pandoc
+
+  sh:
+    - <<: *sh-shellcheck
+    - <<: *sh-shfmt

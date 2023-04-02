@@ -88,14 +88,15 @@ require("packer").startup({
     -- use 'wakatime/vim-wakatime' -- 代码时间统计
     -- latex
     use 'lervag/vimtex'
-    -- 其他
+    -- lsp 增强
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
+    use 'jackguo380/vim-lsp-cxx-highlight' -- ccls 高亮需要
+    -- 其他
     use 'martins3/fcitx.nvim' -- 自动切换输入法
     use "olimorris/persisted.nvim" -- 打开 vim 的时候，自动回复上一次打开的样子
     use 'anuvyklack/hydra.nvim' -- 消除重复快捷键，可以用于调整 window 大小等
     use 'ojroques/vim-oscyank' -- 让 nvim 在远程 server 上拷贝到本地剪切板上
     use 'azabiong/vim-highlighter' -- 高亮多个搜索内容
-    use 'jackguo380/vim-lsp-cxx-highlight' -- ccls 高亮需要
     use 'dstein64/vim-startuptime' -- 分析 nvim 启动时间
   end,
 })

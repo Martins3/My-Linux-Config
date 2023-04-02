@@ -107,8 +107,6 @@ let s:coc_extensions = [
       \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-go',
-      \ 'coc-sh',
-      \ 'coc-diagnostic',
       \ 'coc-sumneko-lua',
       \ 'coc-xml',
       \ 'coc-json',

@@ -83,6 +83,7 @@ in
     virt-manager
     meson
     neovim
+    efm-langserver # 集成 shellcheck
     # wakatime
     shellcheck
     shfmt
