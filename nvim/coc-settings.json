@@ -1,5 +1,11 @@
 {
   "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "filetypes": [
+        "sh"
+      ]
+    },
     "nix": {
       "command": "rnix-lsp",
       "filetypes": [
@@ -43,13 +49,6 @@
   "translator.engines": [
     "youdao"
   ],
-  "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck",
-    "nu": "nu-check --debug"
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    "sh": "shfmt"
-  },
   "sumneko-lua.enableNvimLuaDev": true,
   "Lua.telemetry.enable": true,
   "semanticTokens.enable": true,
