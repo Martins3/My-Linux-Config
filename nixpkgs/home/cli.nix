@@ -101,6 +101,7 @@ in
     kernelshark # @todo 使用一下
     trace-cmd
     unstable.bcc
+    acpi
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
     parted
