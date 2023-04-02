@@ -353,5 +353,52 @@ if [[ $RECORD_TIME == true ]]; then
 fi
 ```
 
-## 为什么 bash 的复制不能有空格
+## 为什么 bash 的赋值不能有空格
 因为不能区分到底是命令还是字符串
+
+## 重点分析下 find 命令
+### 如何 flatten 一个目录
+- https://unix.stackexchange.com/questions/52814/flattening-a-nested-directory
+- find . -type f -exec ls '{}' +
+  - 所有的参数一次执行
+- find . -type f -exec ls '{}' \;
+  - 对于每一个文件，分别 fork 出来执行
+- find . -type f -execdir ls '{}' +
+  - 切换到对应的目录执行
+
+```txt
+       -exec command ;
+              Execute command; true if 0 status is returned.  All following arguments to find are taken to be arguments  to
+              the  command  until an argument consisting of `;' is encountered.  The string `{}' is replaced by the current
+              file name being processed everywhere it occurs in the arguments to the command, not just in  arguments  where
+              it  is alone, as in some versions of find.  Both of these constructions might need to be escaped (with a `\')
+              or quoted to protect them from expansion by the shell.  See the EXAMPLES section for examples of the  use  of
+              the  -exec  option.  The specified command is run once for each matched file.  The command is executed in the
+              starting directory.  There are unavoidable security problems surrounding use of the -exec action; you  should
+              use the -execdir option instead.
+
+       -exec command {} +
+              This  variant  of  the -exec action runs the specified command on the selected files, but the command line is
+              built by appending each selected file name at the end; the total number of invocations of the command will be
+              much less than the number of matched files.  The command line is built in much the same way that xargs builds
+              its command lines.  Only one instance of `{}' is allowed within the command, and it must appear at  the  end,
+              immediately  before  the `+'; it needs to be escaped (with a `\') or quoted to protect it from interpretation
+              by the shell.  The command is executed in the starting directory.  If any invocation with the  `+'  form  re‐
+              turns  a  non-zero value as exit status, then find returns a non-zero exit status.  If find encounters an er‐
+              ror, this can sometimes cause an immediate exit, so some pending commands may not be run at  all.   For  this
+              reason  -exec my-command ... {} + -quit  may  not  result  in my-command actually being run.  This variant of
+              -exec always returns true.
+```
+
+## 才知道单双引号导致换行不同
+```sh
+a="
+b
+
+
+a
+"
+
+echo "$a"
+echo $a
+```

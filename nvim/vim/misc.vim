@@ -39,8 +39,6 @@ func! Preivew()
   let ext = expand("%:e")
   if ext ==# "md"
     exec "MarkdownPreview"
-  elseif ext ==# "nu"
-    exec "!nu %"
   elseif ext ==# "tex"
     exec "VimtexView"
   else

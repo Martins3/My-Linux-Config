@@ -180,6 +180,7 @@ in
     # dockerTools @todo # 使用 nixos 构建 docker
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
+    bc # bash 数值计算
   ];
 
   programs.zsh = {
