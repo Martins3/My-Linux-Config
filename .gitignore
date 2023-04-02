@@ -19,3 +19,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 compile_commands.json
+
+.direnv
+.envrc
