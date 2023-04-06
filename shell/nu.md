@@ -125,3 +125,15 @@ https://github.com/nushell/nushell/issues/3938
 相比而言，zsh 的补全似乎复杂很多
 - https://unix.stackexchange.com/questions/239528/dynamic-zsh-autocomplete-for-custom-commands
 - https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+
+## 报错提示有问题
+
+zsh 可以实现如下效果，但是 nu 不可以
+```txt
+🧀  cpuid -1
+The program 'cpuid' is not in your PATH. It is provided by several packages.
+You can make it available in an ephemeral shell by typing one of the following:
+  nix-shell -p cpuid
+  nix-shell -p haskellPackages.hlibcpuid
+  nix-shell -p msr-tools
+```

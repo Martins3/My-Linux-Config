@@ -102,6 +102,7 @@ in
     trace-cmd
     unstable.bcc
     acpi
+    cpuid
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
     parted
@@ -112,7 +113,8 @@ in
     # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
     pstree
-    dpdk
+    # dpdk
+    # firecracker
     inetutils
     (python3.withPackages (p: with p; [
       pandas
@@ -163,7 +165,6 @@ in
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
     sshfs
-    # firecracker
     # kvmtool
     packer # 制作 qcow2 镜像
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？

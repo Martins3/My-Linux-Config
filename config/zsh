@@ -37,23 +37,6 @@ function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
 }
 
-function t() {
-  while getopts "rh" opt; do
-    case $opt in
-      r)
-        sudo bpftrace -e "kretprobe:${@:1} { printf(\"returned: %lx\\n\", retval); }"
-        return
-        ;;
-      h)
-        ;;
-      *)
-        exit 1
-        ;;
-    esac # --- end of case ---
-  done
-  sudo bpftrace -e "kprobe:${@:1} {  @[kstack] = count(); }"
-}
-
 function px() {
   PROXY_SERVER_IP="http://127.0.0.1"
   PROXY_SERVER_PORT=8889
@@ -135,3 +118,6 @@ alias ag=rg
 # alias cp=xcp
 alias he="nvim +10000  /home/martins3/.dotfiles/nushell/sheet.yaml"
 alias kvm_stat="sudo /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat"
+alias p="python -m venv .venv && source .venv/bin/activate"
+alias i="ipython"
+alias t="/home/martins3/.dotfiles/config/sh/t.sh"
