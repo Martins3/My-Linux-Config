@@ -410,3 +410,8 @@ https://stackoverflow.com/questions/5693312/1-vs-1
 ## 神奇的双引号
 tag_prefix="${i%."$tag_numeber"}"
 才发现双引号是可以嵌套，但是嵌套规则到底是什么不知道
+
+## 介绍一下continue 的用法
+fadfadf || continue
+
+## https://stackoverflow.com/questions/7442417/how-to-sort-an-array-in-bash

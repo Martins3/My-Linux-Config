@@ -262,14 +262,14 @@ done
 endsnippet
 
 snippet note_forarray "for every element in array"
-for i in "${array[@]}"; do
+for i in "${$1[@]}"; do
         echo "$i"
 done
 endsnippet
 
 snippet note_forarrayindex "for every element in array"
-for ((i=0;i<${#arr[@]};i++)); do
-        printf '%s\n' "${arr[i]}"
+for ((i=0;i<${#$1[@]};i++)); do
+        printf '%s\n' "${$1[i]}"
 done
 endsnippet
 
