@@ -1,6 +1,7 @@
 priority -50
-# notes based on https://wangdoc.com/bash/
-# note based on https://github.com/dylanaraps/pure-bash-note
+# reference:
+# - https://wangdoc.com/bash/
+# - https://github.com/dylanaraps/pure-bash-note
 
 snippet note_variable_default "变量默认值"
 # 如果 varname 不是"存在且不为空"
@@ -339,6 +340,17 @@ endsnippet
 
 snippet note_sed "sed"
 # sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
+# 在 pattern 前插入
+sed -i '/pattern/a \
+line1 \
+line2' inputfile
+# 在 pattern 后插入
+sed -i '/pattern/a \
+line1 \
+line2' inputfile
+# 替换
+sed -i 's/old-text/new-text/g' input.txt
+
 endsnippet
 
 snippet note_xxx "template for any bash script"
@@ -365,8 +377,16 @@ snippet note_tee "如何 append"
 cat /proc/cpuinfo | grep "$i" | tee -a a
 endsnippet
 
-snippet note_awk "读取一行中的第二个"
+snippet note_awk "basic"
+# 读取一行中的第二个
 awk -F '"' '{print \$2}' your_input_file
+# 1. awk 可以使用 printf
+# 2. awk 的 END 是处理完之后进行一个操作
+echo "1\n2 " | awk '{sum+=$1}; END  {printf "average is %f",sum/NR}'
+# 3. awk 支持 associated array
+echo -e "martins3 12\nmartins4 13" | awk '{ Ip[$1]+=$2; } END{ for (var in Ip) print var, "access", Ip[var], "times" }'
+# 4. 跳过第一行
+awk '{for (i=2; i<=NF; i++) print $i}' filename
 endsnippet
 
 snippet note_awk_nr_nf "awk 中 NR NF"
