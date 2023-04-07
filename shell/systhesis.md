@@ -8,36 +8,19 @@
 3. 和主流出入过大
 4. 默认行为不可控
 
-应该很少人使用 bash 来写大型系统，但是我发现即使是写几百行的小项目，也非常痛苦。
 
 [官方文档](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) 几乎没有什么意义
-
-bash 让人又爱又恨！
-- 爱: 简洁。
-- 恨: 太简洁。
-
-在批处理作业上，bash 的简洁毋庸置疑，因为其本身定位就是各种现成工具的胶水，@todo 列举一下使用 bash 的大型项目。
-但是 bash 的怪癖之处实在是太多了，难以记忆，难以理解。
 
 stackoverflow 是有一个问题: [如何将 string 拆分为数组](https://stackoverflow.com/questions/10586153/how-to-split-a-string-into-an-array-in-bash)，
 看完各个回答之后，我的感受就是为什么要设计的这么复杂。
 
-使用 zsh 很多年了，但是替换
 [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)，我强烈推荐使用 zsh
 
 
 ## 各种工具也非常难
 [modern unix](https://github.com/ibraheemdev/modern-unix) 的项目也是总结了一大堆。
-
 - https://github.com/agarrharr/awesome-cli-apps
 - https://github.com/alebcay/awesome-shell
-
-## 思想上要重视
-bash 不是一个可以随便用用就可以掌握的东西。
-
-## 写 bash 容易出错
-
-## bash 的语法和大家常用的语言差别太大了
 
 ## 很多简单的
 1. 浮点加减
