@@ -1,12 +1,68 @@
-# 这一次我要学会 bash
-
-基本参考 [Bash 脚本教程](https://wangdoc.com/bash/index.html)
+# 如何彻底征服 bash script
 
 ![](https://preview.redd.it/8a7tpszpdgj41.png?width=640&height=360&crop=smart&auto=webp&s=04e05726a9bb67ff47a8599101931409953859a0)
 
+## 我很忙，不想听这么多废话
+
+
+## 背景
+大一升大二的暑假中，一个大佬帮我安装了 Linux，之后的几周时间逐渐熟悉并喜欢上了 shell 的使用，
+但是我最近发现自己的对于 shell 下水平还是停留在那个暑假，干什么都需要 stackoverflow 一下，
+一个问题总是在重复的查询，写一个 100 行的 bash script 需要一个上午。这种状况真的让人暴跳如雷。
+
+我的之前的对于 bash 错误认识:
+1. bash 不重要。人的手动操作是不可靠的，不可复现的，难以快速复制给其他人的，对于大多数人来说，批处理脚本非常重要，尤其是你打算写几十年的代码的时候。
+2. bash 自然而然就会掌握，无需额外的花时间掌握。至少对于我来说，不是，必须刻意学习才可以。
+3. 不要使用 Python C 语言和 bash 类比。
+
+## bash script 的设计思想
+对于 shell 编程，大致可以分为两个部分:
+- 具体的工具，例如 git ipcs 之类的
+- bash script
+
+一个工具做好一件事情，而 bash 将工具粘合起来，高效的完成各种事情。
+
+bash 的设计思想:
+-  bash 处理的是各种命令的组合，而且需要足够简洁
+  - 命令的输入输出都是 string
+    - bash 中几乎没有数据类型，任何内容都是 string
+    - 对于数值需要特殊的语法和命令
+      - `[[ -eq ]]`，`$(())` 以及 `bc`
+  - bash 将字符串处理的工作都交给 awk, sed，grep 和 cut 了
+- bash 需要足够简洁
+  - 利用 pipe
+  - 没有异常处理
+  - 没有面向对象
+  - 没有结构体
+  - 数据结构支持优先，只有 array 和 associated array
+  - 使用了大量的缩写，例如 !! !$ $!
+
+bash 没有设计出来过多的错误防护机制，几乎没什么人用 bash 写打项目。
+
+## bash 奇怪的地方
+
+## bash 设计失误
+也许是我理解不到位
+
+1. bash 使用 = 来作为相等判断，这导致bash 的赋值 `=` 两侧不能有空格。
+
+## 1. 打好基础
+[Bash 脚本教程](https://wangdoc.com/bash/index.html)
+
 ## 问题
-- 学会使用 dirname 和 basename
-- [ ] [The art of command line](https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md#%E4%BB%85%E9%99%90-os-x-%E7%B3%BB%E7%BB%9F)
+1. pstree -p
+2. fskjcg foargs
+
+注意到你可以控制每行参数个数（-L）和最大并行数（-P）
+
+最有用的大概就是 !$， 它用于指代上次键入的参数，而 !! 可以指代上次键入的命令了
+
+3. ltrace
+
+### 浏览一下 bash 的 man
+1. select
+2. 数组赋值
+a[1]=b
 
 ## [ ] http://mywiki.wooledge.org/BashPitfalls
 
@@ -26,18 +82,24 @@
 
 ## [ ] https://mywiki.wooledge.org/BashFAQ
 
-## Bash 的基本语法
-
+## echo 的额外用法
 1. -n 参数可以取消末尾的回车符
 2. -e 参数会解释引号（双引号和单引号）里面的特殊字符（比如换行符\n
 
+## 如何输出一个字符串
 在 bash 中 \ 会让下一行和上一行放到一起来解释，体会一下下面的两个命令的差别:
 ```sh
 echo "one two
-three"
+            three"
 
 echo "one two \
-three"
+             three"
+
+echo one two \
+             three
+
+echo one two
+             three
 ```
 
 ## 变量
@@ -57,19 +119,12 @@ declare "hello_$var=value"
 printf '%s\n' "$hello_world"
 ```
 
-## 数组
-拷贝:
-hobbies=( "${activities[@]}" )
-增加一项:
-hobbies=( "${activities[@]}" diving )
-myIndexedArray+=('six')
-用 unset 命令来从数组中删除一个元素：
-unset -v 'fruits[0]'
-
 ## 有用的变量
-
 - SECCOND :  记录除了给上一次到这一次的时间
 - "${FUNCNAME[@]}" : 调用栈
+
+## 一个括号是不是足够逆天
+https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs
 
 ## eval 和 exec 的区别
 https://unix.stackexchange.com/questions/296838/whats-the-difference-between-eval-and-exec/296852
@@ -81,42 +136,6 @@ https://unix.stackexchange.com/questions/296838/whats-the-difference-between-eva
 ## 常用工具
 
 ### awk
-基本参考这篇 [blog](https://earthly.dev/blog/awk-examples/)，其内容还是非常容易的。
-
-- $0 是所有的参数
-- $1  ... 是之后的逐个
-```sh
-echo "one two
-three" | awk '{print $1}'
-
-awk '{ print $1 }' /home/maritns3/core/vn/security-route.md
-```
-
-```sh
-echo "one|two|three" | awk -F_ '{print $1}'
-```
-
-- $NF seems like an unusual name for printing the last column
-- NR(number of records) 表示当前是第几行
-- NF(number of fields) : 表示当前行一共存在多少个成员
-
-```sh
-echo "one_two_three" | awk -F_ '{print NR " " $(NF - 1) " " NF}'
-```
-
-awk 的正则匹配:
-```sh
-awk '/hello/ { print "This line contains hello", $0}'
-awk '$4~/hello/ { print "This field contains hello", $4}'
-awk '$4 == "hello" { print "This field is hello:", $4}'
-```
-
-awk 的 BEGIN 和 END 分别表示在开始之前执行的内容。
-
-awk 还存在
-- Associative Arrays
-- for / if
-
 ### pushd 和 popd
 - https://unix.stackexchange.com/questions/77077/how-do-i-use-pushd-and-popd-commands
 
@@ -276,6 +295,8 @@ bash <(curl -L zellij.dev/launch) 这个命令如何理解？
 ```
 
 ## grep 和 egrep 的差别
+- https://stackoverflow.com/questions/18058875/difference-between-egrep-and-grep
+  - [ ]  对于 regex 的理解又成为了问题。
 
 ## 经典作品，阅读一下 : https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md
 
@@ -415,3 +436,25 @@ tag_prefix="${i%."$tag_numeber"}"
 fadfadf || continue
 
 ## https://stackoverflow.com/questions/7442417/how-to-sort-an-array-in-bash
+
+## dirname 和 basename
+
+## 文件处理
+
+了解如何使用 sort 和 uniq，包括 uniq 的 -u 参数和 -d 参数，具体内容在后文单行脚本节中。另外可以了解一下 comm。
+
+了解如何使用 cut，paste 和 join 来更改文件。很多人都会使用 cut，但遗忘了 join。
+
+了解如何运用 wc 去计算新行数（-l），字符数（-m），单词数（-w）以及字节数（-c）。
+
+了解 sort 的参数。显示数字时，使用 -n 或者 -h 来显示更易读的数（例如 du -h 的输出）。明白排序时关键字的工作原理（-t 和 -k）。例如，注意到你需要 -k1，1 来仅按第一个域来排序，而 -k1 意味着按整行排序。稳定排序（sort -s）在某些情况下很有用。例如，以第二个域为主关键字，第一个域为次关键字进行排序，你可以使用 sort -k1，1 | sort -s -k2，2。
+
+## awk
+
+      awk '{ x += $3 } END { print x }' myfile
+
+      egrep -o 'acct_id=[0-9]+' access.log | cut -d= -f2 | sort | uniq -c | sort -rn
+
+## hohup command &
+
+## command || true 和 command || continue 的区别？

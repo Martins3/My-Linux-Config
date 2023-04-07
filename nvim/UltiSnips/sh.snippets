@@ -360,13 +360,13 @@ snippet note_split_string_to_array "split string to array"
 IFS=';' read -r -a ADDR <<< "$IN"
 endsnippet
 
-snippet note_awk "读取一行中的第二个"
-awk -F '"' '{print \$2}' your_input_file
-endsnippet
-
 snippet note_tee "如何 append"
 # 使用 -a
 cat /proc/cpuinfo | grep "$i" | tee -a a
+endsnippet
+
+snippet note_awk "读取一行中的第二个"
+awk -F '"' '{print \$2}' your_input_file
 endsnippet
 
 snippet note_awk_nr_nf "awk 中 NR NF"
@@ -378,7 +378,16 @@ four_gg_hi
 this_k" | awk -F'_' '{ print NR " " $1 "  "  NF " " $(NF-1)}'
 endsnippet
 
-snippet note_xargs "awk 中 NR NF"
+snippet note_awk_regex "awk 中的正则"
+# 基本规则
+# \$1 ~ /pattern/
+# \$1 !~ /pattern/
+awk '/hello/ { print "This line contains hello"  "->" $0}' test.txt
+awk '\$4~/hello/ { print "This field contains hello", $4}' test.txt
+awk '\$4 == "hello" { print "This field is hello:", $4}' test.txt
+endsnippet
+
+snippet note_xargs "xargs"
 # -t : 将要执行的命令打印出来
 # -I % : 设置参数为 %
 # ls | xargs -t -I % sh -c 'echo %'
@@ -393,7 +402,7 @@ snippet note_xargs "awk 中 NR NF"
 # find . -type f -print | xargs stat -c '%a %n'
 endsnippet
 
-snippet note_basic "awk 中 NR NF"
+snippet note_basic "bash 基本内容"
 # 在 set -e 的时候，容忍一个 command 失败:
 # particular_script || true
 endsnippet
@@ -460,12 +469,17 @@ ARRAY+=('bar')
 b=("${a[@]}")
 # 清空一个 array
 arr1=()
+# 用 unset 命令来从数组中删除一个元素：
+unset -v 'array[0]'
 # slice
 vm=("${vm[@]:1}")
 # 获取数组长度
 echo ${#array[@]}
 # 访问最后一个元素
 echo ${array[-1]}
+# 修改元素，也是从 0 开始计算的
+array[2]=100
+
 endsnippet
 
 snippet note_trap "array basic"
