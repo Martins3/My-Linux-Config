@@ -47,6 +47,7 @@ in
     lsof
     lshw
     exa # more powerful ls
+    oh-my-posh # @todo for powershell
     neofetch
     bear
     tree
@@ -108,6 +109,7 @@ in
     parted
     sysbench
     linuxKernel.packages.linux_latest_libre.turbostat
+    linuxKernel.packages.linux_latest_libre.systemtap
     wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
