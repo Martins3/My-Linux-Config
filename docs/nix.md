@@ -932,4 +932,16 @@ environment.systemPackages = with pkgs; [ virt-manager ];
 
 nixos 中文社区下的项目 https://github.com/nixos-cn/flakes :
 
+## 如何编译一个静态的 bear 出来
+- 问题 1
+  - 将三个库放到 with pkgs.pkgsStatic 中，但是发现 grpc 都无法正确使用
+- 问题 2
+  - bear 本身对于 static 的支持不够好，居然还存在 preload 的方法，应该在
+source/CMakeLists.txt 将 set(SUPPORT_PRELOAD 1) 去掉，可以辅助速度
+- 问题 3
+  - 打上上一个的补丁， with pkgs.buildPackages; 中使用 glibc.static 会编译失败，但是去掉之后，会最后和 glibc 链接
+  - 使用 glibc.static 中是可以编译出来静态环境 a.out 的，所以我更加怀疑是 bear 项目本身的原因
+
+尝试到此结束，不如去分析一下 signal_pending 的问题
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
