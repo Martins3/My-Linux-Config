@@ -2,8 +2,8 @@
 { config, pkgs, ... }:
 
 let
-  # mkpasswd -m sha-512
-  passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
+  # 使用 mkpasswd -m sha-512 生成密码之后存储在这个文件中
+  passwdFile = "/home/martins3/.passwd";
 
   unstable = import <nixos-unstable> { };
 in
@@ -118,14 +118,14 @@ in
   systemd.network.wait-online.timeout = 0;
 
   users.mutableUsers = false;
-  users.users.root.hashedPassword = passwd;
+  users.users.root.passwordFile = passwdFile;
   users.users.martins3 = {
     isNormalUser = true;
     shell = pkgs.zsh;
     # shell = pkgs.nushell;
     home = "/home/martins3";
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    hashedPassword = passwd;
+    passwordFile = passwdFile;
   };
 
   boot = {
