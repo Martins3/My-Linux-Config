@@ -80,8 +80,9 @@ in
     OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     ninja
     libvirt # 提供 virsh
+    qemu
     nix-index
-    virt-manager
+    # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     neovim
     efm-langserver # 集成 shellcheck
@@ -109,7 +110,7 @@ in
     parted
     sysbench
     linuxKernel.packages.linux_latest_libre.turbostat
-    linuxKernel.packages.linux_latest_libre.systemtap
+    /* linuxKernel.packages.linux_latest_libre.systemtap */ # @todo 这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
     wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
@@ -161,7 +162,6 @@ in
     # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
     libcgroup
     bat # better cat
-    xcp # better cp
     procs # better ps
     cloc
     tokei # 代码统计工具，比 cloc 性能好
@@ -185,6 +185,7 @@ in
     # dockerTools @todo # 使用 nixos 构建 docker
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
+    # ipmiview # supermicro 服务器配套设施，装不上
     bc # bash 数值计算
   ];
 
