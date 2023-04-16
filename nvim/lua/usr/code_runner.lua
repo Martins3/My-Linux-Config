@@ -1,8 +1,8 @@
 local function microsoft_edge()
-  if vim.fn.has('macunix') then
-    return "/Applications/Microsoft\\ Edge.app/Contents/MacOS/Microsoft\\ Edge $file"
-  else
+  if vim.loop.os_uname().sysname == "Linux" then
     return "microsoft-edge-dev $fileName"
+  else
+    return "/Applications/Microsoft\\ Edge.app/Contents/MacOS/Microsoft\\ Edge $file"
   end
 end
 
@@ -13,8 +13,10 @@ require('code_runner').setup {
   },
   filetype = {
     python = "python3 $file",
-    c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g -lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",
-    cpp = "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o $fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
+    c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g " ..
+    "-lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",
+    cpp = "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o" ..
+    "$fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     sh = "bash $file",
     html = microsoft_edge(),
     rust = "cargo run",
