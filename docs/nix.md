@@ -944,4 +944,7 @@ source/CMakeLists.txt 将 set(SUPPORT_PRELOAD 1) 去掉，可以辅助速度
 
 尝试到此结束，不如去分析一下 signal_pending 的问题
 
+## 输入法
+https://github.com/NixOS/nixpkgs/issues/53085
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

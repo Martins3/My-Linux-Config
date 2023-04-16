@@ -24,3 +24,7 @@ docker compose down # 删除
 - 启动 shell 次数
 - ls 次数
 - nvim 次数
+
+## 机箱温度
+
+## page fault
