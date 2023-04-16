@@ -120,7 +120,7 @@ printf '%s\n' "$hello_world"
 ```
 
 ## 有用的变量
-- SECCOND :  记录除了给上一次到这一次的时间
+- SECCOND : 记录除了给上一次到这一次的时间
 - "${FUNCNAME[@]}" : 调用栈
 
 ## 一个括号是不是足够逆天
@@ -460,3 +460,5 @@ fadfadf || continue
 ## command || true 和 command || continue 的区别？
 
 ## https://github.com/johnkerl/miller
+
+## https://linuskarlsson.se/blog/shebang-shenanigans/
