@@ -93,7 +93,14 @@ return {
       mods = 'CTRL|SHIFT',
       action = wezterm.action.DisableDefaultAssignment,
     },
-    -- { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.ShowLauncher },
+    {
+      key = 't',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.SpawnCommandInNewTab {
+        args = { '/bin/sh', '-l', '-c', 'zellij attach || zellij' },
+      },
+      -- action = wezterm.action.ShowLauncher
+    },
     { key = 'F2', mods = '', action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
@@ -113,7 +120,7 @@ return {
     },
     {
       label = 'zellij',
-      args = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
+      args = { '/bin/sh', '-l', '-c', 'zellij attach || zellij' },
     },
     {
       label = 'QEMU',
@@ -132,34 +139,34 @@ return {
       active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
     }
   },
-  -- 这两个配置是互斥的，等到什么时候找到至尊壁纸的时候再换吧
-  -- >>>>
-  -- window_background_opacity = 0.8,
-  -- window_background_gradient = {
-  --   orientation = "Vertical",
-  --   interpolation = "Linear",
-  --   blend = "Rgb",
-  --   colors = {
-  --     "#121212",
-  --     "#202020"
-  --   }
-  -- },
+  -- 这两个配置是互斥的，前面那个是使用模糊颜色，后面使用图片
+  -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  window_background_opacity = 0.8,
+  window_background_gradient = {
+    orientation = "Vertical",
+    interpolation = "Linear",
+    blend = "Rgb",
+    colors = {
+      "#121212",
+      "#202020"
+    }
+  },
   -- ================================================================
   -- https://www.bing.com/th?id=OHR.WildGarlic_ZH-CN1869796625_UHD.jpg
-  window_background_image = '/home/martins3/Pictures/BingWallpaper/20230323-WildGarlic_ZH-CN1869796625_UHD.jpg',
-  window_background_image_hsb = {
-    -- Darken the background image by reducing it to 1/3rd
-    brightness = 0.04,
-    -- You can adjust the hue by scaling its value.
-    -- a multiplier of 1.0 leaves the value unchanged.
-    hue = 1.0,
-    -- You can adjust the saturation also.
-    saturation = 1.0,
-  },
-  -- <<<<
+  -- window_background_image = '/home/martins3/Pictures/BingWallpaper/20230323-WildGarlic_ZH-CN1869796625_UHD.jpg',
+  -- window_background_image_hsb = {
+  --   -- Darken the background image by reducing it to 1/3rd
+  --   brightness = 0.04,
+  --   -- You can adjust the hue by scaling its value.
+  --   -- a multiplier of 1.0 leaves the value unchanged.
+  --   hue = 1.0,
+  --   -- You can adjust the saturation also.
+  --   saturation = 1.0,
+  -- },
+  -- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   freetype_load_target = "Normal",
   enable_kitty_graphics = true,
-  -- double 那个图标没有没办法正常渲染，也许参考这里解决下吧
+  -- docker 那个图标没有没办法正常渲染，也许参考这里解决下吧
   -- https://wezfurlong.org/wezterm/config/fonts.html
   warn_about_missing_glyphs = false
 }
