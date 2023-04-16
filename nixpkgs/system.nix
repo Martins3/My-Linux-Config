@@ -236,9 +236,7 @@ in
     enable = true;
   };
 
-  services.jenkins = {
-    enable = true;
-  };
+  services.jenkins.enable = false;
 
   systemd.user.services.kernel = {
     enable = true;
