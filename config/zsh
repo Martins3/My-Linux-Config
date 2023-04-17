@@ -22,16 +22,6 @@ if [[ $ID == "nixos" ]];then
 fi
 eval "$(starship init zsh)"
 
-function gscp() {
-  file_name=$1
-  if [ -z "$file_name" ]; then
-    echo $0 file
-    return 1
-  fi
-  ip_addr=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
-  file_path=$(readlink -f $file_name)
-  echo scp -r $(whoami)@${ip_addr}:$file_path .
-}
 
 function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
@@ -121,3 +111,4 @@ alias kvm_stat="sudo /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat"
 alias p="python -m venv .venv && source .venv/bin/activate"
 alias i="ipython"
 alias t="/home/martins3/.dotfiles/config/sh/t.sh"
+alias gscp="/home/martins3/.dotfiles/config/sh/gscp.sh"
