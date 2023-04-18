@@ -99,30 +99,32 @@ grep $var /proc/cpuinfo # 这个有问题，被展开为 grep cpu family /proc/c
 ## [ ] 居然还有好几个
 shopt -s extglob nullglob globstar
 
-## 无法理解
-### 为什么 subcommand 是可以无视 set -e 的
-```sh
-set -e
-function b() {
-  cat g
-  cat g
-  cat g
-  cat g
-  cat g
-}
-
-function a() {
-  cat g || true
-
-  b # 如果直接调用 b ，那么 b 中第一个就失败
-  a=$(b) # 但是如果是这种调用方法，b 中失败可以继续
-}
-
-a
-```
-
 ## 关键参考
 - https://mywiki.wooledge.org/BashFAQ
 - http://mywiki.wooledge.org/BashPitfalls
 
 [^1]: [glob](https://mywiki.wooledge.org/glob)
+
+
+## 方法
+
+### 一个 template
+其他的都比较容易理解，但是除了
+[set -E ](https://stackoverflow.com/questions/64852814/in-bash-shell-e-option-explanation-what-does-any-trap-inherited-by-a-subshell)
+
+1. shell functions
+2. command substitutions
+3. subshell
+
+bash 在 subshell 中会去掉 set -e 的属性，但是可以 `inherit_errexit` 将
+
+```txt
+inherit_errexit
+        If set, command substitution inherits the value of the errexit option, instead of unsetting it in the subshell environment.  This option is enabled when posix mode is enabled.
+```
+
+### 不要被 posix 分心
+
+bash 才是标准，posix 不是!
+
+bash 中的 --posix 也不用理会。

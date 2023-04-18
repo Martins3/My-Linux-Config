@@ -89,26 +89,25 @@ endsnippet
 
 snippet note_glob_number "glob 量词"
 # glob 量词和 regex 中 ? * + 类似
-# ?(pattern-list)：匹配零个或一个模式。
-# *(pattern-list)：匹配零个或多个模式。
-# +(pattern-list)：匹配一个或多个模式。
-# @(pattern-list)：只匹配一个模式。
-# !(pattern-list)：匹配给定模式以外的任何内容。
-#
+?(pattern-list)：匹配零个或一个模式。
+*(pattern-list)：匹配零个或多个模式。
++(pattern-list)：匹配一个或多个模式。
+@(pattern-list)：只匹配一个模式。
+!(pattern-list)：匹配给定模式以外的任何内容。
+
 # 比如匹配
-# shopt -s extglob nullglob
-# for i in rime/*.@(yaml|txt);do
-#   echo $i
-# done
-#
-# [[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
+shopt -s extglob nullglob
+for i in rime/*.@(yaml|txt);do
+  echo $i
+done
+
+[[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
 endsnippet
 
 snippet note_globstar "globstar"
-# 使用 globstar 可以匹配整个目下的所有文件，如果没有，只能匹配一层
 shopt -s globstar
 for file in "$(pwd)"/**; do
-    printf '%s\n' "$file"
+	printf '%s\n' "$file"
 done
 shopt -u globstar
 
@@ -125,7 +124,7 @@ endsnippet
 
 snippet note_getoption "参数选项"
 function usage() {
-  echo "Usage :   [options] [--]
+	echo "Usage :   [options] [--]
 
     Options:
     -h|help       Display this message"
@@ -133,18 +132,18 @@ function usage() {
 
 cmd=""
 while getopts "hc:" opt; do
-  case \$opt in
-  c) cmd=\${OPTARG} ;;
-  h)
-    usage
-    exit 0
-    ;;
-  *)
-    echo -e "\n  Option does not exist : OPTARG\n"
-    usage
-    exit 1
-    ;;
-  esac
+	case \$opt in
+		c) cmd=\${OPTARG} ;;
+		h)
+			usage
+			exit 0
+			;;
+		*)
+			echo -e "\n  Option does not exist : OPTARG\n"
+			usage
+			exit 1
+			;;
+	esac
 done
 shift $((OPTIND - 1))
 endsnippet
@@ -325,10 +324,10 @@ endsnippet
 
 snippet note_exits "tail lines of file"
 function exits() {
-  if ! [ -x "$(command -v $1)" ]; then
-    echo "Error: $1 is not installed." >&2
-    exit 1
-  fi
+	if ! [ -x "$(command -v $1)" ]; then
+		echo "Error: $1 is not installed." >&2
+		exit 1
+	fi
 }
 endsnippet
 
@@ -353,17 +352,15 @@ sed -i 's/old-text/new-text/g' input.txt
 
 endsnippet
 
-snippet note_xxx "template for any bash script"
+snippet xxx "template for any bash script"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
-# https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin
-# -E : any trap on ERR is inherited
-# -u : 必须给变量赋值
+shopt -s inherit_errexit
 PROGNAME=$(basename "\$0")
 PROGDIR=$(readlink -m "$(dirname "\$0")")
 for i in "$@"; do
-  echo "$i"
+	echo "$i"
 done
 cd "$(dirname "\$0")"
 endsnippet
@@ -456,7 +453,7 @@ snippet note_function_para "函数基本"
 #
 # test_para 1 2 3 4 "5 6"
 # function launch() {
-# 	  str="${*:1}"
+#         str="${*:1}"
 #         arr=( "${@:1}" )
 #         arr2=( "${*:1}" )
 #         # 默认情况下 echo $arr 是输出 arr 的第一个字符
