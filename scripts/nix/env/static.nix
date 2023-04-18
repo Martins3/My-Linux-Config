@@ -1,8 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
-# 参考 nixpkgs pkgs/development/tools/build-managers/bear/default.nix
 pkgs.stdenv.mkDerivation {
-  name = "autoconf";
+  name = "static";
 
   nativeBuildInputs = with pkgs.buildPackages; [
     gcc
