@@ -1,20 +1,10 @@
 # Rime 输入法
 
-搜狗输入法在 Linux 上的使用体验非常差，一会出现 qt4 和 qt5 的兼容问题，一会写 syslog 将我的磁盘空间全部耗尽，我真的忍无可忍。
-
 ## 安装
 - 安装[rime](https://github.com/fcitx/fcitx-rime)
-
 - 安装并且使用: [plum](https://github.com/rime/plum)
-```sh
-git clone https://github.com/rime/plum
-cd plum
-rime_dir="$HOME/.local/share/fcitx5" bash rime-install
-```
 
-`rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
-- fcitx4: $HOME/.config/fcitx/rime
-- fcitx5: mkdir $HOME/.local/share/fcitx5/rime/
+## 尝试: https://github.com/iDvel/rime-ice
 
 ## 配置一下 fcitx
 <details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" /> </p> </details>
