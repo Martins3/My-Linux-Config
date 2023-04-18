@@ -327,7 +327,7 @@ in
   system.autoUpgrade.enable = false;
 
   nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
+  # programs.steam.enable = true; # steam 安装
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
   boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
