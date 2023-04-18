@@ -55,6 +55,7 @@ require("packer").startup({
     use 'voldikss/vim-floaterm' -- 终端
     use 'akinsho/toggleterm.nvim' -- 性能好点，但是易用性和稳定性都比较差
     use 'CRAG666/code_runner.nvim' -- 一键运行代码
+    use 'samjwill/nvim-unception' -- 嵌套 nvim 自动 offload 到 host 中
     -- markdown
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install" }) -- 预览
     -- 如果 markdown-preview.nvim 安装有问题，可以尝试
