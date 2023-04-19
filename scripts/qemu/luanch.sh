@@ -14,23 +14,29 @@ function close_qemu() {
 }
 
 function debug_kernel() {
+	set -x
 	close_qemu
-	zellij run --close-on-exit -- "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s"
+        # 不要给 -- 后面的增加双引号
+	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
 	close_qemu
 }
 
 function login() {
 	close_qemu
-	zellij run --close-on-exit -- "/home/martins3/core/vn/docs/qemu/sh/alpine.sh"
+	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh
 	ssh -o '3' -p5556 root@localhost
 	close_qemu
 }
 
-while getopts "d" opt; do
+while getopts "dk" opt; do
 	case $opt in
 		d)
 			debug_kernel
+			exit 0
+			;;
+		k)
+			close_qemu
 			exit 0
 			;;
 		*)

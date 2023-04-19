@@ -275,6 +275,7 @@ in
       ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
       Restart = "no";
     };
+    wantedBy = [ "multi-user.target" ];
   };
 
   systemd.user.timers.qemu = {
