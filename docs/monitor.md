@@ -28,3 +28,9 @@ docker compose down # 删除
 ## 机箱温度
 
 ## page fault 次数
+
+## 内存的碎片化程度
+
+## buddy 的状态之类的
+
+## kvm 的状态，利用 kvm_stat 长期监测?
