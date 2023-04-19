@@ -81,8 +81,8 @@ function vfio_nvme(){
 alias dk="/home/martins3/.dotfiles/scripts/qemu/luanch.sh -d"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 alias k=/home/martins3/.dotfiles/scripts/qemu/luanch.sh
+alias kk="/home/martins3/.dotfiles/scripts/qemu/luanch.sh -k"
 alias ge="ssh -p5556 root@localhost"
-alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"

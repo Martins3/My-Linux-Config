@@ -27,4 +27,4 @@ docker compose down # 删除
 
 ## 机箱温度
 
-## page fault
+## page fault 次数

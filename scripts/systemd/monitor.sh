@@ -27,3 +27,6 @@ while true; do
   cache
   sleep 10
 done
+
+# 🧀  cat /proc/loadavg
+# 0.40 0.50 0.29 1/3210 744180
