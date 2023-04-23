@@ -51,6 +51,7 @@
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
+* [踩坑](#踩坑)
 * [调试 vim 配置](#调试-vim-配置)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
@@ -689,7 +690,7 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 nvim 配置在仓库的位置为 ./nvim
 - init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
-  - coc.vim : coc.nvim 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 的复制粘贴。
+  - coc.vim : coc.nvim 的配置，在 [coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 上微调了部分设置。
   - debug.vim : 定义了两个函数
   - misc.vim : 各种插件的细微的修改
 - lua/init.lua : 加载其他的 lua 配置
@@ -793,6 +794,9 @@ setxkbmap -option caps:swapescape
 以上技巧，部分参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
+## 踩坑
+1. 才知道 vim 中 [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089)，我使用 hydra 重新映射 jumplist 相关的键位。
+
 ## 调试 vim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
@@ -843,7 +847,6 @@ setxkbmap -option caps:swapescape
 
 <!--
 ## 问题
-- [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
 - [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
