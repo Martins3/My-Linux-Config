@@ -67,15 +67,6 @@ let g:floaterm_keymap_prev   = '<C-p>'
 let g:floaterm_keymap_new    = '<C-n>'
 let g:floaterm_keymap_toggle = '<C-t>'
 
-autocmd TermEnter term://*toggleterm#*
-      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-
-" By applying the mappings this way you can pass a count to your
-" mapping to open a specific window.
-" For example: 2<C-n> will open terminal 2
-nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-inoremap <silent><c-n> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
-
 " 默认不要折叠 markdown
 let g:vim_markdown_folding_disabled = 1
 
