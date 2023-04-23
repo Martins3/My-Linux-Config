@@ -85,7 +85,9 @@ if $USERNAME == "martins3"
 endif
 
 
-colorscheme tokyonight
+" colorscheme tokyonight
+" colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+colorscheme catppuccin-macchiato
 " this keymapping originally set by whichkey doesn't work in neovim 0.8
 noremap <Space>bc :BDelete hidden<cr>
 

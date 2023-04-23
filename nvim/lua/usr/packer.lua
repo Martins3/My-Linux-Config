@@ -40,6 +40,7 @@ require("packer").startup({
     use 'xiyaowong/nvim-transparent' -- 可以移除掉背景色，让 vim 透明
     -- 颜色主题
     use 'folke/tokyonight.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
     -- git 管理
     use 'tpope/vim-fugitive' -- 显示 git blame，实现一些基本操作的快捷执行
     use 'rhysd/git-messenger.vim' -- 利用 git blame 显示当前行的 commit message
