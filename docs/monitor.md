@@ -33,4 +33,4 @@ docker compose down # 删除
 
 ## buddy 的状态之类的
 
-## kvm 的状态，利用 kvm_stat 长期监测?
+## kvm 的状态，利用 kvm_stat 长期监测
