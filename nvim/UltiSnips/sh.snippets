@@ -104,14 +104,14 @@ done
 [[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
 endsnippet
 
-snippet note_globstar "globstar"
+snippet note_glob "globstar"
+# dotglob 参数可以让扩展结果包括隐藏文件（即点开头的文件）
+# nocaseglob 参数可以让通配符扩展不区分大小写。
+# failglob 参数使得通配符不匹配任何文件名时，Bash 会直接报错，而不是让各个命令去处理。
+# nullglob 参数可以让通配符不匹配任何文件名时，返回空字符。
+# globstar参数可以使得**匹配零个或多个子目录。该参数默认是关闭的。
+# 例如可以，使用下面的命令来 匹配当前目录下的所有 sh 文件
 shopt -s globstar
-for file in "$(pwd)"/**; do
-	printf '%s\n' "$file"
-done
-shopt -u globstar
-
-# 匹配当前目录下的所有 sh 文件
 git checkout -- **/*.sh
 endsnippet
 
@@ -227,7 +227,7 @@ snippet note_cmpfile "compare file"
 # [[ -t fd ]]：如果 fd 是一个文件描述符，并且重定向到终端，则为true。 这可以用来判断是否重定向了标准输入／输出／错误。
 # [[ -u file ]]：如果 file 存在并且设置了 setuid 位，则为true。
 # [[ -w file ]]：如果 file 存在并且可写（当前用户拥有可写权限），则为true。
-# [[ -x file ]]：如果 file 存在并且可执行（有效用户有执行／搜索权限），则为true。
+# [[ -f file && -x file ]]：如果 file 存在并且可执行（有效用户有执行／搜索权限），则为true。 -x 对于文件夹总是成立。
 # [[ file1 -nt file2 ]]：如果 FILE1 比 FILE2 的更新时间最近，或者 FILE1 存在而 FILE2 不存在，则为true。
 # [[ file1 -ot file2 ]]：如果 FILE1 比 FILE2 的更新时间更旧，或者 FILE2 存在而 FILE1 不存在，则为true。
 # [[ FILE1 -ef FILE2 ]]：如果 FILE1 和 FILE2 引用相同的设备和 inode 编号，则为true。
@@ -298,12 +298,18 @@ function trim_all() {
 }
 endsnippet
 
-snippet note_iter_dir "iter dir recursively"
+snippet note_forfiles "遍历一个文件夹下文件"
+# 递归的遍历
 shopt -s globstar
 for file in "$(pwd)"/**; do
         printf '%s\n' "$file"
 done
 shopt -u globstar
+
+# 仅仅显示当前目录的文件和目录
+for file in "$(pwd)"/*; do
+        printf '%s\n' "$file"
+done
 endsnippet
 
 snippet note_head "head lines of file"
