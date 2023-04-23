@@ -10,7 +10,7 @@ local hint = [[
 ]]
 
 Hydra({
-  name = 'Draw Diagram',
+  name = 'Adjust Window Size',
   hint = hint,
   config = {
     color = 'pink',
@@ -25,13 +25,42 @@ Hydra({
   mode = 'n',
   body = 'ca',
   heads = {
-    { 'k', '5<C-w>+' },
-    { 'j', '5<C-w>-', { desc = 'j/k height' } },
-    { 'h', '5<C-w>>', },
-    { 'l', '5<C-w><', { desc = ' h/l width' } },
-    { '<Esc>', nil, { exit = true } },
-    { '<CR>', nil, { exit = true } },
+    { 'k',     '5<C-w>+' },
+    { 'j',     '5<C-w>-', { desc = 'j/k height' } },
+    { 'h',     '5<C-w>>', },
+    { 'l',     '5<C-w><', { desc = ' h/l width' } },
+    { '<Esc>', nil,       { exit = true } },
+    { '<CR>',  nil,       { exit = true } },
   }
 })
 
 -- 当想要修改一块代码的缩进的时候，使用 < 或者 > ，然后使用 . 来重复，这是 vim 的默认行为。
+
+local navigate = [[
+ Adjust window size^^^^^^
+ _n_ ^ ^ _p_ to use jumplist
+ _<CR>_ or _<Esc>_ to exit
+]]
+
+Hydra({
+  name = 'Navigation on jumplist',
+  hint = navigate,
+  config = {
+    color = 'pink',
+    invoke_on_body = true,
+    hint = {
+      border = 'rounded'
+    },
+    on_enter = function()
+      vim.o.virtualedit = 'all'
+    end,
+  },
+  mode = 'n',
+  body = 'gb',
+  heads = {
+    { 'p',     '<C-O>' },
+    { 'n',     '<C-I>' },
+    { '<Esc>', nil,    { exit = true } },
+    { '<CR>',  nil,    { exit = true } },
+  }
+})
