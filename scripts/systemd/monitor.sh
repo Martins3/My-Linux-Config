@@ -35,8 +35,8 @@ function load() {
 	send Load_5 "${array[1]}"
 	send Load_10 "${array[2]}"
 	t="${array[3]}"
-	send active_process "${t#*\/}"
-	send total_process "${t%\/*}"
+	send total_process "${t#*\/}"
+	send active_process "${t%\/*}"
 }
 
 function temperature() {

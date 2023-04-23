@@ -3,7 +3,7 @@
 
 //  Define the module metadata.
 #define MODULE_NAME "greeter"
-MODULE_AUTHOR("Dave Kerr");
+MODULE_AUTHOR("Martins3");
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("A simple kernel module to greet a user");
 MODULE_VERSION("0.1");
