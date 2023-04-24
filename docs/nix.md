@@ -948,4 +948,9 @@ source/CMakeLists.txt 将 set(SUPPORT_PRELOAD 1) 去掉，可以辅助速度
 ## 输入法
 https://github.com/NixOS/nixpkgs/issues/53085
 
+## coredump
+- 存储在 /var/lib/systemd/coredump
+- 解压方法: zstd -d core.qemu.zst
+- 分析方法: gdb path/to/the/binary path/to/the/core/dump/file
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

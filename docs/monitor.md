@@ -25,8 +25,6 @@ docker compose down # 删除
 - ls 次数
 - nvim 次数
 
-## 机箱温度
-
 ## page fault 次数
 
 ## 内存的碎片化程度
@@ -34,3 +32,7 @@ docker compose down # 删除
 ## buddy 的状态之类的
 
 ## kvm 的状态，利用 kvm_stat 长期监测
+
+## io 和 网络流量，就是使用 sar 之类的观测就可以了
+
+## 到底是谁在使用 shared memory

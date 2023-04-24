@@ -34,6 +34,8 @@ in
   virtualisation.docker.enable = true;
   virtualisation.vswitch.enable = true;
 
+  zramSwap.enable = true;
+
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
