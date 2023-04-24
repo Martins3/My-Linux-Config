@@ -908,6 +908,7 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 
 ## 桌面环境
 - https://wiki.hyprland.org/Nix/
+- https://github.com/yaocccc/dwm : 看上去还不错，还有 bilibili 的介绍
 
 ## 如何调试 host 内核
 参考 nixpkgs/pkgs/os-specific/linux/kernel/linux-6.2.nix ，我发现其

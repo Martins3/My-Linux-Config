@@ -24,6 +24,7 @@ in
     rustc
     unstable.rust-analyzer
     cmake
+    # zig
     gnumake
     yarn
     nodejs
