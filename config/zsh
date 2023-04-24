@@ -78,10 +78,10 @@ function vfio_nvme(){
 }
 
 # 快速打开 QEMU
-alias dk="/home/martins3/.dotfiles/scripts/qemu/luanch.sh -d"
+alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
-alias k=/home/martins3/.dotfiles/scripts/qemu/luanch.sh
-alias kk="/home/martins3/.dotfiles/scripts/qemu/luanch.sh -k"
+alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
+alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
 alias ge="ssh -p5556 root@localhost"
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
