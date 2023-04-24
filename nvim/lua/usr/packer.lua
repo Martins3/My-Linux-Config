@@ -91,7 +91,7 @@ require("packer").startup({
     -- latex
     use 'lervag/vimtex'
     -- lsp 增强
-    use 'jackguo380/vim-lsp-cxx-highlight' -- ccls 高亮需要
+    use 'jackguo380/vim-lsp-cxx-highlight' -- ccls 高亮
     use 'mattn/efm-langserver' -- 支持 bash
     -- 其他
     use 'tyru/open-browser.vim' -- 使用 gx 打开链接
