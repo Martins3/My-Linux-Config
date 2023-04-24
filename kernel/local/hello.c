@@ -24,5 +24,23 @@ static void __exit greeter_exit(void) {
   pr_info("%s: module unloaded from 0x%p\n", MODULE_NAME, greeter_exit);
 }
 
+int x, y;
+void thread0(void) {
+  int r1, r2;
+  rcu_read_lock();
+  r1 = READ_ONCE(x);
+  r2 = READ_ONCE(y);
+  rcu_read_unlock();
+  BUG_ON(r1 == 0 && r2 == 1);
+}
+
+void thread1(void) {
+  WRITE_ONCE(x, 1);
+  synchronize_rcu();
+  WRITE_ONCE(y, 1);
+}
+
+// @todo 如何让 thread 同时运行 1 分钟
+
 module_init(greeter_init);
 module_exit(greeter_exit);
