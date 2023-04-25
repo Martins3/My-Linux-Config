@@ -123,6 +123,18 @@ for extension in s:coc_extensions
   call coc#add_extension(extension)
 endfor
 
+" patch for coc-sumneko-lua plugin on nixos
+" for details, see https://github.com/xiyaowong/coc-sumneko-lua/issues/22
+if $USERNAME == "martins3"
+  call coc#config("sumneko-lua.serverDir", "/home/martins3/.nix-profile/")
+  call coc#config("Lua.misc.parameters",
+        \ [ "--metapath",
+        \ "/home/martins3/.cache/sumneko_lua/meta",
+        \ "--logpath",
+        \ "/home/martins3/.cache/sumneko_lua/log"]
+        \)
+endif
+
 " 方便在中文中使用 w 和 b 移动
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)

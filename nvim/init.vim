@@ -72,22 +72,6 @@ for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
 
-" patch for coc-sumneko-lua plugin on nixos
-" for details, see https://github.com/xiyaowong/coc-sumneko-lua/issues/22
-if $USERNAME == "martins3"
-  call coc#config("sumneko-lua.serverDir", "/home/martins3/.nix-profile/")
-  call coc#config("Lua.misc.parameters",
-        \ [ "--metapath",
-        \ "/home/martins3/.cache/sumneko_lua/meta",
-        \ "--logpath",
-        \ "/home/martins3/.cache/sumneko_lua/log"]
-        \)
-endif
-
-
-" colorscheme tokyonight
-" colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
-colorscheme catppuccin-macchiato
 " this keymapping originally set by whichkey doesn't work in neovim 0.8
 noremap <Space>bc :BDelete hidden<cr>
 
