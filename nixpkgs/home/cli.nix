@@ -176,6 +176,7 @@ in
     unstable.nushell
     libnotify
     powershell # 才知道在 Linux 下也是可以用的 pwsh
+    dmidecode
 
     containerd # @todo 测试下
     nerdctl
