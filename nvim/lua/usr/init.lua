@@ -8,10 +8,11 @@ require 'usr.orgmode'
 require 'usr.telescope'
 require 'usr.version'
 require 'usr.which-key'
+require 'usr.colorscheme'
 require 'usr.session'
 require("colorizer").setup { 'css', 'javascript', 'vim', html = { mode = 'foreground', } }
 require("nvim-surround").setup {}
-require('gitsigns').setup { signcolumn = false, numhl = true}
+require('gitsigns').setup { signcolumn = false, numhl = true }
 require('leap').add_default_mappings()
 require('nvim-autopairs').setup {}
 require('spellsitter').setup {}
