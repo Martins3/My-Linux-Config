@@ -1,46 +1,3 @@
--- toggleterm configuration
--- becuase
-require("toggleterm").setup {
-  direction = 'float',
-  size = function(term)
-    if term.direction == "horizontal" then
-      return 15
-    elseif term.direction == "vertical" then
-      return vim.o.columns * 0.4
-    end
-  end,
-  hide_numbers = false,
-  float_opts = {
-    border = 'curved',
-    width = math.floor(vim.o.columns * 0.6),
-    -- height = <value>,
-    winblend = 10,
-    zindex = 100,
-  },
-}
-local Terminal = require('toggleterm.terminal').Terminal
-local tig_status = Terminal:new({ cmd = "tig status", hidden = true })
--- TODO this doesn't work, it show the project history
-local tig_log_file_status = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true })
-local tig_log_project_status = Terminal:new({ cmd = "tig", hidden = true })
-local ipython = Terminal:new({ cmd = "ipython", hidden = true })
-
-function _tig_status_toggle()
-  tig_status:toggle()
-end
-
-function _tig_log_file_toggle()
-  tig_log_file_status:toggle()
-end
-
-function _tig_log_project_toggle()
-  tig_log_project_status:toggle()
-end
-
-function _ipython_toggle()
-  ipython:toggle()
-end
-
 -- whichkey configuration
 local wk = require("which-key")
 wk.setup({
@@ -127,9 +84,6 @@ wk.register({
       c = { "<cmd>Git commit<cr>", "git commit" },
       m = { "<cmd>GitMessenger<cr>", "show git blame of current line" },
       p = { "<cmd>Git push<cr>", "git push" },
-      -- l = { "<cmd>lua _tig_log_file_toggle()<cr>", "log of file" },
-      -- L = { "<cmd>lua _tig_log_project_toggle()<cr>", "log of project" },
-      -- s = { "<cmd>lua _tig_status_toggle()<cr>", "git status" },
       l = { "<cmd>FloatermNew tig %<cr>", "log of file" },
       L = { "<cmd>FloatermNew tig<cr>", "log of project" },
       s = { "<cmd>FloatermNew tig status<cr>", "git status" },
@@ -160,9 +114,8 @@ wk.register({
       w = { "<cmd>set wrap!<cr>", "wrap line" },
       h = { "<cmd>noh<cr>", "Stop the highlighting" },
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
-      t = { "<cmd>set nocursorline<cr> <cmd>TransparentEnable<cr>", "make background transparent" },
+      t = { "<cmd>set nocursorline<cr> <cmd>TransparentToggle<cr>", "make background transparent" },
     },
-    -- x = { "<cmd> lua _ipython_toggle()<cr>", "calculation" },
     x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
   q = { "<cmd>q<cr>", "close window" },
