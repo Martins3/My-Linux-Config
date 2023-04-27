@@ -362,7 +362,7 @@ snippet xxx "template for any bash script"
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
-shopt -s inherit_errexit
+# shopt -s inherit_errexit
 # PROGNAME=$(basename "\$0")
 # PROGDIR=$(readlink -m "$(dirname "\$0")")
 for i in "$@"; do
@@ -505,7 +505,7 @@ array[2]=100
 
 endsnippet
 
-snippet note_trap "array basic"
+snippet note_trap "使用 trap 来清理工作"
 function finish {
   if [[ $? == 0 ]]; then
     echo "bad"
