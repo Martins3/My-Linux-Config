@@ -10,13 +10,15 @@ function close_qemu() {
 		if ps -p "$qemu" >/dev/null; then
 			gum confirm "Kill the machine?" && kill -9 "$qemu"
 		fi
+	else
+		echo "No Qemu Process found"
 	fi
 }
 
 function debug_kernel() {
 	set -x
 	close_qemu
-        # 不要给 -- 后面的增加双引号
+	# 不要给 -- 后面的增加双引号
 	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
 	close_qemu

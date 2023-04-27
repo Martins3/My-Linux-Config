@@ -85,7 +85,7 @@ in
     nix-index
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
-    neovim
+    unstable.neovim
     efm-langserver # 集成 shellcheck
     # wakatime
     shellcheck

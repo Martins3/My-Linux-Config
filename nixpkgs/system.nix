@@ -93,8 +93,8 @@ in
       22 # ssh
       5201 # iperf
       8889 # clash
-      8384 # syncthing
-      22000 # syncthing
+      /* 8384 # syncthing */
+      /* 22000 # syncthing */
     ];
   };
 
@@ -106,7 +106,7 @@ in
   # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
   # tailscale0 建立的网卡是什么原理，真有趣啊
   # networking.interfaces.enp4s0.useDHCP = false;
-  networking.bridges.br0.interfaces = [ "enp5s0" ];
+  # networking.bridges.br0.interfaces = [ "enp5s0" ];
   # sudo ip ad add 10.0.0.1/24 dev enp5s0
 
   # @todo 这个配置为什么不行
@@ -117,7 +117,7 @@ in
 
   # wireless and wired coexist
   # @todo disable this temporarily
-  systemd.network.wait-online.timeout = 0;
+  systemd.network.wait-online.timeout = 1;
 
   users.mutableUsers = false;
   users.users.root.passwordFile = passwdFile;
@@ -151,12 +151,16 @@ in
     "nospec_store_bypass_disable"
     "no_stf_barrier"
     "mds=off"
-    "tsx=on"
-    "tsx_async_abort=off"
+    # 硬件上都直接不支持了
+    # "tsx=on"
+    # "tsx_async_abort=off"
     "mitigations=off"
 
+    # vfio 直通
     "intel_iommu=on"
     "iommu=pt"
+    # 手动禁用 avx2
+    # "clearcpuid=156"
   ];
 
 
@@ -259,6 +263,12 @@ in
     wantedBy = [ "timers.target" ];
   };
 
+  systemd.user.timers.qemu = {
+    enable = true;
+    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
+    wantedBy = [ "timers.target" ];
+  };
+
   systemd.user.services.qemu = {
     enable = true;
     unitConfig = { };
@@ -277,12 +287,6 @@ in
       ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
       Restart = "no";
     };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.user.timers.qemu = {
-    enable = true;
-    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
     wantedBy = [ "timers.target" ];
   };
 

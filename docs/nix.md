@@ -953,4 +953,28 @@ https://github.com/NixOS/nixpkgs/issues/53085
 - 解压方法: zstd -d core.qemu.zst
 - 分析方法: gdb path/to/the/binary path/to/the/core/dump/file
 
+nixos 的处理方式:
+```txt
+🧀  cat /proc/sys/kernel/core_pattern
+|/nix/store/34am2kh69ll6q03731imxf21jdbizda2-systemd-251.15/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+```
+
+ubuntu 的处理方式:
+```txt
+smtxauto@node1:/var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
+|/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E
+```
+通过检查 /var/log/apport.log 可以知道
+```txt
+ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: called for pid 17767, signal 11, core limit 0, dump mode 1
+ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /home/smtxauto/a.out (command line "./a.out")
+ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable does not belong to a package, ignoring
+```
+
+所以需要调整一下:
+```sh
+ulimit -c unlimited
+```
+其路径也是在 /var/lib/apport/coredump 中。
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
