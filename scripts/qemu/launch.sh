@@ -27,7 +27,10 @@ function debug_kernel() {
 function login() {
 	close_qemu
 	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh
-	ssh -o '3' -p5556 root@localhost
+	# 等 QEMU 将启动，将端口暴露出来，不然访问还是 host 的 5556，
+	# 会立刻得到一个 Connection refused
+	sleep 1
+	ssh -p5556 root@localhost
 	close_qemu
 }
 
