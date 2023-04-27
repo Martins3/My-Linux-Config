@@ -9,7 +9,7 @@ wk.setup({
 
 wk.register({
   -- search
-      ["<leader>"] = {
+  ["<leader>"] = {
     a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action" },
     b = { "<cmd>Telescope buffers<cr>", "search buffers" },
     c = {
@@ -34,29 +34,29 @@ wk.register({
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
-        ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
-        ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "jump to buffer 2" },
-        ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "jump to buffer 3" },
-        ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "jump to buffer 4" },
-        ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "jump to buffer 5" },
-        ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "jump to buffer 6" },
-        ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "jump to buffer 7" },
-        ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "jump to buffer 8" },
-        ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "jump to buffer 9" },
-        ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
+    ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
+    ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "jump to buffer 2" },
+    ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "jump to buffer 3" },
+    ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "jump to buffer 4" },
+    ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "jump to buffer 5" },
+    ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "jump to buffer 6" },
+    ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "jump to buffer 7" },
+    ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "jump to buffer 8" },
+    ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "jump to buffer 9" },
+    ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
   },
   -- " 使用 space [number] 切换到第 [number] 个 window
-      ['<space>'] = {
-        ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1" },
-        ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2" },
-        ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3" },
-        ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4" },
-        ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5" },
-        ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6" },
-        ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7" },
-        ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8" },
-        ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9" },
-        ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0" },
+  ['<space>'] = {
+    ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1" },
+    ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2" },
+    ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3" },
+    ["4"] = { "<cmd>4wincmd  w <cr>", "jump to window 4" },
+    ["5"] = { "<cmd>5wincmd  w <cr>", "jump to window 5" },
+    ["6"] = { "<cmd>6wincmd  w <cr>", "jump to window 6" },
+    ["7"] = { "<cmd>7wincmd  w <cr>", "jump to window 7" },
+    ["8"] = { "<cmd>8wincmd  w <cr>", "jump to window 8" },
+    ["9"] = { "<cmd>9wincmd  w <cr>", "jump to window 9" },
+    ["0"] = { "<cmd>10wincmd w <cr>", "jump to window 0" },
 
     a = {
       name = "+misc",
@@ -108,7 +108,7 @@ wk.register({
     },
     t = {
       name = "+toggle",
-          ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
+      ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
       b = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "break line at 80" },
       s = { "<cmd>set spell!<cr>", "spell check" },
       w = { "<cmd>set wrap!<cr>", "wrap line" },
@@ -138,11 +138,11 @@ wk.register({
     m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
     x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
   },
-      ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
+  ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
 })
 
 wk.register({
-      ["<space>"] = {
+  ["<space>"] = {
     l = {
       c = { ":Commentary<cr>", "comment code" },
       f = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
