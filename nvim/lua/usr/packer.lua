@@ -64,7 +64,6 @@ require("packer").startup({
     use 'mzlogin/vim-markdown-toc' -- 自动目录生成
     use 'dhruvasagar/vim-table-mode' -- 快速编辑 markdown 的表格
     use 'crispgm/telescope-heading.nvim' -- Telescope coc 没有 outline，所以只好使用这个
-    use 'tpope/vim-markdown' -- markdown 语法高亮
     use 'xiyaowong/telescope-emoji.nvim' -- 使用 telescope 搜索 emoji 表情
     -- 高效编辑
     use 'tpope/vim-commentary' -- 快速注释代码
