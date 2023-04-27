@@ -14,9 +14,9 @@ require('code_runner').setup {
   filetype = {
     python = "python3 $file",
     c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g " ..
-    "-lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",
+        "-lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",
     cpp = "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o" ..
-    "$fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
+        "$fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     sh = "bash $file",
     html = microsoft_edge(),
     rust = "cargo run",
