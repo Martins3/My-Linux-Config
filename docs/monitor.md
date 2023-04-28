@@ -36,3 +36,8 @@ docker compose down # 删除
 ## io 和 网络流量，就是使用 sar 之类的观测就可以了
 
 ## 到底是谁在使用 shared memory
+
+## 记录下一天共启动 qemu 多少次
+
+## 需要解决这个问题吧
+ curl: (7) Failed to connect to 127.0.0.1 port 8889 after 0 ms: Couldn't connect to server
