@@ -17,11 +17,16 @@ done
 shift $((OPTIND - 1))
 
 for i in "$@"; do
-  echo "$i"
+	echo "$i"
 done
 cd "$(dirname "$0")"
+if [[ $# -eq 0 ]]; then
+	echo "t funcname"
+	exit 1
+fi
 
 set -x
+
 if [[ $check_return == true ]]; then
 	sudo bpftrace -e "kretprobe:${1} { printf(\"returned: %lx\\n\", retval); }"
 else
