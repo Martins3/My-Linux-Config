@@ -93,7 +93,7 @@ in
     rnix-lsp # nix 语言的 lsp
     tree-sitter
     systeroid
-    perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
+    pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
     # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇
     # 这个东西其实自己生成一份
     # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
@@ -101,6 +101,7 @@ in
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
     kernelshark # @todo 使用一下
     trace-cmd
+    ltrace # 检查程序使用的库
     unstable.bcc
     acpi
     cpuid
