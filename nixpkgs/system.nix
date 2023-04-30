@@ -132,7 +132,7 @@ in
 
   boot = {
     crashDump.enable = true;
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
     cleanTmpDir = true;
   };

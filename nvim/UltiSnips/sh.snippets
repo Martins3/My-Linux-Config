@@ -4,11 +4,22 @@ priority -50
 # - https://github.com/dylanaraps/pure-bash-note
 
 snippet note_variable_default "变量默认值"
-# 如果 varname 不是"存在且不为空"
+# 如果 varname 存在且不为空才可以得到原数值，否则替换
 #   ${varname:-word} : 那么得到 word
 #   ${varname:=word} : 那么得到 word，并且 varname=word
 #   ${varname:?message} : 那么展示 message
 # ${varname:+word} 和 - 反过来的
+# ${varname:=word} 会让 varname 复制，但是使用的时候为 : ${varname:=word} 或者 abc=${varname:=word}
+
+# 以上的 : 都可以去掉 : ，其逻辑为存在的时候才可以得到原数值，否则替换:
+# 差别为:
+EGGS=
+echo 3 ${EGGS-spam}   # 3
+echo 4 ${EGGS:-spam}  # 4 spam
+
+# 使用场景:
+# 1. 一个文件如果存在参数 var=${1-}，之后根据 if [[ $var ]];then 来检测
+
 endsnippet
 
 snippet note_variable_special "特殊变量"

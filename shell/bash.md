@@ -51,18 +51,10 @@ bash 没有设计出来过多的错误防护机制，几乎没什么人用 bash 
 
 ## 问题
 1. pstree -p
-2. fskjcg foargs
 
 注意到你可以控制每行参数个数（-L）和最大并行数（-P）
 
 最有用的大概就是 !$， 它用于指代上次键入的参数，而 !! 可以指代上次键入的命令了
-
-3. ltrace
-
-### 浏览一下 bash 的 man
-1. select
-2. 数组赋值
-a[1]=b
 
 ## [ ] http://mywiki.wooledge.org/BashPitfalls
 
@@ -123,6 +115,7 @@ printf '%s\n' "$hello_world"
 - SECCOND : 记录除了给上一次到这一次的时间
 - "${FUNCNAME[@]}" : 调用栈
 - $OSTYPE" == "linux-gnu" : 操作系统的版本
+- RANDOM
 
 ## 一个括号是不是足够逆天
 https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs
@@ -148,32 +141,8 @@ https://unix.stackexchange.com/questions/296838/whats-the-difference-between-eva
 https://serverfault.com/questions/35312/unable-to-understand-the-benefit-of-zshs-autopushd 的，
 这导致 cd 的行为和 pushd 相同。
 
-### 提升 bash 安全的操作
-- [ ] http://mywiki.wooledge.org/BashPitfalls
-
-1. 使用 local
-```sh
-change_owner_of_file() {
-    local filename=$1
-    local user=$2
-    local group=$3
-
-    chown $user:$group $filename
-}
-```
-
-```sh
-temporary_files() {
-    echo $FUNCNAME $@
-}
-```
 
 ### [ ] https://effective-shell.com/part-2-core-skills/job-control/
-
-## 资源和工具
-1. https://explainshell.com/
-2. https://wangchujiang.com/linux-command/
-
 
 ## 一些资源
 - [forgit](https://github.com/wfxr/forgit) A utility tool powered by fzf for using git interactively
@@ -193,13 +162,10 @@ temporary_files() {
 https://wizardzines.com/comics/redirects/
 
 
-`shell` 和 `gnu` `make`, `cmake` 等各种工具类似，一学就会，学完就忘。究其原因，是因为使用频率太低了。
-所以，shell 我不建议非常认真系统的学习，因为学完之后发现根本用不上。难道你每天都需要使用正则表达式删除文件吗?
-
 ## shell 资源推荐
 1. https://devhints.io/bash  : 语法清单
 2. https://explainshell.com/ : 给出一个 shell 命令，对于其进行解释
-
+3. https://wangchujiang.com/linux-command/
 ## 一些小技巧
 - [alias](https://thorsten-hans.com/5-types-of-zsh-aliases)
 - [自动回答交互式的 shell script](https://askubuntu.com/questions/338857/automatically-enter-input-in-command-line)
@@ -219,6 +185,7 @@ https://wizardzines.com/comics/redirects/
 - 使用 mv /tmp/gafsdfa/fadafsdf{aaa,bb}.png 来实现 rename
 - [根据 shell 启动的不同，加载的配置的文件不同](https://cjting.me/2020/08/16/shell-init-type/)
   - 存在 login 和 non-login ，interactive 和 non-interactive 之分
+- [Shell 启动类型探究](https://cjting.me/2020/08/16/shell-init-type/) : 不错不错，讲解 bash 的启动
 
 ## 获取帮助
 1. whatis
@@ -229,8 +196,6 @@ https://wizardzines.com/comics/redirects/
 ## 有趣
 - https://github.com/mydzor/bash2048/blob/master/bash2048.sh : 300 行的 2048
 
-## TODO
-- https://cjting.me/2020/08/16/shell-init-type/ : 不错不错，讲解 bash 的启动
 
 - 输入 top 10 的命令，但是没看懂
 ```sh
@@ -241,17 +206,6 @@ history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/c
 1. common.sh 可以解决一下吗？
 
 ## [ ] 整理一下 coprocess 的内容
-
-## [ ] 整理一下 ${a:-1} 的操作
-
-这个代码应该是不科学的吧
-```txt
-echo "${1-}"
-echo "${2-}"
-
-echo "${1}"
-echo "${2}"
-```
 
 ## glob 中和字符串当时是使用的正则表达式吧
 
@@ -285,8 +239,6 @@ bash <(curl -L zellij.dev/launch) 这个命令如何理解？
 ## grep 和 egrep 的差别
 - https://stackoverflow.com/questions/18058875/difference-between-egrep-and-grep
   - [ ]  对于 regex 的理解又成为了问题。
-
-## 经典作品，阅读一下 : https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md
 
 ## 等于号叫我再次做人
 ```c
