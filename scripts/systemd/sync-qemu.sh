@@ -1,34 +1,47 @@
 #!/usr/bin/env bash
-set -ex
 export PATH="$PATH:/run/wrappers/bin:/home/martins3/.nix-profile/bin"
 export PATH="$PATH:/run/current-system/sw/bin/"
+set -ex
 
 function finish {
-  if [[ $? == 0 ]]; then
-    sleep 600
-    exit 0
-  fi
-  sleep infinity
+	if [[ $? == 0 ]]; then
+		sleep 600
+		exit 0
+	fi
+	sleep infinity
 }
 
 trap finish EXIT
 
 if cd /home/martins3/core/qemu; then
-  echo "qemu already setup"
+	echo "qemu already setup"
 else
-  mkdir -p /home/martins3/core/
-  cd /home/martins3/core
-  git clone https://github.com/qemu/qemu
-  cd qemu
+	mkdir -p /home/martins3/core/
+	cd /home/martins3/core
+	git clone https://github.com/qemu/qemu
+	cd qemu
 fi
 
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch != master ]]; then
-  echo "checkout to master"
+	echo "checkout to master"
 fi
 
+git restore --staged .gitignore
+git checkout -- .gitignore
+
 git pull
+
+cat <<_EOF >>.gitignore
+.ccls-cache
+.direnv
+.vim-bookmarks
+compile_commands.json
+default.nix
+.envrc
+_EOF
+
 # --disable-tcg
 # --enable-trace-backends=nop
 # @todo 用上 --enable-virtfs 是做啥的

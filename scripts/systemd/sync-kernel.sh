@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-set -ex
 export PATH="$PATH:/run/wrappers/bin:/home/martins3/.nix-profile/bin"
 export PATH="$PATH:/run/current-system/sw/bin/"
+set -ex
 function finish {
   if [[ $? == 0 ]]; then
     sleep 600

@@ -60,6 +60,9 @@ _EOF_
 # 所以将 scripts/setlocalversion 最后一行删除掉
 # 但是还是存在这个错误，都不知道插入了没有，而且现在也是修改一行，整个代码重新编译
 # 再仔细想想吧!
+#
+# 去掉 git 是不是就可以解决 XXX，也不是不能接受
+# 实际上，这个报错是无所谓的
 cat << _EOF_
 [10606.080260] BPF:      type_id=52229 bits_offset=896
 [10606.080263] BPF:
@@ -74,9 +77,14 @@ cat << _EOF_
 _EOF_
 
 
+# 建议还是先编译一下
 exe "m"
+# scripts/setlocalversion 似乎还是需要删除的
+exe "make M=./arch/x86/kvm/  modules -j32"
 sudo rmmod kvm_intel kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
 sudo insmod ./arch/x86/kvm/kvm-intel.ko
+# TODO 靠，还是有点问题，难道需要一开始就设置 id 吗?
+# TODO 还是其实，从来都没有成功过
 
 sudo modprobe kvm-intel

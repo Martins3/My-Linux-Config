@@ -16,7 +16,6 @@ function close_qemu() {
 }
 
 function debug_kernel() {
-	set -x
 	close_qemu
 	# 不要给 -- 后面的增加双引号
 	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
