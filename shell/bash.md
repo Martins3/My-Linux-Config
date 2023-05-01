@@ -40,6 +40,7 @@ bash 的设计思想:
 bash 没有设计出来过多的错误防护机制，几乎没什么人用 bash 写打项目。
 
 ## bash 奇怪的地方
+局部变量 : 只有函数中的局部变量，但是没有 for 循环中的局部变量
 
 ## bash 设计失误
 也许是我理解不到位
@@ -93,6 +94,8 @@ echo one two \
 echo one two
              three
 ```
+
+- https://stackoverflow.com/questions/13335516/how-to-determine-whether-a-string-contains-newlines-by-using-the-grep-command
 
 ## 变量
 - [indirect expansion](https://unix.stackexchange.com/questions/41292/variable-substitution-with-an-exclamation-mark-in-bash)
@@ -211,6 +214,7 @@ history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/c
 
 1. glob 中是否支持 [a,b]*
 2. glob 只能处理文件是吗？
+  3. 字符串比较的时候也是可以的
 
 ## 任何时候都不要使用 [
 https://stackoverflow.com/questions/3427872/whats-the-difference-between-and-in-bash
@@ -261,14 +265,12 @@ fi
 ```
 
 ## 整理一下:
-- https://stackoverflow.com/questions/13335516/how-to-determine-whether-a-string-contains-newlines-by-using-the-grep-command
   - 为什么这里必须存在一个双引号！
 
 ## 实际上，我们发现 bash 的一个 philosophy
 - 很多常用命令不是熟练使用，还是痛苦面具
   - https://dashdash.io/
 
-http://mywiki.wooledge.org/BashPitfalls 其实没必要，使用 shellcheck 即可
 
 ## 一个 AWK 痛苦面具问题
 ```sh
@@ -278,44 +280,6 @@ grep flags /proc/cpuinfo | awk 'NR==1{print $0; exit}'
 ```
 我发现第一个 awk 不会让 exit non-zero，而第二个会。
 
-## bash 中的 map
-- https://stackoverflow.com/questions/1494178/how-to-define-hash-tables-in-bash
-  - 使用 cpu-flags 来分析吧
-
-## 全局变量和局部变量
-- [ ] 如果想要清理
-
-```sh
-for num in "${!number[@]}"; do
-	# flags=${number[$num]}
-
-	declare -A os
-	declare -A cpu
-
-	os_set=()
-	cpu_set=()
-```
-这样，os 和 cpu 在每次 forloop 的时候，都是为空吗？
-
-## 补充一个 bash 这也可以，那也可以的例子
-```c
-RECORD_TIME=false
-
-if [[ $RECORD_TIME == true ]]; then
-  nix-shell --command "make clean"
-  SECONDS=0
-fi
-
-if [[ $RECORD_TIME == true ]]; then
-  duration=$SECONDS
-  echo "$((duration / 60)) minutes and $((duration % 60)) seconds elapsed."
-  echo "$(date) : $duration : " >>/home/martins3/core/compile-linux/database
-  cat /proc/cmdline >>/home/martins3/core/compile-linux/database
-fi
-```
-
-## 为什么 bash 的赋值不能有空格
-因为不能区分到底是命令还是字符串
 
 ## 重点分析下 find 命令
 ### 如何 flatten 一个目录
@@ -351,26 +315,8 @@ fi
               -exec always returns true.
 ```
 
-## 才知道单双引号导致换行不同
-```sh
-a="
-b
-
-
-a
-"
-
-echo "$a"
-echo $a
-```
-## target_iso=${2-}
-https://stackoverflow.com/questions/5693312/1-vs-1
-
-## export 关键字如何理解？
-
 ## 神奇的双引号
-tag_prefix="${i%."$tag_numeber"}"
-才发现双引号是可以嵌套，但是嵌套规则到底是什么不知道
+如果是在 ${} 和 $() 中，是可以继续使用双引号的
 
 ## https://stackoverflow.com/questions/7442417/how-to-sort-an-array-in-bash
 
@@ -392,7 +338,8 @@ tag_prefix="${i%."$tag_numeber"}"
 
       egrep -o 'acct_id=[0-9]+' access.log | cut -d= -f2 | sort | uniq -c | sort -rn
 
-## hohup command &
+## 总结 job control
+- hohup command &
 
 ## https://github.com/johnkerl/miller
 

@@ -526,3 +526,26 @@ function finish {
 
 trap finish EXIT
 endsnippet
+
+
+
+snippet note_associative_array "associative array"
+
+declare -A a # 这个是必须的
+a=( ["moo"]="cow" ["woof"]="dog")
+a["abc"]="mm"
+
+# 遍历 key
+for k in "${!a[@]}"; do
+  echo "$k -> ${a[$k]}"
+done
+
+# 其他的内容和 array 一样，都是基于 value 的
+for v in "${a[@]}"; do
+  echo "$v"
+done
+
+echo "${#a[@]}"
+printf '%s\n' "${a[@]}"
+
+endsnippet
