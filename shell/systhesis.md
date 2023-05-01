@@ -69,20 +69,19 @@ is_uint() { case $1 in '' | *[!0-9]*) return 1 ;; esac }
 
 这两个不等价，因为 Bash also allows globs to appear on the right-hand side of a comparison inside a [[ command: [^1]
 
-```txt
+```sh
 if [[ "$a" == "$b" ]];
 if [[ $a == $b ]];
 ```
 
-但是这两个等价，因为 `=~` 描述的正则:
-```txt
+这两个也不匹配，第一个是 literally 比较，而第二个才是 regex 比较：
+```sh
 if [[ $foo =~ "$bar" ]];
 if [[ $foo =~ $bar ]];
 ```
 虽然 glob 的
 
-### intensionally glob
-
+### 如果你确实希望使用 regex ，但是又不想 bash 报错
 a=$(echo *.md)
 echo "$a"
 
@@ -95,9 +94,6 @@ var="cpu family"
 grep "$var" /proc/cpuinfo # 这个没有问题，被展开为 grep 'cpu family' /proc/cpuinfo
 grep $var /proc/cpuinfo # 这个有问题，被展开为 grep cpu family /proc/cpuinfo
 ```
-
-## [ ] 居然还有好几个
-shopt -s extglob nullglob globstar
 
 ## 关键参考
 - https://mywiki.wooledge.org/BashFAQ
