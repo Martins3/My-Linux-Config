@@ -39,5 +39,4 @@ docker compose down # 删除
 
 ## 记录下一天共启动 qemu 多少次
 
-## 需要解决这个问题吧
- curl: (7) Failed to connect to 127.0.0.1 port 8889 after 0 ms: Couldn't connect to server
+## kernel compile time
