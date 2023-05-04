@@ -19,7 +19,7 @@ function send() {
 	if [[ $DEBUG == true ]]; then
 		echo "$metric = $value"
 	else
-		curl -d "martins3,tag=13900K $metric=$value" -X POST 'http://127.0.0.1:8428/write'
+		curl -d "martins3,tag=13900K $metric=$value" -X POST 'http://127.0.0.1:8428/write' || true
 	fi
 }
 
