@@ -26,6 +26,7 @@ wk.register({
     g = { "<cmd>Telescope live_grep<cr>", "live grep" },
     G = { "<cmd>Telescope grep_string<cr>", "live grep cursor word" },
     h = { "<cmd>Telescope help_tags<cr>", "search vim manual" },
+    i = { "<cmd>Telescope jumplist<cr>", "search jumplist" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
@@ -88,6 +89,8 @@ wk.register({
       L = { "<cmd>FloatermNew tig<cr>", "log of project" },
       s = { "<cmd>FloatermNew tig status<cr>", "git status" },
     },
+    -- 因为 ctrl-i 实际上等同于 tab
+    i = { "<c-i>", "go to newer jumplist" },
     l = {
       name = "+language",
       c = { "<cmd>Commentary<cr>", "comment code" },
