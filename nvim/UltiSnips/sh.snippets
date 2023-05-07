@@ -176,6 +176,19 @@ if [[ $string == *"My long"* ]]; then
 fi
 endsnippet
 
+snippet note_substr "substring"
+# 语法: ${str:position:length}，position 从 0 开始计数
+aa="abc"
+bb=${aa:1:2} # 得到 bc
+endsnippet
+
+
+snippet note_trim_space "substring"
+# https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+# 难以接受，但是这就是最高点赞的答案
+echo "   lol  " | xargs
+endsnippet
+
 snippet note_string_replace "string replace"
 # 如果 pattern 匹配变量 variable 的开头，
 # 删除最短匹配（非贪婪匹配）的部分，返回剩余部分
