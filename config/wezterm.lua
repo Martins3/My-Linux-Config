@@ -79,10 +79,7 @@ return {
     { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
     { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
     { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
-    -- @todo 不知道为什么，这个键映射不上去，而且相当于 backspace
-    -- { key = "8",          mods = "CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "9",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "0",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     {
       key = "LeftArrow",
       mods = 'CTRL|SHIFT',
