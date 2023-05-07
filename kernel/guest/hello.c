@@ -15,7 +15,7 @@ static char *name = "Bilbo";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
 
-enum hacking { PR_INFO, WATCH_DOG, KTHREAD, RCU };
+enum hacking { PR_INFO, WATCH_DOG, KTHREAD, RCU, MUTEX };
 
 #define MAX_THREAD_NUM 256
 static struct task_struct *threads[MAX_THREAD_NUM];
@@ -78,6 +78,22 @@ int rcu_thread1(void *idx)
 
 	printk(KERN_INFO "thread %d stopped\n", t_id);
 	return 0;
+}
+
+int mutex_thread0(void *idx)
+{
+	return 2;
+}
+
+int mutex_thread1(void *idx)
+{
+	return 1;
+}
+
+static void hacking_mutex(void)
+{
+	initialize_thread(mutex_thread0, "martins3", 0);
+	initialize_thread(mutex_thread1, "martins3", 1);
 }
 
 static void hacking_rcu(void)
@@ -162,6 +178,9 @@ static int __init greeter_init(void)
 	case RCU:
 		hacking_rcu();
 		break;
+	case MUTEX:
+		hacking_mutex();
+		break;
 	}
 
 	pr_info("%s: greetings %s\n", MODULE_NAME, name);
@@ -173,6 +192,7 @@ static void __exit greeter_exit(void)
 	switch (h) {
 	case RCU:
 	case KTHREAD:
+	case MUTEX:
 		hacking_kthread(false);
 		break;
 	default:
