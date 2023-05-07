@@ -22,3 +22,5 @@ compile_commands.json
 
 .direnv
 .envrc
+
+.clang-format
