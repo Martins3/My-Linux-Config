@@ -84,3 +84,8 @@ export PATH="$PATH:/usr/local/bin"
 - https://github.com/BlueSky-07/Shuang 双拼練習
 - https://mogeko.me/posts/zh-cn/031/
 - [ ] https://sspai.com/post/63916
+
+## 从 雾凇拼音 中增加词库
+其他的配置一时无法全部消化吸收，
+仅仅拷贝其中的 cn_dicts ，
+然后编辑 .dotfiles/rime/luna_pinyin.my_words.dict.yaml
