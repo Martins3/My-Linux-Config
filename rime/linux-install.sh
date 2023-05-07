@@ -19,6 +19,17 @@ cd plum
 # 使用 plum 安装基础组件
 rime_dir="$CONFIG_DIR" bash rime-install
 
+# 从雾凇拼音 中拷贝词库过来
+function update_idct_from_ice() {
+	cd ~/core
+	git clone https://github.com/iDvel/rime-ice || true
+	cd rime-ice
+	git pull
+	cp -r cn_dicts "$CONFIG_DIR"
+}
+
+update_idct_from_ice
+
 # 部署上我的配置
 shopt -s extglob nullglob
 cd ~/.dotfiles/rime
