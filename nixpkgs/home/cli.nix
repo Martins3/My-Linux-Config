@@ -136,11 +136,13 @@ in
       libxml2
       ansible # 自动化运维
     ]))
+    # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
     man-pages
     man-pages-posix
     # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
+    arp-scan
     nixos-generators
     unstable.gum
     # acpi
@@ -166,6 +168,7 @@ in
     cloc
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
+    stagit # git static site generator 相当有趣
     sshfs
     # kvmtool
     packer # 制作 qcow2 镜像
