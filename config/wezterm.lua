@@ -119,6 +119,10 @@ return {
       args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'zellij attach || zellij' },
     },
     {
+      label = 'Mac',
+      args = { 'ssh', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
+    },
+    {
       label = 'zellij',
       args = { '/bin/sh', '-l', '-c', 'zellij attach || zellij' },
     },
