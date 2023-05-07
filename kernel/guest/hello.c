@@ -11,7 +11,7 @@ MODULE_DESCRIPTION("A simple kernel module to greet a user");
 MODULE_VERSION("0.1");
 
 //  Define the name parameter.
-static char *name = "Bilbo";
+static char *name = "martins3";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
 
@@ -43,7 +43,7 @@ void initialize_thread(thread_function func, const char *name, int idx)
 	kth = kthread_create(func, &idx, "%s", name);
 	if (kth != NULL) {
 		wake_up_process(kth);
-		pr_info("%s is running\n", name);
+		pr_info("thread %d is running\n", idx);
 	} else {
 		pr_info("kthread %s could not be created\n", name);
 	}
@@ -80,13 +80,34 @@ int rcu_thread1(void *idx)
 	return 0;
 }
 
+unsigned long counter;
+static DEFINE_MUTEX(test_mutex);
+#define LOOP_NUM 10000000
 int mutex_thread0(void *idx)
 {
+	for (unsigned long i = 0; i < LOOP_NUM; ++i) {
+		mutex_lock(&test_mutex);
+		counter++;
+		mutex_unlock(&test_mutex);
+	}
+	pr_info("counter is %lx\n", counter);
+	// XXX 如果提前溜走了，那么 kthread_stop 会出问题
+	while (!kthread_should_stop())
+		msleep(1000); // TODO 有什么一直 sleep 下去的 API 吗?
 	return 2;
 }
 
 int mutex_thread1(void *idx)
 {
+	for (unsigned long i = 0; i < LOOP_NUM; ++i) {
+		mutex_lock(&test_mutex);
+		counter--;
+		mutex_unlock(&test_mutex);
+	}
+
+	pr_info("counter is %lx\n", counter);
+	while (!kthread_should_stop())
+		msleep(1000);
 	return 1;
 }
 
@@ -161,7 +182,7 @@ static void hacking_watchdog(void)
 		local_irq_enable();
 }
 
-enum hacking h = RCU;
+enum hacking h = MUTEX;
 
 static int __init greeter_init(void)
 {
@@ -183,7 +204,7 @@ static int __init greeter_init(void)
 		break;
 	}
 
-	pr_info("%s: greetings %s\n", MODULE_NAME, name);
+	pr_info("%s: module loaded\n", MODULE_NAME);
 	return 0;
 }
 
@@ -199,8 +220,7 @@ static void __exit greeter_exit(void)
 		break;
 	}
 
-	pr_info("%s: goodbye %s\n", MODULE_NAME, name);
-	pr_info("%s: module unloaded from 0x%p\n", MODULE_NAME, greeter_exit);
+	pr_info("%s: module unloaded\n", MODULE_NAME);
 }
 
 module_init(greeter_init);

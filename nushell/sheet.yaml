@@ -32,6 +32,8 @@ git:
   - git log -S <string> path/to/file
   - -> 如何将多个 commit squash 一下
   - git reset --soft HEAD~3 && git commit
+  - 将 patch 直接作为一个 commit
+  - git am
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"
