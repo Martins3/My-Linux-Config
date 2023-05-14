@@ -32,7 +32,8 @@ git:
   - git log -S <string> path/to/file
   - -> 如何将多个 commit squash 一下
   - git reset --soft HEAD~3 && git commit
-  - 将 patch 直接作为一个 commit
+  - -> 将 patch 直接作为一个 commit
+  - git format-patch -1 sha1
   - git am
 python:
   - "python -m venv .venv"
@@ -73,6 +74,7 @@ vimscript:
 nvim:
   - vim.api.nvim_err_writeln("hello \n") -- 不要忘记 \n
   - nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+  - \r 是换行
 screen:
   - screen -d -m sleep 1000
   - screen -r

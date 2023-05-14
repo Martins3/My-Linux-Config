@@ -139,6 +139,9 @@ in
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
     man-pages
+    tiptop
+    atop
+    nmon
     man-pages-posix
     # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker

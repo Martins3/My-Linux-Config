@@ -2,6 +2,7 @@
 #include <linux/module.h>
 #include <linux/kthread.h>
 #include <linux/delay.h>
+#include <linux/semaphore.h>
 
 //  Define the module metadata.
 #define MODULE_NAME "greeter"
@@ -15,7 +16,15 @@ static char *name = "martins3";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
 
-enum hacking { PR_INFO, WATCH_DOG, KTHREAD, RCU, MUTEX };
+enum hacking {
+	PR_INFO,
+	WATCH_DOG,
+	KTHREAD,
+	RCU,
+	MUTEX,
+	MEMORY_MODEL_1, // load load，x86 上找不到
+	MEMORY_MODEL_2, // store load
+};
 
 #define MAX_THREAD_NUM 256
 static struct task_struct *threads[MAX_THREAD_NUM];
@@ -37,6 +46,45 @@ static void add_threads(struct task_struct *task)
 	thread_num++;
 }
 
+static void stop_threads(void)
+{
+	int ret;
+	for (int i = 0; i < thread_num; ++i) {
+		/**
+		 * 如果在 kthread 中 stop 自己，测试出来过这个问题:
+     * [   31.770761] loop 305183 times, found 5
+     * [   31.770965] BUG: unable to handle page fault for address: ffffffffc000255c
+     * [   31.771304] #PF: supervisor instruction fetch in kernel mode
+     * [   31.771576] #PF: error_code(0x0010) - not-present page
+     * [   31.771829] PGD 3043067 P4D 3043067 PUD 3045067 PMD 103ae9067 PTE 0
+     * [   31.772132] Oops: 0010 [#1] PREEMPT SMP NOPTI
+     * [   31.772350] CPU: 7 PID: 1646 Comm: martins3 Tainted: G           O       6.4.0-rc1-00138-gd4d58949a6ea-dirty #260
+      */
+		if (threads[i] == current) {
+			continue;
+		}
+		ret = kthread_stop(threads[i]);
+		if (ret == -EINTR) {
+			pr_info("thread %px never started", threads[i]);
+		} else {
+			pr_info("thread function return %d", ret);
+		}
+	}
+	thread_num = 0;
+}
+
+static int sleep_kthread(void *idx)
+{
+	int t_id = *(int *)idx;
+	int i = 0;
+	while (!kthread_should_stop()) {
+		msleep(1000);
+		printk(KERN_INFO "thread %d \n", i++);
+	}
+	printk(KERN_INFO "thread %d stopped\n", t_id);
+	return 123;
+}
+
 void initialize_thread(thread_function func, const char *name, int idx)
 {
 	struct task_struct *kth;
@@ -48,6 +96,156 @@ void initialize_thread(thread_function func, const char *name, int idx)
 		pr_info("kthread %s could not be created\n", name);
 	}
 	add_threads(kth);
+}
+
+static void hacking_kthread(bool start)
+{
+	if (start) {
+		for (int i = 0; i < 2; ++i) {
+			initialize_thread(sleep_kthread, "martins3", i);
+		}
+		printk(KERN_INFO "all of the threads are running\n");
+	} else {
+		stop_threads();
+	}
+}
+
+static unsigned int mm2_a, mm2_b;
+static unsigned int mm2_x, mm2_y;
+static struct semaphore sem_x;
+static struct semaphore sem_y;
+static struct semaphore sem_end;
+
+static int ordering_thread_fn2_cpu0(void *idx)
+{
+	static unsigned int detected;
+	static unsigned long loop;
+	while (!kthread_should_stop()) {
+		loop++;
+
+		mm2_x = 0;
+		mm2_y = 0;
+
+		up(&sem_x);
+		up(&sem_y);
+
+		down(&sem_end);
+		down(&sem_end);
+
+		if (mm2_a == 0 && mm2_b == 0)
+			pr_info("%d reorders detected\n", ++detected);
+
+		if (detected >= 100) {
+      // 平均 10 次触发一次，不知道有没有更好的方法来触发
+			pr_info("loop %ld times, found %d\n", loop, detected);
+			stop_threads();
+			return 0;
+		}
+	}
+	return 0;
+}
+
+static int ordering_thread_fn2_cpu1(void *idx)
+{
+	while (!kthread_should_stop()) {
+		down(&sem_x);
+		mm2_x = 1;
+#ifdef CONFIG_USE_CPU_BARRIER
+		smp_wmb();
+#else
+		/* Prevent compiler reordering. */
+		barrier();
+#endif
+		mm2_a = mm2_y;
+		up(&sem_end);
+	}
+	return 0;
+}
+
+static int ordering_thread_fn2_cpu2(void *idx)
+{
+	while (!kthread_should_stop()) {
+		down(&sem_y);
+		mm2_y = 1;
+#ifdef CONFIG_USE_CPU_BARRIER
+		smp_rmb();
+#else
+		/* Prevent compiler reordering. */
+		barrier();
+#endif
+		mm2_b = mm2_x;
+		up(&sem_end);
+	}
+	return 0;
+}
+
+static void hacking_memory_model_2(void)
+{
+	sema_init(&sem_x, 0);
+	sema_init(&sem_y, 0);
+	sema_init(&sem_end, 0);
+	initialize_thread(ordering_thread_fn2_cpu0, "martins3", 0);
+	initialize_thread(ordering_thread_fn2_cpu1, "martins3", 0);
+	initialize_thread(ordering_thread_fn2_cpu2, "martins3", 0);
+}
+
+static atomic_t count = ATOMIC_INIT(0);
+static unsigned int a, b;
+
+static int ordering_thread_fn_cpu0(void *idx)
+{
+	while (!kthread_should_stop()) {
+		atomic_inc(&count);
+	}
+
+	pr_info("counter :  %d\n", atomic_read(&count));
+	return 0;
+}
+
+static int ordering_thread_fn_cpu1(void *idx)
+{
+	pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+	while (!kthread_should_stop()) {
+		int temp = atomic_read(&count);
+
+		a = temp;
+#ifdef CONFIG_USE_CPU_BARRIER
+		smp_wmb();
+#else
+		/* Prevent compiler reordering. */
+		barrier();
+#endif
+		b = temp;
+	}
+	return 0;
+}
+
+static int ordering_thread_fn_cpu2(void *idx)
+{
+	pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+	while (!kthread_should_stop()) {
+		unsigned int c, d;
+
+		d = b;
+#ifdef CONFIG_USE_CPU_BARRIER
+		smp_rmb();
+#else
+		/* Prevent compiler reordering. */
+		barrier();
+#endif
+		c = a;
+
+		if ((int)(d - c) > 0)
+			pr_info("reorders detected, a = %d, b = %d\n", c, d);
+	}
+	return 0;
+}
+
+static void hacking_memory_model_1(void)
+{
+	initialize_thread(ordering_thread_fn_cpu0, "martins3", 0);
+	initialize_thread(ordering_thread_fn_cpu1, "martins3", 0);
+	initialize_thread(ordering_thread_fn_cpu2, "martins3", 0);
 }
 
 int rcu_x, rcu_y;
@@ -123,44 +321,6 @@ static void hacking_rcu(void)
 	initialize_thread(rcu_thread1, "martins3", 1);
 }
 
-static void stop_threads(void)
-{
-	int ret;
-	for (int i = 0; i < thread_num; ++i) {
-		ret = kthread_stop(threads[i]);
-		if (ret == -EINTR) {
-			pr_info("thread %px never started", threads[i]);
-		} else {
-			pr_info("thread function return %d", ret);
-		}
-	}
-	thread_num = 0;
-}
-
-static int sleep_kthread(void *idx)
-{
-	int t_id = *(int *)idx;
-	int i = 0;
-	while (!kthread_should_stop()) {
-		msleep(1000);
-		printk(KERN_INFO "thread %d \n", i++);
-	}
-	printk(KERN_INFO "thread %d stopped\n", t_id);
-	return 123;
-}
-
-static void hacking_kthread(bool start)
-{
-	if (start) {
-		for (int i = 0; i < 2; ++i) {
-			initialize_thread(sleep_kthread, "martins3", i);
-		}
-		printk(KERN_INFO "all of the threads are running\n");
-	} else {
-		stop_threads();
-	}
-}
-
 static void hacking_pr_info(void)
 {
 	// %p 真的烦人，hash 的完全看不懂了
@@ -182,7 +342,7 @@ static void hacking_watchdog(void)
 		local_irq_enable();
 }
 
-enum hacking h = MUTEX;
+enum hacking h = MEMORY_MODEL_2;
 
 static int __init greeter_init(void)
 {
@@ -202,6 +362,12 @@ static int __init greeter_init(void)
 	case MUTEX:
 		hacking_mutex();
 		break;
+	case MEMORY_MODEL_1:
+		hacking_memory_model_1();
+		break;
+	case MEMORY_MODEL_2:
+		hacking_memory_model_2();
+		break;
 	}
 
 	pr_info("%s: module loaded\n", MODULE_NAME);
@@ -214,6 +380,7 @@ static void __exit greeter_exit(void)
 	case RCU:
 	case KTHREAD:
 	case MUTEX:
+	case MEMORY_MODEL_1:
 		hacking_kthread(false);
 		break;
 	default:

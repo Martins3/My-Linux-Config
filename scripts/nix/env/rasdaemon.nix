@@ -9,7 +9,27 @@ pkgs.stdenv.mkDerivation {
     automake
     libtool
     sqlite # (if sqlite3 will be used)
-    perlPackages.DBDSQLite# (if sqlite3 will be used)
+    perlPackages.DBDSQLite # (if sqlite3 will be used)
+
+    # 将这个作为基础
+    yacc
+    bison
+    flex
+    pkgconfig
+    elfutils
+    libelf
+    autoconf
+    automake
+    libtool
+    nasm
+    pkgconf
+
+    autoconf
+    automake
+    gcc
+    git
+    libelf
+    libtool
   ];
 }
 
