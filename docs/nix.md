@@ -977,4 +977,17 @@ ulimit -c unlimited
 ```
 其路径也是在 /var/lib/apport/coredump 中。
 
+## [ ] 想要安装一下 drgn 调试内核
+
+https://drgn.readthedocs.io/en/latest/installation.html#id1
+
+最后这个方法:
+```txt
+python3 -m venv drgnenv
+source drgnenv/bin/activate
+ python3 setup.py install
+ drgn --help
+```
+暂时在虚拟机中使用吧。
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

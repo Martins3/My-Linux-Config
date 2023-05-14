@@ -805,7 +805,7 @@ setxkbmap -option caps:swapescape
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
 - [NvChad](https://github.com/NvChad/NvChad) 同上
 - [cosynvim](https://github.com/glepnir/cosynvim) : 纯 lua 配置模板
-- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
+- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置，这绝对是开始使用 lua 来配置的 nvim 开始的好地方。
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
@@ -869,6 +869,7 @@ setxkbmap -option caps:swapescape
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
+8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 
 [^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
