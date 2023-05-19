@@ -158,6 +158,7 @@ in
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
+    progress # 展示 cp dd 之类的进度条
     viddy # A modern watch command.
     # mcfly # better ctrl-r for shell
     unstable.atuin
