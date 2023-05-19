@@ -60,7 +60,7 @@ rime_dir="$CONFIG_DIR" bash rime-install
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
-- [](https://sspai.com/post/63916)
+- [小狼毫 3 分钟入门及进阶指南](https://sspai.com/post/63916)
 - [Arch Linux 下给 RIME 中](https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/)
 - [Rime 导入搜狗词库](https://www.jianshu.com/p/300bbe1602d4)
   - [”深蓝词库转换“ 一款开源免费的输入法词库转换程序](https://github.com/studyzy/imewlconverter)
