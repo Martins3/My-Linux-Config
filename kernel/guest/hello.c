@@ -3,6 +3,7 @@
 #include <linux/kthread.h>
 #include <linux/delay.h>
 #include <linux/semaphore.h>
+#include "hacking.h"
 
 //  Define the module metadata.
 #define MODULE_NAME "greeter"
@@ -15,16 +16,6 @@ MODULE_VERSION("0.1");
 static char *name = "martins3";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
-
-enum hacking {
-	PR_INFO,
-	WATCH_DOG,
-	KTHREAD,
-	RCU,
-	MUTEX,
-	MEMORY_MODEL_1, // load load，x86 上找不到
-	MEMORY_MODEL_2, // store load
-};
 
 #define MAX_THREAD_NUM 256
 static struct task_struct *threads[MAX_THREAD_NUM];
@@ -136,7 +127,7 @@ static int ordering_thread_fn2_cpu0(void *idx)
 			pr_info("%d reorders detected\n", ++detected);
 
 		if (detected >= 100) {
-      // 平均 10 次触发一次，不知道有没有更好的方法来触发
+			// 平均 10 次触发一次，不知道有没有更好的方法来触发
 			pr_info("loop %ld times, found %d\n", loop, detected);
 			stop_threads();
 			return 0;
@@ -336,13 +327,14 @@ static void hacking_watchdog(void)
 		local_irq_disable();
 
 	for (;;) {
+		cond_resched();
 	}
 
 	if (hard)
 		local_irq_enable();
 }
 
-enum hacking h = MEMORY_MODEL_2;
+enum hacking h = SEQ_FILE_1;
 
 static int __init greeter_init(void)
 {
@@ -368,6 +360,9 @@ static int __init greeter_init(void)
 	case MEMORY_MODEL_2:
 		hacking_memory_model_2();
 		break;
+	case SEQ_FILE_1:
+		simple_seq_init();
+		break;
 	}
 
 	pr_info("%s: module loaded\n", MODULE_NAME);
@@ -383,6 +378,8 @@ static void __exit greeter_exit(void)
 	case MEMORY_MODEL_1:
 		hacking_kthread(false);
 		break;
+	case SEQ_FILE_1:
+		simple_seq_fini();
 	default:
 		break;
 	}
