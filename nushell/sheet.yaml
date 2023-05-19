@@ -35,6 +35,8 @@ git:
   - -> 将 patch 直接作为一个 commit
   - git format-patch -1 sha1
   - git am
+  - -> 撤销一个 commit
+  - git reset --soft HEAD^
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"
@@ -83,3 +85,4 @@ stress:
   - stress-ng --vm-bytes 40000M --vm-keep --vm 8
 gnome:
   - eog # 在终端中打开图片
+  - nautilus --browser . # 在终端中打开当前目录

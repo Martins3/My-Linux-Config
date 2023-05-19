@@ -990,4 +990,7 @@ source drgnenv/bin/activate
 ```
 暂时在虚拟机中使用吧。
 
+## [ ] infer 处理下
+https://fbinfer.com/docs/getting-started/
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
