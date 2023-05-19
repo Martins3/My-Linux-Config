@@ -93,7 +93,8 @@ in
     rnix-lsp # nix 语言的 lsp
     tree-sitter
     systeroid
-    pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
+    # TODO 6.3 内核无法编译了
+    # pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
     # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇
     # 这个东西其实自己生成一份
     # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
@@ -179,9 +180,10 @@ in
     bridge-utils
     swtpm # windows 11 启动需要
     unstable.nushell
-    libnotify
+    libnotify # 通知小工具
     powershell # 才知道在 Linux 下也是可以用的 pwsh
-    dmidecode
+    dmidecode # sudo dmidecode -t 1
+    git-review
 
     containerd # @todo 测试下
     nerdctl
@@ -194,6 +196,8 @@ in
     asciiquarium
     # ipmiview # supermicro 服务器配套设施，装不上
     bc # bash 数值计算
+
+    verilator # Fast and robust (System)Verilog simulator/compiler
   ];
 
   programs.zsh = {

@@ -562,3 +562,15 @@ echo "${#a[@]}"
 printf '%s\n' "${a[@]}"
 
 endsnippet
+
+snippet Tab_trigger "Description" b
+SECONDS=0 # 初始化，也可以赋其他的数值，
+sleep 1
+echo $SECCOND # 输出 1
+
+echo "${FUNCNAME[@]}" # 调用栈
+
+$OSTYPE" == "linux-gnu" # 操作系统的版本
+
+echo $RANDOM # 输出 [0, 32767] 的数值
+endsnippet

@@ -38,5 +38,3 @@ docker compose down # 删除
 ## 到底是谁在使用 shared memory
 
 ## 记录下一天共启动 qemu 多少次
-
-## kernel compile time

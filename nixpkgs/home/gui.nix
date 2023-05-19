@@ -27,7 +27,8 @@ in
     unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
-    unstable.flameshot
+    unstable.vscode
+    unstable.flameshot # 截图
     unstable.zotero
     unstable.slack
     unstable.drawio

@@ -11,6 +11,9 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin"
 export PATH="$PATH:/run/current-system/sw/bin"
 export PATH="$PATH:/home/martins3/.zsh/plugins/zsh-autosuggestions"
 
+# 因为 nixos 设置了代理，但是现在 clash 启动的时候端口总是随机的
+export http_proxy=
+
 DEBUG=false
 
 function send() {

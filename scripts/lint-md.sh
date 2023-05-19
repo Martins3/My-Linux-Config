@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 lint-md "docs/**/*" -c .lintmdrc.json --threads
 
 if [[ $? ]]; then

@@ -115,10 +115,6 @@ printf '%s\n' "$hello_world"
 ```
 
 ## 有用的变量
-- SECCOND : 记录除了给上一次到这一次的时间
-- "${FUNCNAME[@]}" : 调用栈
-- $OSTYPE" == "linux-gnu" : 操作系统的版本
-- RANDOM
 
 ## 一个括号是不是足够逆天
 https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs
