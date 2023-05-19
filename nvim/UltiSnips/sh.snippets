@@ -30,6 +30,18 @@ snippet note_variable_special "特殊变量"
 # $-为当前 Shell 的启动参数。
 endsnippet
 
+snippet note_variable_special2 "特殊常量"
+SECONDS=0 # 初始化，也可以赋其他的数值，
+sleep 1
+echo $SECCOND # 输出 1
+
+echo "${FUNCNAME[@]}" # 调用栈
+
+$OSTYPE" == "linux-gnu" # 操作系统的版本
+
+echo $RANDOM # 输出 [0, 32767] 的数值
+endsnippet
+
 snippet note_cmpvar "变量比较"
 # 测试一个变量是否赋值否
 if [[ -z ${var+x} ]]; then echo "var is unset"; else echo "var is set to '$var'"; fi
@@ -561,16 +573,4 @@ done
 echo "${#a[@]}"
 printf '%s\n' "${a[@]}"
 
-endsnippet
-
-snippet Tab_trigger "Description" b
-SECONDS=0 # 初始化，也可以赋其他的数值，
-sleep 1
-echo $SECCOND # 输出 1
-
-echo "${FUNCNAME[@]}" # 调用栈
-
-$OSTYPE" == "linux-gnu" # 操作系统的版本
-
-echo $RANDOM # 输出 [0, 32767] 的数值
 endsnippet

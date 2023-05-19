@@ -37,6 +37,12 @@ git:
   - git am
   - -> 撤销一个 commit
   - git reset --soft HEAD^
+redirect:
+  - https://wizardzines.com/comics/redirects/
+  - ls > /dev/null
+  - ls 2> /dev/null
+  - ls &> /dev/null
+  - cat < file
 python:
   - "python -m venv .venv"
   - "source .venv/bin/activate"

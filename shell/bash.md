@@ -152,15 +152,6 @@ https://serverfault.com/questions/35312/unable-to-understand-the-benefit-of-zshs
 ## 一些博客
 - [window powershell 和 bash 的对比](https://vedipen.com/2020/linux-bash-vs-windows-powershell/)
 
-## 重定向
-1. ls > /dev/null
-2. ls 2> /dev/null
-3. ls > /dev/null > 2>&1 或者 &> file
-4. cat < file
-
-https://wizardzines.com/comics/redirects/
-
-
 ## shell 资源推荐
 1. https://devhints.io/bash  : 语法清单
 2. https://explainshell.com/ : 给出一个 shell 命令，对于其进行解释
@@ -176,7 +167,6 @@ https://wizardzines.com/comics/redirects/
 ## 一些库
 - [gum](https://github.com/charmbracelet/gum)
 - https://github.com/bats-core/bats-core : bash 测试框架
-
 
 ## 冷知识
 - [locate vs find](https://unix.stackexchange.com/questions/60205/locate-vs-find-usage-pros-and-cons-of-each-other)
