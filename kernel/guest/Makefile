@@ -7,7 +7,7 @@ ifneq (${KERNELRELEASE},)
 $(info call this in kernel environment)
 obj-m += martins3.o
 
-martins3-m := hello.o seq.o
+martins3-m := hello.o seq.o seq2.o
 # Otherwise we were called directly from the command line.
 # Invoke the kernel build system.
 else
