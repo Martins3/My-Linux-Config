@@ -322,11 +322,14 @@ static void hacking_pr_info(void)
 
 static void hacking_watchdog(void)
 {
-	bool hard = true;
+	bool hard = false;
 	if (hard)
 		local_irq_disable();
 
 	for (;;) {
+    // TODO
+    // 1. 如果中断屏蔽了，这个就没用了
+    // 2. 此外，此时的 insmod martins3.ko 是无法被 Ctrl C 掉的
 		cond_resched();
 	}
 
@@ -334,7 +337,8 @@ static void hacking_watchdog(void)
 		local_irq_enable();
 }
 
-enum hacking h = SEQ_FILE_1;
+// TODO 做成参数
+enum hacking h = SEQ_FILE_2;
 
 static int __init greeter_init(void)
 {
@@ -362,6 +366,9 @@ static int __init greeter_init(void)
 		break;
 	case SEQ_FILE_1:
 		simple_seq_init();
+    break;
+	case SEQ_FILE_2:
+		simple_seq_init2();
 		break;
 	}
 
@@ -380,6 +387,10 @@ static void __exit greeter_exit(void)
 		break;
 	case SEQ_FILE_1:
 		simple_seq_fini();
+    break;
+	case SEQ_FILE_2:
+		simple_seq_fini2();
+    break;
 	default:
 		break;
 	}

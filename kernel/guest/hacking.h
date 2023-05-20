@@ -8,10 +8,17 @@ enum hacking {
 	MUTEX,
 	MEMORY_MODEL_1, // load load，x86 上找不到
 	MEMORY_MODEL_2, // store load
-	SEQ_FILE_1
+	SEQ_FILE_1,
+	SEQ_FILE_2
 };
 
 int simple_seq_init(void);
 void simple_seq_fini(void);
+
+int simple_seq_init2(void);
+void simple_seq_fini2(void);
+
+int simple_seq_init3(void);
+void simple_seq_fini3(void);
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */

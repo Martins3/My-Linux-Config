@@ -55,8 +55,11 @@ SECONDS=0
 make clean
 nix-shell --command "make defconfig kvm_guest.config martins3.config"
 nix-shell --command "nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+
 # 系统的 perf 不能用了，暂时靠这个维持生活吧
-nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# 好家伙，这我整个这个报错
+# Makefile.config:451: *** No gnu/libc-version.h found, please install glibc-dev[el].  Stop.
+# nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 curl -d "martins3,tag=13900K kernel=$SECONDS" -X POST 'http://127.0.0.1:8428/write' || true
 
 # 编译文档的速度太慢了，不想每次都等那么久
