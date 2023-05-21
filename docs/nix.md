@@ -103,7 +103,7 @@ home-manager switch
 ## 图形界面的安装
 1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
 2. 重启
-3. 打开 shell，执行 nix-shell -p vim git ，然后
+3. 打开 shell，执行 `nix-shell -p vim git` ，然后
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
 ./scripts/install.sh
@@ -119,7 +119,7 @@ home-manager switch
 sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
 # 在配置中增加上
-# networking.proxy.default = "http://127.0.0.1:8889";
+# networking.proxy.default = "http://192.167.64.62:8889"; # 需要提前搭梯子
 sudo nixos rebuild
 ```
 
