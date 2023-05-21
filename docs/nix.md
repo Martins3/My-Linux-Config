@@ -111,6 +111,16 @@ git clone https://github.com/Martins3/My-Linux-Config
 nixos-rebuild switch
 nix-shell '<home-manager>' -A install
 home-manager switch
+# 将密码 hash 写入到 /home/martins3/.passwd 中
+```
+
+如果存在网络代理问题，可以
+```sh
+sudo chmod +w /etc/nixos/configuration.nix
+sudo vim /etc/nixos/configuration.nix
+# 在配置中增加上
+# networking.proxy.default = "http://127.0.0.1:8889";
+sudo nixos rebuild
 ```
 
 ## 基础知识
