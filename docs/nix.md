@@ -24,6 +24,7 @@
 创建分区，安装操作系统，并且初始化 nixos
 
 因为是在 QEMU 中，所以暂时使用的 MBR 的分区，而不是 GPT
+
 ```sh
 sudo -i
 parted /dev/vda -- mklabel msdos
@@ -95,6 +96,19 @@ nixos-rebuild switch # 仅NixOS，其实在 root 状态下
 
 ```sh
 # 安装home-manager
+nix-shell '<home-manager>' -A install
+home-manager switch
+```
+
+## 图形界面的安装
+1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
+2. 重启
+3. 打开 shell，执行 nix-shell -p vim git ，然后
+```sh
+git clone https://github.com/Martins3/My-Linux-Config
+./scripts/install.sh
+./scripts/nix/nix-channel.sh
+nixos-rebuild switch
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
@@ -695,7 +709,7 @@ nix-shell -p gcc glibc.static
 ## 如何安装 nixos 主题
 - https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/icons/whitesur-icon-theme/default.nix
 
-## 如何安装 nixos
+## 如何安装 steam
 - [Installing Steam on NixOS in 50 simple steps](https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html)
 
 但是社区感觉实在是太复杂了，所以存在一个专门的 hacking：
@@ -703,6 +717,7 @@ nix-shell -p gcc glibc.static
 nixpkgs.config.allowUnfree = true;
 programs.steam.enable = true;
 ```
+装好之后，发现也没啥用。
 
 ## nix-index 是做什么的
 

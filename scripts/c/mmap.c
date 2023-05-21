@@ -7,6 +7,7 @@
 const unsigned long PAGE_SIZE = 16 * 1024;
 
 int main() {
+
   unsigned long size = 4000UL * 1024 * 1024;
   void *ptr = mmap(NULL, size, PROT_READ | PROT_WRITE,
                    MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
