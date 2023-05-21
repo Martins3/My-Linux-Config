@@ -5,14 +5,10 @@
 - [ ] https://github.com/smcdef/memory-reordering/blob/master/ordering.c
 - [ ] include/linux/semaphore.h
   - https://lwn.net/Articles/928026/
-
-## 如何最简单的创建一个文件来交互
-
-1. 使用 /proc
+- [ ] 测试 interruptable 和 uninterrpable 的
+- [ ] 测试等待 io 也是计入到 load 中的
 
 ## seq file
-参考: https://stackoverflow.com/questions/25399112/how-to-use-a-seq-file-in-linux-kernel-modules
-
-seq2.c 的 next 存在 bug，正如
-
-https://github.com/sysprog21/lkmpg
+参考:
+1. https://stackoverflow.com/questions/25399112/how-to-use-a-seq-file-in-linux-kernel-modules
+2. https://github.com/sysprog21/lkmpg
