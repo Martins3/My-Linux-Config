@@ -41,13 +41,13 @@
   * [一键运行代码](#一键运行代码)
   * [一键注释代码](#一键注释代码)
   * [markdown 集成](#markdown-集成)
-  * [[可选] Latex 集成](#可选-latex-集成)
   * [代码折叠](#代码折叠)
   * [Session](#session)
-  * [[可选] Scala 集成](#可选-scala-集成)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
   * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
+  * [[可选] Latex 集成](#可选-latex-集成)
+  * [[可选] Scala 集成](#可选-scala-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -567,27 +567,6 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
 
-### [可选] Latex 集成
-通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
-- 自动补全
-- 静态检查
-- 实时编译预览
-
-| 自动补全的效果                                           |
-|----------------------------------------------------------|
-| <img src="./img/latex-preview.png" /> |
-
-| 预览的效果                                           |
-|------------------------------------------------------|
-| <img src="./img/latex-cmp.png" /> |
-
-主要使用两个快捷键:
-
-| binding           | function                                             |
-|-------------------|------------------------------------------------------|
-| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
-| `<space>` `l` `p` | 使用 zathura 预览                                    |
-
 ### 代码折叠
 
 利用上 treesitter ，vim 内置的折叠变得非常易用。
@@ -614,22 +593,6 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 <!--         - 在浏览器中登录 http://127.0.0.1:3000 -->
 <!--         - 设置 ~/.wakatime.cfg -->
 <!-- - 方案二: https://github.com/mujx/hakatime -->
-
-### [可选] Scala 集成
-参考 https://github.com/scalameta/nvim-metals 中的文档:
-
-安装 cs
-```sh
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
-chmod +x cs
-./cs setup
-```
-
-以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
-```sh
-sbt bloopInstall
-```
-然后就可以自动索引了。
 
 ### 快速移动
 
@@ -683,6 +646,45 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 但是还是存在一些问题，不过暂时可以接受:
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
+
+### [可选] Latex 集成
+通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
+- 自动补全
+- 静态检查
+- 实时编译预览
+
+| 自动补全的效果                                           |
+|----------------------------------------------------------|
+| <img src="./img/latex-preview.png" /> |
+
+| 预览的效果                                           |
+|------------------------------------------------------|
+| <img src="./img/latex-cmp.png" /> |
+
+主要使用两个快捷键:
+
+| binding           | function                                             |
+|-------------------|------------------------------------------------------|
+| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
+| `<space>` `l` `p` | 使用 zathura 预览                                    |
+
+
+### [可选] Scala 集成
+参考 https://github.com/scalameta/nvim-metals 中的文档:
+
+安装 cs
+```sh
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
+chmod +x cs
+./cs setup
+```
+
+以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
+```sh
+sbt bloopInstall
+```
+然后就可以自动索引了。
+
 
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
