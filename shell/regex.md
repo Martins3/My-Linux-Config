@@ -10,6 +10,18 @@
 
 [将 regex 转化为](https://www.autoregex.xyz/)
 
+## https://matt.might.net/articles/sculpting-text
+
+grep 默认情况下是 BRE
+- the operators {}, (), +, | and ? must be escaped with \
+
+- basic regular expressions (BRE);
+- extended regular expressions (ERE); and
+- Perl-compatible regular expressions (PCRE).
+
+## 问题
+1. 直接
+
 ## 笔记
 一些特殊字符用来指定一个字符在文本中重复的次数。它们分别是加号 +、星号 * 和问号 ?。
   - 我们在字符后面加上 *，表示一个字符完全不匹配或可以匹配多次。
@@ -36,6 +48,8 @@ vim 中使用 regex 参考[这个总结](https://learnbyexample.gitbooks.io/vim-
 
 就需要使用 magic ooption, 通过 `:h \v` 查询[^1]。
 
+https://thevaluable.dev/vim-advanced/
+
 vim 中删除 trailing space 的命令 `:%s/\s\+$/`
 
 ## bash 的扩展模式的差别
@@ -59,9 +73,12 @@ echo ${str/?/sss}
 
 ## 实在不行，使用 gpt 吧
 
-## 为什么
+## \d
 ag "smartx.\d+," 可以使用 \d ，但是 sed 不可以
 
-## [ ] 此外，我的逆天的 tag generator
+## 才意识到，vim 的 regex 和其他的都不同
+https://vi.stackexchange.com/questions/2268/are-vims-regex-magics-compatible-with-well-known-regex-classes
 
-[^1]: https://thevaluable.dev/vim-advanced/
+感觉默认是 PCRE，但是只是在 \ 上存在一些操作。
+## 搞清楚 sed 的基本用法
+- -i : 本地替换
