@@ -114,9 +114,9 @@ sudo nixos rebuild
 3. 首先解决网络问题，使用 sed 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
 4. 打开 shell，执行 `nix-shell -p vim git` ，然后
 ```sh
-git clone https://github.com/Martins3/My-Linux-Config
+git clone https://github.com/Martins3/My-Linux-Config .dotfiles
+sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 ```
-
 
 ## 基础知识
 - nix-prefetch-url 同时下载和获取 hash 数值
