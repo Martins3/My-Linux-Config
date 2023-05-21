@@ -116,7 +116,6 @@ in
     dos2unix
     # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
-    pstree
     # dpdk
     # firecracker
     inetutils
@@ -159,6 +158,7 @@ in
     wtf # The personal information dashboard for your terminal
     unstable.nixos-shell
     progress # 展示 cp dd 之类的进度条
+    psmisc # 包含 pstree fuser 等工具
     viddy # A modern watch command.
     # mcfly # better ctrl-r for shell
     unstable.atuin
