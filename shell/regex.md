@@ -8,7 +8,7 @@
 
 用于[测试和解释 regex 的网站](https://regexr.com/)
 
-[将 regex 转化为 plain English](https://www.autoregex.xyz/)
+[将 regex 转化为](https://www.autoregex.xyz/)
 
 ## 笔记
 一些特殊字符用来指定一个字符在文本中重复的次数。它们分别是加号 +、星号 * 和问号 ?。
@@ -57,11 +57,10 @@ echo ${str/?/sss}
 - [使用 swift 打造一个自己的 regex 引擎](https://kean.blog/post/lets-build-regex)
 - [melody : 一个可以编译为 regex 的语言](https://github.com/yoav-lavi/melody)
 
-
 ## 实在不行，使用 gpt 吧
 
 ## 为什么
-ag "4.18.0-193.28.1.el7.smartx.\d+," 可以使用 \d ，但是 sed 不可以
+ag "smartx.\d+," 可以使用 \d ，但是 sed 不可以
 
 ## [ ] 此外，我的逆天的 tag generator
 
