@@ -102,19 +102,7 @@ home-manager switch
 
 ## 图形界面的安装
 1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
-2. 重启
-3. 打开 shell，执行 `nix-shell -p vim git` ，然后
-```sh
-git clone https://github.com/Martins3/My-Linux-Config
-./scripts/install.sh
-./scripts/nix/nix-channel.sh
-nixos-rebuild switch
-nix-shell '<home-manager>' -A install
-home-manager switch
-# 将密码 hash 写入到 /home/martins3/.passwd 中
-```
-
-如果存在网络代理问题，可以
+1.1 其中必然遇到网络问题
 ```sh
 sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
@@ -122,6 +110,13 @@ sudo vim /etc/nixos/configuration.nix
 # networking.proxy.default = "http://192.167.64.62:8889"; # 需要提前搭梯子
 sudo nixos rebuild
 ```
+2. 重启
+3. 首先解决网络问题，使用 sed 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
+4. 打开 shell，执行 `nix-shell -p vim git` ，然后
+```sh
+git clone https://github.com/Martins3/My-Linux-Config
+```
+
 
 ## 基础知识
 - nix-prefetch-url 同时下载和获取 hash 数值
