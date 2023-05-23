@@ -17,7 +17,7 @@ function slash() {
 
 function egrep_vs_grep() {
 	# \1 来捕获第一个，也就是 () 的第一次匹配的内容
-	grep '^\(.*\)\1$' $testfile
+	grep -e '^\(.*\)\1$' $testfile
 	# 如果使用 -E 无需
 	grep -E '^(.*)\1\(\)$' $testfile
 }
@@ -54,4 +54,4 @@ function learn_find() {
 	find "*regex.sh"
 }
 
-learn_rg
+egrep_vs_grep
