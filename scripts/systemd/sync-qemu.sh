@@ -20,6 +20,7 @@ else
 	cd /home/martins3/core
 	git clone https://github.com/qemu/qemu
 	cd qemu
+	ln -sf /home/martins3/.dotfiles/scripts/nix/env/qemu.nix default.nix
 fi
 
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git

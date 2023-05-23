@@ -41,12 +41,17 @@ function learn_sed() {
 	sed -E "/(emacs)/a $lines" $testfile
 }
 
-function learn_rg(){
-  rg "[0-9]" $testfile
-  rg "\d" $testfile
-  grep -E "[0-9]" $testfile
-  grep -E "\d" $testfile
-  grep -P "\d" $testfile
+function learn_rg() {
+	rg "[0-9]" $testfile
+	rg "\d" $testfile
+	grep -E "[0-9]" $testfile
+	grep -E "\d" $testfile
+	grep -P "\d" $testfile
+}
+
+function learn_find() {
+	# find 使用的是 glob
+	find "*regex.sh"
 }
 
 learn_rg
