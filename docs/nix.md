@@ -1020,4 +1020,7 @@ source drgnenv/bin/activate
 ## [ ] infer 处理下
 https://fbinfer.com/docs/getting-started/
 
+## 虚拟机中安装
+- gui.nix 不会被 include 进去
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

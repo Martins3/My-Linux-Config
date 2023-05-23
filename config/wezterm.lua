@@ -112,12 +112,20 @@ return {
   use_fancy_tab_bar = false,
   launch_menu = {
     {
-      label = 'M2',
+      label = 'M2-wired',
       args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'zellij attach || zellij' },
     },
     {
-      label = 'Mac',
+      label = 'Mi-wired',
+      args = { 'ssh', '-b', '10.0.0.1', '-t', 'martins3@10.0.0.2', 'zellij attach || zellij' },
+    },
+    {
+      label = 'M2',
       args = { 'ssh', '-t', 'martins3@192.168.11.99', 'zellij attach || zellij' },
+    },
+    {
+      label = 'Mi',
+      args = { 'ssh', '-t', 'martins3@192.168.11.17', 'zellij attach || zellij' },
     },
     {
       label = 'zellij',
