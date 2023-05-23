@@ -569,5 +569,10 @@ done
 
 echo "${#a[@]}"
 printf '%s\n' "${a[@]}"
+endsnippet
 
+snippet note_variable_indirect "" b
+foo="something"
+bar="foo"
+echo "${!bar}"
 endsnippet
