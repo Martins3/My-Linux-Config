@@ -82,3 +82,9 @@ https://vi.stackexchange.com/questions/2268/are-vims-regex-magics-compatible-wit
 感觉默认是 PCRE，但是只是在 \ 上存在一些操作。
 ## 搞清楚 sed 的基本用法
 - -i : 本地替换
+
+## 那么请问
+- telescope 中的正则是什么样子的，可以调整吗?
+
+## find 也是可以调整的为 regex 的
+https://stackoverflow.com/questions/6844785/how-to-use-regex-with-find-command

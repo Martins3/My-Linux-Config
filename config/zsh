@@ -83,7 +83,6 @@ alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
 alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
 alias ge="ssh -p5556 root@localhost"
-alias nk="nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel --command zsh"
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
 alias c="clear"

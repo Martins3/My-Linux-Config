@@ -25,5 +25,6 @@ pkgs.stdenv.mkDerivation {
     zstd
     virglrenderer
     epoxy
+    numactl
   ];
 }
