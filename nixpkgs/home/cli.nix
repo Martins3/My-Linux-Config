@@ -93,6 +93,7 @@ in
     rnix-lsp # nix 语言的 lsp
     tree-sitter
     systeroid
+    linuxKernel.packages.linux_5_15.perf
     # TODO 6.3 内核无法编译了
     # pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
     # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇

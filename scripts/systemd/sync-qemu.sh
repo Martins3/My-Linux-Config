@@ -48,7 +48,8 @@ _EOF
 # @todo 用上 --enable-virtfs 是做啥的
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --enable-libusb --enable-virglrenderer --enable-opengl"
+QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --enable-libusb"
+QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa"
 
 nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. && nice -n 19 make -j"
 # nvim -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
