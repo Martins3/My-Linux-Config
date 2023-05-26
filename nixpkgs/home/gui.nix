@@ -33,9 +33,9 @@ in
     unstable.slack
     unstable.drawio
     # variety # wallpaper 但是 bing wallpaper 已经够好了
-    # kitty
+    kitty
     wezterm
-    # unstable.alacritty
+    unstable.alacritty
     # gource
     unstable.firefox
     unstable.microsoft-edge-dev

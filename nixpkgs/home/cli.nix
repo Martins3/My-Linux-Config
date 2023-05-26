@@ -146,6 +146,7 @@ in
     # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
     arp-scan
+    pcm
     nixos-generators
     unstable.gum
     # acpi
@@ -199,6 +200,16 @@ in
     bc # bash 数值计算
 
     verilator # Fast and robust (System)Verilog simulator/compiler
+
+    cowsay
+    figlet # 艺术字
+    lolcat # 彩虹 cat
+    nyancat # 彩虹猫咪
+    dig # dns分析
+    iptraf-ng # 网络流量分析
+    glances # 又一个 htop
+    smartmontools # 监视硬盘健康
+    httpie # http baidu.com
   ];
 
   programs.zsh = {
