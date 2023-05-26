@@ -367,4 +367,9 @@ in
       };
     };
   };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 60;
+    "vm.overcommit_memory" = 200;
+  };
 }
