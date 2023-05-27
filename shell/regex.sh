@@ -39,6 +39,9 @@ function learn_sed() {
 	lines="abc\n"
 	lines+="cde"
 	sed -E "/(emacs)/a $lines" $testfile
+
+  # 增加整个文件
+  sed "/cdef/r nu.md" $testfile
 }
 
 function learn_rg() {
