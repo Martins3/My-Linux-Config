@@ -822,6 +822,7 @@ setxkbmap -option caps:swapescape
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
 - [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
+- [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 
 ## 有趣的插件
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
