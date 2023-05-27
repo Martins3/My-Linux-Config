@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./sys/cli.nix
+    ./sys/gui.nix
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
     ./sys/gui.nix
@@ -176,11 +177,6 @@ in
   /* /dev/nvme1n2p2: BLOCK_SIZE="512" UUID="02084242084234C7" TYPE="ntfs" PARTUUID="8402854e-02" */
 
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-      efiSysMountPoint = "/boot";
-    };
     grub = {
       # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
       # theme = pkgs.nixos-grub2-theme;
@@ -196,25 +192,32 @@ in
       # `grub-install` if efiSupport is true
       # (the devices list is not used by the EFI grub install,
       # but must be set to some value in order to pass an assert in grub.nix)
-      devices = [ "nodev" ];
-      efiSupport = true;
 
+      device = "nodev";
       # useOSProber = true; # 没有说的那么不堪，还是很好用的
 
-      enable = true;
+      # enable = true;
       # set $FS_UUID to the UUID of the EFI partition
       # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
-      extraEntries = ''
-        menuentry "Windows" {
-          insmod part_gpt
-          insmod fat
-          search --fs-uuid --set=root 4957-45A0
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
       version = 2;
     };
   };
+
+  # boot.loader = {
+  #   efi = {
+  #     canTouchEfiVariables = true;
+  #     efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+  #   };
+  #   grub = {
+  #      efiSupport = true;
+  #      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+  #      device = "nodev";
+  # 
+  #       enable = true;
+  #       version = 2;
+  #       useOSProber = true; # 没有说的那么不堪，还是很好用的
+  #   };
+  # };
 
 
   services.openssh.enable = true;
@@ -369,7 +372,7 @@ in
   };
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = 60;
-    "vm.overcommit_memory" = 200;
+    "vm.swappiness" = 20;
+    "vm.overcommit_memory" = 1;
   };
 }

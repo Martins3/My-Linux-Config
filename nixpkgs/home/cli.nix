@@ -61,7 +61,6 @@ in
     socat # unix domain
     delta # git diff
     git-secrets
-    bpftool
     nethogs
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
@@ -105,6 +104,10 @@ in
     trace-cmd
     ltrace # 检查程序使用的库
     unstable.bcc
+    # @todo 不知道为什么居然又两个程序
+    # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
+    bpftool
+    bpftools
     acpi
     cpuid
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置

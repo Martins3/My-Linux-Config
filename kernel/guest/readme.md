@@ -12,3 +12,6 @@
 参考:
 1. https://stackoverflow.com/questions/25399112/how-to-use-a-seq-file-in-linux-kernel-modules
 2. https://github.com/sysprog21/lkmpg
+
+
+## 持有 mutex 睡眠
