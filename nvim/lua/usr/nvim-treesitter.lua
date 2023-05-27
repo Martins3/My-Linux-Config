@@ -7,7 +7,9 @@ require 'nvim-treesitter.configs'.setup {
   },
   -- ensure_installed = "maintained", 安装目前维护的所有语言 treesitter 插件。
   ensure_installed = { 'org', 'lua', 'java', 'rust', 'c', 'nix', 'bash',
-    'go', 'scala', 'cpp', 'python' },
+    'go', 'scala', 'cpp', 'python',
+    'markdown', 'markdown_inline' -- 让 markdown 里面的代码段可以高亮
+  },
 }
 
 -- 从 https://github.com/nvim-treesitter/nvim-treesitter-textobjects 拷贝过来的配置
@@ -39,9 +41,9 @@ require 'nvim-treesitter.configs'.setup {
       },
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
-        ['@parameter.outer'] = 'v',     -- charwise
-        ['@function.outer'] = 'V',      -- linewise
-        ['@class.outer'] = '<c-v>',     -- blockwise
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V',  -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding xor succeeding whitespace. Succeeding
