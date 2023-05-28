@@ -93,22 +93,18 @@ in
     tree-sitter
     systeroid
     linuxKernel.packages.linux_5_15.perf
-    # TODO 6.3 内核无法编译了
-    # pkgs.linuxPackages_latest.perf # @todo perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
-    # linuxHeaders @todo 这个东西和 stable 和 latest 的内核不是配套的哇
-    # 这个东西其实自己生成一份
-    # 关键在于这里提供的内容不对: (import <nixpkgs> {}).linuxPackages_latest.kernel.dev
     iperf
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
-    kernelshark # @todo 使用一下
+    kernelshark
     trace-cmd
-    ltrace # 检查程序使用的库
+    ltrace # library trace
     unstable.bcc
     # @todo 不知道为什么居然又两个程序
     # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
     bpftool
     bpftools
     acpi
+    liburing
     cpuid
     # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
     sqlite
