@@ -1023,8 +1023,15 @@ https://fbinfer.com/docs/getting-started/
 ## 虚拟机中安装
 - gui.nix 不会被 include 进去
 
-## gnome 有些内容需要手动设置
+## 有些需要手动设置的内容
+gnome 有些内容需要手动设置
 1. 将 edge 设置为默认的浏览器, gnome setting
 2. ctrl 1 进入到第一个 workspace
+
+Vn 和 My-Linux-Config 
+```sh
+npm install -g @lint-md/cli@beta
+pre-commmit
+```
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
