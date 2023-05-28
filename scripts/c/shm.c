@@ -13,7 +13,7 @@
 int main(int argc, char *argv[]) {
   int fd;
   void *result;
-  char a;
+  char wait;
 
   fd = shm_open("shm1", O_RDWR | O_CREAT, 0644);
   if (fd < 0) {
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     printf("mapped failed\n");
     exit(1);
   }
-  scanf("%c", &a);
+  scanf("%c", &wait);
 
   while (true)
     sleep(1);
