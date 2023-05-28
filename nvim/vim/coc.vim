@@ -104,7 +104,6 @@ let s:coc_extensions = [
       \ 'coc-dictionary',
       \ 'coc-rust-analyzer',
       \ 'coc-vimlsp',
-      \ 'coc-ci',
       \ 'coc-snippets',
       \ 'coc-go',
       \ 'coc-sumneko-lua',
@@ -136,5 +135,6 @@ if $USERNAME == "martins3"
 endif
 
 " 方便在中文中使用 w 和 b 移动
-nmap <silent> w <Plug>(coc-ci-w)
-nmap <silent> b <Plug>(coc-ci-b)
+" 安装 'coc-ci'
+" nmap <silent> w <Plug>(coc-ci-w)
+" nmap <silent> b <Plug>(coc-ci-b)
