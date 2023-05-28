@@ -26,6 +26,11 @@ require('telescope').setup {
       -- Available: 'brave', 'buku', 'chrome', 'edge', 'safari', 'firefox'
       selected_browser = 'edge',
     },
+    emoji = {
+      action = function(emoji)
+        vim.api.nvim_put({ emoji.value }, 'c', false, true) -- 选择 emoji 之后直接插入符号
+      end,
+    }
   }
 }
 
