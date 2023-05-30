@@ -78,13 +78,29 @@ function setup_ncdu() {
 	rm ncdu-$version-linux-x86_64.tar.gz
 }
 
-# @todo tig 需要升级一下版本
+# 默认的 tig 太老了
+function setup_tig() {
+	git clone https://github.com/jonas/tig
+	pushd tig
+	make -j
+	mv src/tig /root/bin
+	popd
+}
+
+cd ~
+[[ ! -d install ]] && mkdir -p install
+
+# 替换 aliyun 的源
 
 install autoconf
 install automake
 install libtool
+
 install pam-devel
 install numactl
 install flex flex-devel bios bison-devel
+install ncurses-devel # tig 依赖
+
 ohmyzsh
 share
+setup_tig

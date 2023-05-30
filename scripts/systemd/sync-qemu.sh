@@ -5,7 +5,6 @@ set -ex
 
 function finish {
 	if [[ $? == 0 ]]; then
-		sleep 600
 		exit 0
 	fi
 	sleep infinity
