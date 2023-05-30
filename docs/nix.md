@@ -1028,11 +1028,13 @@ gnome 有些内容需要手动设置
 1. 将 edge 设置为默认的浏览器, gnome setting
 2. ctrl 1 进入到第一个 workspace
 
-Vn 和 My-Linux-Config
+Vn 和 My-Linux-Config 两个仓库中
 ```sh
 npm install -g @lint-md/cli@beta
 pre-commmit
 ```
 但是 pre-commit 不知道为什么，并没有起效。
+
+不知道为什么 efm 在新装的环境中无法使用了。
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

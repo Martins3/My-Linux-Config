@@ -53,3 +53,15 @@ pr_info("[huxueshi:%s:%d] rtm always abort %d\n", __FUNCTION__, __LINE__, cpu_kh
 ```
 
 ## 触发一下 rcu cpu stall 的 bug
+
+
+## 对于一般的内核模块替换
+make path/to/name.ko -j32
+
+
+## wait_event
+- blk_queue_enter 中，wait_event 前面居然有一个 smp_read
+配合这个使用:
+- wake_up_all
+
+## percpu_ref_kill

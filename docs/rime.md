@@ -15,7 +15,10 @@ rime_dir="$CONFIG_DIR" bash rime-install
 ## 配置 fcitx5
 <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" />
 
-这样 `ctrl space` 唤出 rime 输入法, 而 shift 切换的 rime 的中文输入和英文输入。
+## 常用快捷键
+1. `ctrl space` 唤出 rime 输入法
+2. shift 切换的 rime 的中文输入和英文输入。
+3. `ctrl delete` : 删除自造词
 
 ## 从 雾凇拼音 中增加词库
 
