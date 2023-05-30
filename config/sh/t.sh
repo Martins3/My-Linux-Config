@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 
 set -E -e -u -o pipefail
 
@@ -21,7 +20,7 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 if [[ $# -eq 0 ]]; then
-	echo "t funcname"
+	echo "usage : t funcname"
 	exit 1
 fi
 

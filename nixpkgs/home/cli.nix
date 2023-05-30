@@ -49,6 +49,7 @@ in
     lshw
     exa # more powerful ls
     oh-my-posh # @todo for powershell
+    gource
     neofetch
     bear
     tree
