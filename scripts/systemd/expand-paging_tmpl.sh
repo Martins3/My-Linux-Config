@@ -10,8 +10,11 @@ sed -i -e "/#define PTTYPE PTTYPE_EPT/r $header" $source
 sed -i -e "/#define PTTYPE 64/r $header" $source
 sed -i -e "/#define PTTYPE 32/r $header" $source
 
-# 有趣，这些代码实际上不能注销掉，否则系统无法启动，
+# 嵌套虚拟化中使用 paging_tmpl 来展开多次
+# 这个需要使用类似 gcc 来预处理，否则还是有点丑陋
+# 这些代码实际上不能注销掉，否则系统无法启动，
 # 说明，内核的模式实际上发生过切换
+
 # functions=(
 #   paging32_page_fault
 #   paging32_gva_to_gpa
