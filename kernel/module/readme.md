@@ -65,3 +65,11 @@ make path/to/name.ko -j32
 - wake_up_all
 
 ## percpu_ref_kill
+
+
+## 将 rcu 用起来再说
+https://lwn.net/Articles/777036/
+
+- synchronize_rcu()  : 等待 rcu grace 时间结束
+- synchronize_rcu_expedited() ： 强制结束 rcu grace 时间，感觉一般都是在 subsystem 关闭的时候
+- call_rcu
