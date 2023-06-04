@@ -185,7 +185,7 @@ in
     libnotify # 通知小工具
     # 才知道在 Linux 下也是可以用的 pwsh
     # 在 nixos 23.04 这个版本中，暂时因为 ssl 的版本，不能使用
-    # powershell 
+    # powershell
     dmidecode # sudo dmidecode -t 1
     git-review
 
@@ -212,6 +212,8 @@ in
     glances # 又一个 htop
     smartmontools # 监视硬盘健康
     httpie # http baidu.com
+
+    lcov
   ];
 
   programs.zsh = {

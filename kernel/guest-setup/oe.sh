@@ -45,6 +45,7 @@ function ohmyzsh() {
 }
 
 function setup_share() {
+  mkdir ~/share
 	cat <<'EOF' >/etc/systemd/system/share.service
 [Unit]
 Description=reboot
@@ -91,6 +92,7 @@ function px(){
 
 alias q="exit"
 alias gs="tig status"
+alias ins="yum install -y"
 
 EOF
 
@@ -121,7 +123,7 @@ install autoconf
 install automake
 install libtool systemd-devel
 
-install vim
+install vim htop perf elfutils elfutils-libelf-devel
 
 install pam-devel
 install numactl
