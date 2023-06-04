@@ -135,7 +135,7 @@ in
     crashDump.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
   };
 
   boot.kernelParams = [
@@ -199,7 +199,6 @@ in
       # enable = true;
       # set $FS_UUID to the UUID of the EFI partition
       # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
-      version = 2;
     };
   };
 

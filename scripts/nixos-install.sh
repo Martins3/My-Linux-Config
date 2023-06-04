@@ -9,10 +9,10 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
-./install.sh
-line="/home/martins3/.config/nixpkgs/system.nix"
-sed "/hardware-configuration.nix/a $line" /etc/nixos/configuration.nix
+ln -sf /home/martins3/.dotfiles/nixpkgs /home/martins3/.config/home-manager
+line="/home/martins3/.config/home-manager/system.nix"
+sudo sed -i "/hardware-configuration.nix/a $line" /etc/nixos/configuration.nix
 sudo ./nix/nix-channel.sh
-nixos-rebuild switch
+sudo nixos-rebuild switch
 nix-shell '<home-manager>' -A install
 home-manager switch

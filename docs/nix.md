@@ -115,7 +115,10 @@ sudo nixos rebuild
 4. 打开 shell，执行 `nix-shell -p vim git` ，然后
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config .dotfiles
+# nixos 的安装
 sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
+# 其他的工具的安装
+/home/martins3/.dotfiles/scripts/install.sh
 ```
 
 ## 基础知识
@@ -769,8 +772,11 @@ Waiting for session to start ...
 - https://github.com/tpwrules/nixos-m1/blob/main/docs/uefi-standalone.md
 
 ## vpn
+
+### tailscale
 - tailscale : https://tailscale.com/blog/nixos-minecraft/
-- wireguard
+
+### [ ] wireguard
 
 ## wasm
 似乎 wasm 的配置很复杂，连最基本的配置都搞不定:
@@ -1027,14 +1033,26 @@ https://fbinfer.com/docs/getting-started/
 gnome 有些内容需要手动设置
 1. 将 edge 设置为默认的浏览器, gnome setting
 2. ctrl 1 进入到第一个 workspace
-
-Vn 和 My-Linux-Config 两个仓库中
+4. Vn 和 My-Linux-Config 两个仓库中
 ```sh
 npm install -g @lint-md/cli@beta
 pre-commmit
 ```
 但是 pre-commit 不知道为什么，并没有起效。
+4. escape and capslock 的切换
+```sh
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+```
+参考: https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
 
 不知道为什么 efm 在新装的环境中无法使用了。
+
+## [ ] 到底如何切换 escape 和 caps
+```nix
+  services.xserver = {
+    enable = true;
+    xkbOptions = "caps:swapescape"; # 之前还可以靠这个维持生活的
+  };
+```
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
