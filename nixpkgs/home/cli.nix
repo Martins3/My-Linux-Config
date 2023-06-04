@@ -123,7 +123,6 @@ in
     (python3.withPackages (p: with p; [
       pandas
       pygal
-      pre-commit
       ipython
       filelock
       autopep8
@@ -132,7 +131,6 @@ in
       filelock
       grpcio
       pytest
-      unittest2
       monotonic
       libxml2
       ansible # 自动化运维
@@ -140,6 +138,7 @@ in
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
     man-pages
+    pre-commit
     tiptop
     atop
     nmon
@@ -184,7 +183,9 @@ in
     swtpm # windows 11 启动需要
     unstable.nushell
     libnotify # 通知小工具
-    powershell # 才知道在 Linux 下也是可以用的 pwsh
+    # 才知道在 Linux 下也是可以用的 pwsh
+    # 在 nixos 23.04 这个版本中，暂时因为 ssl 的版本，不能使用
+    # powershell 
     dmidecode # sudo dmidecode -t 1
     git-review
 
