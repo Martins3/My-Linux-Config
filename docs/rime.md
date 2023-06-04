@@ -4,28 +4,25 @@
 忍无可忍，就换成 Rime 了。但是我发现 Rime 的输入法的门槛很高，这里简单记录下配置过程。
 
 ## 安装
+
+参考 rime/linux-install.sh ，其实也就是:
+
 - 安装 : [rime](https://github.com/fcitx/fcitx-rime)
 - 安装并且使用: [plum](https://github.com/rime/plum)
-```sh
-git clone https://github.com/rime/plum
-CONFIG_DIR=$HOME/.local/share/fcitx5/rime/
-rime_dir="$CONFIG_DIR" bash rime-install
-```
+- 从 [雾凇拼音](https://github.com/iDvel/rime-ice) 中增加词库，雾凇拼音其他的配置一时无法全部消化吸收，仅仅拷贝其中的 cn_dicts 来扩充自己的词库。
 
 ## 配置 fcitx5
-<p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" />
+在 Fcitx5 Configure 中增加 rime 输入法。
+
+在 "Available Input Method" 中搜索 Rime，选中之后，点击中间的那个 "<"，让 "Current Input Method" 中增加 Rime 。
+
+![image](https://github.com/Martins3/My-Linux-Config/assets/16731244/4c0efdd4-d913-4f03-8cd1-c1a7884b06b1)
+
 
 ## 常用快捷键
 1. `ctrl space` 唤出 rime 输入法
 2. shift 切换的 rime 的中文输入和英文输入。
 3. `ctrl delete` : 删除自造词
-
-## 从 雾凇拼音 中增加词库
-
-项目地址: https://github.com/iDvel/rime-ice
-
-其他的配置一时无法全部消化吸收，
-仅仅拷贝其中的 cn_dicts 来扩充自己的词库。
 
 ## 配置简单说明
 | 文件                           | 说明                         |
@@ -50,8 +47,6 @@ rime_dir="$CONFIG_DIR" bash rime-install
 ```nix
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
       fcitx5-rime
     ];
