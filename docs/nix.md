@@ -1036,7 +1036,7 @@ gnome 有些内容需要手动设置
 4. Vn 和 My-Linux-Config 两个仓库中
 ```sh
 npm install -g @lint-md/cli@beta
-pre-commmit
+pre-commit install
 ```
 但是 pre-commit 不知道为什么，并没有起效。
 4. escape and capslock 的切换
@@ -1048,6 +1048,8 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 不知道为什么 efm 在新装的环境中无法使用了。
 
 ## [ ] 到底如何切换 escape 和 caps
+
+这种方法是通过 gnome 实现的:
 ```nix
   services.xserver = {
     enable = true;
