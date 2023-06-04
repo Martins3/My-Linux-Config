@@ -61,7 +61,7 @@
 * [主题](#主题)
 * [常见知识点](#常见知识点)
 * [问题](#问题)
-* [急需解决的问题](#急需解决的问题)
+* [亟须解决的问题](#亟须解决的问题)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
@@ -864,7 +864,8 @@ setxkbmap -option caps:swapescape
 - [ ] 如何让 statusline 统计字数
   - 尝试使用这个吧 https://github.com/spencerwooo/cwim
 -->
-## 急需解决的问题
+
+## 亟须解决的问题
 1. 编辑远程代码
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 3. 调试

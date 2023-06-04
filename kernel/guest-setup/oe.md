@@ -32,6 +32,9 @@ export ftp_proxy=http://10.0.2.2:8889
 export FTP_PROXY=http://10.0.2.2:8889
 ```
 
-修改 alpine.sh 中的
-- 构建 initramfs
-- docs/qemu/sh/alpine.sh
+5. 将 initramfs 拷贝出来
+
+进入到 guest 中:
+```sh
+scp initramfs-6.1.19-7.0.0.17.oe2303.x86_64.img martins3@10.0.2.2:/home/martins3/hack/vm/iso-name-initramfs.img
+```

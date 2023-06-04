@@ -22,6 +22,9 @@ else
 	ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
 fi
 
+cores=$(getconf _NPROCESSORS_ONLN)
+threads=$((cores - 1))
+
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch != master ]]; then
@@ -45,24 +48,23 @@ done
 
 git pull
 
-python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
-# /home/martins3/.dotfiles/scripts/systemd/expand-paging_tmpl.sh
-for i in "${special_files[@]}"; do
-	git add "$i"
-done
-
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 cp /home/martins3/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
+
 SECONDS=0
-make clean
-cores=$(getconf _NPROCESSORS_ONLN)
-threads=$(( - 1))
 if [[ ${kcov} ]]; then
+	nix-shell --command "make mrproper"
 	nix-shell --command "make defconfig kvm_guest.config martins3.config kconv.config -j O=kcov"
-	nix-shell --command "nice -n 19 make -j$threads"
+	nix-shell --command "nice -n 19 make -j$threads O=kcov"
 else
+	make clean
 	nix-shell --command "make defconfig kvm_guest.config martins3.config -j"
-	nix-shell --command "nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+	nix-shell --command "nice -n 19 make -j$threads"
+	python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
+	# scripts/systemd/expand-paging_tmpl.sh
+	for i in "${special_files[@]}"; do
+		git add "$i"
+	done
 fi
 
 # 系统的 perf 不能用了，暂时靠这个维持生活吧

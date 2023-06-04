@@ -13,9 +13,9 @@ mkdir -p ~/.config/atuin/
 
 mkdir -p ~/.config/nushell
 
-[[ ! -d ~/.dotfiles/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
-[[ ! -d ~/.dotfiles/config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
-[[ ! -d ~/.dotfiles/config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
+[[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
+[[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
+[[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
 
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc

@@ -11,11 +11,10 @@ done
 
 初始化
 ```sh
-cd ~
+cd ~/core
 git clone https://github.com/VictoriaMetrics/VictoriaMetrics
 cd  ~/core/VictoriaMetrics/deployment/docker
 docker compose up -d
-docker compose down # 删除
 ```
 登录 127.0.0.1:3000
 
