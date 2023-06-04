@@ -14,13 +14,13 @@ function legacy-stress-ng() {
 }
 
 # no stress-ng in oe
-function stress-ng() {
-	wget http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/stress-ng-0.13.00-5.el8.x86_64.rpm -o /tmp/stress-ng.rpm
-	install /tmp/stress-ng.rpm
+function setup_stress-ng() {
+	wget http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/stress-ng-0.13.00-5.el8.x86_64.rpm -O /tmp/stress-ng.rpm
+	yum install -y /tmp/stress-ng.rpm
 }
 
-function libcgroup() {
-	if [[ -d libcgroup ]]; then
+function setup_libcgroup() {
+	if [[ ! -d libcgroup ]]; then
 		git clone https://github.com/libcgroup/libcgroup
 	fi
 	pushd libcgroup
@@ -34,12 +34,17 @@ function libcgroup() {
 	popd
 }
 
+# only zsh 安装
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 function ohmyzsh() {
 	yum install -y zsh git
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	if [[ ! -d /root/.oh-my-zsh ]]; then
+		sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+		git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+	fi
 }
 
-function share() {
+function setup_share() {
 	cat <<'EOF' >/etc/systemd/system/share.service
 [Unit]
 Description=reboot
@@ -55,11 +60,12 @@ EOF
 	systemctl enable share
 }
 
-# only zsh 安装
-# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
-
-# guest crash 太频繁
-cat <<'EOF' >~/fix
+# guest crash 太频繁，增加额外的命令
+function zsh_fix() {
+	if grep martins3 ~/.zshrc; then
+		return
+	fi
+	cat <<'EOF' >~/fix
 #!/usr/bin/zsh
 
 set -e
@@ -68,7 +74,27 @@ mv .zsh_history .zsh_history_bad
 strings -eS .zsh_history_bad > .zsh_history
 fc -R .zsh_history
 EOF
-echo "alias f=fix" >>~/.zshrc
+	chmod +x ~/fix
+
+	cat <<'EOF' >>~/.zshrc
+# martins3
+alias f=/root/fix
+
+function px(){
+  export https_proxy=http://10.0.2.2:8889
+  export http_proxy=http://10.0.2.2:8889
+  export HTTPS_PROXY=http://10.0.2.2:8889
+  export HTTP_PROXY=http://10.0.2.2:8889
+  export ftp_proxy=http://10.0.2.2:8889
+  export FTP_PROXY=http://10.0.2.2:8889
+}
+
+alias q="exit"
+alias gs="tig status"
+
+EOF
+
+}
 
 function setup_ncdu() {
 	version=2.2.1
@@ -88,13 +114,14 @@ function setup_tig() {
 }
 
 cd ~
-[[ ! -d install ]] && mkdir -p install
+[[ ! -d install ]] && mkdir -p install && cd install
 
-# 替换 aliyun 的源
-
+mkdir /root/bin
 install autoconf
 install automake
-install libtool
+install libtool systemd-devel
+
+install vim
 
 install pam-devel
 install numactl
@@ -102,5 +129,8 @@ install flex flex-devel bios bison-devel
 install ncurses-devel # tig 依赖
 
 ohmyzsh
-share
+zsh_fix
+setup_share
 setup_tig
+setup_libcgroup
+setup_stress-ng

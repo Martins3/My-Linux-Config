@@ -63,6 +63,7 @@ function px() {
     esac # --- end of case ---
   done
 
+  set -x
   export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
   export http_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
   export HTTPS_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
