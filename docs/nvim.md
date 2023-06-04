@@ -853,7 +853,7 @@ setxkbmap -option caps:swapescape
 ## 问题
 - [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-- [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
+
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
 " 多fail_futex半是这个没有正确设置，参考:
