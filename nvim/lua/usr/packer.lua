@@ -26,7 +26,13 @@ require("packer").startup({
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
     use 'RRethy/nvim-treesitter-textsubjects'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'lewis6991/spellsitter.nvim'     -- 当检查拼写的时候，仅仅检查注释
+    use 'lewis6991/spellsitter.nvim' -- 当检查拼写的时候，仅仅检查注释
+    use {
+      "cshuaimin/ssr.nvim",
+      module = "ssr",
+      vim.keymap.set({ "n", "x" }, "<leader>r",
+        function() require("ssr").open() end) -- @todo 不知道为什么，keymap 放在这里，其实没有效果，放到其他位置，ssr module 找不到
+    }
     -- ui
     use 'liuchengxu/vista.vim'           -- 导航栏
     use 'kyazdani42/nvim-tree.lua'       -- 文件树
