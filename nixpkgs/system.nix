@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./sys/cli.nix
-    ./sys/gui.nix
+    ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
     ./sys/gui.nix
@@ -28,7 +28,8 @@ in
   # see https://nixos.wiki/wiki/Nvidia
   # services.xserver.videoDrivers = [ "nvidia" ];
   # hardware.opengl.enable = true;
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # .beta 可以替换为其他的版本，其中 beta 是最新的
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   programs.zsh.enable = true;
 
