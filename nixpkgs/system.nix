@@ -137,6 +137,7 @@ in
     kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
     tmp.cleanOnBoot = true;
+    loader.grub.devices = [ "nodev" ];
   };
 
   boot.kernelParams = [
@@ -172,53 +173,6 @@ in
   security.pam.loginLimits = [
     { domain = "*"; type = "-"; item = "memlock"; value = "infinity"; }
   ];
-
-  /* /dev/nvme1n2p3: BLOCK_SIZE="512" UUID="0470864A70864302" TYPE="ntfs" PARTUUID="8402854e-03" */
-  /* /dev/nvme1n2p1: LABEL="M-gM-3M-;M-gM-;M-^_M-dM-?M-^]M-gM-^UM-^Y" BLOCK_SIZE="512" UUID="409E41739E416310" TYPE="ntfs" PARTUUID="8402854e-01" */
-  /* /dev/nvme1n2p2: BLOCK_SIZE="512" UUID="02084242084234C7" TYPE="ntfs" PARTUUID="8402854e-02" */
-
-  boot.loader = {
-    grub = {
-      # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-      # theme = pkgs.nixos-grub2-theme;
-      theme =
-        pkgs.fetchFromGitHub {
-          owner = "shvchk";
-          repo = "fallout-grub-theme";
-          rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
-          sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
-        };
-      # despite what the configuration.nix manpage seems to indicate,
-      # as of release 17.09, setting device to "nodev" will still call
-      # `grub-install` if efiSupport is true
-      # (the devices list is not used by the EFI grub install,
-      # but must be set to some value in order to pass an assert in grub.nix)
-
-      device = "nodev";
-      # useOSProber = true; # 没有说的那么不堪，还是很好用的
-
-      # enable = true;
-      # set $FS_UUID to the UUID of the EFI partition
-      # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
-    };
-  };
-
-  # boot.loader = {
-  #   efi = {
-  #     canTouchEfiVariables = true;
-  #     efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-  #   };
-  #   grub = {
-  #      efiSupport = true;
-  #      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-  #      device = "nodev";
-  # 
-  #       enable = true;
-  #       version = 2;
-  #       useOSProber = true; # 没有说的那么不堪，还是很好用的
-  #   };
-  # };
-
 
   services.openssh.enable = true;
 

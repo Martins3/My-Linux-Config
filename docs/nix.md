@@ -1057,4 +1057,54 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
   };
 ```
 
+## dual boot 双系统
+
+在 13900K 上可以采用这个系统，但是笔记本上似乎有问题，而且 grub 本身有时候会出现问题。
+
+```nix
+  /* /dev/nvme1n2p3: BLOCK_SIZE="512" UUID="0470864A70864302" TYPE="ntfs" PARTUUID="8402854e-03" */
+  /* /dev/nvme1n2p1: LABEL="M-gM-3M-;M-gM-;M-^_M-dM-?M-^]M-gM-^UM-^Y" BLOCK_SIZE="512" UUID="409E41739E416310" TYPE="ntfs" PARTUUID="8402854e-01" */
+  /* /dev/nvme1n2p2: BLOCK_SIZE="512" UUID="02084242084234C7" TYPE="ntfs" PARTUUID="8402854e-02" */
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
+      # theme = pkgs.nixos-grub2-theme;
+      theme =
+        pkgs.fetchFromGitHub {
+          owner = "shvchk";
+          repo = "fallout-grub-theme";
+          rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+          sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+        };
+      # despite what the configuration.nix manpage seems to indicate,
+      # as of release 17.09, setting device to "nodev" will still call
+      # `grub-install` if efiSupport is true
+      # (the devices list is not used by the EFI grub install,
+      # but must be set to some value in order to pass an assert in grub.nix)
+      devices = [ "nodev" ];
+      efiSupport = true;
+
+      # useOSProber = true; # 没有说的那么不堪，还是很好用的
+
+      enable = true;
+      # set $FS_UUID to the UUID of the EFI partition
+      # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
+      extraEntries = ''
+        menuentry "Windows" {
+          insmod part_gpt
+          insmod fat
+          search --fs-uuid --set=root 4957-45A0
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+      version = 2;
+    };
+  };
+```
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
