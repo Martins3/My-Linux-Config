@@ -37,6 +37,11 @@ git:
   - git am
   - -> 撤销一个 commit
   - git reset --soft HEAD^
+  - -> 拉取 tags
+  - git fetch --tags
+  - -> 在一个特定的 commit 上打 tag
+  - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
+
 redirect:
   - https://wizardzines.com/comics/redirects/
   - ls > /dev/null
