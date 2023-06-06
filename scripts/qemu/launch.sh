@@ -2,7 +2,7 @@
 
 set -E -e -u -o pipefail
 # QEMU 的 -pidfile 在 QEMU 被 pkill 的时候自动删除的，但是如果 QEMU 是 segv 之类的就不会
-pidfile=/tmp/martins3-alpine/qemu-pid
+pidfile=/tmp/martins3/qemu-pid
 
 function close_qemu() {
 	if [[ -f $pidfile ]]; then
