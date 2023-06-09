@@ -14,11 +14,8 @@ function finish {
 trap finish EXIT
 
 action="trace"
-while getopts "krh" opt; do
+while getopts "rh" opt; do
 	case $opt in
-		k)
-			action="kprobe"
-			;;
 		r)
 			action="kretprobe"
 			;;
@@ -33,23 +30,25 @@ while getopts "krh" opt; do
 done
 shift $((OPTIND - 1))
 
-if [[ $# -eq 0 ]]; then
-	mkdir -p /tmp/martins3
-	bpftrace_cache=/tmp/martins3/bpftrace-cache
+mkdir -p /tmp/martins3
+bpftrace_cache=/tmp/martins3/bpftrace-cache
+if [[ ! -f $bpftrace_cache ]]; then
 	# shellcheck disable=SC2024
-	if [[ ! -f $bpftrace_cache ]]; then
-		sudo bpftrace -l >"$bpftrace_cache"
-	fi
+	sudo bpftrace -l >"$bpftrace_cache"
+fi
+
+if [[ $# -eq 0 ]]; then
 	entry=$(fzf <"$bpftrace_cache")
+else
+	echo "$*"
+	entry=$(fzf --query="$*" <"$bpftrace_cache")
 fi
 
 scripts=""
 case "$action" in
-	kprobe)
-		scripts="kprobe:${1} { @[kstack] = count(); }"
-		;;
 	kretprobe)
-		scripts="kretprobe:${1} { printf(\"returned: %lx\\n\", retval); }"
+    # stdin:1:48-54: ERROR: The retval builtin can only be used with 'kretprobe' and 'uretprobe' and 'kfunc' probes
+		scripts="$entry { printf(\"returned: %lx\\n\", retval); }"
 		;;
 	trace)
 		scripts="$entry { @[kstack] = count(); }"

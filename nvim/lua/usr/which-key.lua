@@ -160,6 +160,6 @@ wk.register({
 }, { mode = "v" })
 
 vim.cmd('autocmd FileType sh lua WhichKeyLeaderX()')
-function WhichKeyPython()
-  vim.api.nvim_set_keymap('n', '<leader>x', ':!chmod +x %<CR>', { noremap = true, silent = true })
+function WhichKeyLeaderX()
+  vim.api.nvim_set_keymap('n', '<leader>x', ':!chmod +x %<CR>', { noremap = false, silent = true })
 end

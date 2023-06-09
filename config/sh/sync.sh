@@ -11,7 +11,4 @@ if [[ ! -f $filename ]]; then
 	exit 1
 fi
 set -x
-# if [[ $(head -n 2 $filename) != "copied" ]];then
-#   ssh-copy-id
-# fi
 rsync -avzh --delete --filter="dir-merge,- .gitignore" "$(pwd)/" "$(head -n 1 $filename)"/
