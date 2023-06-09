@@ -33,6 +33,7 @@ wk.register({
     o = { "<cmd>call Outline()<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
+    -- leader x used for map language specific function
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "jump to buffer 1" },
@@ -158,10 +159,7 @@ wk.register({
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
 
-vim.cmd('autocmd FileType bash lua WhichKeyPython()')
+vim.cmd('autocmd FileType sh lua WhichKeyLeaderX()')
 function WhichKeyPython()
-    wk.register({
-        ['w'] = {':w<CR>', 'write'},
-        ['q'] = {':q<CR>', 'quit'},
-    }, { prefix = '<localleader>' })
+  vim.api.nvim_set_keymap('n', '<leader>x', ':!chmod +x %<CR>', { noremap = true, silent = true })
 end
