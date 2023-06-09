@@ -157,3 +157,11 @@ wk.register({
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
+
+vim.cmd('autocmd FileType bash lua WhichKeyPython()')
+function WhichKeyPython()
+    wk.register({
+        ['w'] = {':w<CR>', 'write'},
+        ['q'] = {':q<CR>', 'quit'},
+    }, { prefix = '<localleader>' })
+end
