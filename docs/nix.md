@@ -1056,6 +1056,8 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
     xkbOptions = "caps:swapescape"; # 之前还可以靠这个维持生活的
   };
 ```
+可以参考这个
+https://www.reddit.com/r/vim/comments/1442ads/mapping_capslock_to_esc_is_life_changing/
 
 ## dual boot 双系统
 
