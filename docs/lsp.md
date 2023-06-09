@@ -22,4 +22,8 @@
 - https://github.com/SmiteshP/nvim-navic : 类似 VsCode 的将当前的信息显示到 winbar 中，但是依赖 lspconfig
 - [ ]https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
+
 - [x] https://github.com/hrsh7th/nvim-compe
+
+## 一些让我切换的理由
+- https://github.com/SmiteshP/nvim-navic : 显示当前在什么函数中间

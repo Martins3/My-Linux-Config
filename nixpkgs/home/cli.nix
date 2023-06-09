@@ -75,6 +75,7 @@ in
     kmon # 方便的管理内核模块
     numactl
     kexec-tools
+    helix # modern neovim
     rpm
     stress-ng
     numatop

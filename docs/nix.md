@@ -1108,5 +1108,16 @@ https://www.reddit.com/r/vim/comments/1442ads/mapping_capslock_to_esc_is_life_ch
     };
   };
 ```
+## manifest.nix 被损坏
+- https://github.com/NixOS/nixpkgs/issues/18279
+
+使用
+```nix
+nix-env --rollback
+```
+然后，
+```nix
+home-manager switch
+```
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

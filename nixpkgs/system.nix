@@ -164,6 +164,10 @@ in
     "iommu=pt"
     # 手动禁用 avx2
     # "clearcpuid=156"
+
+    # @todo 不是 systemd 会默认启动 fsck 的吗，这个需要啥
+    # "fsck.mode=force"
+    # "fsck.repair=yes"
   ];
 
 
