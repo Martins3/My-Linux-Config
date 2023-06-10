@@ -4,15 +4,6 @@ set -E -e -u -o pipefail
 
 cd "$(dirname "$0")"
 
-function finish {
-	if [[ $? -ne 0 ]]; then
-		echo "check what's happening"
-		echo "v $0"
-	fi
-}
-
-trap finish EXIT
-
 action="trace"
 while getopts "rch" opt; do
 	case $opt in
@@ -45,6 +36,10 @@ if [[ $# -eq 0 ]]; then
 else
 	echo "$*"
 	entry=$(fzf --query="$*" <"$bpftrace_cache")
+fi
+
+if [[ -z $entry ]]; then
+	echo "aborted"
 fi
 
 scripts=""

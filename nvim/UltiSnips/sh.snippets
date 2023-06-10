@@ -43,6 +43,8 @@ echo $RANDOM # 输出 [0, 32767] 的数值
 endsnippet
 
 snippet note_cmpvar "变量比较"
+# 测试一个变量是否是 empty 的
+if [ -z "${VAR}" ];
 # 测试一个变量是否赋值否
 if [[ -z ${var+x} ]]; then echo "var is unset"; else echo "var is set to '$var'"; fi
 # -n 和 -z 的语义相反
@@ -549,6 +551,7 @@ printf '%s\n' "${e[@]}"
 endsnippet
 
 snippet note_trap "使用 trap 来清理工作"
+# 捕获所有的退出
 function finish {
   if [[ $? == 0 ]]; then
     echo "bad"
@@ -557,6 +560,14 @@ function finish {
 }
 
 trap finish EXIT
+
+# 捕获 ctrl c
+trap ctrl_c INT
+
+function ctrl_c() {
+	echo "** Trapped CTRL-C"
+}
+
 endsnippet
 
 snippet note_associative_array "associative array"
