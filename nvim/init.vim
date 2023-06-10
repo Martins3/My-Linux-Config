@@ -68,6 +68,9 @@ let s:core_conf_files = [
       \ 'airline.vim',
       \ ]
 
+" 当在 terminal 中打开 nvim 的时候，直接在 host 中打开
+let g:unception_open_buffer_in_new_tab = 1
+
 for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor

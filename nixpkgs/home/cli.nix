@@ -151,6 +151,7 @@ in
     man-pages-posix
     # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
+    distrobox # 基于容器来提供各种 distribution
     arp-scan
     pcm
     nixos-generators
