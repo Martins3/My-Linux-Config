@@ -471,8 +471,6 @@ in {
 - https://github.com/nix-community/awesome-nix
 - https://ryantm.github.io/nixpkgs/stdenv/platform-notes/ : 一个人的笔记
 
-## [ ] 搭建 Boom 的阅读环境
-
 ## [ ] flake.nix
 实验特性
 
@@ -586,6 +584,9 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 - [ ] https://nixos.org/learn.html#learn-guides
 - [ ] https://nixos.org/ 包含了一堆 examples
 - [ ]  https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
+
+## 你需要认真学习一波
+https://www.reddit.com/r/NixOS/comments/119sfg8/how_long_did_it_take_you_to_really_grok_nixos/
 
 ## 文摘
 - [ ] https://christine.website/blog/nix-flakes-2-2022-02-27 : xe 写的
@@ -847,7 +848,7 @@ direnv: nix-direnv: using cached dev shell
 使用 pyright 安装的时候，出现如下错误。
 libstdc++.so.6
 
-## 使用 nixos 构建
+## 构建 qemu guest 镜像
 - https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
 
 虽然执行有点问题，但是值得借鉴:
@@ -937,6 +938,9 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 使用 shell 初始化即可，遇到问题，以后再说。
 
 而且导致无法 dracut
+
+虽然尝试将其作为完全的测试的 Guest 是失败了，但是
+使用 nixos 搭建一个和 host 机器完全相同的虚拟机，然后可以实现 host guest 环境对比
 
 ## 桌面环境
 - https://wiki.hyprland.org/Nix/

@@ -26,5 +26,12 @@ pkgs.stdenv.mkDerivation {
     virglrenderer
     epoxy
     numactl
+    (python3.withPackages (p: with p; [
+      sphinx
+      sphinx-rtd-theme
+    ]))
+
+    flex
+    bison
   ];
 }

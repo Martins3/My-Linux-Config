@@ -14,7 +14,7 @@ set termguicolors
 " 因为失去焦点就会自动保存，所以没有必要使用 swapfile
 set noswapfile
 " 自动隐藏 command-line
-set cmdheight=0
+set cmdheight=1
 " 让退出 vim 之后 undo 消息不消失
 set undofile
 " 只有一个全局的 status line，而不是每一个 window 一个
