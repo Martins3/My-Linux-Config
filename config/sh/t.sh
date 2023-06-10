@@ -14,8 +14,11 @@ function finish {
 trap finish EXIT
 
 action="trace"
-while getopts "rh" opt; do
+while getopts "rch" opt; do
 	case $opt in
+		c)
+			action="current"
+			;;
 		r)
 			action="kretprobe"
 			;;
@@ -46,8 +49,11 @@ fi
 
 scripts=""
 case "$action" in
+	current)
+		scripts="$entry { @[curtask->comm] = count() }"
+		;;
 	kretprobe)
-    # stdin:1:48-54: ERROR: The retval builtin can only be used with 'kretprobe' and 'uretprobe' and 'kfunc' probes
+		# stdin:1:48-54: ERROR: The retval builtin can only be used with 'kretprobe' and 'uretprobe' and 'kfunc' probes
 		scripts="$entry { printf(\"returned: %lx\\n\", retval); }"
 		;;
 	trace)
@@ -57,5 +63,5 @@ case "$action" in
 		exit 12
 		;;
 esac
-echo "sudo bpftrace -e $scripts"
+echo "sudo bpftrace -e \"$scripts\""
 sudo bpftrace -e "$scripts"
