@@ -95,8 +95,14 @@ in
     tree-sitter
     systeroid
     linuxKernel.packages.linux_5_15.perf
+    # @todo 也许替换为 linuxPackages_latest.perf
     iperf
+    # linuxPackages_latest.systemtap # 似乎这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
+    # 其实也不能用
+    # ERROR: kernel release isn't found in "/nix/store/n3nrix9pc0m1ywzg8dq71bh2xr82c7l5-linux-6.3.5-dev"
+    # 还是在虚拟机勉强维持生活吧
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
+    heaptrack
     kernelshark
     trace-cmd
     ltrace # library trace
@@ -113,7 +119,6 @@ in
     parted
     sysbench
     linuxKernel.packages.linux_latest_libre.turbostat
-    /* linuxKernel.packages.linux_latest_libre.systemtap */ # @todo 这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
     wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
