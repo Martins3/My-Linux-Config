@@ -31,8 +31,8 @@ require("packer").startup({
       "cshuaimin/ssr.nvim",
       module = "ssr",
       vim.keymap.set({ "n", "x" }, "<leader>r",
-        function() require("ssr").open() end) -- @todo 不知道为什么，keymap 放在这里，其实没有效果，放到其他位置，ssr module 找不到
-    }
+        function() require("ssr").open() end)
+    } -- 结构化查询和替换
     -- ui
     use 'liuchengxu/vista.vim'           -- 导航栏
     use 'kyazdani42/nvim-tree.lua'       -- 文件树
