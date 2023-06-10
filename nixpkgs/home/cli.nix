@@ -83,6 +83,8 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
+    virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
+    podman
     nix-index
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
@@ -105,6 +107,7 @@ in
     heaptrack
     kernelshark
     trace-cmd
+    ctags # vista.vim 似乎 bug，暂时安装上
     ltrace # library trace
     unstable.bcc
     # @todo 不知道为什么居然又两个程序

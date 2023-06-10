@@ -25,5 +25,6 @@
 
 - [x] https://github.com/hrsh7th/nvim-compe
 
-## 一些让我切换的理由
+## 有些插件只是支持 native lsp 的
 - https://github.com/SmiteshP/nvim-navic : 显示当前在什么函数中间
+- https://github.com/simrat39/symbols-outline.nvim
