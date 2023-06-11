@@ -45,7 +45,7 @@ function ohmyzsh() {
 }
 
 function setup_share() {
-  mkdir ~/share
+	mkdir ~/share
 	cat <<'EOF' >/etc/systemd/system/share.service
 [Unit]
 Description=reboot
@@ -115,6 +115,23 @@ function setup_tig() {
 	popd
 }
 
+function setup_fio() {
+	cat <<'EOF' >>~/test.fio
+[global]
+ioengine=libaio
+iodepth=128
+
+[trash]
+bs=4k
+direct=1
+filename=/dev/nvme0n1
+rw=randread
+runtime=30
+time_based
+EOF
+
+}
+
 cd ~
 [[ ! -d install ]] && mkdir -p install && cd install
 
@@ -126,7 +143,7 @@ install libtool systemd-devel
 install vim htop perf elfutils elfutils-libelf-devel
 
 install pam-devel
-install numactl
+install numactl fio
 install flex flex-devel bios bison-devel
 install ncurses-devel # tig 依赖
 
@@ -136,3 +153,4 @@ setup_share
 setup_tig
 setup_libcgroup
 setup_stress-ng
+setup_fio
