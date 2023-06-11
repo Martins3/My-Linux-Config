@@ -86,7 +86,7 @@ alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
 alias ge="ssh -p5556 root@localhost"
 
 alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
-alias b2="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
+alias b2="tmuxp load -d $HOME/.dotfiles/config/tmux-session2.yaml"
 alias c="clear"
 alias f="/home/martins3/core/vn/docs/kernel/flamegraph/flamegraph.sh"
 alias ck="/home/martins3/.dotfiles/config/sh/compile-kernel.sh"
