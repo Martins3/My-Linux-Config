@@ -121,6 +121,9 @@ sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 /home/martins3/.dotfiles/scripts/install.sh
 ```
 
+## kernel 本身是不可 reproducible 的
+https://docs.kernel.org/kbuild/reproducible-builds.html
+
 ## 基础知识
 - nix-prefetch-url 同时下载和获取 hash 数值
 ```sh
@@ -1063,6 +1066,8 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 https://www.reddit.com/r/vim/comments/1442ads/mapping_capslock_to_esc_is_life_changing/
 
 ## dual boot 双系统
+
+https://nixos.wiki/wiki/Bootloader
 
 在 13900K 上可以采用这个系统，但是笔记本上似乎有问题，而且 grub 本身有时候会出现问题。
 

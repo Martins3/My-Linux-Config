@@ -107,7 +107,6 @@ in
     heaptrack
     kernelshark
     trace-cmd
-    ctags # vista.vim 似乎 bug，暂时安装上
     ltrace # library trace
     unstable.bcc
     # @todo 不知道为什么居然又两个程序
