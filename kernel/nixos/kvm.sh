@@ -80,10 +80,12 @@ _EOF_
 # 建议还是先编译一下
 exe "m"
 # scripts/setlocalversion 似乎还是需要删除的
+# @todo 极度怀疑这个命令的的正确性，尝试下 AMD kvm 的编译
 exe "make M=./arch/x86/kvm/  modules -j32"
 sudo rmmod kvm_intel kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
 sudo insmod ./arch/x86/kvm/kvm-intel.ko
+
 # TODO 靠，还是有点问题，难道需要一开始就设置 id 吗?
 # TODO 还是其实，从来都没有成功过
 
