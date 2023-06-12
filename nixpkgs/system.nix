@@ -137,27 +137,42 @@ in
     kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
     tmp.cleanOnBoot = true;
-    loader.grub.devices = [ "nodev" ];
+
+    loader = {
+      grub = {
+        # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
+        # theme = pkgs.nixos-grub2-theme;
+        theme =
+          pkgs.fetchFromGitHub {
+            owner = "shvchk";
+            repo = "fallout-grub-theme";
+            rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+            sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+          };
+        devices = [ "nodev" ];
+      };
+    };
+    supportedFilesystems = [ "ntfs" ];
   };
 
   boot.kernelParams = [
-    # "transparent_hugepage=always"
+    "transparent_hugepage=always"
     "transparent_hugepage=never"
     # https://gist.github.com/rizalp/ff74fd9ededb076e6102fc0b636bd52b
     # 十次测量编译内核，打开和不打开的性能差别为 : 131.1  143.4
     # 性能提升 9.38%
-    "noibpb"
-    "nopti"
-    "nospectre_v2"
-    "nospectre_v1"
-    "l1tf=off"
-    "nospec_store_bypass_disable"
-    "no_stf_barrier"
-    "mds=off"
+    # "noibpb"
+    # "nopti"
+    # "nospectre_v2"
+    # "nospectre_v1"
+    # "l1tf=off"
+    # "nospec_store_bypass_disable"
+    # "no_stf_barrier"
+    # "mds=off"
+    # "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"
     # "tsx_async_abort=off"
-    "mitigations=off"
 
     # vfio 直通
     "intel_iommu=on"
@@ -166,12 +181,10 @@ in
     # "clearcpuid=156"
 
     # @todo 不是 systemd 会默认启动 fsck 的吗，这个需要啥
-    # "fsck.mode=force"
-    # "fsck.repair=yes"
+    "fsck.mode=force"
+    "fsck.repair=yes"
   ];
 
-
-  boot.supportedFilesystems = [ "ntfs" ];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
