@@ -1140,4 +1140,8 @@ zsh     34262 martins3  cwd    DIR  259,2     4096 39060352 bus
 sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 ```
 
+## sway : i3-compatible Wayland compositor
+- https://nixos.wiki/wiki/Sway
+- https://github.com/pkivolowitz/asm_book#table-of-contents
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
