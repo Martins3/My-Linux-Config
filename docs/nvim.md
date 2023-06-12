@@ -866,7 +866,10 @@ setxkbmap -option caps:swapescape
 -->
 
 ## 亟须解决的问题
-1. 编辑远程代码
+1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代
+  - https://github.com/jamestthompson3/nvim-remote-containers
+  - https://github.com/OscarCreator/rsync.nvim
+  - https://github.com/chipsenkbeil/distant.nvim
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 3. 调试
 
