@@ -1127,5 +1127,17 @@ nix-env --rollback
 ```nix
 home-manager switch
 ```
+## lsof 存在警告
+
+```txt
+[sudo] password for martins3:
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
+      Output information may be incomplete.
+lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
+      Output information may be incomplete.
+COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF     NODE NAME
+zsh     34262 martins3  cwd    DIR  259,2     4096 39060352 bus
+sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
+```
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
