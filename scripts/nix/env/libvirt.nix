@@ -10,7 +10,6 @@ pkgs.mkShell rec {
     libxslt # for xsltproc
     gettext
     makeWrapper
-    ninja
     pkg-config
     perl
     perlPackages.XMLXPath
