@@ -83,6 +83,7 @@ in
     OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     # 通过 tweaks 调整开机自启动
     gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
+    nvme-cli
     ninja
     libvirt # 提供 virsh
     qemu

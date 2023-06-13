@@ -594,3 +594,10 @@ foo="something"
 bar="foo"
 echo "${!bar}"
 endsnippet
+
+snippet note_tricks "" b
+[[ -d .git ]] && echo "git repo"
+while true; do echo "good" && sleep 1; done
+# 将 curl 的文件保存到特定的目录
+(cd target/path && curl -O URL)
+endsnippet

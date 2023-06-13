@@ -326,6 +326,26 @@ grep flags /proc/cpuinfo | awk 'NR==1{print $0; exit}'
 
 ## 总结 job control
 - hohup command &
+- fg
+- bg
+
+## ~ 和 $HOME 的区别
+https://askubuntu.com/questions/1177464/difference-between-home-and
+
+- $HOME is an environment variable
+- ~ is a shell expansion symbol
+
+让我们回忆一下:
+
+> 这种特殊字符的扩展，称为模式扩展（globbing）。其中有些用到通配符，又称为通配符扩展（wildcard expansion）。Bash 一共提供八种扩展。
+
+启动第一个扩展就是波浪线扩展。
+
+所以，区别就是:
+arg_virtio="-drive aio=native,,file=~/hack/iso/virtio-win-0.1.208.iso,media=cdrom,index=2"
+中的 ~ 是无法被展开的。
+
+
 
 ## https://github.com/johnkerl/miller
 
