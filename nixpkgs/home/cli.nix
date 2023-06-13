@@ -70,6 +70,7 @@ in
     ethtool
     sshpass
     gping # better ping
+    frp
     pingu # interesting ping
     nbd
     kmon # 方便的管理内核模块

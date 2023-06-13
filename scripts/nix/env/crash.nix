@@ -10,5 +10,6 @@ pkgs.stdenv.mkDerivation {
     zlib
     ncurses
     lzo
+    zstd
   ];
 }
