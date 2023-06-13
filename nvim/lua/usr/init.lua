@@ -16,3 +16,4 @@ require('gitsigns').setup { signcolumn = false, numhl = true }
 require('leap').add_default_mappings()
 require('nvim-autopairs').setup {}
 require('spellsitter').setup {}
+require("early-retirement").setup {}

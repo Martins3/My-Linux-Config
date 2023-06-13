@@ -32,18 +32,19 @@ require("packer").startup({
       module = "ssr",
       vim.keymap.set({ "n", "x" }, "<leader>r",
         function() require("ssr").open() end)
-    } -- 结构化查询和替换
+    }                                        -- 结构化查询和替换
     -- ui
-    use 'liuchengxu/vista.vim'           -- 导航栏
-    use 'kyazdani42/nvim-tree.lua'       -- 文件树
-    use 'mhinz/vim-startify'             -- 启动界面
-    use 'vim-airline/vim-airline'        -- 状态栏
-    use 'vim-airline/vim-airline-themes' -- 状态栏的主题
-    use 'akinsho/bufferline.nvim'        -- buffer
-    use 'kazhala/close-buffers.nvim'     -- 一键删除不可见 buffer
-    use 'gelguy/wilder.nvim'             -- 更加智能的命令窗口
-    use 'romgrk/fzy-lua-native'          -- wilder.nvim 的依赖
-    use 'xiyaowong/nvim-transparent'     -- 可以移除掉背景色，让 vim 透明
+    use 'liuchengxu/vista.vim'               -- 导航栏
+    use 'kyazdani42/nvim-tree.lua'           -- 文件树
+    use 'mhinz/vim-startify'                 -- 启动界面
+    use 'vim-airline/vim-airline'            -- 状态栏
+    use 'vim-airline/vim-airline-themes'     -- 状态栏的主题
+    use 'akinsho/bufferline.nvim'            -- buffer
+    use 'kazhala/close-buffers.nvim'         -- 一键删除不可见 buffer
+    use "chrisgrieser/nvim-early-retirement" -- 自动关闭 inactive buffer
+    use 'gelguy/wilder.nvim'                 -- 更加智能的命令窗口
+    use 'romgrk/fzy-lua-native'              -- wilder.nvim 的依赖
+    use 'xiyaowong/nvim-transparent'         -- 可以移除掉背景色，让 vim 透明
     -- 颜色主题
     use 'folke/tokyonight.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
