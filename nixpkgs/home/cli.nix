@@ -70,6 +70,7 @@ in
     ethtool
     sshpass
     gping # better ping
+    auto-cpufreq
     frp
     pingu # interesting ping
     nbd
