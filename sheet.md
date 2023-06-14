@@ -123,6 +123,8 @@
 ## centos
 - nmcli networking off
 - nmcli networking on
+- 在 /etc/resolv.conf 中增加，如果遇到 `wget: unable to resolve host address`
+nameserver 114.114.114.114
 
 ## sudo
 - 让 sudo https://unix.stackexchange.com/questions/83191/how-to-make-sudo-preserve-path
