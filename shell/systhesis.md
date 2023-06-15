@@ -64,23 +64,6 @@ $((1 + 2))
 还需要手动判断是不是整数:
 is_uint() { case $1 in '' | *[!0-9]*) return 1 ;; esac }
 
-## glob 和 regex
-默认的 glob 的，几乎是任何地方都需要增加上双引号。
-
-这两个不等价，因为 Bash also allows globs to appear on the right-hand side of a comparison inside a [[ command: [^1]
-
-```sh
-if [[ "$a" == "$b" ]];
-if [[ $a == $b ]];
-```
-
-这两个也不匹配，第一个是 literally 比较，而第二个才是 regex 比较：
-```sh
-if [[ $foo =~ "$bar" ]];
-if [[ $foo =~ $bar ]];
-```
-虽然 glob 的
-
 ### 如果你确实希望使用 regex ，但是又不想 bash 报错
 a=$(echo *.md)
 echo "$a"
@@ -99,7 +82,6 @@ grep $var /proc/cpuinfo # 这个有问题，被展开为 grep cpu family /proc/c
 - https://mywiki.wooledge.org/BashFAQ
 - http://mywiki.wooledge.org/BashPitfalls
 
-[^1]: [glob](https://mywiki.wooledge.org/glob)
 
 
 ## 方法

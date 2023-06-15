@@ -278,10 +278,26 @@ snippet note_cmpfile "compare file"
 endsnippet
 
 snippet note_cmpstring "compare string"
+# 注意，使用 == 而不是 = ，保持风格一致
+#	- https://stackoverflow.com/questions/20449543/shell-equality-operators-eq
+#
+# 这两个不等价，因为 Bash also allows globs to appear on the right-hand side of a comparison inside a [[ command: [^1]
+# if [[ "$a" == "$b" ]];
+# if [[ $a == $b ]];
+# https://mywiki.wooledge.org/glob
+#
+# 这两个也不匹配，第一个是 literally 比较，而第二个才是 regex 比较：
+#
+# if [[ $foo =~ "$bar" ]];
+# if [[ $foo =~ $bar ]];
+#
+# 考虑到 ShellCheck 的警告，使用:
+# if [[ "$a" == "$b" ]];
+# if [[ $foo =~ $bar ]];
+
 # [[ string ]]：如果string不为空（长度大于0），则判断为真。
 # [[ -n string ]]：如果字符串string的长度大于零，则判断为真。
 # [[ -z string ]]：如果字符串string的长度为零，则判断为真。
-# [[ string1 = string2 ]]：如果string1和string2相同，则判断为真。
 # [[ string1 == string2 ]] 等同于[ string1 = string2 ]。
 # [[ string1 != string2 ]]：如果string1和string2不相同，则判断为真。
 # [[ string1 '>' string2 ]]：如果按照字典顺序string1排列在string2之后，则判断为真。
