@@ -2,5 +2,17 @@
 
 set -E -e -u -o pipefail
 
-echo ~
-echo "$HOME"
+
+a="sabcbca"
+echo ${a##abc}
+echo ${a##abc}
+
+echo ${a%%abc}
+echo ${a%%abc}
+
+echo ${a/abc/xxx}
+echo ${a//abc/xxx}
+
+fullfile=/home/martins3/.dotfiles/shell/abc.txt
+echo "${fullfile#*.}"
+echo "${fullfile%.*}"
