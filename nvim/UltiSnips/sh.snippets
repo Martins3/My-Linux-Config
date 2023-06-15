@@ -601,6 +601,28 @@ bar="foo"
 echo "${!bar}"
 endsnippet
 
+snippet note_array_contains "测试是否包含一个元素" b
+# bash 不存在一个内置的机制来检测一个数值是否存在元素
+# 不知道这么设计是处于什么考虑的
+# https://stackoverflow.com/questions/3685970/check-if-a-bash-array-contains-a-value
+containsElementRet=true
+containsElement() {
+	local e match="$1"
+	shift
+	containsElementRet=true
+	for e; do [[ $e == "$match" ]] && return 0; done
+	containsElementRet=lalse
+}
+
+array=("something to search for" "a string" "test2000")
+containsElement "a string" "${array[@]}"
+echo $containsElementRet
+
+containsElement "blaha" "${array[@]}"
+echo $containsElementRet
+endsnippet
+
+
 snippet note_tricks "" b
 [[ -d .git ]] && echo "git repo"
 while true; do echo "good" && sleep 1; done
