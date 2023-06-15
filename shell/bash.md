@@ -345,7 +345,14 @@ https://askubuntu.com/questions/1177464/difference-between-home-and
 arg_virtio="-drive aio=native,,file=~/hack/iso/virtio-win-0.1.208.iso,media=cdrom,index=2"
 中的 ~ 是无法被展开的。
 
+## bash 一个复杂的原因
 
+有些功能是 bash 内置的，
+但是外部工具也可以做的。
+
+例如: https://stackoverflow.com/questions/13210880/replace-one-substring-for-another-string-in-shell-script
+
+但是，实际上，也可以用 sed
 
 ## https://github.com/johnkerl/miller
 
