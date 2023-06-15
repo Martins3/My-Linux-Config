@@ -2,17 +2,18 @@
 
 set -E -e -u -o pipefail
 
+containsElementRet=true
+containsElement() {
+	local e match="$1"
+	shift
+	containsElementRet=true
+	for e; do [[ $e == "$match" ]] && return 0; done
+	containsElementRet=lalse
+}
 
-a="sabcbca"
-echo ${a##abc}
-echo ${a##abc}
+array=("something to search for" "a string" "test2000")
+containsElement "a string" "${array[@]}"
+echo $containsElementRet
 
-echo ${a%%abc}
-echo ${a%%abc}
-
-echo ${a/abc/xxx}
-echo ${a//abc/xxx}
-
-fullfile=/home/martins3/.dotfiles/shell/abc.txt
-echo "${fullfile#*.}"
-echo "${fullfile%.*}"
+containsElement "blaha" "${array[@]}"
+echo $containsElementRet
