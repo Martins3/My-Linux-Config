@@ -70,7 +70,7 @@ in
     ethtool
     sshpass
     gping # better ping
-    auto-cpufreq # @todo 怎么使用，可以测试一下
+    # auto-cpufreq # @todo 怎么使用，可以测试一下
     frp
     pingu # interesting ping
     nbd
