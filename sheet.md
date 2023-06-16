@@ -4,11 +4,15 @@
 - "| 单词    | Alt + B  | Alt + F  | Ctrl + W  | Alt + D  |"
 - "| 行首/尾 | Ctrl + A | Ctrl + E | Ctrl + U  | Ctrl + K |"
 ## rpm
-- "rpm -qa 查询当前系统中安装的所有的包"
-- "rpm -ivh --force --nodeps url"
-- "rpm -qf 可以找到一个文件对应的包"
-- "yum whatprovides xxd"
-- "rpm -q --changelog php"
+- rpm -qa 查询当前系统中安装的所有的包
+- rpm -ivh --force --nodeps url
+- rpm -qf 可以找到一个文件对应的包
+- yum whatprovides xxd
+- rpm -q --changelog php
+- rpm -ql bison.rpm 检查 rpm 中存在多少文件
+- rpm -qp bison.rpm 检查这就是一个 rpm 文件
+- rpm -q --scripts
+
 ## find
 - "find /tmp -size 0 -print0 -delete: 删除大小为 0 的文件"
 - "@todo 这里没有完全搞清楚"
@@ -118,6 +122,7 @@
 ## systemd
 - systemctl --user list-timers --all
 - systemctl list-timers --all
+- systemctl list-unit-files
 
 
 ## centos
