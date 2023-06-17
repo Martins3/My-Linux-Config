@@ -1,0 +1,10 @@
+session_name: code
+windows:
+  - window_name: linux
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/linux; nvim
+  - window_name: qemu
+    layout: tiled
+    shell_command_before:
+      - cd ~/core/qemu; nvim
