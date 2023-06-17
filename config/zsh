@@ -84,8 +84,8 @@ alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
 alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
 alias ge="ssh -p5556 root@localhost"
-
-alias b="/home/martins3/.dotfiles/config/sh/tmux.sh"
+# 打开工作区间并且构建
+alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
 alias f="/home/martins3/core/vn/docs/kernel/flamegraph/flamegraph.sh"
 alias ck="/home/martins3/.dotfiles/config/sh/compile-kernel.sh"
