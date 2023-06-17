@@ -50,10 +50,10 @@ autocmd TextYankPost *
     \ execute 'OSCYankRegister +' |
     \ endif
 
-" 使用 z a 打开和关闭 fold
-set foldlevelstart=99
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" 使用 z a 打开和关闭 fold，打开大文件（超过 10万行)的时候可能造成性能问题
+" set foldlevelstart=99
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
 
 " 加载 lua 配置
 lua require 'usr'
