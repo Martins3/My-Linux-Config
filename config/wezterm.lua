@@ -6,6 +6,21 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
+local function get_font_size()
+  -- is popen supported?
+  local popen_status, popen_result = pcall(io.popen, "")
+  if popen_status and popen_result then
+    popen_result:close()
+    local raw_os_name = io.popen('lscpu |lscpu | grep -o  AMD-V', 'r'):read('*l')
+    -- amd 上使用的是一个 2k 32 寸 显示器
+    if raw_os_name == "AMD-V" then
+      return 12.6
+    end
+  end
+
+  -- intel 上使用的是一个 4k 27 寸 显示器
+  return 9.2
+end
 
 local function basename(s)
   return string.gsub(s, "(.*[/\\])(.*)", "%2")
@@ -104,7 +119,7 @@ return {
   default_prog = { '/bin/sh', '-l', '-c', 'tmux attach || /usr/bin/env tmux' },
   -- default_prog = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
   color_scheme = 'Solarized (dark) (terminal.sexy)',
-  font_size = 9.2,
+  font_size = get_font_size(),
   font = wezterm.font_with_fallback {
     'FiraCode Nerd Font',
     { family = 'LXGW WenKai', scale = 1 },
