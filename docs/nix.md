@@ -478,6 +478,7 @@ in {
 实验特性
 
 - https://nixos.wiki/wiki/Flakes
+- https://news.ycombinator.com/item?id=36362225
 
 ## [ ] rpm 构建的出来的 rpmbuild 权限不对
 
@@ -971,6 +972,8 @@ environment.systemPackages = with pkgs; [ virt-manager ];
 ## [NixOS 常见问题解答](https://github.com/nixos-cn/NixOS-FAQ)
 
 nixos 中文社区下的项目 https://github.com/nixos-cn/flakes :
+
+
 
 ## 如何编译一个静态的 bear 出来
 - 问题 1

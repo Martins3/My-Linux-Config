@@ -27,7 +27,11 @@
 - git reset : 将所有的内容 unstage
 - git checkout -- fs/ : 将 unstage 的修改删除掉
 
+### log
 - git log --format="%h --> %B"
+- git log -S <string> path/to/file : 如果 git blame 一个已经被删除的内容
+- tig -- path/to/dir : 看一个目录的 log
+
 - -> 如何删除一个已经提交的行为
 - git reset --hard HEAD~1
 - git push -f <remote> <branch>
@@ -38,8 +42,6 @@
 ### 将本地设置为和远程完全相同
 - git fetch origin
 - git reset --hard origin/master
-- -> 如果 git blame 一个已经被删除的内容
-- git log -S <string> path/to/file
 - -> 如何将多个 commit squash 一下
 - git reset --soft HEAD~3 && git commit
 - -> 将 patch 直接作为一个 commit
