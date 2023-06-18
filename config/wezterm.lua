@@ -14,7 +14,7 @@ local function get_font_size()
     local raw_os_name = io.popen('lscpu |lscpu | grep -o  AMD-V', 'r'):read('*l')
     -- amd 上使用的是一个 2k 32 寸 显示器
     if raw_os_name == "AMD-V" then
-      return 12.6
+      return 12.2
     end
   end
 

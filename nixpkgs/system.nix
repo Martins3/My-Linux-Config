@@ -36,7 +36,7 @@ in
   virtualisation.docker.enable = true;
   virtualisation.vswitch.enable = true;
 
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
 
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -135,7 +135,8 @@ in
   };
 
   boot = {
-    crashDump.enable = true;
+    crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
+    crashDump.reservedMemory = "1G";
     kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
     tmp.cleanOnBoot = true;
@@ -177,6 +178,9 @@ in
 
     # vfio 直通
     "intel_iommu=on"
+    "amd_iommu_intr=legacy"
+    # "amd_iommu=off"
+    # "amd_iommu=pgtbl_v2"
     # "iommu=pt"
     # 手动禁用 avx2
     # "clearcpuid=156"
@@ -344,7 +348,7 @@ in
   };
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = 20;
+    # "vm.swappiness" = 200;
     "vm.overcommit_memory" = 1;
   };
 }

@@ -11,4 +11,7 @@ windows:
   - window_name: dmesg
     layout: tiled
     shell_command_before:
-      - cd ~/core/amd-crash; dmesg -w
+      - cd ~/core/amd-crash
+    panes:
+      - dmesg -w
+      - nvim
