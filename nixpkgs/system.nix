@@ -178,7 +178,9 @@ in
 
     # vfio 直通
     "intel_iommu=on"
-    "amd_iommu_intr=legacy"
+    # "amd_iommu_intr=legacy"
+    "ftrace=function_graph"
+    "ftrace_filter=iommu_setup_dma_ops"
     # "amd_iommu=off"
     # "amd_iommu=pgtbl_v2"
     # "iommu=pt"
@@ -190,6 +192,13 @@ in
     "fsck.repair=yes"
   ];
 
+  boot.kernelPatches = [{
+    name = "tracing";
+    patch = null;
+    extraConfig = ''
+      BOOTTIME_TRACING y
+    '';
+  }];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [

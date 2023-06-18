@@ -11,7 +11,7 @@ function usage() {
     "
 }
 
-function code() {
+function note() {
 	if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
 		tmuxp load -d ~/.dotfiles/config/tmux-session.yaml
 	elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
@@ -21,24 +21,23 @@ function code() {
 	fi
 }
 
-function note() {
+function code() {
 	tmuxp load -d ~/.dotfiles/config/tmux-session3.yaml
 }
 
-while getopts "hcn" opt; do
+while getopts "cn" opt; do
 	case $opt in
 		c)
-      code
+			code
 			exit 0
 			;;
 		n)
-      note
+			note
 			exit 0
 			;;
 		*)
 			echo -e "\n  Option does not exist : OPTARG\n"
 			usage
-			exit 1
 			;;
 	esac
 done

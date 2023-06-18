@@ -3,16 +3,20 @@ windows:
   - window_name: vn
     layout: tiled
     shell_command_before:
-      - cd ~/core/vn; nvim
+      - cd ~/core/vn
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
   - window_name: .dotfiles
     layout: tiled
     shell_command_before:
-      - cd ~/.dotfiles; nvim
+      - cd ~/.dotfiles
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
   - window_name: draft
     layout: tiled
     shell_command_before:
-      - cd ~/core/draft; nvim
+      - cd ~/core/draft
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
   - window_name: org-mode
     layout: tiled
     shell_command_before:
-      - cd ~/core/org-mode; nvim
+      - cd ~/core/org-mode
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
