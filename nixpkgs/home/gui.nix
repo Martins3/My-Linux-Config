@@ -99,5 +99,18 @@ in
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
       }).outPath;
     };
+
+    kernel_cmdline = {
+      name = "cmdline";
+      genericName = "cmdlien";
+      exec = "microsoft-edge-dev https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html";
+      icon = (pkgs.fetchurl {
+        url = "https://icons8.com/icon/17842/linux";
+        sha256 = "0shc2mp403fwh33krx012kap3wr42jy19z54d2v763zvz4pwfh3g";
+      }).outPath;
+    };
   };
+  # https://icons8.com/icons/
+  # 拷贝 url
+  # nix-prefetch-url https://icons8.com/icon/17842/linux
 }

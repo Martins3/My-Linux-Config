@@ -3,8 +3,10 @@ windows:
   - window_name: linux
     layout: tiled
     shell_command_before:
-      - cd ~/core/linux; nvim
+      - cd ~/core/linux
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
   - window_name: qemu
     layout: tiled
     shell_command_before:
-      - cd ~/core/qemu; nvim
+      - cd ~/core/qemu
+      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
