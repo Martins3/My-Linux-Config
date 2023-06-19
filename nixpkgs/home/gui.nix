@@ -105,8 +105,8 @@ in
       genericName = "cmdlien";
       exec = "microsoft-edge-dev https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html";
       icon = (pkgs.fetchurl {
-        url = "https://icons8.com/icon/17842/linux";
-        sha256 = "0shc2mp403fwh33krx012kap3wr42jy19z54d2v763zvz4pwfh3g";
+        url = "https://img.icons8.com/color/48/linux--v1.png";
+        sha256 = "17gkspfid6c4apbv16c0l22wmdn1ll13hzlcs9kc1mlx6c10gjbc";
       }).outPath;
     };
   };

@@ -345,6 +345,11 @@ https://askubuntu.com/questions/1177464/difference-between-home-and
 arg_virtio="-drive aio=native,,file=~/hack/iso/virtio-win-0.1.208.iso,media=cdrom,index=2"
 中的 ~ 是无法被展开的。
 
+所以，你不能在 C 语言中使用
+```c
+int fd = open("~/abc.txt", O_RDWR | O_CREAT, 0644);
+```
+
 ## bash 一个复杂的原因
 
 有些功能是 bash 内置的，
