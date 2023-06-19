@@ -51,7 +51,7 @@ in
   ];
   services.tailscale.enable = true;
   # http://127.0.0.1:19999/
-  services.netdata.enable = true;
+  # services.netdata.enable = true;
 
   systemd.services.tailscale-autoconnect = {
     description = "Automatic connection to Tailscale";
@@ -180,7 +180,7 @@ in
     "intel_iommu=on"
     # "amd_iommu_intr=legacy"
     "ftrace=function_graph"
-    "ftrace_filter=iommu_setup_dma_ops"
+    "ftrace_filter=swiotlb_bounced"
     # "amd_iommu=off"
     # "amd_iommu=pgtbl_v2"
     # "iommu=pt"
