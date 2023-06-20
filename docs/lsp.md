@@ -28,3 +28,4 @@
 ## 有些插件只是支持 native lsp 的
 - https://github.com/SmiteshP/nvim-navic : 显示当前在什么函数中间
 - https://github.com/simrat39/symbols-outline.nvim
+- https://github.com/nix-community/nixd/blob/main/docs/editor-setup.md
