@@ -226,6 +226,7 @@ in
     dig # dns分析
     iptraf-ng # 网络流量分析
     glances # 又一个 htop
+    zenith-nvidia # TODO
     smartmontools # 监视硬盘健康
     httpie # http baidu.com
 
