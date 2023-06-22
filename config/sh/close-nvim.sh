@@ -8,3 +8,9 @@ fi
 for i in "$nvim_pipe_dir"/*; do
 	nvim --server "$i" --remote-send '<C-\><C-N>:wqa<CR>'
 done
+
+sleep 1
+
+if pgrep nvim; then
+	echo "some nvim process can't shutdown automatically"
+fi
