@@ -184,10 +184,13 @@ in
 
     # vfio 直通
     "intel_iommu=on"
-    # "iommu=pt"
+    "intremap=on"
+    "iommu=pt"
+    "amd_iommu_intr=vapic"
+    "kvm-amd.avic=1"
     # "amd_iommu_intr=legacy"
-    # "ftrace=function_graph"
-    # "ftrace_graph_filter=swiotlb_tbl_map_single"
+    "ftrace=function"
+    "ftrace_filter=amd_iommu_int_thread"
     # "amd_iommu=off"
     # "amd_iommu=pgtbl_v2"
     # "iommu=pt"
