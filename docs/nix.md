@@ -1147,4 +1147,21 @@ sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 - https://nixos.wiki/wiki/Sway
 - https://github.com/pkivolowitz/asm_book#table-of-contents
 
+## clash 配置
+
+在 profiles 中右键，参考
+https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
+
+## canTouchEfiVariables 到底是什么来头
+https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
+```sh
+efibootmgr -c -d /dev/sda -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
+```
+
+这个说的是什么意思来着:
+```nix
+efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+```
+我设置的是 /boot 似乎影响也不大啊!
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
