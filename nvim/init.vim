@@ -1,32 +1,5 @@
-syntax enable
-" 鼠标可以移动，调整窗口等
-set mouse=a
-" 超过 window 宽度的行不要折叠
-set nowrap
-" 自动进入到新打开的窗口
-set splitbelow
-set splitright
-" 打开行号
-set number
-" 高亮光标所在行
-set cursorline
-set termguicolors
-" 因为失去焦点就会自动保存，所以没有必要使用 swapfile
-set noswapfile
-" 自动隐藏 command-line
-set cmdheight=1
-" 让退出 vim 之后 undo 消息不消失
-set undofile
-" 只有一个全局的 status line，而不是每一个 window 一个
-set laststatus=3
-" 当打开文件的时候，自动进入到上一次编辑的位置
-lua vim.api.nvim_create_autocmd( "BufReadPost", { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] })
-" 当文件被其他编辑器修改时，自动加载
-set autoread
-au FocusGained,BufEnter * :checktime
-" 当失去焦点或者离开当前的 buffer 的时候保存
-set autowrite
-autocmd FocusLost,BufLeave * silent! update
+
+
 " 在 terminal 中也是使用 esc 来进入 normal 模式
 tnoremap  <Esc>  <C-\><C-n>
 " 映射 leader 键为 ,
@@ -61,7 +34,6 @@ lua require 'usr'
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'misc.vim',
-      \ 'coc.vim',
       \ 'debug.vim',
       \ 'wilder.vim',
       \ 'startify.vim',

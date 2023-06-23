@@ -1,4 +1,7 @@
+require 'usr.options'
 require 'usr.packer'
+require 'usr.lsp'
+require 'usr.cmp'
 require 'usr.bufferline'
 require 'usr.code_runner'
 require 'usr.hydra'
@@ -17,3 +20,4 @@ require('leap').add_default_mappings()
 require('nvim-autopairs').setup {}
 require('spellsitter').setup {}
 require("early-retirement").setup {}
+require("symbols-outline").setup()

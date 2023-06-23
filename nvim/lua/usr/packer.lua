@@ -18,10 +18,31 @@ require("packer").startup({
     use({ "wbthomason/packer.nvim", opt = true })
     -- 基础
     use 'nvim-lua/plenary.nvim'                                  -- 很多 lua 插件依赖的库
-    use { 'neoclide/coc.nvim', branch = 'release' }              -- lsp
     use 'kyazdani42/nvim-web-devicons'                           -- 显示图标
     use 'folke/which-key.nvim'                                   -- 用于配置和提示快捷键
     use 'kkharji/sqlite.lua'                                     -- 数据库
+
+	-- Cmp
+  use { "hrsh7th/nvim-cmp" } -- The completion plugin
+  use { "hrsh7th/cmp-buffer" } -- buffer completions
+  use { "hrsh7th/cmp-path" } -- path completions
+	use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
+	use { "hrsh7th/cmp-nvim-lsp" }
+	use { "hrsh7th/cmp-nvim-lua" }
+
+	-- Snippets
+  use { "L3MON4D3/LuaSnip" } --snippet engine
+  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+
+	-- LSP
+	use { "neovim/nvim-lspconfig" } -- enable LSP
+  use { "williamboman/mason.nvim"} -- simple to use language server installer
+  use { "williamboman/mason-lspconfig.nvim" }
+	use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+  use { "RRethy/vim-illuminate" }
+
+
+
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } -- 基于语法树的高亮
     use 'RRethy/nvim-treesitter-textsubjects'
@@ -34,6 +55,10 @@ require("packer").startup({
         function() require("ssr").open() end)
     }                                        -- 结构化查询和替换
     -- ui
+    --
+    --
+
+    use 'simrat39/symbols-outline.nvim'
     use 'liuchengxu/vista.vim'               -- 导航栏
     use 'kyazdani42/nvim-tree.lua'           -- 文件树
     use 'mhinz/vim-startify'                 -- 启动界面
@@ -56,7 +81,6 @@ require("packer").startup({
     use 'nvim-telescope/telescope.nvim'
     use { 'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make' }                                                       -- telescope 搜索的插件，可以提升搜索效率
-    use 'fannheyward/telescope-coc.nvim'                                   -- 搜索 coc 提供的符号
     use 'dhruvmanila/telescope-bookmarks.nvim'                             -- 搜索 bookmarks
     use 'nvim-telescope/telescope-frecency.nvim'                           -- 查找最近打开的文件
     -- 命令执行
