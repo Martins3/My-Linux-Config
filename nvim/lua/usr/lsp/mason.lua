@@ -7,7 +7,7 @@ local servers = {
 	-- "bashls",
 	-- "jsonls",
 	-- "yamlls",
-  -- "ccls"
+  "ccls"
 }
 
 local settings = {
@@ -27,7 +27,7 @@ local settings = {
 -- require("mason-lspconfig").setup({
 -- 	ensure_installed = servers,
 -- 	automatic_installation = true,
--- })
+--  })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -49,5 +49,6 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
+  -- vim.api.nvim_err_writeln(opts)
 	lspconfig[server].setup(opts)
 end
