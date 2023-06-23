@@ -54,10 +54,8 @@ require("packer").startup({
       vim.keymap.set({ "n", "x" }, "<leader>r",
         function() require("ssr").open() end)
     }                                        -- 结构化查询和替换
-    -- ui
-    --
-    --
 
+    -- ui
     use 'simrat39/symbols-outline.nvim'
     use 'liuchengxu/vista.vim'               -- 导航栏
     use 'kyazdani42/nvim-tree.lua'           -- 文件树
