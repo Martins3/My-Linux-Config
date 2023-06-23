@@ -98,3 +98,6 @@ require("mason-lspconfig").setup({
 })
 
 https://github.com/ranjithshegde/ccls.nvim
+
+- 太酷了: https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim
+  - 似乎可以移除掉一些奇怪的 workaround 了

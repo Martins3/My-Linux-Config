@@ -40,6 +40,7 @@ require("packer").startup({
   use { "williamboman/mason-lspconfig.nvim" }
 	use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
+  use {"gbrlsnchs/telescope-lsp-handlers.nvim"}
 
 
 
