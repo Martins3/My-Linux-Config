@@ -8,6 +8,7 @@ local servers = {
   -- "bashls",
   -- "jsonls",
   -- "yamlls",
+  "efm",
   "vimls",
   "ccls",
 }
