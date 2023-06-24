@@ -185,6 +185,7 @@ in
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
     libcgroup
+    cpulimit
     bat # better cat
     procs # better ps
     cloc
