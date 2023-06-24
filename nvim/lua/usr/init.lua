@@ -21,3 +21,4 @@ require('nvim-autopairs').setup {}
 require('spellsitter').setup {}
 require("early-retirement").setup {}
 require("symbols-outline").setup()
+require"fidget".setup{}

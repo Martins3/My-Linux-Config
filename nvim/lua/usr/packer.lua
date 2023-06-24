@@ -41,7 +41,7 @@ require("packer").startup({
 	use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" }
   use {"gbrlsnchs/telescope-lsp-handlers.nvim"}
-
+  use 'j-hui/fidget.nvim'
 
 
     -- treesitter
