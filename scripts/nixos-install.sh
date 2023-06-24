@@ -9,7 +9,8 @@ for i in "$@"; do
 done
 cd "$(dirname "$0")"
 
-ln -sf /home/martins3/.dotfiles/nixpkgs /home/martins3/.config/home-manager
+ln -sf /home/martins3/.dotfiles/config/ /home/martins3/.config/home-manager
+ln -sf /home/martins3/.dotfiles/config/nix.conf /home/martins3/.config/nix/nix.conf
 line="/home/martins3/.config/home-manager/system.nix"
 sudo sed -i "/hardware-configuration.nix/a $line" /etc/nixos/configuration.nix
 sudo ./nix/nix-channel.sh

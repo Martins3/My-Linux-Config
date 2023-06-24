@@ -19,7 +19,7 @@ func! Outline()
   if expand("%:e") ==# "md"
     exec "Telescope heading"
   else
-    exec "Telescope coc document_symbols"
+    exec "Telescope lsp_document_symbols"
   endif
 endf
 
@@ -47,8 +47,8 @@ func! Preivew()
 endf
 
 let g:vista_sidebar_position = "vertical topleft"
-let g:vista_default_executive = 'coc'
-let g:vista_finder_alternative_executives = 'ctags'
+let g:vista_default_executive = 'nvim_lsp'
+" let g:vista_finder_alternative_executives = 'ctags'
 
 let g:git_messenger_no_default_mappings = v:true
 
