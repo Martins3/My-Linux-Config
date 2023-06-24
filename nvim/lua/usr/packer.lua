@@ -29,6 +29,8 @@ require("packer").startup({
 	use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
 	use { "hrsh7th/cmp-nvim-lsp" }
 	use { "hrsh7th/cmp-nvim-lua" }
+  use "uga-rosa/cmp-dictionary" -- @todo 怎么搭建来着
+  use {"quangnguyen30192/cmp-nvim-ultisnips"}
 
 	-- Snippets
   use { "L3MON4D3/LuaSnip" } --snippet engine

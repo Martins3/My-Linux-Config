@@ -55,3 +55,10 @@ null-ls: require("null-ls.health").check()
 - ERROR black: the command "black" is not executable.
 - ERROR stylua: the command "stylua" is not executable.
 ```
+
+## lua python 和 Rust 的环境搭建
+
+## 这个没有办法完全满足要求
+https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage
+
+## bash

@@ -25,3 +25,14 @@ require"fidget".setup{}
 require"nvim-navic".setup{}
 require("barbecue").setup()
 require('nvim-lightbulb').update_lightbulb()
+require("cmp_nvim_ultisnips").setup {
+  filetype_source = "ultisnips_default",
+  show_snippets = "all",
+  documentation = function(snippet)
+    return snippet.description
+  end
+}
+
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
+-- require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/UltiSnips/"})
+-- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
