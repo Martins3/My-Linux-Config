@@ -61,8 +61,7 @@ wk.register({
     a = {
       name = "+misc",
       d = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space" },
-      -- lsp_todo
-      -- t = { "<Plug>(coc-translator-p)", "translate current word" },
+      t = { "<Plug>Translate", "translate current word" },
     },
     b = {
       name = "+buffer",
