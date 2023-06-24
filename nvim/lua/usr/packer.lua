@@ -42,7 +42,8 @@ require("packer").startup({
   use {"gbrlsnchs/telescope-lsp-handlers.nvim"}
   use {'j-hui/fidget.nvim', branch="legacy"}
   use {'SmiteshP/nvim-navic'}
- use "utilyre/barbecue.nvim"
+  use "utilyre/barbecue.nvim"
+  use {'kosayoda/nvim-lightbulb'}
 
 
     -- treesitter

@@ -2,27 +2,26 @@
 
 显然，lsp 的易用还没有到 coc.nvim 的程度。
 
-- https://github.com/kosayoda/nvim-lightbulb : 左边搞个灯泡，可以永远展示可用的代码提示，类似 VSCode 中的
-
 - https://github.com/neovim/nvim-lspconfig : 基础
 - https://github.com/LunarVim/Neovim-from-scratch : 教学入门
+
 - https://github.com/williamboman/mason.nvim
 
 - https://github.com/glepnir/lspsaga.nvim : 提升体验
-- [ ] https://github.com/ray-x/lsp_signature.nvim
+- https://github.com/ray-x/lsp_signature.nvim
 
 - [ ] https://github.com/hrsh7th/nvim-cmp
 
 - [ ] https://github.com/NvChad/NvChad
 
 - [ ] https://github.com/folke/lsp-trouble.nvim
-- [ ] https://github.com/simrat39/symbols-outline.nvim
-
 
 - https://crispgm.com/page/neovim-is-overpowering.html
 - https://github.com/bushblade/nvim : Moving from CoC to native LSP in nvim 0.5
-- [ ] https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
+
+## 一些老故事
+- [ ] https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
 ## 有些插件只是支持 native lsp 的
 - https://github.com/simrat39/symbols-outline.nvim : 总是无法搭建起来

@@ -24,3 +24,4 @@ require("symbols-outline").setup()
 require"fidget".setup{}
 require"nvim-navic".setup{}
 require("barbecue").setup()
+require('nvim-lightbulb').update_lightbulb()
