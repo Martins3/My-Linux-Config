@@ -2,25 +2,22 @@
 local wk = require("which-key")
 wk.setup({
   plugins = {
-    marks = false, -- shows a list of your marks on ' and `
+    marks = false,    -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
   },
 })
 
 wk.register({
+  ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "document" },
+  ["g"] = {
+    d = { "<cmd>Telescope lsp_definitions<cr>", "go to definition" },
+    r = { "<cmd>Telescope lsp_references<cr>", "go to reference" },
+    l = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
+    I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to reference" },
+    D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to reference" },
+  },
   -- search
   ["<leader>"] = {
-    -- lsp_todo
-    -- a = { "<cmd>Telescope coc code_actions<cr>", "search coc code action" },
-    -- b = { "<cmd>Telescope buffers<cr>", "search buffers" },
-    -- c = {
-    --   name = "+coc",
-    --   a = { "<Plug>(coc-codelens-action)", "run the Code Lens action on the current line" },
-    --   c = { "<Plug>(coc-codeaction)", "applying codeAction to the current buffer" },
-    --   f = { "<Plug>(coc-fix-current)", "apply AutoFix to problem on the current line" },
-    --   x = { "<Plug>(coc-codeaction-selected)", "Applying codeAction to the selected region" },
-    -- },
-    -- d = { "<cmd>Telescope coc workspace_diagnostics<cr>", "show coc diagnostics" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
     F = { "<cmd>Telescope git_files<cr>", "search files (exclude submodules)" },
@@ -33,7 +30,7 @@ wk.register({
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
-    -- lsp_todo s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
+    s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
     -- leader x used for map language specific function
 
     -- " 使用 <leader> [number] 切换到第 [number] 个 buffer
@@ -96,11 +93,16 @@ wk.register({
     i = { "<c-i>", "go to newer jumplist" },
     l = {
       name = "+language",
+      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
       c = { "<cmd>Commentary<cr>", "comment code" },
-      -- lsp_todo f = { "<cmd>call CocActionAsync('format')<cr>", "format current buffer" },
-      -- lsp_todo n = { "<Plug>(coc-rename)", "rename" },
-      r = { "<cmd>call QuickRun()<cr>", "run code" },
+      f = { "<cmd> lua vim.lsp.buf.format{ async = true }<cr>", "format current buffer" },
+      j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", "lsp goto next" },
+      k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "lsp goto prev" },
+      n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
+      s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature help" },
+      q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "" },
       p = { "<cmd>call Preivew()<cr>", "preview" },
+      r = { "<cmd>call QuickRun()<cr>", "run code" },
     },
     -- o 被 orgmode 使用
     q = { "<cmd>qa<cr>", "close vim" },
@@ -151,7 +153,7 @@ wk.register({
   ["<space>"] = {
     l = {
       c = { ":Commentary<cr>", "comment code" },
-      -- lsp_todo f = { "<Plug>(coc-format-selected)<cr>", "format selected code" },
+      f = { "<cmd> lua vim.lsp.buf.format{ async = true }<cr>", "format selected code" },
     },
     s = {
       name = "+search",
