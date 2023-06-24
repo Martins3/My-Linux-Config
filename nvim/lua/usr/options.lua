@@ -28,8 +28,7 @@ local options = {
   number = true, -- set numbered lines
   relativenumber = false, -- set relative numbered lines
 
-  -- signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-  wrap = true, -- display lines as one long line
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   linebreak = true, -- companion to wrap, don't split words
   scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
   sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`

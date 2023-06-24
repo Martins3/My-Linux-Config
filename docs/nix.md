@@ -1168,7 +1168,7 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 ## [ ] 如何下载 nixd
 看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md
 
-nix profile install github:nixos/nixpkgs#nixd --extra-experimental-features nix-command --extra-experimental-features flakes
+nix profile install github:nixos/nixpkgs#nixd
 
 这个还很新，等到以后正式合并到 nixpkgs 中的时候再说吧!
 
