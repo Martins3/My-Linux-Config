@@ -10,8 +10,6 @@
 - https://github.com/glepnir/lspsaga.nvim : 提升体验
 - https://github.com/ray-x/lsp_signature.nvim
 
-- [ ] https://github.com/hrsh7th/nvim-cmp
-
 - [ ] https://github.com/NvChad/NvChad
 
 - [ ] https://github.com/folke/lsp-trouble.nvim
@@ -24,8 +22,8 @@
 - [ ] https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
 ## 有些插件只是支持 native lsp 的
-- https://github.com/simrat39/symbols-outline.nvim : 总是无法搭建起来
-- https://github.com/nix-community/nixd/blob/main/docs/editor-setup.md
+- https://github.com/simrat39/symbols-outline.nvim : 总是无法搭建起来, 继续 vista 了
+- https://github.com/nix-community/nixd/blob/main/docs/editor-setup.md : nixd
 - https://github.com/scalameta/nvim-metals/discussions/39 : 这个插件将 coc 切换为原生的了，如果这种事情继续发生，那么就只能切换成为原生的 lsp 了。
 
 ## lua 学习
@@ -46,21 +44,5 @@ https://github.com/ranjithshegde/ccls.nvim
 
 ## 如何只是 format 部分区域的那种
 
-## checkhealth 警告
-
-```txt
-null-ls: require("null-ls.health").check()
-
-- ERROR prettier: the command "prettier" is not executable.
-- ERROR black: the command "black" is not executable.
-- ERROR stylua: the command "stylua" is not executable.
-```
-
-## lua python 和 Rust 的环境搭建
-
 ## 这个没有办法完全满足要求
 https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage
-
-## bash
-
-## lint 的速度太快了，等 safe 的时候，再 lint 的

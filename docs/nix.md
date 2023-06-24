@@ -181,6 +181,7 @@ nix-env -qaPA nixos.nodePackages
 npm install -g @lint-md/cli@beta
 npm i -g bash-language-server
 npm install -g vim-language-server
+npm install -g prettier
 ```
 
 ## windows 虚拟机

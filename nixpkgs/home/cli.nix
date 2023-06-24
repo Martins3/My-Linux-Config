@@ -154,6 +154,7 @@ in
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
     nodePackages.pyright
+    black # python formatter
     man-pages
     pre-commit
     tiptop
