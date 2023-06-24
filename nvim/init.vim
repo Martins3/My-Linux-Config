@@ -1,4 +1,8 @@
-
+set autoread
+au FocusGained,BufEnter * :checktime
+" 当失去焦点或者离开当前的 buffer 的时候保存
+set autowrite
+autocmd FocusLost,BufLeave * silent! update
 
 " 在 terminal 中也是使用 esc 来进入 normal 模式
 tnoremap  <Esc>  <C-\><C-n>
