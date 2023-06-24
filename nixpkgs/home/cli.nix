@@ -18,7 +18,8 @@ in
     mold
     go
     lua
-    unstable.sumneko-lua-language-server
+    lua-language-server
+    stylua
     ccls
     cargo
     rustc
