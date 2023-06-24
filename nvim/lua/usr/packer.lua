@@ -39,7 +39,6 @@ require("packer").startup({
   use { "williamboman/mason.nvim"} -- simple to use language server installer
   use { "williamboman/mason-lspconfig.nvim" }
 	use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
-  use { "RRethy/vim-illuminate" }
   use {"gbrlsnchs/telescope-lsp-handlers.nvim"}
   use {'j-hui/fidget.nvim', branch="legacy"}
   use {'SmiteshP/nvim-navic'}
