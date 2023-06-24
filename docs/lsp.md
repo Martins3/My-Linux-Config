@@ -20,9 +20,7 @@
 
 
 - https://crispgm.com/page/neovim-is-overpowering.html
-- https://github.com/SmiteshP/nvim-navic
 - https://github.com/bushblade/nvim : Moving from CoC to native LSP in nvim 0.5
-- https://github.com/SmiteshP/nvim-navic : 类似 VsCode 的将当前的信息显示到 winbar 中，但是依赖 lspconfig
 - [ ] https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
 
@@ -47,3 +45,15 @@ https://github.com/ranjithshegde/ccls.nvim
 ## 总结下这个
 - 太酷了: https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim
   - 似乎可以移除掉一些奇怪的 workaround 了
+
+## 如何只是 format 部分区域的那种
+
+## checkhealth 警告
+
+```txt
+null-ls: require("null-ls.health").check()
+
+- ERROR prettier: the command "prettier" is not executable.
+- ERROR black: the command "black" is not executable.
+- ERROR stylua: the command "stylua" is not executable.
+```

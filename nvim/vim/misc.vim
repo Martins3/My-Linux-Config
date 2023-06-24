@@ -19,7 +19,7 @@ func! Outline()
   if expand("%:e") ==# "md"
     exec "Telescope heading"
   else
-    exec "Telescope coc document_symbols"
+    exec "Telescope lsp_document_symbols"
   endif
 endf
 
