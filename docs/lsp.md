@@ -62,3 +62,5 @@ null-ls: require("null-ls.health").check()
 https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage
 
 ## bash
+
+## lint 的速度太快了，等 safe 的时候，再 lint 的

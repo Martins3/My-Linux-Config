@@ -2,7 +2,6 @@
 
 let
   unstable = import <unstable> { };
-  rnix-lsp2 = import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz");
   x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 
 in
@@ -36,8 +35,8 @@ in
     xclip # x clipboard
     wl-clipboard # wayland clipboard
     jq
-  aspell
-  aspellDicts.en
+    aspell
+    aspellDicts.en
     yq-go
     xplr
     htop
@@ -103,7 +102,6 @@ in
     # wakatime
     shellcheck
     shfmt
-    rnix-lsp # nix 语言的 lsp
     tree-sitter
     systeroid
     linuxKernel.packages.linux_5_15.perf
