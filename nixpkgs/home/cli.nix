@@ -35,6 +35,8 @@ in
     xclip # x clipboard
     wl-clipboard # wayland clipboard
     jq
+  aspell
+  aspellDicts.en
     yq-go
     xplr
     htop
