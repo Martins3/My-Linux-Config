@@ -130,5 +130,6 @@ require("packer").startup({
     use("ojroques/vim-oscyank")             -- 让 nvim 在远程 server 上拷贝到本地剪切板上
     use("azabiong/vim-highlighter")         -- 高亮多个搜索内容
     use("dstein64/vim-startuptime")         -- 分析 nvim 启动时间
+    use("voldikss/vim-translator")          -- 翻译
   end,
 })

@@ -42,4 +42,3 @@ require("telescope").load_extension("heading")
 require("telescope").load_extension("emoji")
 require("telescope").load_extension("neoclip")
 -- require('telescope').load_extension("frecency") -- @todo 2023-06-12 更新之后就无法启动了
-require("telescope").load_extension("lsp_handlers")
