@@ -22,3 +22,5 @@ require('spellsitter').setup {}
 require("early-retirement").setup {}
 require("symbols-outline").setup()
 require"fidget".setup{}
+require"nvim-navic".setup{}
+require("barbecue").setup()
