@@ -42,7 +42,5 @@ https://github.com/ranjithshegde/ccls.nvim
 - 太酷了: https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim
   - 似乎可以移除掉一些奇怪的 workaround 了
 
-## 如何只是 format 部分区域的那种
-
 ## 这个没有办法完全满足要求
 https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage
