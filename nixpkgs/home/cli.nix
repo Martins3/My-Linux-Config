@@ -26,6 +26,7 @@ in
     cmake
     # zig
     gnumake
+    marksman
     yarn
     nodejs
     tmux
