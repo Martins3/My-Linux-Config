@@ -1,20 +1,20 @@
 local opts = {
   init_options = {
     index = {
-      threads = 0;
-    };
+      threads = 0,
+    },
     clang = {
-      excludeArgs = { "-Wall"} ;
-    };
+      excludeArgs = { "-Wall" },
+    },
 
-    highlight ={
-      lsRanges = true;
-    };
+    highlight = {
+      lsRanges = true,
+    },
 
     client = {
-      snippetSupport= true;
-    };
-  }
+      snippetSupport = true,
+    },
+  },
 }
 
 return opts

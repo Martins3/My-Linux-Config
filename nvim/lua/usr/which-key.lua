@@ -2,9 +2,9 @@
 local wk = require("which-key")
 wk.setup({
   plugins = {
-    marks = false,    -- shows a list of your marks on ' and `
+    marks = false, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
-  }
+  },
 })
 
 wk.register({
@@ -49,7 +49,7 @@ wk.register({
     ["0"] = { "<cmd>BufferLineGoToBuffer 10<cr>", "jump to buffer 10" },
   },
   -- " 使用 space [number] 切换到第 [number] 个 window
-  ['<space>'] = {
+  ["<space>"] = {
     ["1"] = { "<cmd>1wincmd  w <cr>", "jump to window 1" },
     ["2"] = { "<cmd>2wincmd  w <cr>", "jump to window 2" },
     ["3"] = { "<cmd>3wincmd  w <cr>", "jump to window 3" },
@@ -79,7 +79,7 @@ wk.register({
       name = "+file",
       o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
       s = { "<cmd>w<cr>", "save file" },
-      t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" }
+      t = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" },
     },
     g = {
       name = "+git",
@@ -106,8 +106,7 @@ wk.register({
     q = { "<cmd>qa<cr>", "close vim" },
     s = {
       name = "+search",
-      P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
-        "search cursor word in project" },
+      P = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "search cursor word in project" },
       p = { "<cmd>lua require('spectre').open()<cr>", "search in project" },
       b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "search in current buffer" },
       g = { "<cmd>Telescope git_status<cr>", "search git status" },
@@ -157,12 +156,12 @@ wk.register({
     s = {
       name = "+search",
       p = { "<cmd>lua require('spectre').open_visual()<cr>", "search" },
-    }
+    },
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
 
-vim.cmd('autocmd FileType sh lua WhichKeyLeaderX()')
+vim.cmd("autocmd FileType sh lua WhichKeyLeaderX()")
 function WhichKeyLeaderX()
-  vim.api.nvim_set_keymap('n', '<leader>x', ':!chmod +x %<CR>', { noremap = false, silent = true })
+  vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })
 end
