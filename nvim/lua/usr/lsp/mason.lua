@@ -13,6 +13,7 @@ local servers = {
   "efm",
   "vimls",
   "ccls",
+  "marksman",
 }
 
 -- local settings = {

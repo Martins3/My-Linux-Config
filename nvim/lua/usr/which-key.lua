@@ -31,7 +31,7 @@ wk.register({
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
     m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
-    o = { "<cmd>call Outline()<cr>", "search symbols in file" },
+    o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     -- lsp_todo s = { "<cmd>Telescope coc workspace_symbols<cr>", "search symbols in project" },
     -- leader x used for map language specific function
