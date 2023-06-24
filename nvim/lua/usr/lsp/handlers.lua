@@ -13,9 +13,9 @@ M.setup = function()
   local signs = {
 
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignWarn",  text = "" },
+    { name = "DiagnosticSignHint",  text = "" },
+    { name = "DiagnosticSignInfo",  text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -25,7 +25,7 @@ M.setup = function()
   local config = {
     virtual_text = true, -- disable virtual text
     signs = {
-      active = signs, -- show signs
+      active = signs,    -- show signs
     },
     update_in_insert = false,
     underline = true,
@@ -51,28 +51,6 @@ M.setup = function()
   })
 end
 
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<space>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-  keymap(bufnr, "v", "<space>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-  keymap(bufnr, "n", "<space>li", "<cmd>LspInfo<cr>", opts)
-  keymap(bufnr, "n", "<space>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(bufnr, "n", "<space>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  keymap(bufnr, "n", "<space>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<space>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<space>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  keymap(bufnr, "n", "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-  keymap(bufnr, "n", "<space>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
-  keymap(bufnr, "n", "<leader>s", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
-end
-
 local navic = require("nvim-navic")
 
 M.on_attach = function(client, bufnr)
@@ -87,8 +65,6 @@ M.on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
-
-  lsp_keymaps(bufnr)
 end
 
 return M
