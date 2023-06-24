@@ -60,10 +60,7 @@ wk.register({
 
     a = {
       name = "+misc",
-      a = { "<cmd>SourcetrailActivateToken<cr>", "activate sourcetrail server" },
       d = { "<cmd>call TrimWhitespace()<cr>", "remove trailing space" },
-      r = { "<cmd>SourcetrailRefresh<cr>", "sourcetrail refresh" },
-      s = { "<cmd>SourcetrailStartServer<cr>", "start sourcetrail server" },
       -- lsp_todo
       -- t = { "<Plug>(coc-translator-p)", "translate current word" },
     },
