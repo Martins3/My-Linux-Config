@@ -2,7 +2,6 @@
 
 let
   unstable = import <unstable> { };
-  rnix-lsp2 = import (fetchTarball "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz");
   x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 
 in
@@ -18,7 +17,8 @@ in
     mold
     go
     lua
-    unstable.sumneko-lua-language-server
+    lua-language-server
+    stylua
     ccls
     cargo
     rustc
@@ -35,6 +35,8 @@ in
     xclip # x clipboard
     wl-clipboard # wayland clipboard
     jq
+    aspell
+    aspellDicts.en
     yq-go
     xplr
     htop
@@ -100,7 +102,6 @@ in
     # wakatime
     shellcheck
     shfmt
-    rnix-lsp # nix 语言的 lsp
     tree-sitter
     systeroid
     linuxKernel.packages.linux_5_15.perf
@@ -152,6 +153,8 @@ in
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
+    nodePackages.pyright
+    black # python formatter
     man-pages
     pre-commit
     tiptop
@@ -185,6 +188,7 @@ in
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
     libcgroup
+    cpulimit
     bat # better cat
     procs # better ps
     cloc

@@ -25,3 +25,4 @@ compile_commands.json
 
 .clang-format
 kernel/guest/default.nix
+.luarc.json

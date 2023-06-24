@@ -180,6 +180,8 @@ nix-env -qaPA nixos.nodePackages
 ```sh
 npm install -g @lint-md/cli@beta
 npm i -g bash-language-server
+npm install -g vim-language-server
+npm install -g prettier
 ```
 
 ## windows 虚拟机
@@ -1163,5 +1165,13 @@ efibootmgr -c -d /dev/sda -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
 efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 ```
 我设置的是 /boot 似乎影响也不大啊!
+
+## [ ] 如何下载 nixd
+看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md
+
+nix profile install github:nixos/nixpkgs#nixd
+
+这个还很新，等到以后正式合并到 nixpkgs 中的时候再说吧!
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
