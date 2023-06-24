@@ -34,5 +34,5 @@ require("cmp_nvim_ultisnips").setup {
 }
 
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
-require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/UltiSnips/"})
+require("luasnip.loaders.from_snipmate").lazy_load({paths = "~/.config/nvim/snippets/"})
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
