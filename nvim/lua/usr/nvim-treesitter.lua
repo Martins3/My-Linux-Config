@@ -15,6 +15,7 @@ require("nvim-treesitter.configs").setup({
     "nix",
     "bash",
     "go",
+    "diff",
     "scala",
     "cpp",
     "python",
@@ -54,7 +55,7 @@ require("nvim-treesitter.configs").setup({
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise
-        ["@function.outer"] = "V", -- linewise
+        ["@function.outer"] = "V",  -- linewise
         ["@class.outer"] = "<c-v>", -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
