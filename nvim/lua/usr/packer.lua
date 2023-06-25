@@ -124,7 +124,7 @@ require("packer").startup({
     use("mattn/efm-langserver")             -- 支持 bash
     -- 其他
     use("tyru/open-browser.vim")            -- 使用 gx 打开链接
-    use("martins3/fcitx.nvim")              -- 自动切换输入法
+    use("keaising/im-select.nvim")              -- 自动切换输入法
     use("olimorris/persisted.nvim")         -- 打开 vim 的时候，自动回复上一次打开的样子
     use("anuvyklack/hydra.nvim")            -- 消除重复快捷键，可以用于调整 window 大小等
     use("ojroques/vim-oscyank")             -- 让 nvim 在远程 server 上拷贝到本地剪切板上

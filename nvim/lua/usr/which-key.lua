@@ -18,6 +18,7 @@ wk.register({
   },
   -- search
   ["<leader>"] = {
+    b = { "<cmd>Telescope buffers<cr>", "searcher buffers" },
     e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
     F = { "<cmd>Telescope git_files<cr>", "search files (exclude submodules)" },
