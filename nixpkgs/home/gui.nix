@@ -19,7 +19,7 @@ in
 {
 
   imports = [
-    ./app/gnome.nix
+    # ./app/gnome.nix
   ];
 
   home.packages = with pkgs; [

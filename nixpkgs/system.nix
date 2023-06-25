@@ -20,6 +20,12 @@ in
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     "https://cache.nixos.org/"
   ];
+  programs.hyprland.enable = true;
+ services.xserver.desktopManager = {
+    gnome.enable = false;
+    plasma5.enable = false;
+    xterm.enable = false;
+  };
 
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
