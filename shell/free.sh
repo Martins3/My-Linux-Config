@@ -4,6 +4,8 @@ set -E -e -u -o pipefail
 
 fff=fa
 
-if [[ "fafafa" =~ "$fff" ]];then
-  echo "good"
-fi
+[[ "fafafa" =~ ^$fff ]] && echo "1"
+[[ "fafafa" =~ "^$fff" ]] && echo "2"
+[[ "fafafa" == "$fff" ]] && echo "3"
+[[ "fafafa" == $fff ]] && echo "4"
+[[ "fafafa" =~ "$fff" ]] && echo "5"

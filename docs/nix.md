@@ -1376,4 +1376,9 @@ nix profile install github:nixos/nixpkgs#nixd
 
 ## 感觉 nix 也是再快速发展，现在 nix-env -i 都不能用了
 
+## amduperf 没有
+https://aur.archlinux.org/packages/amduprof
+
+但是 windows deb 和 rpm 都有
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

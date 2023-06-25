@@ -13,6 +13,7 @@ git commit -m "your awesome commit message"
 - [gitk](https://git-scm.com/docs/gitk/)
 - [sublime merge](https://www.sublimemerge.com/)
 - [forgit](https://github.com/wfxr/forgit)
+- [gitui](https://github.com/extrawurst/gitui) : 据说性能很好
 
 tig 相比这些而言而言，代码开源，功能强大，界面简洁，可以集成到 vim 中使用
 
