@@ -454,6 +454,13 @@ nix eval -f begin.nix
   - https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
   - 无法同时安装 gcc 和 clang
 
+## blog
+[my first expression of nix](https://news.ycombinator.com/item?id=36387874_)
+
+[Are We Getting Too Many Immutable Distributions?](https://linuxgamingcentral.com/posts/are-we-getting-too-many-immutable-distros/)
+
+[打个包吧](https://unix.stackexchange.com/questions/717168/how-to-package-my-software-in-nix-or-write-my-own-package-derivation-for-nixpkgs)
+
 ## MAC 中使用 nix
 
 存在很多麻烦的地方:
@@ -1326,6 +1333,17 @@ sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 - https://nixos.wiki/wiki/Sway
 - https://github.com/pkivolowitz/asm_book#table-of-contents
 
+## notification
+不知道为什么大家会专门的 notification 工具来
+https://github.com/emersion/mako
+
+如果想要简单的 hacking 一下:
+https://wiki.archlinux.org/title/Desktop_notifications
+
+如果更多的定制化:
+[dunst](https://github.com/dunst-project/dunst)
+man home-configuration.nix 中搜索 dunst
+
 ## clash 配置
 
 在 profiles 中右键，参考
@@ -1354,5 +1372,8 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 nix profile install github:nixos/nixpkgs#nixd
 
 这个还很新，等到以后正式合并到 nixpkgs 中的时候再说吧!
+
+
+## 感觉 nix 也是再快速发展，现在 nix-env -i 都不能用了
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
