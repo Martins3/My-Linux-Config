@@ -10,19 +10,10 @@ let g:bookmark_auto_close = 1
 " 让光标自动进入到 popup window 中间
 let g:git_messenger_always_into_popup = v:true
 
-" 设置默认的 pdf 阅览工具
-let g:vimtex_view_method = 'zathura'
-let g:tex_conceal = "" " 关闭所有隐藏设置
-
 " 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
 func! QuickRun()
   exec "w"
-  let ext = expand("%:e")
-  if ext ==# "tex"
-    exec "VimtexCompile"
-  else
-    exec "RunCode"
-  endif
+  exec "RunCode"
 endf
 
 func! Preivew()
@@ -30,8 +21,6 @@ func! Preivew()
   let ext = expand("%:e")
   if ext ==# "md"
     exec "MarkdownPreview"
-  elseif ext ==# "tex"
-    exec "VimtexView"
   else
     echo "no preview"
   endif

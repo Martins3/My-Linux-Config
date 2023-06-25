@@ -46,7 +46,6 @@
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
   * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
-  * [[可选] Latex 集成](#可选-latex-集成)
   * [[可选] Scala 集成](#可选-scala-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
@@ -648,28 +647,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 但是还是存在一些问题，不过暂时可以接受:
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
-### [可选] Latex 集成
-通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
-- 自动补全
-- 静态检查
-- 实时编译预览
-
-| 自动补全的效果                                           |
-|----------------------------------------------------------|
-| <img src="./img/latex-preview.png" /> |
-
-| 预览的效果                                           |
-|------------------------------------------------------|
-| <img src="./img/latex-cmp.png" /> |
-
-主要使用两个快捷键:
-
-| binding           | function                                             |
-|-------------------|------------------------------------------------------|
-| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
-| `<space>` `l` `p` | 使用 zathura 预览                                    |
-
-
 ### [可选] Scala 集成
 参考 https://github.com/scalameta/nvim-metals 中的文档:
 
@@ -830,7 +807,6 @@ setxkbmap -option caps:swapescape
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 
 ## blog
-- [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
 - [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ## 学习

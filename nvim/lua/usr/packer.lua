@@ -117,8 +117,6 @@ require("packer").startup({
     -- 时间管理
     use("nvim-orgmode/orgmode")                    -- orgmode 日程管理
     -- use 'wakatime/vim-wakatime' -- 代码时间统计
-    -- latex
-    use("lervag/vimtex")
     -- lsp 增强
     use("jackguo380/vim-lsp-cxx-highlight") -- ccls 高亮
     use("mattn/efm-langserver")             -- 支持 bash
