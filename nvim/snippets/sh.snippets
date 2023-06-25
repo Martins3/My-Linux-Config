@@ -285,7 +285,7 @@ snippet note_cmpstring "compare string"
 	# if [[ $a == $b ]];
 	# https://mywiki.wooledge.org/glob
 	#
-	# 这两个也不匹配，第一个是 literally 比较，而第二个才是 regex 比较：
+	# 这两个也不相同，第一个是 literally 比较，而第二个才是 regex 比较：
 	#
 	# if [[ $foo =~ "$bar" ]];
 	# if [[ $foo =~ $bar ]];
@@ -293,6 +293,17 @@ snippet note_cmpstring "compare string"
 	# 考虑到 ShellCheck 的警告，使用:
 	# if [[ "$a" == "$b" ]];
 	# if [[ $foo =~ $bar ]];
+	#
+	# 总结一下
+	# 1. == 是 literally compare 所以需要使用 "", 防止出现 glob ，只有完全相等才会 ok
+	# 2. =~ 是 regex ，不要使用 ""，从而体现完整的 regex 功能，只有匹配部分
+	# 如下的输出为 1 5
+	# 只有 1 3 不会被 shellcheck 警告
+	# [[ "fafafa" =~ ^$fff ]] && echo "1"
+	# [[ "fafafa" =~ "^$fff" ]] && echo "2"
+	# [[ "fafafa" == "$fff" ]] && echo "3"
+	# [[ "fafafa" == $fff ]] && echo "4"
+	# [[ "fafafa" =~ "$fff" ]] && echo "5"
 
 	# [[ string ]]：如果string不为空（长度大于0），则判断为真。
 	# [[ -n string ]]：如果字符串string的长度大于零，则判断为真。
