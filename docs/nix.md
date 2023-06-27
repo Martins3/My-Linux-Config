@@ -1365,6 +1365,7 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 
 我设置的是 /boot 似乎影响也不大啊!
 
+注意，-p 1 来设置那个 partition 的。
 ## [ ] 如何下载 nixd
 
 看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md

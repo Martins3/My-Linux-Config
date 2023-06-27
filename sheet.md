@@ -3,15 +3,17 @@
 - "| 字符    | Ctrl + B | Ctrl + F | Ctrl + H  | Ctrl + D |"
 - "| 单词    | Alt + B  | Alt + F  | Ctrl + W  | Alt + D  |"
 - "| 行首/尾 | Ctrl + A | Ctrl + E | Ctrl + U  | Ctrl + K |"
+
 ## rpm
 - rpm -qa 查询当前系统中安装的所有的包
 - rpm -ivh --force --nodeps url
+- rpm -Uvh url : vh 升级的时候打出来进度条和日志，但是，-U 和 -i 的区别是升级和安装。
 - rpm -qf 可以找到一个文件对应的包
 - yum whatprovides xxd
 - rpm -q --changelog php
 - rpm -ql bison.rpm 检查 rpm 中存在多少文件
 - rpm -qp bison.rpm 检查这就是一个 rpm 文件
-- rpm -q --scripts
+- rpm -q --scripts 执行脚本
 
 ## find
 - "find /tmp -size 0 -print0 -delete: 删除大小为 0 的文件"
