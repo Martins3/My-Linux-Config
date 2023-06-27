@@ -72,11 +72,22 @@ function px() {
   export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
 }
 
-function vfio_nvme(){
-  echo 0000:03:00.0 | sudo tee /sys/bus/pci/devices/0000:03:00.0/driver/unbind
-  echo 1e49 0071 | sudo tee /sys/bus/pci/drivers/vfio-pci/new_id
-  sudo chown martins3 /dev/vfio/17
+# https://www.reddit.com/r/zellij/comments/10skez0/does_zellij_support_changing_tabs_name_according/
+# rename zellij tab automatically
+zellij_tab_name_update() {
+    if [[ -n $ZELLIJ ]]; then
+        local current_dir=$PWD
+        if [[ $current_dir == $HOME ]]; then
+            current_dir="~"
+        else
+            current_dir=${current_dir##*/}
+        fi
+        command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
+    fi
 }
+
+zellij_tab_name_update
+chpwd_functions+=(zellij_tab_name_update)
 
 # 快速打开 QEMU
 alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
