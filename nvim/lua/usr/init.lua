@@ -28,6 +28,6 @@ require("nvim-lightbulb").update_lightbulb()
 require('im_select').setup()
 require('lualine').setup()
 
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })
+-- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
