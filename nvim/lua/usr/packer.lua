@@ -48,7 +48,6 @@ require("packer").startup({
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- 基于语法树的高亮
     use("RRethy/nvim-treesitter-textsubjects")
     use("nvim-treesitter/nvim-treesitter-textobjects")
-    use("lewis6991/spellsitter.nvim") -- 当检查拼写的时候，仅仅检查注释
     use({
       "cshuaimin/ssr.nvim",
       module = "ssr",
