@@ -277,7 +277,3 @@ scrollback_editor "/home/martins3/.nix-profile/bin/nvim"
 // The folder in which Zellij will look for layouts
 //
 layout_dir "/home/martins3/.dotfiles/config/zellij/"
-
-// The folder in which Zellij will look for themes
-//
-theme_dir "/home/martins3/.dotfiles/config/zellij/"

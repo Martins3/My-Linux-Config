@@ -182,14 +182,14 @@ snippet note_readfile "read file line by line"
 	done <ByMyWill.md
 
 
-snippet note_issubstr "is substring"
+snippet note_string_issubstr "is substring"
 	string='My long string'
 	if [[ $string == *"My long"* ]]; then
 	        echo "It's there!"
 	fi
 
 
-snippet note_substr "substring"
+snippet note_string_substr "substring"
 	# 语法: ${str:position:length}，position 从 0 开始计数
 	aa="abc"
 	bb=${aa:1:2} # 得到 bc
