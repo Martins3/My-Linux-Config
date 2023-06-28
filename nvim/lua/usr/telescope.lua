@@ -38,7 +38,6 @@ require("telescope").setup({
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("bookmarks")
-require("telescope").load_extension("heading")
 require("telescope").load_extension("emoji")
 require("telescope").load_extension("neoclip")
 -- require('telescope').load_extension("frecency") -- @todo 2023-06-12 更新之后就无法启动了
