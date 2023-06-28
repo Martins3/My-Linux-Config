@@ -99,7 +99,7 @@ wk.register({
       s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature help" },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "" },
       p = { "<cmd>call Preivew()<cr>", "preview" },
-      r = { "<cmd>call QuickRun()<cr>", "run code" },
+      r = { "<cmd>RunCode<cr>", "run code" },
     },
     -- o 被 orgmode 使用
     q = { "<cmd>qa<cr>", "close vim" },
