@@ -41,7 +41,6 @@ let s:core_conf_files = [
       \ 'debug.vim',
       \ 'wilder.vim',
       \ 'startify.vim',
-      \ 'airline.vim',
       \ ]
 
 " 当在 terminal 中打开 nvim 的时候，直接在 host 中打开
