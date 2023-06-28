@@ -205,13 +205,13 @@ in
     "fsck.repair=yes"
   ];
 
-  # boot.kernelPatches = [{
-  #   name = "tracing";
-  #   patch = null;
-  #   extraConfig = ''
-  #     BOOTTIME_TRACING y
-  #   '';
-  # }];
+  boot.kernelPatches = [{
+    name = "tracing";
+    patch = null;
+    extraConfig = ''
+      BOOTTIME_TRACING y
+    '';
+  }];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
