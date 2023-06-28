@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
 set -E -e -u -o pipefail
-# shopt -s inherit_errexit
-# PROGNAME=$(basename "$0")
-# PROGDIR=$(readlink -m "$(dirname "$0")")
-for i in "$@"; do
-  echo "$i"
-done
-cd "$(dirname "$0")"
 
 ln -sf /home/martins3/.dotfiles/config/ /home/martins3/.config/home-manager
 mkdir -p /home/martins3/.config/nix/

@@ -11,8 +11,6 @@ mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
 
-mkdir -p ~/.config/nushell
-
 [[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
 [[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
 [[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
