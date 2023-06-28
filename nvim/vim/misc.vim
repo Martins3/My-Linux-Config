@@ -10,12 +10,6 @@ let g:bookmark_auto_close = 1
 " 让光标自动进入到 popup window 中间
 let g:git_messenger_always_into_popup = v:true
 
-" 实现一键运行各种文件，适合非交互式的，少量的代码，比如 leetcode
-func! QuickRun()
-  exec "w"
-  exec "RunCode"
-endf
-
 func! Preivew()
   exec "w"
   let ext = expand("%:e")
