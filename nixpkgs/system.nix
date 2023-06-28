@@ -338,11 +338,8 @@ in
   # programs.steam.enable = true; # steam 安装
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
-  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  # @todo 是因为打开了 vfio_virqfd 才导致中断直接进入到内核态中解决的吗?
-  # @todo vfio_virqfd 在让 6.2 内核无法正常编译了，为什么
-  # @todo 这两个参数啥关系啊?
-  boot.initrd.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vfio" ];
+  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vmd" "iommu_v2"];
+  boot.initrd.kernelModules = ["iommu_v2"];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   services.samba = {
