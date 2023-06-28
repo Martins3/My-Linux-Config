@@ -62,9 +62,8 @@ require("packer").startup({
     use("liuchengxu/vista.vim")               -- 导航栏
     use("kyazdani42/nvim-tree.lua")           -- 文件树
     use("mhinz/vim-startify")                 -- 启动界面
-    use("vim-airline/vim-airline")            -- 状态栏
-    use("vim-airline/vim-airline-themes")     -- 状态栏的主题
     use("akinsho/bufferline.nvim")            -- buffer
+    use("nvim-lualine/lualine.nvim")
     use("kazhala/close-buffers.nvim")         -- 一键删除不可见 buffer
     use("chrisgrieser/nvim-early-retirement") -- 自动关闭 inactive buffer
     use("gelguy/wilder.nvim")                 -- 更加智能的命令窗口
@@ -93,7 +92,6 @@ require("packer").startup({
     -- 进入到 ~/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim 中手动执行 cd app && npm install
     use("mzlogin/vim-markdown-toc")       -- 自动目录生成
     use("dhruvasagar/vim-table-mode")     -- 快速编辑 markdown 的表格
-    use("crispgm/telescope-heading.nvim") -- Telescope coc 没有 outline，所以只好使用这个
     use("xiyaowong/telescope-emoji.nvim") -- 使用 telescope 搜索 emoji 表情
     -- 高效编辑
     use("tpope/vim-commentary")           -- 快速注释代码
