@@ -2,9 +2,16 @@
 
 set -E -e -u -o pipefail
 
-cd ~/core/nixos-kernel
+project_dir=~/core/nixos-kernel
+mkdir -p $project_dir
+cd $project_dir
+
 version=$(uname -r)
+if [[ $version =~ [0-9]\.[0-9]\.0 ]]; then
+	version=${version:0:3}
+fi
 tarfile=linux-${version}.tar.xz
+
 
 if [[ ! -f $tarfile ]]; then
 	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/"$tarfile"
@@ -16,7 +23,7 @@ if [[ ! -d $srcdir ]]; then
 fi
 
 cd "$srcdir"
-zcat /proc/config.gz >.config
+[[ ! -f .config ]] && zcat /proc/config.gz >.config
 
 if [[ ! -d .git ]]; then
 	git init
@@ -36,7 +43,7 @@ function exe() {
 # exe "make ./arch/x86/kernel/kvm-intel.ko"
 # @todo
 # 如何使用 direnv ?
-cat <<_EOF_
+cat <<_EOF_ > /dev/null
   DESCEND objtool
   DESCEND bpf/resolve_btfids
   CALL    scripts/checksyscalls.sh
@@ -46,7 +53,7 @@ make[1]: *** [scripts/Makefile.build:504: arch/x86] Error 2
 make: *** [Makefile:2021: .] Error 2
 _EOF_
 
-cat <<_EOF_
+cat <<_EOF_ > /dev/null
 [ 1503.956995] kvm: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
 [ 1503.962909] kvm_intel: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
 [ 1580.326624] kvm: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
@@ -63,7 +70,7 @@ _EOF_
 #
 # 去掉 git 是不是就可以解决 XXX，也不是不能接受
 # 实际上，这个报错是无所谓的
-cat << _EOF_
+cat <<_EOF_ > /dev/null
 [10606.080260] BPF:      type_id=52229 bits_offset=896
 [10606.080263] BPF:
 [10606.080264] BPF: Invalid name
@@ -76,9 +83,10 @@ cat << _EOF_
 [10606.089006] failed to validate module [kvm_intel] BTF: -22
 _EOF_
 
-
 # 建议还是先编译一下
-exe "m"
+# 不过不首先编译，会出现如下的报错
+# Makefile:736: include/config/auto.conf: No such file or directory
+# exe "make -j32"
 # scripts/setlocalversion 似乎还是需要删除的
 # @todo 极度怀疑这个命令的的正确性，尝试下 AMD kvm 的编译
 exe "make M=./arch/x86/kvm/  modules -j32"

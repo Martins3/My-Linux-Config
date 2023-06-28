@@ -1382,4 +1382,9 @@ https://aur.archlinux.org/packages/amduprof
 
 但是 windows deb 和 rpm 都有
 
+## 如何升级
+
+sudo nix-env --upgrade
+这个是做什么的
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
