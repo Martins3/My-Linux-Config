@@ -89,6 +89,19 @@ zellij_tab_name_update() {
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
 
+function zj() {
+	if [[ -n $ZELLIJ ]]; then
+		if [[ $# -ne 1 ]]; then
+			echo "usage: zj name"
+			exit 1
+		fi
+		dirname="/tmp/martins3/$1"
+		mkdir -p "$dirname"
+		cd "$dirname"
+		nohup zellij action rename-tab "$1" >/dev/null 2>&1
+	fi
+}
+
 # 快速打开 QEMU
 alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
