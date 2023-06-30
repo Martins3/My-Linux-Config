@@ -402,7 +402,7 @@ make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.de
 一种方法是:
 
 ```nix
-  /* microsoft-edge-dev = pkgs.callPackage ./programs/microsoft-edge-dev.nix {}; */
+  /* microsoft-edge-beta = pkgs.callPackage ./programs/microsoft-edge-beta.nix {}; */
   nixpkgs_unstable = import
     (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/ac608199012d63453ed251b1e09784cd841774e5.tar.gz";
