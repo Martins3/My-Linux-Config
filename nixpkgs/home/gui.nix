@@ -24,7 +24,7 @@ in
 
   home.packages = with pkgs; [
     # neovide
-    unstable.clash
+    # unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
     unstable.vscode
@@ -49,7 +49,7 @@ in
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
-    nur.repos.eh5.netease-cloud-music
+    # nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具

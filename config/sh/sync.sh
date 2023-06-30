@@ -11,4 +11,5 @@ if [[ ! -f $filename ]]; then
 	exit 1
 fi
 set -x
-rsync -avzh --delete --filter="dir-merge,- .gitignore" "$(pwd)/" "$(head -n 1 $filename)"/
+# rsync -avzh --delete --filter="dir-merge,- .gitignore" "$(pwd)/" "$(head -n 1 $filename)"/
+rsync -avzh --filter="dir-merge,- .gitignore" "$(pwd)/" "$(head -n 1 $filename)"/
