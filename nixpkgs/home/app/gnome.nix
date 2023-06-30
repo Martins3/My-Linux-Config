@@ -37,7 +37,7 @@
 
       ## dock icons
       favorite-apps = [
-        "microsoft-edge-dev.desktop"
+        "microsoft-edge-beta.desktop"
       ];
     };
     ## extensions settings
