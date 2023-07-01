@@ -69,8 +69,10 @@ in
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
+    mutt
     tcpdump
     ethtool
+    proxychains-ng
     sshpass
     gping # better ping
     auto-cpufreq
@@ -267,7 +269,7 @@ in
   programs.git = {
     enable = true;
     userEmail = "hubachelar@gmail.com";
-    userName = "Martins3";
+    userName = "Martin Hu";
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin
