@@ -24,9 +24,16 @@ require("fidget").setup({})
 require("nvim-navic").setup({})
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
-require('im_select').setup()
-require('lualine').setup()
+require("im_select").setup()
+require("lualine").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
+
+-- workaround for https://github.com/neovim/neovim/issues/21856
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.cmd("sleep 10m")
+  end,
+})
