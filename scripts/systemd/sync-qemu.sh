@@ -46,7 +46,7 @@ _EOF
 # --enable-trace-backends=nop
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-virtfs --enable-libusb"
+QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs"
 QEMU_options+=" --enable-virtfs"
 
