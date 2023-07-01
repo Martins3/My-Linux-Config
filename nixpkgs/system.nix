@@ -1,5 +1,5 @@
 # add this file to /etc/nixos/configuration.nix: imports
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # mkpasswd -m sha-512
@@ -205,13 +205,24 @@ in
     "fsck.repair=yes"
   ];
 
-  boot.kernelPatches = [{
+  boot.kernelPatches = [
+  {
     name = "tracing";
     patch = null;
-    extraConfig = ''
-      BOOTTIME_TRACING y
-    '';
-  }];
+    extraStructuredConfig = {
+      BOOTTIME_TRACING = lib.kernel.yes;
+    };
+  }
+  # 增加一个 patch 的方法
+  /*
+  {
+    name = "amd-iommu";
+    # https://www.reddit.com/r/NixOS/comments/oolk59/how_do_i_apply_local_patches_to_the_kernel/
+    # 这里不要携带双引号
+    patch = /home/martins3/.dotfiles/nixpkgs/patches/amd_iommu.patch;
+  }
+  */
+  ];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
@@ -368,7 +379,7 @@ in
   };
 
   boot.kernel.sysctl = {
-    # "vm.swappiness" = 200;
+    "vm.swappiness" = 200;
     "vm.overcommit_memory" = 1;
   };
 }
