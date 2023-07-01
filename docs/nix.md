@@ -1107,6 +1107,79 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 - https://wiki.hyprland.org/Nix/
 - https://github.com/yaocccc/dwm : 看上去还不错，还有 bilibili 的介绍
 
+启用 hyprland 的方法:
+```diff
+commit 6746b06b79275b160a433567b47d5e6c49445e77
+Author: Martins3 <hubachelar@gmail.com>
+Date:   Sun Jun 25 22:23:53 2023 +0800
+
+    cool
+
+diff --git a/nixpkgs/home/gui.nix b/nixpkgs/home/gui.nix
+index 8f0d909..fac00dc 100644
+--- a/nixpkgs/home/gui.nix
++++ b/nixpkgs/home/gui.nix
+@@ -19,7 +19,7 @@ in
+ {
+
+   imports = [
+-    ./app/gnome.nix
++    # ./app/gnome.nix
+   ];
+
+   home.packages = with pkgs; [
+diff --git a/nixpkgs/sys/gui.nix b/nixpkgs/sys/gui.nix
+index 61f4f3e..a525fb5 100644
+--- a/nixpkgs/sys/gui.nix
++++ b/nixpkgs/sys/gui.nix
+@@ -1,17 +1,17 @@
+ { config, pkgs, ... }:
+
+ {
+-  services.xserver = {
+-    enable = true;
+-    xkbOptions = "caps:swapescape";
+-    # 暂时可以使用这个维持生活吧
+-    # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+-    # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
+-  };
++  # services.xserver = {
++  #   enable = true;
++  #   xkbOptions = "caps:swapescape";
++  #   # 暂时可以使用这个维持生活吧
++  #   # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
++  #   # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
++  # };
+
+-  services.xserver.displayManager.gdm.enable = true;
+-  services.xserver.displayManager.gdm.wayland = false;
+-  services.xserver.desktopManager.gnome.enable = true;
++  # services.xserver.displayManager.gdm.enable = true;
++  # services.xserver.displayManager.gdm.wayland = false;
++  # services.xserver.desktopManager.gnome.enable = true;
+
+   # see xieby1
+   fonts.fonts = (
+diff --git a/nixpkgs/system.nix b/nixpkgs/system.nix
+index 8490c95..c1c018b 100644
+--- a/nixpkgs/system.nix
++++ b/nixpkgs/system.nix
+@@ -20,6 +20,12 @@ in
+     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+     "https://cache.nixos.org/"
+   ];
++  programs.hyprland.enable = true;
++ services.xserver.desktopManager = {
++    gnome.enable = false;
++    plasma5.enable = false;
++    xterm.enable = false;
++  };
+
+   time.timeZone = "Asia/Shanghai";
+   time.hardwareClockInLocalTime = true;
+```
+还是感觉收益不大，而且启动之后 edge 无法使用。再度放弃。
+
 ## 如何调试 host 内核
 
 参考 nixpkgs/pkgs/os-specific/linux/kernel/linux-6.2.nix ，我发现其
