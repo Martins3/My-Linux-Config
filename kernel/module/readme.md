@@ -25,7 +25,7 @@ trace_printk("martins3 like %s\n", "ftrace");
 ```
 
 ```c
-pr_info("[huxueshi:%s:%d] rtm always abort %d\n", __FUNCTION__, __LINE__, cpu_khz);
+pr_info("[martins3:%s:%d] rtm always abort %d\n", __FUNCTION__, __LINE__, cpu_khz);
 ```
 
 ## 触发一下类似这种报错

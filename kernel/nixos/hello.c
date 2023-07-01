@@ -24,9 +24,9 @@ static void tsx_disable(void)
 }
 
 static int vermagic_init(void) {
-  pr_info("[huxueshi:%s:%d] disbale tsx\n", __FUNCTION__, __LINE__);
+  pr_info("[martins3:%s:%d] disbale tsx\n", __FUNCTION__, __LINE__);
   tsx_disable();
-  pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+  pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
   return 0;
 }
 
