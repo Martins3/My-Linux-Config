@@ -1460,4 +1460,9 @@ https://aur.archlinux.org/packages/amduprof
 sudo nix-env --upgrade
 这个是做什么的
 
+## flakes book
+- https://github.com/ryan4yin/nixos-and-flakes-book
+
+感觉写的相当不错。但是，问题是，我老版本的 nix channel 之类的还没掌握，怎么现在又切换了啊!
+
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

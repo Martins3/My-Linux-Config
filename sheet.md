@@ -29,7 +29,7 @@
 - git reset : 将所有的内容 unstage
 - git checkout -- fs/ : 将 unstage 的修改删除掉
 
-### log
+### git log
 - git log --format="%h --> %B"
 - git log -S <string> path/to/file : 如果 git blame 一个已经被删除的内容
 - tig -- path/to/dir : 看一个目录的 log
@@ -46,15 +46,22 @@
 - git reset --hard origin/master
 - -> 如何将多个 commit squash 一下
 - git reset --soft HEAD~3 && git commit
-- -> 将 patch 直接作为一个 commit
-- git format-patch -1 sha1
-- git am
 - -> 撤销一个 commit
 - git reset --soft HEAD^
 - -> 拉取 tags
 - git fetch --tags
 - -> 在一个特定的 commit 上打 tag
 - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
+
+### git patch
+将 patch 直接作为一个 commit，而不是 diff 信息
+-v 是参数个数。
+
+- git format-patch -1 sha1 # 指定一个具体的 sha1
+- git format-patch -1 HEAD # 指定当从当前的 HEAD
+- git format-patch -1  # HEAD 是默认的
+- git format-patch -1 -v # 说明 patch 的版本
+- git am
 
 ## redirect
 - https://wizardzines.com/comics/redirects/
