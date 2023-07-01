@@ -185,7 +185,7 @@ static int ordering_thread_fn_cpu0(void *idx) {
 }
 
 static int ordering_thread_fn_cpu1(void *idx) {
-  pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+  pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
   while (!kthread_should_stop()) {
     int temp = atomic_read(&count);
 
@@ -202,7 +202,7 @@ static int ordering_thread_fn_cpu1(void *idx) {
 }
 
 static int ordering_thread_fn_cpu2(void *idx) {
-  pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+  pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
   while (!kthread_should_stop()) {
     unsigned int c, d;
 

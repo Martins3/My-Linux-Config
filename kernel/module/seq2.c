@@ -50,10 +50,10 @@ static void *start(struct seq_file *s, loff_t *pos)
    * [   94.251594] next
    * [   94.251680] stop
    * [   94.251856] start
-   * [   94.251857] [huxueshi:start:40]
+   * [   94.251857] [martins3:start:40]
    * [   94.252140] stop
    */
-	pr_info("[huxueshi:%s:%d] \n", __FUNCTION__, __LINE__);
+	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
 	/* no => it is the end of the sequence, return end to stop reading */
 	*pos = 0;
 	return NULL;

@@ -6,7 +6,7 @@ index af49e24b46a4..6bfe5fbb18ef 100644
  	}
 
  	ir_stat = irq_remapping_prepare();
-+	pr_info("[huxueshi:%s:%d] %x\n", __FUNCTION__, __LINE__, ir_stat);
++	pr_info("[martins3:%s:%d] %x\n", __FUNCTION__, __LINE__, ir_stat);
  	if (ir_stat < 0 && !x2apic_supported())
  		return;
 
@@ -17,7 +17,7 @@ index af49e24b46a4..6bfe5fbb18ef 100644
 -	if (ir_stat >= 0)
 +	if (ir_stat >= 0){
  		ir_stat = irq_remapping_enable();
-+		pr_info("[huxueshi:%s:%d] %x\n", __FUNCTION__, __LINE__, ir_stat);
++		pr_info("[martins3:%s:%d] %x\n", __FUNCTION__, __LINE__, ir_stat);
 +	}
  	/* ir_stat contains the remap mode or an error code */
  	try_to_enable_x2apic(ir_stat);
@@ -33,9 +33,9 @@ index c2d80a4e5fb0..b474041efd66 100644
 -		if (h->efr_reg & BIT(IOMMU_EFR_XTSUP_SHIFT))
 +		if (h->efr_reg & BIT(IOMMU_EFR_XTSUP_SHIFT)){
  			amd_iommu_xt_mode = IRQ_REMAP_X2APIC_MODE;
-+			pr_info("[huxueshi:%s:%d] we have the feature \n", __FUNCTION__, __LINE__);
++			pr_info("[martins3:%s:%d] we have the feature \n", __FUNCTION__, __LINE__);
 +		} else{
-+			pr_info("[huxueshi:%s:%d] we don't have the feature\n", __FUNCTION__, __LINE__);
++			pr_info("[martins3:%s:%d] we don't have the feature\n", __FUNCTION__, __LINE__);
 +		}
 
  		early_iommu_features_init(iommu, h);
