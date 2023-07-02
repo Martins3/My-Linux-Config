@@ -1406,6 +1406,9 @@ sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 - https://nixos.wiki/wiki/Sway
 - https://github.com/pkivolowitz/asm_book#table-of-contents
 
+如何在 nixos 中启用 wayland
+https://drakerossman.com/blog/wayland-on-nixos-confusion-conquest-triumph
+
 ## notification
 不知道为什么大家会专门的 notification 工具来
 https://github.com/emersion/mako

@@ -50,6 +50,7 @@ in
     gdb
     lsof
     lshw
+    hw-probe #  sudo -E hw-probe -all -upload
     exa # more powerful ls
     oh-my-posh # @todo for powershell
     gource
@@ -69,7 +70,8 @@ in
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
-    mutt
+    neomutt
+    offlineimap
     tcpdump
     ethtool
     proxychains-ng

@@ -103,7 +103,8 @@ function zj() {
 }
 
 alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
-alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf mutt"
+alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf neomutt"
+# alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf mutt -f"
 # 快速打开 QEMU
 alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
