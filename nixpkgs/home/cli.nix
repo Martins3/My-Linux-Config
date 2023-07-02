@@ -71,6 +71,7 @@ in
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
     neomutt
+    weechat
     offlineimap
     tcpdump
     ethtool
