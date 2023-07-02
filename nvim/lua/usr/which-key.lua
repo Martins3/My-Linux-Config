@@ -72,6 +72,13 @@ wk.register({
       -- c = { "<cmd>BDelete hidden<cr>", "close invisible buffers" },
       d = { "<cmd>bdelete %<cr>", "close current buffers" },
     },
+    c = {
+      -- only works in a c/cpp file
+      name = "+ouroboros",
+      c = { "<cmd>Ouroboros<cr>", "open file in current window"},
+      h = { "<cmd>split | Ouroboros<cr>", "open file in a horizontal split"},
+      v = { "<cmd>vsplit | Ouroboros<cr>", "open file in a vertical split"},
+    },
     f = {
       name = "+file",
       o = { "<cmd>NvimTreeFindFile<cr>", "open file in dir" },
