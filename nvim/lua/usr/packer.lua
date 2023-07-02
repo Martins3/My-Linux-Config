@@ -93,7 +93,7 @@ require("packer").startup({
     -- 高效编辑
     use("tpope/vim-commentary")           -- 快速注释代码
     use("kylechui/nvim-surround")         -- 快速编辑单词两侧的符号
-    use("tpope/vim-sleuth")               -- 自动设置 tabstop 之类的
+    -- use("tpope/vim-sleuth")               -- 自动设置 tabstop 之类的
     use("tpope/vim-repeat")               -- 更加强大的 `.`
     use("windwp/nvim-autopairs")          -- 自动括号匹配
     use("honza/vim-snippets")             -- 安装公共的的 snippets
