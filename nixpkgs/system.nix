@@ -192,8 +192,8 @@ in
     "ftrace=function"
     "ftrace_filter=amd_iommu_int_thread"
 
-    "processor.max_cstate=1"
-    "intel_idle.max_cstate=0"
+    # "processor.max_cstate=1"
+    # "intel_idle.max_cstate=0"
     # "amd_iommu=off"
     # "amd_iommu=pgtbl_v2"
     # "iommu=pt"
