@@ -62,9 +62,8 @@ require("packer").startup({
     use("kyazdani42/nvim-tree.lua")           -- 文件树
     use("mhinz/vim-startify")                 -- 启动界面
     use("akinsho/bufferline.nvim")            -- buffer
-    use("nvim-lualine/lualine.nvim")
+    use("nvim-lualine/lualine.nvim")          -- 状态栏
     use("kazhala/close-buffers.nvim")         -- 一键删除不可见 buffer
-    use("chrisgrieser/nvim-early-retirement") -- 自动关闭 inactive buffer
     use("gelguy/wilder.nvim")                 -- 更加智能的命令窗口
     use("romgrk/fzy-lua-native")              -- wilder.nvim 的依赖
     use("xiyaowong/nvim-transparent")         -- 可以移除掉背景色，让 vim 透明
