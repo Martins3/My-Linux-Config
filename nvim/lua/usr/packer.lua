@@ -57,16 +57,15 @@ require("packer").startup({
     }) -- 结构化查询和替换
 
     -- ui
-    use("simrat39/symbols-outline.nvim")
-    use("liuchengxu/vista.vim")               -- 导航栏
-    use("kyazdani42/nvim-tree.lua")           -- 文件树
-    use("mhinz/vim-startify")                 -- 启动界面
-    use("akinsho/bufferline.nvim")            -- buffer
-    use("nvim-lualine/lualine.nvim")          -- 状态栏
-    use("kazhala/close-buffers.nvim")         -- 一键删除不可见 buffer
-    use("gelguy/wilder.nvim")                 -- 更加智能的命令窗口
-    use("romgrk/fzy-lua-native")              -- wilder.nvim 的依赖
-    use("xiyaowong/nvim-transparent")         -- 可以移除掉背景色，让 vim 透明
+    use("liuchengxu/vista.vim")       -- 导航栏
+    use("kyazdani42/nvim-tree.lua")   -- 文件树
+    use("mhinz/vim-startify")         -- 启动界面
+    use("akinsho/bufferline.nvim")    -- buffer
+    use("nvim-lualine/lualine.nvim")  -- 状态栏
+    use("kazhala/close-buffers.nvim") -- 一键删除不可见 buffer
+    use("gelguy/wilder.nvim")         -- 更加智能的命令窗口
+    use("romgrk/fzy-lua-native")      -- wilder.nvim 的依赖
+    use("xiyaowong/nvim-transparent") -- 可以移除掉背景色，让 vim 透明
     -- 颜色主题
     use("folke/tokyonight.nvim")
     use({ "catppuccin/nvim", as = "catppuccin" })
