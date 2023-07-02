@@ -2,7 +2,7 @@
 local wk = require("which-key")
 wk.setup({
   plugins = {
-    marks = false,    -- shows a list of your marks on ' and `
+    marks = false, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
   },
 })
@@ -151,7 +151,6 @@ wk.register({
   ["<space>"] = {
     l = {
       c = { ":Commentary<cr>", "comment code" },
-      f = { "<cmd> lua vim.lsp.buf.format{ async = true }<cr>", "format selected code" },
     },
     s = {
       name = "+search",
@@ -160,6 +159,20 @@ wk.register({
   },
   q = { "<cmd>q<cr>", "close window" },
 }, { mode = "v" })
+
+-- 部分格式化，which-key 的设置方法有问题，似乎只是语法没有理解到位
+-- https://vi.stackexchange.com/questions/36946/how-to-add-keymapping-for-lsp-code-formatting-in-visual-mode
+function FormatFunction()
+  vim.lsp.buf.format({
+    async = true,
+    range = {
+      ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+      ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+    },
+  })
+end
+
+vim.api.nvim_set_keymap("v", "<space>lf", "<Esc><cmd>lua FormatFunction()<CR>", { noremap = true })
 
 vim.cmd("autocmd FileType sh lua WhichKeyLeaderX()")
 function WhichKeyLeaderX()
