@@ -18,4 +18,7 @@
   - clangd 无需额外的插件实现高亮
 
 ### 2023.2
-将 clangd 换回来 ccls，将相关问题总结到了。
+将 clangd 换回来 ccls，将相关问题总结到 [2023 年对比一下 ccls 和 clangd](./docs/ccls-vs-clangd.md)。
+
+### 2023.7
+将 coc.nvim 切换为 native lsp 了。

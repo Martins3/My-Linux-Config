@@ -1,4 +1,4 @@
-# ccls vs clangd : 2023 年版本
+# 2023 年对比一下 ccls 和 clangd
 
 先说结论，采用 ccls
 
