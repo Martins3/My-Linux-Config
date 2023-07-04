@@ -790,14 +790,6 @@ setxkbmap -option caps:swapescape
 ## 问题
 - [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-
-
-" 默认是不需要设置这个的，但是如果遇到 missing import error
-" 多fail_futex半是这个没有正确设置，参考:
-" - https://github.com/fannheyward/coc-pyright/issues/184
-" - https://stackoverflow.com/questions/68583492/pyright-report-missing-imports-error-in-neovim
-" call coc#config("python.pythonPath", "/home/martins3/.nix-profile/bin/python3")
-
 - [ ] 如何让 statusline 统计字数
   - 尝试使用这个吧 https://github.com/spencerwooo/cwim
 -->
