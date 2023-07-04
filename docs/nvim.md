@@ -7,12 +7,11 @@
 * [Language Server Protocal](#language-server-protocal)
 * [Async](#async)
 * [Treesitter](#treesitter)
-* [为什么使用 coc.nvim](#为什么使用-cocnvim)
+* [为什么我不再使用 coc.nvim](#为什么我不再使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
   * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
-  * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
   * [安装本配置](#安装本配置)
@@ -105,7 +104,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 |      Editor            |    |Language Server|
 +------------------------+    +---------------+
 |     Emacs              |    |               |
-|     Neovim(coc.nvim)   +--> |      clangd   |
+|     Neovim             +--> |      clangd   |
 |     Visual Studio Code |    |               |
 +------------------------+    +---------------+
 ```
@@ -128,10 +127,15 @@ async 的效果当然就是快，当一个插件存在其 async 的版本，那�
 
 通过 Treesitter ，[有的插件](https://github.com/ThePrimeagen/refactoring.nvim)可以做到超乎想象的事情，甚至是将《重构，改善既有代码》的操作集成到 vim 中。
 
-## 为什么使用 coc.nvim
+## 为什么我不再使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
 coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
-reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开箱即用。[^1]
+reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，开箱即用。](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
+
+但是到了 2023 年，虽然我认为 fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，[但是社区的人几乎都倒向了 native lsp](https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/)。
+虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容稍微变化了一些。
+
+当然，也可能我端午节的时候太清闲了。
 
 ## 为什么应该使用 neovim 而不是 vim
 其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
@@ -149,7 +153,7 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 20.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
 当然滚动更新的 Linux Distribution，类似 Arch 一般存在这些问题。
 
-整个环境的安装主要是 neovim coc.nvim clangd，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
+整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
 ### 安装各种依赖
 ```sh
@@ -182,40 +186,6 @@ See ":help feature-compile"
   fall-back for $VIM: "/usr/local/share/nvim"
 
 Run :checkhealth for more info
-```
-
-### 安装 yarn 和 Node.js
-coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
-
-使用 nvm 来安装获取 Node.js
-```sh
-# https://github.com/nvm-sh/nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-```
-把这个放到你的 .bashrc (如果你使用 zsh 放到发 .zshrc 中，其他的 shell 类似)
-```sh
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-```
-
-```sh
-nvm install v16
-sudo apt install -y npm
-sudo npm install --global yarn
-```
-
-保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
-
-```sh
-npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
-yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
-```
-
-安装完成之后检查:
-```txt
-➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
-https://registry.npm.taobao.org
-https://registry.npm.taobao.org/
 ```
 
 ### 安装 nerdfonts
@@ -289,7 +259,7 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 | <img src="./img/checkhealth.png" /> |
 
 ## 基本操作
-基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim 以及对应的插件的文档。
+基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 [which-key.lua](../nvim/lua/usr/which-key.lua)对应的插件的文档。
 
 三个最核心的 leader 键:
 
@@ -467,13 +437,12 @@ endsnippet
 | <img src="./img/snippet.png" /> |
 
 ### 代码补全
-coc.nvim 无需另外的配置
 
 | 代码补全                             |
 |--------------------------------------|
 | <img src="./img/autocomplete.png" /> |
 
-使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
+使用 `enter` 来确认选择，使用 `tab` 移动。
 
 ### Git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
@@ -670,7 +639,6 @@ sbt bloopInstall
 nvim 配置在仓库的位置为 ./nvim
 - init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
-  - coc.vim : coc.nvim 的配置，在 [coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 上微调了部分设置。
   - debug.vim : 定义了两个函数
   - misc.vim : 各种插件的细微的修改
 - lua/init.lua : 加载其他的 lua 配置
@@ -678,7 +646,6 @@ nvim 配置在仓库的位置为 ./nvim
   - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短。
-- coc-setting.json : coc 的配置
 - UltiSnips/ : 自定义的代码段
 
 ## FAQ
@@ -690,12 +657,6 @@ nvim 配置在仓库的位置为 ./nvim
     - 但是 vim 可以更加简洁, 灵活和高效。
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
-- 为什么不使用 built-in lsp?
-    - 首先可以看看[这个教程](https://climatechangechat.com/setting_up_lsp_nvim-lspconfig_and_perl_in_neovim.html)，分析如何在 neovim 使用 built-in lsp 的
-    - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
-    - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
-    - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
-    - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
 - 支持什么操作系统和架构?
     - 支持 Windows ，但是需要少量的调整，主要是安装方面。
     - 对于 x86 Linux / Mac 完整的支持。
@@ -859,7 +820,6 @@ setxkbmap -option caps:swapescape
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 
-[^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)

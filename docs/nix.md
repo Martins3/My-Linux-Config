@@ -219,6 +219,12 @@ npm install -g vim-language-server
 npm install -g prettier
 ```
 
+设置代理现在可以在 nixos 中配置了:
+```c
+npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
+```
+
 ## windows 虚拟机
 
 ### 性能优化
@@ -1467,5 +1473,6 @@ sudo nix-env --upgrade
 - https://github.com/ryan4yin/nixos-and-flakes-book
 
 感觉写的相当不错。但是，问题是，我老版本的 nix channel 之类的还没掌握，怎么现在又切换了啊!
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
