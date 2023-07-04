@@ -36,6 +36,8 @@ in
     kitty
     wezterm
     unstable.alacritty
+    zoom-us
+    spotify
     # gource
     unstable.firefox
     unstable.microsoft-edge-beta
