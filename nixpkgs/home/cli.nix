@@ -279,6 +279,10 @@ in
       core = {
         editor = "nvim";
         pager = "delta";
+        abbrev = 12;
+      };
+      pretty={
+        fixes = "Fixes: %h (\"%s\")";
       };
       interactive = {
         diffFilter = "delta --color-only";
