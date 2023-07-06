@@ -124,5 +124,10 @@ require("packer").startup({
     use("azabiong/vim-highlighter") -- 高亮多个搜索内容
     use("dstein64/vim-startuptime") -- 分析 nvim 启动时间
     use("voldikss/vim-translator") -- 翻译
+    -- quickly switch between header and source file in C/C++ project
+    use {
+        'jakemason/ouroboros',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
   end,
 })
