@@ -241,7 +241,7 @@ virtio
 sudo smbpasswd -a martins3
 ```
 
-在 windows Guest 中，右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
+在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
 
 ## python
 
@@ -603,7 +603,6 @@ gsettings reset org.gnome.desktop.input-sources sources
 
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
   - https://github.com/Martins3/My-Linux-Config/issues/14
-- [ ] 无法正确安装 crash
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
@@ -1438,6 +1437,7 @@ https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
 ```sh
 efibootmgr -c -d /dev/sda -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
 ```
+注意，-p 1 来设置那个 partition 的。
 
 这个说的是什么意思来着:
 
@@ -1447,7 +1447,6 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 
 我设置的是 /boot 似乎影响也不大啊!
 
-注意，-p 1 来设置那个 partition 的。
 ## [ ] 如何下载 nixd
 
 看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md

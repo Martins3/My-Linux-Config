@@ -98,6 +98,7 @@ in
       5201 # iperf
       8889 # clash
       5900 # qemu vnc
+      445 # samba
       /* 8384 # syncthing */
       /* 22000 # syncthing */
     ];
