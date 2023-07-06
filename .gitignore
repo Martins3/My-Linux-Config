@@ -4,15 +4,25 @@ plugin
 .DS_Store
 .stfolder
 .syncthing.*
-config/nushell/history.txt
+history.txt
 
 # Kernel Module Compile Results
 *.mod*
 *.cmd
 *.ko
 *.o
+*.o.d
+*.out
 .tmp_versions/
 modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+compile_commands.json
+
+.direnv
+.envrc
+
+.clang-format
+kernel/guest/default.nix
+.luarc.json

@@ -7,12 +7,11 @@
 * [Language Server Protocal](#language-server-protocal)
 * [Async](#async)
 * [Treesitter](#treesitter)
-* [为什么使用 coc.nvim](#为什么使用-cocnvim)
+* [为什么我不再使用 coc.nvim](#为什么我不再使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
   * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
-  * [安装 yarn 和 Node.js](#安装-yarn-和-nodejs)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
   * [安装本配置](#安装本配置)
@@ -41,16 +40,16 @@
   * [一键运行代码](#一键运行代码)
   * [一键注释代码](#一键注释代码)
   * [markdown 集成](#markdown-集成)
-  * [[可选] Latex 集成](#可选-latex-集成)
   * [代码折叠](#代码折叠)
   * [Session](#session)
-  * [[可选] Scala 集成](#可选-scala-集成)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
   * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
+  * [[可选] Scala 集成](#可选-scala-集成)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
+* [踩坑](#踩坑)
 * [调试 vim 配置](#调试-vim-配置)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
@@ -60,6 +59,7 @@
 * [主题](#主题)
 * [常见知识点](#常见知识点)
 * [问题](#问题)
+* [亟须解决的问题](#亟须解决的问题)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
@@ -104,7 +104,7 @@ lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 lang
 |      Editor            |    |Language Server|
 +------------------------+    +---------------+
 |     Emacs              |    |               |
-|     Neovim(coc.nvim)   +--> |      clangd   |
+|     Neovim             +--> |      clangd   |
 |     Visual Studio Code |    |               |
 +------------------------+    +---------------+
 ```
@@ -127,10 +127,15 @@ async 的效果当然就是快，当一个插件存在其 async 的版本，那�
 
 通过 Treesitter ，[有的插件](https://github.com/ThePrimeagen/refactoring.nvim)可以做到超乎想象的事情，甚至是将《重构，改善既有代码》的操作集成到 vim 中。
 
-## 为什么使用 coc.nvim
+## 为什么我不再使用 coc.nvim
 最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
 coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
-reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开箱即用。[^1]
+reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，开箱即用。](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
+
+但是到了 2023 年，虽然我认为 fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，[但是社区的人几乎都倒向了 native lsp](https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/)。
+虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容稍微变化了一些。
+
+当然，也可能我端午节的时候太清闲了。
 
 ## 为什么应该使用 neovim 而不是 vim
 其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
@@ -148,7 +153,7 @@ reddit 上的一些老哥目前认为 coc.nvim 的自动补全做的更好，开
 2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 20.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
 当然滚动更新的 Linux Distribution，类似 Arch 一般存在这些问题。
 
-整个环境的安装主要是 neovim coc.nvim clangd，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
+整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 
 ### 安装各种依赖
 ```sh
@@ -181,40 +186,6 @@ See ":help feature-compile"
   fall-back for $VIM: "/usr/local/share/nvim"
 
 Run :checkhealth for more info
-```
-
-### 安装 yarn 和 Node.js
-coc.nvim 和 markdown.preview 两个插件需要使用 Node.js 编译。
-
-使用 nvm 来安装获取 Node.js
-```sh
-# https://github.com/nvm-sh/nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-```
-把这个放到你的 .bashrc (如果你使用 zsh 放到发 .zshrc 中，其他的 shell 类似)
-```sh
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-```
-
-```sh
-nvm install v16
-sudo apt install -y npm
-sudo npm install --global yarn
-```
-
-保证 yarn/npm 使用国内镜像，部分插件需要使用 yarn/npm 安装，如果不切换为国内镜像，**很容易**出现安装失败。切换方法参考[这里](https://zhuanlan.zhihu.com/p/35856841).
-
-```sh
-npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
-yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
-```
-
-安装完成之后检查:
-```txt
-➜  Vn git:(master) ✗ yarn config get registry && npm config get registry
-https://registry.npm.taobao.org
-https://registry.npm.taobao.org/
 ```
 
 ### 安装 nerdfonts
@@ -288,7 +259,7 @@ git clone --depth=1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 | <img src="./img/checkhealth.png" /> |
 
 ## 基本操作
-基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 coc.nvim 以及对应的插件的文档。
+基本操作是所有人都需要的比如，`h` `j` `k` `l` `e` `w` `b` `g` 等等就不说了。下面说明的内容只是我的常用操作，更多详细的操作请移步到 [which-key.lua](../nvim/lua/usr/which-key.lua)对应的插件的文档。
 
 三个最核心的 leader 键:
 
@@ -466,13 +437,12 @@ endsnippet
 | <img src="./img/snippet.png" /> |
 
 ### 代码补全
-coc.nvim 无需另外的配置
 
 | 代码补全                             |
 |--------------------------------------|
 | <img src="./img/autocomplete.png" /> |
 
-使用 `tab` 来确认选择，使用 `Crtl` `n` 和 `Ctrl` `p` 来移动。
+使用 `enter` 来确认选择，使用 `tab` 移动。
 
 ### Git 集成
 包含了一些 git 常见操作，快捷键都是 `<Space>` `g` 开始的，当然 git 本身就是一个非常复杂的工具，主要使用三个工具:
@@ -527,6 +497,14 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 |-----------------------------------------------------|
 | <img src="./img/floaterm.png" /> |
 
+关于 `voidkiss/floaterm` 和 `akinsho/toggleterm.nvim` 的对比:
+1. voidkiss 的更加稳定，功能更多。但是有严重的性能问题，例如编译内核的过程中，产生的 log 可能导致 nvim 卡死。
+2. akinsho 项目更加新，使用 lua 写的，在 UI 上更加灵活，但是存在一些细微的 bug 和功能缺失。
+  - 终端丢失。
+  - 切换终端的时候莫名奇妙进入 normal mode
+  - 如果同时使用多个终端，其管理难度简直逆天。
+  - 没有简洁的 voidkiss 中 FloatermNew 的功能。
+综上，我认为最近两年没有必要切换。
 ### 一键运行代码
 在 VSCode 中有一个非常有名的插件叫 [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
@@ -558,27 +536,6 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<space>` `l` `p` | 预览                 |
 
-### [可选] Latex 集成
-通过 coc-texlab 和 vimtex 两个插件可以提供相当不错的体验
-- 自动补全
-- 静态检查
-- 实时编译预览
-
-| 自动补全的效果                                           |
-|----------------------------------------------------------|
-| <img src="./img/latex-preview.png" /> |
-
-| 预览的效果                                           |
-|------------------------------------------------------|
-| <img src="./img/latex-cmp.png" /> |
-
-主要使用两个快捷键:
-
-| binding           | function                                             |
-|-------------------|------------------------------------------------------|
-| `<space>` `l` `r` | 开启实时编译，任何修改都会触发编译，及时检查出来错误 |
-| `<space>` `l` `p` | 使用 zathura 预览                                    |
-
 ### 代码折叠
 
 利用上 treesitter ，vim 内置的折叠变得非常易用。
@@ -605,22 +562,6 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 <!--         - 在浏览器中登录 http://127.0.0.1:3000 -->
 <!--         - 设置 ~/.wakatime.cfg -->
 <!-- - 方案二: https://github.com/mujx/hakatime -->
-
-### [可选] Scala 集成
-参考 https://github.com/scalameta/nvim-metals 中的文档:
-
-安装 cs
-```sh
-curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
-chmod +x cs
-./cs setup
-```
-
-以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
-```sh
-sbt bloopInstall
-```
-然后就可以自动索引了。
 
 ### 快速移动
 
@@ -675,13 +616,29 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 但是还是存在一些问题，不过暂时可以接受:
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
+### [可选] Scala 集成
+参考 https://github.com/scalameta/nvim-metals 中的文档:
+
+安装 cs
+```sh
+curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
+chmod +x cs
+./cs setup
+```
+
+以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行
+```sh
+sbt bloopInstall
+```
+然后就可以自动索引了。
+
+
 ## 本配置源代码解释
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
 nvim 配置在仓库的位置为 ./nvim
 - init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
-  - coc.vim : coc.nvim 的配置，几乎是[coc.nvim 标准配置](https://github.com/neoclide/coc.nvim#example-vim-configuration) 的复制粘贴。
   - debug.vim : 定义了两个函数
   - misc.vim : 各种插件的细微的修改
 - lua/init.lua : 加载其他的 lua 配置
@@ -689,7 +646,6 @@ nvim 配置在仓库的位置为 ./nvim
   - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短。
-- coc-setting.json : coc 的配置
 - UltiSnips/ : 自定义的代码段
 
 ## FAQ
@@ -701,12 +657,6 @@ nvim 配置在仓库的位置为 ./nvim
     - 但是 vim 可以更加简洁, 灵活和高效。
 - 我应该使用这个配置吗 ?
     - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
-- 为什么不使用 built-in lsp?
-    - 首先可以看看[这个教程](https://climatechangechat.com/setting_up_lsp_nvim-lspconfig_and_perl_in_neovim.html)，分析如何在 neovim 使用 built-in lsp 的
-    - 总体来说，lua 和 built-in 的很多事情正在被折腾中，很多东西更新很快，变化很快，意味着很多坑需要踩。
-    - 其实很多插件已经开始只提供 lua 的配置方法了，相关的资料暂时收藏到[这里](https://github.com/Martins3/My-Linux-config/issues/15)
-    - built-in lsp 相对于 coc.nvim 不具有明显的优势，所以不会到时候将其切换掉的打算。
-    - fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻
 - 支持什么操作系统和架构?
     - 支持 Windows ，但是需要少量的调整，主要是安装方面。
     - 对于 x86 Linux / Mac 完整的支持。
@@ -785,6 +735,9 @@ setxkbmap -option caps:swapescape
 以上技巧，部分参考:
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
+## 踩坑
+1. 才知道 vim 中 [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089)，我使用 hydra 重新映射 jumplist 相关的键位。
+
 ## 调试 vim 配置
 有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
 参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
@@ -793,7 +746,7 @@ setxkbmap -option caps:swapescape
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 10000 star 的 IDE 配置
 - [NvChad](https://github.com/NvChad/NvChad) 同上
 - [cosynvim](https://github.com/glepnir/cosynvim) : 纯 lua 配置模板
-- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置
+- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置，这绝对是开始使用 lua 来配置的 nvim 开始的好地方。
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 
@@ -808,13 +761,13 @@ setxkbmap -option caps:swapescape
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
 - [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
+- [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 
 ## 有趣的插件
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 
 ## blog
-- [和 latex 配合使用](https://damrah.netlify.app/post/note-taking-with-latex-part-1/)
 - [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ## 学习
@@ -835,10 +788,9 @@ setxkbmap -option caps:swapescape
 
 <!--
 ## 问题
-- [ ] ctrl-i 的行为不正常，应该是和 ctrl-o 对称的，一个是向后跳转，一个是向前跳转，但是并不是如此。
 - [ ] shellcheck 无法处理 source 其他的文件的情况。
 - [ ] ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-- [ ] https://github.com/cshuaimin/ssr.nvim : 不知道为什么这个插件安装不上了
+
 
 " 默认是不需要设置这个的，但是如果遇到 missing import error
 " 多fail_futex半是这个没有正确设置，参考:
@@ -848,11 +800,15 @@ setxkbmap -option caps:swapescape
 
 - [ ] 如何让 statusline 统计字数
   - 尝试使用这个吧 https://github.com/spencerwooo/cwim
-
-- [ ] 将终端更新为 akinsho/toggleterm.nvim，但是 <space>gl 如何实现?
-  - [ ] 切换为下一个终端如何实现，这个看来是需要增加 patch 了吧!
-  - [ ] gc 自动进入到 terminal 中
 -->
+
+## 亟须解决的问题
+1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代
+  - https://github.com/jamestthompson3/nvim-remote-containers
+  - https://github.com/OscarCreator/rsync.nvim
+  - https://github.com/chipsenkbeil/distant.nvim
+2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
+3. 调试
 
 ## 衍生
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
@@ -862,8 +818,8 @@ setxkbmap -option caps:swapescape
 5. [firenvim](https://github.com/glacambre/firenvim) : 在浏览器的输入框中使用 vim 输入
 6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
+8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 
-[^1]: [nvim-lspconfig or coc.nvim](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
 [^7]: [stack overflow helping one million developers exit vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)

@@ -1,17 +1,37 @@
-require 'usr.packer'
-require 'usr.bufferline'
-require 'usr.code_runner'
-require 'usr.hydra'
-require 'usr.nvim-tree'
-require 'usr.nvim-treesitter'
-require 'usr.orgmode'
-require 'usr.telescope'
-require 'usr.version'
-require 'usr.which-key'
--- require 'usr.toggleterm' -- toggleterm 还是没有 floaterm 好用
-require("colorizer").setup { 'css'; 'javascript'; 'vim'; html = { mode = 'foreground'; } }
-require("nvim-surround").setup {}
-require('gitsigns').setup {}
-require('leap').add_default_mappings()
-require('nvim-autopairs').setup {}
-require('spellsitter').setup {}
+require("usr.options")
+require("usr.packer")
+require("usr.lsp")
+require("usr.cmp")
+require("usr.bufferline")
+require("usr.code_runner")
+require("usr.hydra")
+require("usr.nvim-tree")
+require("usr.nvim-treesitter")
+require("usr.orgmode")
+require("usr.telescope")
+require("usr.version")
+require("usr.which-key")
+require("usr.colorscheme")
+require("usr.session")
+require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
+require("nvim-surround").setup({})
+require("gitsigns").setup({ signcolumn = false, numhl = true })
+require("leap").add_default_mappings()
+require("nvim-autopairs").setup({})
+require("fidget").setup({})
+require("nvim-navic").setup({})
+require("barbecue").setup()
+require("nvim-lightbulb").update_lightbulb()
+require("im_select").setup()
+require("lualine").setup()
+
+-- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
+-- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
+
+-- workaround for https://github.com/neovim/neovim/issues/21856
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.cmd("sleep 10m")
+  end,
+})

@@ -4,6 +4,9 @@
   services.xserver = {
     enable = true;
     xkbOptions = "caps:swapescape";
+    # 暂时可以使用这个维持生活吧
+    # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+    # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
   };
 
   services.xserver.displayManager.gdm.enable = true;
@@ -65,8 +68,6 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
       fcitx5-rime
     ];

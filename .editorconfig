@@ -10,13 +10,16 @@ indent_style = space
 indent_size = 2
 emacs_mode = c
 
-[*.sh]
-indent_style = space
-indent_size = 2
-
 [*.json]
 indent_style = space
 emacs_mode = python
 
 [*.yaml]
 indent_style = space
+
+[{Makefile,**.mk}]
+# Use tabs for indentation (Makefiles require tabs)
+indent_style = tab
+
+[sh.snippets]
+indent_style = tab

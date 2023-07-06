@@ -122,6 +122,8 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
         bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "Alt 9" { GoToTab 9; SwitchToMode "Normal"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -174,6 +176,8 @@ plugins {
 // Default: $SHELL
 //
 // default_shell "fish"
+// @todo 因为 arm 的原因，这个不行
+// default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
@@ -273,7 +277,3 @@ scrollback_editor "/home/martins3/.nix-profile/bin/nvim"
 // The folder in which Zellij will look for layouts
 //
 layout_dir "/home/martins3/.dotfiles/config/zellij/"
-
-// The folder in which Zellij will look for themes
-//
-theme_dir "/home/martins3/.dotfiles/config/zellij/"

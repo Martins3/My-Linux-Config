@@ -5,6 +5,12 @@ sort: by_weight               # 排序依据，by_weight表示按权重（词频
 use_preset_vocabulary: true   # 是否使用预置发音，一般选true
 import_tables:
   - luna_pinyin               # 预置的朙月拼音词库
-  - luna_pinyin.genshin
   - luna_pinyin.martins3
+  - cn_dicts/8105     # 字表
+  # - cn_dicts/41448  # 大字表（按需启用）
+  - cn_dicts/base     # 基础词库
+  - cn_dicts/ext      # 扩展词库
+  - cn_dicts/tencent  # 腾讯词向量（大词库，部署时间较长）
+  - cn_dicts/others   # 一些杂项
+
 ...

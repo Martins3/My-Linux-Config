@@ -11,9 +11,10 @@
   * [2022 年 vim 的 C/C++ 配置](./docs/nvim.md)
   * [极简 Tmux 配置](./docs/tmux.md)
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
-  *  🚧 [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
-  *  🚧 [Rime 输入法配置](./docs/rime.md)
+  * [Rime 输入法配置](./docs/rime.md)
+  * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   *  🚧 [NixOS 初步尝试](./docs/nix.md)
+  *  🚧 [如何彻底征服 bash](./shell/bash.md)
 * English version comming soon.
 
 ## ⚙ Install

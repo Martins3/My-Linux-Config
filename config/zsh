@@ -22,42 +22,15 @@ if [[ $ID == "nixos" ]];then
 fi
 eval "$(starship init zsh)"
 
-function gscp() {
-  file_name=$1
-  if [ -z "$file_name" ]; then
-    echo $0 file
-    return 1
-  fi
-  ip_addr=$(ip a | grep -v vir | grep -o "192\..*" | cut -d/ -f1)
-  file_path=$(readlink -f $file_name)
-  echo scp -r $(whoami)@${ip_addr}:$file_path .
-}
 
 function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
 }
 
-function t() {
-  while getopts "rh" opt; do
-    case $opt in
-      r)
-        sudo bpftrace -e "kretprobe:${@: -1} { printf(\"returned: %lx\\n\", retval); }"
-        return
-        ;;
-      h)
-        ;;
-      *)
-        exit 1
-        ;;
-    esac # --- end of case ---
-  done
-  sudo bpftrace -e "kprobe:${@: -1} {  @[kstack] = count(); }"
-}
-
-function px() {
+function tpx() {
   PROXY_SERVER_IP="http://127.0.0.1"
   PROXY_SERVER_PORT=8889
-  while getopts "ga:p:h" opt; do
+  while getopts "ga:p:hu" opt; do
     case $opt in
       g)
         PROXY_SERVER_IP="http://10.0.2.2"
@@ -68,6 +41,16 @@ function px() {
         ;;
       p)
         PROXY_SERVER_PORT=${OPTARG}
+        ;;
+      u)
+        export https_proxy=
+        export http_proxy=
+        export HTTPS_PROXY=
+        export HTTP_PROXY=
+        export ftp_proxy=
+        export FTP_PROXY=
+
+        return
         ;;
       h)
         echo "-g : use this in QEMU"
@@ -80,6 +63,7 @@ function px() {
     esac # --- end of case ---
   done
 
+  set -x
   export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
   export http_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
   export HTTPS_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
@@ -88,45 +72,51 @@ function px() {
   export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
 }
 
-function martins3_prepare_qemu(){
-  # @todo 这种检测方式有问题
-  if pgrep qemu-system-x86 ; then
-    gum confirm "there's qemu process, maybe kill it firstly" && pkill qemu-system-x86
-  fi
-}
-
-alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
-
-function dk(){
-  martins3_prepare_qemu
-  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -s -r"
-  /home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-  gum confirm "Kill the machine?" && pkill qemu-system-x86
-}
-
-function k(){
-  martins3_prepare_qemu
-  screen -d -m bash -c "/home/martins3/core/vn/docs/qemu/sh/alpine.sh -r"
-  for i in x y; do
-    gum spin --spinner dot --title "waiting for the vm..." -- sleep 3
-    ssh -p5556 root@localhost
-    if [[ $? != 255 ]] ;then
-      gum confirm "Kill the vm?" && pkill qemu-system-x86
-      break
+# https://www.reddit.com/r/zellij/comments/10skez0/does_zellij_support_changing_tabs_name_according/
+# rename zellij tab automatically
+zellij_tab_name_update() {
+    if [[ -n $ZELLIJ ]]; then
+        local current_dir=$PWD
+        if [[ $current_dir == $HOME ]]; then
+            current_dir="~"
+        else
+            current_dir=${current_dir##*/}
+        fi
+        command nohup zellij action rename-tab $current_dir >/dev/null 2>&1
     fi
-    echo "try to connect to vm"
-  done
 }
 
-alias qm="/home/martins3/core/vn/docs/qemu/sh/alpine.sh -m"
-alias ge="ssh -p5556 root@localhost"
-alias get="ssh -t -p5556 root@localhost \"tmux attach || tmux\""
+zellij_tab_name_update
+chpwd_functions+=(zellij_tab_name_update)
 
-alias b="tmuxp load -d $HOME/.dotfiles/config/tmux-session.yaml"
+function zj() {
+	if [[ -n $ZELLIJ ]]; then
+		if [[ $# -ne 1 ]]; then
+			echo "usage: zj name"
+			exit 1
+		fi
+		dirname="/tmp/martins3/$1"
+		mkdir -p "$dirname"
+		cd "$dirname"
+		nohup zellij action rename-tab "$1" >/dev/null 2>&1
+	fi
+}
+
+alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
+alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf neomutt"
+# alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf mutt -f"
+# 快速打开 QEMU
+alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
+alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
+alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
+alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
+alias ge="ssh -p5556 root@localhost"
+# 打开工作区间并且构建
+alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
 alias f="/home/martins3/core/vn/docs/kernel/flamegraph/flamegraph.sh"
-alias ck="systemctl --user start kernel"
-alias cq="systemctl --user start qemu"
+alias ck="/home/martins3/.dotfiles/config/sh/compile-kernel.sh"
+alias cq="/home/martins3/.dotfiles/config/sh/compile-qemu.sh"
 alias du="ncdu"
 alias flamegraph="/home/martins3/core/vn/docs/kernel/code/flamegraph.sh"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
@@ -137,10 +127,21 @@ alias kernel_version="git describe --contains"
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
 alias ls="exa --icons"
-alias m="make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+alias m="nice -n 19 make -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 alias mc="make clean"
 alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
-alias v="nvim"
+alias v="mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)"
+alias vs="/home/martins3/.dotfiles/config/sh/close-nvim.sh"
+alias vc="rm -r ~/.local/share/nvim/sessions"
 alias ag=rg
-alias cp=xcp
+alias he="nvim +10000  /home/martins3/.dotfiles/sheet.md"
+alias kvm_stat="sudo /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat"
+alias p="python -m venv .venv && source .venv/bin/activate"
+alias i="ipython"
+alias t="/home/martins3/.dotfiles/config/sh/t.sh"
+alias gscp="/home/martins3/.dotfiles/config/sh/gscp.sh"
+alias static="nix-shell -p gcc glibc.static --command zsh"
+alias crash="/home/martins3/core/crash/crash"
+alias clear_nvim_sessions="rm /home/martins3/.local/share/nvim/sessions/*.vim"
+alias rr=/home/martins3/.dotfiles/config/sh/sync.sh

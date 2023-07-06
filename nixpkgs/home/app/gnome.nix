@@ -9,6 +9,7 @@
   ++ (with pkgs.gnomeExtensions; [
     unite
     clipboard-indicator
+    tweaks-in-system-menu
     bing-wallpaper-changer
     gtile
     hide-top-bar
@@ -36,7 +37,7 @@
 
       ## dock icons
       favorite-apps = [
-        "microsoft-edge-dev.desktop"
+        "microsoft-edge-beta.desktop"
       ];
     };
     ## extensions settings

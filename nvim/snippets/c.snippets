@@ -1,0 +1,25 @@
+snippet lpr
+  pr_info("[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+
+snippet qpr
+  printf("[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+
+snippet seapr
+  dprintf(1, "[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+
+snippet import "template"
+  #include <assert.h>  // assert
+  #include <errno.h>   // strerror
+  #include <fcntl.h>   // open
+  #include <limits.h>  // INT_MAX
+  #include <math.h>    // sqrt
+  #include <stdbool.h> // bool false true
+  #include <stdio.h>
+  #include <stdlib.h>  // malloc sort
+  #include <string.h>  // strcmp
+  #include <unistd.h>  // sleep
+
+  int main(int argc, char *argv[]) {
+  	${0}
+  	return 0;
+  }

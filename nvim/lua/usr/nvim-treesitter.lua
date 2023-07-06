@@ -1,35 +1,49 @@
-require 'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
   highlight = {
     enable = true,
-    disable = { 'org', 'c', 'cpp', 'diff', 'markdown' },
-    additional_vim_regex_highlighting = { 'org' },
+    disable = { "org", "c", "cpp" },
+    additional_vim_regex_highlighting = { "org" },
   },
-  -- ensure_installed = "maintained", 这个可以安装目前维护的所有语言 treesitter 插件。
-  ensure_installed = { 'org', 'lua', 'java', 'rust', 'c', 'nix', 'bash', 'go', 'scala', 'cpp', 'python' },
-}
+  -- ensure_installed = "maintained", 安装目前维护的所有语言 treesitter 插件。
+  ensure_installed = {
+    "org",
+    "lua",
+    "java",
+    "rust",
+    "c",
+    "nix",
+    "bash",
+    "go",
+    "diff",
+    "scala",
+    "cpp",
+    "python",
+    "markdown",
+    "markdown_inline", -- 让 markdown 里面的代码段可以高亮
+    -- 'comment' -- 更好的高亮 TODO XXX NOTE FIXME ，但是其让 url 的高亮过于明显
+  },
+})
 
 -- 从 https://github.com/nvim-treesitter/nvim-treesitter-textobjects 拷贝过来的配置
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
   textsubjects = {
     enable = true,
-    prev_selection = ',', -- (Optional) keymap to select the previous selection
+    prev_selection = ",", -- (Optional) keymap to select the previous selection
     keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-      ['i;'] = 'textsubjects-container-inner',
+      ["."] = "textsubjects-smart",
+      [";"] = "textsubjects-container-outer",
+      ["i;"] = "textsubjects-container-inner",
     },
   },
-}
+})
 
-require 'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
   textobjects = {
     select = {
       enable = true,
-
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
-
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
@@ -40,9 +54,9 @@ require 'nvim-treesitter.configs'.setup {
       },
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
+        ["@parameter.outer"] = "v", -- charwise
+        ["@function.outer"] = "V",  -- linewise
+        ["@class.outer"] = "<c-v>", -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding xor succeeding whitespace. Succeeding
@@ -71,4 +85,4 @@ require 'nvim-treesitter.configs'.setup {
       },
     },
   },
-}
+})

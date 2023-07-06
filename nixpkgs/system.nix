@@ -1,5 +1,5 @@
 # add this file to /etc/nixos/configuration.nix: imports
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # mkpasswd -m sha-512
@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./sys/cli.nix
+    ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
     ./sys/gui.nix
@@ -27,22 +28,20 @@ in
   # see https://nixos.wiki/wiki/Nvidia
   # services.xserver.videoDrivers = [ "nvidia" ];
   # hardware.opengl.enable = true;
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # .beta 可以替换为其他的版本，其中 beta 是最新的
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   programs.zsh.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.vswitch.enable = true;
+
+  # zramSwap.enable = true;
 
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # virt manager 是一个图形化的 virsh ，用于创建和管理虚拟机
-  # @todo virt-manager 有意义吗？
-  # https://nixos.wiki/wiki/Virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    virtmanager
     vim
     git
     wget
@@ -51,6 +50,8 @@ in
     cifs-utils
   ];
   services.tailscale.enable = true;
+  # http://127.0.0.1:19999/
+  # services.netdata.enable = true;
 
   systemd.services.tailscale-autoconnect = {
     description = "Automatic connection to Tailscale";
@@ -96,8 +97,9 @@ in
       22 # ssh
       5201 # iperf
       8889 # clash
-      8384 # syncthing
-      22000 # syncthing
+      5900 # qemu vnc
+      /* 8384 # syncthing */
+      /* 22000 # syncthing */
     ];
   };
 
@@ -109,7 +111,7 @@ in
   # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
   # tailscale0 建立的网卡是什么原理，真有趣啊
   # networking.interfaces.enp4s0.useDHCP = false;
-  networking.bridges.br0.interfaces = [ "enp5s0" ];
+  # networking.bridges.br0.interfaces = [ "enp5s0" ];
   # sudo ip ad add 10.0.0.1/24 dev enp5s0
 
   # @todo 这个配置为什么不行
@@ -118,62 +120,110 @@ in
   /*   prefixLength = 24; */
   /* }]; */
 
-  # @todo 比较一下启动的速度，如果是使用 sata 和 nvme 的环境
-  # https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
-  fileSystems."/home/martins3/hack/mnt" = {
-    device = "/dev/sda";
-    fsType = "auto";
-    # @todo 这里的参数真的是个迷惑
-    options = [ "defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
-  };
-  # -----------------------------------------------------------------
-
-
   # wireless and wired coexist
   # @todo disable this temporarily
-  systemd.network.wait-online.timeout = 0;
+  systemd.network.wait-online.timeout = 1;
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = passwd;
   users.users.martins3 = {
     isNormalUser = true;
     shell = pkgs.zsh;
+    # shell = pkgs.nushell;
     home = "/home/martins3";
     extraGroups = [ "wheel" "docker" "libvirtd" ];
     hashedPassword = passwd;
   };
 
   boot = {
-    crashDump.enable = true;
+    crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
+    crashDump.reservedMemory = "1G";
     kernelPackages = pkgs.linuxPackages_latest;
     # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
+
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
+        # theme = pkgs.nixos-grub2-theme;
+        theme =
+          pkgs.fetchFromGitHub {
+            owner = "shvchk";
+            repo = "fallout-grub-theme";
+            rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+            sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+          };
+        devices = [ "nodev" ];
+        efiSupport = true;
+      };
+    };
+    supportedFilesystems = [ "ntfs" ];
   };
 
   boot.kernelParams = [
     # "transparent_hugepage=always"
-    "transparent_hugepage=never"
     # https://gist.github.com/rizalp/ff74fd9ededb076e6102fc0b636bd52b
-    /* "noibpb" */
-    /* "nopti" */
-    /* "nospectre_v2" */
-    /* "nospectre_v1" */
-    /* "l1tf=off" */
-    /* "nospec_store_bypass_disable" */
-    /* "no_stf_barrier" */
-    /* "mds=off" */
-    /* "tsx=on" */
-    /* "tsx_async_abort=off" */
-    /* "mitigations=off" */
+    # 十次测量编译内核，打开和不打开的性能差别为 : 131.1  143.4
+    # 性能提升 9.38%
+    # "noibpb"
+    # "nopti"
+    # "nospectre_v2"
+    # "nospectre_v1"
+    # "l1tf=off"
+    # "nospec_store_bypass_disable"
+    # "no_stf_barrier"
+    # "mds=off"
+    # "mitigations=off"
+    # 硬件上都直接不支持了
+    # "tsx=on"
+    # "tsx_async_abort=off"
 
+    # vfio 直通
     "intel_iommu=on"
+    "intremap=on"
     "iommu=pt"
+    "amd_iommu_intr=vapic"
+    "kvm-amd.avic=1"
+    # "amd_iommu_intr=legacy"
+    "ftrace=function"
+    "ftrace_filter=amd_iommu_int_thread"
+
+    # "processor.max_cstate=1"
+    # "intel_idle.max_cstate=0"
+    # "amd_iommu=off"
+    # "amd_iommu=pgtbl_v2"
+    # "iommu=pt"
+    # 手动禁用 avx2
+    # "clearcpuid=156"
+
+    # @todo 不是 systemd 会默认启动 fsck 的吗，这个需要啥
+    "fsck.mode=force"
+    "fsck.repair=yes"
   ];
 
-  # @todo 这个设置没有任何用
-  # 这里的讨论看了下，也是没用的
-  # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-  boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+  boot.kernelPatches = [
+  {
+    name = "tracing";
+    patch = null;
+    extraStructuredConfig = {
+      BOOTTIME_TRACING = lib.kernel.yes;
+    };
+  }
+  # 增加一个 patch 的方法
+  /*
+  {
+    name = "amd-iommu";
+    # https://www.reddit.com/r/NixOS/comments/oolk59/how_do_i_apply_local_patches_to_the_kernel/
+    # 这里不要携带双引号
+    patch = /home/martins3/.dotfiles/nixpkgs/patches/amd_iommu.patch;
+  }
+  */
+  ];
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
@@ -185,16 +235,17 @@ in
   # 默认是 cgroup v2
   # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
 
-  services.syncthing = {
-    enable = true;
-    systemService = true;
-    # relay.enable = true;
-    user = "martins3";
-    dataDir = "/home/martins3";
-    overrideDevices = false;
-    overrideFolders = false;
-    guiAddress = "0.0.0.0:8384";
-  };
+  # 组装机器之后，这个需求并不强了
+  # services.syncthing = {
+  #   enable = true;
+  #   systemService = true;
+  #   # relay.enable = true;
+  #   user = "martins3";
+  #   dataDir = "/home/martins3";
+  #   overrideDevices = false;
+  #   overrideFolders = false;
+  #   guiAddress = "0.0.0.0:8384";
+  # };
 
   documentation.enable = true;
 
@@ -204,9 +255,7 @@ in
     enable = true;
   };
 
-  services.jenkins = {
-    enable = true;
-  };
+  services.jenkins.enable = false;
 
   systemd.user.services.kernel = {
     enable = true;
@@ -222,8 +271,14 @@ in
 
   # systemctl --user list-timers --all
   systemd.user.timers.kernel = {
-    enable = false;
+    enable = true;
     timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.timers.qemu = {
+    enable = true;
+    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
     wantedBy = [ "timers.target" ];
   };
 
@@ -237,9 +292,14 @@ in
     };
   };
 
-  systemd.user.timers.qemu = {
-    enable = false;
-    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
+  systemd.user.services.monitor = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
+      Restart = "no";
+    };
     wantedBy = [ "timers.target" ];
   };
 
@@ -287,28 +347,12 @@ in
   system.autoUpgrade.enable = false;
 
   nixpkgs.config.allowUnfree = true;
-  programs.steam.enable = true;
+  # programs.steam.enable = true; # steam 安装
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
-  boot.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  # @todo 是因为打开了 vfio_virqfd 才导致的流程是这样的吗?
-  boot.initrd.kernelModules = [ "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-  # @todo 对应的音频驱动是什么，也直接禁用吧
+  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vmd" "iommu_v2"];
+  boot.initrd.kernelModules = ["iommu_v2"];
   boot.blacklistedKernelModules = [ "nouveau" ];
-
-  # services.telegraf.enable = true;
-  # services.influxdb2.enable = true;
-  # services.grafana = {
-  #   enable = true;
-  #   # Grafana needs to know on which domain and URL it's running:
-  #   settings.server = {
-  #     domain = "martins3.domain";
-  #     http_addr = "127.0.0.1";
-  #     port = 3000;
-  #   };
-  # };
-  # services.victoriametrics.enable = true;
-
 
   services.samba = {
     enable = true;
@@ -333,5 +377,10 @@ in
         /* "force group" = "groupname"; */
       };
     };
+  };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 200;
+    "vm.overcommit_memory" = 1;
   };
 }

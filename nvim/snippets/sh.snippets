@@ -1,0 +1,657 @@
+# reference:
+# - https://wangdoc.com/bash/
+# - https://github.com/dylanaraps/pure-bash-note
+
+snippet note_variable_default "变量默认值"
+	# 如果 varname 存在且不为空才可以得到原数值，否则替换
+	#   ${varname:-word} : 那么得到 word
+	#   ${varname:=word} : 那么得到 word，并且 varname=word
+	#   ${varname:?message} : 那么展示 message
+	# ${varname:+word} 和 - 反过来的
+	# ${varname:=word} 会让 varname 复制，但是使用的时候为 : ${varname:=word} 或者 abc=${varname:=word}
+
+	# 以上的 : 都可以去掉 : ，其逻辑为存在的时候才可以得到原数值，否则替换:
+	# 差别为:
+	EGGS=
+	echo 3 ${EGGS-spam}   # 3
+	echo 4 ${EGGS:-spam}  # 4 spam
+
+	# 使用场景:
+	# 1. 一个文件如果存在参数 var=${1-}，之后根据 if [[ $var ]];then 来检测
+
+
+
+snippet note_variable_special "特殊变量"
+	# $?为上一个命令的退出码
+	# $$为当前 Shell 的进程 ID。
+	# $_为上一个命令的最后一个参数。
+	# $!为最近一个后台执行的异步命令的进程 ID。
+	# $-为当前 Shell 的启动参数。
+
+
+snippet note_variable_special2 "特殊常量"
+	SECONDS=0 # 初始化，也可以赋其他的数值，
+	sleep 1
+	echo $SECCOND # 输出 1
+
+	echo "${FUNCNAME[@]}" # 调用栈
+
+	$OSTYPE" == "linux-gnu" # 操作系统的版本
+
+	echo $RANDOM # 输出 [0, 32767] 的数值
+
+
+snippet note_cmpvar "变量比较"
+	# 测试一个变量是否是 empty 的
+	if [ -z "${VAR}" ];
+	# 测试一个变量是否赋值否
+	if [[ -z ${var+x} ]]; then echo "var is unset"; else echo "var is set to '$var'"; fi
+	# -n 和 -z 的语义相反
+
+
+snippet note_cmplogic "比较中的 and 和 or"
+	# [[ $foo = bar && $bar = foo ]]
+	# [[ $foo = bar || $bar = foo ]]
+
+
+snippet note_here "heredoc"
+	# 如果不希望发生变量替换，可以把 Here 文档的开始标记放在单引号之中。
+	# << '_EOF_'
+	# text
+	# _EOF_
+
+	# 将 heredoc 导入到文档中
+	# cat << _EOF_ > /tmp/yourfile
+	# text
+	# _EOF_
+
+	# 此外 here string
+	# $ cat <<< 'hi there'
+	# 等同于
+	# $ echo 'hi there' | cat
+	#
+	# md5sum <<< 'ddd'
+
+	# 注意: 第二个 _EOF_ 后面不能有空格
+
+
+snippet note_case "switch case"
+	case "$action" in
+	a | b)
+	  echo for a or b
+	  ;;&
+	b | c)
+	  echo for c or b
+	  ;;&
+	a | b | c) ;;
+	*)
+	  echo for everything ELSE
+	  ;;
+	esac
+
+
+snippet note_glob_basic "glob basic"
+	# Bash 是先进行扩展，再执行命令。因此，扩展的结果是由 Bash 负责的，与所要执行的命令无关。命令本身并不存在参数扩展，收到什么参数就原样执行。
+	#
+	# 一共存在 8 中符号扩展
+	# 1. ~ : 当前用户的 $HOME
+	# 2. ? : 代表文件路径里面的任意单个字符，不包括空字符。
+	# 3. * : 字符代表文件路径里面的任意数量的任意字符，包括零个字符
+	# 4. [ ] : 括号之中的任意一个字符
+	#   - [start-end] : 方括号扩展有一个简写形式[start-end]
+	# 5. {a, b, c} : 大括号扩展{...}表示分别扩展成大括号里面的所有值，各个值之间使用逗号分隔
+	#     -  {start..end}: 大括号扩展有一个简写形式{start..end}，表示扩展成一个连续序列
+	# 6. 变量扩展
+	# 7. 子命令扩展
+	# 8. 算术扩展
+	#
+	# 因为 {start..end} 扩展，所以可以写这个:
+	# for i in {1..30}; do
+	#   echo "$i"
+	# done
+
+
+snippet note_glob_number "glob 量词"
+	# glob 量词和 regex 中 ? * + 类似
+	?(pattern-list)：匹配零个或一个模式。
+	*(pattern-list)：匹配零个或多个模式。
+	+(pattern-list)：匹配一个或多个模式。
+	@(pattern-list)：只匹配一个模式。
+	!(pattern-list)：匹配给定模式以外的任何内容。
+
+	# 比如匹配
+	shopt -s extglob nullglob
+	for i in rime/*.@(yaml|txt);do
+	  echo $i
+	done
+
+	[[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
+
+
+snippet note_glob "globstar"
+	# dotglob 参数可以让扩展结果包括隐藏文件（即点开头的文件）
+	# nocaseglob 参数可以让通配符扩展不区分大小写。
+	# failglob 参数使得通配符不匹配任何文件名时，Bash 会直接报错，而不是让各个命令去处理。
+	# nullglob 参数可以让通配符不匹配任何文件名时，返回空字符。
+	# globstar参数可以使得**匹配零个或多个子目录。该参数默认是关闭的。
+	# 例如可以，使用下面的命令来 匹配当前目录下的所有 sh 文件
+	shopt -s globstar
+	git checkout -- **/*.sh
+
+
+snippet fori "C style for loop"
+	VAR=50
+	for ((i=0;i<=VAR;i=i + 4)); do
+	        printf '%s\n' "$i"
+	done
+
+
+snippet note_getoption "参数选项"
+	function usage() {
+		echo "Usage :   [options] [--]
+
+	    Options:
+	    -h|help       Display this message"
+	}
+
+	cmd=""
+	while getopts "hc:" opt; do
+		case \$opt in
+			c) cmd=\${OPTARG} ;;
+			h)
+				usage
+				exit 0
+				;;
+			*)
+				echo -e "\n  Option does not exist : OPTARG\n"
+				usage
+				exit 1
+				;;
+		esac
+	done
+	shift $((OPTIND - 1))
+
+
+snippet note_readfile "read file line by line"
+	# https://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable
+	while read -r line; do
+	        read -ra array <<< "$line"
+	        for w in "${array[@]}"; do
+	                echo "[$w]"
+	        done
+	done <ByMyWill.md
+
+
+snippet note_string_issubstr "is substring"
+	string='My long string'
+	if [[ $string == *"My long"* ]]; then
+	        echo "It's there!"
+	fi
+
+
+snippet note_string_substr "substring"
+	# 语法: ${str:position:length}，position 从 0 开始计数
+	aa="abc"
+	bb=${aa:1:2} # 得到 bc
+
+
+
+snippet note_trim_space "substring"
+	# https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+	# 难以接受，但是这就是最高点赞的答案
+	echo "   lol  " | xargs
+
+
+snippet note_string_replace "string replace"
+	# 额外说明:
+	# 1. 这里都是 pattern 是支持 glob
+	# 2. # 和 % 是要求 pattern 正好和开头或者结尾匹配的，类似 regex 中的 $ 和 %
+	#	3. 而 / 是匹配任意位置的
+
+
+	# 如果 pattern 匹配变量 variable 的开头，
+	# 删除最短匹配（非贪婪匹配）的部分，返回剩余部分
+	${variable#pattern}
+
+	# 如果 pattern 匹配变量 variable 的开头，
+	# 删除最长匹配（贪婪匹配）的部分，返回剩余部分
+	${variable##pattern}
+
+	# 如果 pattern 匹配变量 variable 的结尾，
+	# 删除最短匹配（非贪婪匹配）的部分，返回剩余部分
+	${variable%pattern}
+
+	# 如果 pattern 匹配变量 variable 的结尾，
+	# 删除最长匹配（贪婪匹配）的部分，返回剩余部分
+	${variable%%pattern}
+
+	# 如果 pattern 匹配变量 variable 的一部分，
+	# 最长匹配（贪婪匹配）的那部分被 string 替换，但仅替换第一个匹配
+	${variable/pattern/string}
+
+	# 如果 pattern 匹配变量 variable 的一部分，
+	# 最长匹配（贪婪匹配）的那部分被 string 替换，所有匹配都替换
+	${variable//pattern/string}
+
+	# 经典案例
+	# filename=$(basename -- "$fullfile")
+	# extension="${filename#*.}"
+	# filename="${filename%.*}"
+
+
+snippet note_cmpbool "compare file"
+	the_world_is_flat=true
+	# ...do something interesting...
+	if [[ "$the_world_is_flat" == true ]] ; then
+	  echo 'Be careful not to fall off!'
+	fi
+
+
+
+snippet note_cmpfile "compare file"
+	# https://wangdoc.com/bash/condition.html
+	# [[ -a file ]]：如果 file 存在，则为true。
+	# [[ -b file ]]：如果 file 存在并且是一个块（设备）文件，则为true。
+	# [[ -c file ]]：如果 file 存在并且是一个字符（设备）文件，则为true。
+	# [[ -d file ]]：如果 file 存在并且是一个目录，则为true。
+	# [[ -e file ]]：如果 file 存在，则为true。
+	# [[ -f file ]]：如果 file 存在并且是一个普通文件，则为true。
+	# [[ -g file ]]：如果 file 存在并且设置了组 ID，则为true。
+	# [[ -G file ]]：如果 file 存在并且属于有效的组 ID，则为true。
+	# [[ -h file ]]：如果 file 存在并且是符号链接，则为true。
+	# [[ -k file ]]：如果 file 存在并且设置了它的“sticky bit”，则为true。
+	# [[ -L file ]]：如果 file 存在并且是一个符号链接，则为true。
+	# [[ -N file ]]：如果 file 存在并且自上次读取后已被修改，则为true。
+	# [[ -O file ]]：如果 file 存在并且属于有效的用户 ID，则为true。
+	# [[ -p file ]]：如果 file 存在并且是一个命名管道，则为true。
+	# [[ -r file ]]：如果 file 存在并且可读（当前用户有可读权限），则为true。
+	# [[ -s file ]]：如果 file 存在且其长度大于零，则为true。
+	# [[ -S file ]]：如果 file 存在且是一个网络 socket，则为true。
+	# [[ -t fd ]]：如果 fd 是一个文件描述符，并且重定向到终端，则为true。 这可以用来判断是否重定向了标准输入／输出／错误。
+	# [[ -u file ]]：如果 file 存在并且设置了 setuid 位，则为true。
+	# [[ -w file ]]：如果 file 存在并且可写（当前用户拥有可写权限），则为true。
+	# [[ -f file && -x file ]]：如果 file 存在并且可执行（有效用户有执行／搜索权限），则为true。 -x 对于文件夹总是成立。
+	# [[ file1 -nt file2 ]]：如果 FILE1 比 FILE2 的更新时间最近，或者 FILE1 存在而 FILE2 不存在，则为true。
+	# [[ file1 -ot file2 ]]：如果 FILE1 比 FILE2 的更新时间更旧，或者 FILE2 存在而 FILE1 不存在，则为true。
+	# [[ FILE1 -ef FILE2 ]]：如果 FILE1 和 FILE2 引用相同的设备和 inode 编号，则为true。
+
+
+snippet note_cmpstring "compare string"
+	# 注意，使用 == 而不是 = ，保持风格一致
+	#	- https://stackoverflow.com/questions/20449543/shell-equality-operators-eq
+	#
+	# 这两个不等价，因为 Bash also allows globs to appear on the right-hand side of a comparison inside a [[ command: [^1]
+	# if [[ "$a" == "$b" ]];
+	# if [[ $a == $b ]];
+	# https://mywiki.wooledge.org/glob
+	#
+	# 这两个也不相同，第一个是 literally 比较，而第二个才是 regex 比较：
+	#
+	# if [[ $foo =~ "$bar" ]];
+	# if [[ $foo =~ $bar ]];
+	#
+	# 考虑到 ShellCheck 的警告，使用:
+	# if [[ "$a" == "$b" ]];
+	# if [[ $foo =~ $bar ]];
+	#
+	# 总结一下
+	# 1. == 是 literally compare 所以需要使用 "", 防止出现 glob ，只有完全相等才会 ok
+	# 2. =~ 是 regex ，不要使用 ""，从而体现完整的 regex 功能，只有匹配部分
+	# 如下的输出为 1 5
+	# 只有 1 3 不会被 shellcheck 警告
+	# [[ "fafafa" =~ ^$fff ]] && echo "1"
+	# [[ "fafafa" =~ "^$fff" ]] && echo "2"
+	# [[ "fafafa" == "$fff" ]] && echo "3"
+	# [[ "fafafa" == $fff ]] && echo "4"
+	# [[ "fafafa" =~ "$fff" ]] && echo "5"
+
+	# [[ string ]]：如果string不为空（长度大于0），则判断为真。
+	# [[ -n string ]]：如果字符串string的长度大于零，则判断为真。
+	# [[ -z string ]]：如果字符串string的长度为零，则判断为真。
+	# [[ string1 == string2 ]] 等同于[ string1 = string2 ]。
+	# [[ string1 != string2 ]]：如果string1和string2不相同，则判断为真。
+	# [[ string1 '>' string2 ]]：如果按照字典顺序string1排列在string2之后，则判断为真。
+	# [[ string1 '<' string2 ]]：如果按照字典顺序string1排列在string2之前，则判断为真。
+	# [[ string1 =~ string2 ]]：判断 string2 是不是 string1 的 substring。
+
+
+snippet note_cmpint "compare int"
+	# [[ integer1 -eq integer2 ]]：如果integer1等于integer2，则为true。
+	# [[ integer1 -ne integer2 ]]：如果integer1不等于integer2，则为true。
+	# [[ integer1 -le integer2 ]]：如果integer1小于或等于integer2，则为true。
+	# [[ integer1 -lt integer2 ]]：如果integer1小于integer2，则为true。
+	# [[ integer1 -ge integer2 ]]：如果integer1大于或等于integer2，则为true。
+	# [[ integer1 -gt integer2 ]]：如果integer1大于integer2，则为true。
+
+
+snippet note_select "compare int"
+	select brand in Samsung Sony iphone symphony Walton
+	do
+	        echo "You have chosen $brand"
+	done
+
+
+snippet note_forarray "for every element in array"
+	for i in "${$1[@]}"; do
+	        echo "$i"
+	done
+
+
+snippet note_forarrayindex "for every element in array"
+	for ((i=0;i<${#$1[@]};i++)); do
+	        printf '%s\n' "${$1[i]}"
+	done
+
+
+snippet note_arrayprint "print array"
+	# 默认情况下 echo $arr 是输出 arr 的第一个字符
+	printf '%s\n' "${array[@]}"
+
+
+snippet note_trim_string "trim string"
+	# Usage: trim_string "   example   string    "
+	function trim_string() {
+	        : "${1#"${1%%[![:space:]]*}"}"
+	        : "${_%"${_##*[![:space:]]}"}"
+	        printf '%s\n' "$_"
+	}
+
+
+snippet note_trim_all "trim all"
+	# shellcheck disable=SC2086,SC2048
+	# Usage: trim_all "   example   string    "
+	function trim_all() {
+	        set -f
+	        set -- $*
+	        printf '%s\n' "$*"
+	        set +f
+	}
+
+
+snippet note_forfiles "遍历一个文件夹下文件"
+	# 递归的遍历
+	shopt -s globstar
+	for file in "$(pwd)"/**; do
+	        printf '%s\n' "$file"
+	done
+	shopt -u globstar
+
+	# 仅仅显示当前目录的文件和目录
+	for file in "$(pwd)"/*; do
+	        printf '%s\n' "$file"
+	done
+
+
+snippet note_head "head lines of file"
+	# Usage: head "n" "file"
+	head() {
+	        mapfile -tn "$1" line <"$2"
+	        printf '%s\n' "${line[@]}"
+	}
+
+
+snippet note_tail "tail lines of file"
+	tail() {
+	        # Usage: tail "n" "file"
+	        mapfile -tn 0 line < "$2"
+	        printf '%s\n' "${line[@]: -$1}"
+	}
+
+
+snippet note_exits "tail lines of file"
+	function exits() {
+		if ! [ -x "$(command -v $1)" ]; then
+			echo "Error: $1 is not installed." >&2
+			exit 1
+		fi
+	}
+
+
+snippet note_secure "make bash more secure"
+	# -u ：试图使用未定义的变量，就立即退出。
+	# -o pipefail ： 只要管道中的一个子命令失败，整个管道命令就失败。
+	set -E -e -u -o pipefail
+
+
+snippet note_sed "sed"
+	# sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
+	# 在 pattern 前插入
+	sed -i '/pattern/a \
+	line1 \
+	line2' inputfile
+	# 在 pattern 后插入
+	sed -i '/pattern/a \
+	line1 \
+	line2' inputfile
+	# 替换
+	sed -i 's/old-text/new-text/g' input.txt
+
+
+
+snippet xxx "template for any bash script"
+	#!/usr/bin/env bash
+
+	set -E -e -u -o pipefail
+	# shopt -s inherit_errexit
+	# PROGNAME=$(basename "\$0")
+	# PROGDIR=$(readlink -m "$(dirname "\$0")")
+	for i in "$@"; do
+		echo "$i"
+	done
+	cd "$(dirname "\$0")"
+
+
+snippet note_split_string_to_array "split string to array"
+	IFS=';' read -r -a ADDR <<< "$IN"
+
+
+snippet note_tee "如何 append"
+	# 使用 -a
+	cat /proc/cpuinfo | grep "$i" | tee -a a
+
+
+snippet note_awk "basic"
+	# 读取一行中的第二个
+	awk -F '"' '{print \$2}' your_input_file
+	# 1. awk 可以使用 printf
+	# 2. awk 的 END 是处理完之后进行一个操作
+	echo "1\n2 " | awk '{sum+=$1}; END  {printf "average is %f",sum/NR}'
+	# 3. awk 支持 associated array
+	echo -e "martins3 12\nmartins4 13" | awk '{ Ip[$1]+=$2; } END{ for (var in Ip) print var, "access", Ip[var], "times" }'
+	# 4. 跳过第一行
+	awk '{for (i=2; i<=NF; i++) print $i}' filename
+
+
+snippet note_awk_nr_nf "awk 中 NR NF"
+	# NR : 行号
+	# NF : 该行一共存在多少的元素
+	echo "one_two_three
+	three_two
+	four_gg_hi
+	this_k" | awk -F'_' '{ print NR " " $1 "  "  NF " " $(NF-1)}'
+
+
+snippet note_awk_regex "awk 中的正则"
+	# 基本规则
+	# \$1 ~ /pattern/
+	# \$1 !~ /pattern/
+	awk '/hello/ { print "This line contains hello"  "->" $0}' test.txt
+	awk '\$4~/hello/ { print "This field contains hello", $4}' test.txt
+	awk '\$4 == "hello" { print "This field is hello:", $4}' test.txt
+
+
+snippet note_xargs "xargs"
+	# -t : 将要执行的命令打印出来
+	# -I % : 设置参数为 %
+	# ls | xargs -t -I % sh -c 'echo %'
+
+	# 将一个仓库中所有的 apples 替换为 oranges
+	# git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
+
+	# 将 foo 下所有的 txt 都删除
+	# find ./foo -type f -name "*.txt" -exec rm {} \;
+	# find ./foo -type f -name "*.txt" | xargs rm
+
+	# find . -type f -print | xargs stat -c '%a %n'
+
+
+snippet note_basic "bash 基本内容"
+	# 在 set -e 的时候，容忍一个 command 失败:
+	# particular_script || true
+
+
+snippet note_redirect "重定向"
+	# ls > a.txt
+	# ls 2> a.txt
+	# ls 2>&1
+	# ls 2>&1 > a.txt
+	# ls | tee > a.txt
+	# @todo 全部重定向到并且 tee 出来？
+
+
+snippet note_function_para "函数基本"
+	# \$1~\$9：函数的第一个到第9个的参数。
+	# \$0 : 函数所在的脚本名。
+	# $# : 函数的参数总数。
+	# 从 "${@:2}" 从第三个参数开始:
+	# $@ : 是数组
+	# $* : 是单个数值，这导致的参数中的 "a b" 被理解为单个数值
+
+	function test_para() {
+		for i in "${@:1}"; do
+			echo "$i"
+		done
+
+		for i in ${*:1}; do # 注意，没有双引号
+			echo "$i"
+		done
+	}
+
+	test_para 1 2 3 4 "5 6"
+
+	function launch() {
+		str="${*:1}"
+		arr=("${@:1}")
+		arr2=("${*:1}")
+		# 默认情况下 echo $arr 是输出 arr 的第一个字符
+		printf '~~ %s ~~\n' "${arr[@]}"
+		printf '** %s **\n' "${str[@]}"
+		printf '** %s **\n' "${arr2[@]}"
+	}
+
+	launch a b "c d"
+
+
+snippet note_function_return "关于函数返回值"
+	bash 实际上不支持函数返回的操作，其返回值只是表示错误的
+	set -e 之后，如果 function return 了非 0 ，那么认为是一个 command 失败，接着整个程序结束。
+
+
+snippet note_is_number "is number"
+	re='^[0-9]+$'
+	if ! [[ $number =~ $re ]] ; then
+	  echo "not a number"
+	fi
+
+
+snippet note_array_basic "array basic"
+	# 1. 增加一个新元素
+	ARRAY=()
+	ARRAY+=('foo')
+	ARRAY+=('bar')
+	# 2. 拷贝一个 array
+	b=("${a[@]}")
+	# 3. 清空一个 array
+	arr1=()
+	# 4. 用 unset 命令来从数组中删除一个元素：
+	unset -v 'array[0]'
+	# 5. slice
+	vm=("${vm[@]:1}")
+	# 6. 获取数组长度
+	echo ${#array[@]}
+	# 7. 访问最后一个元素
+	echo ${array[-1]}
+	# 8. 修改元素，也是从 0 开始计算的
+	array[2]=100
+	# 9. 拼接数组
+	a=(a b c)
+	e=(d e f)
+	e+=("${a[@]}")
+	printf '%s\n' "${e[@]}"
+	# 10. 数值复制
+
+
+
+snippet note_trap "使用 trap 来清理工作"
+	# 捕获所有的退出
+	function finish {
+	  if [[ $? == 0 ]]; then
+	    echo "bad"
+	  fi
+	  echo "good"
+	}
+
+	trap finish EXIT
+
+	# 捕获 ctrl c
+	trap ctrl_c INT
+
+	function ctrl_c() {
+		echo "** Trapped CTRL-C"
+	}
+
+
+
+snippet note_associative_array "associative array"
+	declare -A a # 这个是必须的
+	a=( ["moo"]="cow" ["woof"]="dog")
+	a["abc"]="mm"
+
+	# 使用 ！来遍历 key
+	for k in "${!a[@]}"; do
+	  echo "$k -> ${a[$k]}"
+	done
+
+	# 不使用 ! 就是遍历 value
+	for v in "${a[@]}"; do
+	  echo "$v"
+	done
+
+	echo "${#a[@]}"
+	printf '%s\n' "${a[@]}"
+
+
+snippet note_variable_indirect "" b
+	foo="something"
+	bar="foo"
+	echo "${!bar}"
+
+
+snippet note_array_contains "测试是否包含一个元素" b
+	# bash 不存在一个内置的机制来检测一个数值是否存在元素
+	# 不知道这么设计是处于什么考虑的
+	# https://stackoverflow.com/questions/3685970/check-if-a-bash-array-contains-a-value
+	containsElementRet=true
+	containsElement() {
+		local e match="$1"
+		shift
+		containsElementRet=true
+		for e; do [[ $e == "$match" ]] && return 0; done
+		containsElementRet=lalse
+	}
+
+	array=("something to search for" "a string" "test2000")
+	containsElement "a string" "${array[@]}"
+	echo $containsElementRet
+
+	containsElement "blaha" "${array[@]}"
+	echo $containsElementRet
+
+
+
+snippet note_tricks "" b
+	# 一行代码合集
+	[[ -d .git ]] && echo "git repo"
+	while true; do echo "good" && sleep 1; done
+	# 将 curl 的文件保存到特定的目录
+	(cd target/path && curl -O URL)

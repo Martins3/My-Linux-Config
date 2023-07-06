@@ -1,96 +1,81 @@
 # Rime 输入法
 
-搜狗输入法在 Linux 上的使用体验非常差，一会出现 qt4 和 qt5 的兼容问题，一会写 syslog 将我的磁盘空间全部耗尽，我真的忍无可忍。
+我使用 Rime 输入法并不是其各种高级功能，我之前一直使用搜狗，但是有一次搜狗崩溃了，
+忍无可忍，就换成 Rime 了。但是我发现 Rime 的输入法的门槛很高，这里简单记录下配置过程。
 
 ## 安装
-- 安装[rime](https://github.com/fcitx/fcitx-rime)
 
+参考 rime/linux-install.sh ，其实也就是:
+
+- 安装 : [rime](https://github.com/fcitx/fcitx-rime)
 - 安装并且使用: [plum](https://github.com/rime/plum)
-```sh
-git clone https://github.com/rime/plum
-cd plum
-rime_dir="$HOME/.local/share/fcitx5" bash rime-install
-```
+- 从 [雾凇拼音](https://github.com/iDvel/rime-ice) 中增加词库，雾凇拼音其他的配置一时无法全部消化吸收，仅仅拷贝其中的 cn_dicts 来扩充自己的词库。
 
-`rime_dir` 的设置参考这里: https://wiki.archlinux.org/title/Rime
-- fcitx4: $HOME/.config/fcitx/rime
-- fcitx5: mkdir $HOME/.local/share/fcitx5/rime/
+## 配置 fcitx5
+在 Fcitx5 Configure 中增加 rime 输入法。
 
-## 配置一下 fcitx
-<details> <summary>img</summary> <p align="center"> <img src="https://user-images.githubusercontent.com/16731244/158186085-78f6d595-40cf-4b3e-987a-50dca22927e3.png" /> </p> </details>
+在 "Available Input Method" 中搜索 Rime，选中之后，点击中间的那个 "<"，让 "Current Input Method" 中增加 Rime 。
 
-这样 `ctrl space` 唤出 rime 输入法,而 shift 切换的 rime 的中文输入和英文输入.
+![image](https://github.com/Martins3/My-Linux-Config/assets/16731244/4c0efdd4-d913-4f03-8cd1-c1a7884b06b1)
 
-## 添加自己的配置
-参考了一下 [Iorest](https://github.com/Iorest/rime-setting)，感觉有点庞杂，所以我自己写了[一个](https://github.com/Martins3/My-Linux-Config/tree/master/rime)
 
-## 重启才会生效
-fcitx5 -r
+## 常用快捷键
+1. `ctrl space` 唤出 rime 输入法
+2. shift 切换的 rime 的中文输入和英文输入。
+3. `ctrl delete` : 删除自造词
 
-## 设置
-在出现 ui 的时候, Fn4 可以调整, 或者使用
-```txt
-ctrl `
-```
-## 添加词库
+## 配置简单说明
+| 文件                           | 说明                         |
+|--------------------------------|------------------------------|
+| linux-install.sh               | 简单的安装脚本               |
+| default.custom.yaml            | 基础配置，例如候选词的个数   |
+| luna_pinyin.martins3.dict.yaml | 我自己增加的词汇             |
+| luna_pinyin.my_words.dict.yaml | 词库配置，包含雾凇拼音的词库 |
+| luna_pinyin_simp.custom.yaml   | 输入法的模糊音之类的配置     |
+| squirrel.custom.yaml           | Mac 的输入法皮肤             |
 
-参考:
-- https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/
-- https://www.jianshu.com/p/300bbe1602d4
-
-1. 在 `luna_pinyin_simp.custom.yaml` 中增加
-```yaml
-  translator:
-    dictionary : luna_pinyin.my_words
-```
-2. 创建 `luna_pinyin.my_words.dict.yaml`
-3. 增加 `luna_pinyin.genshin.dict.yaml` ，其头需要有:
-```yaml
----
-name: luna_pinyin.genshin
-version: "1.0"
-sort: by_weight
-use_preset_vocabulary: true
-...
-```
-
-获取词库:
-- https://github.com/studyzy/imewlconverter : 装换
-
-## 设置皮肤
-- 暂时在 Linux 中:
+## 皮肤
+- 如果你喜欢折腾
   - https://github.com/fkxxyz/ssfconv
 - 在 mac 中的参考很多，例如:
-  - https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more
+  - [简单安利 Rime 输入法](https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more)
 
-## Mac 的使用
-- https://rime.im/download/
-- 使用 rime/mac-install.sh 安装，其实也就是地址不同而已
-  - rime/squirrel.custom.yaml 中配置其中的
 
-为了可以在 vim 中自动切换，使用上: https://github.com/xcodebuild/fcitx-remote-for-osx
+## nixos 的配置
+其他的内容都相同，就是 fcitx 和 rime 的安装和一般的系统不同。
 
-```sh
-git clone https://github.com/xcodebuild/fcitx-remote-for-osx.git
-cd fcitx-remote-for-osx
-./build.py build all abc
-# squirrel for example
-cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
+```nix
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
+  };
 ```
 
-不知道为什么，mac 中默认没有 /usr/local/bin 这个目录，需要手动创建和修改 PATH
-```sh
-export PATH="$PATH:/usr/local/bin"
-```
-
-原理:
-- 在终端中运行 `remote-fcitx -c` 和 `remote-fcitx -o`
-- 手动切换输入法，然后运行 `remote-fcitx` ，观察结果。
-
-## nix
-本来以为会特别麻烦，参考 https://zhuanlan.zhihu.com/p/463403799 配置，然后和普通的配置没有什么区别。
+参考 [NixOS 中文字体输入法](https://zhuanlan.zhihu.com/p/463403799) 配置。
 
 ## 参考 && TODO
-- https://github.com/BlueSky-07/Shuang 双拼練習
-- https://mogeko.me/posts/zh-cn/031/
-- [ ] https://sspai.com/post/63916
+- [双拼練習](https://github.com/BlueSky-07/Shuang)
+- [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
+- [小狼毫 3 分钟入门及进阶指南](https://sspai.com/post/63916)
+- [Arch Linux 下给 RIME 中](https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/)
+- [Rime 导入搜狗词库](https://www.jianshu.com/p/300bbe1602d4)
+  - [”深蓝词库转换“ 一款开源免费的输入法词库转换程序](https://github.com/studyzy/imewlconverter)
+
+<script src="https://giscus.app/client.js"
+        data-repo="Martins3/My-Linux-Config"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="
+        data-category="General"
+        data-category-id="MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyODc0NjA5"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。

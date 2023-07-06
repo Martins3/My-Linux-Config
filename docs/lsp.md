@@ -2,24 +2,45 @@
 
 显然，lsp 的易用还没有到 coc.nvim 的程度。
 
-- https://github.com/kosayoda/nvim-lightbulb : 左边搞个灯泡，可以永远展示可用的代码提示，类似 VSCode 中的
+- https://github.com/neovim/nvim-lspconfig : 基础
+- https://github.com/LunarVim/Neovim-from-scratch : 教学入门
 
-- [ ] https://github.com/hrsh7th/nvim-cmp
-- [ ] https://github.com/neovim/nvim-lspconfig
-- [ ] https://github.com/siduck76/neovim-dots
-- [ ] https://github.com/nanotee/nvim-lua-guide
-- [ ] https://github.com/glepnir/lspsaga.nvim
-- [ ] https://github.com/ray-x/lsp_signature.nvim
+- https://github.com/williamboman/mason.nvim
+
+- https://github.com/glepnir/lspsaga.nvim : 提升体验
+- https://github.com/ray-x/lsp_signature.nvim
+
+- [ ] https://github.com/NvChad/NvChad
+
 - [ ] https://github.com/folke/lsp-trouble.nvim
-- [ ] https://github.com/ChristianChiarulli/nvim
-- [ ] https://github.com/simrat39/symbols-outline.nvim
-
 
 - https://crispgm.com/page/neovim-is-overpowering.html
-- https://github.com/SmiteshP/nvim-navic
 - https://github.com/bushblade/nvim : Moving from CoC to native LSP in nvim 0.5
-- https://github.com/scalameta/nvim-metals/discussions/39 : 这个插件将 coc 切换为原生的了，如果这种事情继续发生，那么就只能切换成为原生的 lsp 了。
-- https://github.com/SmiteshP/nvim-navic : 类似 VsCode 的将当前的信息显示到 winbar 中，但是依赖 lspconfig
-- [ ]https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
 
-- [x] https://github.com/hrsh7th/nvim-compe
+
+## 一些老故事
+- [ ] https://github.com/williamboman/nvim-lsp-installer/discussions/876 lsp-installer 插件发生改变，看来 native lsp 还是在演进的。
+
+## 有些插件只是支持 native lsp 的
+- https://github.com/simrat39/symbols-outline.nvim : 总是无法搭建起来, 继续 vista 了
+- https://github.com/nix-community/nixd/blob/main/docs/editor-setup.md : nixd
+- https://github.com/scalameta/nvim-metals/discussions/39 : 这个插件将 coc 切换为原生的了，如果这种事情继续发生，那么就只能切换成为原生的 lsp 了。
+
+## lua 学习
+- :help lua-guide
+
+## mason 有意义吗?
+require("mason-lspconfig").setup({
+	ensure_installed = servers,
+	automatic_installation = true,
+})
+
+## 如何让 ccls.nvim 来加强
+https://github.com/ranjithshegde/ccls.nvim
+
+## 总结下这个
+- 太酷了: https://github.com/gbrlsnchs/telescope-lsp-handlers.nvim
+  - 似乎可以移除掉一些奇怪的 workaround 了
+
+## 这个没有办法完全满足要求
+https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage

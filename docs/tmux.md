@@ -87,13 +87,6 @@ windows:
       - nvim
 ```
 
-## screen
-screen 是一个类似的程序，常见的使用方法如下:
-
-- screen -d -m sleep 1000
-- screen -r
-- screen -list
-
 ## zellij
 - https://zellij.dev/documentation/introduction.html
 - https://news.ycombinator.com/item?id=26902430
@@ -115,8 +108,14 @@ config/zellij/default.kdl 是默认的启动布局。
     }
 ```
 nvim 的启动首先会卡住一下，是谁的问题
-- [ ] https://github.com/zellij-org/zellij/issues/1760 这个问题没有解决
+- [x] https://github.com/zellij-org/zellij/issues/1760 这个问题没有解决
+  - 打开屏幕的一堆横线，但是很快就被解决了
+  - [ ] 在 nvim 打开的一瞬间，还是存在很多横线
 - [ ] 屏幕切换的时候，中文显示有问题。
+  - 这个问题类似: https://github.com/zellij-org/zellij/issues/2256
+- [ ] [无法使用鼠标调整 pane 的大小。](https://github.com/zellij-org/zellij/issues/1262)
+- [ ] Alt + hjkl 会直接移动到下一个 tab 中去
+
 
 问题很多，没有时间一个个的修复了。
 
@@ -131,6 +130,19 @@ nvim 的启动首先会卡住一下，是谁的问题
 'tmux-256color': unknown terminal type.
 ```
 https://unix.stackexchange.com/questions/574669/clearing-tmux-terminal-throws-error-tmux-256color-unknown-terminal-type
+
+
+## tmux 的悬浮窗口
+配置参考: https://gist.github.com/LintaoAmons/22f6184b26bd5b93d8fe9f9276f50f75
+```txt
+bind-key -n -N 'Toggle popup window' C-h if-shell -F '#{==:#{session_name},popup}' {
+    detach-client
+} {
+    display-popup -d "#{pane_current_path}" -xC -yC -w 60% -h 75% -E "tmux attach-session -t popup || tmux new-session -s popup"
+}
+```
+向比 zellij 好处是可以继续多开，但是问题是，让 switch to next session 命令完全混乱了。
+其实我们希望 popup 的是一个 pane 而不是 session 的。所以最后还是靠 nvim 的悬浮窗来解决问题吧。
 
 ## 一些小技巧
 
