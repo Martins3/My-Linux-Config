@@ -58,7 +58,6 @@ require("lazy").setup({
   -- ui
   "liuchengxu/vista.vim", -- 导航栏
   "kyazdani42/nvim-tree.lua", -- 文件树
-  "mhinz/vim-startify", -- 启动界面
   "akinsho/bufferline.nvim", -- buffer
   "nvim-lualine/lualine.nvim", -- 状态栏
   "kazhala/close-buffers.nvim", -- 一键删除不可见 buffer
