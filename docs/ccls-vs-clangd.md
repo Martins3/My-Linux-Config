@@ -1,15 +1,13 @@
 # 2023 年对比一下 ccls 和 clangd
 
-先说结论，采用 ccls
+先说结论，ccls 更好。
 
+在 reddit 上闲逛的时候，感觉又一个普遍的想法是认为 clangd 更好:
+1. https://zhuanlan.zhihu.com/p/364518020
 
-## ccls 的问题
-1. coc.nvim 会显示 index 多少，这个计数是错的，而且正好是两倍的关系；
-2. ccls 在 nixos 很容易需要重新索引，如果机器性能不行，对于 Linux 之类的项目，一般需要很长时间；
-3. ccls 的高亮依赖额外的插件；
-4. ccls 在 coc.nvim 需要额外的配置参数。
-
-![](https://user-images.githubusercontent.com/16731244/215423644-d462a7c8-f691-4137-aac4-875d449608ee.png)
+我主要看 QEMU 和 Linux 两个项目，尤其是 Linux ，我之所以认为 ccls 更好是因为
+我特别重视索引的准确程度，ccls 几乎没有出错，但是 clangd 问题很多，而且还出现了
+功能回退的现象。
 
 ## clangd 的问题
 以内核为例:
@@ -107,6 +105,15 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 ### clangd 的头文件自动添加不精确
 时不时引入错误的头文件，让编译失败。
 
+## ccls 的问题
+当然 ccls 现在我用起来也是有点小问题的:
+
+2. ccls 在 nixos 很容易需要重新索引，如果机器性能不行，对于 Linux 之类的项目，一般需要很长时间；
+3. ccls 的高亮依赖额外的插件；
+
+![](https://user-images.githubusercontent.com/16731244/215423644-d462a7c8-f691-4137-aac4-875d449608ee.png)
+
+
 ## 都存在的问题
 索引 ARM 如果失败，可以在 compile_commands.json 中将 `-mabi=lp64` 删除。
 
@@ -114,9 +121,8 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 1. 自动切换
 2. https://clangd.llvm.org/design/remote-index : 看上去不错，但是没有尝试
 
-## 切换回来
-- [patch one](https://github.com/Martins3/My-Linux-Config/commit/54e4d9ab33bf82890726c95df2226bc9f97f9bac)
-- [patch two](https://github.com/Martins3/My-Linux-Config/pull/114/commits/e8ce43aedb369854ab9f6652d141bf7b8455bf16)
+## 更多参考
+- https://github.com/MaskRay/ccls/issues/880
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
