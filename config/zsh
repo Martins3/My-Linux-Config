@@ -145,3 +145,4 @@ alias static="nix-shell -p gcc glibc.static --command zsh"
 alias crash="/home/martins3/core/crash/crash"
 alias clear_nvim_sessions="rm /home/martins3/.local/share/nvim/sessions/*.vim"
 alias rr=/home/martins3/.dotfiles/config/sh/sync.sh
+alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
