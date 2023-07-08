@@ -13,6 +13,7 @@
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
   * [Rime 输入法配置](./docs/rime.md)
   * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
+  * [2023 年对比一下 ccls 和 clangd](./docs/ccls-vs-clangd.md)
   *  🚧 [NixOS 初步尝试](./docs/nix.md)
   *  🚧 [如何彻底征服 bash](./shell/bash.md)
 * English version comming soon.
