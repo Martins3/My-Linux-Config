@@ -1,5 +1,5 @@
 require("usr.options")
-require("usr.packer")
+require("usr.lazy")
 require("usr.lsp")
 require("usr.cmp")
 require("usr.bufferline")

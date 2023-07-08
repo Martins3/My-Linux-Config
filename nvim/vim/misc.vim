@@ -34,12 +34,6 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_no_default_key_mappings = 1
 
-" floaterm 才是永远的神
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<C-t>'
 
 " 自动关闭 vim 如果 window 中只有一个 filetree
 " https://github.com/kyazdani42/nvim-tree.lua
