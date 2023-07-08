@@ -64,9 +64,10 @@ require("lazy").setup({
   "gelguy/wilder.nvim", -- 更加智能的命令窗口
   "romgrk/fzy-lua-native", -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent", -- 可以移除掉背景色，让 vim 透明
+  { "goolord/alpha-nvim", event = "VimEnter" },
   -- 颜色主题
   "folke/tokyonight.nvim",
-  { "catppuccin/nvim", as = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   -- git 管理
   "tpope/vim-fugitive", -- 显示 git blame，实现一些基本操作的快捷执行
   "rhysd/git-messenger.vim", -- 利用 git blame 显示当前行的 commit message
@@ -93,7 +94,7 @@ require("lazy").setup({
   -- 如果发现插件有问题， 可以进入到 ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
   {
     "iamcco/markdown-preview.nvim",
-    cmd = {"MarkdownPreview"},
+    cmd = { "MarkdownPreview" },
     ft = { "markdown" },
     build = "cd app && npm install",
   },
