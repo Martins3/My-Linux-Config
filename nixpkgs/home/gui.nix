@@ -38,6 +38,7 @@ in
     unstable.alacritty
     zoom-us
     spotify
+    # joplin-desktop # 还有 joplin
     # gource
     unstable.firefox
     unstable.microsoft-edge-beta
