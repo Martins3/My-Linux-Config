@@ -118,6 +118,7 @@ in
     # ERROR: kernel release isn't found in "/nix/store/n3nrix9pc0m1ywzg8dq71bh2xr82c7l5-linux-6.3.5-dev"
     # 还是在虚拟机勉强维持生活吧
     unstable.bpftrace # bpftrace 新版本才支持 kfunc
+    blktrace
     heaptrack
     kernelshark
     trace-cmd
