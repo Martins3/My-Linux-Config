@@ -414,15 +414,19 @@ snippet note_secure "make bash more secure"
 
 
 snippet note_sed "sed"
-	# sed -i '1i hello world;' a.sh # 在 a.sh 中的第一行的位置插入 hello world
+	# 在 a.sh 中的第一行的位置插入 hello world
+	sed -i '1i hello world;' a.sh
+
 	# 在 pattern 前插入
-	sed -i '/pattern/a \
+	sed -i '/pattern/i \
 	line1 \
 	line2' inputfile
+
 	# 在 pattern 后插入
 	sed -i '/pattern/a \
 	line1 \
 	line2' inputfile
+
 	# 替换
 	sed -i 's/old-text/new-text/g' input.txt
 
