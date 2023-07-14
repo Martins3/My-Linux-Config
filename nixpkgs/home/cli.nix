@@ -132,7 +132,8 @@ in
     acpi
     liburing
     cpuid
-    # @todo https://github.com/kkharji/sqlite.lua 需要设置 libsqlite3.so 的位置
+    # @todo https://github.com/kkharji/sqlite.lua/issues/28
+    # 需要设置 libsqlite3.so 的位置
     sqlite
     parted
     sysbench
