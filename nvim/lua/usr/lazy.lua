@@ -126,6 +126,7 @@ require("lazy").setup({
   -- lsp 增强
   "jackguo380/vim-lsp-cxx-highlight", -- ccls 高亮
   "mattn/efm-langserver", -- 支持 bash
+  "gbrlsnchs/telescope-lsp-handlers.nvim",
   -- 其他
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法
