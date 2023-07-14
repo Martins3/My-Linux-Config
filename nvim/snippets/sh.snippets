@@ -630,6 +630,9 @@ snippet note_variable_indirect "" b
 	bar="foo"
 	echo "${!bar}"
 
+snippet note_shellcheck "屏蔽 shellcheck" b
+	# shellcheck disable=code
+
 
 snippet note_array_contains "测试是否包含一个元素" b
 	# bash 不存在一个内置的机制来检测一个数值是否存在元素

@@ -70,7 +70,7 @@ fi
 # 系统的 perf 不能用了，暂时靠这个维持生活吧
 # 好家伙，这我整个这个报错
 # Makefile.config:451: *** No gnu/libc-version.h found, please install glibc-dev[el].  Stop.
-# nix-shell --command "nice -n 19 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# nix-shell --command "chrt -i 0 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ ! ${kcov} ]]; then
 	curl -d "martins3,tag=13900K kernel=$SECONDS" -X POST 'http://127.0.0.1:8428/write' || true

@@ -31,6 +31,7 @@ in
     nodejs
     tmux
     tmuxp
+    pueue # TODO 研究下这个怎么利用
     screen
     tig
     xclip # x clipboard
@@ -272,8 +273,9 @@ in
 
   programs.git = {
     enable = true;
-    userEmail = "hubachelar@gmail.com";
-    userName = "Martin Hu";
+    userEmail = "xueshi.hu@smartx.com";
+    userName = "Xueshi Hu";
+
     extraConfig = {
       # https://github.com/dandavison/delta
       # --- begin
@@ -281,6 +283,12 @@ in
         editor = "nvim";
         pager = "delta";
         abbrev = 12;
+      };
+      sendemail={
+        smtpserver = "smtp.googlemail.com";
+        smtpencryption = "tls";
+        smtpserverport = 587;
+        smtpuser = "xueshi.hu@smartx.com";
       };
       pretty={
         fixes = "Fixes: %h (\"%s\")";
