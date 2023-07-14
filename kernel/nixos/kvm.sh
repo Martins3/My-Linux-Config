@@ -89,6 +89,10 @@ _EOF_
 # exe "make -j32"
 # scripts/setlocalversion 似乎还是需要删除的
 # @todo 极度怀疑这个命令的的正确性，尝试下 AMD kvm 的编译
+#
+# 以前这样是没问题的
+# make ./drivers/md/raid1.ko -j32
+#
 exe "make M=./arch/x86/kvm/  modules -j32"
 sudo rmmod kvm_intel kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
@@ -96,5 +100,9 @@ sudo insmod ./arch/x86/kvm/kvm-intel.ko
 
 # TODO 靠，还是有点问题，难道需要一开始就设置 id 吗?
 # TODO 还是其实，从来都没有成功过
+#
+# 似乎这个才是正道? 自动将两个都编译好了
+# make arch/x86/kvm/kvm.ko -j32
 
 sudo modprobe kvm-intel
+# kvm.ko 和 kvm-intel.ko 是配套的
