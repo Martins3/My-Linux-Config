@@ -38,11 +38,10 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 })
 
 require("aerial").setup({
-  backends = { "lsp", "treesitter", "markdown", "man" },
+  backends = { "markdown", "man", "lsp", "treesitter" },
   layout = {
     placement = "edge",
     default_direction = "left",
   },
-
   attach_mode = "global",
 })
