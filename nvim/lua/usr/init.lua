@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 require("aerial").setup({
   backends = { "markdown", "man", "lsp", "treesitter" },
   layout = {
+    max_width = { 30, 0.15 },
     placement = "edge",
     default_direction = "left",
   },
