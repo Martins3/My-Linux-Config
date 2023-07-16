@@ -1479,5 +1479,9 @@ sudo nix-env --upgrade
 
 感觉写的相当不错。但是，问题是，我老版本的 nix channel 之类的还没掌握，怎么现在又切换了啊!
 
+## nixos distribution
+- https://github.com/exploitoverload/PwNixOS
+  - 也可以作为参考
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
