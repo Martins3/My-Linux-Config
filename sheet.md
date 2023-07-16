@@ -22,6 +22,9 @@
 - "find . -type f -print0 | xargs -0 md5sum"
 - "https://www.shellcheck.net/wiki/SC2038"
 - "hash: find path/to/folder -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum"
+- @todo 到底什么时候加上 -print0 是个迷
+  - find . -name "scheduler"  | xargs -I % sh -c "echo %" # 这个必须去掉 -print0
+  - find . -name "scheduler" -print0 | xargs -0 cat # 但是这个又必须给加上
 
 ## git
 - git ls-files --others --exclude-standard >> .gitignore
