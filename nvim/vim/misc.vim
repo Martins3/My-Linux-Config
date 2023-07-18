@@ -10,16 +10,6 @@ let g:bookmark_auto_close = 1
 " 让光标自动进入到 popup window 中间
 let g:git_messenger_always_into_popup = v:true
 
-func! Preivew()
-  exec "w"
-  let ext = expand("%:e")
-  if ext ==# "md"
-    exec "MarkdownPreview"
-  else
-    echo "no preview"
-  endif
-endf
-
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = 'nvim_lsp'
 " let g:vista_finder_alternative_executives = 'ctags'
