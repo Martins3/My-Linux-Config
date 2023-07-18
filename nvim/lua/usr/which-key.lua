@@ -105,7 +105,6 @@ wk.register({
       n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
       s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "signature help" },
       q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "" },
-      p = { "<cmd>call Preivew()<cr>", "preview" },
       r = { "<cmd>RunCode<cr>", "run code" },
     },
     -- o 被 orgmode 使用
@@ -181,7 +180,12 @@ end
 
 vim.api.nvim_set_keymap("v", "<space>lf", "<Esc><cmd>lua FormatFunction()<CR>", { noremap = true })
 
-vim.cmd("autocmd FileType sh lua WhichKeyLeaderX()")
-function WhichKeyLeaderX()
+vim.cmd("autocmd FileType sh lua BashLeaderX()")
+function BashLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })
+end
+
+vim.cmd("autocmd FileType md lua MarkdownLeaderX()")
+function MarkdownLeaderX()
+  vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
 end
