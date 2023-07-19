@@ -8,9 +8,9 @@
 * [Tilix: 2019](#tilix-2019)
 * [Gnome terminal : 2020](#gnome-terminal-2020)
 * [Alacritty : 2020-2022](#alacritty-2020-2022)
-* [Kitty : 2022-现在](#kitty-2022-现在)
+* [Kitty : 2022-2023](#kitty-2022-2023)
 * [Tabby : 几分钟](#tabby-几分钟)
-* [wezterm](#wezterm)
+* [wezterm : 2023-现在](#wezterm-2023-现在)
 * [总结](#总结)
 
 <!-- vim-markdown-toc -->
@@ -54,7 +54,7 @@ Alacritty 的优点:
 - 对于 UI 可以高度的定制化，只是设置为真正的全屏模式
 - 性能很好。
 
-## Kitty : 2022-现在
+## Kitty : 2022-2023
 
 切换到 Mac 之后，我发现 alacritty 的两个问题让人很痛苦:
 - rime 输入法在输入的过程中无法显示已经输入的字母；
@@ -69,10 +69,10 @@ Alacritty 的优点:
 
 非常的酷炫，但是性能不行。
 
-## wezterm
+## wezterm : 2023-现在
 
 我发现我切换到 nixos 之后，kitty 中不能输入中文了，所以就换成了 [wezterm](https://github.com/wez/wezterm) 。
-配置大约花费了半个消失，最后 tab 栏有点臭，其他还好。
+配置大约花费了半个小时，最后 tab 栏有点丑，其他还好。
 
 <!-- @todo 不知道为什么，最下面有一大片空白的无法被 zellij 或者 nvim 填满，kitty 没有这些问题 -->
 ## 总结
