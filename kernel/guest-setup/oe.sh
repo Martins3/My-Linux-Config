@@ -140,7 +140,7 @@ install autoconf
 install automake
 install libtool systemd-devel
 
-install vim htop perf elfutils elfutils-libelf-devel
+install vim htop perf elfutils elfutils-libelf-devel cpupowerutils
 
 install pam-devel
 install numactl fio
