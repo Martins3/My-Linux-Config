@@ -54,8 +54,8 @@ function temperature() {
 }
 
 while true; do
-	temperature
-	cache
-	load
+	# temperature
+	# cache
+	# load
 	sleep 10
 done
