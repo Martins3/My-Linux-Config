@@ -36,7 +36,7 @@ in
   virtualisation.docker.enable = true;
   virtualisation.vswitch.enable = true;
 
-  # zramSwap.enable = true;
+  zramSwap.enable = true;
 
   networking.proxy.default = "http://127.0.0.1:8889";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -215,6 +215,38 @@ in
       BOOTTIME_TRACING = lib.kernel.yes;
     };
   }
+
+  {
+    name = "damon";
+    patch = null;
+    extraStructuredConfig = {
+      CONFIG_DAMON=lib.kernel.yes;
+      CONFIG_DAMON_VADDR=lib.kernel.yes;
+      CONFIG_DAMON_PADDR=lib.kernel.yes;
+      CONFIG_DAMON_SYSFS=lib.kernel.yes;
+      CONFIG_DAMON_RECLAIM=lib.kernel.yes;
+      CONFIG_DAMON_LRU_SORT=lib.kernel.yes;
+    };
+  }
+
+  {
+    name = "lru";
+    patch = null;
+    extraStructuredConfig = {
+      CONFIG_LRU_GEN=lib.kernel.yes;
+      CONFIG_LRU_GEN_ENABLED=lib.kernel.yes;
+      CONFIG_LRU_GEN_STATS=lib.kernel.yes;
+    };
+  }
+
+  {
+    name = "zswap";
+    patch = null;
+    extraStructuredConfig = {
+      CONFIG_ZSWAP_DEFAULT_ON=lib.kernel.yes;
+    };
+  }
+
   # 增加一个 patch 的方法
   /*
   {
