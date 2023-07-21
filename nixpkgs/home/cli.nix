@@ -14,6 +14,7 @@ in
 
   home.packages = with pkgs; [
     gcc
+    ccache
     mold
     go
     lua
