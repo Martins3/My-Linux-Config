@@ -185,7 +185,7 @@ function BashLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })
 end
 
-vim.cmd("autocmd FileType md lua MarkdownLeaderX()")
+vim.cmd("autocmd FileType markdown lua MarkdownLeaderX()")
 function MarkdownLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
 end

@@ -776,6 +776,8 @@ setxkbmap -option caps:swapescape
 - [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
 - [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 - [nvim-metals](https://github.com/scalameta/nvim-metals) : 芯片前端开发必备
+- [vs-tasks.nvim](https://github.com/EthanJWright/vs-tasks.nvim) : Code Runner
+
 
 ## 有趣的插件
 
