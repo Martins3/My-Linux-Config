@@ -42,6 +42,9 @@ default.nix
 .envrc
 _EOF
 
+cores=$(getconf _NPROCESSORS_ONLN)
+threads=$((cores - 1))
+
 # --disable-tcg
 # --enable-trace-backends=nop
 
@@ -50,5 +53,6 @@ QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-so
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs"
 QEMU_options+=" --enable-virtfs"
 
-nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. && nice -n 19 make -j"
+nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
+nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
 # nvim -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
