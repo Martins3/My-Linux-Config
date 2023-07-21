@@ -26,6 +26,7 @@ in
     cmake
     # zig
     gnumake
+    audit # 没啥意义，用不起来
     marksman
     yarn
     nodejs

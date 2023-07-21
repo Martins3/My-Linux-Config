@@ -81,8 +81,9 @@
       ambient-enabled = false;
       idle-dim = true;
       power-button-action = "suspend";
-      # @todo suspend 之后还可以 ping 通吗？
-      sleep-inactive-ac-timeout = 3600 ; # suspend the machine after 1 hour
+      # suspend 之后无法 ping 通，即使上一秒还在编译内核，这个完全就是看用户有没
+      # 交互，而不是看负载的.
+      sleep-inactive-ac-timeout = 0; # suspend the machine after 1 hour
       sleep-inactive-ac-type = "suspend";
       sleep-inactive-battery-type = "suspend";
     };
