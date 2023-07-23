@@ -12,10 +12,10 @@ require("usr.telescope")
 require("usr.version")
 require("usr.which-key")
 require("usr.colorscheme")
-require("usr.session")
 require("usr.alpha")
 require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
 require("nvim-surround").setup({})
+require("persisted").setup({ autoload = true, })
 require("gitsigns").setup({ signcolumn = false, numhl = true })
 require("leap").add_default_mappings()
 require("nvim-autopairs").setup({})
@@ -45,4 +45,9 @@ require("aerial").setup({
     default_direction = "left",
   },
   attach_mode = "global",
+})
+
+require("bookmarks").setup({
+  mappings_enabled = false,
+  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.md", "*.sh" },
 })

@@ -18,7 +18,7 @@ require("lazy").setup({
   "folke/which-key.nvim", -- 用于配置和提示快捷键
   "kkharji/sqlite.lua", -- 数据库
 
-  -- Cmp
+  -- 补全
   { "hrsh7th/nvim-cmp" }, -- The completion plugin
   { "hrsh7th/cmp-buffer" }, -- buffer completions
   { "hrsh7th/cmp-path" }, -- path completions
@@ -54,6 +54,7 @@ require("lazy").setup({
       require("ssr").open()
     end),
   }, -- 结构化查询和替换
+
 
   -- ui
   "stevearc/aerial.nvim", -- 导航栏
@@ -109,8 +110,7 @@ require("lazy").setup({
   -- 快速移动
   "ggandor/leap.nvim",
   -- 书签
-  "MattesGroeger/vim-bookmarks",
-  "tom-anders/telescope-vim-bookmarks.nvim", -- 辅助书签的搜索
+  { 'crusj/bookmarks.nvim', branch = 'main'},
   -- 高亮
   "norcalli/nvim-colorizer.lua", -- 显示 #FFFFFF
   "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
