@@ -23,7 +23,7 @@ else
 fi
 
 cores=$(getconf _NPROCESSORS_ONLN)
-threads=$((cores - 1))
+threads=$cores
 
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
 branch=$(git rev-parse --abbrev-ref HEAD)
@@ -57,9 +57,10 @@ if [[ ${kcov} ]]; then
 	nix-shell --command "make defconfig kvm_guest.config martins3.config kconv.config -j O=kcov"
 	nix-shell --command "nice -n 19 make -j$threads O=kcov"
 else
-	make clean
+	# make clean
 	nix-shell --command "make defconfig kvm_guest.config martins3.config -j"
 	nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
+	# nix-shell --command "chrt -i 0 make -j$threads"
 	python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 	# scripts/systemd/expand-paging_tmpl.sh
 	for i in "${special_files[@]}"; do
