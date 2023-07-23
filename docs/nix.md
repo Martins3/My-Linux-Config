@@ -1483,5 +1483,11 @@ sudo nix-env --upgrade
 - https://github.com/exploitoverload/PwNixOS
   - 也可以作为参考
 
+## 如何代理
+
+```txt
+sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebuild switch
+```
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos

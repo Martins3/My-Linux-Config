@@ -643,7 +643,7 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
 
-nvim 配置在仓库的位置为 ./nvim 中:
+nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是关于 vim 其他的配置。
 
 - init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
 - vim/
@@ -654,6 +654,7 @@ nvim 配置在仓库的位置为 ./nvim 中:
   - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短。
+  - lsp : native lsp 相关的配置
 - UltiSnips/ : 自定义的代码段
 
 ## FAQ
@@ -757,9 +758,9 @@ setxkbmap -option caps:swapescape
 
 ## 值得一看的配置
 
+- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 这绝对是开始使用 lua 来配置的 nvim 开始的好地方。强烈推荐。
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 15000 star 的 IDE 配置
 - [NvChad](https://github.com/NvChad/NvChad) 同上
-- [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 只有 300 行的配置，这绝对是开始使用 lua 来配置的 nvim 开始的好地方。
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 

@@ -190,9 +190,10 @@ in
     "iommu=pt"
     "amd_iommu_intr=vapic"
     "kvm-amd.avic=1"
+    # "isolcpus=28-31"
     # "amd_iommu_intr=legacy"
-    "ftrace=function"
-    "ftrace_filter=amd_iommu_int_thread"
+    # "ftrace=function"
+    # "ftrace_filter=amd_iommu_int_thread"
 
     # "processor.max_cstate=1"
     # "intel_idle.max_cstate=0"
@@ -220,12 +221,12 @@ in
     name = "damon";
     patch = null;
     extraStructuredConfig = {
-      CONFIG_DAMON=lib.kernel.yes;
-      CONFIG_DAMON_VADDR=lib.kernel.yes;
-      CONFIG_DAMON_PADDR=lib.kernel.yes;
-      CONFIG_DAMON_SYSFS=lib.kernel.yes;
-      CONFIG_DAMON_RECLAIM=lib.kernel.yes;
-      CONFIG_DAMON_LRU_SORT=lib.kernel.yes;
+      DAMON=lib.kernel.yes;
+      DAMON_VADDR=lib.kernel.yes;
+      DAMON_PADDR=lib.kernel.yes;
+      DAMON_SYSFS=lib.kernel.yes;
+      DAMON_RECLAIM=lib.kernel.yes;
+      DAMON_LRU_SORT=lib.kernel.yes;
     };
   }
 
@@ -233,9 +234,9 @@ in
     name = "lru";
     patch = null;
     extraStructuredConfig = {
-      CONFIG_LRU_GEN=lib.kernel.yes;
-      CONFIG_LRU_GEN_ENABLED=lib.kernel.yes;
-      CONFIG_LRU_GEN_STATS=lib.kernel.yes;
+      LRU_GEN=lib.kernel.yes;
+      LRU_GEN_ENABLED=lib.kernel.yes;
+      LRU_GEN_STATS=lib.kernel.yes;
     };
   }
 
@@ -243,7 +244,7 @@ in
     name = "zswap";
     patch = null;
     extraStructuredConfig = {
-      CONFIG_ZSWAP_DEFAULT_ON=lib.kernel.yes;
+      ZSWAP_DEFAULT_ON=lib.kernel.yes;
     };
   }
 
