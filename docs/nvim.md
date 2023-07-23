@@ -763,6 +763,7 @@ setxkbmap -option caps:swapescape
 - [NvChad](https://github.com/NvChad/NvChad) 同上
 - [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
+- [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel
 
 ## 值得关注的插件
 
@@ -771,7 +772,7 @@ setxkbmap -option caps:swapescape
 - [neodev](https://github.com/folke/neodev.nvim) neovim 开发 lua 插件环境
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) : 利用 treesitter 显示当前的上下文，但是
-- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 更加只能的折叠
+- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 更加智能的折叠
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
 - [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
@@ -839,6 +840,7 @@ setxkbmap -option caps:swapescape
 6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
+9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel
 
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
