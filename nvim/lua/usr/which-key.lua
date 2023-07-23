@@ -19,7 +19,6 @@ wk.register({
   -- search
   ["<leader>"] = {
     b = { "<cmd>Telescope buffers<cr>", "searcher buffers" },
-    e = { "<cmd>Telescope bookmarks<cr>", "searcher browser bookmarks" },
     f = { "<cmd>Telescope find_files<cr>", "search files (include submodules)" },
     F = { "<cmd>Telescope git_files<cr>", "search files (exclude submodules)" },
     g = { "<cmd>Telescope live_grep<cr>", "live grep" },
@@ -28,7 +27,6 @@ wk.register({
     i = { "<cmd>Telescope jumplist<cr>", "search jumplist" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
-    m = { "<cmd>Telescope vim_bookmarks all<cr>", "search bookmarks in project" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
@@ -146,9 +144,10 @@ wk.register({
   },
   m = {
     name = "+bookmarks",
-    a = { "<cmd>Telescope vim_bookmarks all<cr>", "list marks in project" },
-    m = { "<cmd>BookmarkToggle<cr>", "toggle bookmark" },
-    x = { "<cmd>BookmarkClearAll<cr>", "remove all bookmarks in project" },
+    a = { "<cmd>Telescope bookmarks<cr>", "search bookmarks" },
+    d = { "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", "Delete bookmark at virt text line" },
+    m = { "<cmd>lua require'bookmarks'.add_bookmarks()<cr>", "add bookmarks" },
+    n = { "<cmd>lua require'bookmarks.list'.show_desc() <cr>", "Show bookmark note" },
   },
   ["<tab>"] = { "<cmd>wincmd w<cr>", "switch window" },
 })
