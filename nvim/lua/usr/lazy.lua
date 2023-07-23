@@ -78,7 +78,6 @@ require("lazy").setup({
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make", cond = function() return vim.fn.executable("make") == 1 end,
   },
-  "dhruvmanila/telescope-bookmarks.nvim", -- 搜索浏览器的 bookmarks
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
   "voldikss/vim-floaterm", -- 终端
