@@ -55,7 +55,6 @@ require("lazy").setup({
     end),
   }, -- 结构化查询和替换
 
-
   -- ui
   "stevearc/aerial.nvim", -- 导航栏
   "kyazdani42/nvim-tree.lua", -- 文件树
@@ -78,7 +77,10 @@ require("lazy").setup({
   "nvim-telescope/telescope.nvim",
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make", cond = function() return vim.fn.executable("make") == 1 end,
+    build = "make",
+    cond = function()
+      return vim.fn.executable("make") == 1
+    end,
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
@@ -108,10 +110,6 @@ require("lazy").setup({
   "mg979/vim-visual-multi", -- 同时编辑多个位置
   "AckslD/nvim-neoclip.lua", -- 保存 macro
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
-  -- 快速移动
-  "ggandor/leap.nvim",
-  -- 书签
-  { 'crusj/bookmarks.nvim', branch = 'main'},
   -- 高亮
   "norcalli/nvim-colorizer.lua", -- 显示 #FFFFFF
   "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
@@ -122,7 +120,10 @@ require("lazy").setup({
   "jackguo380/vim-lsp-cxx-highlight", -- ccls 高亮
   "mattn/efm-langserver", -- 支持 bash
   "gbrlsnchs/telescope-lsp-handlers.nvim",
+  "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
   -- 其他
+  "ggandor/leap.nvim", -- 快速移动
+  { "crusj/bookmarks.nvim", branch = "main" }, -- 书签
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法
   "olimorris/persisted.nvim", -- 打开 vim 的时候，自动回复上一次打开的样子
@@ -131,6 +132,4 @@ require("lazy").setup({
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译
-  -- quickly switch between header and source file in C/C++ project
-  "jakemason/ouroboros",
 }, {})
