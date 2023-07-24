@@ -58,5 +58,8 @@ let g:loaded_perl_provider = 0
 " this keymapping originally set by whichkey doesn't work in neovim 0.8
 noremap <Space>bc :BDelete hidden<cr>
 
+let g:gitblame_delay = 1500
+let g:gitblame_ignored_filetypes = ['lua', 'markdown', 'bash']
+
 " 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx
 nn xx x
