@@ -49,10 +49,12 @@ threads=$((cores - 1))
 # --enable-trace-backends=nop
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="--prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
-QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs"
+QEMU_options="  --prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
+QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
+QEMU_options+=" --cc=clang  "
 QEMU_options+=" --enable-virtfs"
+QEMU_options+=" --extra-cflags=\"-Wno-error=unused-command-line-argument\"" # @todo 怎么解决下这个警告
 
 nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
-nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
+nix-shell --command "cd build && chrt -i 0 make CC='ccache gcc' -j$threads"
 # nvim -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
