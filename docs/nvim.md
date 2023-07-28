@@ -40,7 +40,6 @@
   * [一键运行代码](#一键运行代码)
   * [一键注释代码](#一键注释代码)
   * [markdown 集成](#markdown-集成)
-  * [代码折叠](#代码折叠)
   * [Session](#session)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
@@ -53,9 +52,8 @@
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [有趣的插件](#有趣的插件)
-* [blog](#blog)
 * [学习](#学习)
-* [主题](#主题)
+* [找资源](#找资源)
 * [常见知识点](#常见知识点)
 * [小问题](#小问题)
 * [亟须解决的问题](#亟须解决的问题)
@@ -544,17 +542,8 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | binding           | function             |
 | ----------------- | -------------------- |
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
-| `<space>` `l` `p` | 预览                 |
+| `<leader>` `x`    | 预览                 |
 
-### 代码折叠
-
-利用上 treesitter ，vim 内置的折叠变得非常易用。
-
-| binding | function                    |
-| ------- | --------------------------- |
-| `z` `a` | 打开或者关闭光标所在的 fold |
-| `z` `R` | 打开所有的 fold             |
-| `z` `M` | 关闭所有的 fold             |
 
 ### Session
 
@@ -780,6 +769,7 @@ setxkbmap -option caps:swapescape
 - [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 - [nvim-metals](https://github.com/scalameta/nvim-metals) : 芯片前端开发必备
 - [vs-tasks.nvim](https://github.com/EthanJWright/vs-tasks.nvim) : Code Runner
+- [NeoComposer](https://github.com/ecthelionvi/NeoComposer.nvim) : 更好使用 macro
 
 
 ## 有趣的插件
@@ -787,21 +777,17 @@ setxkbmap -option caps:swapescape
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 
-## blog
-
-- [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
-
 ## 学习
 
 1. [neovimcraft](https://neovimcraft.com/) : neovim 插件教程学习导航网站
 2. [vim galore](https://github.com/mhinz/vim-galore)
 3. [devhints](https://devhints.io/vimscript) : 另一个 vim checksheet
 4. :help lua-guide
-5. [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
 
-## 主题
+## 找资源
 
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
+2. [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
 
 ## 常见知识点
 
@@ -822,7 +808,7 @@ setxkbmap -option caps:swapescape
 
 ## 亟须解决的问题
 
-1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代
+1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
 
 - https://github.com/jamestthompson3/nvim-remote-containers
 - https://github.com/OscarCreator/rsync.nvim
