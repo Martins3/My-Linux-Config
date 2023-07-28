@@ -3,7 +3,6 @@
 let
   unstable = import <unstable> { };
   x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
-
 in
 {
   fonts.fontconfig.enable = true;
@@ -25,6 +24,7 @@ in
     rustc
     unstable.rust-analyzer
     cmake
+    ov
     # zig
     gnumake
     audit # 没啥意义，用不起来
@@ -202,7 +202,6 @@ in
     cpulimit
     bat # better cat
     procs # better ps
-    cloc
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
     stagit # git static site generator 相当有趣
