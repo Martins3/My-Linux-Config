@@ -59,7 +59,7 @@ let g:loaded_perl_provider = 0
 noremap <Space>bc :BDelete hidden<cr>
 
 let g:gitblame_delay = 1500
-let g:gitblame_ignored_filetypes = ['lua', 'markdown', 'bash']
+let g:gitblame_ignored_filetypes = ['lua', 'markdown', 'sh']
 
 " 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx
 nn xx x

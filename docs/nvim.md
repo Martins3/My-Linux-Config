@@ -59,6 +59,7 @@
 * [常见知识点](#常见知识点)
 * [小问题](#小问题)
 * [亟须解决的问题](#亟须解决的问题)
+* [TODO](#todo)
 * [衍生](#衍生)
 
 <!-- vim-markdown-toc -->
@@ -829,6 +830,11 @@ setxkbmap -option caps:swapescape
 
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 3. 调试
+
+## TODO
+1. 补充 https://github.com/artempyanykh/marksman/blob/main/docs/install.md
+2. arch linux 上 efl-language server
+
 
 ## 衍生
 
