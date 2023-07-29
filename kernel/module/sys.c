@@ -28,7 +28,6 @@ static ssize_t myvariable_store(struct kobject *kobj,
 static struct kobj_attribute myvariable_attribute =
     __ATTR(myvariable, 0660, myvariable_show, (void *)myvariable_store);
 
-
 int sysfs_init(void) {
   int error = 0;
 
