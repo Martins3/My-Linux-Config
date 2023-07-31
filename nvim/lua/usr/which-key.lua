@@ -12,8 +12,8 @@ wk.register({
   ["g"] = {
     d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go to definition" },
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
-    l = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
-    x = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
+    x = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
+    i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
   },
   -- search
