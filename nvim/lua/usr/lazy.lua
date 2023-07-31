@@ -132,4 +132,8 @@ require("lazy").setup({
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译
+  {
+    "OscarCreator/rsync.nvim", -- 自动同步代码远程
+    build = "make", -- 实在不行，进入到 ~/.local/share/nvim/lazy/rsync.nvim 中执行下 make
+  },
 }, {})
