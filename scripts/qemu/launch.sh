@@ -15,17 +15,18 @@ function close_qemu() {
 	fi
 }
 
+# 使用 screen -r 来进入到 detach 的脚本
 function debug_kernel() {
 	close_qemu
 	# 不要给 -- 后面的增加双引号
-	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
+	screen -d -m /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
 	close_qemu
 }
 
 function login() {
 	close_qemu
-	zellij run --close-on-exit -- /home/martins3/core/vn/docs/qemu/sh/alpine.sh
+	screen -d -m /home/martins3/core/vn/docs/qemu/sh/alpine.sh
 	# 等 QEMU 将启动，将端口暴露出来，不然访问还是 host 的 5556，
 	# 会立刻得到一个 Connection refused
 	sleep 1
