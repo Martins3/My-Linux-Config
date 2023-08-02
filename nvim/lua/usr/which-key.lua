@@ -12,9 +12,11 @@ wk.register({
   ["g"] = {
     d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go to definition" },
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
-    x = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
+    w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
+    -- x 打开文件
+    -- s 用于 leap 跳转到下一个窗口
   },
   -- search
   ["<leader>"] = {
