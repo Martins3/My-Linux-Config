@@ -43,7 +43,7 @@ in
     unstable.firefox
     unstable.microsoft-edge-beta
     # unstable.google-chrome
-    # unstable.thunderbird
+    unstable.thunderbird
     unstable.feishu
     # tdesktop # telegram
     # unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
