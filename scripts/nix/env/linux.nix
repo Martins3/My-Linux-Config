@@ -29,9 +29,10 @@ pkgs.stdenv.mkDerivation {
 
     # rust language
     # @todo 还没有太搞清楚如何索引 Rust 项目
-    pkgs.cargo
-    pkgs.rustc
-    pkgs.rustfmt
+    # 但是现在每次下载对应的库需要很长时间
+    # pkgs.cargo
+    # pkgs.rustc
+    # pkgs.rustfmt
 
     # Necessary for the openssl-sys crate:
     pkgs.openssl

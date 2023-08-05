@@ -59,8 +59,8 @@ if [[ ${kcov} ]]; then
 else
 	# make clean
 	nix-shell --command "make defconfig kvm_guest.config martins3.config -j"
-	nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
-	# nix-shell --command "chrt -i 0 make -j$threads"
+	# nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
+	nix-shell --command "chrt -i 0 make -j$threads"
 	python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 	# scripts/systemd/expand-paging_tmpl.sh
 	for i in "${special_files[@]}"; do

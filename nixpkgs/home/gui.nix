@@ -23,7 +23,7 @@ in
   ];
 
   home.packages = with pkgs; [
-    # neovide
+    neovide
     # unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
@@ -41,7 +41,7 @@ in
     # joplin-desktop # 还有 joplin
     # gource
     unstable.firefox
-    unstable.microsoft-edge-beta
+    unstable.microsoft-edge-dev
     # unstable.google-chrome
     unstable.thunderbird
     unstable.feishu
