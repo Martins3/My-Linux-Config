@@ -70,6 +70,7 @@ in
     delta # git diff
     git-secrets
     nethogs
+    sniffnet
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop

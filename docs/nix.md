@@ -1491,3 +1491,6 @@ sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebu
 
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
+
+## 不知道如何调试代码，debug symbol 如何加载
+- https://nixos.wiki/wiki/Debug_Symbols
