@@ -1489,6 +1489,12 @@ sudo nix-env --upgrade
 sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebuild switch
 ```
 
+## noogλe : nix function exploring
+- https://github.com/nix-community/noogle
+
+## 不知道做啥的
+https://mynixos.com/
+
 
 [^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
 
