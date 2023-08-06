@@ -819,8 +819,10 @@ setxkbmap -option caps:swapescape
 
 ## TODO
 1. 补充 https://github.com/artempyanykh/marksman/blob/main/docs/install.md
-2. arch linux 上 efl-language server
-
+2. arch linux 上 efm-language server
+3. https://github.com/koalaman/shellcheck/issues/1284
+4. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
+5. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的左右
 
 ## 衍生
 
