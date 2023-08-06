@@ -58,6 +58,7 @@ if [[ ${kcov} ]]; then
 	nix-shell --command "nice -n 19 make -j$threads O=kcov"
 else
 	# make clean
+	nix-shell --command "make clean"
 	nix-shell --command "make defconfig kvm_guest.config martins3.config -j"
 	# nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
 	nix-shell --command "chrt -i 0 make -j$threads"
