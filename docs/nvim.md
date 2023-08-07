@@ -544,7 +544,6 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 | `<space>` `t` `m` | 开启表格快捷编辑模式 |
 | `<leader>` `x`    | 预览                 |
 
-
 ### Session
 
 在每一个文件夹会自动创建 session，这样当 nvim 重新打开的时候，window 还是上次关闭的样子.
@@ -552,6 +551,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 使用命令 SessionDelete 可以删除掉保存的 session 。
 
 如果想要清理所有 sessions 使用如下命令发。
+
 ```sh
 rm -r ~/.local/share/nvim/sessions
 ```
@@ -761,7 +761,6 @@ setxkbmap -option caps:swapescape
 - [trouble.nvim](https://github.com/folke/trouble.nvim) : 提升 lsp 体验
 - [neodev](https://github.com/folke/neodev.nvim) neovim 开发 lua 插件环境
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) : 利用 treesitter 显示当前的上下文，但是
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 更加智能的折叠
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
   - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
@@ -769,8 +768,7 @@ setxkbmap -option caps:swapescape
 - [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 - [nvim-metals](https://github.com/scalameta/nvim-metals) : 芯片前端开发必备
 - [vs-tasks.nvim](https://github.com/EthanJWright/vs-tasks.nvim) : Code Runner
-- [NeoComposer](https://github.com/ecthelionvi/NeoComposer.nvim) : 更好使用 macro
-
+- [NeoComposer](https://github.com/ecthelionvi/NeoComposer.nvim) : 更好地使用 macro
 
 ## 有趣的插件
 
@@ -799,6 +797,7 @@ setxkbmap -option caps:swapescape
   - `:%norm dw`
 
 ## 小问题
+
 极为细节的问题，但是折腾下应该还是可解的
 
 - shellcheck 无法处理 source 其他的文件的情况。
@@ -809,15 +808,16 @@ setxkbmap -option caps:swapescape
 ## 亟须解决的问题
 
 1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
-
-- https://github.com/jamestthompson3/nvim-remote-containers
-- https://github.com/OscarCreator/rsync.nvim
-- https://github.com/chipsenkbeil/distant.nvim
-
+   - https://github.com/jamestthompson3/nvim-remote-containers
+   - https://github.com/OscarCreator/rsync.nvim
+   - https://github.com/chipsenkbeil/distant.nvim
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
-3. 调试
+3. 调试，目前社区在尝试的方案主要是 dap
+   - https://github.com/jbyuki/one-small-step-for-vimkind
+   - https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/plugins/debug.lua
 
 ## TODO
+
 1. 补充 https://github.com/artempyanykh/marksman/blob/main/docs/install.md
 2. arch linux 上 efm-language server
 3. https://github.com/koalaman/shellcheck/issues/1284
