@@ -626,6 +626,7 @@ gsettings reset org.gnome.desktop.input-sources sources
 
 - [Nixos-unstable’s iso_minimal.x86_64-linux is 100% reproducible!](https://news.ycombinator.com/item?id=27573393)
 - [Will Nix Overtake Docker?](https://news.ycombinator.com/item?id=29387137)
+- https://news.ycombinator.com/item?id=34119868
 
 忽然对于 Nix 有点兴趣，感觉自从用了 Ubuntu 之后，被各种 Linux Distribution 毒打的记忆逐渐模糊，现在想去尝试一下，
 但是 Ian Henry 的[How to Learn Nix](https://ianthehenry.com/posts/how-to-learn-nix/) 写的好长啊，
@@ -964,25 +965,6 @@ fsck -a /dev/nvme0n1p3
 xfs_repair -L /dev/dm-1
 
 > -L : 最后的武器，会切掉部分日志
-
-## [ ] 如何自动 mount
-
-- 参考 : https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
-
-尝试过，但是没有成功
-
-```nix
-  fileSystems."/home/martins3/hack/mnt" = {
-    device = "/dev/disk/by-uuid/f4f5d9b6-1006-49c4-8ed7-c0f2a1eec890";
-    fsType = "auto";
-    # @todo 这里的参数真的是个迷惑
-    # options = [ "nosuid" "nodev" "nofail" "x-gvfs-show" ];
-    # options = [ "defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
-    options = [ "uid=1000" "gid=1000" "dmask=007" "fmask=117" ];
-  };
-```
-
-而且让机器启动都成问题。
 
 ## [ ] 如何编译一个静态的 QEMU，测试启动速度
 
