@@ -229,6 +229,8 @@ bash <(curl -L zellij.dev/launch) 这个命令如何理解？
 ## grep 和 egrep 的差别
 - https://stackoverflow.com/questions/18058875/difference-between-egrep-and-grep
   - [ ]  对于 regex 的理解又成为了问题。
+- https://unix.stackexchange.com/questions/17949/what-is-the-difference-between-grep-egrep-and-fgrep
+  - 还有 fgrep
 
 ## 等于号叫我再次做人
 ```c

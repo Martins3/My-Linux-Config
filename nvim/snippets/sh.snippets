@@ -175,7 +175,7 @@ snippet note_getoption "参数选项"
 snippet note_readfile "read file line by line"
 	# https://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable
 	while read -r line; do
-	        read -ra array <<< "$line"
+	        read -ra array <<< "\$line"
 	        for w in "${array[@]}"; do
 	                echo "[$w]"
 	        done
