@@ -146,6 +146,7 @@ install pam-devel
 install numactl fio
 install flex flex-devel bios bison-devel
 install ncurses-devel # tig 依赖
+install tree
 
 ohmyzsh
 zsh_fix
