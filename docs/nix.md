@@ -1425,7 +1425,8 @@ https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
 ```sh
 efibootmgr -c -d /dev/sda -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
 ```
-注意，-p 1 来设置那个 partition 的。
+1. 注意，-p 1 来设置那个 partition 的。
+2. 后面的那个路径需要将 boot 分区 mount 然后具体产看，还有一次是设置的 "\EFI\nixo\BOOTX64.efi"
 
 这个说的是什么意思来着:
 

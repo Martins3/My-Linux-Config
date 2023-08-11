@@ -350,4 +350,13 @@ in
  #    fsType = "auto";
  #    options = [ "user"];
  #  };
+
+
+  # 配合使用
+  # sudo mount -t nfs 127.0.0.1:/home/martins3/nfs /mnt
+  # 这个时候居然可以删除掉 nfs ，乌鱼子
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /home/martins3/nfs         127.0.0.1(rw,fsid=0,no_subtree_check)
+  '';
 }
