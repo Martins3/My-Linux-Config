@@ -16,6 +16,7 @@ in
     ccache
     mold
     go
+    ventoy
     lua
     lua-language-server
     stylua
