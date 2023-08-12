@@ -50,5 +50,5 @@ require("aerial").setup({
 
 require("bookmarks").setup({
   mappings_enabled = false,
-  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.md", "*.sh" },
+  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh" },
 })
