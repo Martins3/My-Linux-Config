@@ -1436,6 +1436,8 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 
 我设置的是 /boot 似乎影响也不大啊!
 
+不知道为什么 efibootmgr 在 home.cli 中无法安装。
+
 ## [ ] 如何下载 nixd
 
 看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md
