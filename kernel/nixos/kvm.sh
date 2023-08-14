@@ -93,10 +93,16 @@ _EOF_
 # 以前这样是没问题的
 # make ./drivers/md/raid1.ko -j32
 #
+#
+# 如果不首先 make 一下, 那么直接执行存在这个错误
+# Makefile:736: include/config/auto.conf: No such file or directory
+# exe "make -j32"
+#
 exe "make M=./arch/x86/kvm/  modules -j32"
-sudo rmmod kvm_intel kvm
+sudo rmmod kvm_amd kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
 sudo insmod ./arch/x86/kvm/kvm-intel.ko
+sudo insmod ./arch/x86/kvm/kvm-amd.ko
 
 # TODO 靠，还是有点问题，难道需要一开始就设置 id 吗?
 # TODO 还是其实，从来都没有成功过
@@ -104,5 +110,5 @@ sudo insmod ./arch/x86/kvm/kvm-intel.ko
 # 似乎这个才是正道? 自动将两个都编译好了
 # make arch/x86/kvm/kvm.ko -j32
 
-sudo modprobe kvm-intel
+# sudo modprobe kvm-intel
 # kvm.ko 和 kvm-intel.ko 是配套的
