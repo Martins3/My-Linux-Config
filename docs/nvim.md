@@ -14,6 +14,8 @@
   * [安装 nvim](#安装-nvim)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
+  * [安装 im-select](#安装-im-select)
+  * [安装各种 lsp](#安装各种-lsp)
   * [安装本配置](#安装本配置)
   * [checkhealth 检查](#checkhealth-检查)
 * [基本操作](#基本操作)
@@ -217,6 +219,20 @@ sudo apt install bear
 4. see [ccls documentation](https://github.com/MaskRay/ccls/wiki/Project-Setup) for more
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
+
+### 安装 im-select
+
+为了方便在 nvim 进入 normal 模式的时候自动切换输入法为英文，采用 keaising/im-select.nvim 插件，其依赖 im-select
+安装方法插件作者写的相当清晰 : https://github.com/keaising/im-select.nvim
+
+### 安装各种 lsp
+首先尝试使用你的平台上的包管理器安装，如果不可以，那么可以具体参考各个 lsp 的文档:
+
+1. [marksman](https://github.com/artempyanykh/marksman/blob/main/docs/install.md)
+2. [efm](https://github.com/mattn/efm-langserver#installation)
+3. [ccls](https://github.com/MaskRay/ccls/wiki/Install)
+
+当然，遇到了什么问题也可以找我讨论。
 
 ### 安装本配置
 
@@ -820,11 +836,9 @@ setxkbmap -option caps:swapescape
 
 ## TODO
 
-1. 补充 https://github.com/artempyanykh/marksman/blob/main/docs/install.md
-2. arch linux 上 efm-language server
 3. https://github.com/koalaman/shellcheck/issues/1284
 4. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-5. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的左右
+5. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
 
 ## 衍生
 
