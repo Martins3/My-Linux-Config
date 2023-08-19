@@ -198,7 +198,7 @@ sudo make install
 注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。
 
 ```sh
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hasklig.zip
 unzip Hasklig.zip -d ~/.fonts
 fc-cache -fv
 ```
