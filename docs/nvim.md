@@ -757,7 +757,7 @@ setxkbmap -option caps:swapescape
 
 ## 踩坑
 
-1. 才知道 vim 中 [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089)，我使用 hydra 重新映射 jumplist 相关的键位。
+1. 才知道 vim 中 [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`
 
 ## 调试 vim 配置
 
