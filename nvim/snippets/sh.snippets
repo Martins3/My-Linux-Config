@@ -434,11 +434,13 @@ snippet note_sed "sed"
 
 snippet xxx "template for any bash script"
 	#!/usr/bin/env bash
-
 	set -E -e -u -o pipefail
-	# shopt -s inherit_errexit
-	# PROGNAME=$(basename "\$0")
-	# PROGDIR=$(readlink -m "$(dirname "\$0")")
+
+
+snippet xxx_ext "extended template for any bash script"
+	shopt -s inherit_errexit
+	PROGNAME=$(basename "\$0")
+	PROGDIR=$(readlink -m "$(dirname "\$0")")
 	for i in "$@"; do
 		echo "$i"
 	done
