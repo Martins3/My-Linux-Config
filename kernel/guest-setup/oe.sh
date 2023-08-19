@@ -129,7 +129,10 @@ rw=randread
 runtime=30
 time_based
 EOF
+}
 
+function setup_zellij() {
+  echo "TODO"
 }
 
 cd ~
@@ -155,3 +158,4 @@ setup_tig
 setup_libcgroup
 setup_stress-ng
 setup_fio
+setup_zellij

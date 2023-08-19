@@ -48,8 +48,10 @@ case "$action" in
 		scripts="$entry { @[curtask->comm] = count() }"
 		;;
 	kretprobe)
+		# 这里获取到的 entry 都是类似 kprobe:tick_program_event 这种的
+    func_name=${entry##*:}
 		# stdin:1:48-54: ERROR: The retval builtin can only be used with 'kretprobe' and 'uretprobe' and 'kfunc' probes
-		scripts="$entry { printf(\"returned: %lx\\n\", retval); }"
+		scripts="kretprobe:$func_name { printf(\"returned: %lx\\n\", retval); }"
 		;;
 	trace)
 		scripts="$entry { @[kstack] = count(); }"

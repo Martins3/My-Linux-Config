@@ -297,6 +297,7 @@ in
       };
       pretty={
         fixes = "Fixes: %h (\"%s\")";
+        commit = "commit %h (\"%s\")";
       };
       interactive = {
         diffFilter = "delta --color-only";
@@ -332,6 +333,7 @@ in
         # 优雅的打印
         # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
         adog = "log --all --decorate --oneline --graph";
+        kernel = "log -n 1 --pretty=commit";
       };
     };
   };
