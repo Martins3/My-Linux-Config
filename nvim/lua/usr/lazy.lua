@@ -126,7 +126,7 @@ require("lazy").setup({
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法
-  "olimorris/persisted.nvim", -- 打开 vim 的时候，自动回复上一次打开的样子
+  "olimorris/persisted.nvim", -- 打开 vim 的时候，自动恢复为上一次关闭的状态
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
   "ojroques/vim-oscyank", -- 让 nvim 在远程 server 上拷贝到本地剪切板上
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
