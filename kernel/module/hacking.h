@@ -1,15 +1,16 @@
 #ifndef HACKING_H_PA2UMYTB
 #define HACKING_H_PA2UMYTB
 enum hacking {
-	PR_INFO,
-	WATCH_DOG,
-	KTHREAD,
-	RCU,
-	MUTEX,
-	MEMORY_MODEL_1, // load load，x86 上找不到
-	MEMORY_MODEL_2, // store load
-	SEQ_FILE_1,
-	SEQ_FILE_2,
+  PR_INFO,
+  WATCH_DOG,
+  KTHREAD,
+  // 测试 https://docs.kernel.org/RCU/Design/Requirements/Requirements.html
+  RCU,
+  MUTEX,
+  MEMORY_MODEL_1, // load load，x86 上找不到
+  MEMORY_MODEL_2, // store load
+  SEQ_FILE_1,
+  SEQ_FILE_2,
   SYS_FS,
 };
 

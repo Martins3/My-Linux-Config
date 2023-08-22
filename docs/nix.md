@@ -1485,3 +1485,10 @@ https://mynixos.com/
 
 ## 不知道如何调试代码，debug symbol 如何加载
 - https://nixos.wiki/wiki/Debug_Symbols
+
+## sar 无法正常使用
+```c
+🧀  sar
+Cannot open /var/log/sa/sa21: No such file or directory
+Please check if data collecting is enabled
+```
