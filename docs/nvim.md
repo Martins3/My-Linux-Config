@@ -661,9 +661,9 @@ nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是�
 - lua/usr
   - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
-  - nvim-tree.lua / orgmode.lua / ... : 插件的默认配置的调整，都非常短。
+  - nvim-tree.lua ... : 一些插件的默认配置的调整，都非常短。
   - lsp : native lsp 相关的配置
-- UltiSnips/ : 自定义的代码段
+- UltiSnips/ : 自定义的代码段，主要是 bash 相关的
 
 ## FAQ
 
@@ -674,13 +674,14 @@ nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是�
   - VS Code 比 Sublime 功能更强，比 [Atom](https://atom.io/) 性能更高，而且 VSCode 可以集成 vim 。因为 VSCode 是基于 electron 的，甚至可以在一个 window 中编辑 markdown, 一个 window 实时预览 markdown 。
   - 但是 vim 可以更加简洁, 灵活和高效。
 - 我应该使用这个配置吗 ?
-  - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。比如 `use_vim_as_ide`, [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
+  - 我认为仓库的意义是让大家使用上 vim 新特性，其实还有很多的其他的配置也非常不错，但是一些常年没有更新，以及使用老旧插件的配置就不用看。
+  比如 [use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide), [exvim](https://exvim.github.io/), [spf13-vim](https://github.com/spf13/spf13-vim), [The Ultimate vimrc](https://github.com/amix/vimrc) 之类的。
 - 支持什么操作系统和架构?
   - 支持 Windows ，但是需要少量的调整，主要是安装方面。
   - 对于 x86 Linux / Mac 完整的支持。
   - [龙芯架构 Linux](https://martins3.github.io/loongarch/neovim.html) 基本支持。
 - 使用 clangd 还是 ccls
-  - 两个都用过，推荐 ccls，具体原因看[这里](./ccls-vs-clangd.md)
+  - 两个都用过，但是我推荐 ccls，具体原因看[这里](./ccls-vs-clangd.md)
 
 ## vim 的小技巧
 
