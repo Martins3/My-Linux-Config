@@ -18,7 +18,6 @@ function close_qemu() {
 # 使用 screen -r 来进入到 detach 的脚本
 function debug_kernel() {
 	close_qemu
-	# 不要给 -- 后面的增加双引号
 	screen -d -m /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
 	close_qemu

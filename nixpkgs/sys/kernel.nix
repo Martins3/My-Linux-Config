@@ -88,6 +88,14 @@ boot.kernelPatches = [
     };
   }
 
+  {
+    name = "irq";
+    patch = null;
+    extraStructuredConfig = {
+      GENERIC_IRQ_DEBUGFS=lib.kernel.yes;
+    };
+  }
+
   # 增加一个 patch 的方法
   /*
   {
