@@ -2,8 +2,8 @@
 
 先说结论，ccls 更好。
 
-在 reddit 上闲逛的时候，感觉又一个普遍的想法是认为 clangd 更好:
-1. https://zhuanlan.zhihu.com/p/364518020
+网上冲浪的时候，感觉有一个普遍的想法，那就是认为 clangd 更好，例如
+1. [最终，我看向了 clangd](https://zhuanlan.zhihu.com/p/364518020)
 
 我主要看 QEMU 和 Linux 两个项目，尤其是 Linux ，我之所以认为 ccls 更好是因为
 我特别重视索引的准确程度，ccls 几乎没有出错，但是 clangd 问题很多，而且还出现了
