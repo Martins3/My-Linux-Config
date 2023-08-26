@@ -166,6 +166,7 @@ ssh -t user@11.22.33.44 "tmux attach || /usr/bin/tmux"
 - [tmuxinator](https://github.com/tmuxinator/tmuxinator) 可以实现 kitty 的 session 的管理
 - [Tmux-Tutorial](https://leimao.github.io/blog/Tmux-Tutorial/)
   - https://news.ycombinator.com/item?id=21055468
+- [catppuccin 主题](https://github.com/catppuccin/tmux)
 
 
 <script src="https://giscus.app/client.js"
