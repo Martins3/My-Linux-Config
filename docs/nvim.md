@@ -290,7 +290,9 @@ let g:mapleader = ','
 
 ### 复制粘贴
 
-关于剪切板，可以 `:h registers`
+vim 支持多个剪切板，系统剪切板只是 vim 剪切板中的一个
+
+通过 ":h registers" 可以看到 `"*` and `"+` 是对应的系统剪切板
 
 > 8. Selection registers `"*` and `"+`
 >    Use these registers for storing and retrieving the selected text for the GUI.
@@ -298,16 +300,22 @@ let g:mapleader = ','
 >    working, the unnamed register is used instead. For Unix systems and Mac OS X,
 >    see |primary-selection|.
 
-简而言之，就是 vim 存在很多剪切板，当在浏览器中复制的内容，实际上被存放到了 `+` 这个 register 中了，
-为了粘贴到 vim 中，就需要使用 `"` `+` `p` 了，为了加快这个操作，可以重新映射一些键位。
+当在浏览器中复制的内容，实际上被存放到了 `+` 这个 register 中了，
+为了粘贴到 vim 中，就需要使用 `"` `+` `p` 了，其含义为:
+1. `"` : 使用寄存器
+2. `+` : 选择系统剪切板这个寄存器
+3. `p` : 粘贴
 
+由于本配置使用了 [which-key.nvim](https://github.com/folke/which-key.nvim)，所以可以
+在 normal mode 中使用 `"` 或者在 insert mode 中使用 `<C-r>` 来展示 register 的内容。
+
+为了加快这个操作，可以重新映射一些键位。
 ```vim
 map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 ```
-
-`,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
+所以现在可以使用，`,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
 
 ### 符号搜索
 
