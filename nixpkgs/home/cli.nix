@@ -294,6 +294,12 @@ in
         smtpencryption = "tls";
         smtpserverport = 587;
         smtpuser = "xueshi.hu@smartx.com";
+        # 参考
+        # https://www.marcusfolkesson.se/blog/get_maintainers-and-git-send-email/
+        linux={
+            tocmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nol";
+            cccmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nom";
+        };
       };
       pretty={
         fixes = "Fixes: %h (\"%s\")";
