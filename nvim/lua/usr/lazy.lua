@@ -17,6 +17,7 @@ require("lazy").setup({
   "kyazdani42/nvim-web-devicons", -- 显示图标
   "folke/which-key.nvim", -- 用于配置和提示快捷键
   "kkharji/sqlite.lua", -- 数据库
+  "MunifTanjim/nui.nvim", -- 图形库
 
   -- 补全
   { "hrsh7th/nvim-cmp" }, -- The completion plugin
@@ -136,4 +137,5 @@ require("lazy").setup({
     "OscarCreator/rsync.nvim", -- 自动同步代码远程
     build = "make", -- 实在不行，进入到 ~/.local/share/nvim/lazy/rsync.nvim 中执行下 make
   },
+  "m4xshen/hardtime.nvim",
 }, {})
