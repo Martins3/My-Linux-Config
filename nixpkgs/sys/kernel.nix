@@ -71,11 +71,9 @@ boot.kernelPatches = [
   }
 
   {
-    name = "lru";
+    name = "lru_gen";
     patch = null;
     extraStructuredConfig = {
-      LRU_GEN=lib.kernel.yes;
-      LRU_GEN_ENABLED=lib.kernel.yes;
       LRU_GEN_STATS=lib.kernel.yes;
     };
   }
