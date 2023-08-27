@@ -850,6 +850,7 @@ setxkbmap -option caps:swapescape
 3. https://github.com/koalaman/shellcheck/issues/1284
 4. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
 5. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
+4. leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
 
 ## 衍生
 
