@@ -340,6 +340,7 @@ in
         # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
         adog = "log --all --decorate --oneline --graph";
         kernel = "log -n 1 --pretty=commit";
+        bug = "log -n 1 --pretty=fixes";
       };
     };
   };
