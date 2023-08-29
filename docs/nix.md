@@ -1486,9 +1486,21 @@ https://mynixos.com/
 ## 不知道如何调试代码，debug symbol 如何加载
 - https://nixos.wiki/wiki/Debug_Symbols
 
-## sar 无法正常使用
-```c
+## [ ] sar 无法正常使用
+```txt
 🧀  sar
 Cannot open /var/log/sa/sa21: No such file or directory
 Please check if data collecting is enabled
+```
+
+## 如何在 cgroup 中编译内核
+
+可以采用这种方法:
+```sh
+sudo cgexec -g memory:mem3 nix-shell --command "make -j32"
+```
+
+但是这种方法就不太妙了:
+```sh
+sudo cgexec -g memory:mem3 make -j32
 ```
