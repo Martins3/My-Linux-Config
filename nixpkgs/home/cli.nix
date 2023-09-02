@@ -214,7 +214,7 @@ in
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
     bridge-utils
     swtpm # windows 11 启动需要
-    unstable.nushell
+    # unstable.nushell
     libnotify # 通知小工具
     # 才知道在 Linux 下也是可以用的 pwsh
     # 在 nixos 23.04 这个版本中，暂时因为 ssl 的版本，不能使用
@@ -231,7 +231,6 @@ in
     # dockerTools @todo # 使用 nixos 构建 docker
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
-    # ipmiview # supermicro 服务器配套设施，装不上
     bc # bash 数值计算
 
     verilator # Fast and robust (System)Verilog simulator/compiler
