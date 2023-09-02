@@ -846,11 +846,11 @@ setxkbmap -option caps:swapescape
    - https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/plugins/debug.lua
 
 ## TODO
-
-3. https://github.com/koalaman/shellcheck/issues/1284
-4. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-5. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
+1. https://github.com/koalaman/shellcheck/issues/1284
+2. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
+3. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
 4. leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
+5. https://github.com/zbirenbaum/neodim 等待升级到 1.0.0 之后，重新分析如何处理这个代码
 
 ## 衍生
 
