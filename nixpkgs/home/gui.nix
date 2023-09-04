@@ -42,7 +42,6 @@ in
     # joplin-desktop # 还有 joplin
     # gource
     unstable.firefox
-    unstable.microsoft-edge-dev
     # unstable.google-chrome
     unstable.thunderbird
     # unstable.feishu
