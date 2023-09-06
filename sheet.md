@@ -149,11 +149,3 @@ nameserver 114.114.114.114
 
 ## sudo
 - 让 sudo https://unix.stackexchange.com/questions/83191/how-to-make-sudo-preserve-path
-
-
-## sshfs
-
-```sh
-mkdir mnt
-sshfs martins3@10.0.2.2:path_to_repo  ~/mnt
-```

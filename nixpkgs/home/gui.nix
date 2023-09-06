@@ -42,7 +42,7 @@ in
     # joplin-desktop # 还有 joplin
     # gource
     unstable.firefox
-    # unstable.google-chrome
+    google-chrome
     unstable.thunderbird
     # unstable.feishu
     podman-desktop

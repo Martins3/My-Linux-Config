@@ -208,7 +208,6 @@ in
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
     stagit # git static site generator 相当有趣
-    sshfs
     # kvmtool
     packer # 制作 qcow2 镜像
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
