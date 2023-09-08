@@ -226,13 +226,12 @@ sudo apt install bear
 安装方法插件作者写的相当清晰 : https://github.com/keaising/im-select.nvim
 
 ### 安装各种 lsp
-首先尝试使用你的平台上的包管理器安装，如果不可以，那么可以具体参考各个 lsp 的文档:
 
-1. [marksman](https://github.com/artempyanykh/marksman/blob/main/docs/install.md)
-2. [efm](https://github.com/mattn/efm-langserver#installation)
-3. [ccls](https://github.com/MaskRay/ccls/wiki/Install)
+通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
+在 neovim 中执行 `:Mason` 可以检查各种插件的执行状态。
 
-当然，遇到了什么问题也可以找我讨论。
+对于 mason 不支持的 lsp，就需要手动安装了:
+- [ccls](https://github.com/MaskRay/ccls/wiki/Install)
 
 ### 安装本配置
 
@@ -851,7 +850,7 @@ setxkbmap -option caps:swapescape
 3. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
 4. leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
 5. https://github.com/zbirenbaum/neodim 等待升级到 1.0.0 之后，重新分析如何处理这个代码
-6. https://github.com/LunarVim/starter.lvim/blob/c-ide/config.lua
+6. https://github.com/LunarVim/starter.lvim/blob/c-ide/config
 7. https://github.com/axkirillov/hbac.nvim
 
 ## 衍生

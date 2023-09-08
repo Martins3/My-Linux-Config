@@ -22,14 +22,12 @@ in
     stylua
     ccls
     cargo
-    rustc
-    unstable.rust-analyzer
+    unstable.rustc
     cmake
     ov
     # zig
     gnumake
     audit # 没啥意义，用不起来
-    marksman
     yarn
     nodejs
     tmux
@@ -110,7 +108,6 @@ in
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     unstable.neovim
-    efm-langserver # 集成 shellcheck
     # wakatime
     shellcheck
     shfmt
@@ -167,7 +164,6 @@ in
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
-    nodePackages.pyright
     black # python formatter
     man-pages
     pre-commit
@@ -207,7 +203,6 @@ in
     procs # better ps
     tokei # 代码统计工具，比 cloc 性能好
     unstable.zellij # tmux 替代品
-    stagit # git static site generator 相当有趣
     # kvmtool
     packer # 制作 qcow2 镜像
     (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
@@ -246,6 +241,12 @@ in
     httpie # http baidu.com
 
     lcov
+
+    # lsp
+    unstable.rust-analyzer
+    efm-langserver # 集成 shellcheck
+    marksman
+    nodePackages.pyright
   ];
 
   programs.zsh = {
