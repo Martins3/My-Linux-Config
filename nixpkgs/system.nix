@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./sys/cli.nix
-    ./sys/kernel.nix
+ #   ./sys/kernel.nix
     ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
@@ -26,11 +26,8 @@ in
   time.hardwareClockInLocalTime = true;
 
   # nvidia GPU card configuration, for details,
+  # 注意: 如果你和我一样，用的是老显卡，将  open = true; 注释掉
   # see https://nixos.wiki/wiki/Nvidia
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.opengl.enable = true;
-  # .beta 可以替换为其他的版本，其中 beta 是最新的
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   programs.zsh.enable = true;
 

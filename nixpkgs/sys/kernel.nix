@@ -8,18 +8,9 @@
 
   boot.kernelParams = [
     "transparent_hugepage=never"
-    # https://gist.github.com/rizalp/ff74fd9ededb076e6102fc0b636bd52b
     # 十次测量编译内核，打开和不打开的性能差别为 : 131.1  143.4
     # 性能提升 9.38%
-    # "noibpb"
-    # "nopti"
-    # "nospectre_v2"
-    # "nospectre_v1"
-    # "l1tf=off"
-    # "nospec_store_bypass_disable"
-    # "no_stf_barrier"
-    # "mds=off"
-    # "mitigations=off"
+    "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"
     # "tsx_async_abort=off"
