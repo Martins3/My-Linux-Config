@@ -1,8 +1,8 @@
 let
   pkgs = import <nixpkgs> { };
 in
-# pkgs.stdenv.mkDerivation {
-pkgs.clangStdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
+# pkgs.clangStdenv.mkDerivation {
   name = "martins3's QEMU";
   buildInputs = with pkgs; [
     zlib
