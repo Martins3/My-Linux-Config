@@ -58,7 +58,7 @@
 * [找资源](#找资源)
 * [常见知识点](#常见知识点)
 * [小问题](#小问题)
-* [亟须解决的问题](#亟须解决的问题)
+* [nvim 有待解决的问题](#nvim-有待解决的问题)
 * [TODO](#todo)
 * [衍生](#衍生)
 
@@ -802,6 +802,7 @@ setxkbmap -option caps:swapescape
 
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
+- [neodim](https://github.com/zbirenbaum/neodim) : 无法解释了，请看 vcr
 
 ## 学习
 
@@ -833,25 +834,16 @@ setxkbmap -option caps:swapescape
 - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
 - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
 
-## 亟须解决的问题
-
+## nvim 有待解决的问题
 1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
    - https://github.com/jamestthompson3/nvim-remote-containers
    - https://github.com/OscarCreator/rsync.nvim
-   - https://github.com/chipsenkbeil/distant.nvim
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
-3. 调试，目前社区在尝试的方案主要是 dap
-   - https://github.com/jbyuki/one-small-step-for-vimkind
-   - https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/plugins/debug.lua
 
 ## TODO
 1. https://github.com/koalaman/shellcheck/issues/1284
 2. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-3. https://todoist.com/zh-CN/templates ; 重新审视一下 orgmode 的作用
 4. leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
-5. https://github.com/zbirenbaum/neodim 等待升级到 1.0.0 之后，重新分析如何处理这个代码
-6. https://github.com/LunarVim/starter.lvim/blob/c-ide/config
-7. https://github.com/axkirillov/hbac.nvim
 
 ## 衍生
 
