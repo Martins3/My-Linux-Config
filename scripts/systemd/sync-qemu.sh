@@ -51,9 +51,16 @@ threads=$((cores - 1))
 mkdir -p /home/martins3/core/qemu/instsall
 QEMU_options="  --prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
-QEMU_options+=" --cc=clang  "
 QEMU_options+=" --enable-virtfs"
-QEMU_options+=" --extra-cflags=\"-Wno-error=unused-command-line-argument\"" # @todo 怎么解决下这个警告
+
+# 使用 clang 构建内核存在两个问题
+# 1. 大量的警告，并且必须 -Wno-error=unused-command-line-argument
+# 2. 似乎之后在命令行中 make 就会失败
+#
+# QEMU_options+=" --cc=clang  "
+# QEMU_options+=" --extra-cflags=\"-Wno-error=unused-command-line-argument\"" # @todo 怎么解决下这个警告
+#
+# 配合 scripts/nix/env/qemu.nix 一并修改
 
 nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
 nix-shell --command "cd build && chrt -i 0 make CC='ccache gcc' -j$threads"
