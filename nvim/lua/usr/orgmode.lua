@@ -26,7 +26,7 @@ require("orgmode").setup({
       template = "* TODO %?\n SCHEDULED: %t",
       target = "~/core/org-mode/work.org",
     },
-    tw = {
+    sw = {
       description = "Study Task",
       template = "* TODO %?\n SCHEDULED: %t",
       target = "~/core/org-mode/study.org",
