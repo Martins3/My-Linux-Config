@@ -62,6 +62,7 @@ require("lazy").setup({
   "akinsho/bufferline.nvim", -- buffer
   "nvim-lualine/lualine.nvim", -- 状态栏
   "kazhala/close-buffers.nvim", -- 一键删除不可见 buffer
+  "axkirillov/hbac.nvim", -- 自动删除长期不用的 buffer
   "gelguy/wilder.nvim", -- 更加智能的命令窗口
   "romgrk/fzy-lua-native", -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent", -- 可以移除掉背景色，让 vim 透明
