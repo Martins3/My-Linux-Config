@@ -45,6 +45,7 @@ in
     google-chrome
     unstable.thunderbird
     # unstable.feishu
+    microsoft-edge
     podman-desktop
     # tdesktop # telegram
     # unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
