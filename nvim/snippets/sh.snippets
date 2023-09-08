@@ -549,8 +549,29 @@ snippet note_function_para "函数基本"
 
 
 snippet note_function_return "关于函数返回值"
-	bash 实际上不支持函数返回的操作，其返回值只是表示错误的
-	set -e 之后，如果 function return 了非 0 ，那么认为是一个 command 失败，接着整个程序结束。
+	1. bash 的函数不支持函数返回，bash 的函数可以理解为一组命令执行的集合
+	2. 如果 set -e ，如果函数中任何一条命令的范围不为 0，那么整个脚本结束
+	3. if function ; 中，这个函数 set -e 暂时可以忽视掉，也就是 function 中的命令全部可以执行完
+
+	this() {
+		ls /no
+		ls /no
+	}
+
+	if this; then
+		echo "good"
+	else
+		echo "bad"
+	fi
+
+	this
+
+	的输出为:
+
+	ls: cannot access '/no': No such file or directory
+	ls: cannot access '/no': No such file or directory
+	bad
+	ls: cannot access '/no': No such file or directory
 
 
 snippet note_is_number "is number"
