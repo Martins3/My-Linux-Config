@@ -27,6 +27,7 @@ require("im_select").setup()
 require("lualine").setup()
 require("rsync").setup()
 -- require("hardtime").setup()
+require("hbac").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
