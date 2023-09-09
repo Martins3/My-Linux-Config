@@ -75,7 +75,8 @@ fi
 # nix-shell --command "chrt -i 0 make -C tools/perf -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 if [[ ! ${kcov} ]]; then
-	curl -d "martins3,tag=13900K kernel=$SECONDS" -X POST 'http://127.0.0.1:8428/write' || true
+	# curl -d "martins3,tag=13900K kernel=$SECONDS" -X POST 'http://127.0.0.1:8428/write' || true
+  echo "$(date): $SECONDS" >>/home/martins3/core/cl.txt
 fi
 
 # 编译文档的速度太慢了，不想每次都等那么久

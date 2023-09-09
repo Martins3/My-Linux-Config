@@ -57,10 +57,9 @@
 * [学习](#学习)
 * [找资源](#找资源)
 * [常见知识点](#常见知识点)
-* [小问题](#小问题)
-* [nvim 有待解决的问题](#nvim-有待解决的问题)
-* [TODO](#todo)
+* [问题](#问题)
 * [衍生](#衍生)
+* [高级技巧](#高级技巧)
 
 <!-- vim-markdown-toc -->
 
@@ -765,8 +764,7 @@ setxkbmap -option caps:swapescape
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
 ## 踩坑
-
-1. 才知道 vim 中 [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`
+1. 用了 5 年 vim 才知道，[`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`
 
 ## 调试 vim 配置
 
@@ -824,25 +822,21 @@ setxkbmap -option caps:swapescape
 - [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
   - `:%norm dw`
 
-## 小问题
+## 问题
+- 极为细节的问题，但是折腾下应该还是可解的
+  - shellcheck 无法处理 source 其他的文件的情况。
+  - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
+  - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
+  - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
+  - https://github.com/koalaman/shellcheck/issues/1284
+  - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
+  - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
 
-极为细节的问题，但是折腾下应该还是可解的
-
-- shellcheck 无法处理 source 其他的文件的情况。
-- ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-- https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
-- https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
-
-## nvim 有待解决的问题
-1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
-   - https://github.com/jamestthompson3/nvim-remote-containers
-   - https://github.com/OscarCreator/rsync.nvim
-2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
-
-## TODO
-1. https://github.com/koalaman/shellcheck/issues/1284
-2. https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-4. leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
+- nvim 有待解决的问题，不是一时半会可以解决的:
+  1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
+     - https://github.com/jamestthompson3/nvim-remote-containers
+     - https://github.com/OscarCreator/rsync.nvim
+  2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 ## 衍生
 
@@ -854,7 +848,10 @@ setxkbmap -option caps:swapescape
 6. [qutebrowser](https://github.com/qutebrowser/qutebrowser) : 基于 Python 和 Qt 构建的 vim 快捷键的浏览器
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
-9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel
+9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel nvim 配置
+
+## 高级技巧
+- https://blog.antoyo.xyz/vim-tips
 
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)

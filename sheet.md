@@ -85,6 +85,7 @@
 - grep -r . /sys/module/zswap/parameters/
   - 打印的同时又展示出来数值
 
+
 ## printf
 - 打印数组，是针对所有成员一次操作的
 

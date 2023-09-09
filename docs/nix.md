@@ -415,7 +415,7 @@ make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.de
 一种方法是:
 
 ```nix
-  /* microsoft-edge-beta = pkgs.callPackage ./programs/microsoft-edge-beta.nix {}; */
+  /* google-chrome-stable = pkgs.callPackage ./programs/google-chrome-stable.nix {}; */
   nixpkgs_unstable = import
     (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/ac608199012d63453ed251b1e09784cd841774e5.tar.gz";
@@ -1505,3 +1505,7 @@ sudo cgexec -g memory:mem3 nix-shell --command "make -j32"
 ```sh
 sudo cgexec -g memory:mem3 make -j32
 ```
+
+## 文摘
+https://mtlynch.io/notes/nix-first-impressions/
+https://news.ycombinator.com/item?id=36387874

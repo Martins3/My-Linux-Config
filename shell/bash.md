@@ -429,3 +429,5 @@ function a() {
 
 a
 ```
+## 看看这个
+https://www.panix.com/~elflord/unix/grep.html#why

@@ -8,4 +8,4 @@ cd VictoriaMetrics/deployment/docker
 docker compose up -d
 # docker compose down # 删除
 echo "default user/passwd : admin admin"
-microsoft-edge-beta 127.0.0.1:3000
+google-chrome-stable 127.0.0.1:3000

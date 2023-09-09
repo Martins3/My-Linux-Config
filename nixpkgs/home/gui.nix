@@ -67,7 +67,7 @@ in
     todo = {
       name = "Todoist";
       genericName = "ToDo";
-      exec = "microsoft-edge-beta https://todoist.com/app/today";
+      exec = "google-chrome-stable https://todoist.com/app/today";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/todoist.png";
         sha256 = "0cas4frxq6rrqbllgdk9wh7a4f8blszxcynsqzcsalc3q7xilkr5";
@@ -77,7 +77,7 @@ in
     regex = {
       name = "Regex";
       genericName = "regex";
-      exec = "microsoft-edge-beta https://regexlearn.com/zh-cn/cheatsheet";
+      exec = "google-chrome-stable https://regexlearn.com/zh-cn/cheatsheet";
       icon = (pkgs.fetchurl {
         url = "https://cdn-icons-png.flaticon.com/512/9804/9804194.png";
         sha256 = "1yh5lnimc0ra5lwmb7vi8yxz58knfwg27rs03xmh7v97324gw1v8";
@@ -87,7 +87,7 @@ in
     docker = {
       name = "Docker";
       genericName = "docker";
-      exec = "microsoft-edge-beta https://dockerlabs.collabnix.com/docker/cheatsheet/";
+      exec = "google-chrome-stable https://dockerlabs.collabnix.com/docker/cheatsheet/";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
@@ -98,7 +98,7 @@ in
     bpftrace = {
       name = "bpftrace";
       genericName = "bpftrace";
-      exec = "microsoft-edge-beta https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md";
+      exec = "google-chrome-stable https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
@@ -108,7 +108,7 @@ in
     kernel_cmdline = {
       name = "cmdline";
       genericName = "cmdlien";
-      exec = "microsoft-edge-beta https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html";
+      exec = "google-chrome-stable https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";

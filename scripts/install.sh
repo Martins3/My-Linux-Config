@@ -26,7 +26,7 @@ ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 
 # dhruvmanila/browser-bookmarks.nvim
-ln -sf ~/.config/microsoft-edge-beta ~/.config/microsoft-edge
+ln -sf ~/.config/google-chrome-stable ~/.config/microsoft-edge
 
 mkdir -p ~/.config/efm-langserver/
 ln -sf ~/.dotfiles/nvim/efm.yaml ~/.config/efm-langserver/config.yaml

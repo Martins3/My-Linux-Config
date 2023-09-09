@@ -37,7 +37,7 @@
 
       ## dock icons
       favorite-apps = [
-        "microsoft-edge-beta.desktop"
+        "google-chrome-stable.desktop"
       ];
     };
     ## extensions settings
