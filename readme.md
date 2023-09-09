@@ -7,7 +7,7 @@
 
 ## 📚 Document
 
-* 中文文档
+* 软件篇
   * [2023 年 vim 的 C/C++ 配置](./docs/nvim.md)
   * [极简 Tmux 配置](./docs/tmux.md)
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
@@ -16,7 +16,10 @@
   * [2023 年对比一下 ccls 和 clangd](./docs/ccls-vs-clangd.md)
   *  🚧 [NixOS 初步尝试](./docs/nix.md)
   *  🚧 [如何彻底征服 bash](./shell/bash.md)
-* English version comming soon.
+* 硬件篇
+  * TODO
+*  🚧 [题外话: 为什么要捣鼓 Linux 配置](./docs/why.md)
+
 
 ## ⚙ Install
 see scripts/install.sh, just a bunch of symbol links execpt neovim configuration is a little of complex:

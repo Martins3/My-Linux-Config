@@ -106,3 +106,7 @@ inherit_errexit
 bash 才是标准，posix 不是!
 
 bash 中的 --posix 也不用理会。
+
+## 看看这个
+https://www.micahlerner.com/2021/07/14/unix-shell-programming-the-next-50-years.html
+https://medium.com/fundbox-engineering/cheating-at-a-company-group-activity-using-unix-tools-5c1d706f3d58
