@@ -1,6 +1,6 @@
 local function microsoft_edge()
   if vim.loop.os_uname().sysname == "Linux" then
-    return "microsoft-edge-beta $fileName"
+    return "google-chrome-stable $fileName"
   else
     return "/Applications/Microsoft\\ Edge.app/Contents/MacOS/Microsoft\\ Edge $file"
   end

@@ -1,6 +1,9 @@
 # Rime 输入法
 
 我使用 Rime 输入法并不是其各种高级功能，我之前一直使用搜狗，但是有一次搜狗崩溃了，
+然后又不知道恢复，在网上参考了各种资料，都无法解决。
+1. https://askubuntu.com/questions/1251749/how-to-install-sogou-input-method-on-ubuntu-20-04
+2. https://leimao.github.io/blog/Ubuntu-Gaming-Chinese-Input/
 忍无可忍，就换成 Rime 了。但是我发现 Rime 的输入法的门槛很高，这里简单记录下配置过程。
 
 ## 安装

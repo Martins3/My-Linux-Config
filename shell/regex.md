@@ -10,6 +10,7 @@
 
 [将 regex 转化为](https://www.autoregex.xyz/)
 
+
 ## https://matt.might.net/articles/sculpting-text
 
 grep 默认情况下是 BRE
@@ -39,7 +40,7 @@ grep 默认情况下是 BRE
 - 正向后行断言: (?<=)
 - 标志: global multiline insensitive
 - * 是默认的贪婪匹配，但是 *? 是 lazy 匹配
-- [[:space:]]
+- `[[:space:]]`
 
 ## vim 的差别
 vim 中使用 regex 参考[这个总结](https://learnbyexample.gitbooks.io/vim-reference/content/Regular_Expressions.html)
