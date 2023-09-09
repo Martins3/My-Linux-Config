@@ -1509,3 +1509,30 @@ sudo cgexec -g memory:mem3 make -j32
 ## 文摘
 https://mtlynch.io/notes/nix-first-impressions/
 https://news.ycombinator.com/item?id=36387874
+
+## 搞搞 cuda 吧
+https://nixos.org/community/teams/cuda
+
+```nix
+# Run with `nix-shell cuda-shell.nix`
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+   name = "cuda-env-shell";
+   buildInputs = with pkgs; [
+     git gitRepo gnupg autoconf curl
+     procps gnumake util-linux m4 gperf unzip
+     cudatoolkit linuxPackages.nvidia_x11
+     libGLU libGL
+     xorg.libXi xorg.libXmu freeglut
+     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
+     ncurses5 stdenv.cc binutils
+   ];
+   shellHook = ''
+      export CUDA_PATH=${pkgs.cudatoolkit}
+      export LD_LIBRARY_PATH=${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib
+      export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+      export EXTRA_CCFLAGS="-I/usr/include"
+   '';
+}
+```
+然后配合这个 : https://github.com/Tony-Tan/CUDA_Freshman

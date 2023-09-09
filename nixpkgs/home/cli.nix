@@ -205,7 +205,7 @@ in
     unstable.zellij # tmux 替代品
     # kvmtool
     packer # 制作 qcow2 镜像
-    (import (fetchTarball https://github.com/cachix/devenv/archive/v0.5.tar.gz)) # @todo 和 default.nix 有区别？
+    (import (fetchTarball "https://github.com/cachix/devenv/archive/v0.5.tar.gz")) # @todo 和 default.nix 有区别？
     bridge-utils
     swtpm # windows 11 启动需要
     # unstable.nushell
@@ -241,6 +241,9 @@ in
     httpie # http baidu.com
 
     lcov
+
+
+    cachix # nixos 的高级玩法，自己架设 binary cache
 
     # lsp
     unstable.rust-analyzer
