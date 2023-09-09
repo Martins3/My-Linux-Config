@@ -18,4 +18,22 @@ require("orgmode").setup({
       org_insert_todo_heading = "<leader>a",
     },
   },
+  org_capture_templates = {
+    j = {
+      description = 'Journal',
+      template = "\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?",
+      target = "~/core/org-mode/journal.org",
+    },
+    t= "TODO",
+    tw = {
+      description = "Work Task",
+      template = "* TODO %?\n SCHEDULED: %t",
+      target = "~/core/org-mode/work.org",
+    },
+    sw = {
+      description = "Study Task",
+      template = "* TODO %?\n SCHEDULED: %t",
+      target = "~/core/org-mode/study.org",
+    },
+  },
 })
