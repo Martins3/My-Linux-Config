@@ -10,7 +10,7 @@ in
 {
   imports = [
     ./sys/cli.nix
- #   ./sys/kernel.nix
+    ./sys/kernel.nix
     ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
