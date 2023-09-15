@@ -26,8 +26,8 @@ require("nvim-lightbulb").update_lightbulb()
 require("im_select").setup()
 require("lualine").setup()
 require("rsync").setup()
--- require("hardtime").setup()
-require("hbac").setup()
+-- require("hardtime").setup() # 一时难以适应
+-- require("hbac").setup() 和 session 有点冲突
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })

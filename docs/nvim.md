@@ -794,6 +794,7 @@ setxkbmap -option caps:swapescape
 - [nvim-metals](https://github.com/scalameta/nvim-metals) : 芯片前端开发必备
 - [vs-tasks.nvim](https://github.com/EthanJWright/vs-tasks.nvim) : Code Runner
 - [NeoComposer](https://github.com/ecthelionvi/NeoComposer.nvim) : 更好地使用 macro
+- [gesture.nvim](https://github.com/notomo/gesture.nvim) : nvim 中鼠标还可以这样用?
 
 ## 有趣的插件
 
