@@ -108,6 +108,7 @@ in
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     unstable.neovim
+    cheat
     # wakatime
     shellcheck
     shfmt
