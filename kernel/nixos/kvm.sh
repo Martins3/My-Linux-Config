@@ -96,8 +96,7 @@ _EOF_
 #
 # 如果不首先 make 一下, 那么直接执行存在这个错误
 # Makefile:736: include/config/auto.conf: No such file or directory
-# exe "make -j32"
-#
+exe "make -j32"
 exe "make M=./arch/x86/kvm/  modules -j32"
 sudo rmmod kvm_amd kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
