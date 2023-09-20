@@ -12,15 +12,15 @@
 #include <unistd.h>
 
 const unsigned long PAGE_SIZE = 4 * 1024;
-unsigned long MAP_SIZE = 8000L * 1024 * 1024;
+unsigned long MAP_SIZE = 4000L * 1024 * 1024;
 
 #define MAPPING_PROT PROT_READ | PROT_WRITE
 
 int get_file() {
   int fd;
   /* fd = open("/dev/hugepages/", O_RDWR | O_CREAT, 0644); */
-  fd = open("/home/martins3/hack/qemu.ram", O_RDWR | O_CREAT, 0644);
-  fd = open("/root/hack/qemu.ram", O_RDWR | O_CREAT, 0644);
+  fd = open("/home/martins3/qemu.ram", O_RDWR | O_CREAT, 0644);
+  /* fd = open("/root/hack/qemu.ram", O_RDWR | O_CREAT, 0644); */
   /* fd = open("/dev/shm/x", O_RDWR | O_CREAT, 0644); */
   if (fd == -1)
     goto err;
@@ -75,11 +75,10 @@ err:
 }
 
 void *mmap_region() {
-  void *ptr =
-      mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_ANONYMOUS | MAP_SHARED, -1, 0);
+  /* void *ptr = mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_ANONYMOUS | MAP_SHARED, -1, 0); */
   // void *ptr = mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_ANONYMOUS | MAP_PRIVATE, 1, 0);
   // 这两个都是产生 page cache
-  // void *ptr = mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_SHARED, get_file(), 0);
+  void *ptr = mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_SHARED, get_file(), 0);
   // void *ptr = mmap(NULL, MAP_SIZE, MAPPING_PROT, MAP_PRIVATE, get_file(), 0);
   if (ptr == MAP_FAILED)
     goto err;
@@ -92,11 +91,13 @@ err:
 
 int main() {
   /* void *ptr = copy_files(); */
-
   void *ptr = mmap_region();
 
   /* if (madvise(ptr, MAP_SIZE, MADV_HUGEPAGE) == -1) */
   /*   goto err; */
+
+  if (madvise(ptr, MAP_SIZE, MADV_RANDOM) == -1)
+    goto err;
 
   char m = '1';
   for (unsigned long i = 0; i < MAP_SIZE; i += PAGE_SIZE) {

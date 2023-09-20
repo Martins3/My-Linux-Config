@@ -261,28 +261,11 @@ pip install setuptools # 结果 readonly 文件系统
 
 参考[这里](https://nixos.wiki/wiki/Python) 在 home/cli.nix 中添加上内容，但是会遇到这个问题，
 
-```txt
-building '/nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'...
-error: collision between `/nix/store/012yj020ia28qi5nag3j5rfjpzdly0ww-python3-3.9.13-env/bin/idle3.9' and `/nix/store/7l0dc127v4c2m3yar0bmqy9q6sfmypin-python
-3-3.9.13/bin/idle3.9'
-error: builder for '/nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv' failed with exit code 25;
-       last 1 log lines:
-       > error: collision between `/nix/store/012yj020ia28qi5nag3j5rfjpzdly0ww-python3-3.9.13-env/bin/idle3.9' and `/nix/store/7l0dc127v4c2m3yar0bmqy9q6sfmyp
-in-python3-3.9.13/bin/idle3.9'
-       For full logs, run 'nix log /nix/store/x8hf86ji6hzb8ldpf996q5hmfxbg5q6l-home-manager-path.drv'.
-error: 1 dependencies of derivation '/nix/store/yx0w6739xc7cgkf5x6fwqvkrlqy1k647-home-manager-generation.drv' failed to build
-```
-
-发现原来是需要将
-
-```c
+```nix
   home.packages = with pkgs; [
 ```
 
-中的 python 删除就可以了。
-
-如果一个包安装不上，可以在这里:
-
+正确的解决办法是，之后，就按照正常的系统中使用 python:
 ```txt
 python -m venv .venv
 source .venv/bin/activate
@@ -1509,6 +1492,7 @@ sudo cgexec -g memory:mem3 make -j32
 ## 文摘
 https://mtlynch.io/notes/nix-first-impressions/
 https://news.ycombinator.com/item?id=36387874
+https://news.ycombinator.com/item?id=32922901
 
 ## 搞搞 cuda 吧
 https://nixos.org/community/teams/cuda

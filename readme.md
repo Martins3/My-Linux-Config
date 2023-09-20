@@ -18,7 +18,7 @@
   *  🚧 [如何彻底征服 bash](./shell/bash.md)
 * 硬件篇
   * TODO
-*  🚧 [题外话: 为什么要捣鼓 Linux 配置](./docs/why.md)
+*  🚧 [题外话: 折腾 Linux 的一些经验之谈](./docs/why.md)
 
 
 ## ⚙ Install

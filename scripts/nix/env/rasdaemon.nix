@@ -29,6 +29,7 @@ pkgs.stdenv.mkDerivation {
     gcc
     git
     libelf
+    zlib
     libtool
   ];
 }

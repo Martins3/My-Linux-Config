@@ -90,7 +90,7 @@ _EOF_
 # scripts/setlocalversion 似乎还是需要删除的
 # @todo 极度怀疑这个命令的的正确性，尝试下 AMD kvm 的编译
 #
-# 以前这样是没问题的
+# ubuntu 中这样构建是没问题的
 # make ./drivers/md/raid1.ko -j32
 #
 #
