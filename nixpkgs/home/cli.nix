@@ -13,6 +13,7 @@ in
 
   home.packages = with pkgs; [
     gcc
+    gnuplot
     ccache
     mold
     go
@@ -20,6 +21,10 @@ in
     lua
     lua-language-server
     stylua
+    # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
+    # libguestfs
+    # libguestfs-appliance
+    cloud-utils
     ccls
     cargo
     unstable.rustc
@@ -149,26 +154,27 @@ in
     # firecracker
     inetutils
     (python3.withPackages (p: with p; [
-      pandas
-      pygal
       ipython
-      filelock
       autopep8
-      libvirt
-      mock
-      filelock
-      grpcio
-      pytest
-      monotonic
-      libxml2
-      ansible # 自动化运维
+
+      # pandas
+      # pygal
+      # filelock
+      # libvirt
+      # mock
+      # filelock
+      # grpcio
+      # pytest
+      # monotonic
+      # libxml2
+      # ansible
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
     black # python formatter
     man-pages
     pre-commit
-    tiptop
+    # tiptop # TODO : 有趣的性能观测工具，可以了解下其原理
     atop
     nmon
     man-pages-posix

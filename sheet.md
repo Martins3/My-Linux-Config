@@ -142,7 +142,7 @@
 
 - stress-ng --vm-bytes 40000M --vm-keep --vm 8
 
-## gnome:
+## gnome
 
 - eog # 在终端中打开图片
 - nautilus --browser . # 在终端中打开当前目录

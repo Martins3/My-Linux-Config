@@ -4,3 +4,7 @@
 
 ## 其他资源
 https://dotfiles.github.io/
+
+## 但是，不要
+
+1. 过度 fashion : coc.nvim
