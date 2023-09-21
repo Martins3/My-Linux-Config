@@ -28,6 +28,7 @@ in
     ccls
     cargo
     unstable.rustc
+    rustfmt
     cmake
     ov
     # zig
