@@ -800,7 +800,6 @@ setxkbmap -option caps:swapescape
 
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
-- [neodim](https://github.com/zbirenbaum/neodim) : 无法解释了，请看 vcr
 
 ## 学习
 
@@ -832,6 +831,7 @@ setxkbmap -option caps:swapescape
   - https://github.com/koalaman/shellcheck/issues/1284
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
   - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
+  - [neodim](https://github.com/zbirenbaum/neodim) : 等待升级到 0.10
 
 - nvim 有待解决的问题，不是一时半会可以解决的:
   1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
