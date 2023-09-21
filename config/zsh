@@ -26,7 +26,7 @@ fi
 if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
 	export SHELL_ARCH="🦤"
 elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
-	export SHELL_ARCH="💻"
+	export SHELL_ARCH="🐳"
 else
 	export SHELL_ARCH="ARM"
 fi
