@@ -20,6 +20,16 @@ if [[ $ID == "nixos" ]];then
 
   export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
+
+# 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
+# prompt 中通过不同的 emoji 来标识架构
+if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
+	export SHELL_ARCH="🦤"
+elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
+	export SHELL_ARCH="💻"
+else
+	export SHELL_ARCH="ARM"
+fi
 eval "$(starship init zsh)"
 
 
