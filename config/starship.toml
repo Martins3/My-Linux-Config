@@ -74,6 +74,11 @@ $container\
 $shell\
 $character"""
 
+[env_var]
+variable = "SHELL_ARCH"
+style = "bold yellow"
+format = "[$env_value]($style) "
+
 [character]
 success_symbol = "[🧀](bold green) "
 error_symbol = "[🤒](bold red) "
