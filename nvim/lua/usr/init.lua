@@ -27,7 +27,7 @@ require("im_select").setup()
 require("lualine").setup()
 require("rsync").setup()
 -- require("hardtime").setup() # 一时难以适应
--- require("hbac").setup() 和 session 有点冲突
+require("hbac").setup() -- 和 session 有点冲突，但是很不错的
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
   end,
 })
 
+-- 导航栏
 require("aerial").setup({
   backends = { "markdown", "man", "lsp", "treesitter" },
   layout = {
@@ -50,7 +51,13 @@ require("aerial").setup({
   attach_mode = "global",
 })
 
+-- 书签
 require("bookmarks").setup({
   mappings_enabled = false,
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh" },
+})
+
+-- 自动同步
+require("rsync").setup({
+  sync_on_save = false, -- 默认关闭
 })

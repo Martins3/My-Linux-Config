@@ -121,12 +121,12 @@ wk.register({
       ["7"] = { "<cmd>let &cc = &cc == '' ? '75' : ''<cr>", "highlight 75 line" },
       ["8"] = { "<cmd>let &cc = &cc == '' ? '81' : ''<cr>", "highlight 80 line" },
       b = { "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>", "automaticall break line at 80" },
-      -- @todo 警告说这个 feature 会被移除，但是没有对应的文档
       s = { "<cmd>set spell!<cr>", "spell check" },
       w = { "<cmd>set wrap!<cr>", "wrap line" },
       h = { "<cmd>noh<cr>", "Stop the highlighting" },
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       t = { "<cmd>set nocursorline<cr> <cmd>TransparentToggle<cr>", "make background transparent" },
+      r = { "<cmd>RsyncSaveSync toggle<cr>", "toggle rsync on save" },
     },
     x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
