@@ -54,7 +54,7 @@ require("aerial").setup({
 -- 书签
 require("bookmarks").setup({
   mappings_enabled = false,
-  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh" },
+  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
 
 -- 自动同步
