@@ -431,3 +431,13 @@ a
 ```
 ## 看看这个
 https://www.panix.com/~elflord/unix/grep.html#why
+
+## 一个符号，多种场景语义不同的
+
+https://unix.stackexchange.com/questions/47584/in-a-bash-script-using-the-conditional-or-in-an-if-statement
+
+```txt
+if [ "$fname" = "a.txt" ] || [ "$fname" = "c.txt" ]
+```
+
+但是 `ls a || ls` 中的 `||` 则是表示第一个命令失败，那么执行第二个。
