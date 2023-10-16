@@ -824,6 +824,13 @@ https://www.youtube.com/@NixCon
 
 sudo nix-collect-garbage -d
 
+nix-store --gc
+sudo nixos-rebuild boot
+
+遇到了相同的问题(boot 分区满了)，头疼:
+https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/13
+
+
 ## 包搜索
 
 nix search nixpkgs markdown | fzf
@@ -1402,6 +1409,8 @@ man home-configuration.nix 中搜索 dunst
 在 profiles 中右键，参考
 https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 
+目前使用: clash-verge
+
 ## canTouchEfiVariables 到底是什么来头
 
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
@@ -1520,3 +1529,21 @@ pkgs.mkShell {
 }
 ```
 然后配合这个 : https://github.com/Tony-Tan/CUDA_Freshman
+
+https://news.ycombinator.com/item?id=37818570
+
+## 微信
+
+```txt
+  wrapWine_nix = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/wrapWine.nix";
+    hash = "sha256-4vdks0N46J/n8r3wdChXcJbBHPrbTexEN+yMi7zAbKs=";
+  };
+  weixin_nix = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/weixin.nix";
+    hash = "sha256-ql6BE/IZBM31W/yqCayAdktcV2QZ/maVzwskybFZwz0=";
+  };
+  weixin = import weixin_nix {
+    wrapWine = import wrapWine_nix { inherit pkgs; };
+  };
+```

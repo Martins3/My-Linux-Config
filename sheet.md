@@ -138,7 +138,7 @@
 - screen -r
 - screen -list
 
-## stress:
+## stress
 
 - stress-ng --vm-bytes 40000M --vm-keep --vm 8
 

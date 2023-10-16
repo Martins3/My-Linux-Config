@@ -4,17 +4,6 @@ let
     config.allowUnfree = true;
   };
 
-  wrapWine_nix = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/wrapWine.nix";
-    hash = "sha256-4vdks0N46J/n8r3wdChXcJbBHPrbTexEN+yMi7zAbKs=";
-  };
-  weixin_nix = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/weixin.nix";
-    hash = "sha256-ql6BE/IZBM31W/yqCayAdktcV2QZ/maVzwskybFZwz0=";
-  };
-  weixin = import weixin_nix {
-    wrapWine = import wrapWine_nix { inherit pkgs; };
-  };
 in
 {
 
@@ -54,6 +43,7 @@ in
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
+    # clash-verge # 时不时连不上网，难道是我设置不对
     # nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
