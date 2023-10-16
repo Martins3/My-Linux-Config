@@ -31,6 +31,7 @@ in
 
   programs.zsh.enable = true;
 
+
   nixpkgs.overlays = [
     (let
      pinnedPkgs = import(pkgs.fetchFromGitHub {
@@ -162,6 +163,9 @@ in
         # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
         efiSysMountPoint = "/boot";
       };
+
+      systemd-boot.configurationLimit = 3;
+
       grub = {
         # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
         # theme = pkgs.nixos-grub2-theme;

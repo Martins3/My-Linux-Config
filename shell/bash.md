@@ -441,3 +441,33 @@ if [ "$fname" = "a.txt" ] || [ "$fname" = "c.txt" ]
 ```
 
 但是 `ls a || ls` 中的 `||` 则是表示第一个命令失败，那么执行第二个。
+
+
+## bash 中没有 bool
+但是存在 true 和 false command
+
+但是 a=true 这个时候 true 是 string 而已
+https://stackoverflow.com/questions/2953646/how-can-i-declare-and-use-boolean-variables-in-a-shell-script
+
+
+## glob 自动失败的是偶
+
+```sh
+QEMU_PID_DIR="/var/run/libvirt/qemu"
+
+for i in "$QEMU_PID_DIR"/*.pid; do
+  echo $i
+done
+```
+如果一个文件都没有，echo $i 得到
+/var/run/libvirt/qemu/*.pid
+
+
+## glob 语法和 regex 的差别让人真的很烦
+```sh
+disk=nvme0n1
+disk=${disk%%[0-9]*}
+echo $disk # 得到的居然是 nvme ，因为 * 表示拼配任何字符
+```
+
+## TODO : nvim/snippets/sh.snippets 中的 note_cmpstring 需要重写下
