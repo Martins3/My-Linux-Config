@@ -50,7 +50,6 @@
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
 * [踩坑](#踩坑)
-* [调试 vim 配置](#调试-vim-配置)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [有趣的插件](#有趣的插件)
@@ -765,11 +764,6 @@ setxkbmap -option caps:swapescape
 
 ## 踩坑
 1. 用了 5 年 vim 才知道，[`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`
-
-## 调试 vim 配置
-
-有时候，有的 vim 插件会出现问题，为了更好的排除不是其他的配置导致的，可以创建一个最简环境。
-参考[这个脚本](https://gist.github.com/kristijanhusak/a0cb5f4eb2bad3e732a1d18d311ebe2f)
 
 ## 值得一看的配置
 
