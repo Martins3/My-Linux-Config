@@ -157,6 +157,7 @@ in
     (python3.withPackages (p: with p; [
       ipython
       autopep8
+      pygments # 让 gdb-dashboard 支持高亮
 
       # pandas
       # pygal
@@ -250,6 +251,7 @@ in
 
     lcov
 
+    czkawka # 垃圾文件清理
 
     cachix # nixos 的高级玩法，自己架设 binary cache
 
