@@ -29,7 +29,7 @@ shift $((OPTIND - 1))
 
 mkdir -p /tmp/martins3
 bpftrace_cache=/tmp/martins3/bpftrace-cache
-if [[ ! -f $bpftrace_cache ]]; then
+if [[ ! -s $bpftrace_cache ]]; then
 	# shellcheck disable=SC2024
 	sudo bpftrace -l >"$bpftrace_cache"
 fi

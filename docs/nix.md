@@ -830,6 +830,7 @@ sudo nixos-rebuild boot
 遇到了相同的问题(boot 分区满了)，头疼:
 https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/13
 
+搞了半天，这应该是是一个 bug ，这个时候需要手动删除 /boot 下的一些内容才可以。
 
 ## 包搜索
 
@@ -1534,7 +1535,7 @@ https://news.ycombinator.com/item?id=37818570
 
 ## 微信
 
-```txt
+```nix
   wrapWine_nix = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/wrapWine.nix";
     hash = "sha256-4vdks0N46J/n8r3wdChXcJbBHPrbTexEN+yMi7zAbKs=";
