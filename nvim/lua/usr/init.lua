@@ -27,9 +27,7 @@ require("im_select").setup()
 require("lualine").setup()
 require("rsync").setup()
 -- require("hardtime").setup() # 一时难以适应
-require("hbac").setup({
-  close_buffers_with_windows = true,
-})
+-- require("hbac").setup({ close_buffers_with_windows = true, })
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
