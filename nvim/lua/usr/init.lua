@@ -26,6 +26,8 @@ require("nvim-lightbulb").update_lightbulb()
 require("im_select").setup()
 require("lualine").setup()
 require("rsync").setup()
+require('numb').setup()
+require("debugprint").setup()
 -- require("hardtime").setup() # 一时难以适应
 -- require("hbac").setup({ close_buffers_with_windows = true, })
 
