@@ -191,6 +191,7 @@ in
     acpica-tools
     asciidoc
     # iscsi # @todo 尚未使用过
+    lsscsi
     targetcli
     fio
     genact # A nonsense activity generator

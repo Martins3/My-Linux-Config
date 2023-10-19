@@ -1,3 +1,7 @@
+我是一个 hn 的忠实粉丝, 时不时可以看到 nushell 相关的文章，
+https://hn.algolia.com/?q=nushell
+尝试之后，感觉问题很多。
+
 ## 问题
 1. 没有 linter 将静态检查集成到 nvim 中
 2. && || 之后被 and 和 or 替代才对
