@@ -43,7 +43,7 @@ in
     # weixin # 有趣，但是不稳定
     # nur.repos.linyinfeng.wemeet
     nur.repos.linyinfeng.clash-for-windows
-    # clash-verge # 时不时连不上网，难道是我设置不对
+    clash-verge # 时不时连不上网，难道是我设置不对
     # nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
