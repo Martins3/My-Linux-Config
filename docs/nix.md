@@ -1548,3 +1548,7 @@ https://news.ycombinator.com/item?id=37818570
     wrapWine = import wrapWine_nix { inherit pkgs; };
   };
 ```
+
+## 又一个教程
+- https://gitlab.com/engmark/nix-start
+- https://github.com/Misterio77/nix-starter-configs
