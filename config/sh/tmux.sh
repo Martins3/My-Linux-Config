@@ -13,16 +13,16 @@ function usage() {
 
 function note() {
 	if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
-		tmuxp load -d ~/.dotfiles/config/tmux-session.yaml
+		tmuxp load -d ~/.dotfiles/config/tmux-note.yaml
 	elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
-		tmuxp load -d ~/.dotfiles/config/tmux-session2.yaml
+		tmuxp load -d ~/.dotfiles/config/tmux-note-private.yaml
 	else
 		echo "not implement Yet"
 	fi
 }
 
 function code() {
-	tmuxp load -d ~/.dotfiles/config/tmux-session3.yaml
+	tmuxp load -d ~/.dotfiles/config/tmux-code.yaml
 }
 
 while getopts "cn" opt; do
