@@ -29,7 +29,7 @@ require("rsync").setup()
 require('numb').setup()
 require("debugprint").setup()
 -- require("hardtime").setup() # 一时难以适应
--- require("hbac").setup({ close_buffers_with_windows = true, })
+require("hbac").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
