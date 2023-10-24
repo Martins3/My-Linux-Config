@@ -192,6 +192,7 @@ in
     asciidoc
     # iscsi # @todo 尚未使用过
     lsscsi
+    sg3_utils # 提供 scsi_logging_level
     targetcli
     fio
     genact # A nonsense activity generator
@@ -253,6 +254,7 @@ in
     lcov
 
     czkawka # 垃圾文件清理
+    ipmitool
 
     cachix # nixos 的高级玩法，自己架设 binary cache
 

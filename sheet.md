@@ -117,7 +117,7 @@
 - ps --ppid 2 -p 2 -o uname,pid,ppid,cmd,cls
   - 列举出来所有的内核线程
   - https://unix.stackexchange.com/questions/411159/linux-is-it-possible-to-see-only-kernel-space-threads-process
-  - # @todo 理解一下这是啥含义
+  - @todo 理解一下这是啥含义
 - ps -elf # @todo 这个几个都是啥含义
 - ps aux --sort -rss # 对于内存数量排序
 
