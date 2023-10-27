@@ -16,23 +16,13 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader>d "+d
 
-" 让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
-autocmd TextYankPost *
-    \ if v:event.operator is 'y' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-
-autocmd TextYankPost *
-    \ if v:event.operator is 'd' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-
-" 使用 z a 打开和关闭 fold，打开大文件（超过 10万行)的时候可能造成性能问题
+" 使用 z a 打开和关闭 fold ，打开大文件（超过 10 万行）的时候可能造成性能问题
 " set foldlevelstart=99
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 
-" floaterm 永远的神
+" floaterm 功能很强大，但是性能不行，
+" 如果执行的命令存在大量输出，可能卡死整个 nvim
 let g:floaterm_width = 0.7
 let g:floaterm_height = 0.7
 let g:floaterm_keymap_prev   = '<C-p>'
