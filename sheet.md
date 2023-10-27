@@ -74,6 +74,13 @@
 - git format-patch -1 -v # 说明 patch 的版本
 - git am
 
+### git fuzzy am
+
+git am /path/to/some.patch
+patch -p1 < /path/to/some.patch
+git add .
+git am --continue
+
 ## redirect
 
 - https://wizardzines.com/comics/redirects/
