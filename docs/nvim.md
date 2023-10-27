@@ -628,8 +628,21 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
 
-原理上参考:
+增加上如下命令到 init.vim ，可以实现自动拷贝到本地电脑中
+```vim
+" "让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
+autocmd TextYankPost *
+    \ if v:event.operator is 'y' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
 
+autocmd TextYankPost *
+    \ if v:event.operator is 'd' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
+```
+
+原理上参考:
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
