@@ -650,22 +650,6 @@ autocmd TextYankPost *
 
 - 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
 
-<!-- ### [可选] Scala 集成 -->
-<!-- 参考 https://github.com/scalameta/nvim-metals 中的文档: -->
-
-<!-- 安装 cs -->
-<!-- ```sh -->
-<!-- curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs -->
-<!-- chmod +x cs -->
-<!-- ./cs setup -->
-<!-- ``` -->
-
-<!-- 以 [chipyard](https://github.com/ucb-bar/chipyard) 为例，在项目中执行 -->
-<!-- ```sh -->
-<!-- sbt bloopInstall -->
-<!-- ``` -->
-<!-- 然后就可以自动索引了。 -->
-
 ## 本配置源代码解释
 
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
