@@ -780,10 +780,10 @@ setxkbmap -option caps:swapescape
 
 ## 值得一看的配置
 
+- [LazyVim](https://github.com/LazyVim/LazyVim) : folke 大神写的 nvim 配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 这绝对是开始使用 lua 来配置的 nvim 开始的好地方。强烈推荐。
 - [LunarVim](https://github.com/LunarVim/LunarVim) 超过 15000 star 的 IDE 配置
 - [NvChad](https://github.com/NvChad/NvChad) 同上
-- [Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch) : LunarVim 出品的纯 lua neovim 配置，可以配套 [官方视频](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) 来一步步的搭建。
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 - [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel
 
