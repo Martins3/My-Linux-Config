@@ -104,7 +104,6 @@ require("lazy").setup({
   -- 高效编辑
   "tpope/vim-commentary", -- 快速注释代码
   "kylechui/nvim-surround", -- 快速编辑单词两侧的符号
-  -- "tpope/vim-sleuth",               -- 自动设置 tabstop 之类的
   "tpope/vim-repeat", -- 更加强大的 `.`
   "windwp/nvim-autopairs", -- 自动括号匹配
   "honza/vim-snippets", -- 安装公共的的 snippets
