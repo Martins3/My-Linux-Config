@@ -45,7 +45,7 @@
   * [Session](#session)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
-  * [远程 server 上复制粘贴](#远程-server-上复制粘贴)
+  * [从远程 server 上复制粘贴](#从远程-server-上复制粘贴)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -622,7 +622,7 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
 
-### 远程 server 上复制粘贴
+### 从远程 server 上复制粘贴
 
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
 
@@ -642,13 +642,14 @@ autocmd TextYankPost *
     \ endif
 ```
 
+使用方法，选中的内容之后，nvim 的命令行中执行: `OSCYankVisual`
+
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
-但是还是存在一些问题，不过暂时可以接受:
-
-- 在 nvim-tree.lua 中可以使用 `yy` 将文件的绝对路径拷贝到系统剪切板中，这是拷贝远程 server 的剪切板中，而不是本地电脑的系统剪切板中。
+需要注意的是，这个功能依赖于 terminal 支持 OSC52 ，例如 Windows Terminal 就不支持，如果想在 Windows 中
+连接远程的 nvim，可以将 terminal 切换为 wezterm 等支持 OSC52 功能的终端。
 
 ## 本配置源代码解释
 
