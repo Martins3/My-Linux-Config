@@ -49,16 +49,14 @@
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
-* [踩坑](#踩坑)
 * [值得一看的配置](#值得一看的配置)
 * [值得关注的插件](#值得关注的插件)
 * [有趣的插件](#有趣的插件)
 * [学习](#学习)
 * [找资源](#找资源)
-* [常见知识点](#常见知识点)
 * [问题](#问题)
+* [高级话题](#高级话题)
 * [衍生](#衍生)
-* [高级技巧](#高级技巧)
 
 <!-- vim-markdown-toc -->
 
@@ -760,9 +758,6 @@ setxkbmap -option caps:swapescape
 
 - [https://thevaluable.dev/vim-advanced/](https://thevaluable.dev/vim-advanced/)
 
-## 踩坑
-1. 用了 5 年 vim 才知道，[`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`
-
 ## 值得一看的配置
 
 - [LazyVim](https://github.com/LazyVim/LazyVim) : folke 大神写的 nvim 配置
@@ -806,15 +801,6 @@ setxkbmap -option caps:swapescape
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 2. [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
 
-## 常见知识点
-
-- [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
-  - 没有区别，除了拼写不同
-- [使用 sudo 保存一个文件](https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
-  - `w !sudo tee %`
-- [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
-  - `:%norm dw`
-
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
   - shellcheck 无法处理 source 其他的文件的情况。
@@ -833,6 +819,9 @@ setxkbmap -option caps:swapescape
       - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
+## 高级话题
+- [高级话题](./nvim-advantace.md)，至少对于我来说比较高级 🤣
+
 ## 衍生
 
 1. [vim cube](https://github.com/oakes/vim_cubed) : 让 vim 在三维中显示
@@ -845,8 +834,6 @@ setxkbmap -option caps:swapescape
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel nvim 配置
 
-## 高级技巧
-- https://blog.antoyo.xyz/vim-tips
 
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
 [^3]: [The normal command](https://www.reddit.com/r/vim/comments/tbz449/norm_macros_are_great/)
