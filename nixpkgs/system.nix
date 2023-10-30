@@ -11,6 +11,7 @@ in
   imports = [
     ./sys/cli.nix
     ./sys/kernel.nix
+    # ./sys/kernel-419.nix
     ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
   ] ++ (if (builtins.getEnv "DISPLAY") != ""
   then [
@@ -308,8 +309,8 @@ in
   # programs.steam.enable = true; # steam 安装
 
   # 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3
-  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vmd" "iommu_v2"];
-  boot.initrd.kernelModules = ["iommu_v2"];
+  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vmd" ];
+  boot.initrd.kernelModules = [];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   services.samba = {
@@ -338,7 +339,7 @@ in
   };
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = 200;
+    # "vm.swappiness" = 200;
     "vm.overcommit_memory" = 1;
   };
 
