@@ -12,7 +12,6 @@ if [[ $version =~ [0-9]\.[0-9]\.0 ]]; then
 fi
 tarfile=linux-${version}.tar.xz
 
-
 if [[ ! -f $tarfile ]]; then
 	wget https://mirrors.edge.kernel.org/pub/linux/kernel/v6.x/"$tarfile"
 fi
@@ -43,7 +42,7 @@ function exe() {
 # exe "make ./arch/x86/kernel/kvm-intel.ko"
 # @todo
 # 如何使用 direnv ?
-cat <<_EOF_ > /dev/null
+cat <<_EOF_ >/dev/null
   DESCEND objtool
   DESCEND bpf/resolve_btfids
   CALL    scripts/checksyscalls.sh
@@ -53,7 +52,7 @@ make[1]: *** [scripts/Makefile.build:504: arch/x86] Error 2
 make: *** [Makefile:2021: .] Error 2
 _EOF_
 
-cat <<_EOF_ > /dev/null
+cat <<_EOF_ >/dev/null
 [ 1503.956995] kvm: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
 [ 1503.962909] kvm_intel: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
 [ 1580.326624] kvm: version magic '6.2.12-g6825a3677969-dirty SMP preempt mod_unload ' should be '6.2.12 SMP preempt mod_unload '
@@ -70,7 +69,7 @@ _EOF_
 #
 # 去掉 git 是不是就可以解决 XXX，也不是不能接受
 # 实际上，这个报错是无所谓的
-cat <<_EOF_ > /dev/null
+cat <<_EOF_ >/dev/null
 [10606.080260] BPF:      type_id=52229 bits_offset=896
 [10606.080263] BPF:
 [10606.080264] BPF: Invalid name
@@ -96,8 +95,13 @@ _EOF_
 #
 # 如果不首先 make 一下, 那么直接执行存在这个错误
 # Makefile:736: include/config/auto.conf: No such file or directory
+ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
+echo "use nix" >> .envrc && direnv allow
+
+gum confirm "Continue to build kvm?" || exit 0
+
 exe "make -j32"
-exe "make M=./arch/x86/kvm/  modules -j32"
+exe "make M=./arch/x86/kvm/ modules -j32"
 sudo rmmod kvm_amd kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
 sudo insmod ./arch/x86/kvm/kvm-intel.ko

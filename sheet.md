@@ -184,3 +184,6 @@ git am --continue
 
 ## ssh
 - kill unresponsive hung SSH session : `~.`
+
+## rg
+rg -l blk_update_request

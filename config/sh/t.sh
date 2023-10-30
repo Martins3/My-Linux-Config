@@ -17,7 +17,11 @@ while getopts "rcah" opt; do
 			action="realtime"
 			;;
 		h)
-			echo "usage : t funcname"
+			echo "usage:"
+			echo "t funcname     # 获取 stacktrace 统计"
+			echo "t -r funcname  # 获取返回值统计"
+			echo "t -c funcname # 按照进程名称 current 来统计"
+			echo "t -a funcname # 实时显示"
 			exit 0
 			;;
 		*)

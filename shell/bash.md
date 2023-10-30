@@ -471,3 +471,6 @@ echo $disk # 得到的居然是 nvme ，因为 * 表示拼配任何字符
 ```
 
 ## TODO : nvim/snippets/sh.snippets 中的 note_cmpstring 需要重写下
+
+## 看看这个 blog ，深入理解下 shell
+https://a-wing.top/shell/2021/05/01/sh-compatibles-history : 一共三篇
