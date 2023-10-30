@@ -62,7 +62,12 @@ require("lazy").setup({
   "akinsho/bufferline.nvim", -- buffer
   "nvim-lualine/lualine.nvim", -- 状态栏
   "kazhala/close-buffers.nvim", -- 一键删除不可见 buffer
-  "Martins3/hbac.nvim", -- 自动删除长期不用的 buffer
+  {
+    "axkirillov/hbac.nvim",
+    event = "SessionLoadPost",
+    opts = {},
+  },
+  -- 自动删除长期不用的 buffer
   "gelguy/wilder.nvim", -- 更加智能的命令窗口
   "romgrk/fzy-lua-native", -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent", -- 可以移除掉背景色，让 vim 透明
@@ -127,7 +132,7 @@ require("lazy").setup({
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法
-  "olimorris/persisted.nvim", -- 打开 vim 的时候，自动恢复为上一次关闭的状态
+  { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
   "ojroques/vim-oscyank", -- 让 nvim 在远程 server 上拷贝到本地剪切板上
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
