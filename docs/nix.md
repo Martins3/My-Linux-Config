@@ -1552,3 +1552,5 @@ https://news.ycombinator.com/item?id=37818570
 ## 又一个教程
 - https://gitlab.com/engmark/nix-start
 - https://github.com/Misterio77/nix-starter-configs
+
+## 构建内核的确方便，但是构建过程不能利用 cacahe ，现在修改一个 patch 就要重新构建整个内核，很烦
