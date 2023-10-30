@@ -15,10 +15,12 @@
     # "tsx=on"
     # "tsx_async_abort=off"
 
-    # vfio 直通
-    # "intel_iommu=on"
+    # intel_iommu 需要手动打开
+    # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
+    "intel_iommu=on"
+    "iommu=pt"
+
     # "intremap=on"
-    # "iommu=pt"
     # "amd_iommu_intr=vapic"
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"
@@ -85,6 +87,7 @@ boot.kernelPatches = [
     };
   }
 
+
   # 增加一个 patch 的方法
   /*
   {
@@ -94,5 +97,9 @@ boot.kernelPatches = [
     patch = /home/martins3/.dotfiles/nixpkgs/patches/amd_iommu.patch;
   }
   */
+  {
+    name = "dma-ops";
+    patch = /home/martins3/.dotfiles/nixpkgs/patches/dma_ops.patch;
+  }
   ];
 }
