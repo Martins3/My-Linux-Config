@@ -1554,3 +1554,5 @@ https://news.ycombinator.com/item?id=37818570
 - https://github.com/Misterio77/nix-starter-configs
 
 ## 构建内核的确方便，但是构建过程不能利用 cacahe ，现在修改一个 patch 就要重新构建整个内核，很烦
+
+此外，现在 systemd 中构建一次之后，在 zsh 中还是需要重新 make 一次
