@@ -34,7 +34,6 @@ lua require 'usr'
 
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
-      \ 'misc.vim',
       \ 'debug.vim',
       \ 'wilder.vim',
       \ ]
@@ -42,6 +41,30 @@ let s:core_conf_files = [
 for s:fname in s:core_conf_files
   execute printf('source %s/vim/%s', stdpath('config'), s:fname)
 endfor
+
+" 在 markdown 中间编辑 table
+let g:table_mode_corner='|'
+
+" 让光标自动进入到 popup window 中间
+let g:git_messenger_always_into_popup = v:true
+let g:git_messenger_no_default_mappings = v:true
+
+let g:vista_sidebar_position = "vertical topleft"
+let g:vista_default_executive = 'nvim_lsp'
+" let g:vista_finder_alternative_executives = 'ctags'
+
+" 使用 gx 在 vim 中间直接打开链接
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+" 自动关闭 vim 如果 window 中只有一个 filetree
+" https://github.com/kyazdani42/nvim-tree.lua
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+
+" 定义预先录制的 macro
+let @j = 'ysiw`\<Esc>' " 在一个 word 两侧添加上 `，例如将 abc 变为 `abc`
+let @k = 'ysiw"\<Esc>'
 
 let g:loaded_perl_provider = 0
 
