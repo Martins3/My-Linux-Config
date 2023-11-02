@@ -8,8 +8,6 @@
 
   boot.kernelParams = [
     "transparent_hugepage=never"
-    # 十次测量编译内核，打开和不打开的性能差别为 : 131.1  143.4
-    # 性能提升 9.38%
     "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"
@@ -17,10 +15,9 @@
 
     # intel_iommu 需要手动打开
     # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
-    "intel_iommu=on"
-    "iommu=pt"
-
-    # "intremap=on"
+    # "intel_iommu=on"
+    # "iommu=pt"
+    "intremap=off"
     # "amd_iommu_intr=vapic"
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"
