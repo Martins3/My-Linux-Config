@@ -207,7 +207,7 @@ in
     powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
-    # @todo 使用了 xfs 之后，测试磁盘 IOPS 明显不对
+    bcachefs-tools
     libcgroup
     cpulimit
     bat # better cat
