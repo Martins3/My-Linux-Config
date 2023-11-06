@@ -474,3 +474,6 @@ echo $disk # 得到的居然是 nvme ，因为 * 表示拼配任何字符
 
 ## 看看这个 blog ，深入理解下 shell
 https://a-wing.top/shell/2021/05/01/sh-compatibles-history : 一共三篇
+
+## 哈哈，的确，bash 只是适合原型验证而已
+https://benjamincongdon.me/blog/2023/10/29/Avoid-Load-bearing-Shell-Scripts/

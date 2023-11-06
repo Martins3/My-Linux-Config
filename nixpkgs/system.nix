@@ -241,6 +241,22 @@ in
     wantedBy = [ "timers.target" ];
   };
 
+  systemd.user.timers.drink_water = {
+    enable = true;
+    timerConfig = { OnCalendar="*:0/5"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.drink_water = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
+      Restart = "no";
+    };
+  };
+
   systemd.user.services.qemu = {
     enable = true;
     unitConfig = { };
