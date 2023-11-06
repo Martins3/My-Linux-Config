@@ -1,7 +1,6 @@
 -- 在 https://github.com/williamboman/mason-lspconfig.nvim 中含有所有支持的 lsp
 local servers = {
   "lua_ls",
-  "nil_ls",
   "cssls",
   "html",
   -- "tsserver",
@@ -39,7 +38,7 @@ if not lspconfig_status_ok then
   return
 end
 
-local all_servers = {"ccls"}
+local all_servers = {"ccls", "nil_ls"}
 for i = 1, #servers do
   all_servers[#all_servers + 1] = servers[i]
 end
