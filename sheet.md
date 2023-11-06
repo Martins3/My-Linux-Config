@@ -81,6 +81,12 @@ patch -p1 < /path/to/some.patch
 git add .
 git am --continue
 
+
+### git checkout remote branch
+
+git fetch
+git switch dev
+
 ## redirect
 
 - https://wizardzines.com/comics/redirects/
@@ -128,7 +134,7 @@ git am --continue
 - ps -elf # @todo 这个几个都是啥含义
 - ps aux --sort -rss # 对于内存数量排序
 
-## vimscript:
+## vimscript
 
 - "调试方法 echom 然后 :message 查看，注意不能是 echo"
 
@@ -139,7 +145,7 @@ git am --continue
 - \r 是换行
 - :%s/$/abc/ 来给每一行的最后增加 abc
 
-## screen:
+## screen
 
 - screen -d -m sleep 1000
 - screen -r
