@@ -18,6 +18,7 @@ in
     mold
     go
     ventoy
+    # uutils-coreutils @todo 到时候尝试下 rust 的 coreutils
     lua
     lua-language-server
     stylua
