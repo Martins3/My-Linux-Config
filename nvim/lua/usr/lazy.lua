@@ -129,7 +129,7 @@ require("lazy").setup({
   "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
   -- 其他
   "ggandor/leap.nvim", -- 快速移动
-  { "crusj/bookmarks.nvim", branch = "main" }, -- 书签
+  { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法
   { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
