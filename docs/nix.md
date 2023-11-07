@@ -451,7 +451,6 @@ nix eval -f begin.nix
   - 无法同时安装 gcc 和 clang
 
 ## blog
-[my first expression of nix](https://news.ycombinator.com/item?id=36387874_)
 
 [Are We Getting Too Many Immutable Distributions?](https://linuxgamingcentral.com/posts/are-we-getting-too-many-immutable-distros/)
 
@@ -1500,7 +1499,8 @@ sudo cgexec -g memory:mem3 make -j32
 ```
 
 ## 文摘
-https://mtlynch.io/notes/nix-first-impressions/
+- [my first expression of nix](https://news.ycombinator.com/item?id=36387874_)
+  - https://mtlynch.io/notes/nix-first-impressions/
 https://news.ycombinator.com/item?id=36387874
 https://news.ycombinator.com/item?id=32922901
 
@@ -1556,3 +1556,12 @@ https://news.ycombinator.com/item?id=37818570
 ## 构建内核的确方便，但是构建过程不能利用 cacahe ，现在修改一个 patch 就要重新构建整个内核，很烦
 
 此外，现在 systemd 中构建一次之后，在 zsh 中还是需要重新 make 一次
+
+## 如何在 nixpkgs 的基础上稍作修改
+git clone nixpkgs
+
+跑到对应的路径下去:
+
+nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
+
+https://elatov.github.io/2022/01/building-a-nix-package/
