@@ -27,8 +27,8 @@ threads=$cores
 
 # https://stackoverflow.com/questions/6245570/how-do-i-get-the-current-branch-name-in-git
 branch=$(git rev-parse --abbrev-ref HEAD)
-if [[ $branch != master ]]; then
-	echo "checkout to master"
+if [[ $branch == master ]]; then
+	git pull
 fi
 
 # 1. 内核为了编译速度，使用 #include 直接包含 .c 文件
@@ -45,8 +45,6 @@ for i in "${special_files[@]}"; do
 	git restore --staged "$i"
 	git checkout -- "$i"
 done
-
-git pull
 
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 cp /home/martins3/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
@@ -76,7 +74,7 @@ fi
 
 if [[ ! ${kcov} ]]; then
 	# curl -d "martins3,tag=13900K kernel=$SECONDS" -X POST 'http://127.0.0.1:8428/write' || true
-  echo "$(date): $SECONDS" >>/home/martins3/core/cl.txt
+	echo "$(date): $SECONDS" >>/home/martins3/core/cl.txt
 fi
 
 # 编译文档的速度太慢了，不想每次都等那么久
