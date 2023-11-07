@@ -31,7 +31,7 @@ in
     unstable.rustc
     rustfmt
     cmake
-    ov
+    ov # feature rich pager
     # zig
     gnumake
     audit # 没啥意义，用不起来
