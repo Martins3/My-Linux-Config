@@ -92,7 +92,7 @@ git switch dev
 - https://wizardzines.com/comics/redirects/
 - ls > /dev/null
 - ls 2> /dev/null
-- ls &> /dev/null
+- ls &> /dev/null # 使用 bash 即可
 - cat < file
 
 ## python
@@ -193,3 +193,8 @@ git switch dev
 
 ## rg
 rg -l blk_update_request
+
+
+## wget
+递归拷贝:
+https://stackoverflow.com/questions/273743/using-wget-to-recursively-fetch-a-directory-with-arbitrary-files-in-it

@@ -63,7 +63,7 @@ in
     exa # more powerful ls
     oh-my-posh # @todo for powershell
     gource
-    neofetch
+    unstable.fastfetch
     bear
     tree
     fd
