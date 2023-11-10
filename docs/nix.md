@@ -218,10 +218,11 @@ npm install -g @lint-md/cli@beta
 npm i -g bash-language-server
 npm install -g vim-language-server
 npm install -g prettier
+npm install -g @microsoft/inshellisense
 ```
 
 设置代理现在可以在 nixos 中配置了:
-```c
+```sh
 npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
 yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
 ```
