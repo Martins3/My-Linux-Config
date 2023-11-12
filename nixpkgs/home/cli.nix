@@ -133,14 +133,13 @@ in
     heaptrack
     kernelshark
     trace-cmd
-    ltrace # library trace
+    # ltrace # library trace
     unstable.bcc
     # @todo 不知道为什么居然又两个程序
     # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
     bpftool
     bpftools
     acpi
-    liburing
     cpuid
     # @todo https://github.com/kkharji/sqlite.lua/issues/28
     # 需要设置 libsqlite3.so 的位置
@@ -266,6 +265,10 @@ in
     efm-langserver # 集成 shellcheck
     marksman
     nodePackages.pyright
+
+    # 为了方便，将常见的 c 库直接放出来
+    libaio
+    liburing
   ];
 
   programs.zsh = {
