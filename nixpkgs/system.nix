@@ -115,6 +115,7 @@ in
       8889 # clash
       5900 # qemu vnc
       445 # samba
+      53317 # localsend
       /* 8384 # syncthing */
       /* 22000 # syncthing */
     ];
@@ -231,13 +232,14 @@ in
   # systemctl --user list-timers --all
   systemd.user.timers.kernel = {
     enable = true;
-    timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-1..7 4:00:00"; }; # 周六的晚上运行一次
     wantedBy = [ "timers.target" ];
   };
 
   systemd.user.timers.qemu = {
     enable = true;
-    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-1..7 4:00:00"; };
     wantedBy = [ "timers.target" ];
   };
 

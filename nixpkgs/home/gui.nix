@@ -35,16 +35,11 @@ in
     unstable.thunderbird
     # unstable.feishu
     microsoft-edge
-    podman-desktop
-    # tdesktop # telegram
-    # unstable.flutter # 版本不足以支持 localsend @todo 等到支持的时候再去分析吧
-    # nur.repos.xddxdd.wechat-uos # 别整这些虚头巴脑了，还是虚拟机吧，解决一切问题。
-    # nur.repos.xddxdd.qq
-    # weixin # 有趣，但是不稳定
-    # nur.repos.linyinfeng.wemeet
-    nur.repos.linyinfeng.clash-for-windows
+    # podman-desktop
+    # tdesktop
+    # telegram
+    localsend
     clash-verge # 时不时连不上网，难道是我设置不对
-    # nur.repos.eh5.netease-cloud-music
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具
