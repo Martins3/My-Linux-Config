@@ -14,40 +14,44 @@ static struct kobject *mymodule;
 static int myvariable = 0;
 
 static ssize_t myvariable_show(struct kobject *kobj,
-                               struct kobj_attribute *attr, char *buf) {
-  return sprintf(buf, "%d\n", myvariable);
+			       struct kobj_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d\n", myvariable);
 }
 
 static ssize_t myvariable_store(struct kobject *kobj,
-                                struct kobj_attribute *attr, char *buf,
-                                size_t count) {
-  sscanf(buf, "%du", &myvariable);
-  return count;
+				struct kobj_attribute *attr, char *buf,
+				size_t count)
+{
+	sscanf(buf, "%du", &myvariable);
+	return count;
 }
 
 static struct kobj_attribute myvariable_attribute =
-    __ATTR(myvariable, 0660, myvariable_show, (void *)myvariable_store);
+	__ATTR(myvariable, 0660, myvariable_show, (void *)myvariable_store);
 
-int sysfs_init(void) {
-  int error = 0;
+int sysfs_init(void)
+{
+	int error = 0;
 
-  pr_info("mymodule: initialised\n");
+	pr_info("mymodule: initialised\n");
 
-  // 在 /kernel/mymodule 中
-  mymodule = kobject_create_and_add("mymodule", kernel_kobj);
-  if (!mymodule)
-    return -ENOMEM;
+	// 在 /kernel/mymodule 中
+	mymodule = kobject_create_and_add("mymodule", kernel_kobj);
+	if (!mymodule)
+		return -ENOMEM;
 
-  error = sysfs_create_file(mymodule, &myvariable_attribute.attr);
-  if (error) {
-    pr_info("failed to create the myvariable file "
-            "in /sys/kernel/mymodule\n");
-  }
+	error = sysfs_create_file(mymodule, &myvariable_attribute.attr);
+	if (error) {
+		pr_info("failed to create the myvariable file "
+			"in /sys/kernel/mymodule\n");
+	}
 
-  return error;
+	return error;
 }
 
-void sysfs_exit(void) {
-  pr_info("mymodule: Exit success\n");
-  kobject_put(mymodule);
+void sysfs_exit(void)
+{
+	pr_info("mymodule: Exit success\n");
+	kobject_put(mymodule);
 }
