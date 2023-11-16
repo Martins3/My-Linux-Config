@@ -226,7 +226,7 @@ sudo apt install bear
 通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
 在 neovim 中执行 `:Mason` 可以检查各种插件的执行状态。
 
-对于 mason 不支持的 lsp，就需要手动安装了:
+对于 mason 不支持的 lsp，就需要手动安装了，例如 `sudo apt install ccls`
 - [ccls](https://github.com/MaskRay/ccls/wiki/Install)
 
 ### 安装本配置

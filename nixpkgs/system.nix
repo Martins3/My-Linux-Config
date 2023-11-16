@@ -115,7 +115,6 @@ in
       8889 # clash
       5900 # qemu vnc
       445 # samba
-      53317 # localsend
       /* 8384 # syncthing */
       /* 22000 # syncthing */
     ];
