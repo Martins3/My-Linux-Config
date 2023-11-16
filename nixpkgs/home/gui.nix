@@ -38,7 +38,6 @@ in
     # podman-desktop
     # tdesktop
     # telegram
-    localsend
     clash-verge # 时不时连不上网，难道是我设置不对
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用

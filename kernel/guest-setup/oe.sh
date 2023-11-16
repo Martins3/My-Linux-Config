@@ -138,12 +138,20 @@ function setup_zellij() {
 	echo "TODO"
 }
 
+function setup_fzf() {
+	echo " https://github.com/junegunn/fzf/blob/master/BUILD.md"
+}
+
 function setup_initramfs() {
 	scp /boot/initramfs-"$(uname -r)".img martins3@10.0.2.2:/tmp
 }
 
 function setup_partid() {
 	echo "TODO : 获取到 root partuuid ，拷贝取出"
+}
+
+function remove_paswd() {
+	echo "TODO"
 }
 
 cd ~
@@ -172,3 +180,4 @@ setup_libcgroup
 setup_stress-ng
 setup_fio
 setup_zellij
+setup_fzf
