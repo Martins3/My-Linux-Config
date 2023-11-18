@@ -20,12 +20,12 @@ function update() {
 	git reset --hard
 	[[ -s $A ]] && git apply $A
 	[[ -s $B ]] && git apply $B
-	cp ~/core/linux/.config ~/core/linux-build/
 }
 
 if diff $A $A1 &>/dev/null; then
 	if diff $B $B1 &>/dev/null; then
 		echo "Nothing changed, nothing to do 😹"
+		cp ~/core/linux/.config ~/core/linux-build/
 		exit 0
 	fi
 fi

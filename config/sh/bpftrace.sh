@@ -4,24 +4,33 @@ set -E -e -u -o pipefail
 
 cd "$(dirname "$0")"
 
+function show_msg() {
+	gum style --foreground 212 --border-foreground 212 --border double --margin "1 2" --padding "2 4" "$1"
+}
+
 action="trace"
-while getopts "rcah" opt; do
+while getopts "rcash" opt; do
 	case $opt in
+		a)
+			action="args"
+			;;
 		c)
 			action="current"
 			;;
 		r)
 			action="kretprobe"
 			;;
-		a)
+		s)
 			action="realtime"
 			;;
 		h)
-			echo "usage:"
-			echo "t funcname     # 获取 stacktrace 统计"
-			echo "t -r funcname  # 获取返回值统计"
-			echo "t -c funcname # 按照进程名称 current 来统计"
-			echo "t -a funcname # 实时显示"
+			help="usage:
+t funcname     # 获取 stacktrace 统计
+t -r funcname  # 获取返回值统计
+t -c funcname  # 按照进程名称 current 来统计
+t -s funcname  # 实时显示
+t -a funcname  # 生成参数统计模板"
+			show_msg "$help"
 			exit 0
 			;;
 		*)
@@ -39,10 +48,18 @@ if [[ ! -s $bpftrace_cache ]]; then
 fi
 
 if [[ $# -eq 0 ]]; then
-	entry=$(fzf <"$bpftrace_cache")
+	if [[ $action == args ]]; then
+		entry=$(fzf --query="kfunc:vmlinux:" <"$bpftrace_cache")
+	else
+		entry=$(fzf <"$bpftrace_cache")
+	fi
 else
 	echo "$*"
-	entry=$(fzf --query="$*" <"$bpftrace_cache")
+	if [[ $action == args ]]; then
+		entry=$(fzf --query="kfunc:vmlinux:$*" <"$bpftrace_cache")
+	else
+		entry=$(fzf --query="$*" <"$bpftrace_cache")
+	fi
 fi
 
 if [[ -z $entry ]]; then
@@ -51,6 +68,10 @@ fi
 
 scripts=""
 case "$action" in
+	args)
+		printf '%s "%s"' "sudo bpftrace -e" "$entry {printf(\\\"%d\\n\\\", args->);}"
+		exit 0
+		;;
 	current)
 		scripts="$entry { @[curtask->comm] = count() }"
 		;;
@@ -67,7 +88,7 @@ case "$action" in
 		scripts="$entry { print(\"hit $entry \n\") }"
 		;;
 	*)
-		exit 12
+		exit 1
 		;;
 esac
 echo "sudo bpftrace -e \"$scripts\""
