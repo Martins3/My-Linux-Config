@@ -36,7 +36,7 @@ int sysfs_init(void)
 
 	pr_info("mymodule: initialised\n");
 
-	// 在 /kernel/mymodule 中
+	// 创建 /sys/kernel/mymodule
 	mymodule = kobject_create_and_add("mymodule", kernel_kobj);
 	if (!mymodule)
 		return -ENOMEM;

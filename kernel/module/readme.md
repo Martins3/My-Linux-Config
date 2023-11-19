@@ -75,3 +75,6 @@ https://lwn.net/Articles/777036/
 - call_rcu
 
 ## workqueue
+
+## 还是用 sysfs 来整理这些代码吧
+除了 procfs 外吧

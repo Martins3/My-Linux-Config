@@ -232,13 +232,13 @@ in
   systemd.user.timers.kernel = {
     enable = true;
     # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
-    timerConfig = { OnCalendar = "Fri *-*-1..7 4:00:00"; }; # 周六的晚上运行一次
+    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
     wantedBy = [ "timers.target" ];
   };
 
   systemd.user.timers.qemu = {
     enable = true;
-    timerConfig = { OnCalendar = "Fri *-*-1..7 4:00:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; };
     wantedBy = [ "timers.target" ];
   };
 

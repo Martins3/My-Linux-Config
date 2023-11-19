@@ -13,6 +13,7 @@ git diff --cached >$B
 A1=/tmp/martins3/target_build_unstage.diff
 B1=/tmp/martins3/target_build_staged.diff
 cd $target
+git pull
 git diff >$A1
 git diff --cached >$B1
 
