@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.stdenv.mkDerivation {
-  name = "kernel";
+  name = "yyds";
   buildInputs = with pkgs; [
     getopt
     flex
