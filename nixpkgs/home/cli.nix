@@ -48,7 +48,7 @@ in
     jq
     aspell
     aspellDicts.en
-    yq-go
+    # yq-go
     xplr
     htop
     btop
