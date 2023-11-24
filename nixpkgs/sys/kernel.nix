@@ -17,8 +17,8 @@
     # intel_iommu 需要手动打开
     # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
     "intel_iommu=on"
-    # "iommu=pt"
-    # "intremap=off"
+    "iommu=pt"
+    "intremap=on"
     # "amd_iommu_intr=vapic"
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"

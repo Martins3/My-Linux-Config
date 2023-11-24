@@ -48,6 +48,15 @@ snippet note_cmpvar "变量比较"
 	if [[ -z ${var+x} ]]; then echo "var is unset"; else echo "var is set to '$var'"; fi
 	# -n 和 -z 的语义相反
 
+	# 一个典型的使用案例
+	kernel_version=${1-}
+	kernel_arch=${2-}
+	if [[ -z $kernel_version || -z $kernel_arch ]]; then
+		echo "$0 <kernel_version> <kernel_arch>"
+		exit 1
+	fi
+
+
 
 snippet note_cmplogic "比较中的 and 和 or"
 	# [[ $foo = bar && $bar = foo ]]
