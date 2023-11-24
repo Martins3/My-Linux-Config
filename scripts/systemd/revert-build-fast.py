@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import re
+import subprocess
+import os
 
 
 def add_file_to_arr(file, arr):
@@ -40,21 +42,28 @@ def repalce_include_with_file(working_dir, file):
 
 
 def write_arr_to_file(file, lines):
-    with open(file, 'w') as f:
+    with open(file, "w") as f:
         for line in lines:
             f.write(f"{line}\n")
 
 
-def revert(working_dir, file):
-    file = working_dir+file
+def revert(working_dir: str, file: str) -> str:
+    file = working_dir + file
     lines = repalce_include_with_file(working_dir, file)
     write_arr_to_file(file, lines)
+    return file
 
 
 if __name__ == "__main__":
-    dir = "/home/martins3/core/linux/kernel/sched/"
-    revert(dir, "build_policy.c")
-    revert(dir, "build_utility.c")
+    os.chdir("/home/martins3/core/linux/")
 
-    dir="/home/martins3/core/linux/kernel/rcu/"
-    revert(dir, "tree.c")
+    reverted_file: list[str] = []
+    dir = "kernel/sched/"
+    reverted_file.append(revert(dir, "build_policy.c"))
+    reverted_file.append(revert(dir, "build_utility.c"))
+
+    dir = "kernel/rcu/"
+    reverted_file.append(revert(dir, "tree.c"))
+
+    for file in reverted_file:
+        subprocess.run(["git", "add", file])
