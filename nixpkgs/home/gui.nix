@@ -14,7 +14,6 @@ in
   home.packages = with pkgs; [
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
-    # unstable.clash
     unstable.wpsoffice
     unstable.sublime-merge
     unstable.vscode
@@ -38,7 +37,7 @@ in
     # podman-desktop
     # tdesktop
     # telegram
-    clash-verge # 时不时连不上网，难道是我设置不对
+    # unstable.clash-verge # 时不时连不上网，难道是我设置不对
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具

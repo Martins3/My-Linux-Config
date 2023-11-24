@@ -41,6 +41,7 @@ in
     tmuxp
     pueue # TODO 研究下这个怎么利用
     screen
+    clash
     tig
     xclip # x clipboard
     wl-clipboard # wayland clipboard
@@ -96,7 +97,6 @@ in
     kmon # 方便的管理内核模块
     numactl
     kexec-tools
-    helix # modern neovim
     rpm
     stress-ng
     numatop
@@ -115,6 +115,7 @@ in
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     unstable.neovim
+    # helix # modern neovim
     cheat
     # wakatime
     shellcheck

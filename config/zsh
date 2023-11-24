@@ -17,7 +17,6 @@ if [[ $ID == "nixos" ]];then
   function en_direnv() {
     echo "use nix" >> .envrc && direnv allow
   }
-
   export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
 fi
 
