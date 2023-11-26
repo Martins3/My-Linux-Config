@@ -41,7 +41,7 @@ in
     tmuxp
     pueue # TODO 研究下这个怎么利用
     screen
-    clash
+    clash-meta
     tig
     xclip # x clipboard
     wl-clipboard # wayland clipboard
