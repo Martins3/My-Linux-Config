@@ -35,6 +35,10 @@
 - git reset : 将所有的内容 unstage
 - git checkout -- fs/ : 将 unstage 的修改删除掉
 
+### 更新带有 submodule 的仓库
+
+- git submodule update --recursive
+
 ### git log
 
 - git log --format="%h --> %B"
@@ -81,7 +85,7 @@ git add .
 git am --continue
 
 
-### git checkout remote branch
+### git checkout to remote branch
 
 git fetch
 git switch dev
@@ -107,6 +111,7 @@ git switch dev
 - grep -n -C 2 something \* : -C 2 表示展示行数 -n 展示行号
 - grep -r . /sys/module/zswap/parameters/
   - 打印的同时又展示出来数值
+  - 或者 cd /sys/module/zswap/parameters/ && grep -r .
 
 ## printf
 
