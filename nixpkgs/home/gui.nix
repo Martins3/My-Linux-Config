@@ -34,6 +34,7 @@ in
     unstable.thunderbird
     # unstable.feishu
     microsoft-edge
+    vlc
     # podman-desktop
     # tdesktop
     # telegram
