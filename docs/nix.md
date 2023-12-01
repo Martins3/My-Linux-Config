@@ -1401,7 +1401,7 @@ https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
 
 ```sh
-efibootmgr -c -d /dev/sda -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
+efibootmgr -c -d /dev/nvme0n1 -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
 ```
 1. 注意，-p 1 来设置那个 partition 的。
 2. 后面的那个路径需要将 boot 分区 mount 然后具体产看，还有一次是设置的 "\EFI\nixo\BOOTX64.efi"
@@ -1415,6 +1415,15 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 我设置的是 /boot 似乎影响也不大啊!
 
 不知道为什么 efibootmgr 在 home.cli 中无法安装。
+
+
+删除一个:
+```txt
+sudo efibootmgr  -B -b 3 # 3 是参数
+```
+
+设置优先级
+sudo efibootmgr -o 0,1,2
 
 ## [ ] 如何下载 nixd
 
@@ -1542,7 +1551,7 @@ https://news.ycombinator.com/item?id=37818570
 
 此外，现在 systemd 中构建一次之后，在 zsh 中还是需要重新 make 一次
 
-## 如何在 nixpkgs 的基础上稍作修改
+## 如何在 nixpkgs 的基础上稍作修改制作自己的包
 git clone nixpkgs
 
 跑到对应的路径下去:
