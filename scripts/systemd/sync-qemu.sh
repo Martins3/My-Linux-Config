@@ -49,7 +49,7 @@ threads=$((cores - 1))
 # --enable-trace-backends=nop
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="  --prefix=/home/martins3/core/qemu/instsall --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
+QEMU_options="  --prefix=martins3 --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
 QEMU_options+=" --enable-virtfs"
 
@@ -70,6 +70,7 @@ function run() {
 	fi
 }
 
-run "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
-run "cd build && chrt -i 0 make CC='ccache gcc' -j$threads"
+cmd="mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .."
+cmd+=" && chrt -i 0 make CC='ccache gcc' -j$threads"
+run "$cmd"
 # nvim -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

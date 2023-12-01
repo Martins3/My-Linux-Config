@@ -1473,11 +1473,15 @@ https://mynixos.com/
 ## 不知道如何调试代码，debug symbol 如何加载
 - https://nixos.wiki/wiki/Debug_Symbols
 
-## [ ] sar 无法正常使用
+## [x] sar 无法正常使用
 ```txt
 🧀  sar
 Cannot open /var/log/sa/sa21: No such file or directory
 Please check if data collecting is enabled
+```
+兄弟，是这个:
+```sh
+sar -n DEV 1
 ```
 
 ## 如何在 cgroup 中编译内核

@@ -5,7 +5,6 @@ sudo dnf install -y npm cargo clang-devel llvm-devel
 sudo dnf install -y tig tmux cmake rsync ripgrep
 sudo dnf install -y starship duf fastfetch
 
-
 git clone --depth=1 --recursive https://github.com/MaskRay/ccls
 cd ccls
 cmake .
@@ -16,7 +15,8 @@ function setup_git() {
 }
 
 function setup_zellij() {
-	echo "默认没有 ?"
+	sudo dnf copr enable varlad/zellij
+	sudo dnf install zellij
 }
 
 function setup_gum() {
@@ -51,6 +51,13 @@ function setup_zsh() {
 	cargo install exa
 	cargo install atuin
 
-  # 跳转工具需要放到这里
+	# 跳转工具需要放到这里
 	# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin/:$PATH
 }
+
+function setup_qemu() {
+	sudo dnf install sphinx ninja-build glib2-devel libiscsi-devel virglrenderer-devel gtk3-devel numactl-devel libusb1-devel
+}
+
+sudo dnf install -y iperf3 btop perf libaio-devel liburing-devel
+sudo dnf install -y ccache fzf
