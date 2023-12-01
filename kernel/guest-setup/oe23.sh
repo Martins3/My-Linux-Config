@@ -40,10 +40,10 @@ function setup_libcgroup() {
 # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 function ohmyzsh() {
 	yum install -y zsh git
-	if [[ ! -d /root/.oh-my-zsh ]]; then
+	if [[ ! -d ~/.oh-my-zsh ]]; then
 		sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 		git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
-		sed -i "s/plugins=(git)/plugins=(git zsh-autosuggestions)/g" /root/.zshrc
+		sed -i "s/plugins=(git)/plugins=(git zsh-autosuggestions)/g" ~/.zshrc
 	fi
 }
 

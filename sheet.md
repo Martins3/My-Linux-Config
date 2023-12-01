@@ -35,8 +35,7 @@
 - git reset : 将所有的内容 unstage
 - git checkout -- fs/ : 将 unstage 的修改删除掉
 
-### 更新带有 submodule 的仓库
-
+### submodule
 - git submodule update --recursive
 
 ### git log

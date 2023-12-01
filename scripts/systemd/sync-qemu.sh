@@ -62,6 +62,14 @@ QEMU_options+=" --enable-virtfs"
 #
 # 配合 scripts/nix/env/qemu.nix 一并修改
 
-nix-shell --command "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
-nix-shell --command "cd build && chrt -i 0 make CC='ccache gcc' -j$threads"
+function run() {
+	if [[ -d /nix ]]; then
+		nix-shell --command "$1"
+	else
+		eval "$1"
+	fi
+}
+
+run "mkdir -p build && cd build && ../configure ${QEMU_options}  && cp compile_commands.json .. "
+run "cd build && chrt -i 0 make CC='ccache gcc' -j$threads"
 # nvim -c ":e softmmu/vl.c" -c "lua vim.loop.new_timer():start(1000 * 60 * 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
