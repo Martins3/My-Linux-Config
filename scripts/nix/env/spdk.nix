@@ -17,6 +17,38 @@ pkgs.mkShell rec {
     lcov
     /* elfutils */
     python3Packages.pyelftools
+     pkg-config
+     nasm
+     yasm
+    python3
+    python3.pkgs.setuptools
+    autoconf
+     automake
+    pkgconfig
+    autoconf
+    gettext
+    autoconf-archive
+    autoconf
+    automake
+    libtool
+    bison
+    flex
+
+
+    pkg-config
+    cunit
+    dpdk
+    jansson
+    libaio
+    libbsd
+    libelf
+    libuuid
+    libpcap
+    libnl
+    numactl
+    openssl
+    ncurses
+    zlib
   ];
 
   # @todo 不知道这个是什么原理?
