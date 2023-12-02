@@ -215,10 +215,10 @@ nix-env -qaPA nixos.nodePackages
 
 ```sh
 npm install -g @lint-md/cli@beta
-npm i -g bash-language-server
-npm install -g vim-language-server
+# npm i -g bash-language-server
+# npm install -g vim-language-server
 npm install -g prettier
-npm install -g @microsoft/inshellisense
+# npm install -g @microsoft/inshellisense
 ```
 
 设置代理现在可以在 nixos 中配置了:

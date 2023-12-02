@@ -10,6 +10,12 @@
 
 参考 rime/linux-install.sh ，其实也就是:
 
+首先在你对应的系统中安装 fcitx-rime，例如:
+- fedora : https://fedoraproject.org/wiki/I18N/Fcitx5
+```sh
+sudo dnf install -y fcitx5-rime
+```
+
 - 安装 : [rime](https://github.com/fcitx/fcitx-rime)
 - 安装并且使用: [plum](https://github.com/rime/plum)
 - 从 [雾凇拼音](https://github.com/iDvel/rime-ice) 中增加词库，雾凇拼音其他的配置一时无法全部消化吸收，仅仅拷贝其中的 cn_dicts 来扩充自己的词库。
