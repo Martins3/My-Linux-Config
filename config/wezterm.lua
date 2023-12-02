@@ -129,7 +129,7 @@ return {
       key = "t",
       mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({
-        args = { "/run/current-system/sw/bin/bash", "-l", "-c", "zellij attach || zellij" },
+        args = { "bash", "-l", "-c", "zellij attach || zellij" },
       }),
       -- action = wezterm.action.ShowLauncher
     },
@@ -144,7 +144,7 @@ return {
     { key = "F2", mods = "", action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
-  default_prog = { "/run/current-system/sw/bin/bash", "-l", "-c", "/usr/bin/env tmux attach || /usr/bin/env tmux" },
+  default_prog = { "bash", "-l", "-c", "/usr/bin/env tmux attach || /usr/bin/env tmux" },
   -- default_prog = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
   color_scheme = "Solarized (dark) (terminal.sexy)",
   font_size = get_font_size(),

@@ -51,7 +51,7 @@ function setup_zsh() {
 	cargo install exa
 	cargo install atuin
 
-	# 跳转工具需要放到这里
+	# 跳转工具需要放到 .zshrc 的最前面
 	# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin/:$PATH
 }
 
@@ -61,3 +61,25 @@ function setup_qemu() {
 
 sudo dnf install -y iperf3 btop perf libaio-devel liburing-devel
 sudo dnf install -y ccache fzf
+
+# https://superuser.com/questions/1196241/how-to-remap-caps-lock-on-wayland
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+
+sudo dnf install openvswitch
+sudo systemctl enable openvswitch.service
+sudo systemctl start openvswitch.service
+sudo ovs-vsctl show
+
+sudo dnf install bpftrace
+
+sudo dnf install fcitx5-rime
+
+sudo dnf install kernel-devel kernel-debug
+
+sudo dnf install python3-pip
+
+pip install pre-commit
+
+dnf install fd-find
+
+# npm install @lint-md/cli@beta
