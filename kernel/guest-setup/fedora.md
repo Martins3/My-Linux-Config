@@ -11,11 +11,20 @@ sudo kdumpctl reset-crashkernel
 sudo systemctl enable kdump.service
 sudo dnf install --enablerepo=fedora-debuginfo --enablerepo=updates-debuginfo kexec-tools crash kernel-debuginfo
 
-## word
+## 字体
 https://www.nerdfonts.com/font-downloads
 
 ```sh
 mkdir ~/.local/share/fonts
 unzip *.zip  -d ~/.local/share/fonts/
 fc-cache ~/.local/share/fonts
+```
+
+## edge 浏览器
+
+```txt
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
+sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo
+sudo dnf install microsoft-edge-beta
 ```
