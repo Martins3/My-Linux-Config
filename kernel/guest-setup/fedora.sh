@@ -80,6 +80,7 @@ sudo dnf install python3-pip
 
 pip install pre-commit
 
-dnf install fd-find
+sudo dnf install -y fd-find sysstat
 
 # npm install @lint-md/cli@beta
+#
