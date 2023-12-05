@@ -26,6 +26,7 @@ in
     # libguestfs
     # libguestfs-appliance
     cloud-utils
+    adoptopenjdk-icedtea-web
     ccls
     cargo
     unstable.rustc
@@ -90,16 +91,16 @@ in
     proxychains-ng
     sshpass
     gping # better ping
-    auto-cpufreq
-    frp
     pingu # interesting ping
+    auto-cpufreq
+    # frp # 反向代理
     nbd
     kmon # 方便的管理内核模块
     numactl
+    # numatop # CPU 根本不支持
     kexec-tools
     rpm
     stress-ng
-    numatop
     OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     # 通过 tweaks 调整开机自启动
     gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
@@ -239,7 +240,7 @@ in
     asciiquarium
     bc # bash 数值计算
 
-    verilator # Fast and robust (System)Verilog simulator/compiler
+    # verilator # Fast and robust (System)Verilog simulator/compiler
 
     cowsay
     figlet # 艺术字
@@ -259,7 +260,7 @@ in
     czkawka # 垃圾文件清理
     ipmitool
 
-    cachix # nixos 的高级玩法，自己架设 binary cache
+    # cachix # nixos 的高级玩法，自己架设 binary cache
 
     # lsp
     unstable.rust-analyzer

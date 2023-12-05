@@ -16,7 +16,7 @@ https://www.nerdfonts.com/font-downloads
 
 ```sh
 mkdir ~/.local/share/fonts
-unzip *.zip  -d ~/.local/share/fonts/
+unzip *.zip  -d ~/.local/share/fonts/ #
 fc-cache ~/.local/share/fonts
 ```
 
@@ -28,3 +28,5 @@ sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
 sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo
 sudo dnf install microsoft-edge-beta
 ```
+
+## 将默认的文件系统记得换一下

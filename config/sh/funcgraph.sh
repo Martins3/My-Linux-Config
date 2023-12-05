@@ -27,4 +27,5 @@ fi
 
 echo  function_graph | sudo tee /sys/kernel/debug/tracing/current_tracer
 echo "${entry%\[*\]}" | sudo tee /sys/kernel/debug/tracing/set_graph_function
+echo | sudo tee /sys/kernel/debug/tracing/set_ftrace_filter # 有点奇葩，为什么不清空会影响输出的内容
 sudo cat /sys/kernel/debug/tracing/trace_pipe
