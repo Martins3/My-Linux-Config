@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -E -e -u -o pipefail
+set -x
 
 source=~/core/linux
 target=~/core/linux-build
