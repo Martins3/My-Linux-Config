@@ -78,7 +78,7 @@ sudo dnf install kernel-devel kernel-debug
 
 sudo dnf install python3-pip
 
-pip install pre-commit
+pip install pre-commit tmuxp
 
 sudo dnf install -y fd-find sysstat
 
