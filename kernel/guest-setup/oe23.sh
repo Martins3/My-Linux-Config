@@ -154,6 +154,10 @@ function remove_paswd() {
 	echo "TODO"
 }
 
+function setup_pcm() {
+	echo "TODO"
+}
+
 cd ~
 [[ ! -d install ]] && mkdir -p install && cd install
 

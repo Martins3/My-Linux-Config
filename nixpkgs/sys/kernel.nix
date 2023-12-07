@@ -97,6 +97,18 @@ boot.kernelPatches = [
     };
   }
 
+  {
+    name = "watchdog";
+    patch = null;
+    extraStructuredConfig = {
+      LOCKUP_DETECTOR=lib.kernel.yes;
+      SOFTLOCKUP_DETECTOR=lib.kernel.yes;
+      HARDLOCKUP_DETECTOR_PERF=lib.kernel.yes;
+      HARDLOCKUP_CHECK_TIMESTAMP=lib.kernel.yes;
+      HARDLOCKUP_DETECTOR=lib.kernel.yes;
+    };
+  }
+
 
   # 增加一个 patch 的方法
   /*
