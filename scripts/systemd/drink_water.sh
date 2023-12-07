@@ -5,7 +5,7 @@ set -E -e -u -o pipefail
 min=$(printf "%(%M)T\n")
 hour=$(printf "%(%H)T\n")
 
-if [[ $((hour > 21)) == 1 || $((hour < 9)) == 1 ]]; then
+if [[ $((hour >= 21)) == 1 || $((hour <= 9)) == 1 ]]; then
 	exit 0
 fi
 

@@ -120,3 +120,9 @@ exe "make binrpm-pkg -j32"
 
 # sudo modprobe kvm-intel
 # kvm.ko 和 kvm-intel.ko 是配套的
+#
+
+
+# 看看: Documentation/kbuild/reproducible-builds.rst
+# 如果利用 stable 的 kernel 的 tree
+# https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux.git

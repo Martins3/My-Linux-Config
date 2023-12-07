@@ -27,3 +27,6 @@ compile_commands.json
 kernel/guest/default.nix
 .luarc.json
 lazy-lock.json
+
+perf.data
+perf.data.old

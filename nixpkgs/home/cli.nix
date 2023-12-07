@@ -124,7 +124,12 @@ in
     tree-sitter
     systeroid
     linuxKernel.packages.linux_5_15.perf
-    # @todo 也许替换为 linuxPackages_latest.perf
+    # linuxPackages_6_5.perf
+    # 当 perf linuxPackages_6_5.perf 的时候，使用如下命令
+    # sudo perf record --call-graph dwarf -p 200454 -- sleep 10
+    # 必然导致 guest crash
+    #
+    # linuxPackages_latest.perf
     iperf
     # linuxPackages_latest.systemtap # 似乎这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
     # 其实也不能用
