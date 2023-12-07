@@ -34,6 +34,7 @@ in
     cmake
     ov # feature rich pager
     # zig
+    dracut
     gnumake
     audit # 没啥意义，用不起来
     yarn
