@@ -91,8 +91,18 @@ in
 
     kernel_cmdline = {
       name = "cmdline";
-      genericName = "cmdlien";
+      genericName = "cmdline";
       exec = "microsoft-edge https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html";
+      icon = (pkgs.fetchurl {
+        url = "https://img.icons8.com/color/512/docker.png";
+        sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
+      }).outPath;
+    };
+
+    crash = {
+      name = "crash";
+      genericName = "crash";
+      exec = "microsoft-edge https://crash-utility.github.io/crash_whitepaper.html";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
