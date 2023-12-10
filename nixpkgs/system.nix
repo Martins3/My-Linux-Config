@@ -326,7 +326,8 @@ in
   # programs.steam.enable = true; # steam 安装
 
   # @todo 加入的 vfio 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3 不过他的感觉也是瞎写的
-  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1" "vmd" "null_blk" "scsi_debug" ];
+  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1"
+    "vmd" "null_blk" "scsi_debug" "vhost_net" ];
   boot.initrd.kernelModules = [];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
