@@ -168,7 +168,8 @@ install libtool
 install systemd-devel
 install bcc
 
-install vim htop perf elfutils elfutils-libelf-devel iperf3
+install vim htop perf elfutils elfutils-libelf-devel iperf3 sysstat
+
 
 install pam-devel
 install numactl fio libaio-devel

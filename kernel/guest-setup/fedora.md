@@ -30,3 +30,14 @@ sudo dnf install microsoft-edge-beta
 ```
 
 ## 将默认的文件系统记得换一下
+
+btrfs 感觉问题很大啊
+
+## 切换内核
+
+
+sudo dnf copr enable kwizart/kernel-longterm-5.15 fedora-38-x86_64
+
+https://copr.fedorainfracloud.org/coprs/kwizart/kernel-longterm-5.15/
+
+这个方法不好用，还不如直接下载 rpm 来安装的

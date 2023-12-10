@@ -24,6 +24,7 @@ in
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     wezterm
+    wireshark
     unstable.alacritty
     # zoom-us
     # spotify

@@ -26,6 +26,7 @@ in
     # libguestfs
     # libguestfs-appliance
     cloud-utils
+    imagemagick # 压缩照片
     adoptopenjdk-icedtea-web
     ccls
     cargo
@@ -35,6 +36,9 @@ in
     ov # feature rich pager
     # zig
     dracut
+    iw
+    termshark
+    openvswitch
     gnumake
     audit # 没啥意义，用不起来
     yarn
