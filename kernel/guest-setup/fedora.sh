@@ -80,7 +80,7 @@ sudo dnf install python3-pip
 
 pip install pre-commit tmuxp
 
-sudo dnf install -y fd-find sysstat
+sudo dnf install -y fd-find sysstat ipython
 
 # npm install @lint-md/cli@beta
 #
