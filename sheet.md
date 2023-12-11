@@ -201,3 +201,10 @@ rg -l blk_update_request
 ## wget
 递归拷贝:
 https://stackoverflow.com/questions/273743/using-wget-to-recursively-fetch-a-directory-with-arbitrary-files-in-it
+
+
+## fd
+fd 使用的是 regex
+```sh
+fd ".*\.md" | wc -l
+```
