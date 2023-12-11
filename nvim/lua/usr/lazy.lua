@@ -96,7 +96,6 @@ require("lazy").setup({
   "CRAG666/code_runner.nvim", -- 一键运行代码
   "samjwill/nvim-unception", -- 嵌套 nvim 自动 offload 到 host 中
   -- markdown
-  -- 如果发现插件有问题， 可以进入到 ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreview" },

@@ -14,9 +14,9 @@
   * [安装 nvim](#安装-nvim)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
-  * [安装 im-select](#安装-im-select)
   * [安装各种 lsp](#安装各种-lsp)
   * [安装本配置](#安装本配置)
+  * [手动编译一些插件](#手动编译一些插件)
   * [checkhealth 检查](#checkhealth-检查)
 * [基本操作](#基本操作)
   * [退出](#退出)
@@ -160,8 +160,8 @@ reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，�
 安装成功需要注意两点:
 
 1. **代理** : 实现代理的方法在 github 上有很多教程。如果你无法解决**终端**和**git**的代理，这个配置几乎不可能安装成功。
-2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 20.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
-   当然滚动更新的 Linux Distribution，类似 Arch 一般不会存在这些问题。
+2. 软件版本 : 有的 Linux Distribution 为了稳定性，是锁版本的，例如 Ubuntu，一旦推出 22.04 之后，其上的软件版本几乎都是不变的，这意味着有的软件没有被 apt 收录进去，有的版本太低，这导致有的几个软件需要手动编译。
+   当然滚动更新的 Linux Distribution，类似 Arch 或者 Fedora 一般不会存在这些问题。
 
 整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 虽然我自己不用 Ubuntu，考虑到大多数新手使用的是 Ubuntu ，这里给出一个基于 Ubuntu 的安装介绍。
@@ -216,11 +216,6 @@ sudo apt install bear
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
-### 安装 im-select
-
-为了方便在 nvim 进入 normal 模式的时候自动切换输入法为英文，采用 keaising/im-select.nvim 插件，其依赖 im-select
-安装方法插件作者写的相当清晰 : https://github.com/keaising/im-select.nvim
-
 ### 安装各种 lsp
 
 通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
@@ -244,7 +239,18 @@ ln -s ~/.dotfiles/nvim ~/.config/nvim # 创建一个软链接指向此处
 nvim
 ```
 
-然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件：
+然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件.
+
+### 手动编译一些插件
+
+一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建
+
+```sh
+# rsync.nvim
+cd ~/.local/share/nvim/lazy/rsync.nvim && make -j8
+# markdown-preview.nvim
+cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
+```
 
 ### checkhealth 检查
 
