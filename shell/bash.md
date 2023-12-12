@@ -477,3 +477,21 @@ https://a-wing.top/shell/2021/05/01/sh-compatibles-history : 一共三篇
 
 ## 哈哈，的确，bash 只是适合原型验证而已
 https://benjamincongdon.me/blog/2023/10/29/Avoid-Load-bearing-Shell-Scripts/
+
+https://iridakos.com/programming/2018/03/01/bash-programmable-completion-tutorial
+
+https://github.com/phyver/GameShell
+
+https://www.madebygps.com/an-intro-to-finding-things-in-linux/
+
+https://github.com/riquito/tuc
+
+https://github.com/onceupon/Bash-Oneliner
+
+https://questions.wizardzines.com/unix-permissions.html
+
+https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/
+
+https://zimfw.sh/
+
+https://github.com/barthr/redo

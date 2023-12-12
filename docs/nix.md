@@ -1563,3 +1563,6 @@ git clone nixpkgs
 nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
 
 https://elatov.github.io/2022/01/building-a-nix-package/
+
+## 这个库
+https://github.com/svanderburg/node2nix

@@ -46,8 +46,16 @@ https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 
 为 .dotfiles/nvim/debug/init.lua 和本配置
 
+## tree-sitter
+- https://siraben.dev/2022/03/01/tree-sitter.html
+- https://siraben.dev/2022/03/22/tree-sitter-linter.html
+
+## 插件开发
+https://github.com/nvim-neotest/neotest
+
 ## 参考
 - https://blog.antoyo.xyz/vim-tips
+
 
 
 <script src="https://giscus.app/client.js"
