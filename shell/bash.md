@@ -495,3 +495,19 @@ https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numb
 https://zimfw.sh/
 
 https://github.com/barthr/redo
+
+https://github.com/chmln/sd
+
+https://stackoverflow.com/questions/1371261/get-current-directory-or-folder-name-without-the-full-path
+
+https://stackoverflow.com/questions/15622328/how-to-grep-a-string-in-a-directory-and-all-its-subdirectories
+
+https://unix.stackexchange.com/questions/29878/can-i-access-nth-line-number-of-standard-output
+
+https://stackoverflow.com/questions/22190902/cut-or-awk-command-to-print-first-field-of-first-row
+
+https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
+
+https://unix.stackexchange.com/questions/437680/set-data-structure-equivalent-in-bash-shell
+
+https://stackoverflow.com/questions/61811402/remove-all-elements-from-associative-array-bash

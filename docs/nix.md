@@ -1566,3 +1566,5 @@ https://elatov.github.io/2022/01/building-a-nix-package/
 
 ## 这个库
 https://github.com/svanderburg/node2nix
+
+https://github.com/nix-community/NixOS-WSL

@@ -45,6 +45,7 @@ sudo pacman -Sy base-devel python-greenlet
 sudo pacman -Sy wezterm ttf-firacode-nerd
 sudo pacman -Sy kitty ttf-firacode-nerd docker
 
+
 sudo systemctl enable docker
 sudo systemctl restart docker
 sudo systemctl status docker
@@ -59,3 +60,5 @@ function pip_mirror() {
 	python -m pip install --upgrade pip
 	pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 }
+
+sudo pacman -Sy python3-pre-commit
