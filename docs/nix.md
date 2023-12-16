@@ -1568,3 +1568,6 @@ https://elatov.github.io/2022/01/building-a-nix-package/
 https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
+
+## 一个小问题
+nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此

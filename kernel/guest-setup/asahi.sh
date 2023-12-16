@@ -62,3 +62,4 @@ function pip_mirror() {
 }
 
 sudo pacman -Sy python3-pre-commit
+sudo pacman -Sy wireguard-tools

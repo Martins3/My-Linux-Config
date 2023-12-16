@@ -52,7 +52,7 @@ function setup_zsh() {
 	cargo install atuin
 
 	# 跳转工具需要放到 .zshrc 的最前面
-	# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin/:$PATH
+	# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin/:$HOME/go/bin:$PATH
 }
 
 function setup_qemu() {
@@ -76,11 +76,23 @@ sudo dnf install fcitx5-rime
 
 sudo dnf install kernel-devel kernel-debug
 
-sudo dnf install python3-pip
+sudo dnf install python3-pip shellcheck
 
 pip install pre-commit tmuxp
 
 sudo dnf install -y fd-find sysstat ipython
 
+sudo dnf install -y golang shfmt
+go install github.com/sachaos/viddy@latest
+
 # npm install @lint-md/cli@beta
-#
+
+function setup_docker() {
+	sudo dnf -y install docker
+	sudo systemctl enable docker
+	sudo systemctl start docker
+	sudo groupadd docker
+	sudo gpasswd -a "$USER" docker
+}
+
+sudo dnf install wireguard-tools
