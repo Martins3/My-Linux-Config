@@ -1,6 +1,5 @@
 -- 在 https://github.com/williamboman/mason-lspconfig.nvim 中含有所有支持的 lsp
 local servers = {
-  "bashls",
   "cssls",
   "efm",
   "html",
