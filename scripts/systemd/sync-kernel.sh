@@ -49,17 +49,25 @@ done
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 cp /home/martins3/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
 
+function run() {
+	if [[ -d /nix ]]; then
+		nix-shell --command "$1"
+	else
+		eval "$1"
+	fi
+}
+
 SECONDS=0
 if [[ ${kcov} ]]; then
-	nix-shell --command "make mrproper"
-	nix-shell --command "make defconfig kvm_guest.config martins3.config kconv.config -j O=kcov"
-	nix-shell --command "nice -n 19 make -j$threads O=kcov"
+	run "make mrproper"
+	run "make defconfig kvm_guest.config martins3.config kconv.config -j O=kcov"
+	run "nice -n 19 make -j$threads O=kcov"
 else
 	# make clean
-	nix-shell --command "make clean"
-	nix-shell --command "make defconfig kvm_guest.config martins3.config -j"
-	# nix-shell --command "chrt -i 0 make CC='ccache gcc' -j$threads"
-	nix-shell --command "chrt -i 0 make -j$threads"
+	run "make clean"
+	run "make defconfig kvm_guest.config martins3.config -j"
+	# run "chrt -i 0 make CC='ccache gcc' -j$threads"
+	run "chrt -i 0 make -j$threads"
 	# python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 	# scripts/systemd/expand-paging_tmpl.sh
 	for i in "${special_files[@]}"; do
@@ -79,11 +87,11 @@ fi
 
 # 编译文档的速度太慢了，不想每次都等那么久
 if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
-	nix-shell --command "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+	run "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 fi
-nix-shell --command "./scripts/clang-tools/gen_compile_commands.py"
+run "./scripts/clang-tools/gen_compile_commands.py"
 
-# nix-shell --command "make binrpm-pkg -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
+# run "make binrpm-pkg -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
 # Documentation/conf.py 中修改主题 html_theme = 'sphinx_rtd_theme'
 
