@@ -44,6 +44,7 @@ function ohmyzsh() {
 		sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 		git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
 		sed -i "s/plugins=(git)/plugins=(git zsh-autosuggestions)/g" ~/.zshrc
+		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'" >>~/.zshrc
 	fi
 }
 
@@ -169,7 +170,6 @@ install systemd-devel
 install bcc
 
 install vim htop perf elfutils elfutils-libelf-devel iperf3 sysstat
-
 
 install pam-devel
 install numactl fio libaio-devel

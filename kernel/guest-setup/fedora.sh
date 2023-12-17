@@ -96,3 +96,4 @@ function setup_docker() {
 }
 
 sudo dnf install wireguard-tools
+sudo dnf install -y python3-sphinx screen
