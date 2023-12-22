@@ -45,7 +45,6 @@ sudo pacman -Sy base-devel python-greenlet
 sudo pacman -Sy wezterm ttf-firacode-nerd
 sudo pacman -Sy kitty ttf-firacode-nerd docker
 
-
 sudo systemctl enable docker
 sudo systemctl restart docker
 sudo systemctl status docker
@@ -63,3 +62,5 @@ function pip_mirror() {
 
 sudo pacman -Sy python3-pre-commit
 sudo pacman -Sy wireguard-tools
+function setup_qemu(){
+}

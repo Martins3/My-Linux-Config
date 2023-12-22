@@ -7,7 +7,9 @@ target=~/core/linux-build
 
 A=/tmp/martins3/source_build_unstage.diff
 B=/tmp/martins3/source_build_staged.diff
-cd $source
+if ! cd $target ; then
+  git clone $source $target
+fi
 git diff >$A
 git diff --cached >$B
 

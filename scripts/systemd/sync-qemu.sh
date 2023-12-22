@@ -49,7 +49,7 @@ threads=$((cores - 1))
 # --enable-trace-backends=nop
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="  --prefix=martins3 --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
+QEMU_options=" --target-list=$(uname -m)-softmmu --disable-werror --enable-gtk --enable-libusb"
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
 QEMU_options+=" --enable-virtfs"
 
