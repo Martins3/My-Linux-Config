@@ -123,22 +123,7 @@ in
   # https://nixos.wiki/wiki/Fwupd
   services.fwupd.enable = true;
 
-  # @todo ----- 将这块代码移动到设备专用的地方去 -------
-  # @todo 如何处理总是等待 /sys/subsystem/net/devices/enp4s0 的问题
-  # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
-  # tailscale0 建立的网卡是什么原理，真有趣啊
-  # networking.interfaces.enp4s0.useDHCP = false;
-  # networking.bridges.br0.interfaces = [ "enp5s0" ];
-  # sudo ip ad add 10.0.0.1/24 dev enp5s0
-
-  # @todo 这个配置为什么不行
-  /* networking.interfaces.enp5s0.ipv4.addresses = [{ */
-  /*   address = "10.0.0.1"; */
-  /*   prefixLength = 24; */
-  /* }]; */
-
   # wireless and wired coexist
-  # @todo disable this temporarily
   systemd.network.wait-online.timeout = 1;
 
   users.mutableUsers = false;

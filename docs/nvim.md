@@ -817,7 +817,7 @@ setxkbmap -option caps:swapescape
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
   - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
   - [neodim](https://github.com/zbirenbaum/neodim) : 等待升级到 0.10
-  - crusj/bookmarks.nvim 需要配置 virt_pattern，感觉多次一举
+  - https://github.com/ryanmsnyder/toggleterm-manager.nvim : 替换下 term
 - nvim 有待解决的问题，不是一时半会可以解决的:
   1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
      - https://github.com/jamestthompson3/nvim-remote-containers

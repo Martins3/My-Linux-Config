@@ -7,9 +7,12 @@ yum install -y audit-libs-devel binutils-devel bison \
 cd kernel
 make -j32 && sudo make install -j32 && sudo make modules_install -j32
 dracut --regenerate-all -f
+# dracut --kver $(uname -r) --force
+
 # sudo update-initramfs -c -k all
 
 grub2-mkconfig -o /etc/grub2-efi.cfg
+grub2-mkconfig -o /etc/grub2.cfg
 # sudo update-grub
 
 # 如果只是一个模块

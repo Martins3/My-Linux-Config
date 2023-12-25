@@ -500,22 +500,6 @@ snippet note_awk_regex "awk 中的正则"
 	awk '\$4~/hello/ { print "This field contains hello", $4}' test.txt
 	awk '\$4 == "hello" { print "This field is hello:", $4}' test.txt
 
-
-snippet note_xargs "xargs"
-	# -t : 将要执行的命令打印出来
-	# -I % : 设置参数为 %
-	# ls | xargs -t -I % sh -c 'echo %'
-
-	# 将一个仓库中所有的 apples 替换为 oranges
-	# git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
-
-	# 将 foo 下所有的 txt 都删除
-	# find ./foo -type f -name "*.txt" -exec rm {} \;
-	# find ./foo -type f -name "*.txt" | xargs rm
-
-	# find . -type f -print | xargs stat -c '%a %n'
-
-
 snippet note_basic "bash 基本内容"
 	# 在 set -e 的时候，容忍一个 command 失败:
 	# particular_script || true

@@ -10,6 +10,7 @@ B=/tmp/martins3/source_build_staged.diff
 if ! cd $target ; then
   git clone $source $target
 fi
+cd $source
 git diff >$A
 git diff --cached >$B
 

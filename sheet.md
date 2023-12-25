@@ -208,3 +208,25 @@ fd 使用的是 regex
 ```sh
 fd ".*\.md" | wc -l
 ```
+
+
+
+## xargs
+-t : 将要执行的命令打印出来
+-I % : 设置参数为 %
+
+```sh
+ls | xargs -t -I % sh -c 'echo %'
+```
+
+将一个仓库中所有的 apples 替换为 oranges
+```sh
+git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
+```
+
+将 foo 下所有的 txt 都删除
+```sh
+find ./foo -type f -name "*.txt" -exec rm {} \;
+find ./foo -type f -name "*.txt" | xargs rm
+find . -type f -print | xargs stat -c '%a %n'
+```
