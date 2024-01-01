@@ -7,8 +7,8 @@ target=~/core/linux-build
 
 A=/tmp/martins3/source_build_unstage.diff
 B=/tmp/martins3/source_build_staged.diff
-if ! cd $target ; then
-  git clone $source $target
+if ! cd $target; then
+	git clone $source $target
 fi
 cd $source
 git diff >$A
@@ -23,8 +23,13 @@ git diff --cached >$B1
 
 function update() {
 	git reset --hard
-	[[ -s $A ]] && git apply $A
-	[[ -s $B ]] && git apply $B
+	if [[ -s $A ]]; then
+		git apply $A || true
+	fi
+
+	if [[ -s $B ]]; then
+		git apply $B || true
+	fi
 }
 
 if diff $A $A1 &>/dev/null; then

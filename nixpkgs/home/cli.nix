@@ -18,7 +18,7 @@ in
     mold
     go
     ventoy
-    # uutils-coreutils @todo 到时候尝试下 rust 的 coreutils
+    # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
     lua-language-server
     stylua
@@ -170,18 +170,6 @@ in
       ipython
       autopep8
       pygments # 让 gdb-dashboard 支持高亮
-
-      # pandas
-      # pygal
-      # filelock
-      # libvirt
-      # mock
-      # filelock
-      # grpcio
-      # pytest
-      # monotonic
-      # libxml2
-      # ansible
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
@@ -267,7 +255,7 @@ in
 
     lcov
 
-    czkawka # 垃圾文件清理
+    # czkawka # 垃圾文件清理
     ipmitool
 
     # cachix # nixos 的高级玩法，自己架设 binary cache
@@ -279,8 +267,8 @@ in
     nodePackages.pyright
 
     # 为了方便，将常见的 c 库直接放出来
-    libaio
-    liburing
+    # libaio
+    # liburing
   ];
 
   programs.zsh = {

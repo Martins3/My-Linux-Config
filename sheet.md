@@ -33,7 +33,7 @@
 - git ls-files --others --exclude-standard >> .gitignore
   - 将没有被跟踪的文件添加到 .gitignore 中
 - git reset : 将所有的内容 unstage
-- git checkout -- fs/ : 将 unstage 的修改删除掉
+- git restore . : 将 unstage 的修改删除掉
 
 ### submodule
 - git submodule update --recursive
@@ -125,8 +125,7 @@ git switch dev
 
 ## dd
 
-- dd if=/dev/zero of=pmem count=4 bs=10M # 基本测试
-- dd if=ubuntu-22.04.2-desktop-amd64.iso of=/dev/sdc # 使用 dd 安装系统
+- dd if=/dev/zero of=pmem oflag=direct count=4 bs=10M # 基本测试
 
 ## ps
 
