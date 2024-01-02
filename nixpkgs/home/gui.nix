@@ -39,7 +39,7 @@ in
     # podman-desktop
     # tdesktop
     # telegram
-    # unstable.clash-verge # 时不时连不上网，难道是我设置不对
+    # clash-verge # 打开之后一块白板，不知道发生了什么
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具

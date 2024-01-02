@@ -4,7 +4,7 @@
 
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_5;
+    kernelPackages = pkgs.linuxPackages_6_6;
   };
 
   boot.kernelParams = [
