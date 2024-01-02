@@ -24,7 +24,7 @@ pkgs.mkShell rec {
     python3.pkgs.setuptools
     autoconf
      automake
-    pkgconfig
+    pkg-config
     autoconf
     gettext
     autoconf-archive

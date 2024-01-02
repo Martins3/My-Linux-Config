@@ -3,7 +3,7 @@ let
 in
 pkgs.mkShell rec {
   nativeBuildInputs = with pkgs.buildPackages; [
-    pkgconfig
+    pkg-config
     autoconf
     gettext
     autoconf-archive

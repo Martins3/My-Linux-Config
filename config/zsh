@@ -136,7 +136,7 @@ alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias m="chrt -i 0 make CC='ccache gcc' -j$(getconf _NPROCESSORS_ONLN)"
 alias bu="/home/martins3/.dotfiles/config/sh/build-linux.sh && cd ~/core/linux-build && m"
 alias mc="make clean"

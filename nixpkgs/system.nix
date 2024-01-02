@@ -48,7 +48,7 @@ in
   ];
 
   virtualisation.docker.enable = true;
-  virtualisation.vswitch.enable = true;
+  # virtualisation.vswitch.enable = true;
 
   zramSwap.enable = true;
 

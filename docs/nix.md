@@ -314,7 +314,7 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ```nix
 with import <nixpkgs> { };
 linux.overrideAttrs (o: {
-  nativeBuildInputs = o.nativeBuildInputs ++ [ pkgconfig ncurses ];
+  nativeBuildInputs = o.nativeBuildInputs ++ [ pkg-config ncurses ];
 })
 ```
 
@@ -763,7 +763,7 @@ Then try activating your Home Manager configuration again.
 - [ ] 理解一下什么叫做 overriding 啊
 
 ```sh
-$ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildInputs=o.nativeBuildInputs ++ [ pkgconfig ncurses ];})'
+$ nix-shell -E 'with import <nixpkgs> {}; linux.overrideAttrs (o: {nativeBuildInputs=o.nativeBuildInputs ++ [ pkg-config ncurses ];})'
 [nix-shell] $ unpackPhase && cd linux-*
 [nix-shell] $ make menuconfig
 ```
@@ -1571,3 +1571,9 @@ https://github.com/nix-community/NixOS-WSL
 
 ## 一个小问题
 nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此
+
+
+## 记录下升级到 23.11
+
+1. 修改 scripts/nix/nix-channel.sh 中时间编号即可
+2. ovs 似乎不能用了

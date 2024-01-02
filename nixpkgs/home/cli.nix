@@ -38,7 +38,7 @@ in
     dracut
     iw
     termshark
-    openvswitch
+    # openvswitch
     gnumake
     audit # 没啥意义，用不起来
     yarn
@@ -67,7 +67,7 @@ in
     lsof
     lshw
     hw-probe #  sudo -E hw-probe -all -upload
-    exa # more powerful ls
+    eza # more powerful ls
     oh-my-posh # @todo for powershell
     gource
     unstable.fastfetch

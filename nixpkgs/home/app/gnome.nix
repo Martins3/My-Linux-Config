@@ -9,7 +9,6 @@
   ++ (with pkgs.gnomeExtensions; [
     unite
     clipboard-indicator
-    tweaks-in-system-menu
     bing-wallpaper-changer
     gtile
     hide-top-bar

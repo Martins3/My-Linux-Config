@@ -5,7 +5,7 @@ pkgs.mkShell {
 	nativeBuildInputs = with pkgs.buildPackages; [
 		libaio
 			python3 zlib liburing
-			pkgconfig
+			pkg-config
 			autoconf
 			gettext
 			autoconf-archive
