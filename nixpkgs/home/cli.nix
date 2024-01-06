@@ -65,7 +65,8 @@ in
     starship
     gdb
     lsof
-    lshw
+    lshw # 侧重于展示 bus 的结构
+    hwloc # 侧重于展示 cache
     hw-probe #  sudo -E hw-probe -all -upload
     eza # more powerful ls
     oh-my-posh # @todo for powershell

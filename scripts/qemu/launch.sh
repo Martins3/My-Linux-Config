@@ -36,6 +36,10 @@ function choose_vm() {
 		fi
 	done
 
+	if [[ ${#live_vms[@]} == 0 ]]; then
+		return
+	fi
+
 	if [[ ${#live_vms[@]} == 1 ]]; then
 		echo "${live_vms[0]}"
 		return

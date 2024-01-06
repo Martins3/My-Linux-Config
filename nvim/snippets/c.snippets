@@ -23,3 +23,49 @@ snippet import "template"
   	${0}
   	return 0;
   }
+
+snippet sysfs "add monitor into sysfs"
+  static int martins3_variable = 0;
+
+  static ssize_t martins3_show(struct kobject *kobj, struct kobj_attribute *attr,
+  			     char *buf)
+  {
+  	return sprintf(buf, "%d\n", martins3_variable);
+  }
+
+  static ssize_t martins3_store(struct kobject *kobj, struct kobj_attribute *attr,
+  			      char *buf, size_t count)
+  {
+  	int err;
+  	err = kstrtou32(buf, 10, &martins3_variable);
+  	if (err)
+  		return -EINVAL;
+
+  	return count;
+  }
+
+  static struct kobj_attribute myvariable_attribute =
+  	__ATTR(knob, 0644, martins3_show, (void *)martins3_store);
+
+  static struct kobject *martins3_kobj;
+  int sysfs_martins3_init(void)
+  {
+  	int error = 0;
+  	if (martins3_kobj != NULL)
+  		return 0;
+
+  	pr_info("martins3: initialised\n");
+
+  	// 创建 /sys/kernel/martins3
+  	martins3_kobj = kobject_create_and_add("martins3", kernel_kobj);
+  	if (!martins3_kobj)
+  		return -ENOMEM;
+
+  	error = sysfs_create_file(martins3_kobj, &myvariable_attribute.attr);
+  	if (error) {
+  		pr_info("failed to create the myvariable file "
+  			"in /sys/kernel/martins3\n");
+  	}
+
+  	return error;
+  }
