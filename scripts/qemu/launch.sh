@@ -2,17 +2,11 @@
 
 set -E -e -u -o pipefail
 # QEMU 的 -pidfile 在 QEMU 被 pkill 的时候自动删除的，但是如果 QEMU 是 segv 之类的就不会
-pidfile=/tmp/martins3/qemu-pid
 
 function close_qemu() {
-	if [[ -f $pidfile ]]; then
-		qemu=$(cat $pidfile)
-		if ps -p "$qemu" >/dev/null; then
-			gum confirm "Kill the machine?" && kill -9 "$qemu"
-		fi
-	else
-		echo "No Qemu Process found"
-	fi
+	monitor=$(choose_vm)/hmp
+	gum confirm "Kill the machine?" && echo "quit" | socat - unix-connect:"$monitor"
+
 }
 
 # 使用 screen -r 来进入到 detach 的脚本
@@ -33,21 +27,51 @@ function login() {
 	close_qemu
 }
 
-while getopts "dk" opt; do
+function choose_vm() {
+	readarray -d '' dirs_array < <(find /home/martins3/hack/vm/ -maxdepth 1 -type d -print0)
+	live_vms=()
+	for i in "${dirs_array[@]}"; do
+		if [[ -f $i/pid ]]; then
+			live_vms+=("$i")
+		fi
+	done
+
+	if [[ ${#live_vms[@]} == 1 ]]; then
+		echo "${live_vms[0]}"
+		return
+	fi
+
+	choice=$(printf "%s\n" "${live_vms[@]}" | fzf)
+	echo "$choice"
+}
+
+function ssh_to_guest() {
+	port=$(cat "$(choose_vm)"/port)
+	# @todo 似乎我的 tmux 配置有问题导致 ssh 前需要设置一下环境变量
+	TERM=xterm-256color ssh -p"$port" root@localhost
+}
+
+function copy_ssh() {
+	port=$(cat "$(choose_vm)"/port)
+	TERM=xterm-256color ssh-copy-id -p"$(choose_port)" root@localhost
+}
+
+while getopts "dksc" opt; do
 	case $opt in
 		d)
 			debug_kernel
-			exit 0
 			;;
 		k)
 			close_qemu
-			exit 0
+			;;
+		s)
+			ssh_to_guest
+			;;
+		c)
+			copy_ssh
 			;;
 		*)
 			cat /home/martins3/.dotfiles/scripts/qemu/luanch.sh
-			exit 0
 			;;
 	esac
 done
-
-login

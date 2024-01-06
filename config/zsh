@@ -117,12 +117,10 @@ alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf neom
 # 快速打开 QEMU
 alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
-alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
 alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
 # 这里将 $ 转义，从而是执行 ge 命令的时候加载端口而非在
-# @todo 似乎我的 tmux 配置有问题导致 ssh 前需要设置一下环境变量
-alias ge="TERM=xterm-256color ssh -p\$(cat /tmp/martins3/guest-ssh) root@localhost"
-alias gege="TERM=xterm-256color ssh-copy-id -p\$(cat /tmp/martins3/guest-ssh) root@localhost"
+alias ge="/home/martins3/.dotfiles/scripts/qemu/launch.sh -s"
+alias gege="/home/martins3/.dotfiles/scripts/qemu/launch.sh -c"
 # 打开工作区间并且构建
 alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
