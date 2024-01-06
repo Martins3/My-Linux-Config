@@ -57,7 +57,7 @@ function ssh_to_guest() {
 
 function copy_ssh() {
 	port=$(cat "$(choose_vm)"/port)
-	TERM=xterm-256color ssh-copy-id -p"$(choose_port)" root@localhost
+	TERM=xterm-256color ssh-copy-id -p"$port" root@localhost
 }
 
 while getopts "dksc" opt; do
