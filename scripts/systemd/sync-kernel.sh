@@ -20,6 +20,7 @@ else
 	git clone https://github.com/torvalds/linux
 	cd linux
 	ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
+  echo "use nix" >> .envrc && direnv allow
 fi
 
 cores=$(getconf _NPROCESSORS_ONLN)

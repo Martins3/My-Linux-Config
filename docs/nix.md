@@ -1579,3 +1579,14 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
 
 1. 修改 scripts/nix/nix-channel.sh 中时间编号即可
 2. ovs 似乎不能用了
+
+
+## 配置文件
+
+```txt
+ fileSystems."/home/martins3/hack" = {
+    device = "/dev/disk/by-uuid/8eba61f5-5ed3-4221-ba7a-40b6ef3cbd62";
+    fsType = "auto";
+    options = [ "user"];
+  };
+```

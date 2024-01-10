@@ -12,11 +12,8 @@ in
     ./sys/cli.nix
     ./sys/kernel.nix
     # ./sys/kernel-419.nix
-    ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
-  ] ++ (if (builtins.getEnv "DISPLAY") != ""
-  then [
     ./sys/gui.nix
-  ] else [ ]);
+  ];
 
   nix.settings.substituters = [
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
