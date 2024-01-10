@@ -234,7 +234,7 @@ in
   };
 
   systemd.user.services.drink_water = {
-    enable = true;
+    enable = false;
     unitConfig = { };
     serviceConfig = {
       Type = "forking";
@@ -254,7 +254,7 @@ in
   };
 
   systemd.user.services.monitor = {
-    enable = true;
+    enable = false;
     unitConfig = { };
     serviceConfig = {
       Type = "simple";
@@ -263,6 +263,18 @@ in
     };
     wantedBy = [ "timers.target" ];
   };
+
+  systemd.user.services.clash = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.clash-meta.outPath}/bin/clash-meta";
+      Restart = "no";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
 
   systemd.user.services.httpd = {
     enable = true;

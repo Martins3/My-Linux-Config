@@ -50,14 +50,26 @@ function choose_vm() {
 }
 
 function ssh_to_guest() {
-	port=$(cat "$(choose_vm)"/port)
+	vm=$(choose_vm)
+	port=$(cat "$vm"/port)
+	if [[ -f "$vm"/user ]]; then
+		user=$(cat "$vm"/user)
+	else
+		user=root
+	fi
 	# @todo 似乎我的 tmux 配置有问题导致 ssh 前需要设置一下环境变量
-	TERM=xterm-256color ssh -p"$port" root@localhost
+	TERM=xterm-256color ssh -p"$port" "$user"@localhost
 }
 
 function copy_ssh() {
-	port=$(cat "$(choose_vm)"/port)
-	TERM=xterm-256color ssh-copy-id -p"$port" root@localhost
+	vm=$(choose_vm)
+	port=$(cat "$vm"/port)
+	if [[ -f "$vm"/user ]]; then
+		user=$(cat "$vm"/user)
+	else
+		user=root
+	fi
+	TERM=xterm-256color ssh-copy-id -p"$port" "$user"@localhost
 }
 
 while getopts "dksc" opt; do

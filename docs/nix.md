@@ -120,13 +120,13 @@ home-manager switch
 ## 图形界面的安装
 
 1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
-   1.1 其中必然遇到网络问题
+   遇到网络问题，执行如下内容
 
 ```sh
 sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
 # 在配置中增加上
-# networking.proxy.default = "http://192.167.64.62:8889"; # 需要提前搭梯子
+# networking.proxy.default = "http://192.168.64.62:8889"; # 需要提前搭梯子
 sudo nixos rebuild
 ```
 
@@ -141,6 +141,8 @@ sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 # 其他的工具的安装
 /home/martins3/.dotfiles/scripts/install.sh
 ```
+
+最开始的时候无法 ssh ，所以以上操作都需要在图形界面中操作。
 
 ## kernel 本身是不可 reproducible 的
 
