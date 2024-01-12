@@ -378,3 +378,8 @@ in
     /home/martins3/nfs         127.0.0.1(rw,fsid=0,no_subtree_check)
   '';
 }
+
+
+# 做一个开机任务，记录下 SSD 的写入
+# 🧀  sudo smartctl -t short -a /dev/nvme2n1 | grep "Data Units Written"
+# Data Units Written:                 220,743,742 [113 TB]
