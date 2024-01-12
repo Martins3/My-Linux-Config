@@ -35,7 +35,7 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/mason.nvim" }, -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
-  { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
+  { "nvimtools/none-ls.nvim" }, -- for formatters and linters
   { "j-hui/fidget.nvim", tag = "legacy" },
   { "SmiteshP/nvim-navic" },
   { "utilyre/barbecue.nvim" },
