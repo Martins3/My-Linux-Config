@@ -5,6 +5,6 @@
 ## 其他资源
 https://dotfiles.github.io/
 
-## 但是，不要
+## 但是不要舍本逐末了
 
-1. 过度 fashion : coc.nvim 的切换
+1. 过度 fashion : coc.nvim 的切换，

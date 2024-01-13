@@ -36,6 +36,7 @@ in
     unstable.feishu
     microsoft-edge
     vlc
+    novnc
     # podman-desktop
     # tdesktop
     # telegram

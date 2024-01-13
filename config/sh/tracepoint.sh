@@ -31,4 +31,5 @@ echo "${entry}" | sudo tee /sys/kernel/debug/tracing/set_event
 sudo cat /sys/kernel/debug/tracing/trace_pipe
 
 # TODO 尴尬了，被降维打击了
+# sudo perf record -e block:block_rq_complete -a sleep 10
 # https://www.brendangregg.com/blog/2014-06-29/perf-static-tracepoints.html

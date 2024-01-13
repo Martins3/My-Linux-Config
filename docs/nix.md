@@ -1590,3 +1590,6 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
     options = [ "user"];
   };
 ```
+
+## 代理
+https://yacd.metacubex.one/#/proxies

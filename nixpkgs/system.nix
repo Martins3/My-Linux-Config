@@ -49,8 +49,8 @@ in
 
   zramSwap.enable = true;
 
-  networking.proxy.default = "http://127.0.0.1:8889";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.proxy.default = "http://127.0.0.1:8889";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   environment.systemPackages = with pkgs; [
     vim
@@ -110,10 +110,14 @@ in
       22 # ssh
       5201 # iperf
       8889 # clash
-      5900 # qemu vnc
       445 # samba
       /* 8384 # syncthing */
       /* 22000 # syncthing */
+    ];
+
+    allowedTCPPortRanges = [
+      { from = 5900; to = 6000; }
+      { from = 6080; to = 6180; }
     ];
   };
 
@@ -267,6 +271,16 @@ in
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.clash-meta.outPath}/bin/clash-meta";
+      Restart = "no";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services.pueued = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      ExecStart = "${pkgs.pueue.outPath}/bin/pueued -vv";
       Restart = "no";
     };
     wantedBy = [ "default.target" ];

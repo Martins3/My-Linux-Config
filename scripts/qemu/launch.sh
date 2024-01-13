@@ -4,8 +4,8 @@ set -E -e -u -o pipefail
 # QEMU 的 -pidfile 在 QEMU 被 pkill 的时候自动删除的，但是如果 QEMU 是 segv 之类的就不会
 
 function choose_vm() {
-  output=$(/home/martins3/.dotfiles/scripts/qemu/choose.sh "$1")
-  echo "$output"
+	output=$(/home/martins3/.dotfiles/scripts/qemu/choose.sh "$1")
+	echo "$output"
 }
 
 function close_qemu() {
@@ -35,7 +35,7 @@ function debug_kernel() {
 	# 使用 screen -r 来进入到 detach 的脚本
 	screen -d -m /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-	close_qemu
+	gum confirm "Kill the machine?" && echo "quit" | socat - unix-connect:"$vm/hmp"
 }
 
 function ssh_to_guest() {

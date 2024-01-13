@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -E -e -u -o pipefail
 
 function choose_vm() {
@@ -11,7 +12,11 @@ function choose_vm() {
 		fi
 
 		if [[ $option == "active" && -f $i/pid ]]; then
-			live_vms+=("$i")
+			# If qemu killed out of sigkill, pidfile won't be removed automatically,
+			# check it once again
+			if [[ -f /proc/$(cat "$i"/pid)/status ]]; then
+				live_vms+=("$i")
+			fi
 		fi
 
 		if [[ $option == "hacking_kernel" && -f $i/initramfs ]]; then

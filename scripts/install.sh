@@ -24,6 +24,7 @@ ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
 ln -sf ~/.dotfiles/config/cargo.conf ~/.cargo/config
 ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
+ln -sf ~/.dotfiles/config/pueue.yml ~/.config/pueue/pueue.yml
 
 # dhruvmanila/browser-bookmarks.nvim
 ln -sf ~/.config/google-chrome-stable ~/.config/microsoft-edge
