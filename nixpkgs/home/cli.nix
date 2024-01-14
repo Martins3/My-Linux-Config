@@ -39,6 +39,7 @@ in
     iw
     termshark
     openvswitch-lts
+    dnsmasq
     gnumake
     audit # 没啥意义，用不起来
     yarn
