@@ -46,6 +46,8 @@ in
 
   virtualisation.docker.enable = true;
   virtualisation.vswitch.enable = true;
+  virtualisation.vswitch.package = pkgs.openvswitch-lts;
+
 
   zramSwap.enable = true;
 

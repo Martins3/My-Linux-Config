@@ -18,6 +18,7 @@ mkdir -p ~/.config/atuin/
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml
+ln -sf ~/.dotfiles/config/alacritty.toml ~/.alacritty.toml
 ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
@@ -36,3 +37,6 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	echo "tmux plugin install : prefix + I"
 fi
+
+/home/martins3/.dotfiles/rime/linux-install.sh
+echo "Almost finished，open fcitx 5 Configiration"

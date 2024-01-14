@@ -38,7 +38,7 @@ in
     dracut
     iw
     termshark
-    openvswitch
+    openvswitch-lts
     gnumake
     audit # 没啥意义，用不起来
     yarn

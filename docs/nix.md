@@ -587,6 +587,9 @@ gsettings reset org.gnome.desktop.input-sources xkb-options
 gsettings reset org.gnome.desktop.input-sources sources
 ```
 
+也许也需要执行下:
+setxkbmap -option caps:swapescape
+
 ## nix
 
 - https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
