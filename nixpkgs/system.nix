@@ -45,6 +45,7 @@ in
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
   virtualisation.vswitch.enable = true;
   virtualisation.vswitch.package = pkgs.openvswitch-lts;
 
