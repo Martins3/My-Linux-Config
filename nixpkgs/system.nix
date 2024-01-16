@@ -115,6 +115,7 @@ in
     allowedTCPPorts = [
       22 # ssh
       5201 # iperf
+      3434 # http.server
       8889 # clash
       445 # samba
       /* 8384 # syncthing */

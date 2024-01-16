@@ -40,6 +40,10 @@ function debug_kernel() {
 
 function ssh_to_guest() {
 	vm=$(choose_vm active)
+	if [[ -z $vm ]]; then
+    echo "No active vm found 🐕"
+    exit 0
+  fi
 	port=$(cat "$vm"/port)
 	if [[ -f "$vm"/user ]]; then
 		user=$(cat "$vm"/user)
@@ -69,7 +73,16 @@ function console() {
 	echo "TODO"
 }
 
-while getopts "dksc" opt; do
+function open_vnc() {
+	vm=$(choose_vm "active")
+	if [[ -n $vm ]]; then
+		port=$(cat "$vm"/port)
+		id=$((port - 4000 + 6000))
+		microsoft-edge http://127.0.0.1:$id/vnc.html
+	fi
+}
+
+while getopts "dkvsc" opt; do
 	case $opt in
 		d)
 			debug_kernel
@@ -79,6 +92,9 @@ while getopts "dksc" opt; do
 			;;
 		s)
 			ssh_to_guest
+			;;
+		v)
+			open_vnc
 			;;
 		c)
 			copy_ssh
