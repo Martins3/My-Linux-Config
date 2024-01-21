@@ -156,6 +156,7 @@ in
     # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
     bpftool
     bpftools
+    xdp-tools
     acpi
     cpuid
     # @todo https://github.com/kkharji/sqlite.lua/issues/28
