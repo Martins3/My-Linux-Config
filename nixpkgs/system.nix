@@ -65,6 +65,7 @@ in
     zsh
     unstable.tailscale
     cifs-utils
+    k3s
   ];
 
   services.tailscale.enable = true;
@@ -109,7 +110,10 @@ in
     trustedInterfaces = [ "tailscale0" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    allowedUDPPorts = [ config.services.tailscale.port
+
+      8472 # k3s, flannel: required if using multi-node for inter-node networking
+    ];
 
     # allow you to SSH in over the public internet
     allowedTCPPorts = [
@@ -120,7 +124,11 @@ in
       445 # samba
       /* 8384 # syncthing */
       /* 22000 # syncthing */
+      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
     ];
+
 
     allowedTCPPortRanges = [
       { from = 5900; to = 6100; }
@@ -143,6 +151,13 @@ in
     extraGroups = [ "wheel" "docker" "libvirtd" ];
     hashedPassword = passwd;
   };
+
+
+  services.k3s.enable = true;
+  services.k3s.role = "server";
+  services.k3s.extraFlags = toString [
+    # "--kubelet-arg=v=4" # Optionally add additional args to k3s
+  ];
 
   boot = {
     crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
