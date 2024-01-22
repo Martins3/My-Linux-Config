@@ -121,6 +121,8 @@ in
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
     podman
     podman-tui
+    k9s
+    minikube
     slirp4netns
     nix-index
     # virt-manager @todo 这到底是个啥，需要使用上吗？
