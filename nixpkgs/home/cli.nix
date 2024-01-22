@@ -47,7 +47,7 @@ in
     nodejs
     tmux
     tmuxp
-    pueue # TODO 研究下这个怎么利用
+    pueue
     screen
     clash-meta
     tig

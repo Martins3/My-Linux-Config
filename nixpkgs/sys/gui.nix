@@ -14,7 +14,7 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # see xieby1
-  fonts.fonts = (
+  fonts.packages = (
     with (import (fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/d881cf9fd64218a99a64a8bdae1272c3f94daea7.tar.gz";
       sha256 = "1jaghsmsc05lvfzaq4qcy281rhq3jlx75q5x2600984kx1amwaal";
