@@ -811,6 +811,7 @@ setxkbmap -option caps:swapescape
 - 极为细节的问题，但是折腾下应该还是可解的
   - shellcheck 无法处理 source 其他的文件的情况。
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
+  - 集成 https://github.com/crate-ci/typos
   - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
   - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
   - https://github.com/koalaman/shellcheck/issues/1284

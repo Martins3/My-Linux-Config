@@ -7,7 +7,7 @@ in
 {
   fonts.fontconfig.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.username = "martins3";
   home.homeDirectory = "/home/martins3";
 
