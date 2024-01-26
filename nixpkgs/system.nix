@@ -10,10 +10,15 @@ in
 {
   imports = [
     ./sys/cli.nix
-    ./sys/kernel.nix
+    ./sys/kernel-options.nix
+    ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
-    ./sys/gui.nix
-  ];
+    # ./sys/gui.nix
+  ] ++ (
+  if builtins.currentSystem == "x86_64-linux" then [
+      ./sys/gui.nix
+    ] else [ ]
+  );
 
   nix.settings.substituters = [
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
@@ -388,7 +393,7 @@ in
  # 中，参考[1] 但是 options 只有包含一个
  # [1]: https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
  #
- #  fileSystems."/home/martins3/hackme" = {
+ #  fileSystems."/home/martins3/hack" = {
  #    device = "/dev/disk/by-uuid/b709d158-aa6a-4b72-8255-513517548111";
  #    fsType = "auto";
  #    options = [ "user"];

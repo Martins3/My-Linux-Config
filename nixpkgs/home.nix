@@ -3,8 +3,20 @@
 {
   imports = [
     ./home/cli.nix
-    ./home/gui.nix
-  ];
+  ] ++ (
+  if builtins.currentSystem == "x86_64-linux" then [
+      ./home/gui.nix
+    ] else [ ]
+  );
+
+
+  # 为了保证任何时候都安装 im-select ，否则无法
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
+  };
 
   # allow unfree software
   nixpkgs.config.allowUnfree = true;

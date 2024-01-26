@@ -100,7 +100,6 @@ in
     sshpass
     gping # better ping
     pingu # interesting ping
-    auto-cpufreq
     # frp # 反向代理
     nbd
     kmon # 方便的管理内核模块
@@ -160,13 +159,18 @@ in
     bpftools
     xdp-tools
     acpi
+  ] ++ pkgs.lib.optionals (builtins.currentSystem=="x86_64-linux") [
+    auto-cpufreq
     cpuid
+    linuxKernel.packages.linux_latest_libre.turbostat
+    pcm
+    powertop # 分析功耗
+  ] ++ [
     # @todo https://github.com/kkharji/sqlite.lua/issues/28
     # 需要设置 libsqlite3.so 的位置
     sqlite
     parted
     sysbench
-    linuxKernel.packages.linux_latest_libre.turbostat
     wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
@@ -192,7 +196,6 @@ in
     lazydocker
     distrobox # 基于容器来提供各种 distribution
     arp-scan
-    pcm
     nixos-generators
     unstable.gum
     # acpi
@@ -212,7 +215,6 @@ in
     # mcfly # better ctrl-r for shell
     unstable.atuin
     pciutils
-    powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     bcachefs-tools
@@ -306,73 +308,9 @@ in
     };
   };
 
-  programs.git = {
-    enable = true;
-    userEmail = "xueshi.hu@smartx.com";
-    userName = "Xueshi Hu";
-
-    extraConfig = {
-      # https://github.com/dandavison/delta
-      # --- begin
-      core = {
-        editor = "nvim";
-        pager = "delta";
-        abbrev = 12;
-      };
-      sendemail={
-        smtpserver = "smtp.googlemail.com";
-        smtpencryption = "tls";
-        smtpserverport = 587;
-        smtpuser = "xueshi.hu@smartx.com";
-        # 参考
-        # https://www.marcusfolkesson.se/blog/get_maintainers-and-git-send-email/
-        linux={
-            tocmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nol";
-            cccmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nom";
-        };
-      };
-      pretty={
-        fixes = "Fixes: %h (\"%s\")";
-        commit = "commit %h (\"%s\")";
-      };
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-      delta = {
-        navigate = "true";
-        light = "false";
-      };
-      merge = {
-        conflictstyle = "diff3";
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      # --- end
-
-      http = {
-        proxy = "http://127.0.0.1:8889";
-      };
-
-      https = {
-        proxy = "http://127.0.0.1:8889";
-      };
-
-      credential = {
-        helper = "store";
-      };
-
-      alias = {
-        # 查询一个 merge commit 中的数值
-        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
-        log-merge = "!f() { git log --oneline --graph --stat \"$1^..$1\"; }; f";
-        # 优雅的打印
-        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
-        adog = "log --all --decorate --oneline --graph";
-        kernel = "log -n 1 --pretty=commit";
-        bug = "log -n 1 --pretty=fixes";
-      };
-    };
+  home.file.gitconfig = {
+    source = ../../config/.gitconfig;
+    target = ".gitconfig";
   };
 
   home.file.gdbinit = {

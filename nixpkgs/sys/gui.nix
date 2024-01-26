@@ -66,10 +66,4 @@
   # https://github.com/kovidgoyal/kitty/issues/403
   environment.variables.GLFW_IM_MODULE = "ibus";
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
-  };
 }
