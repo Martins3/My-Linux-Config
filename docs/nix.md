@@ -43,16 +43,24 @@ swapon /dev/vda2
 nixos-generate-config --root /mnt
 ```
 
-打开配置，需要进行两个简单的修改
+打开配置 /mnt/etc/nixos/configuration.nix 中实现 uefi 启动，并且含有 grub
 
 ```sh
-vim /mnt/etc/nixos/configuration.nix
-```
-
-1. 取消掉这行的注释，从而有 grub
-
-```sh
-# boot.loader.grub.device = "/dev/vda";
+ # 将这行注释掉
+ # boot.loader.systemd-boot.enable = true;
+ # 增加下如下内容
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      grub = {
+        devices = [ "nodev" ];
+        efiSupport = true;
+      };
+    };
+  };
 ```
 
 2. 添加基本的工具方便之后使用
@@ -79,15 +87,10 @@ environment.systemPackages = with pkgs; [
 
 使用 root 用户登录进去：
 
-1. 创建用户和密码
+1. 创建 martins 用户，主要是为了创建 /home/martins3 目录出来
 
 ```sh
 useradd -c 'martins three' -m martins3
-```
-
-2. 切换到普通用户
-
-```sh
 su -l martins3
 ```
 
@@ -95,19 +98,13 @@ su -l martins3
 
 ```sh
 git clone https://github.com/Martins3/My-Linux-Config
+git checkout feat
 ```
 
 执行 ./scripts/install.sh 将本配置的文件软链接的位置。
 
-4. exit 到 root 执行，然后 ./scripts/nix-channel.sh 切换源
-
-5. 修改 `/etc/nixos/configuration.nix`，让其 import `/home/martins3/.config/nixpkgs/system.nix`。**注意 martins3 改成你的用户名**
-
-6. 初始化配置
-
-```sh
-nixos-rebuild switch # 仅NixOS，其实在 root 状态下
-```
+4. su
+5. 执行 ./scripts/nixos-install.sh
 
 7. 切换为 martins3，开始部署 home-manager 配置
 
@@ -117,7 +114,7 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
-## 图形界面的安装
+## 在图形界面的安装
 
 1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
    遇到网络问题，执行如下内容
