@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -E -e -u -o pipefail
 # QEMU 的 -pidfile 在 QEMU 被 pkill 的时候自动删除的，但是如果 QEMU 是 segv 之类的就不会
 
@@ -8,14 +7,21 @@ function choose_vm() {
 	echo "$output"
 }
 
+function kill_qemu() {
+	vm=$1
+	# 不知道为什么，这种方法在 qemu 中失效了
+	# gum confirm "Kill $vm ?" && echo "quit" | socat - unix-connect:"$vm/hmp"
+	gum confirm "Kill $vm ?" && kill -9 "$(cat "$vm"/pid)"
+}
+
 function close_qemu() {
 	vm=$(choose_vm active)
-	monitor=$(choose_vm active)/hmp
+	monitor=$vm/hmp
 	if [[ ! -e $monitor ]]; then
 		echo "已经豆沙了 🙀"
 		return
 	fi
-	gum confirm "Kill $vm ?" && echo "quit" | socat - unix-connect:"$monitor"
+	kill_qemu "$vm"
 }
 
 function debug_kernel() {
@@ -26,7 +32,7 @@ function debug_kernel() {
 	fi
 	if [[ -f $vm/pid ]]; then
 		if gum confirm "Kill the machine?"; then
-			echo "quit" | socat - unix-connect:"$vm/hmp"
+			kill_qemu "$vm"
 		else
 			echo "Give up"
 			exit 0
@@ -35,15 +41,15 @@ function debug_kernel() {
 	# 使用 screen -r 来进入到 detach 的脚本
 	screen -d -m /home/martins3/core/vn/docs/qemu/sh/alpine.sh -s
 	/home/martins3/core/vn/docs/qemu/sh/alpine.sh -k
-	gum confirm "Kill the machine?" && echo "quit" | socat - unix-connect:"$vm/hmp"
+	kill_qemu "$vm"
 }
 
 function ssh_to_guest() {
 	vm=$(choose_vm active)
 	if [[ -z $vm ]]; then
-    echo "No active vm found 🐕"
-    exit 0
-  fi
+		echo "No active vm found 🐕"
+		exit 0
+	fi
 	port=$(cat "$vm"/port)
 	if [[ -f "$vm"/user ]]; then
 		user=$(cat "$vm"/user)
