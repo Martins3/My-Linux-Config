@@ -45,7 +45,7 @@ nixos-generate-config --root /mnt
 
 打开配置 /mnt/etc/nixos/configuration.nix 中实现 uefi 启动，并且含有 grub
 
-```sh
+```nix
  # 将这行注释掉
  # boot.loader.systemd-boot.enable = true;
  # 增加下如下内容
@@ -104,7 +104,8 @@ git checkout feat
 执行 ./scripts/install.sh 将本配置的文件软链接的位置。
 
 4. su
-5. 执行 ./scripts/nixos-install.sh
+5. 执行 ./scripts/nixos-install.sh 
+
 
 7. 切换为 martins3，开始部署 home-manager 配置
 
@@ -1593,3 +1594,6 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
 
 ## 代理
 https://yacd.metacubex.one/#/proxies
+
+## 生成密码
+mkpasswd -m sha-512 abc

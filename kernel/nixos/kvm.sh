@@ -2,7 +2,7 @@
 
 set -E -e -u -o pipefail
 
-project_dir=~/core/nixos-kernel
+project_dir=~/hack/nixos-kernel
 mkdir -p $project_dir
 cd $project_dir
 
@@ -100,8 +100,9 @@ echo "use nix" >> .envrc && direnv allow
 
 gum confirm "Continue to build kvm?" || exit 0
 
-exe "make -j32"
-exe "make M=./arch/x86/kvm/ modules -j32"
+core=$(($(getconf _NPROCESSORS_ONLN) - 1))
+exe "make -j$core"
+exe "make M=./arch/x86/kvm/ modules -j$core"
 sudo rmmod kvm_amd kvm
 sudo insmod ./arch/x86/kvm/kvm.ko
 sudo insmod ./arch/x86/kvm/kvm-intel.ko

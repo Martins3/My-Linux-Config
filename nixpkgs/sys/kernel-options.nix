@@ -47,7 +47,10 @@
     # @todo 不是 systemd 会默认启动 fsck 的吗，这个需要啥
     # "fsck.mode=force"
     "fsck.repair=yes"
-    "ftrace=function"
-    "ftrace_filter=dmar_set_interrupt"
+
+    # 这个会导致 arm 打开所有函数的 trace ，难道是因为 ftrace_filter 设置一个不支持的函数
+    # 然后机会导致所有的函数都被跟踪
+    # "ftrace=function"
+    # "ftrace_filter=dmar_set_interrupt"
   ];
 }
