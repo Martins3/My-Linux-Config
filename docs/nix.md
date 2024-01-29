@@ -104,7 +104,7 @@ git checkout feat
 执行 ./scripts/install.sh 将本配置的文件软链接的位置。
 
 4. su
-5. 执行 ./scripts/nixos-install.sh 
+5. 执行 ./scripts/nixos-install.sh
 
 
 7. 切换为 martins3，开始部署 home-manager 配置
@@ -1597,3 +1597,22 @@ https://yacd.metacubex.one/#/proxies
 
 ## 生成密码
 mkpasswd -m sha-512 abc
+
+## 构建 github action
+
+```txt
+  services.github-runners = {
+    testrunner = {
+      enable = true;
+      user = "martins3";
+      name = "test-runner";
+      # token file is somewhere on local machine - in my case, it's not currently managed by nix
+      tokenFile = "/home/martins3/.github-runners";
+      url = "https://github.com/Martins3/R9000P";
+    };
+  };
+```
+tokenFile 只是需要包含 github 指导步骤中的 token 即可
+```txt
+./config.sh --url https://github.com/Martins3/R9000P --token xxx
+```

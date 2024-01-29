@@ -38,7 +38,7 @@
 ### submodule
 - git submodule update --recursive
 
-### git log
+### log
 
 - git log --format="%h --> %B"
 - git log -S <string> path/to/file : 如果 git blame 一个已经被删除的内容
@@ -65,7 +65,7 @@
 - -> 在一个特定的 commit 上打 tag
 - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
 
-### git patch
+### patch
 
 将 patch 直接作为一个 commit，而不是 diff 信息
 -v 是参数个数。
@@ -76,7 +76,7 @@
 - git format-patch -1 -v # 说明 patch 的版本
 - git am
 
-### git fuzzy am
+### fuzzy am
 
 git am /path/to/some.patch
 patch -p1 < /path/to/some.patch
@@ -84,10 +84,13 @@ git add .
 git am --continue
 
 
-### git checkout to remote branch
+### checkout to remote branch
 
 git fetch
 git switch dev
+
+### autostash
+git pull --rebase --autostash
 
 ## redirect
 
@@ -140,7 +143,7 @@ git switch dev
 
 - "调试方法 echom 然后 :message 查看，注意不能是 echo"
 
-## nvim:
+## nvim
 
 - vim.api.nvim_err_writeln("hello \n") -- 不要忘记 \n
 - nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 _ 60 _ 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"

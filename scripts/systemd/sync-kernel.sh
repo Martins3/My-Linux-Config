@@ -91,6 +91,7 @@ if [[ ! -d /home/martins3/core/linux/Documentation/output ]]; then
 	run "make htmldocs -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 fi
 run "./scripts/clang-tools/gen_compile_commands.py"
+sed -i 's/-mabi=lp64//g' compile_commands.json
 
 # run "make binrpm-pkg -j$(($(getconf _NPROCESSORS_ONLN) - 1))"
 
