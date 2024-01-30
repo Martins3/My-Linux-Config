@@ -514,3 +514,6 @@ https://stackoverflow.com/questions/61811402/remove-all-elements-from-associativ
 
 https://stackoverflow.com/questions/76750683/bash-pipe-to-grep-in-if-statement-return-value
   - 这也让人感到太恐惧了吧，pipefail 配合 grep -q 这么搞，谁顶得住
+
+## 尝试一下
+https://github.com/pgrange/bash_unit

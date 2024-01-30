@@ -141,7 +141,7 @@ return {
       }),
       -- action = wezterm.action.ShowLauncher
     },
-    { key = "F2", mods = "", action = wezterm.action.ShowLauncher },
+    { key = "F8", mods = "", action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
   default_prog = { "bash", "-l", "-c", "/usr/bin/env tmux attach || /usr/bin/env tmux" },

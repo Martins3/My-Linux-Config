@@ -248,6 +248,7 @@ in
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
     bc # bash 数值计算
+    bash_unit
 
     # verilator # Fast and robust (System)Verilog simulator/compiler
 
