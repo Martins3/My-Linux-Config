@@ -133,7 +133,6 @@ require("lazy").setup({
   "keaising/im-select.nvim", -- 自动切换输入法
   { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
-  "ojroques/vim-oscyank", -- 让 nvim 在远程 server 上拷贝到本地剪切板上
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译

@@ -45,7 +45,6 @@
   * [Session](#session)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
-  * [从远程 server 上复制粘贴](#从远程-server-上复制粘贴)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -625,35 +624,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
   - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
 
 当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
-
-### 从远程 server 上复制粘贴
-
-在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
-
-使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
-
-增加上如下命令到 init.vim ，可以实现自动拷贝到本地电脑中
-```vim
-" "让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
-autocmd TextYankPost *
-    \ if v:event.operator is 'y' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-
-autocmd TextYankPost *
-    \ if v:event.operator is 'd' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-```
-
-使用方法，选中的内容之后，nvim 的命令行中执行: `OSCYankVisual`
-
-原理上参考:
-- https://news.ycombinator.com/item?id=32037489
-- https://github.com/ojroques/vim-oscyank/issues/24
-
-需要注意的是，这个功能依赖于 terminal 支持 OSC52 ，例如 Windows Terminal 就不支持，如果想在 Windows 中
-连接远程的 nvim，可以将 terminal 切换为 wezterm 等支持 OSC52 功能的终端。
 
 ## 本配置源代码解释
 

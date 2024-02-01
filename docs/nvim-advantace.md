@@ -30,6 +30,43 @@ https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 - [ ] Softtabstop : 既然是一个 tab 按下去的时候，产生多少个 space 的，那么只有允许 tab expand 的时候才有用吧
 - [ ] 让 Softtabstop 和 Shiftwidth 不相等又什么好处吗?
 
+### 从远程 server 上复制粘贴
+
+在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
+
+使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
+
+增加上如下命令到 init.vim ，可以实现自动拷贝到本地电脑中
+```vim
+" "让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
+autocmd TextYankPost *
+    \ if v:event.operator is 'y' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
+
+autocmd TextYankPost *
+    \ if v:event.operator is 'd' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
+```
+
+使用方法，选中的内容之后，nvim 的命令行中执行: `OSCYankVisual`
+
+原理上参考:
+- https://news.ycombinator.com/item?id=32037489
+- https://github.com/ojroques/vim-oscyank/issues/24
+
+需要注意的是，这个功能依赖于 terminal 支持 OSC52 ，例如 Windows Terminal 就不支持，如果想在 Windows 中
+连接远程的 nvim，可以将 terminal 切换为 wezterm 等支持 OSC52 功能的终端。
+
+不知道发生了什么，我现在无需安装任何插件，在 vim 中的任何操作都是直接从服务器拷贝到本地的:
+这个原理太神奇了，现在看来只有两个小问题:
+1. gx 打开本地的浏览器(需求比较小)
+2. 输入法的自动切换
+
+- 这是一个突破口
+  - https://www.reddit.com/r/neovim/comments/13yw98e/how_can_i_switch_the_local_input_method_in_vim_on/
+
 ## 黑魔法
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
