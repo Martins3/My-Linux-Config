@@ -27,6 +27,12 @@ function choose_vm() {
 			if [[ ! -f $i/pid ]]; then
 				live_vms+=("$i")
 			fi
+
+			# if vm killed unexpectly or qemu crashed, pidfile will not be cleand
+			# automatically. check the procfs to verify
+			if [[ -f $i/pid && ! -d /proc/$(cat "$i"/pid) ]]; then
+				live_vms+=("$i")
+			fi
 		fi
 
 	done

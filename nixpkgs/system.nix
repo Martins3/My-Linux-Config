@@ -9,7 +9,7 @@ in
   imports = [
     ./sys/cli.nix
     ./sys/kernel-options.nix
-    ./sys/kernel-config.nix
+    # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
     # ./sys/gui.nix
   ] ++ (
@@ -154,7 +154,7 @@ in
   };
 
 
-  services.k3s.enable = true;
+  services.k3s.enable = false;
   services.k3s.role = "server";
   services.k3s.extraFlags = toString [
     # "--kubelet-arg=v=4" # Optionally add additional args to k3s
@@ -392,7 +392,7 @@ in
  #  fileSystems."/home/martins3/hack" = {
  #    device = "/dev/disk/by-uuid/b709d158-aa6a-4b72-8255-513517548111";
  #    fsType = "auto";
- #    options = [ "user"];
+ #    options = [ "user" "exec"];
  #  };
 
 

@@ -96,22 +96,26 @@ _EOF_
 # 如果不首先 make 一下, 那么直接执行存在这个错误
 # Makefile:736: include/config/auto.conf: No such file or directory
 ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
-echo "use nix" >> .envrc && direnv allow
+echo "use nix" >>.envrc && direnv allow
 
 gum confirm "Continue to build kvm?" || exit 0
 
 core=$(($(getconf _NPROCESSORS_ONLN) - 1))
 exe "make -j$core"
-exe "make M=./arch/x86/kvm/ modules -j$core"
-sudo rmmod kvm_amd kvm
-sudo insmod ./arch/x86/kvm/kvm.ko
-sudo insmod ./arch/x86/kvm/kvm-intel.ko
-sudo insmod ./arch/x86/kvm/kvm-amd.ko
+run "./scripts/clang-tools/gen_compile_commands.py"
+sed -i 's/-mabi=lp64//g' compile_commands.json
+
+if [[ $(unme -m) == x86_64 ]]; then
+	exe "make M=./arch/x86/kvm/ modules -j$core"
+	sudo rmmod kvm_amd kvm
+	sudo insmod ./arch/x86/kvm/kvm.ko
+	sudo insmod ./arch/x86/kvm/kvm-intel.ko
+	sudo insmod ./arch/x86/kvm/kvm-amd.ko
+fi
 
 gum confirm "Continue to build rpm?" || exit 0
 # TODO 这样编译出来的 rpm 为什么这么大啊
-exe "make binrpm-pkg -j32"
-
+exe "make binrpm-pkg -j$core"
 
 # TODO 靠，还是有点问题，难道需要一开始就设置 id 吗?
 # TODO 还是其实，从来都没有成功过
@@ -121,8 +125,6 @@ exe "make binrpm-pkg -j32"
 
 # sudo modprobe kvm-intel
 # kvm.ko 和 kvm-intel.ko 是配套的
-#
-
 
 # 看看: Documentation/kbuild/reproducible-builds.rst
 # 如果利用 stable 的 kernel 的 tree
