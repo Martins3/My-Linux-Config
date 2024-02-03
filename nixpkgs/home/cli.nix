@@ -85,6 +85,7 @@ in
     du-dust # 比 ncdu 更快
     socat # unix domain
     delta # git diff
+    act # Run github action locally
     git-secrets
     nethogs
     sniffnet
