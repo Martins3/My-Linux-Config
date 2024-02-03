@@ -134,10 +134,18 @@ return {
       -- action = wezterm.action.ShowLauncher
     },
     {
-      key = "m",
-      mods = "CTRL",
+      key = "t",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({
-        args = { "ssh", "-t", "-p5556", "root@localhost", "zellij attach || zellij" },
+        args = { "bash", "-l", "-c", "zellij attach || zellij" },
+      }),
+      -- action = wezterm.action.ShowLauncher
+    },
+    {
+      key = "i",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@192.168.19.55", "tmux attach || tmux" },
       }),
       -- action = wezterm.action.ShowLauncher
     },
