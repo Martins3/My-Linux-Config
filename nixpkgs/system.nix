@@ -154,7 +154,7 @@ in
   };
 
 
-  services.k3s.enable = false;
+  services.k3s.enable = true;
   services.k3s.role = "server";
   services.k3s.extraFlags = toString [
     # "--kubelet-arg=v=4" # Optionally add additional args to k3s

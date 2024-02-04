@@ -123,7 +123,7 @@ in
     podman
     podman-tui
     k9s
-    minikube
+    # minikube
     slirp4netns
     nix-index
     # virt-manager @todo 这到底是个啥，需要使用上吗？
