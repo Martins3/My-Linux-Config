@@ -308,19 +308,6 @@ in
     wantedBy = [ "default.target" ];
   };
 
-
-  systemd.user.services.httpd = {
-    enable = true;
-    description = "export home dir to LAN";
-    serviceConfig = {
-      WorkingDirectory = "/home/martins3/";
-      Type = "simple";
-      ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server";
-      Restart = "no";
-    };
-    wantedBy = [ "timers.target" ];
-  };
-
   systemd.user.services.kernel_doc = {
     enable = true;
     description = "export kernel doc at 127.0.0.1:3434";

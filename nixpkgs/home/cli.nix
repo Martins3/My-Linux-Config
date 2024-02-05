@@ -124,6 +124,9 @@ in
     podman-tui
     k9s
     # minikube
+    minio
+    dufs # 一个全新的 ftp server
+    hoard # 暂时不知道怎么使用
     slirp4netns
     nix-index
     # virt-manager @todo 这到底是个啥，需要使用上吗？
