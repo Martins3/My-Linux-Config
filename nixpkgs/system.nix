@@ -372,6 +372,7 @@ in
     "vm.overcommit_memory" = 1;
   };
 
+ # https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
  # 这一个例子如何自动 mount 一个盘，但是配置放到 /etc/nixos/configuration.nix
  # 中，参考[1] 但是 options 只有包含一个
  # [1]: https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
@@ -379,8 +380,9 @@ in
  #  fileSystems."/home/martins3/hack" = {
  #    device = "/dev/disk/by-uuid/b709d158-aa6a-4b72-8255-513517548111";
  #    fsType = "auto";
- #    options = [ "user" "exec"];
+ #    options = [ "user" "exec" "nofail"];
  #  };
+
 
 
   # 配合使用

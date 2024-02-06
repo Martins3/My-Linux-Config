@@ -119,6 +119,10 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
+    unstable.nixos-shell
+    krunvm  # 有待尝试
+    nixpacks
+    buildah
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
     podman
     podman-tui
@@ -213,7 +217,6 @@ in
     fio
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
-    unstable.nixos-shell
     progress # 展示 cp dd 之类的进度条
     psmisc # 包含 pstree fuser 等工具
     viddy # A modern watch command.

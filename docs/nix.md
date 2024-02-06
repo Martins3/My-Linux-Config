@@ -10,22 +10,13 @@
 之所以坚持使用 NixOS ，是因为我感觉 NixOS 非常符合计算机的思维，
 那就是**相同的问题仅仅解决一次**，而这个问题是 环境配置。
 
-## 优缺点对比
-
-### 优点
-
-1. escape 和 Caps 之间互相切换更加简单
-
-### 缺点
-
-1. crash 无法安装
-
 ## 安装
 
-### 安装系统
+### 手动安装
+
+#### 手动分区
 
 参考[官方教程](https://nixos.org/manual/nixos/stable/index.html#sec-installation) 以及
-[这个解释](https://www.cs.fsu.edu/~langley/CNT4603/2019-Fall/assignment-nixos-2019-fall.html)
 
 创建分区，安装操作系统，并且初始化 nixos
 
@@ -78,12 +69,10 @@ environment.systemPackages = with pkgs; [
 
 我在这里踩的坑
 
-- 以上使用的是 vda , 具体是什么，以 lsblk 为例子
 - 在 QEMU 中 UEFI 暂时没有成功过，使用 legacy bios
 - QEMU 的参数中不要增加 `-kernel`，否则无法正确启动，因为 Nix 对于内核版本也是存在管理的，所以不能随意指定
-- 可以使用 ssh 远程链接安装的机器，这样就会有曾经熟悉的环境
 
-### 初始化环境
+#### 安装系统
 
 使用 root 用户登录进去：
 
@@ -106,8 +95,7 @@ git checkout feat
 4. su
 5. 执行 ./scripts/nixos-install.sh
 
-
-7. 切换为 martins3，开始部署 home-manager 配置
+6. 切换为 martins3，开始部署 home-manager 配置
 
 ```sh
 # 安装home-manager
@@ -115,7 +103,7 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
-## 在图形界面的安装
+### 在图形界面的安装
 
 1. [2.2. Graphical Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation-graphical) : 建议图形化安装
    遇到网络问题，执行如下内容
@@ -142,11 +130,15 @@ sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 
 最开始的时候无法 ssh ，所以以上操作都需要在图形界面中操作。
 
-## kernel 本身是不可 reproducible 的
+## 高级
 
-https://docs.kernel.org/kbuild/reproducible-builds.html
+### 关于 reproducible build
 
-## 基础知识
+- https://docs.kernel.org/kbuild/reproducible-builds.html
+- https://news.ycombinator.com/item?id=19310638
+- https://tests.reproducible-builds.org/archlinux/archlinux.html
+
+## 常见操作
 
 - nix-prefetch-url 同时下载和获取 hash 数值
 
@@ -156,16 +148,8 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 
 - nixos 默认是打开防火墙的
   - https://nixos.org/manual/nixos/unstable/options.html#opt-networking.firewall.enable
-- 更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
-- 查询是否存在一个包
-  - 在命令行中查询
-
-```sh
-nix-env -qaP | grep 'gcc[0-9]\>'
-nix-env -qaP elfutils
-```
-
-- 使用网站: https://search.nixos.org/packages
+- NixOS 半年更新一次，更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
+- 查询 nixos 的包和 options : https://search.nixos.org/packages
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
 
 ## 自动环境加载
@@ -177,37 +161,7 @@ echo "use nix" >> .envrc
 direnv allow
 ```
 
-## 无法代理的解决
-
-- 注意 export https_proxy 和 export HTTPS_PROXY 都是需要设置的
-- 可以使用 nload 检查一下网速，也许已经开始下载了，只是没有输出而已。
-
-wget 可以，但是 nerdfont 安装的过程中，github 中资源无法正确下载。
-
-因为下载是使用 curl 的，但是如果不添加 -L 似乎是不可以的
-
-## syncthing
-
-强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
-
-- https://wes.today/nixos-syncthing/
-- https://nixos.wiki/wiki/Syncthing
-
-使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
-
 ## npm 包管理
-
-支持的不是很好，需要手动安装
-
-使用这个来搜索包[^1]:
-
-```sh
-nix-env -qaPA nixos.nodePackages
-```
-
-但是只有非常少的包。
-
-但是可以通过这个方法来使用传统方法安装:
 
 - https://stackoverflow.com/questions/56813273/how-to-install-npm-end-user-packages-on-nixos
 
@@ -221,17 +175,7 @@ npm install -g prettier
 # npm install -g @microsoft/inshellisense
 ```
 
-设置代理现在可以在 nixos 中配置了:
-```sh
-npm config set registry https://registry.npm.taobao.org/  # 设置 npm 镜像源为淘宝镜像
-yarn config set registry https://registry.npm.taobao.org/  # 设置 yarn 镜像源为淘宝镜像
-```
-
-## windows 虚拟机
-
-### 性能优化
-
-virtio
+## 共享
 
 ### 使用 samba 实现目录共享
 
@@ -246,10 +190,21 @@ sudo smbpasswd -a martins3
 在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
 
 如果遇到需要密码的时候，但是密码不对
+
 ```txt
 sudo smbpasswd -a martins3
 ```
+
 在 windows 那一侧使用 martins3 和新设置的密码来登录。
+
+### syncthing
+
+强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
+
+- https://wes.today/nixos-syncthing/
+- https://nixos.wiki/wiki/Syncthing
+
+使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
 
 ## python
 
@@ -267,6 +222,7 @@ pip install setuptools # 结果 readonly 文件系统
 ```
 
 正确的解决办法是，之后，就按照正常的系统中使用 python:
+
 ```txt
 python -m venv .venv
 source .venv/bin/activate
@@ -298,45 +254,10 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 ## kernel
 
 - https://nixos.wiki/wiki/Linux_kernel
+- https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
+- https://nixos.org/manual/nixos/stable/#sec-kernel-config
 
-### 编译内核
-
-目前的方法是使用 linux.nix 操作的，其中注意:
-
-- 内核的依赖是: elfutils
-  - 参考: https://github.com/NixOS/nixpkgs/issues/91609
-
-另一种方法是直接复用 nixpkgs 中的配置:
-
-- https://ryantm.github.io/nixpkgs/using/overrides/
-- https://ryantm.github.io/nixpkgs/builders/packages/linux/#sec-linux-kernel
-
-```nix
-with import <nixpkgs> { };
-linux.overrideAttrs (o: {
-  nativeBuildInputs = o.nativeBuildInputs ++ [ pkg-config ncurses ];
-})
-```
-
-## [ ] 如何增加模块
-
-或者说，这个配置是做什么的
-/_ boot.extraModulePackages = with config.boot.kernelPackages; [ mce-inject ]; _/
-
-### [ ] 编译内核模块
-
-### 编译老内核
-
-使用 docker 吧
-
-### 安装自定义的内核
-
-参考 https://nixos.wiki/wiki/Linux_kernel 中 Booting a kernel from a custom source 的，以及其他的章节， 使用自定义内核，不难的。
-
-### [ ] crash
-
-- [ ] 对于一下 redhat 的工具，似乎当 kernel 挂掉之后难以正确的处理
-  - [ ] https://github.com/crash-utility/crash 无法正确安装
+总体来说，构建
 
 ## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
 
@@ -350,39 +271,12 @@ linux.overrideAttrs (o: {
 
 > pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
 
-## 在 nix 中搭建内核调试的环境
-
-参考 https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
-
 ## 交叉编译
 
 参考:
 
 - https://xieby1.github.io/Distro/Nix/cross.html
 - https://ianthehenry.com/posts/how-to-learn-nix/cross-compilation/
-
-但是不要妄想交叉编译老版本的内核，是一个时间黑洞。
-
-在 :broom: remove cross-compile nix config 的提交中删除两个配置。
-
-## 如何编译 kernel module
-
-- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
-- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
-
-没必要那么复杂，参考这个，中的 : Developing out-of-tree kernel modules
-
-- https://nixos.wiki/wiki/Linux_kernel
-
-```sh
-nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
-make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
-
-make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
-```
-
-- [ ] 搞清楚 kbuild 也许会让问题容易很多吧
-- [ ] 似乎现在是没有办法手动编译的
 
 ## tmux
 
@@ -392,7 +286,7 @@ make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.de
 
 虽然暂时没有 gui 的需求，但是还是收集一下，以后在搞:
 
-- [reddit : i3， polybar rofi](https://www.reddit.com/r/NixOS/comments/wih19c/ive_been_using_nix_for_a_little_over_a_month_and/)
+- [reddit : i3, polybar rofi](https://www.reddit.com/r/NixOS/comments/wih19c/ive_been_using_nix_for_a_little_over_a_month_and/)
 
 ## 安装 unstable 的包
 
@@ -521,24 +415,17 @@ in {
 
 ## 有趣的项目
 
-### [ ] nixos-shell
-
 - https://github.com/Mic92/nixos-shell
-
-### [ ] microvm.nix
-
+  - https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/virtualisation/qemu-vm.nix
 - https://github.com/astro/microvm.nix
-
-### nixos-generators
-
-- [ ] 可以测试一下 nixos-generators，这个可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的吗？
-  - 这个项目提供的好几种方法安装，我是有点看不懂是什么意思的 https://github.com/nix-community/nixos-generators
-
-### nixpacks
-
-使用 nix 创建 OCI images
-
-- https://news.ycombinator.com/item?id=32501448
+  - 是配置了文档的: https://astro.github.io/microvm.nix/intro.html
+- https://github.com/nix-community/nixos-generators
+  - nixos-generate -f iso -c /etc/nixos/configuration.nix : 利用 squashfs 直接构建出来安装用 iso
+  - 可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的时候还要下载
+  - 而且可以还可以构建 qcow2
+  - 当然还是有点小问题，qcow2 构建直接报错，iso 的使用 qemu-system-x86_64 -cdrom /nix/store/ff5fcyx1ka3kmiw8bxl29l377d4xwn3i-nixos.iso/iso/nixos.iso --enable-kvm 启动，因为目前是含有 mount 的 ，systemd 无法正常启动的
+- nixpacks
+  - https://news.ycombinator.com/item?id=32501448
 
 ## 其他有趣的 Linux Distribution
 
@@ -557,23 +444,6 @@ in {
 - https://nixos.wiki/wiki/Flakes
 - https://news.ycombinator.com/item?id=36362225
 
-## [ ] rpm 构建的出来的 rpmbuild 权限不对
-
-## [ ] 无法使用 libvirt 正确实现热迁移
-
-```txt
-  virtualisation.libvirtd = {
-    enable = true;
-    # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/virtualization_host_configuration_and_guest_installation_guide/app_tcp_ports
-    extraConfig = "
-    listen_tls = 1
-    listen_tcp = 1
-    listen_addr = \"0.0.0.0\"
-    ";
-    extraOptions = [ "LIBVIRTD_ARGS=\"--listen\"" ];
-  };
-```
-
 ## switch caps 和 escape
 
 https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
@@ -588,10 +458,6 @@ gsettings reset org.gnome.desktop.input-sources sources
 也许也需要执行下:
 setxkbmap -option caps:swapescape
 
-## nix
-
-- https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
-
 ## 问题
 
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
@@ -599,8 +465,6 @@ setxkbmap -option caps:swapescape
 - [ ] making a PR to nixpkgs : https://johns.codes/blog/updating-a-package-in-nixpkgs
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
-- 测试一下，到底放不方便修改内核
-  - 如果想要一份本地的源码，来安装，如何 ?
 - [ ] 挂载磁盘 https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
 
 ## 需要验证的问题
@@ -965,7 +829,6 @@ xfs_repair -L /dev/dm-1
 
 参考 scripts/nix/pkg/static-qemu.nix
 
-
 ## [ ] nixos 没有 centos 中对应的 kernel-tools 包
 
 类似 kvm_stat 是没有现成的包，非常难受。nixmd
@@ -1080,6 +943,7 @@ e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
 - https://github.com/yaocccc/dwm : 看上去还不错，还有 bilibili 的介绍
 
 启用 hyprland 的方法:
+
 ```diff
 commit 6746b06b79275b160a433567b47d5e6c49445e77
 Author: Martins3 <hubachelar@gmail.com>
@@ -1150,6 +1014,7 @@ index 8490c95..c1c018b 100644
    time.timeZone = "Asia/Shanghai";
    time.hardwareClockInLocalTime = true;
 ```
+
 还是感觉收益不大，而且启动之后 edge 无法使用。再度放弃。
 
 ## 如何调试 host 内核
@@ -1382,6 +1247,7 @@ sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 https://drakerossman.com/blog/wayland-on-nixos-confusion-conquest-triumph
 
 ## notification
+
 不知道为什么大家会专门的 notification 工具来
 https://github.com/emersion/mako
 
@@ -1406,6 +1272,7 @@ https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
 ```sh
 efibootmgr -c -d /dev/nvme0n1 -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
 ```
+
 1. 注意，-p 1 来设置那个 partition 的。
 2. 后面的那个路径需要将 boot 分区 mount 然后具体产看，还有一次是设置的 "\EFI\nixo\BOOTX64.efi"
 
@@ -1419,8 +1286,8 @@ efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
 
 不知道为什么 efibootmgr 在 home.cli 中无法安装。
 
-
 删除一个:
+
 ```txt
 sudo efibootmgr  -B -b 3 # 3 是参数
 ```
@@ -1436,10 +1303,10 @@ nix profile install github:nixos/nixpkgs#nixd
 
 这个还很新，等到以后正式合并到 nixpkgs 中的时候再说吧!
 
-
 ## 感觉 nix 也是再快速发展，现在 nix-env -i 都不能用了
 
 ## amduperf 没有
+
 https://aur.archlinux.org/packages/amduprof
 
 但是 windows deb 和 rpm 都有
@@ -1450,11 +1317,13 @@ sudo nix-env --upgrade
 这个是做什么的
 
 ## flakes book
+
 - https://github.com/ryan4yin/nixos-and-flakes-book
 
 感觉写的相当不错。但是，问题是，我老版本的 nix channel 之类的还没掌握，怎么现在又切换了啊!
 
 ## nixos distribution
+
 - https://github.com/exploitoverload/PwNixOS
   - 也可以作为参考
 
@@ -1465,24 +1334,27 @@ sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebu
 ```
 
 ## noogλe : nix function exploring
+
 - https://github.com/nix-community/noogle
 
 ## 不知道做啥的
+
 https://mynixos.com/
 
-
-[^1]: https://unix.stackexchange.com/questions/379842/how-to-install-npm-packages-in-nixos
-
 ## 不知道如何调试代码，debug symbol 如何加载
+
 - https://nixos.wiki/wiki/Debug_Symbols
 
 ## [x] sar 无法正常使用
+
 ```txt
 🧀  sar
 Cannot open /var/log/sa/sa21: No such file or directory
 Please check if data collecting is enabled
 ```
+
 兄弟，是这个:
+
 ```sh
 sar -n DEV 1
 ```
@@ -1490,22 +1362,26 @@ sar -n DEV 1
 ## 如何在 cgroup 中编译内核
 
 可以采用这种方法:
+
 ```sh
 sudo cgexec -g memory:mem3 nix-shell --command "make -j32"
 ```
 
 但是这种方法就不太妙了:
+
 ```sh
 sudo cgexec -g memory:mem3 make -j32
 ```
 
 ## 文摘
+
 - [my first expression of nix](https://news.ycombinator.com/item?id=36387874_)
   - https://mtlynch.io/notes/nix-first-impressions/
-https://news.ycombinator.com/item?id=36387874
-https://news.ycombinator.com/item?id=32922901
+    https://news.ycombinator.com/item?id=36387874
+    https://news.ycombinator.com/item?id=32922901
 
 ## 搞搞 cuda 吧
+
 https://nixos.org/community/teams/cuda
 
 ```nix
@@ -1530,6 +1406,7 @@ pkgs.mkShell {
    '';
 }
 ```
+
 然后配合这个 : https://github.com/Tony-Tan/CUDA_Freshman
 
 https://news.ycombinator.com/item?id=37818570
@@ -1551,6 +1428,7 @@ https://news.ycombinator.com/item?id=37818570
 ```
 
 ## 又一个教程
+
 - https://gitlab.com/engmark/nix-start
 - https://github.com/Misterio77/nix-starter-configs
 
@@ -1559,6 +1437,7 @@ https://news.ycombinator.com/item?id=37818570
 此外，现在 systemd 中构建一次之后，在 zsh 中还是需要重新 make 一次
 
 ## 如何在 nixpkgs 的基础上稍作修改制作自己的包
+
 git clone nixpkgs
 
 跑到对应的路径下去:
@@ -1568,19 +1447,19 @@ nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
 https://elatov.github.io/2022/01/building-a-nix-package/
 
 ## 这个库
+
 https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
 
 ## 一个小问题
-nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此
 
+nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此
 
 ## 记录下升级到 23.11
 
 1. 修改 scripts/nix/nix-channel.sh 中时间编号即可
 2. ovs 似乎不能用了
-
 
 ## 配置文件
 
@@ -1593,9 +1472,11 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
 ```
 
 ## 代理
+
 https://yacd.metacubex.one/#/proxies
 
 ## 生成密码
+
 mkpasswd -m sha-512 abc
 
 ## 构建 github action
@@ -1612,7 +1493,45 @@ mkpasswd -m sha-512 abc
     };
   };
 ```
+
 tokenFile 只是需要包含 github 指导步骤中的 token 即可
+
 ```txt
 ./config.sh --url https://github.com/Martins3/R9000P --token xxx
 ```
+
+## 需要将 username 变为可以定制化才可以，或者说
+
+可以存在多个 username ，将 martins3 只是作为临时安装的一个名称，之后可以重新指向一个名称
+
+有办法修改为 xueshi.hu 吗?
+
+## 常见命令
+
+```sh
+nix-env -qaPA nixos.nodePackages
+```
+
+## TODO : 真正的代办
+
+参考这个文档，重新理解下到底如何优雅的构建内核驱动来着:
+https://nixos.org/manual/nixos/stable/#sec-kernel-config
+
+> 如何编译 kernel module
+
+- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
+- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
+
+没必要那么复杂，参考这个，中的 : Developing out-of-tree kernel modules
+
+- https://nixos.wiki/wiki/Linux_kernel
+
+```sh
+nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
+make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
+
+make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
+```
+
+- [ ] 搞清楚 kbuild 也许会让问题容易很多吧
+- [ ] 似乎现在是没有办法手动编译的
