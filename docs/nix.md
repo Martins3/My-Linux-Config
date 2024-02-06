@@ -151,6 +151,8 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - NixOS 半年更新一次，更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
 - 查询 nixos 的包和 options : https://search.nixos.org/packages
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
+- 如何升级
+  - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
 
 ## 自动环境加载
 
@@ -271,6 +273,10 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 
 > pkgs.mkShell is a specialized stdenv.mkDerivation that removes some repetition when using it with nix-shell (or nix develop).
 
+## 代理
+
+https://yacd.metacubex.one/#/proxies
+
 ## 交叉编译
 
 参考:
@@ -312,33 +318,6 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 的提示，
 rnix-lsp 可以，但是 x86-manpages 不可以
 
-## 常用 lib
-
-```nix
-readline.dev
-SDL2.dev
-```
-
-## 学习 nix 语言
-
-搭建环境:
-
-需要在 system.nix 中设置
-
-```nix
-  nix.settings.experimental-features = "nix-command flakes";
-```
-
-然后就可以使用
-
-```sh
-nix eval -f begin.nix
-```
-
-主要参考语言:
-
-- https://nixos.wiki/wiki/Overview_of_the_Nix_Language
-
 ## gcc 和 clang 是冲突的
 
 - https://github.com/nix-community/home-manager/issues/1668
@@ -350,14 +329,6 @@ nix eval -f begin.nix
 [Are We Getting Too Many Immutable Distributions?](https://linuxgamingcentral.com/posts/are-we-getting-too-many-immutable-distros/)
 
 [打个包吧](https://unix.stackexchange.com/questions/717168/how-to-package-my-software-in-nix-or-write-my-own-package-derivation-for-nixpkgs)
-
-## MAC 中使用 nix
-
-存在很多麻烦的地方:
-
-- https://github.com/mitchellh/nixos-config : 主要运行 mac ，而在虚拟机中使用
-  - https://nixos.wiki/wiki/NixOS_on_ARM
-  - https://www.sevarg.net/2021/01/09/arm-mac-mini-and-boinc/
 
 ## tutorial
 
@@ -413,7 +384,7 @@ in {
 
 - https://stackoverflow.com/questions/44088192/when-and-how-should-default-nix-shell-nix-and-release-nix-be-used
 
-## 有趣的项目
+## 虚拟化
 
 - https://github.com/Mic92/nixos-shell
   - https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/virtualisation/qemu-vm.nix
@@ -542,11 +513,6 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 
 - https://github.com/gvolpe/nix-config : 这个也非常不错
 
-## TODO
-
-- [ ] https://nixos.org/learn.html#learn-guides
-- [ ] https://nixos.org/ 包含了一堆 examples
-- [ ] https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
 
 ## 你需要认真学习一波
 
@@ -701,7 +667,6 @@ https://discourse.nixos.org/t/what-to-do-with-a-full-boot-partition/2049/13
 
 ## 包搜索
 
-nix search nixpkgs markdown | fzf
 
 ## 静态编译
 
@@ -710,9 +675,9 @@ nix search nixpkgs markdown | fzf
 应该使用这种方法:
 nix-shell -p gcc glibc.static
 
-## 如何安装 nixos 主题
+## devenv
 
-- https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/icons/whitesur-icon-theme/default.nix
+如何使用
 
 ## 如何安装 steam
 
@@ -735,42 +700,6 @@ programs.steam.enable = true;
 - 安装 : https://github.com/atelier-anchor/smiley-sans
 
 但是不知道如何指定安装这个!
-
-## [ ] openvpn
-
-- 直接使用是存在问题的 : https://github.com/OpenVPN/openvpn3-linux/issues/42
-- 之后修复了
-  - https://github.com/NixOS/nixpkgs/pull/120352
-  - https://github.com/NixOS/nixpkgs/pull/173937
-
-从 pull request 中看，应该配置方法是:
-
-```nix
-  services.openvpn3.enable = true;
-```
-
-但是实际上应该是这样的:
-
-```nix
-  programs.openvpn3.enable = true;
-```
-
-最后，在 ubuntu 上可以正确执行的，结果在 nixos 上总是卡住的:
-
-```txt
-🧀  openvpn3 log session-start --config client.ovpn
-Waiting for session to start ...
-```
-
-有时间，我想直接切换为 wireguard 吧
-
-## [ ] devenv
-
-- https://shyim.me/blog/devenv-compose-developer-environment-for-php-with-nix/
-
-## [ ] 修改默认的 image 打开程序
-
-默认是 microsoft-edge，但是我希望是 eog
 
 ## 和各种 dotfile manager 的关系是什么
 
@@ -1295,30 +1224,13 @@ sudo efibootmgr  -B -b 3 # 3 是参数
 设置优先级
 sudo efibootmgr -o 0,1,2
 
-## [ ] 如何下载 nixd
-
-看这里的文档: https://github.com/nix-community/nixd/blob/main/docs/user-guide.md
-
-nix profile install github:nixos/nixpkgs#nixd
-
-这个还很新，等到以后正式合并到 nixpkgs 中的时候再说吧!
-
-## 感觉 nix 也是再快速发展，现在 nix-env -i 都不能用了
-
-## amduperf 没有
-
-https://aur.archlinux.org/packages/amduprof
-
-但是 windows deb 和 rpm 都有
-
-## 如何升级
-
-sudo nix-env --upgrade
-这个是做什么的
 
 ## flakes book
 
 - https://github.com/ryan4yin/nixos-and-flakes-book
+
+作者的配置:
+- https://github.com/ryan4yin/nix-config
 
 感觉写的相当不错。但是，问题是，我老版本的 nix channel 之类的还没掌握，怎么现在又切换了啊!
 
@@ -1333,13 +1245,6 @@ sudo nix-env --upgrade
 sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebuild switch
 ```
 
-## noogλe : nix function exploring
-
-- https://github.com/nix-community/noogle
-
-## 不知道做啥的
-
-https://mynixos.com/
 
 ## 不知道如何调试代码，debug symbol 如何加载
 
@@ -1452,14 +1357,6 @@ https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
 
-## 一个小问题
-
-nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此
-
-## 记录下升级到 23.11
-
-1. 修改 scripts/nix/nix-channel.sh 中时间编号即可
-2. ovs 似乎不能用了
 
 ## 配置文件
 
@@ -1470,10 +1367,6 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
     options = [ "user"];
   };
 ```
-
-## 代理
-
-https://yacd.metacubex.one/#/proxies
 
 ## 生成密码
 
@@ -1535,3 +1428,43 @@ make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.de
 
 - [ ] 搞清楚 kbuild 也许会让问题容易很多吧
 - [ ] 似乎现在是没有办法手动编译的
+
+> 学习 nix 语言
+
+```sh
+nix eval -f begin.nix
+```
+
+主要参考语言:
+
+- https://nixos.wiki/wiki/Overview_of_the_Nix_Language
+
+从 nixos virtualisation 中的实现直接 中开始入手吧
+
+## 感受
+- arm 上安装 nixos 是很容易的，不要被 https://nixos.wiki/wiki/NixOS_on_ARM 骗了
+- nixos ui 主题
+  - https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/icons/whitesur-icon-theme/default.nix
+
+## 学习资料
+
+- [ ] https://nixos.org/learn.html#learn-guides
+- [ ] https://nixos.org/ 包含了一堆 examples
+- [ ] https://github.com/digitalocean/nginxconfig.io : Nginx 到底是做啥的
+
+## 工具
+- noogλe : nix function exploring
+  - https://github.com/nix-community/noogle
+  - https://noogle.dev/
+- https://mynixos.com/
+  - 一个分享 nix 和 nixos 配置的网站
+  - https://news.ycombinator.com/item?id=33762743
+
+
+## 缺陷
+- amduperf 没有
+  - https://aur.archlinux.org/packages/amduprof
+  - 但是 windows deb 和 rpm 都有
+
+## 材料
+nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此

@@ -39,7 +39,7 @@ if not lspconfig_status_ok then
   return
 end
 
-local all_servers = {"ccls"}
+local all_servers = {"ccls", "nixd"}
 for i = 1, #servers do
   all_servers[#all_servers + 1] = servers[i]
 end

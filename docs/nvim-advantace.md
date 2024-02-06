@@ -93,8 +93,11 @@ https://github.com/nvim-neotest/neotest
 ## 参考
 - https://blog.antoyo.xyz/vim-tips
 - [ ] https://news.ycombinator.com/item?id=36312027
+- https://m4xshen.dev/posts/vim-command-workflow/
 
 
+## 待处理
+nvim/lua/usr/nvim-treesitter.lua 全部都是警告
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

@@ -2,7 +2,6 @@
 
 let
   unstable = import <unstable> { };
-  x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 in
 {
   fonts.fontconfig.enable = true;
@@ -132,7 +131,8 @@ in
     dufs # 一个全新的 ftp server
     hoard # 暂时不知道怎么使用
     slirp4netns
-    nix-index
+    # nix-index
+    nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     unstable.neovim
@@ -201,7 +201,6 @@ in
     atop
     nmon
     man-pages-posix
-    # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
     distrobox # 基于容器来提供各种 distribution
     arp-scan
@@ -234,7 +233,10 @@ in
     unstable.zellij # tmux 替代品
     # kvmtool
     packer # 制作 qcow2 镜像
-    (import (fetchTarball "https://github.com/cachix/devenv/archive/v0.5.tar.gz")) # @todo 和 default.nix 有区别？
+    just # 更加 nb 的执行命令
+    (import (fetchTarball https://install.devenv.sh/latest)).default
+    # @todo 不知道为什么，这种方法不行
+    # (import (fetchTarball https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz))
     bridge-utils
     swtpm # windows 11 启动需要
     # unstable.nushell
