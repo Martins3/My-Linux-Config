@@ -261,6 +261,9 @@ nix-shell '<nixpkgs>' -A lua --command zsh
 
 总体来说，构建
 
+- 从哪里获取到 debuginfo ，如果可以获取，那么就可以使用 crash 来实现实时系统的分析
+- drgn 无法安装，使用也是未知
+
 ## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
 
 - https://discourse.nixos.org/t/using-rust-in-nix-shell-mkderivation-or-mkshell/15769
@@ -411,7 +414,6 @@ in {
 ## [ ] flake.nix
 
 实验特性
-
 - https://nixos.wiki/wiki/Flakes
 - https://news.ycombinator.com/item?id=36362225
 
@@ -450,15 +452,14 @@ setxkbmap -option caps:swapescape
 - [Will Nix Overtake Docker?](https://news.ycombinator.com/item?id=29387137)
 - https://news.ycombinator.com/item?id=34119868
 
-忽然对于 Nix 有点兴趣，感觉自从用了 Ubuntu 之后，被各种 Linux Distribution 毒打的记忆逐渐模糊，现在想去尝试一下，
-但是 Ian Henry 的[How to Learn Nix](https://ianthehenry.com/posts/how-to-learn-nix/) 写的好长啊，
-
-我发现，在 Ubuntu 安装我现在的 nvim 配置很麻烦，虽然可以写脚本，但是更多的时候是
-忘记了曾经安装过的软件。
+Ian Henry 的[How to Learn Nix](https://ianthehenry.com/posts/how-to-learn-nix/) 写的好长啊，
 
 ## 问题
 
-nix-env -i git 和 nix-env -iA nixpkgs.git 的区别是什么?
+这三个命令的区别是什么:
+- nix-env -i git
+- nix-env -iA nixpkgs.git
+- nix profile install nixpkgs#git
 
 ## 文档
 
@@ -509,9 +510,6 @@ Profiles and user environments are Nix’s mechanism for implementing the abilit
 
 ### manual : https://nixos.org/manual/nixpkgs/unstable/
 
-## 这个操作几乎完美符合要求啊
-
-- https://github.com/gvolpe/nix-config : 这个也非常不错
 
 
 ## 你需要认真学习一波
@@ -1026,21 +1024,6 @@ ulimit -c unlimited
 
 其路径也是在 /var/lib/apport/coredump 中。
 
-## [ ] 想要安装一下 drgn 调试内核
-
-https://drgn.readthedocs.io/en/latest/installation.html#id1
-
-最后这个方法:
-
-```txt
-python3 -m venv drgnenv
-source drgnenv/bin/activate
- python3 setup.py install
- drgn --help
-```
-
-暂时在虚拟机中使用吧。
-
 ## [ ] infer 处理下
 
 https://fbinfer.com/docs/getting-started/
@@ -1468,3 +1451,6 @@ nix eval -f begin.nix
 
 ## 材料
 nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 nixos 之类的程序并不会如此
+
+## 其他人的配置
+- https://github.com/gvolpe/nix-config : 这个也非常不错
