@@ -14,6 +14,9 @@ pkgs.llvmPackages.stdenv.mkDerivation {
       libpcap
       glibc_multi
       libbpf
+
+      libcap
+      libbfd
   ];
 }
 

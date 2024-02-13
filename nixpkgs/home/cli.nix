@@ -265,6 +265,7 @@ in
     figlet # 艺术字
     lolcat # 彩虹 cat
     nyancat # 彩虹猫咪
+
     dig # dns分析
     iptraf-ng # 网络流量分析
     nvitop

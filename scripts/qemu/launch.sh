@@ -30,7 +30,7 @@ function debug_kernel() {
 		echo "No suitable vm found !"
 		exit 0
 	fi
-	if [[ -f $vm/pid ]]; then
+  if [[ -f $vm/pid && -f /proc/$(cat "$vm"/pid)/cmdline ]]; then
 		if gum confirm "Kill the machine?"; then
 			kill_qemu "$vm"
 		else

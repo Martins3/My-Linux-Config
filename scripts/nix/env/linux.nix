@@ -44,6 +44,7 @@ pkgs.stdenv.mkDerivation {
       sphinx
       # 修改 Documentation/conf.py 中 html_theme = 'sphinx_rtd_theme'
       sphinx-rtd-theme
+      pyyaml
     ]))
     libopcodes
     numactl
