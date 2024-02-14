@@ -11,7 +11,6 @@ in
     ./sys/kernel-options.nix
     # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
-    # ./sys/gui.nix
   ] ++ (
   if builtins.currentSystem == "x86_64-linux" then [
       ./sys/gui.nix

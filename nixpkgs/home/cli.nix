@@ -123,8 +123,8 @@ in
     nixpacks
     buildah
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
-    podman
-    podman-tui
+    # podman
+    # podman-tui
     k9s
     # minikube
     minio
@@ -143,12 +143,11 @@ in
     shfmt
     tree-sitter
     systeroid
-    linuxKernel.packages.linux_5_15.perf
-    # linuxPackages_6_5.perf
-    # 当 perf linuxPackages_6_5.perf 的时候，使用如下命令
-    # sudo perf record --call-graph dwarf -p 200454 -- sleep 10
-    # 必然导致 guest crash
-    #
+    # linuxKernel.packages.linux_5_15.perf
+    linuxPackages_6_5.perf
+    # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
+
+    # cflow # 感觉很弱，没用懂
     # linuxPackages_latest.perf
     iperf
     # linuxPackages_latest.systemtap # 似乎这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
@@ -160,7 +159,7 @@ in
     heaptrack
     kernelshark
     trace-cmd
-    # ltrace # library trace
+    ltrace # library trace
     unstable.bcc
     # @todo 不知道为什么居然又两个程序
     # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
