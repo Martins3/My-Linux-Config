@@ -24,7 +24,6 @@ require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
 require("im_select").setup()
 require("lualine").setup()
-require("rsync").setup()
 require("numb").setup()
 require("debugprint").setup()
 -- require("hardtime").setup() # 一时难以适应

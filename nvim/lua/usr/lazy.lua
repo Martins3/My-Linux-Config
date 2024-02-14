@@ -137,10 +137,6 @@ require("lazy").setup({
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译
   "nacro90/numb.nvim",
-  {
-    "OscarCreator/rsync.nvim",
-    build = "make", -- 实在不行，进入到 ~/.local/share/nvim/lazy/rsync.nvim 中执行下 make
-  }, -- 自动同步代码远程
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   "m4xshen/hardtime.nvim", -- 训练自己的 vim 习惯，默认没有开启
 }, {})
