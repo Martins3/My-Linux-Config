@@ -8,6 +8,8 @@ boot.kernelPatches = [
     patch = null;
     extraStructuredConfig = {
       BOOTTIME_TRACING = lib.kernel.yes;
+      IRQSOFF_TRACER = lib.kernel.yes;
+      FPROBE = lib.kernel.yes;
     };
   }
 

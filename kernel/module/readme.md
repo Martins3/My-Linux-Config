@@ -1,15 +1,7 @@
 # 测试内容
 
 ## watchdog
-1. softlock : 不是 10 分钟不被调度，不是存在抢占吗?
-
-
- 不屏蔽中断
- echo 10 > /sys/kernel/hacking/watchdog
- 屏蔽中断
- echo 11 > /sys/kernel/hacking/watchdog
-
-
+1. softlock 无法触发出来
 
 # 代办
 - [ ] rcu

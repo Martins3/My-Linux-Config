@@ -1454,3 +1454,13 @@ nixos 在 sudo su 的情况下，基本没有什么命令可以执行，但是 n
 
 ## 其他人的配置
 - https://github.com/gvolpe/nix-config : 这个也非常不错
+
+## bpftool 和 bpftools 居然完全是同一个程序
+nixpkgs/home/cli.nix
+
+切换之后，居然是相同的，但是在 nixpkgs 无法搜索到 bpftool
+```txt
+lrwxrwxrwx     - root  1 1月   1970  /home/martins3/.nix-profile/bin/bpftool -> /nix/store/md6qg2q7309xggbrjywcm5mjsiwiliv3-bpftools-6.5/bin/bpftool
+
+lrwxrwxrwx     - root  1 1月   1970  /home/martins3/.nix-profile/bin/bpftool -> /nix/store/md6qg2q7309xggbrjywcm5mjsiwiliv3-bpftools-6.5/bin/bpftool
+```

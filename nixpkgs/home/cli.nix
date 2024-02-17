@@ -135,9 +135,9 @@ in
     nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
-    unstable.neovim
+    neovim
     # helix # modern neovim
-    cheat
+    # cheat
     # wakatime
     shellcheck
     shfmt
@@ -148,23 +148,19 @@ in
     # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
 
     # cflow # 感觉很弱，没用懂
-    # linuxPackages_latest.perf
     iperf
     # linuxPackages_latest.systemtap # 似乎这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
     # 其实也不能用
     # ERROR: kernel release isn't found in "/nix/store/n3nrix9pc0m1ywzg8dq71bh2xr82c7l5-linux-6.3.5-dev"
     # 还是在虚拟机勉强维持生活吧
-    unstable.bpftrace # bpftrace 新版本才支持 kfunc
+    bpftrace
     blktrace
     heaptrack
     kernelshark
     trace-cmd
     ltrace # library trace
-    unstable.bcc
-    # @todo 不知道为什么居然又两个程序
-    # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
+    bcc
     bpftool
-    bpftools
     xdp-tools
     acpi
   ] ++ pkgs.lib.optionals (builtins.currentSystem=="x86_64-linux") [
