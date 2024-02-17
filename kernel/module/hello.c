@@ -6,7 +6,7 @@
 #include <linux/semaphore.h>
 
 //  Define the module metadata.
-#define MODULE_NAME "greeter"
+#define MODULE_NAME "lab"
 MODULE_AUTHOR("Martins3");
 MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("A simple kernel module to greet a user");
@@ -17,403 +17,333 @@ static char *name = "martins3";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
 
-#define MAX_THREAD_NUM 256
-static struct task_struct *threads[MAX_THREAD_NUM];
-static int thread_num;
+// static unsigned int mm2_a, mm2_b;
+// static unsigned int mm2_x, mm2_y;
+// static struct semaphore sem_x;
+// static struct semaphore sem_y;
+// static struct semaphore sem_end;
+//
+// static int ordering_thread_fn2_cpu0(void *idx)
+// {
+// 	static unsigned int detected;
+// 	static unsigned long loop;
+// 	while (!kthread_should_stop()) {
+// 		loop++;
+//
+// 		mm2_x = 0;
+// 		mm2_y = 0;
+//
+// 		up(&sem_x);
+// 		up(&sem_y);
+//
+// 		down(&sem_end);
+// 		down(&sem_end);
+//
+// 		if (mm2_a == 0 && mm2_b == 0)
+// 			pr_info("%d reorders detected\n", ++detected);
+//
+// 		if (detected >= 100) {
+// 			// 平均 10 次触发一次，不知道有没有更好的方法来触发
+// 			pr_info("loop %ld times, found %d\n", loop, detected);
+// 			stop_threads();
+// 			return 0;
+// 		}
+// 	}
+// 	return 0;
+// }
+//
+// static int ordering_thread_fn2_cpu1(void *idx)
+// {
+// 	while (!kthread_should_stop()) {
+// 		down(&sem_x);
+// 		mm2_x = 1;
+// #ifdef CONFIG_USE_CPU_BARRIER
+// 		smp_wmb();
+// #else
+// 		/* Prevent compiler reordering. */
+// 		barrier();
+// #endif
+// 		mm2_a = mm2_y;
+// 		up(&sem_end);
+// 	}
+// 	return 0;
+// }
+//
+// static int ordering_thread_fn2_cpu2(void *idx)
+// {
+// 	while (!kthread_should_stop()) {
+// 		down(&sem_y);
+// 		mm2_y = 1;
+// #ifdef CONFIG_USE_CPU_BARRIER
+// 		smp_rmb();
+// #else
+// 		/* Prevent compiler reordering. */
+// 		barrier();
+// #endif
+// 		mm2_b = mm2_x;
+// 		up(&sem_end);
+// 	}
+// 	return 0;
+// }
+//
+// static void hacking_memory_model_2(void)
+// {
+// 	sema_init(&sem_x, 0);
+// 	sema_init(&sem_y, 0);
+// 	sema_init(&sem_end, 0);
+// 	initialize_thread(ordering_thread_fn2_cpu0, "martins3", 0);
+// 	initialize_thread(ordering_thread_fn2_cpu1, "martins3", 0);
+// 	initialize_thread(ordering_thread_fn2_cpu2, "martins3", 0);
+// }
+//
+// static atomic_t count = ATOMIC_INIT(0);
+// static unsigned int a, b;
+//
+// static int ordering_thread_fn_cpu0(void *idx)
+// {
+// 	while (!kthread_should_stop()) {
+// 		atomic_inc(&count);
+// 	}
+//
+// 	pr_info("counter :  %d\n", atomic_read(&count));
+// 	return 0;
+// }
+//
+// static int ordering_thread_fn_cpu1(void *idx)
+// {
+// 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
+// 	while (!kthread_should_stop()) {
+// 		int temp = atomic_read(&count);
+//
+// 		a = temp;
+// #ifdef CONFIG_USE_CPU_BARRIER
+// 		smp_wmb();
+// #else
+// 		/* Prevent compiler reordering. */
+// 		barrier();
+// #endif
+// 		b = temp;
+// 	}
+// 	return 0;
+// }
+//
+// static int ordering_thread_fn_cpu2(void *idx)
+// {
+// 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
+// 	while (!kthread_should_stop()) {
+// 		unsigned int c, d;
+//
+// 		d = b;
+// #ifdef CONFIG_USE_CPU_BARRIER
+// 		smp_rmb();
+// #else
+// 		/* Prevent compiler reordering. */
+// 		barrier();
+// #endif
+// 		c = a;
+//
+// 		if ((int)(d - c) > 0)
+// 			pr_info("reorders detected, a = %d, b = %d\n", c, d);
+// 	}
+// 	return 0;
+// }
+//
+// static void hacking_memory_model_1(void)
+// {
+// 	initialize_thread(ordering_thread_fn_cpu0, "martins3", 0);
+// 	initialize_thread(ordering_thread_fn_cpu1, "martins3", 0);
+// 	initialize_thread(ordering_thread_fn_cpu2, "martins3", 0);
+// }
+//
+// int rcu_x, rcu_y;
+// int rcu_thread0(void *idx);
+//
+// int rcu_thread0(void *idx)
+// {
+// 	int r1, r2;
+// 	int t_id = *(int *)idx;
+// 	while (!kthread_should_stop()) {
+// 		rcu_read_lock();
+// 		r1 = READ_ONCE(rcu_x);
+// 		r2 = READ_ONCE(rcu_y);
+// 		rcu_read_unlock();
+// 		BUG_ON(r1 == 0 && r2 == 1);
+// 	}
+// 	printk(KERN_INFO "thread %d stopped\n", t_id);
+// 	return 0;
+// }
+//
+// int rcu_thread1(void *idx);
+// int rcu_thread1(void *idx)
+// {
+// 	int t_id = *(int *)idx;
+//
+// 	while (!kthread_should_stop()) {
+// 		WRITE_ONCE(rcu_x, 1);
+// 		synchronize_rcu(); // TODO 将这一行注释掉，并没有什么触发 BUG_ON 直到
+// 			// softlock up
+// 		WRITE_ONCE(rcu_y, 1);
+// 	}
+//
+// 	printk(KERN_INFO "thread %d stopped\n", t_id);
+// 	return 0;
+// }
+//
+//
+// static void hacking_rcu(void)
+// {
+// 	initialize_thread(rcu_thread0, "martins3", 0);
+// 	initialize_thread(rcu_thread1, "martins3", 1);
+// }
 
-typedef int thread_function(void *);
-
-static void add_threads(struct task_struct *task)
+static int kthread_sleep(void *arg)
 {
-	for (int i = 0; i < thread_num; ++i) {
-		if (threads[i] == task) {
-			BUG();
-		}
-	}
-	if (thread_num >= MAX_THREAD_NUM) {
-		return;
-	}
-	threads[thread_num] = task;
-	thread_num++;
+	long x = (long)arg;
+	pr_info("[martins3:%s:%d] %ld\n", __FUNCTION__, __LINE__, x);
+	msleep(1000);
+	return 0;
 }
 
-static void stop_threads(void)
+static struct task_struct *kthread_task;
+static ssize_t kthread_store(struct kobject *kobj, struct kobj_attribute *attr,
+			     const char *buf, size_t count)
 {
 	int ret;
-	for (int i = 0; i < thread_num; ++i) {
-		/**
-     * 如果在 kthread 中 stop 自己，测试出来过这个问题:
-     * [   31.770761] loop 305183 times, found 5
-     * [   31.770965] BUG: unable to handle page fault for address:
-     * ffffffffc000255c [   31.771304] #PF: supervisor instruction fetch in
-     * kernel mode [   31.771576] #PF: error_code(0x0010) - not-present page
-     * [   31.771829] PGD 3043067 P4D 3043067 PUD 3045067 PMD 103ae9067 PTE 0
-     * [   31.772132] Oops: 0010 [#1] PREEMPT SMP NOPTI
-     * [   31.772350] CPU: 7 PID: 1646 Comm: martins3 Tainted: G
-     * O       6.4.0-rc1-00138-gd4d58949a6ea-dirty #260
-     */
-		if (threads[i] == current) {
-			continue;
-		}
-		ret = kthread_stop(threads[i]);
-		if (ret == -EINTR) {
-			pr_info("thread %px never started", threads[i]);
-		} else {
-			pr_info("thread function return %d", ret);
-		}
-	}
-	thread_num = 0;
-}
+	int start;
+	ret = kstrtoint(buf, 10, &start);
+	if (ret < 0)
+		return ret;
 
-static int sleep_kthread(void *idx)
-{
-	int t_id = *(int *)idx;
-	int i = 0;
-	while (!kthread_should_stop()) {
-		msleep(1000);
-		printk(KERN_INFO "thread %d \n", i++);
-	}
-	printk(KERN_INFO "thread %d stopped\n", t_id);
-	return 123;
-}
-
-void initialize_thread(thread_function func, const char *name, int idx)
-{
-	struct task_struct *kth;
-	kth = kthread_create(func, &idx, "%s", name);
-	if (kth != NULL) {
-		wake_up_process(kth);
-		pr_info("thread %d is running\n", idx);
-	} else {
-		pr_info("kthread %s could not be created\n", name);
-	}
-	add_threads(kth);
-}
-
-static void hacking_kthread(bool start)
-{
 	if (start) {
-		for (int i = 0; i < 2; ++i) {
-			initialize_thread(sleep_kthread, "martins3", i);
-		}
-		printk(KERN_INFO "all of the threads are running\n");
+		kthread_task =
+			create_thread("sleep", kthread_sleep, (void *)123);
+		if (kthread_task == NULL)
+			return -ENOMEM;
 	} else {
-		stop_threads();
+		stop_thread(kthread_task);
+		kthread_task = NULL;
 	}
+	return count;
 }
 
-static unsigned int mm2_a, mm2_b;
-static unsigned int mm2_x, mm2_y;
-static struct semaphore sem_x;
-static struct semaphore sem_y;
-static struct semaphore sem_end;
-
-static int ordering_thread_fn2_cpu0(void *idx)
+static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
+			      const char *buf, size_t count)
 {
-	static unsigned int detected;
-	static unsigned long loop;
-	while (!kthread_should_stop()) {
-		loop++;
+	int ret;
+	int hard;
+	bool disable_irq = false;
+	bool check_signal = false;
 
-		mm2_x = 0;
-		mm2_y = 0;
+	ret = kstrtoint(buf, 10, &hard);
+	if (ret < 0)
+		return ret;
 
-		up(&sem_x);
-		up(&sem_y);
+	disable_irq = hard % 10;
+	check_signal = (hard / 10) % 10;
+	pr_info("watchdog : %s %s \n", check_signal ? "check_signal" : "",
+		disable_irq ? "disable_irq" : "");
 
-		down(&sem_end);
-		down(&sem_end);
-
-		if (mm2_a == 0 && mm2_b == 0)
-			pr_info("%d reorders detected\n", ++detected);
-
-		if (detected >= 100) {
-			// 平均 10 次触发一次，不知道有没有更好的方法来触发
-			pr_info("loop %ld times, found %d\n", loop, detected);
-			stop_threads();
-			return 0;
-		}
-	}
-	return 0;
-}
-
-static int ordering_thread_fn2_cpu1(void *idx)
-{
-	while (!kthread_should_stop()) {
-		down(&sem_x);
-		mm2_x = 1;
-#ifdef CONFIG_USE_CPU_BARRIER
-		smp_wmb();
-#else
-		/* Prevent compiler reordering. */
-		barrier();
-#endif
-		mm2_a = mm2_y;
-		up(&sem_end);
-	}
-	return 0;
-}
-
-static int ordering_thread_fn2_cpu2(void *idx)
-{
-	while (!kthread_should_stop()) {
-		down(&sem_y);
-		mm2_y = 1;
-#ifdef CONFIG_USE_CPU_BARRIER
-		smp_rmb();
-#else
-		/* Prevent compiler reordering. */
-		barrier();
-#endif
-		mm2_b = mm2_x;
-		up(&sem_end);
-	}
-	return 0;
-}
-
-static void hacking_memory_model_2(void)
-{
-	sema_init(&sem_x, 0);
-	sema_init(&sem_y, 0);
-	sema_init(&sem_end, 0);
-	initialize_thread(ordering_thread_fn2_cpu0, "martins3", 0);
-	initialize_thread(ordering_thread_fn2_cpu1, "martins3", 0);
-	initialize_thread(ordering_thread_fn2_cpu2, "martins3", 0);
-}
-
-static atomic_t count = ATOMIC_INIT(0);
-static unsigned int a, b;
-
-static int ordering_thread_fn_cpu0(void *idx)
-{
-	while (!kthread_should_stop()) {
-		atomic_inc(&count);
-	}
-
-	pr_info("counter :  %d\n", atomic_read(&count));
-	return 0;
-}
-
-static int ordering_thread_fn_cpu1(void *idx)
-{
-	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-	while (!kthread_should_stop()) {
-		int temp = atomic_read(&count);
-
-		a = temp;
-#ifdef CONFIG_USE_CPU_BARRIER
-		smp_wmb();
-#else
-		/* Prevent compiler reordering. */
-		barrier();
-#endif
-		b = temp;
-	}
-	return 0;
-}
-
-static int ordering_thread_fn_cpu2(void *idx)
-{
-	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-	while (!kthread_should_stop()) {
-		unsigned int c, d;
-
-		d = b;
-#ifdef CONFIG_USE_CPU_BARRIER
-		smp_rmb();
-#else
-		/* Prevent compiler reordering. */
-		barrier();
-#endif
-		c = a;
-
-		if ((int)(d - c) > 0)
-			pr_info("reorders detected, a = %d, b = %d\n", c, d);
-	}
-	return 0;
-}
-
-static void hacking_memory_model_1(void)
-{
-	initialize_thread(ordering_thread_fn_cpu0, "martins3", 0);
-	initialize_thread(ordering_thread_fn_cpu1, "martins3", 0);
-	initialize_thread(ordering_thread_fn_cpu2, "martins3", 0);
-}
-
-int rcu_x, rcu_y;
-int rcu_thread0(void *idx)
-{
-	int r1, r2;
-	int t_id = *(int *)idx;
-	while (!kthread_should_stop()) {
-		rcu_read_lock();
-		r1 = READ_ONCE(rcu_x);
-		r2 = READ_ONCE(rcu_y);
-		rcu_read_unlock();
-		BUG_ON(r1 == 0 && r2 == 1);
-	}
-	printk(KERN_INFO "thread %d stopped\n", t_id);
-	return 0;
-}
-
-int rcu_thread1(void *idx)
-{
-	int t_id = *(int *)idx;
-
-	while (!kthread_should_stop()) {
-		WRITE_ONCE(rcu_x, 1);
-		synchronize_rcu(); // TODO 将这一行注释掉，并没有什么触发 BUG_ON 直到
-			// softlock up
-		WRITE_ONCE(rcu_y, 1);
-	}
-
-	printk(KERN_INFO "thread %d stopped\n", t_id);
-	return 0;
-}
-
-unsigned long counter;
-static DEFINE_MUTEX(test_mutex);
-#define LOOP_NUM 10000000
-int mutex_thread0(void *idx)
-{
-	for (unsigned long i = 0; i < LOOP_NUM; ++i) {
-		mutex_lock(&test_mutex);
-		counter++;
-		mutex_unlock(&test_mutex);
-	}
-	pr_info("counter is %lx\n", counter);
-	// XXX 如果提前溜走了，那么 kthread_stop 会出问题
-	while (!kthread_should_stop())
-		msleep(1000); // TODO 有什么一直 sleep 下去的 API 吗?
-	return 2;
-}
-
-int mutex_thread1(void *idx)
-{
-	for (unsigned long i = 0; i < LOOP_NUM; ++i) {
-		mutex_lock(&test_mutex);
-		counter--;
-		mutex_unlock(&test_mutex);
-	}
-
-	pr_info("counter is %lx\n", counter);
-	while (!kthread_should_stop())
-		msleep(1000);
-	return 1;
-}
-
-static void hacking_mutex(void)
-{
-	initialize_thread(mutex_thread0, "martins3", 0);
-	initialize_thread(mutex_thread1, "martins3", 1);
-}
-
-static void hacking_rcu(void)
-{
-	initialize_thread(rcu_thread0, "martins3", 0);
-	initialize_thread(rcu_thread1, "martins3", 1);
-}
-
-static void hacking_pr_info(void)
-{
-	// %p 真的烦人，hash 的完全看不懂了
-	pr_info("%p", current->mm->pgd);
-	pr_info("%px", current->mm->pgd);
-	pr_info("%s: module loaded at 0x%p\n", MODULE_NAME, hacking_pr_info);
-}
-
-static void hacking_watchdog(void)
-{
-	bool hard = false;
-	if (hard)
+	if (disable_irq)
 		local_irq_disable();
 
 	for (;;) {
-		// TODO
-		// 1. 如果中断屏蔽了，这个就没用了
-		// 2. 此外，此时的 insmod martins3.ko 是无法被 Ctrl C 掉的
+		// 无论是否屏蔽中断，signal_pending 都是可以接受到的，原因 bash 父进程传递的
+		// 无论是否屏蔽，ctrl-c 都是无法打断当前进程的
+		if (check_signal && signal_pending(current))
+			break;
+
 		cond_resched();
 	}
 
-	if (hard)
+	if (disable_irq)
 		local_irq_enable();
+
+	return count;
 }
 
-// TODO 做成参数
-enum hacking h = WORKQUEUE;
+static ssize_t misc_show(struct kobject *kobj, struct kobj_attribute *attr,
+			 char *buf)
+{
+	// https://www.kernel.org/doc/Documentation/printk-formats.txt
+	pr_info("p=%p px=%px pf=%pf", current->mm->pgd, current->mm->pgd,
+		misc_show);
 
+	return sysfs_emit(buf, "%d\n", 1);
+}
+
+static int foo;
+/*
+ * The "foo" file where a static variable is read from and written to.
+ */
+static ssize_t foo_show(struct kobject *kobj, struct kobj_attribute *attr,
+			char *buf)
+{
+	return sysfs_emit(buf, "%d\n", foo);
+}
+
+static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
+			 const char *buf, size_t count)
+{
+	int ret;
+
+	ret = kstrtoint(buf, 10, &foo);
+	if (ret < 0)
+		return ret;
+
+	return count;
+}
+
+/* Sysfs attributes cannot be world-writable. */
+static struct kobj_attribute foo_attribute =
+	__ATTR(foo, 0664, foo_show, foo_store);
+static struct kobj_attribute misc_attribute =
+	__ATTR(misc, 0600, misc_show, NULL);
+static struct kobj_attribute watchdog_attribute =
+	__ATTR(watchdog, 0660, NULL, watchdog_store);
+static struct kobj_attribute kthread_attribute =
+	__ATTR(kthread, 0660, NULL, kthread_store);
+static struct kobj_attribute mutex_attribute =
+	__ATTR(mutex, 0660, NULL, mutex_store);
+static struct kobj_attribute tracepoint_attribute =
+	__ATTR(tracepoint, 0660, NULL, tracepoint_store);
+
+/*
+ * Create a group of attributes so that we can create and destroy them all
+ * at once.
+ */
+static struct attribute *attrs[] = {
+	&misc_attribute.attr,
+	&foo_attribute.attr,
+	&watchdog_attribute.attr,
+	&kthread_attribute.attr,
+	&mutex_attribute.attr,
+	&tracepoint_attribute.attr,
+	NULL, /* need to NULL terminate the list of attributes */
+};
+
+static struct attribute_group attr_group = {
+	.attrs = attrs,
+};
+
+static struct kobject *mymodule;
 static int __init greeter_init(void)
 {
 	int error = 0;
-	switch (h) {
-	case PR_INFO:
-		hacking_pr_info();
-		break;
-	case WATCH_DOG:
-		hacking_watchdog();
-		break;
-	case KTHREAD:
-		hacking_kthread(true);
-		break;
-	case RCU:
-		hacking_rcu();
-		break;
-	case MUTEX:
-		hacking_mutex();
-		break;
-	case MEMORY_MODEL_1:
-		hacking_memory_model_1();
-		break;
-	case MEMORY_MODEL_2:
-		hacking_memory_model_2();
-		break;
-	case SEQ_FILE_1:
-		simple_seq_init();
-		break;
-	case SEQ_FILE_2:
-		simple_seq_init2();
-		break;
-	case SYS_FS:
-		error = sysfs_init();
-		break;
-	case WORKQUEUE:
-		error = my_workqueue_init();
-		break;
-	}
+	mymodule = kobject_create_and_add("hacking", kernel_kobj);
+	if (!mymodule)
+		return -ENOMEM;
 
+	error = sysfs_create_group(mymodule, &attr_group);
 	if (error)
-		return error;
+		kobject_put(mymodule);
 
-	pr_info("%s: module loaded\n", MODULE_NAME);
-	return 0;
+	return error;
 }
 
 static void __exit greeter_exit(void)
 {
-	switch (h) {
-	case RCU:
-	case KTHREAD:
-	case MUTEX:
-	case MEMORY_MODEL_1:
-		hacking_kthread(false);
-		break;
-	case SEQ_FILE_1:
-		simple_seq_fini();
-		break;
-	case SEQ_FILE_2:
-		simple_seq_fini2();
-		break;
-	case SYS_FS:
-		sysfs_exit();
-		break;
-	case WORKQUEUE:
-		my_workqueue_exit();
-		break;
-	default:
-		break;
-	}
-
-	pr_info("%s: module unloaded\n", MODULE_NAME);
+	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
+	kobject_put(mymodule);
 }
 
 module_init(greeter_init);
