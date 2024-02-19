@@ -160,7 +160,9 @@ in
     trace-cmd
     ltrace # library trace
     bcc
+    hotspot
     bpftool
+    procps
     xdp-tools
     acpi
   ] ++ pkgs.lib.optionals (builtins.currentSystem=="x86_64-linux") [

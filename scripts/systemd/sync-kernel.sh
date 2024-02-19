@@ -65,7 +65,7 @@ if [[ ${kcov} ]]; then
 	run "nice -n 19 make -j$threads O=kcov"
 else
 	# make clean
-	run "make clean"
+	# run "make clean"
 	run "make defconfig kvm_guest.config martins3.config -j"
 	# run "chrt -i 0 make CC='ccache gcc' -j$threads"
 	run "chrt -i 0 make -j$threads"

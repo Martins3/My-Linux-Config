@@ -4,6 +4,7 @@
 #define CREATE_TRACE_POINTS
 #include "tracepoint.h"
 
+// https://lwn.net/Articles/379903/
 ssize_t tracepoint_store(struct kobject *kobj, struct kobj_attribute *attr,
 			 const char *buf, size_t count)
 {
@@ -13,7 +14,7 @@ ssize_t tracepoint_store(struct kobject *kobj, struct kobj_attribute *attr,
 	if (ret < 0)
 		return ret;
 
-  trace_printk("hello\n");
+	trace_printk("hello\n");
 
 	trace_hack_eventname(val);
 

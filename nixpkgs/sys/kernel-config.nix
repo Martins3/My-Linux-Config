@@ -9,7 +9,12 @@ boot.kernelPatches = [
     extraStructuredConfig = {
       BOOTTIME_TRACING = lib.kernel.yes;
       IRQSOFF_TRACER = lib.kernel.yes;
+      MMIOTRACE = lib.kernel.yes;
+      OSNOISE_TRACER = lib.kernel.yes;
       FPROBE = lib.kernel.yes;
+      TIMERLAT_TRACER = lib.kernel.yes;
+      PREEMPT_TRACER = lib.kernel.yes;
+      HWLAT_TRACER = lib.kernel.yes;
     };
   }
 

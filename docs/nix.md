@@ -1464,3 +1464,21 @@ lrwxrwxrwx     - root  1 1月   1970  /home/martins3/.nix-profile/bin/bpftool
 
 lrwxrwxrwx     - root  1 1月   1970  /home/martins3/.nix-profile/bin/bpftool -> /nix/store/md6qg2q7309xggbrjywcm5mjsiwiliv3-bpftools-6.5/bin/bpftool
 ```
+
+
+## ps 都是从那里来的
+
+```txt
+🧀  l /home/martins3/.nix-profile/bin/ps
+
+Permissions Size User Date Modified Name
+lrwxrwxrwx     - root  1 1月   1970  /home/martins3/.nix-profile/bin/ps -> /nix/store/gb18gj7zpbhdavmsdr5090rx7lsvxvyk-procps-3.3.17/bin/ps
+```
+
+```txt
+🧀  l /run/current-system/sw/bin/ps
+
+Permissions Size User Date Modified Name
+lrwxrwxrwx     - root  1 1月   1970  /run/current-system/sw/bin/ps -> /nix/store/gb18gj7zpbhdavmsdr5090rx7lsvxvyk-procps-3.3.17/bin/ps
+```
+结论: 系统中本来就是自带了一份
