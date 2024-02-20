@@ -99,5 +99,5 @@ if ! grep hypervisor /proc/cpuinfo >/dev/null; then
   setup_wez
 	# https://superuser.com/questions/1196241/how-to-remap-caps-lock-on-wayland
 	gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
-  sudo dnf -y install tmuxp 
+  sudo dnf -y install tmuxp
 fi

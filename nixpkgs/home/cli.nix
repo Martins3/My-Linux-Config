@@ -121,6 +121,7 @@ in
     unstable.nixos-shell
     krunvm  # 有待尝试
     nixpacks
+    nix-tree # 动态的展示每一个包的依赖
     buildah
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
     # podman

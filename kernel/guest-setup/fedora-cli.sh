@@ -9,33 +9,6 @@ function install() {
 	done
 }
 
-# on centos 7
-function legacy-stress-ng() {
-	wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/s/stress-ng-0.07.29-2.el7.x86_64.rpm
-	yum install stress-ng-0.13.00-5.el8.x86_64.rpm
-}
-
-# no stress-ng in oe
-function setup_stress-ng() {
-	wget http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/stress-ng-0.13.00-5.el8.x86_64.rpm -O /tmp/stress-ng.rpm
-	yum install -y /tmp/stress-ng.rpm
-}
-
-function setup_libcgroup() {
-	if [[ ! -d libcgroup ]]; then
-		git clone https://github.com/libcgroup/libcgroup
-	fi
-	pushd libcgroup
-
-	test -d m4 || mkdir m4
-	autoreconf -fi
-	rm -fr autom4te.cache
-
-	./configure && make -j && make install
-	# 将会自动安装到 /usr/local/bin/cgexec 中
-	popd
-}
-
 # only zsh 安装
 # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 function ohmyzsh() {
@@ -135,28 +108,8 @@ time_based
 EOF
 }
 
-function setup_zellij() {
-	echo "TODO"
-}
-
-function setup_fzf() {
-	echo " https://github.com/junegunn/fzf/blob/master/BUILD.md"
-}
-
 function setup_initramfs() {
 	scp /boot/initramfs-"$(uname -r)".img martins3@10.0.2.2:/tmp
-}
-
-function setup_partid() {
-	echo "TODO : 获取到 root partuuid ，拷贝取出"
-}
-
-function remove_paswd() {
-	echo "TODO"
-}
-
-function setup_pcm() {
-	echo "TODO"
 }
 
 cd ~
@@ -180,9 +133,5 @@ install tree
 ohmyzsh
 zsh_fix
 setup_share
-setup_tig
-setup_libcgroup
-setup_stress-ng
+install tig ncdu libcgroup libcgroup-tools stress-ng zellij fzf
 setup_fio
-setup_zellij
-setup_fzf
