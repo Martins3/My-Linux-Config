@@ -313,13 +313,17 @@ static ssize_t might_sleep_store(struct kobject *kobj,
 		spin_unlock_irqrestore(&sl_static, flags);
 		break;
 	case 4:
-		spin_lock_irqsave(&sl_static, flags);
-		cond_resched(); // TODO 不会出现问题，无法理解
-		spin_unlock_irqrestore(&sl_static, flags);
+		preempt_disable();
+		// cond_resched 的 condition 要求当前上下文可以 preempt，
+    // 也就是 preempt_count 为 0 的时候才可以进行 schedule()
+    // 所以这里不会出现问题
+		cond_resched();
+		preempt_enable();
 		break;
 	case 5:
 		preempt_disable();
-		cond_resched(); // TODO 不会出现问题
+    // 这里会出现问题
+		schedule();
 		preempt_enable();
 		break;
 	default:
