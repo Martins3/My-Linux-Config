@@ -261,6 +261,75 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	return count;
 }
 
+/**
+ * might_sleep - annotation for functions that can sleep
+ *
+ * this macro will print a stack trace if it is executed in an atomic
+ * context (spinlock, irq-handler, ...). Additional sections where blocking is
+ * not allowed can be annotated with non_block_start() and non_block_end()
+ * pairs.
+ *
+ * This is a useful debugging help to be able to catch problems early and not
+ * be bitten later when the calling function happens to sleep when it is not
+ * supposed to.
+ */
+// 1. 测试到底多少地方不可以睡眠 ? spinlock,  irq-handler,  preempt disable
+// 3. spinlock 有时候必须屏蔽中断吧，如果不屏蔽，被中断了，会出现什么问题?
+
+static DEFINE_SPINLOCK(sl_static);
+static ssize_t might_sleep_store(struct kobject *kobj,
+				 struct kobj_attribute *attr, const char *buf,
+				 size_t count)
+{
+	int ret;
+	int test;
+	unsigned long flags;
+
+	ret = kstrtoint(buf, 10, &test);
+	if (ret < 0)
+		return ret;
+
+	switch (test) {
+	case 0:
+		spin_lock_irqsave(&sl_static, flags);
+		might_sleep(); // TODO 不知道为什么，没有效果，难道是因为没有打开 CONFIG_DEBUG_ATOMIC_SLEEP 吗?
+		spin_unlock_irqrestore(&sl_static, flags);
+		break;
+	case 1:
+		spin_lock_irqsave(&sl_static, flags);
+		msleep(1000); // 会被检测出来
+		spin_unlock_irqrestore(&sl_static, flags);
+		break;
+	case 2:
+		preempt_disable();
+		msleep(1000); // 也是会会被检测出来
+		preempt_enable();
+		break;
+	case 3:
+		// 无论是 preempt_disable 还是 spinlock ，kmalloc 和 kfree 不会被检测出来
+		spin_lock_irqsave(&sl_static, flags);
+		int *f = kmalloc(sizeof(int), GFP_KERNEL);
+		kfree(f);
+		spin_unlock_irqrestore(&sl_static, flags);
+		break;
+	case 4:
+		spin_lock_irqsave(&sl_static, flags);
+		cond_resched(); // TODO 不会出现问题，无法理解
+		spin_unlock_irqrestore(&sl_static, flags);
+		break;
+	case 5:
+		preempt_disable();
+		cond_resched(); // TODO 不会出现问题
+		preempt_enable();
+		break;
+	default:
+		pr_info("Nothing");
+		break;
+	}
+
+	return count;
+}
+
 static ssize_t misc_show(struct kobject *kobj, struct kobj_attribute *attr,
 			 char *buf)
 {
@@ -306,6 +375,12 @@ static struct kobj_attribute mutex_attribute =
 	__ATTR(mutex, 0660, NULL, mutex_store);
 static struct kobj_attribute tracepoint_attribute =
 	__ATTR(tracepoint, 0660, NULL, tracepoint_store);
+static struct kobj_attribute rcu_api_attribute =
+	__ATTR(rcu_api, 0660, NULL, rcu_api_store);
+static struct kobj_attribute srcu_attribute =
+	__ATTR(srcu, 0660, NULL, srcu_store);
+static struct kobj_attribute might_sleep_attribute =
+	__ATTR(might_sleep, 0660, NULL, might_sleep_store);
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -318,6 +393,9 @@ static struct attribute *attrs[] = {
 	&kthread_attribute.attr,
 	&mutex_attribute.attr,
 	&tracepoint_attribute.attr,
+	&rcu_api_attribute.attr,
+	&srcu_attribute.attr,
+	&might_sleep_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

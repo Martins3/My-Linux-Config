@@ -1,16 +1,13 @@
 # 测试内容
 
-## watchdog
-1. softlock 无法触发出来
-
 # 代办
-- [ ] rcu
 - [ ] all kinds of locking
 - [ ] https://github.com/smcdef/memory-reordering/blob/master/ordering.c
 - [ ] include/linux/semaphore.h
   - https://lwn.net/Articles/928026/
 - [ ] 测试 interruptable 和 uninterrpable 的
 - [ ] 测试等待 io 也是计入到 load 中的
+- [ ] watchdog 中无法测试出来 softlock 的效果
 
 ## 快捷参考
 1. https://github.com/torvalds/linux/blob/master/samples/kobject/kobject-example.c
@@ -31,12 +28,6 @@
 
 ## percpu_ref_kill
 
-
-## 将 rcu 用起来再说
-https://lwn.net/Articles/777036/
-
-- synchronize_rcu()  : 等待 rcu grace 时间结束
-- synchronize_rcu_expedited() ： 强制结束 rcu grace 时间，感觉一般都是在 subsystem 关闭的时候
-- call_rcu
-
 ## workqueue
+
+## might_sleep 的作用是什么 ?

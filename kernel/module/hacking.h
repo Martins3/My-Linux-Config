@@ -4,7 +4,8 @@
 #include <linux/module.h>
 
 typedef int thread_function(void *);
-struct task_struct * create_thread(const char *name, thread_function func, void * parameter);
+struct task_struct *create_thread(const char *name, thread_function func,
+				  void *parameter);
 void stop_thread(struct task_struct *task);
 
 int simple_seq_init(void);
@@ -26,9 +27,15 @@ int sysfs_init(void);
 void sysfs_exit(void);
 
 ssize_t mutex_store(struct kobject *kobj, struct kobj_attribute *attr,
-			   const char *buf, size_t count);
+		    const char *buf, size_t count);
 
 ssize_t tracepoint_store(struct kobject *kobj, struct kobj_attribute *attr,
-		    const char *buf, size_t count);
+			 const char *buf, size_t count);
+
+ssize_t rcu_api_store(struct kobject *kobj, struct kobj_attribute *attr,
+		      const char *buf, size_t count);
+
+ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
+		   const char *buf, size_t count);
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */
