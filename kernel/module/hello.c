@@ -230,33 +230,58 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 			      const char *buf, size_t count)
 {
 	int ret;
-	int hard;
+	int action;
 	bool disable_irq = false;
-	bool check_signal = false;
+	bool no_signal_check = false;
+	bool enable_sched = false;
+	bool disable_preempt = false;
+	bool rcu = false;
 
-	ret = kstrtoint(buf, 10, &hard);
+	ret = kstrtoint(buf, 10, &action);
 	if (ret < 0)
 		return ret;
 
-	disable_irq = hard % 10;
-	check_signal = (hard / 10) % 10;
-	pr_info("watchdog : %s %s \n", check_signal ? "check_signal" : "",
+	disable_irq = action % 10;
+	no_signal_check = (action / 10) % 10;
+	enable_sched = (action / 100) % 10;
+	disable_preempt = (action / 1000) % 10;
+	rcu = (action / 10000) % 10;
+
+	pr_info("watchdog : %s %s %s %s %s\n", rcu ? "rcu" : "",
+		disable_preempt ? "disable_preempt" : "",
+		enable_sched ? "enable_sched" : "",
+		no_signal_check ? "no_signal_check" : "",
 		disable_irq ? "disable_irq" : "");
 
 	if (disable_irq)
 		local_irq_disable();
 
+	if (disable_preempt)
+		preempt_disable();
+
+	if (rcu)
+		rcu_read_lock();
+
 	for (;;) {
 		// 无论是否屏蔽中断，signal_pending 都是可以接受到的，原因 bash 父进程传递的
 		// 无论是否屏蔽，ctrl-c 都是无法打断当前进程的
-		if (check_signal && signal_pending(current))
+		if (no_signal_check && signal_pending(current))
 			break;
 
-		cond_resched();
+		if (enable_sched)
+			cond_resched();
+
+		cpu_relax();
 	}
 
 	if (disable_irq)
 		local_irq_enable();
+
+	if (disable_preempt)
+		preempt_enable();
+
+	if (rcu)
+		rcu_read_unlock();
 
 	return count;
 }
@@ -315,14 +340,14 @@ static ssize_t might_sleep_store(struct kobject *kobj,
 	case 4:
 		preempt_disable();
 		// cond_resched 的 condition 要求当前上下文可以 preempt，
-    // 也就是 preempt_count 为 0 的时候才可以进行 schedule()
-    // 所以这里不会出现问题
+		// 也就是 preempt_count 为 0 的时候才可以进行 schedule()
+		// 所以这里不会出现问题
 		cond_resched();
 		preempt_enable();
 		break;
 	case 5:
 		preempt_disable();
-    // 这里会出现问题
+		// 这里会出现问题
 		schedule();
 		preempt_enable();
 		break;
@@ -385,6 +410,8 @@ static struct kobj_attribute srcu_attribute =
 	__ATTR(srcu, 0660, NULL, srcu_store);
 static struct kobj_attribute might_sleep_attribute =
 	__ATTR(might_sleep, 0660, NULL, might_sleep_store);
+static struct kobj_attribute wait_event_attribute =
+	__ATTR(wait_event, 0660, NULL, wait_event_store);
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -400,6 +427,7 @@ static struct attribute *attrs[] = {
 	&rcu_api_attribute.attr,
 	&srcu_attribute.attr,
 	&might_sleep_attribute.attr,
+	&wait_event_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

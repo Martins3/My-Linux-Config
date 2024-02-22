@@ -8,7 +8,7 @@ $(info call this in kernel environment)
 obj-m += martins3.o
 
 martins3-m := hello.o seq.o seq2.o workqueue.o thread.o mutex.o \
-	tracepoint.o rcu.o srcu.o
+	tracepoint.o rcu.o srcu.o wait_event.o
 # Otherwise we were called directly from the command line.
 # Invoke the kernel build system.
 else

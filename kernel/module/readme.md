@@ -17,17 +17,16 @@
 参考:
 1. https://stackoverflow.com/questions/25399112/how-to-use-a-seq-file-in-linux-kernel-modules
 
-## cpu_relax vs cond_resched
-
 ## 触发一下 rcu cpu stall 的 bug
 
-## wait_event
-- blk_queue_enter 中，wait_event 前面居然有一个 smp_read
-配合这个使用:
-- wake_up_all
-
-## percpu_ref_kill
+## 测试 percpu_ref_kill 的使用
 
 ## workqueue
 
-## might_sleep 的作用是什么 ?
+## rcu
+rcu_read_unlock_bh
+
+fd_install 中使用的 rcu_read_lock_sched 如何操作的
+
+## atomic 的 api 比想象的更加复杂啊
+atomic_dec_and_raw_lock(atomic, lock)
