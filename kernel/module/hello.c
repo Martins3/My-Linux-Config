@@ -391,6 +391,41 @@ static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
 	return count;
 }
 
+// 使用这个测试可以得到一个相当有趣的结果:
+// 1. guest 中 htop 上 32 CPU 显示都是 0%
+// 2. /proc/load_avg 持续升高，一直到 32
+static int io_wait_sleep(void *arg)
+{
+	io_schedule();
+  msleep(1000);
+	return 0;
+}
+
+static struct task_struct *io_wait_threads[32];
+int test_io_wait(int action)
+{
+	if (action && io_wait_threads[0])
+		return -EINVAL;
+
+	if (action == 0 && io_wait_threads[0] == NULL)
+		return -EINVAL;
+
+	if (action)
+		for (int i = 0; i < 32; i++) {
+			io_wait_threads[i] =
+				create_thread("wait", io_wait_sleep, NULL);
+			if (!io_wait_threads[i])
+				BUG();
+		}
+	else
+		for (int i = 0; i < 32; i++) {
+			stop_thread(io_wait_threads[i]);
+			io_wait_threads[i] = NULL;
+		}
+
+	return 0;
+}
+
 /* Sysfs attributes cannot be world-writable. */
 static struct kobj_attribute foo_attribute =
 	__ATTR(foo, 0664, foo_show, foo_store);
@@ -411,7 +446,11 @@ static struct kobj_attribute srcu_attribute =
 static struct kobj_attribute might_sleep_attribute =
 	__ATTR(might_sleep, 0660, NULL, might_sleep_store);
 static struct kobj_attribute wait_event_attribute =
-	__ATTR(wait_event, 0660, NULL, wait_event_store);
+	__ATTR(wait_event, 0660, NULL, might_sleep_store);
+
+DEFINE_TESTER(atomic)
+DEFINE_TESTER(io_wait)
+DEFINE_TESTER(ordering)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -428,6 +467,9 @@ static struct attribute *attrs[] = {
 	&srcu_attribute.attr,
 	&might_sleep_attribute.attr,
 	&wait_event_attribute.attr,
+	&atomic_attribute.attr,
+	&io_wait_attribute.attr,
+	&ordering_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

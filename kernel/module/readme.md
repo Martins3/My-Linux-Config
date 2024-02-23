@@ -1,14 +1,5 @@
 # 测试内容
 
-# 代办
-- [ ] all kinds of locking
-- [ ] https://github.com/smcdef/memory-reordering/blob/master/ordering.c
-- [ ] include/linux/semaphore.h
-  - https://lwn.net/Articles/928026/
-- [ ] 测试 interruptable 和 uninterrpable 的
-- [ ] 测试等待 io 也是计入到 load 中的
-- [ ] watchdog 中无法测试出来 softlock 的效果
-
 ## 快捷参考
 1. https://github.com/torvalds/linux/blob/master/samples/kobject/kobject-example.c
 2. https://github.com/sysprog21/lkmpg
@@ -28,5 +19,27 @@ rcu_read_unlock_bh
 
 fd_install 中使用的 rcu_read_lock_sched 如何操作的
 
+## 当前的上下文无法测试
+
 ## atomic 的 api 比想象的更加复杂啊
-atomic_dec_and_raw_lock(atomic, lock)
+https://docs.kernel.org/core-api/wrappers/atomic_t.html
+
+1. atomic_dec_and_raw_lock(atomic, lock)
+2. 例如 refcount_t
+Reference count (but please see refcount_t):
+
+  atomic_add_unless(), atomic_inc_not_zero()
+  atomic_sub_and_test(), atomic_dec_and_test()
+
+3. 例如 barrier 的代码:
+
+Barriers:
+
+  smp_mb__{before,after}_atomic()
+
+4. 更多的 barrier 代码
+
+Non-RMW ops:
+
+  atomic_read(), atomic_set()
+  atomic_read_acquire(), atomic_set_release()

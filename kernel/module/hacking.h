@@ -41,4 +41,30 @@ ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
 ssize_t wait_event_store(struct kobject *kobj, struct kobj_attribute *attr,
 			 const char *buf, size_t count);
 
+#define DECLARE_TESTER(_prefix) int test_##_prefix(int action);
+
+#define DEFINE_TESTER(_prefix)                                        \
+	static ssize_t _prefix##_store(struct kobject *kobj,          \
+				       struct kobj_attribute *attr,   \
+				       const char *buf, size_t count) \
+	{                                                             \
+		int ret;                                              \
+		int action;                                           \
+		ret = kstrtoint(buf, 10, &action);                    \
+		if (ret < 0)                                          \
+			return ret;                                   \
+		pr_info("%s : action = %d \n", __FUNCTION__, action); \
+		ret = test_##_prefix(action);                         \
+		if (ret)                                              \
+			return ret;                                   \
+		return count;                                         \
+	}                                                             \
+                                                                      \
+	static struct kobj_attribute _prefix##_attribute =            \
+		__ATTR(_prefix, 0660, NULL, _prefix##_store);
+
+DECLARE_TESTER(atomic)
+DECLARE_TESTER(io_wait)
+DECLARE_TESTER(ordering)
+
 #endif /* end of include guard: HACKING_H_PA2UMYTB */
