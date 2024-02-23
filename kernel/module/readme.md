@@ -19,7 +19,7 @@ rcu_read_unlock_bh
 
 fd_install 中使用的 rcu_read_lock_sched 如何操作的
 
-## 当前的上下文无法测试
+## 现在没有办法测试中断上下文，有办法实现吗?
 
 ## atomic 的 api 比想象的更加复杂啊
 https://docs.kernel.org/core-api/wrappers/atomic_t.html
@@ -43,3 +43,9 @@ Non-RMW ops:
 
   atomic_read(), atomic_set()
   atomic_read_acquire(), atomic_set_release()
+
+这个 ?
+Documentation/atomic_t.txt
+
+## watchdog 测试中，softlock 只要进行死循环就可以了，
+但是不是会存在时钟中断吗?

@@ -14,6 +14,8 @@
  * 3. smp_mb 和 smp_rmb/smp_wmb 的关系时候什么?
  */
 
+#define CONFIG_USE_CPU_BARRIER 1
+
 // 参考: https://github.com/smcdef/memory-reordering/blob/master/ordering.c
 static DEFINE_PER_CPU(struct task_struct *, ordering_tasks);
 static DEFINE_PER_CPU(struct task_struct *, ordering_tasks2);
