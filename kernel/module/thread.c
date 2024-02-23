@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 #include <linux/delay.h>
 #include <linux/init.h>
 #include <linux/kthread.h>

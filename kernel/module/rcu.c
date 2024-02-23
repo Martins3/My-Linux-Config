@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/slab.h>

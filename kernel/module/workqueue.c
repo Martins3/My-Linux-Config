@@ -1,7 +1,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/workqueue.h>
-#include "hacking.h"
+#include "internal.h"
 
 /* #define CREAT_WORKQUEUE */
 

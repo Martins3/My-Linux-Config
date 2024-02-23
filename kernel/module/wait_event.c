@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 #include <linux/module.h>
 
 static DECLARE_WAIT_QUEUE_HEAD(waitq);

@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 
 int test_atomic(int action)
 {

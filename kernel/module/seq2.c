@@ -7,7 +7,7 @@
 #include <linux/seq_file.h> /* seq_read, seq_lseek, single_release */
 #include <linux/slab.h>
 #include <uapi/linux/stat.h> /* S_IRUSR */
-#include "hacking.h"
+#include "internal.h"
 
 static struct dentry *debugfs_file;
 

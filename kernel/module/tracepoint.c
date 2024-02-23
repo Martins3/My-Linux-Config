@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 #include <linux/module.h>
 
 #define CREATE_TRACE_POINTS

@@ -1,4 +1,4 @@
-#include "hacking.h"
+#include "internal.h"
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/smpboot.h>
