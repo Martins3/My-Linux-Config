@@ -65,6 +65,6 @@ ssize_t wait_event_store(struct kobject *kobj, struct kobj_attribute *attr,
 
 DECLARE_TESTER(atomic)
 DECLARE_TESTER(io_wait)
-DECLARE_TESTER(ordering)
+DECLARE_TESTER(barrier)
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */

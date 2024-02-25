@@ -17,143 +17,6 @@ static char *name = "martins3";
 module_param(name, charp, S_IRUGO);
 MODULE_PARM_DESC(name, "The name to display in /var/log/kern.log");
 
-// static unsigned int mm2_a, mm2_b;
-// static unsigned int mm2_x, mm2_y;
-// static struct semaphore sem_x;
-// static struct semaphore sem_y;
-// static struct semaphore sem_end;
-//
-// static int ordering_thread_fn2_cpu0(void *idx)
-// {
-// 	static unsigned int detected;
-// 	static unsigned long loop;
-// 	while (!kthread_should_stop()) {
-// 		loop++;
-//
-// 		mm2_x = 0;
-// 		mm2_y = 0;
-//
-// 		up(&sem_x);
-// 		up(&sem_y);
-//
-// 		down(&sem_end);
-// 		down(&sem_end);
-//
-// 		if (mm2_a == 0 && mm2_b == 0)
-// 			pr_info("%d reorders detected\n", ++detected);
-//
-// 		if (detected >= 100) {
-// 			// 平均 10 次触发一次，不知道有没有更好的方法来触发
-// 			pr_info("loop %ld times, found %d\n", loop, detected);
-// 			stop_threads();
-// 			return 0;
-// 		}
-// 	}
-// 	return 0;
-// }
-//
-// static int ordering_thread_fn2_cpu1(void *idx)
-// {
-// 	while (!kthread_should_stop()) {
-// 		down(&sem_x);
-// 		mm2_x = 1;
-// #ifdef CONFIG_USE_CPU_BARRIER
-// 		smp_wmb();
-// #else
-// 		/* Prevent compiler reordering. */
-// 		barrier();
-// #endif
-// 		mm2_a = mm2_y;
-// 		up(&sem_end);
-// 	}
-// 	return 0;
-// }
-//
-// static int ordering_thread_fn2_cpu2(void *idx)
-// {
-// 	while (!kthread_should_stop()) {
-// 		down(&sem_y);
-// 		mm2_y = 1;
-// #ifdef CONFIG_USE_CPU_BARRIER
-// 		smp_rmb();
-// #else
-// 		/* Prevent compiler reordering. */
-// 		barrier();
-// #endif
-// 		mm2_b = mm2_x;
-// 		up(&sem_end);
-// 	}
-// 	return 0;
-// }
-//
-// static void hacking_memory_model_2(void)
-// {
-// 	sema_init(&sem_x, 0);
-// 	sema_init(&sem_y, 0);
-// 	sema_init(&sem_end, 0);
-// 	initialize_thread(ordering_thread_fn2_cpu0, "martins3", 0);
-// 	initialize_thread(ordering_thread_fn2_cpu1, "martins3", 0);
-// 	initialize_thread(ordering_thread_fn2_cpu2, "martins3", 0);
-// }
-//
-// static atomic_t count = ATOMIC_INIT(0);
-// static unsigned int a, b;
-//
-// static int ordering_thread_fn_cpu0(void *idx)
-// {
-// 	while (!kthread_should_stop()) {
-// 		atomic_inc(&count);
-// 	}
-//
-// 	pr_info("counter :  %d\n", atomic_read(&count));
-// 	return 0;
-// }
-//
-// static int ordering_thread_fn_cpu1(void *idx)
-// {
-// 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-// 	while (!kthread_should_stop()) {
-// 		int temp = atomic_read(&count);
-//
-// 		a = temp;
-// #ifdef CONFIG_USE_CPU_BARRIER
-// 		smp_wmb();
-// #else
-// 		/* Prevent compiler reordering. */
-// 		barrier();
-// #endif
-// 		b = temp;
-// 	}
-// 	return 0;
-// }
-//
-// static int ordering_thread_fn_cpu2(void *idx)
-// {
-// 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-// 	while (!kthread_should_stop()) {
-// 		unsigned int c, d;
-//
-// 		d = b;
-// #ifdef CONFIG_USE_CPU_BARRIER
-// 		smp_rmb();
-// #else
-// 		/* Prevent compiler reordering. */
-// 		barrier();
-// #endif
-// 		c = a;
-//
-// 		if ((int)(d - c) > 0)
-// 			pr_info("reorders detected, a = %d, b = %d\n", c, d);
-// 	}
-// 	return 0;
-// }
-//
-// static void hacking_memory_model_1(void)
-// {
-// 	initialize_thread(ordering_thread_fn_cpu0, "martins3", 0);
-// 	initialize_thread(ordering_thread_fn_cpu1, "martins3", 0);
-// 	initialize_thread(ordering_thread_fn_cpu2, "martins3", 0);
-// }
 //
 // int rcu_x, rcu_y;
 // int rcu_thread0(void *idx);
@@ -450,7 +313,7 @@ static struct kobj_attribute wait_event_attribute =
 
 DEFINE_TESTER(atomic)
 DEFINE_TESTER(io_wait)
-DEFINE_TESTER(ordering)
+DEFINE_TESTER(barrier)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -469,7 +332,7 @@ static struct attribute *attrs[] = {
 	&wait_event_attribute.attr,
 	&atomic_attribute.attr,
 	&io_wait_attribute.attr,
-	&ordering_attribute.attr,
+	&barrier_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

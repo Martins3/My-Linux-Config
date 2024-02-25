@@ -168,7 +168,7 @@ static struct smp_hotplug_thread ordering_smp_thread2 = {
 };
 
 static int state = 0;
-int test_ordering(int action)
+int test_barrier(int action)
 {
 	switch (action) {
 	case 0:
