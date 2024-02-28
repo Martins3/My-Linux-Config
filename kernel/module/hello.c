@@ -314,6 +314,8 @@ static struct kobj_attribute wait_event_attribute =
 DEFINE_TESTER(atomic)
 DEFINE_TESTER(io_wait)
 DEFINE_TESTER(barrier)
+DEFINE_TESTER(rwsem)
+DEFINE_TESTER(complete)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -333,6 +335,8 @@ static struct attribute *attrs[] = {
 	&atomic_attribute.attr,
 	&io_wait_attribute.attr,
 	&barrier_attribute.attr,
+	&rwsem_attribute.attr,
+	&complete_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

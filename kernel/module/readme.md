@@ -12,6 +12,9 @@
 
 ## 测试 percpu_ref_kill 的使用
 
+这个全部需要分析下:
+include/linux/refcount.h
+
 ## workqueue
 
 ## rcu
@@ -25,5 +28,8 @@ fd_install 中使用的 rcu_read_lock_sched 如何操作的
 ## watchdog 测试中，softlock 只要进行死循环就可以了，
 但是不是会存在时钟中断吗?
 
-## 测试使用下
-up_write
+## config/sh/bpftrace.sh
+中应该直接使用 bcc 工具就可以了， bpftrace 的作用应该是方便的写代码
+，应该重新阅读下用 bpftrace 写代码。
+
+## completion 和 wait event 有区别吗?
