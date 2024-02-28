@@ -53,7 +53,6 @@
 * [有趣的插件](#有趣的插件)
 * [学习](#学习)
 * [找资源](#找资源)
-* [问题](#问题)
 * [高级话题](#高级话题)
 * [衍生](#衍生)
 
@@ -776,25 +775,6 @@ setxkbmap -option caps:swapescape
 
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 2. [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
-
-## 问题
-- 极为细节的问题，但是折腾下应该还是可解的
-  - shellcheck 无法处理 source 其他的文件的情况。
-  - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-  - 集成 https://github.com/crate-ci/typos
-  - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
-  - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
-  - https://github.com/koalaman/shellcheck/issues/1284
-  - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-  - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
-  - [neodim](https://github.com/zbirenbaum/neodim) : 等待升级到 0.10
-  - https://github.com/ryanmsnyder/toggleterm-manager.nvim : 替换下 term
-- nvim 有待解决的问题，不是一时半会可以解决的:
-  1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
-     - https://github.com/jamestthompson3/nvim-remote-containers
-     - https://github.com/OscarCreator/rsync.nvim
-      - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
-  2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 ## 高级话题
 - [高级话题](./nvim-advantace.md)，至少对于我来说比较高级 🤣
