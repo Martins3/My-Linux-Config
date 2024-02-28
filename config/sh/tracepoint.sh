@@ -30,6 +30,6 @@ echo "${entry}" | sudo tee /sys/kernel/debug/tracing/set_event
 # TODO 这个模式有个问题，都是直接输出到屏幕的，需要输出一些到持久的位置
 sudo cat /sys/kernel/debug/tracing/trace_pipe
 
-# TODO 尴尬了，被降维打击了
+# 似乎 perf 不存在这种实时输出的效果
 # sudo perf record -e block:block_rq_complete -a sleep 10
 # https://www.brendangregg.com/blog/2014-06-29/perf-static-tracepoints.html

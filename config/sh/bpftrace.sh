@@ -85,7 +85,7 @@ case "$action" in
 		scripts="$entry { @[kstack] = count(); }"
 		;;
 	realtime)
-		scripts="$entry { print(\"hit $entry \n\") }"
+		scripts="$entry { print(\"hit $entry\") }"
 		;;
 	*)
 		exit 1
