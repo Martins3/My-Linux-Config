@@ -32,6 +32,15 @@ boot.kernelPatches = [
   }
 
   {
+    name = "hwpoison";
+    patch = null;
+    extraStructuredConfig = {
+      MEMORY_FAILURE=lib.kernel.yes;
+      HWPOISON_INJECT=lib.kernel.yes;
+    };
+  }
+
+  {
     name = "lru_gen";
     patch = null;
     extraStructuredConfig = {

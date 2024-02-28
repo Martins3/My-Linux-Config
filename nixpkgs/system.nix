@@ -138,7 +138,8 @@ in
   };
 
   # https://nixos.wiki/wiki/Fwupd
-  services.fwupd.enable = true;
+  # 似乎没啥用，而且还是存在 bug 的
+  services.fwupd.enable = false;
 
   # wireless and wired coexist
   systemd.network.wait-online.timeout = 1;

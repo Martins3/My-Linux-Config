@@ -91,7 +91,7 @@ in
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
-    neomutt
+    # neomutt # 邮件列表，很难用
     b4
     weechat
     offlineimap
@@ -113,7 +113,7 @@ in
     # 通过 tweaks 调整开机自启动
     gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     hexyl # 分析二进制
-    rasdaemon # @todo 莫名其妙，不知道怎么使用
+    # rasdaemon # @todo 莫名其妙，不知道怎么使用
     nvme-cli
     ninja
     libvirt # 提供 virsh
@@ -133,7 +133,7 @@ in
     hoard # 暂时不知道怎么使用
     slirp4netns
     # nix-index
-    nixd
+    # nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     neovim
@@ -239,9 +239,8 @@ in
     swtpm # windows 11 启动需要
     # unstable.nushell
     libnotify # 通知小工具
-    # 才知道在 Linux 下也是可以用的 pwsh
-    # 在 nixos 23.04 这个版本中，暂时因为 ssl 的版本，不能使用
     # powershell
+    vector
     dmidecode # sudo dmidecode -t 1
     git-review
 

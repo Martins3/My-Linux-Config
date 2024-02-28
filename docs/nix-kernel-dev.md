@@ -54,3 +54,9 @@ sudo ./io_uring /dev/nvme0n1p1
 
 ## linuxHeaders
 不知道这个包是做啥的
+
+## 为什么构建模块还需要额外的 kernel.dev 包，这里到底包含了什么
+
+```txt
+nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev --command " make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=""$(pwd)"" modules"
+```
