@@ -1482,3 +1482,8 @@ Permissions Size User Date Modified Name
 lrwxrwxrwx     - root  1 1月   1970  /run/current-system/sw/bin/ps -> /nix/store/gb18gj7zpbhdavmsdr5090rx7lsvxvyk-procps-3.3.17/bin/ps
 ```
 结论: 系统中本来就是自带了一份
+
+## wps 的版本还是停留在 2019
+https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/office/wpsoffice/default.nix
+
+但是不知道怎么给他们更新。

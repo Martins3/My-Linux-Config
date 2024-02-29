@@ -108,3 +108,20 @@ drivers/virtio/virtio_input.c
 https://lwn.net/Articles/844224/
 
 ## 测试下 tabnine 的效果
+
+
+## qemu 的 diff
+
+```diff
+diff --git a/hw/virtio/meson.build b/hw/virtio/meson.build
+index d7f18c96e60e..9b162756a2d9 100644
+--- a/hw/virtio/meson.build
++++ b/hw/virtio/meson.build
+@@ -81,6 +81,7 @@ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_IOMMU', if_true: files('virtio-iommu-pci.
+ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MEM', if_true: files('virtio-mem-pci.c'))
+ virtio_pci_ss.add(when: 'CONFIG_VHOST_VDPA_DEV', if_true: files('vdpa-dev-pci.c'))
+ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-md-pci.c'))
++virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-dummy.c'))
+
+ specific_virtio_ss.add_all(when: 'CONFIG_VIRTIO_PCI', if_true: virtio_pci_ss)
+```
