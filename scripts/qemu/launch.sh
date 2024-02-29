@@ -80,7 +80,7 @@ function console() {
 }
 
 function open_vnc() {
-	vm=$(choose_vm "active")
+	vm=$(choose_vm active)
 	if [[ -n $vm ]]; then
 		port=$(cat "$vm"/port)
 		id=$((port - 4000 + 6000))

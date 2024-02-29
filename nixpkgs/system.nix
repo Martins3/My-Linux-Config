@@ -103,6 +103,7 @@ in
   };
 
   networking.firewall.checkReversePath = "loose";
+  networking.hostName = "martins3-host";
 
   networking.firewall = {
     # enable the firewall

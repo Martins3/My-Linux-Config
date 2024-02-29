@@ -10,6 +10,11 @@ obj-m += martins3.o
 martins3-m := hello.o seq.o seq2.o workqueue.o thread.o mutex.o \
 	tracepoint.o rcu.o srcu.o wait_event.o atomic.o barrier.o \
 	rw_semaphore.o completion.o
+
+obj-m += virtio-dummy.o
+
+virtio-dummy:= virtio-dummy.o
+
 # Otherwise we were called directly from the command line.
 # Invoke the kernel build system.
 else
