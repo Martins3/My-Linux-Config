@@ -30,7 +30,7 @@ function debug_kernel() {
 		echo "No suitable vm found !"
 		exit 0
 	fi
-  if [[ -f $vm/pid && -f /proc/$(cat "$vm"/pid)/cmdline ]]; then
+	if [[ -f $vm/pid && -f /proc/$(cat "$vm"/pid)/cmdline ]]; then
 		if gum confirm "Kill the machine?"; then
 			kill_qemu "$vm"
 		else
@@ -88,7 +88,12 @@ function open_vnc() {
 	fi
 }
 
-while getopts "dkvsc" opt; do
+function qemu_top() {
+	pids=($(pgrep 'qemu'))
+	top "${pids[@]/#/-p }"
+}
+
+while getopts "dkvsct" opt; do
 	case $opt in
 		d)
 			debug_kernel
@@ -104,6 +109,9 @@ while getopts "dkvsc" opt; do
 			;;
 		c)
 			copy_ssh
+			;;
+		t)
+			qemu_top
 			;;
 		*)
 			cat /home/martins3/.dotfiles/scripts/qemu/luanch.sh

@@ -20,12 +20,13 @@ in
     unstable.flameshot # 截图
     # unstable.zotero
     unstable.slack
-    # unstable.drawio
+    drawio
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     wezterm
     wireshark
-    unstable.alacritty
+    alacritty
+    # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
@@ -33,7 +34,7 @@ in
     unstable.firefox
     google-chrome
     unstable.thunderbird
-    unstable.feishu
+    # unstable.feishu
     microsoft-edge
     vlc
     # podman-desktop
