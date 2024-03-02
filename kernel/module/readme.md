@@ -85,8 +85,6 @@ RCU_POINTER_INITIALIZER
 		.p = RCU_INITIALIZER(v)
 ```
 
-## 现在没有办法测试中断上下文，有办法实现吗?
-
 ## watchdog 测试中，softlock 只要进行死循环就可以了，
 但是不是会存在时钟中断吗?
 
@@ -97,12 +95,6 @@ RCU_POINTER_INITIALIZER
 ## completion 和 wait event 有区别吗?
 https://kernelnewbies.kernelnewbies.narkive.com/lLxcBrgc/wait-event-interruptible-vs-wait-for-completion-interruptible
 
-## [ ] 增加一个 virtio-device 测试下效果
-
-Documentation/driver-api/virtio/writing_virtio_drivers.rst
-
-参考这个例子:
-drivers/virtio/virtio_input.c
 
 ## 应该测试下所谓的 lockless 算法的性能
 https://lwn.net/Articles/844224/
@@ -110,7 +102,13 @@ https://lwn.net/Articles/844224/
 ## 测试下 tabnine 的效果
 
 
-## qemu 的 diff
+
+## 增加一个 virtio-device 测试下效果
+
+Documentation/driver-api/virtio/writing_virtio_drivers.rst
+
+参考这个例子:
+drivers/virtio/virtio_balloon.c
 
 ```diff
 diff --git a/hw/virtio/meson.build b/hw/virtio/meson.build
@@ -124,4 +122,21 @@ index d7f18c96e60e..9b162756a2d9 100644
 +virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-dummy.c'))
 
  specific_virtio_ss.add_all(when: 'CONFIG_VIRTIO_PCI', if_true: virtio_pci_ss)
+
+diff --git a/hw/virtio/virtio.c b/hw/virtio/virtio.c
+index d229755eae58..f2f5488dcfee 100644
+--- a/hw/virtio/virtio.c
++++ b/hw/virtio/virtio.c
+@@ -193,7 +193,8 @@ const char *virtio_device_names[] = {
+     [VIRTIO_ID_PARAM_SERV] = "virtio-param-serv",
+     [VIRTIO_ID_AUDIO_POLICY] = "virtio-audio-pol",
+     [VIRTIO_ID_BT] = "virtio-bluetooth",
+-    [VIRTIO_ID_GPIO] = "virtio-gpio"
++    [VIRTIO_ID_GPIO] = "virtio-gpio",
++    [42] = "virtio-dummy"
+ };
+
+ static const char *virtio_id_to_name(uint16_t device_id)
 ```
+
+- [ ] 实现 virtio queue 密集中断，echo 123 > /sys/kernel/dummy/echo 有难度?
