@@ -109,3 +109,10 @@ Documentation/driver-api/virtio/writing_virtio_drivers.rst
 drivers/virtio/virtio_balloon.c
 
 - [ ] 实现 virtio queue 密集中断，echo 123 > /sys/kernel/dummy/echo 有难度?
+
+## dummy 中每次都会输出这个，合理吗
+```txt
+[martins3:virtio_dummy_set_status:106] 0x55a2eec34030
+[martins3:virtio_dummy_set_status:106] 0x55a2eec34030
+[martins3:virtio_dummy_set_status:106] 0x55a2eec34030
+```

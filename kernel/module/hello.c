@@ -323,6 +323,7 @@ DEFINE_TESTER(io_wait)
 DEFINE_TESTER(barrier)
 DEFINE_TESTER(rwsem)
 DEFINE_TESTER(complete)
+DEFINE_TESTER(percpu_rwsem)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -344,6 +345,7 @@ static struct attribute *attrs[] = {
 	&barrier_attribute.attr,
 	&rwsem_attribute.attr,
 	&complete_attribute.attr,
+	&percpu_rwsem_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

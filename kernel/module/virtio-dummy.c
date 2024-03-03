@@ -9,9 +9,10 @@
 /* device private data (one per device) */
 struct virtio_dummy_dev {
 	struct virtqueue *vq;
+	int x;
 };
 
-static struct virtio_dummy_dev virtio_dummy_dev;
+static struct virtio_dummy_dev *dummy_dev;
 
 DECLARE_TESTER(echo)
 DEFINE_TESTER(echo)
@@ -19,13 +20,10 @@ DEFINE_TESTER(echo)
 static void tell_host(int num)
 {
 	struct scatterlist sg;
-	// XXX 不要在乎这里的内存泄露。发现传递给 sg_init_one 的第二个参数是数据段，最后传输到 qemu 实际上是 0
-	int *x = (int *)kmalloc(sizeof(int), GFP_KERNEL);
-	*x = num;
-	sg_init_one(&sg, x, sizeof(int));
-	virtqueue_add_outbuf(virtio_dummy_dev.vq, &sg, 1, &virtio_dummy_dev,
-			     GFP_KERNEL);
-	virtqueue_kick(virtio_dummy_dev.vq);
+	dummy_dev->x = num;
+	sg_init_one(&sg, &dummy_dev->x, sizeof(dummy_dev->x));
+	virtqueue_add_outbuf(dummy_dev->vq, &sg, 1, dummy_dev, GFP_KERNEL);
+	virtqueue_kick(dummy_dev->vq);
 }
 
 int test_echo(int action)
@@ -67,32 +65,49 @@ static void exit_dummy_sysfs(void)
 	kobject_put(mymodule);
 }
 
+/**
+ * virtio_dummy_recv_cb+0x34/0x90 [virtio_dummy]
+ * vring_interrupt+0x5b/0x90
+ * vp_vring_interrupt+0x57/0x90
+ * __handle_irq_event_percpu+0x6d/0x1d0
+ * handle_irq_event+0x38/0x80
+ * handle_fasteoi_irq+0x7c/0x210
+ * __common_interrupt+0x3c/0xa0
+ * common_interrupt+0x83/0xa0
+ */
 static void virtio_dummy_recv_cb(struct virtqueue *vq)
 {
 	struct virtio_dummy_dev *dev = vq->vdev->priv;
 	char *buf;
 	unsigned int len;
+	dump_stack();
 
-	int i = 0;
+	BUG_ON(!in_interrupt());
+	BUG_ON(in_softirq());
+
 	while ((buf = virtqueue_get_buf(dev->vq, &len)) != NULL) {
-		if (i++ % 1000 == 0)
-			pr_info("receive : [%s]", buf);
+		pr_info("receive : [%s]", buf);
 	}
 }
 
 static int virtio_dummy_probe(struct virtio_device *vdev)
 {
+	struct virtio_dummy_dev *dev;
 	if (init_dummy_sysfs())
 		return -ENOMEM;
 	pr_info("virtio dummy probe");
 
+	dev = kzalloc(sizeof(struct virtio_dummy_dev), GFP_KERNEL);
+	if (!dev)
+		return -ENOMEM;
+
 	/* the device has a single virtqueue */
-	virtio_dummy_dev.vq =
-		virtio_find_single_vq(vdev, virtio_dummy_recv_cb, "input");
-	if (IS_ERR(virtio_dummy_dev.vq)) {
-		return PTR_ERR(virtio_dummy_dev.vq);
+	dev->vq = virtio_find_single_vq(vdev, virtio_dummy_recv_cb, "input");
+	if (IS_ERR(dev->vq)) {
+		return PTR_ERR(dev->vq);
 	}
-	vdev->priv = &virtio_dummy_dev;
+	vdev->priv = dev;
+	dummy_dev = dev;
 
 	/* from this point on, the device can notify and get callbacks */
 	virtio_device_ready(vdev);
@@ -120,6 +135,8 @@ static void virtio_dummy_remove(struct virtio_device *vdev)
 	vdev->config->del_vqs(vdev);
 
 	exit_dummy_sysfs();
+
+	kfree(dev);
 }
 
 static const struct virtio_device_id id_table[] = {

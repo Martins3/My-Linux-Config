@@ -62,5 +62,6 @@ DECLARE_TESTER(io_wait)
 DECLARE_TESTER(barrier)
 DECLARE_TESTER(rwsem)
 DECLARE_TESTER(complete)
+DECLARE_TESTER(percpu_rwsem)
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */
