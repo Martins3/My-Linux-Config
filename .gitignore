@@ -32,3 +32,4 @@ perf.data
 perf.data.old
 .bash_history
 *.qcow2
+__pycache__

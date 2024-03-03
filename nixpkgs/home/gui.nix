@@ -23,6 +23,7 @@ in
     drawio
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
+    anki
     wezterm
     wireshark
     alacritty

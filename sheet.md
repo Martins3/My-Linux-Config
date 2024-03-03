@@ -1,4 +1,4 @@
-
+## edit
 - "| 单位 | 向左移动 | 向右移动 | 向左删除 | 向右删除 |"
 - "| 字符 | Ctrl + B | Ctrl + F | Ctrl + H | Ctrl + D |"
 - "| 单词 | Alt + B | Alt + F | Ctrl + W | Alt + D |"
@@ -199,19 +199,15 @@ git pull --rebase --autostash
 ## rg
 rg -l blk_update_request
 
-
 ## wget
 递归拷贝:
 https://stackoverflow.com/questions/273743/using-wget-to-recursively-fetch-a-directory-with-arbitrary-files-in-it
-
 
 ## fd
 fd 使用的是 regex
 ```sh
 fd ".*\.md" | wc -l
 ```
-
-
 
 ## xargs
 -t : 将要执行的命令打印出来

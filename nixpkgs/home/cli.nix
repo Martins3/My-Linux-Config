@@ -16,6 +16,7 @@ in
     ccache
     mold
     go
+    # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
     novnc
@@ -128,12 +129,12 @@ in
     # podman-tui
     k9s
     # minikube
-    minio
-    dufs # 一个全新的 ftp server
-    hoard # 暂时不知道怎么使用
-    slirp4netns
+    # minio
+    # dufs # 一个全新的 ftp server
+    # hoard # 暂时不知道怎么使用
+    # slirp4netns
     # nix-index
-    # nixd
+    nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     neovim
