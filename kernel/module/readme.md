@@ -86,7 +86,7 @@ RCU_POINTER_INITIALIZER
 ```
 
 ## watchdog 测试中，softlock 只要进行死循环就可以了，
-但是不是会存在时钟中断吗?
+但是不是会存在时钟中断吗? 但是
 
 ## config/sh/bpftrace.sh
 中应该直接使用 bcc 工具就可以了， bpftrace 的作用应该是方便的写代码
@@ -101,42 +101,11 @@ https://lwn.net/Articles/844224/
 
 ## 测试下 tabnine 的效果
 
-
-
 ## 增加一个 virtio-device 测试下效果
 
 Documentation/driver-api/virtio/writing_virtio_drivers.rst
 
 参考这个例子:
 drivers/virtio/virtio_balloon.c
-
-```diff
-diff --git a/hw/virtio/meson.build b/hw/virtio/meson.build
-index d7f18c96e60e..9b162756a2d9 100644
---- a/hw/virtio/meson.build
-+++ b/hw/virtio/meson.build
-@@ -81,6 +81,7 @@ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_IOMMU', if_true: files('virtio-iommu-pci.
- virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MEM', if_true: files('virtio-mem-pci.c'))
- virtio_pci_ss.add(when: 'CONFIG_VHOST_VDPA_DEV', if_true: files('vdpa-dev-pci.c'))
- virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-md-pci.c'))
-+virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-dummy.c'))
-
- specific_virtio_ss.add_all(when: 'CONFIG_VIRTIO_PCI', if_true: virtio_pci_ss)
-
-diff --git a/hw/virtio/virtio.c b/hw/virtio/virtio.c
-index d229755eae58..f2f5488dcfee 100644
---- a/hw/virtio/virtio.c
-+++ b/hw/virtio/virtio.c
-@@ -193,7 +193,8 @@ const char *virtio_device_names[] = {
-     [VIRTIO_ID_PARAM_SERV] = "virtio-param-serv",
-     [VIRTIO_ID_AUDIO_POLICY] = "virtio-audio-pol",
-     [VIRTIO_ID_BT] = "virtio-bluetooth",
--    [VIRTIO_ID_GPIO] = "virtio-gpio"
-+    [VIRTIO_ID_GPIO] = "virtio-gpio",
-+    [42] = "virtio-dummy"
- };
-
- static const char *virtio_id_to_name(uint16_t device_id)
-```
 
 - [ ] 实现 virtio queue 密集中断，echo 123 > /sys/kernel/dummy/echo 有难度?

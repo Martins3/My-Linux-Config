@@ -89,6 +89,13 @@ static ssize_t kthread_store(struct kobject *kobj, struct kobj_attribute *attr,
 	return count;
 }
 
+/**
+ *
+ * echo 0 > /sys/kernel/hacking/watchdog
+ * 测试 softlock 的效果。虽然存在时钟中断，但是此内核是 voluntery preempt 的，
+ * 所以即使没有屏蔽时钟中断，该进程还是不能被调度走。
+ *
+ */
 static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 			      const char *buf, size_t count)
 {
@@ -98,7 +105,7 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	bool no_signal_check = false;
 	bool enable_sched = false;
 	bool disable_preempt = false;
-	bool rcu = false;
+	bool rcu_critical = false;
 
 	ret = kstrtoint(buf, 10, &action);
 	if (ret < 0)
@@ -108,9 +115,9 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	no_signal_check = (action / 10) % 10;
 	enable_sched = (action / 100) % 10;
 	disable_preempt = (action / 1000) % 10;
-	rcu = (action / 10000) % 10;
+	rcu_critical = (action / 10000) % 10;
 
-	pr_info("watchdog : %s %s %s %s %s\n", rcu ? "rcu" : "",
+	pr_info("watchdog : %s %s %s %s %s\n", rcu_critical ? "rcu" : "",
 		disable_preempt ? "disable_preempt" : "",
 		enable_sched ? "enable_sched" : "",
 		no_signal_check ? "no_signal_check" : "",
@@ -122,12 +129,12 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	if (disable_preempt)
 		preempt_disable();
 
-	if (rcu)
+	if (rcu_critical)
 		rcu_read_lock();
 
 	for (;;) {
 		// 无论是否屏蔽中断，signal_pending 都是可以接受到的，原因 bash 父进程传递的
-		// 无论是否屏蔽，ctrl-c 都是无法打断当前进程的
+		// 无论是否屏蔽中断，ctrl-c 都是无法打断当前进程的
 		if (no_signal_check && signal_pending(current))
 			break;
 
@@ -143,7 +150,7 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	if (disable_preempt)
 		preempt_enable();
 
-	if (rcu)
+	if (rcu_critical)
 		rcu_read_unlock();
 
 	return count;
@@ -260,7 +267,7 @@ static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
 static int io_wait_sleep(void *arg)
 {
 	io_schedule();
-  msleep(1000);
+	msleep(1000);
 	return 0;
 }
 
