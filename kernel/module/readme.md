@@ -12,11 +12,6 @@
 
 Documentation/RCU/ 中包含了 stallwarn 的分析
 
-## 测试 percpu_ref_kill 的使用
-
-这个全部需要分析下:
-include/linux/refcount.h
-
 ## workqueue
 
 ## rcu
@@ -99,8 +94,6 @@ https://kernelnewbies.kernelnewbies.narkive.com/lLxcBrgc/wait-event-interruptibl
 ## 应该测试下所谓的 lockless 算法的性能
 https://lwn.net/Articles/844224/
 
-## 测试下 tabnine 的效果
-
 ## 增加一个 virtio-device 测试下效果
 
 Documentation/driver-api/virtio/writing_virtio_drivers.rst
@@ -116,3 +109,16 @@ drivers/virtio/virtio_balloon.c
 [martins3:virtio_dummy_set_status:106] 0x55a2eec34030
 [martins3:virtio_dummy_set_status:106] 0x55a2eec34030
 ```
+但是加载其的 virtio 设备没有这个输出吧
+
+## 测试内容
+1. virtio-dummy 中测试下 interrupt 中 sleep 下
+2. 有办法实现 virtio-dummy 中实现异步的中断注入吗?
+3. rcu_read_unlock 可以在中断上下文中使用吗?
+
+4. 为什么现在 disable bh 的时候，等价于 rcu_read_lock
+  - RCU 的 read lock 到底在做什么来着
+  - RCU write 不需要 lock ?
+  - 话说，为什么存在这种等价。如果在中断上下文中，岂不是更加是等价于。
+
+## [ ] 给 qemu 增加代码来测试 qemu 用户态的 RCU 才可以

@@ -3,8 +3,11 @@
 
 static DECLARE_COMPLETION(test);
 
-// 如果是 down read ，up_write 不可以来解锁
-// rwsem 存在一个有趣的调试 : rwsem_set_owner
+/**
+ * completion 和 wait_event 机制的差别
+ * 1. 没有处理信号的接口
+ * 2. 没有判断条件的接口
+ */
 int test_complete(int action)
 {
 	switch (action) {

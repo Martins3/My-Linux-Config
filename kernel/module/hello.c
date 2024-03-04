@@ -315,9 +315,8 @@ static struct kobj_attribute srcu_attribute =
 	__ATTR(srcu, 0660, NULL, srcu_store);
 static struct kobj_attribute might_sleep_attribute =
 	__ATTR(might_sleep, 0660, NULL, might_sleep_store);
-static struct kobj_attribute wait_event_attribute =
-	__ATTR(wait_event, 0660, NULL, might_sleep_store);
 
+DEFINE_TESTER(wait_event)
 DEFINE_TESTER(atomic)
 DEFINE_TESTER(io_wait)
 DEFINE_TESTER(barrier)

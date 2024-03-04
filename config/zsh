@@ -170,4 +170,6 @@ function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
 }
+alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
+alias wifi="nmcli dev wifi show-password"

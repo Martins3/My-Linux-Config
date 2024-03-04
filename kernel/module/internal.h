@@ -32,9 +32,6 @@ ssize_t rcu_api_store(struct kobject *kobj, struct kobj_attribute *attr,
 ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
 		   const char *buf, size_t count);
 
-ssize_t wait_event_store(struct kobject *kobj, struct kobj_attribute *attr,
-			 const char *buf, size_t count);
-
 #define DECLARE_TESTER(_prefix) int test_##_prefix(int action);
 
 #define DEFINE_TESTER(_prefix)                                        \
@@ -57,6 +54,7 @@ ssize_t wait_event_store(struct kobject *kobj, struct kobj_attribute *attr,
 	static struct kobj_attribute _prefix##_attribute =            \
 		__ATTR(_prefix, 0660, NULL, _prefix##_store);
 
+DECLARE_TESTER(wait_event)
 DECLARE_TESTER(atomic)
 DECLARE_TESTER(io_wait)
 DECLARE_TESTER(barrier)
