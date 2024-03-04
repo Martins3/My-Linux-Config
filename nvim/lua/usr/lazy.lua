@@ -110,7 +110,6 @@ require("lazy").setup({
   "kylechui/nvim-surround", -- 快速编辑单词两侧的符号
   "tpope/vim-repeat", -- 更加强大的 `.`
   "windwp/nvim-autopairs", -- 自动括号匹配
-  "honza/vim-snippets", -- 安装公共的的 snippets
   "mbbill/undotree", -- 显示编辑的历史记录
   "mg979/vim-visual-multi", -- 同时编辑多个位置
   "AckslD/nvim-neoclip.lua", -- 保存 macro
