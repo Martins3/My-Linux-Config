@@ -112,7 +112,6 @@ drivers/virtio/virtio_balloon.c
 但是加载其的 virtio 设备没有这个输出吧
 
 ## 测试内容
-1. virtio-dummy 中测试下 interrupt 中 sleep 下
 2. 有办法实现 virtio-dummy 中实现异步的中断注入吗?
 3. rcu_read_unlock 可以在中断上下文中使用吗?
 

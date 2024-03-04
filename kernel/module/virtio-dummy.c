@@ -3,6 +3,7 @@
 #include <linux/virtio_config.h>
 #include <linux/module.h>
 #include "internal.h"
+#include <linux/delay.h>
 
 #define VIRTIO_ID_DUMMY 42
 
@@ -80,10 +81,10 @@ static void virtio_dummy_recv_cb(struct virtqueue *vq)
 	struct virtio_dummy_dev *dev = vq->vdev->priv;
 	char *buf;
 	unsigned int len;
-	dump_stack();
 
 	BUG_ON(!in_interrupt());
 	BUG_ON(in_softirq());
+	// msleep(100); # 中断中睡眠最终在 __schedule -> __schedule_bug 中触发 crash
 
 	while ((buf = virtqueue_get_buf(dev->vq, &len)) != NULL) {
 		pr_info("receive : [%s]", buf);
