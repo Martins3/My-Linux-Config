@@ -65,6 +65,7 @@ static void virtio_dummy_handle_output(VirtIODevice *vdev, VirtQueue *vq) {
     }
 
     virtqueue_push(vq, elem, 0);
+    virtio_notify(vdev, vq);
     g_free(elem);
   }
 }
@@ -102,8 +103,7 @@ static void virtio_dummy_set_config(VirtIODevice *vdev,
 
 static void virtio_dummy_set_status(VirtIODevice *vdev, uint8_t status) {
   VirtIODummy *s = VIRTIO_DUMMY(vdev);
-  // TODO 这个什么时候调用
-  printf("[martins3:%s:%d] %p\n", __FUNCTION__, __LINE__, s);
+  // TODO 这个什么时候调用这个函数
 }
 
 static void virtio_dummy_class_init(ObjectClass *klass, void *data) {

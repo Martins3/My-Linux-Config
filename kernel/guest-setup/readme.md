@@ -1,196 +1,113 @@
-# Guest OS 初始化
+# 测试内容
 
-暂时尝试过使用 cloud-init 或者 nixos 来构建 Guest 机器，但是最后发现太难 hacking 了。
+## 快捷参考
+1. https://github.com/torvalds/linux/blob/master/samples/kobject/kobject-example.c
+2. https://github.com/sysprog21/lkmpg
 
-
-# 基本设计
-
-将参数分离开，组合测试
-
-- corn list
-- corn setup
-- corn execute # 使用 ansible 来自动控制
-- corn avocado # 使用 avocado 来进行测试
-
-## 编译 ubuntu 内核 : 没太大必要，因为编译 rpm 也非常快
-```txt
-GEN     debian
-Using default distribution of 'unstable' in the changelog
-Install lsb-release or set $KDEB_CHANGELOG_DIST explicitly
-dpkg-buildpackage -r"fakeroot -u" -a$(cat debian/arch)  -b -nc -uc
-dpkg-buildpackage: info: source package linux-upstream
-dpkg-buildpackage: info: source version 6.3.0-rc1-00002-g8ca09d5fa354-dirty-169
-dpkg-buildpackage: info: source distribution unstable
-dpkg-buildpackage: info: source changed by martins3 <martins3@nixos>
-dpkg-architecture: warning: specified GNU system type x86_64-linux-gnu does not match CC system type x86_64-unknown-linux-gnu, try setting a correct CC environment variable
-dpkg-buildpackage: info: host architecture amd64
- dpkg-source --before-build .
-dpkg-source: info: using options from linux/debian/source/local-options: --diff-ignore --extend-diff-ignore=.*
-dpkg-checkbuilddeps: error: cannot open /var/lib/dpkg/status: No such file or directory
-dpkg-buildpackage: warning: build dependencies/conflicts unsatisfied; aborting
-dpkg-buildpackage: warning: (Use -d flag to override.)
-make[1]: *** [scripts/Makefile.package:127: bindeb-pkg] Error 3
-make: *** [Makefile:1657: bindeb-pkg] Error 2
-```
-借用 https://github.com/a13xp0p0v/kernel-build-containers 的实现。
-
-https://wiki.debian.org/BuildADebianKernelPackage
+## seq file
 参考:
- make -j`nproc` bindeb-pkg
+1. https://stackoverflow.com/questions/25399112/how-to-use-a-seq-file-in-linux-kernel-modules
 
-不知道为什么，还是这个错误:
+## 触发一下 rcu cpu stall 的 bug
+
+Documentation/RCU/ 中包含了 stallwarn 的分析
+
+## workqueue
+
+## rcu
+rcu_read_unlock_bh
+
+fd_install 中使用的 rcu_read_lock_sched 如何操作的
+
+### 分析下 rcu_dereference_protected 的使用
+rcu_dereference_raw，存在一个问题，在 crash 中，如何访问一个 rcu 保护的指针，如果指定想要访问的指针是什么?
+
+RCU_INIT_POINTER
+RCU_POINTER_INITIALIZER
 ```txt
-  SYNC    include/config/auto.conf.cmd
-make[2]: scripts/kconfig/conf: No such file or directory
-make[2]: *** [scripts/kconfig/Makefile:77: syncconfig] Error 127
-make[1]: *** [Makefile:693: syncconfig] Error 2
-make: *** [Makefile:794: include/config/auto.conf.cmd] Error 2
+/**
+ * RCU_INIT_POINTER() - initialize an RCU protected pointer
+ * @p: The pointer to be initialized.
+ * @v: The value to initialized the pointer to.
+ *
+ * Initialize an RCU-protected pointer in special cases where readers
+ * do not need ordering constraints on the CPU or the compiler.  These
+ * special cases are:
+ *
+ * 1.	This use of RCU_INIT_POINTER() is NULLing out the pointer *or*
+ * 2.	The caller has taken whatever steps are required to prevent
+ *	RCU readers from concurrently accessing this pointer *or*
+ * 3.	The referenced data structure has already been exposed to
+ *	readers either at compile time or via rcu_assign_pointer() *and*
+ *
+ *	a.	You have not made *any* reader-visible changes to
+ *		this structure since then *or*
+ *	b.	It is OK for readers accessing this structure from its
+ *		new location to see the old state of the structure.  (For
+ *		example, the changes were to statistical counters or to
+ *		other state where exact synchronization is not required.)
+ *
+ * Failure to follow these rules governing use of RCU_INIT_POINTER() will
+ * result in impossible-to-diagnose memory corruption.  As in the structures
+ * will look OK in crash dumps, but any concurrent RCU readers might
+ * see pre-initialized values of the referenced data structure.  So
+ * please be very careful how you use RCU_INIT_POINTER()!!!
+ *
+ * If you are creating an RCU-protected linked structure that is accessed
+ * by a single external-to-structure RCU-protected pointer, then you may
+ * use RCU_INIT_POINTER() to initialize the internal RCU-protected
+ * pointers, but you must use rcu_assign_pointer() to initialize the
+ * external-to-structure pointer *after* you have completely initialized
+ * the reader-accessible portions of the linked structure.
+ *
+ * Note that unlike rcu_assign_pointer(), RCU_INIT_POINTER() provides no
+ * ordering guarantees for either the CPU or the compiler.
+ */
+#define RCU_INIT_POINTER(p, v) \
+	do { \
+		rcu_check_sparse(p, __rcu); \
+		WRITE_ONCE(p, RCU_INITIALIZER(v)); \
+	} while (0)
+
+/**
+ * RCU_POINTER_INITIALIZER() - statically initialize an RCU protected pointer
+ * @p: The pointer to be initialized.
+ * @v: The value to initialized the pointer to.
+ *
+ * GCC-style initialization for an RCU-protected pointer in a structure field.
+ */
+#define RCU_POINTER_INITIALIZER(p, v) \
+		.p = RCU_INITIALIZER(v)
 ```
 
-## [x] build docker 镜像还是存在问题的
-sudo apt install dpkg-dev rsync kmod cpio
-
-## [x] 验证一下，是否可以用安装
-
-.rw-r--r-- 8.9M root  9 Mar 17:08  linux-headers-6.3.0-rc1-00002-g8ca09d5fa354_6.3.0-rc1-00002-g8ca09d5fa354-4_amd64.deb
-.rw-r--r--  13M root  9 Mar 17:08  linux-image-6.3.0-rc1-00002-g8ca09d5fa354_6.3.0-rc1-00002-g8ca09d5fa354-4_amd64.deb
-.rw-r--r-- 1.3M root  9 Mar 17:08  linux-libc-dev_6.3.0-rc1-00002-g8ca09d5fa354-4_amd64.deb
-
-虽然没有 debuginfo 包，但是我已经持有了 vmlinux ，其实无所谓
-
-### 实际上，我们发现，只要是
-1. make defconfig kvm_guest.config 几乎任何内核都可以拉起来的
-2. 就是编译的内核有点大，不知道为什么。
-
-## 需求
-### 使用 grubby 自动切换内核，修改 kernel cmdline
-```sh
-sudo grubby --update-kernel=ALL --args="nokaslr console=ttyS0,9600 earlyprink=serial"
-```
-### 删除 guest 密码
-
-### guest 中 oh-my-zsh 的基本命令
-
-## 自动启动嵌套虚拟化
-```c
-function share() {
-	cat <<'EOF' >/etc/systemd/system/nested.service
-[Unit]
-Description=nested virtualization setup
-
-[Service]
-Type=oneshot
-ExecStart=/root/core/vn/docs/qemu/sh/alpine.sh
-
-[Install]
-WantedBy=getty.target
-EOF
-
-systemctl enable nested
-}
-```
-
-## 增加 edk2 的环境搭建
-
-## 使用 libvirt 也是可以装系统的，但是需要 ovs
-
-## 打包方式
-```txt
-Kernel packaging:
-  rpm-pkg             - Build both source and binary RPM kernel packages
-  srcrpm-pkg          - Build only the source kernel RPM package
-  binrpm-pkg          - Build only the binary kernel RPM package
-```
-
-# corn
-
-一键 hacking 环境，收集各种 hacking 环境的脚本:
-- avocado
-- ansible
-- grafana
-- libvirt
-- ovs
-- perf / kvm_stat
-- QEMU 调试
-- [ ] 虚拟机的自动安装
-  - [ ] avocado
-- [ ] core latency
-- [ ] cache latency
-- [ ] numa latency
-- [ ] 各种 perf ，bpftrace，ftrace 之类的
-- [ ] 错误注入
+## completion 和 wait event 有区别吗?
+https://kernelnewbies.kernelnewbies.narkive.com/lLxcBrgc/wait-event-interruptible-vs-wait-for-completion-interruptible
 
 
-## [ ] python perf 有点问题
+## 应该测试下所谓的 lockless 算法的性能
+https://lwn.net/Articles/844224/
 
-## perf 脚本
+## 增加一个 virtio-device 测试下效果
 
-## dracut 生成规则是什么
-安装系统和安装驱动的过程中，
+Documentation/driver-api/virtio/writing_virtio_drivers.rst
 
-了解下这里面的参数:
-- https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html
+参考这个例子:
+drivers/virtio/virtio_balloon.c
 
-```txt
-       The traditional root=/dev/sda1 style device specification is
-       allowed, but not encouraged. The root device should better be
-       identified by LABEL or UUID. If a label is used, as in
-       root=LABEL=<label_of_root> the initramfs will search all
-       available devices for a filesystem with the appropriate label,
-       and mount that device as the root filesystem.
-       root=UUID=<uuidnumber> will mount the partition with that UUID as
-       the root filesystem.
-```
-忽然意识到，实际上，kernel 的参数修改成为这个样子会更加好。
+- [ ] 实现 virtio queue 密集中断，echo 123 > /sys/kernel/dummy/echo 有难度?
 
-## 其实是两者都有问题:
+## 测试内容
+2. 有办法实现 virtio-dummy 中实现异步的中断注入吗?
+4. 为什么现在 disable bh 的时候，等价于 rcu_read_lock
+  - RCU 的 read lock 到底在做什么来着
+  - RCU write 不需要 lock ?
+  - 话说，为什么存在这种等价。如果在中断上下文中，岂不是更加是等价于。
 
-## 调试一下 udev
-journalctl -u systemd-udevd.service
+## [ ] 给 qemu 增加代码来测试 qemu 用户态的 RCU 才可以
 
-## dracut 的源码可以分析下，主要是 dracut install 中，还是非常简单的
+## 测试下
 
-## 能否让 ci 运行在 github ci 中？
-或者提交给 github，让本地的 ci 自动检测
+- task_call_func
+- 测试下各种 impi call 的函数
 
-## 能否直接访问网络
-
-## 搭建 bios 调试环境
-
-## 测试 cpu 和内存的热插拔
-
-## 一些 Guest 的细节问题
-
-- oe20.04 的网卡无法自动打开
-
-将 /etc/sysconfig/network-scripts/enp1s0 中的 onboot 修改为 yes
-
-## 嵌套虚拟机化的支持
-- 继续使用 oe 来测试
-- 使用 Guest 自动登录的为 tmux 的方法
-- 自动备份机制
-  - 真的需要使用逐个字节拷贝的方式吗？qemu 存在什么好的机制来辅助吗？
-
-### 测试嵌套虚拟化的性能问题
-
-## jenkins 的 node 是本地的虚拟机，而且本地虚拟机被 cgroup 约束
-
-## 虚拟机中搭建这个
-https://github.com/meienberger/runtipi
-
-
-## 参考 goffinet 的 packer 脚本
-- https://github.com/goffinet/packer-kvm
-- https://github.com/goffinet/virt-scripts
-
-```txt
-qemu-system-x86  141151  141073    0 /home/martins3/core/qemu/build/qemu-system-x86_64 -vnc 127.0.0.1:26 -drive file=artifacts/qemu/centos9/packer-cen
-tos9,if=virtio,cache=none,discard=unmap,format=qcow2 -drive file=/home/martins3/.cache/packer/7df0e601c1b6b1d629ebd8ddb382c34f976417d6.iso,media=cdrom
- -netdev user,id=user.0,hostfwd=tcp::4053-:22 -cpu host -boot once=d -name packer-centos9 -machine type=pc,accel=kvm -device virtio-net,netdev=user.0
--m
-```
-
-尝试一下下面的集中方法:
-- https://github.com/linuxkit/linuxkit
-- https://fedoraproject.org/wiki/Changes/OstreeNativeContainerStable
-- https://coreos.github.io/rpm-ostree/container/
+## 测试下 include/linux/wait_bit.h 的使用
