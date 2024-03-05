@@ -57,15 +57,8 @@ static void rcu_test(void)
 	writer = create_thread("writer", rcu_writer_thread, NULL);
 }
 
-ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
-		   const char *buf, size_t count)
+int test_srcu(int action)
 {
-	int ret;
-	int action;
-	ret = kstrtoint(buf, 10, &action);
-	if (ret < 0)
-		return ret;
-
 	if (reader) {
 		stop_thread(reader);
 		stop_thread(writer);
@@ -75,6 +68,5 @@ ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
 		rcu_test();
 	else
 		srcu_test();
-
-	return count;
+	return 0;
 }

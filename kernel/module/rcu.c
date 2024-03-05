@@ -157,7 +157,7 @@ static void rcu_test_exit(void)
 	kfree(g_pfoo);
 	kfree(list_first_or_null_rcu(&g_rcu_list, struct foo, list));
 
-  // TODO 原来的作者写的有点 bug ，如果 kthread 已经结束了，这里会出错
+	// TODO 原来的作者写的有点 bug ，如果 kthread 已经结束了，这里会出错
 	kthread_stop(rcu_reader_t);
 	kthread_stop(rcu_updater_t);
 	kthread_stop(rcu_reader_list_t);
@@ -165,14 +165,8 @@ static void rcu_test_exit(void)
 }
 
 static int rcu_test_state = 0;
-ssize_t rcu_api_store(struct kobject *kobj, struct kobj_attribute *attr,
-		      const char *buf, size_t count)
+int test_rcu_api(int val)
 {
-	int ret;
-	int val;
-	ret = kstrtoint(buf, 10, &val);
-	if (ret < 0)
-		return ret;
 	if (val != 0 && val != 1)
 		return -EINVAL;
 
@@ -186,5 +180,5 @@ ssize_t rcu_api_store(struct kobject *kobj, struct kobj_attribute *attr,
 		rcu_test_exit();
 		rcu_test_state = 0;
 	}
-	return count;
+	return 0;
 }

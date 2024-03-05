@@ -6,47 +6,40 @@
 #include <linux/semaphore.h>
 
 unsigned long counter;
-static DEFINE_MUTEX(test_mutex);
+static DEFINE_MUTEX(test_mutex_hi);
 #define LOOP_NUM 10000000
 
 static struct task_struct *holder;
 
 static int mutex_lock_it(void *idx)
 {
-	mutex_lock(&test_mutex);
+	mutex_lock(&test_mutex_hi);
 	for (int i = 0; i < 1000; i++) {
 		pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
 		msleep(1000);
 	}
-	mutex_unlock(&test_mutex);
+	mutex_unlock(&test_mutex_hi);
 	return 1;
 }
 
 static void test_mutex_lock(void)
 {
 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-	mutex_lock(&test_mutex);
-	mutex_unlock(&test_mutex);
+	mutex_lock(&test_mutex_hi);
+	mutex_unlock(&test_mutex_hi);
 }
 
 static void test_mutex_lock_killable(void)
 {
 	pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
-  // mutex_lock_interrupt 类似的，ctrl-c 都可以杀掉
-	if (mutex_lock_killable(&test_mutex))
+	// mutex_lock_interrupt 类似的，ctrl-c 都可以杀掉
+	if (mutex_lock_killable(&test_mutex_hi))
 		pr_info("lock killed");
-	mutex_unlock(&test_mutex);
+	mutex_unlock(&test_mutex_hi);
 }
 
-ssize_t mutex_store(struct kobject *kobj, struct kobj_attribute *attr,
-		    const char *buf, size_t count)
+int test_mutex(int action)
 {
-	int ret;
-	int action;
-	ret = kstrtoint(buf, 10, &action);
-	if (ret < 0)
-		return ret;
-
 	switch (action) {
 	case 0:
 		if (!holder)
@@ -59,6 +52,5 @@ ssize_t mutex_store(struct kobject *kobj, struct kobj_attribute *attr,
 		test_mutex_lock_killable();
 		break;
 	}
-
-	return count;
+	return 0;
 }

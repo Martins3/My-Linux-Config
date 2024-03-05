@@ -20,18 +20,6 @@ void simple_seq_fini3(void);
 int my_workqueue_init(void);
 void my_workqueue_exit(void);
 
-ssize_t mutex_store(struct kobject *kobj, struct kobj_attribute *attr,
-		    const char *buf, size_t count);
-
-ssize_t tracepoint_store(struct kobject *kobj, struct kobj_attribute *attr,
-			 const char *buf, size_t count);
-
-ssize_t rcu_api_store(struct kobject *kobj, struct kobj_attribute *attr,
-		      const char *buf, size_t count);
-
-ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
-		   const char *buf, size_t count);
-
 #define DECLARE_TESTER(_prefix) int test_##_prefix(int action);
 
 #define DEFINE_TESTER(_prefix)                                        \
@@ -54,6 +42,13 @@ ssize_t srcu_store(struct kobject *kobj, struct kobj_attribute *attr,
 	static struct kobj_attribute _prefix##_attribute =            \
 		__ATTR(_prefix, 0660, NULL, _prefix##_store);
 
+DECLARE_TESTER(watchdog)
+DECLARE_TESTER(kthread)
+DECLARE_TESTER(mutex)
+DECLARE_TESTER(tracepoint)
+DECLARE_TESTER(rcu_api)
+DECLARE_TESTER(srcu)
+DECLARE_TESTER(might_sleep)
 DECLARE_TESTER(wait_event)
 DECLARE_TESTER(atomic)
 DECLARE_TESTER(io_wait)
@@ -61,5 +56,6 @@ DECLARE_TESTER(barrier)
 DECLARE_TESTER(rwsem)
 DECLARE_TESTER(complete)
 DECLARE_TESTER(percpu_rwsem)
+DECLARE_TESTER(preempt)
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */

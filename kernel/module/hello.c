@@ -68,16 +68,9 @@ static int kthread_sleep(void *arg)
 }
 
 static struct task_struct *kthread_task;
-static ssize_t kthread_store(struct kobject *kobj, struct kobj_attribute *attr,
-			     const char *buf, size_t count)
+int test_kthread(int action)
 {
-	int ret;
-	int start;
-	ret = kstrtoint(buf, 10, &start);
-	if (ret < 0)
-		return ret;
-
-	if (start) {
+	if (action) {
 		kthread_task =
 			create_thread("sleep", kthread_sleep, (void *)123);
 		if (kthread_task == NULL)
@@ -86,7 +79,7 @@ static ssize_t kthread_store(struct kobject *kobj, struct kobj_attribute *attr,
 		stop_thread(kthread_task);
 		kthread_task = NULL;
 	}
-	return count;
+	return 0;
 }
 
 /**
@@ -96,20 +89,13 @@ static ssize_t kthread_store(struct kobject *kobj, struct kobj_attribute *attr,
  * 所以即使没有屏蔽时钟中断，该进程还是不能被调度走。
  *
  */
-static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
-			      const char *buf, size_t count)
+int test_watchdog(int action)
 {
-	int ret;
-	int action;
 	bool disable_irq = false;
 	bool no_signal_check = false;
 	bool enable_sched = false;
 	bool disable_preempt = false;
 	bool rcu_critical = false;
-
-	ret = kstrtoint(buf, 10, &action);
-	if (ret < 0)
-		return ret;
 
 	disable_irq = action % 10;
 	no_signal_check = (action / 10) % 10;
@@ -153,7 +139,7 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 	if (rcu_critical)
 		rcu_read_unlock();
 
-	return count;
+	return 0;
 }
 
 /**
@@ -172,19 +158,11 @@ static ssize_t watchdog_store(struct kobject *kobj, struct kobj_attribute *attr,
 // 3. spinlock 有时候必须屏蔽中断吧，如果不屏蔽，被中断了，会出现什么问题?
 
 static DEFINE_SPINLOCK(sl_static);
-static ssize_t might_sleep_store(struct kobject *kobj,
-				 struct kobj_attribute *attr, const char *buf,
-				 size_t count)
+int test_might_sleep(int action)
 {
-	int ret;
-	int test;
 	unsigned long flags;
 
-	ret = kstrtoint(buf, 10, &test);
-	if (ret < 0)
-		return ret;
-
-	switch (test) {
+	switch (action) {
 	case 0:
 		spin_lock_irqsave(&sl_static, flags);
 		might_sleep(); // TODO 不知道为什么，没有效果，难道是因为没有打开 CONFIG_DEBUG_ATOMIC_SLEEP 吗?
@@ -226,7 +204,7 @@ static ssize_t might_sleep_store(struct kobject *kobj,
 		break;
 	}
 
-	return count;
+	return 0;
 }
 
 static ssize_t misc_show(struct kobject *kobj, struct kobj_attribute *attr,
@@ -301,21 +279,14 @@ static struct kobj_attribute foo_attribute =
 	__ATTR(foo, 0664, foo_show, foo_store);
 static struct kobj_attribute misc_attribute =
 	__ATTR(misc, 0600, misc_show, NULL);
-static struct kobj_attribute watchdog_attribute =
-	__ATTR(watchdog, 0660, NULL, watchdog_store);
-static struct kobj_attribute kthread_attribute =
-	__ATTR(kthread, 0660, NULL, kthread_store);
-static struct kobj_attribute mutex_attribute =
-	__ATTR(mutex, 0660, NULL, mutex_store);
-static struct kobj_attribute tracepoint_attribute =
-	__ATTR(tracepoint, 0660, NULL, tracepoint_store);
-static struct kobj_attribute rcu_api_attribute =
-	__ATTR(rcu_api, 0660, NULL, rcu_api_store);
-static struct kobj_attribute srcu_attribute =
-	__ATTR(srcu, 0660, NULL, srcu_store);
-static struct kobj_attribute might_sleep_attribute =
-	__ATTR(might_sleep, 0660, NULL, might_sleep_store);
 
+DEFINE_TESTER(watchdog)
+DEFINE_TESTER(kthread)
+DEFINE_TESTER(mutex)
+DEFINE_TESTER(tracepoint)
+DEFINE_TESTER(rcu_api)
+DEFINE_TESTER(srcu)
+DEFINE_TESTER(might_sleep)
 DEFINE_TESTER(wait_event)
 DEFINE_TESTER(atomic)
 DEFINE_TESTER(io_wait)
@@ -323,6 +294,7 @@ DEFINE_TESTER(barrier)
 DEFINE_TESTER(rwsem)
 DEFINE_TESTER(complete)
 DEFINE_TESTER(percpu_rwsem)
+DEFINE_TESTER(preempt)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -345,6 +317,7 @@ static struct attribute *attrs[] = {
 	&rwsem_attribute.attr,
 	&complete_attribute.attr,
 	&percpu_rwsem_attribute.attr,
+	&preempt_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 
