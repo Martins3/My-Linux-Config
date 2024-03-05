@@ -427,29 +427,28 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 ### 导航
 
-利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
+利用 [aerial.nvim](stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
-| 基于 liuchengxu/vista.vim 的导航栏 |
+| 基于 stevearc/aerial.nvim 的导航栏 |
 | ---------------------------------- |
 | <img src="./img/outline.png" />    |
 
 ### 代码段
 
-基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
+基于[friendly-snippets](https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json) 可以自己向 UltiSnips/c.snippets，
+UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。
+以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
 snippet import
-#include <iostream>
-// 省略部分头文件，具体内容在下方的截图中间
-#include <unordered_map>
-
-using namespace std;
-
-int main(){
-  ${0}
-  return 0;
-}
-endsnippet
+  #include <bits/stdc++.h>
+  // #include "../dbg.hpp"
+  using namespace std;
+  #define REOPEN_READ freopen("/home/maritns3/test/cpp/input.txt", "r", stdin);
+  int main(int argc, char *argv[]){https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
+    ${0}
+  	return 0;
+  }
 ```
 
 | 输入 import 这些内容就自动补全  |
@@ -462,7 +461,7 @@ endsnippet
 | ------------------------------------ |
 | <img src="./img/autocomplete.png" /> |
 
-使用 `enter` 来确认选择，使用 `tab` 移动。
+使用 `enter` 来确认选择，使用 `tab` 选择下一个。
 
 ### Git 集成
 
