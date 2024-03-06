@@ -165,7 +165,8 @@ int test_might_sleep(int action)
 	switch (action) {
 	case 0:
 		spin_lock_irqsave(&sl_static, flags);
-		might_sleep(); // TODO 不知道为什么，没有效果，难道是因为没有打开 CONFIG_DEBUG_ATOMIC_SLEEP 吗?
+		might_sleep(); // 没有效果，因为没有打开 CONFIG_DEBUG_ATOMIC_SLEEP ，
+                   // 退化为 cond_resched ，而 cond_resched 在 irq 下不会切换的
 		spin_unlock_irqrestore(&sl_static, flags);
 		break;
 	case 1:
@@ -198,6 +199,22 @@ int test_might_sleep(int action)
 		// 这里会出现问题
 		schedule();
 		preempt_enable();
+		break;
+	case 6:
+		rcu_read_lock();
+		schedule(); // 在 rcu_note_context_switch 触发警告
+		rcu_read_unlock();
+		break;
+	case 7:
+    // 即便是设置
+		// echo full > /sys/kernel/debug/sched/preempt
+    //
+    // 在 rcu critical 中循环，很快就出发了 rcu stall ditection
+		rcu_read_lock();
+		for (;;) {
+			cpu_relax();
+		}
+		rcu_read_unlock();
 		break;
 	default:
 		pr_info("Nothing");
