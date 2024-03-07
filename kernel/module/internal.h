@@ -17,9 +17,6 @@ void simple_seq_fini2(void);
 int simple_seq_init3(void);
 void simple_seq_fini3(void);
 
-int my_workqueue_init(void);
-void my_workqueue_exit(void);
-
 #define DECLARE_TESTER(_prefix) int test_##_prefix(int action);
 
 #define DEFINE_TESTER(_prefix)                                        \
@@ -57,5 +54,6 @@ DECLARE_TESTER(rwsem)
 DECLARE_TESTER(complete)
 DECLARE_TESTER(percpu_rwsem)
 DECLARE_TESTER(preempt)
+DECLARE_TESTER(workqueue)
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */

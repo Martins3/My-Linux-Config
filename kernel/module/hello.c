@@ -88,6 +88,8 @@ int test_kthread(int action)
  * 测试 softlock 的效果。虽然存在时钟中断，但是此内核是 voluntery preempt 的，
  * 所以即使没有屏蔽时钟中断，该进程还是不能被调度走。
  *
+ * 当 echo full > /sys/kernel/debug/sched/preempt 之后，
+ * echo 0 > /sys/kernel/hacking/watchdog 无论等待多长时间都不会出现 softlock up
  */
 int test_watchdog(int action)
 {
@@ -96,14 +98,17 @@ int test_watchdog(int action)
 	bool enable_sched = false;
 	bool disable_preempt = false;
 	bool rcu_critical = false;
+	bool might_sleep = false;
 
 	disable_irq = action % 10;
 	no_signal_check = (action / 10) % 10;
 	enable_sched = (action / 100) % 10;
 	disable_preempt = (action / 1000) % 10;
 	rcu_critical = (action / 10000) % 10;
+	might_sleep = (action / 100000) % 10;
 
-	pr_info("watchdog : %s %s %s %s %s\n", rcu_critical ? "rcu" : "",
+	pr_info("watchdog : %s %s %s %s %s %s\n",
+		might_sleep ? "might_sleep" : "", rcu_critical ? "rcu" : "",
 		disable_preempt ? "disable_preempt" : "",
 		enable_sched ? "enable_sched" : "",
 		no_signal_check ? "no_signal_check" : "",
@@ -126,6 +131,10 @@ int test_watchdog(int action)
 
 		if (enable_sched)
 			cond_resched();
+
+    // 在 voluntery preempt + might_sleep 的时候，可以
+		if (might_sleep)
+			might_sleep();
 
 		cpu_relax();
 	}
@@ -154,8 +163,8 @@ int test_watchdog(int action)
  * be bitten later when the calling function happens to sleep when it is not
  * supposed to.
  */
-// 1. 测试到底多少地方不可以睡眠 ? spinlock,  irq-handler,  preempt disable
-// 3. spinlock 有时候必须屏蔽中断吧，如果不屏蔽，被中断了，会出现什么问题?
+// 1. spinlock, irq-handler,  preempt disable 这些地方都不可以睡眠
+// 2. spinlock 有时候必须屏蔽中断吧，如果不屏蔽，中断处理函数中重新持有这个锁会导致死锁
 
 static DEFINE_SPINLOCK(sl_static);
 int test_might_sleep(int action)
@@ -312,6 +321,7 @@ DEFINE_TESTER(rwsem)
 DEFINE_TESTER(complete)
 DEFINE_TESTER(percpu_rwsem)
 DEFINE_TESTER(preempt)
+DEFINE_TESTER(workqueue)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -335,6 +345,7 @@ static struct attribute *attrs[] = {
 	&complete_attribute.attr,
 	&percpu_rwsem_attribute.attr,
 	&preempt_attribute.attr,
+	&workqueue_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

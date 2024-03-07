@@ -19,12 +19,11 @@ static struct foo *g_pfoo = NULL;
 
 LIST_HEAD(g_rcu_list);
 
-struct task_struct *rcu_reader_t;
-struct task_struct *rcu_updater_t;
-struct task_struct *rcu_reader_list_t;
-struct task_struct *rcu_updater_list_t;
+static struct task_struct *rcu_reader_t;
+static struct task_struct *rcu_updater_t;
+static struct task_struct *rcu_reader_list_t;
+static struct task_struct *rcu_updater_list_t;
 
-/* 指针的Reader操作 */
 static int rcu_reader(void *data)
 {
 	struct foo *p = NULL;
@@ -42,7 +41,6 @@ static int rcu_reader(void *data)
 	return 0;
 }
 
-/*  回收处理操作 */
 static void rcu_reclaimer(struct rcu_head *rh)
 {
 	struct foo *p = container_of(rh, struct foo, rcu);
@@ -50,7 +48,6 @@ static void rcu_reclaimer(struct rcu_head *rh)
 	kfree(p);
 }
 
-/* 指针的Updater操作 */
 static int rcu_updater(void *data)
 {
 	int value = 1;
@@ -82,7 +79,6 @@ static int rcu_updater(void *data)
 	return 0;
 }
 
-/* 链表的Reader操作 */
 static int rcu_reader_list(void *data)
 {
 	struct foo *p = NULL;
