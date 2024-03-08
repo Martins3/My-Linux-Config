@@ -29,7 +29,7 @@ void simple_seq_fini3(void);
 		ret = kstrtoint(buf, 10, &action);                    \
 		if (ret < 0)                                          \
 			return ret;                                   \
-		pr_info("%s : action = %d \n", __FUNCTION__, action); \
+		pr_info("%s : action = %d current=%s \n", __FUNCTION__, action, current->comm); \
 		ret = test_##_prefix(action);                         \
 		if (ret)                                              \
 			return ret;                                   \

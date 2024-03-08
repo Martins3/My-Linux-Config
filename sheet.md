@@ -83,6 +83,8 @@ patch -p1 < /path/to/some.patch
 git add .
 git am --continue
 
+或者
+git apply --rej
 
 ### checkout to remote branch
 

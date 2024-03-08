@@ -85,7 +85,7 @@ in
     bpftrace = {
       name = "bpftrace";
       genericName = "bpftrace";
-      exec = "microsoft-edge https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md";
+      exec = "microsoft-edge https://github.com/bpftrace/bpftrace/blob/master/man/adoc/bpftrace.adoc";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";
