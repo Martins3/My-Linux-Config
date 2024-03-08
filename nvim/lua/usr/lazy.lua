@@ -62,12 +62,7 @@ require("lazy").setup({
   "akinsho/bufferline.nvim", -- buffer
   "nvim-lualine/lualine.nvim", -- 状态栏
   "kazhala/close-buffers.nvim", -- 一键删除不可见 buffer
-  {
-    "axkirillov/hbac.nvim",
-    event = "SessionLoadPost",
-    opts = {},
-  },
-  -- 自动删除长期不用的 buffer
+  { "axkirillov/hbac.nvim", event = "SessionLoadPost", opts = {} }, -- 自动删除长期不用的 buffer
   "gelguy/wilder.nvim", -- 更加智能的命令窗口
   "romgrk/fzy-lua-native", -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent", -- 可以移除掉背景色，让 vim 透明
@@ -104,7 +99,6 @@ require("lazy").setup({
   },
   "mzlogin/vim-markdown-toc", -- 自动目录生成
   "dhruvasagar/vim-table-mode", -- 快速编辑 markdown 的表格
-  "xiyaowong/telescope-emoji.nvim", -- 使用 telescope 搜索 emoji 表情
   -- 高效编辑
   "tpope/vim-commentary", -- 快速注释代码
   "kylechui/nvim-surround", -- 快速编辑单词两侧的符号
@@ -138,4 +132,8 @@ require("lazy").setup({
   "nacro90/numb.nvim",
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   "m4xshen/hardtime.nvim", -- 训练自己的 vim 习惯，默认没有开启
+  {
+    "allaman/emoji.nvim",
+    opts = { enable_cmp_integration = true, },
+  }, -- emoji 支持
 }, {})

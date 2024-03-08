@@ -114,6 +114,7 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "emoji" },
     {
       name = "dictionary",
       keyword_length = 2,
