@@ -132,7 +132,7 @@ int test_watchdog(int action)
 		if (enable_sched)
 			cond_resched();
 
-    // 在 voluntery preempt + might_sleep 的时候，可以
+		// 在 voluntery preempt + might_sleep 的时候，可以
 		if (might_sleep)
 			might_sleep();
 
@@ -175,7 +175,7 @@ int test_might_sleep(int action)
 	case 0:
 		spin_lock_irqsave(&sl_static, flags);
 		might_sleep(); // 没有效果，因为没有打开 CONFIG_DEBUG_ATOMIC_SLEEP ，
-                   // 退化为 cond_resched ，而 cond_resched 在 irq 下不会切换的
+			// 退化为 cond_resched ，而 cond_resched 在 irq 下不会切换的
 		spin_unlock_irqrestore(&sl_static, flags);
 		break;
 	case 1:
@@ -215,10 +215,10 @@ int test_might_sleep(int action)
 		rcu_read_unlock();
 		break;
 	case 7:
-    // 即便是设置
+		// 即便是设置
 		// echo full > /sys/kernel/debug/sched/preempt
-    //
-    // 在 rcu critical 中循环，很快就出发了 rcu stall ditection
+		//
+		// 在 rcu critical 中循环，很快就出发了 rcu stall ditection
 		rcu_read_lock();
 		for (;;) {
 			cpu_relax();
@@ -322,6 +322,7 @@ DEFINE_TESTER(complete)
 DEFINE_TESTER(percpu_rwsem)
 DEFINE_TESTER(preempt)
 DEFINE_TESTER(workqueue)
+DEFINE_TESTER(waitbit)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -346,6 +347,7 @@ static struct attribute *attrs[] = {
 	&percpu_rwsem_attribute.attr,
 	&preempt_attribute.attr,
 	&workqueue_attribute.attr,
+	&waitbit_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 

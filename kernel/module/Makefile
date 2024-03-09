@@ -13,7 +13,7 @@ CFLAGS_disassmble.o := -save-temps=obj
 martins3-m := hello.o seq.o seq2.o workqueue.o thread.o mutex.o \
 	tracepoint.o rcu.o srcu.o wait_event.o atomic.o barrier.o \
 	rw_semaphore.o completion.o percpu-rwsem.o preempt.o \
-	disassmble.o rcuwait.o
+	disassmble.o rcuwait.o waitbit.o swait.o
 
 obj-m += virtio-dummy.o
 
