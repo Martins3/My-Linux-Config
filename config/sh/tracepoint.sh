@@ -8,17 +8,7 @@ if [[ ! -s $tracepoint_cache ]]; then
 	sudo cat /sys/kernel/debug/tracing/available_events | tee $tracepoint_cache
 fi
 
-trap finish EXIT
-
-function finish {
-	# TODO 才知道，不是清理掉 current_tracer ，而是清理掉 set_event 才对
-	echo nop | sudo tee /sys/kernel/debug/tracing/current_tracer
-	echo | sudo tee /sys/kernel/debug/tracing/set_event
-	echo | sudo tee /sys/kernel/debug/tracing/trace
-}
-
-finish
-
+# sudo 和 fzf 使用有一个问题，例如 sudo perf list tracepoint | fzf ，没有办法输密码
 if [[ $# -eq 0 ]]; then
 	entry=$(fzf <"$tracepoint_cache")
 else
@@ -26,10 +16,4 @@ else
 	entry=$(fzf --query="$*" <"$tracepoint_cache")
 fi
 
-echo "${entry}" | sudo tee /sys/kernel/debug/tracing/set_event
-# TODO 这个模式有个问题，都是直接输出到屏幕的，需要输出一些到持久的位置
-sudo cat /sys/kernel/debug/tracing/trace_pipe
-
-# 似乎 perf 不存在这种实时输出的效果
-# sudo perf record -e block:block_rq_complete -a sleep 10
-# https://www.brendangregg.com/blog/2014-06-29/perf-static-tracepoints.html
+sudo perf trace -e "${entry}"

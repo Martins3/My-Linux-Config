@@ -35,7 +35,7 @@ in
     unstable.firefox
     google-chrome
     unstable.thunderbird
-    # unstable.feishu
+    feishu
     microsoft-edge
     vlc
     # podman-desktop
