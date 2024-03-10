@@ -8,12 +8,12 @@ $(info call this in kernel environment)
 obj-m += martins3.o
 
 # https://stackoverflow.com/questions/56429389/expand-macros-of-a-single-file-when-compiling-linux-kernel
-CFLAGS_disassmble.o := -save-temps=obj
+CFLAGS_access-once.o := -save-temps=obj
 
 martins3-m := hello.o seq.o seq2.o workqueue.o thread.o mutex.o \
 	tracepoint.o rcu.o srcu.o wait_event.o atomic.o barrier.o \
 	rw_semaphore.o completion.o percpu-rwsem.o preempt.o \
-	disassmble.o rcuwait.o waitbit.o swait.o
+	 rcuwait.o waitbit.o swait.o access-once.o
 
 obj-m += virtio-dummy.o
 

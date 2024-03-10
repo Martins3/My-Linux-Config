@@ -33,3 +33,4 @@ perf.data.old
 .bash_history
 *.qcow2
 __pycache__
+kernel/module/.gdb_history

@@ -323,6 +323,8 @@ DEFINE_TESTER(percpu_rwsem)
 DEFINE_TESTER(preempt)
 DEFINE_TESTER(workqueue)
 DEFINE_TESTER(waitbit)
+DEFINE_TESTER(rcuwait)
+DEFINE_TESTER(access_once)
 
 /*
  * Create a group of attributes so that we can create and destroy them all
@@ -348,6 +350,8 @@ static struct attribute *attrs[] = {
 	&preempt_attribute.attr,
 	&workqueue_attribute.attr,
 	&waitbit_attribute.attr,
+	&rcuwait_attribute.attr,
+	&access_once_attribute.attr,
 	NULL, /* need to NULL terminate the list of attributes */
 };
 
