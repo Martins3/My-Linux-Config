@@ -2,6 +2,7 @@
 #include <linux/virtio_ids.h>
 #include <linux/virtio_config.h>
 #include <linux/module.h>
+#include <linux/blk-mq.h>
 #include "internal.h"
 #include <linux/delay.h>
 
@@ -10,6 +11,8 @@
 /* device private data (one per device) */
 struct virtio_dummy_dev {
 	struct virtqueue *vq;
+	struct blk_mq_tag_set *tag_set;
+	struct gendisk *disk;
 	int x;
 };
 
@@ -29,9 +32,6 @@ static void tell_host(int num)
 
 int test_echo(int action)
 {
-	if (action == 123)
-		for (int i = 0; i < 100000; i++)
-			tell_host(action);
 	tell_host(action);
 	return 0;
 }
@@ -45,17 +45,17 @@ static struct attribute_group attr_group = {
 	.attrs = attrs,
 };
 
-static struct kobject *mymodule;
+static struct kobject *dummy;
 static int init_dummy_sysfs(void)
 {
 	int error = 0;
-	mymodule = kobject_create_and_add("dummy", kernel_kobj);
-	if (!mymodule)
+	dummy = kobject_create_and_add("dummy", kernel_kobj);
+	if (!dummy)
 		return -ENOMEM;
 
-	error = sysfs_create_group(mymodule, &attr_group);
+	error = sysfs_create_group(dummy, &attr_group);
 	if (error)
-		kobject_put(mymodule);
+		kobject_put(dummy);
 
 	return error;
 	return 0;
@@ -63,10 +63,99 @@ static int init_dummy_sysfs(void)
 
 static void exit_dummy_sysfs(void)
 {
-	kobject_put(mymodule);
+	kobject_put(dummy);
+}
+
+static void dummy_complete_rq(struct request *req)
+{
+	pr_info("[martins3:%s:%d]\n", __FUNCTION__, __LINE__);
+}
+
+static blk_status_t dummy_queue_rq(struct blk_mq_hw_ctx *hctx,
+				   const struct blk_mq_queue_data *bd)
+{
+	return BLK_STS_OK;
+}
+
+static const struct blk_mq_ops dummy_mq_ops = {
+	.queue_rq = dummy_queue_rq,
+	.complete = dummy_complete_rq,
+};
+
+// 参考 dm_mq_init_request_queue 和 nullblk 的实现
+static int dummy_init_request_queue(struct virtio_dummy_dev *dummy)
+{
+	int err;
+	struct blk_mq_tag_set *tag_set;
+	BUG_ON(dummy == NULL);
+
+	tag_set = kzalloc_node(sizeof(struct blk_mq_tag_set), GFP_KERNEL,
+			       NUMA_NO_NODE);
+	if (!tag_set)
+		return -ENOMEM;
+
+	tag_set->ops = &dummy_mq_ops;
+	tag_set->queue_depth = 17;
+	tag_set->numa_node = NUMA_NO_NODE;
+	tag_set->flags = BLK_MQ_F_SHOULD_MERGE | BLK_MQ_F_STACKING;
+	tag_set->nr_hw_queues = 64;
+	tag_set->driver_data = dummy_dev;
+
+	tag_set->cmd_size = 0; // cmd_size 是 driver 的附属数据
+
+	err = blk_mq_alloc_tag_set(tag_set);
+	if (err)
+		goto out_kfree_tag_set;
+
+	/**
+   * XXX no correct
+	err = blk_mq_init_allocated_queue(tag_set, queue);
+	if (err)
+		goto out_tag_set;
+    */
+
+	dummy->tag_set = tag_set;
+	return 0;
+
+out_kfree_tag_set:
+	kfree(tag_set);
+	return err;
+}
+
+static const struct block_device_operations dummy_rq_ops = {
+	.owner = THIS_MODULE,
+};
+
+static int dummy_init_disk(struct virtio_dummy_dev *dummy)
+{
+	int rv = 0;
+	int null_major;
+
+	null_major = register_blkdev(0, "nullb");
+	if (null_major < 0) {
+		rv = null_major;
+		goto fail;
+	}
+
+	dummy->disk = blk_mq_alloc_disk(dummy->tag_set, dummy);
+	if (IS_ERR(dummy->disk)) {
+		rv = PTR_ERR(dummy->disk);
+		goto fail;
+	}
+
+	dummy->disk->major = null_major;
+	dummy->disk->first_minor = 1;
+	dummy->disk->minors = 1;
+	dummy->disk->fops = &dummy_rq_ops;
+	strncpy(dummy->disk->disk_name, "dummy", DISK_NAME_LEN);
+	return add_disk(dummy->disk);
+fail:
+	return rv;
 }
 
 /**
+ * 调用路径为:
+ *
  * virtio_dummy_recv_cb+0x34/0x90 [virtio_dummy]
  * vring_interrupt+0x5b/0x90
  * vp_vring_interrupt+0x57/0x90
@@ -94,6 +183,7 @@ static void virtio_dummy_recv_cb(struct virtqueue *vq)
 static int virtio_dummy_probe(struct virtio_device *vdev)
 {
 	struct virtio_dummy_dev *dev;
+	int rv;
 	if (init_dummy_sysfs())
 		return -ENOMEM;
 	pr_info("virtio dummy probe");
@@ -109,6 +199,14 @@ static int virtio_dummy_probe(struct virtio_device *vdev)
 	}
 	vdev->priv = dev;
 	dummy_dev = dev;
+
+	rv = dummy_init_request_queue(dev);
+	if (rv)
+		return rv;
+
+	rv = dummy_init_disk(dev);
+	if (rv)
+		return rv;
 
 	/* from this point on, the device can notify and get callbacks */
 	virtio_device_ready(vdev);
@@ -136,6 +234,10 @@ static void virtio_dummy_remove(struct virtio_device *vdev)
 	vdev->config->del_vqs(vdev);
 
 	exit_dummy_sysfs();
+
+	del_gendisk(dev->disk);
+	put_disk(dev->disk);
+	blk_mq_free_tag_set(dev->tag_set);
 
 	kfree(dev);
 }

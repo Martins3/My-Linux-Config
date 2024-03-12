@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -E -e -u -o pipefail
-set -x
 
 mkdir -p /tmp/martins3
 tracepoint_cache=/tmp/martins3/tracepoint_cache

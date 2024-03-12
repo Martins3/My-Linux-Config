@@ -16,4 +16,5 @@ else
 fi
 
 set -x
-sudo perf ftrace -C0 -G "${entry% \[*\]}"  -g 'smp_*'
+# 可以指定 CPU
+sudo perf ftrace -G "${entry% \[*\]}"  -g 'smp_*'

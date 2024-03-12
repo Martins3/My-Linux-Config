@@ -140,7 +140,6 @@ static void virtio_register_types(void) {
 type_init(virtio_register_types)
 
 // ---------------------------------------- for pci
-// ---------------------------------
 #define PCI_DEVICE_ID_VIRTIO_DUMMY 0x1100
 #include "hw/virtio/virtio-pci.h"
     typedef struct VirtIODummyPCI VirtIODummyPCI;
