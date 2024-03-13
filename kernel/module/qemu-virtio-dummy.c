@@ -52,21 +52,22 @@ static void virtio_dummy_handle_output(VirtIODevice *vdev, VirtQueue *vq) {
 
   for (;;) {
     size_t offset = 0;
-    uint32_t pfn;
+    void * req;
 
     elem = virtqueue_pop(vq, sizeof(VirtQueueElement));
     if (!elem) {
       break;
     }
-    while (iov_to_buf(elem->out_sg, elem->out_num, offset, &pfn, 4) == 4) {
-      offset += 4;
-      /* unsigned int p = virtio_ldl_p(vdev, &pfn); */
-      /* printf("qemu receive : [%d]\n", p); */
+    while (iov_to_buf(elem->out_sg, elem->out_num, offset, &req, sizeof(req)) == sizeof(req)) {
+      offset += 8;
+      /* long p = virtio_ldq_p(vdev, &req); */
     }
+    /* printf("[qemu:%s:%d] %d\n", __FUNCTION__, __LINE__, counter++); */
 
-    virtqueue_push(vq, elem, 0);
+    iov_from_buf(elem->in_sg, elem->in_num, 0, &req, sizeof(req));
+
+    virtqueue_push(vq, elem, sizeof(req));
     virtio_notify(vdev, vq);
-    g_free(elem);
   }
 }
 
@@ -102,7 +103,7 @@ static void virtio_dummy_set_config(VirtIODevice *vdev,
 }
 
 static void virtio_dummy_set_status(VirtIODevice *vdev, uint8_t status) {
-  VirtIODummy *s = VIRTIO_DUMMY(vdev);
+  /* VirtIODummy *s = VIRTIO_DUMMY(vdev); */
   // TODO 这个什么时候调用这个函数
 }
 
