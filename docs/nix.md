@@ -1487,3 +1487,6 @@ lrwxrwxrwx     - root  1 1月   1970  /run/current-system/sw/bin/ps -> /nix/s
 https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/office/wpsoffice/default.nix
 
 但是不知道怎么给他们更新。
+
+## 基于 nix ?
+https://github.com/flox/flox

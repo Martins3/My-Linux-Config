@@ -13,26 +13,18 @@ struct virtio_dummy_dev {
 	struct virtqueue *vq;
 	struct blk_mq_tag_set *tag_set;
 	struct gendisk *disk;
-	int x;
+
+	spinlock_t lock;
+	struct request *req;
+	struct request *ret;
 };
 
 static struct virtio_dummy_dev *dummy_dev;
 
 DECLARE_TESTER(echo)
 DEFINE_TESTER(echo)
-
-static void tell_host(int num)
-{
-	struct scatterlist sg;
-	dummy_dev->x = num;
-	sg_init_one(&sg, &dummy_dev->x, sizeof(dummy_dev->x));
-	virtqueue_add_outbuf(dummy_dev->vq, &sg, 1, dummy_dev, GFP_KERNEL);
-	virtqueue_kick(dummy_dev->vq);
-}
-
 int test_echo(int action)
 {
-	tell_host(action);
 	return 0;
 }
 
@@ -68,12 +60,48 @@ static void exit_dummy_sysfs(void)
 
 static void dummy_complete_rq(struct request *req)
 {
-	pr_info("[martins3:%s:%d]\n", __FUNCTION__, __LINE__);
+	blk_mq_end_request(req, BLK_STS_OK);
 }
 
+// 参考 virtblk_add_req 和 __virtscsi_add_cmd
+// TODO 这里的 dummy_dev 不应该使用全局变量的
 static blk_status_t dummy_queue_rq(struct blk_mq_hw_ctx *hctx,
 				   const struct blk_mq_queue_data *bd)
 {
+	int err;
+	unsigned long flags;
+	struct request *req = bd->rq;
+	blk_mq_start_request(req);
+	struct scatterlist *sgs[2];
+
+	struct scatterlist sg_in;
+	struct scatterlist sg_out;
+	dummy_dev->req = req;
+
+	sg_init_one(&sg_out, &dummy_dev->req, sizeof(dummy_dev->req));
+	sgs[0] = &sg_out;
+
+	sg_init_one(&sg_in, &dummy_dev->ret, sizeof(dummy_dev->ret));
+	sgs[1] = &sg_in;
+
+	spin_lock_irqsave(&dummy_dev->lock, flags);
+	err = virtqueue_add_sgs(dummy_dev->vq, sgs, 1, 1, req, GFP_KERNEL);
+	if (err) {
+		pr_info("[martins3:%s:%d] \n", __FUNCTION__, __LINE__);
+		virtqueue_kick(dummy_dev->vq);
+		/* Don't stop the queue if -ENOMEM: we may have failed to
+		 * bounce the buffer due to global resource outage.
+		 */
+		if (err == -ENOSPC) {
+			pr_info("[martins3:%s:%d] ????\n", __FUNCTION__,
+				__LINE__);
+			blk_mq_stop_hw_queue(hctx);
+		}
+		spin_unlock_irqrestore(&dummy_dev->lock, flags);
+		return BLK_STS_DEV_RESOURCE;
+	}
+	spin_unlock_irqrestore(&dummy_dev->lock, flags);
+	virtqueue_notify(dummy_dev->vq);
 	return BLK_STS_OK;
 }
 
@@ -98,7 +126,7 @@ static int dummy_init_request_queue(struct virtio_dummy_dev *dummy)
 	tag_set->queue_depth = 17;
 	tag_set->numa_node = NUMA_NO_NODE;
 	tag_set->flags = BLK_MQ_F_SHOULD_MERGE | BLK_MQ_F_STACKING;
-	tag_set->nr_hw_queues = 64;
+	tag_set->nr_hw_queues = 1;
 	tag_set->driver_data = dummy_dev;
 
 	tag_set->cmd_size = 0; // cmd_size 是 driver 的附属数据
@@ -115,6 +143,8 @@ static int dummy_init_request_queue(struct virtio_dummy_dev *dummy)
     */
 
 	dummy->tag_set = tag_set;
+
+	spin_lock_init(&dummy->lock);
 	return 0;
 
 out_kfree_tag_set:
@@ -143,6 +173,8 @@ static int dummy_init_disk(struct virtio_dummy_dev *dummy)
 		goto fail;
 	}
 
+	set_capacity(dummy->disk, (33 * SZ_1M) >> SECTOR_SHIFT);
+
 	dummy->disk->major = null_major;
 	dummy->disk->first_minor = 1;
 	dummy->disk->minors = 1;
@@ -164,20 +196,31 @@ fail:
  * handle_fasteoi_irq+0x7c/0x210
  * __common_interrupt+0x3c/0xa0
  * common_interrupt+0x83/0xa0
+ *
+ * 参考实现: virtblk_done
  */
 static void virtio_dummy_recv_cb(struct virtqueue *vq)
 {
 	struct virtio_dummy_dev *dev = vq->vdev->priv;
-	char *buf;
+	struct request *req;
 	unsigned int len;
+	unsigned long flags;
 
+	// TODO 删除虚拟机然后重新加载就会出现问题 ?
+	// TODO 使用 fio 这样就是会最后卡住，在 virtqueue_get_buf_ctx_split 中会提交 bug
+	//
+	// 但是 echo a > /dev/dummy 的时候不会出错
+	//
 	BUG_ON(!in_interrupt());
 	BUG_ON(in_softirq());
 	// msleep(100); # 中断中睡眠最终在 __schedule -> __schedule_bug 中触发 crash
 
-	while ((buf = virtqueue_get_buf(dev->vq, &len)) != NULL) {
-		pr_info("receive : [%s]", buf);
+	spin_lock_irqsave(&dummy_dev->lock, flags);
+	while ((req = virtqueue_get_buf(dev->vq, &len)) != NULL) {
+		BUG_ON(len != 8);
+		blk_mq_complete_request(req);
 	}
+	spin_unlock_irqrestore(&dummy_dev->lock, flags);
 }
 
 static int virtio_dummy_probe(struct virtio_device *vdev)

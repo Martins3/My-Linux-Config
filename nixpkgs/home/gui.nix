@@ -34,6 +34,7 @@ in
     # gource
     unstable.firefox
     google-chrome
+    # libreoffice
     unstable.thunderbird
     feishu
     microsoft-edge
