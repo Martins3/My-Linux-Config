@@ -58,5 +58,6 @@ DECLARE_TESTER(workqueue)
 DECLARE_TESTER(waitbit)
 DECLARE_TESTER(rcuwait)
 DECLARE_TESTER(access_once)
+DECLARE_TESTER(seqlock)
 
 #endif /* end of include guard: HACKING_H_PA2UMYTB */

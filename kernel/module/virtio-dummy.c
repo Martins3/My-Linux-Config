@@ -153,7 +153,7 @@ static int dummy_init_disk(struct virtio_dummy_dev *dummy)
 	int rv = 0;
 	int null_major;
 
-	null_major = register_blkdev(0, "nullb");
+	null_major = register_blkdev(0, "dummy-null");
 	if (null_major < 0) {
 		rv = null_major;
 		goto fail;
