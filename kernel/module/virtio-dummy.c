@@ -62,7 +62,6 @@ static void exit_dummy_sysfs(void)
 
 static void dummy_complete_rq(struct request *req)
 {
-  // 并不是总是在软中断执行，具体看 blk_mq_complete_request_remote
 	blk_mq_end_request(req, BLK_STS_OK);
 }
 
