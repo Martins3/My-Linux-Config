@@ -92,7 +92,7 @@ int test_workqueue(int action)
 		return 0;
 	}
 	if (!wq)
-		wq = alloc_workqueue("my_workqueue", WQ_UNBOUND, 1);
+		wq = alloc_workqueue("my_workqueue", WQ_UNBOUND | WQ_SYSFS, 1);
 
 	switch (action) {
 	case 1:

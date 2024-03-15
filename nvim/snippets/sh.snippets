@@ -465,6 +465,9 @@ snippet xxx_ext "extended template for any bash script"
 snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
 
+snippet note_split_cmd_output_to_array "split cmd output to array"
+	mapfile -t array < <(git log --format=%h --since="24 hours ago")
+	printf "%s\n" "${array[@]}"
 
 snippet note_tee "如何 append"
 	# 使用 -a

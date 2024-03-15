@@ -159,7 +159,7 @@ static int dummy_init_disk(struct virtio_dummy_dev *dummy)
 		goto fail;
 	}
 
-	dummy->disk = blk_mq_alloc_disk(dummy->tag_set, dummy);
+	dummy->disk = blk_mq_alloc_disk(dummy->tag_set, NULL, dummy);
 	if (IS_ERR(dummy->disk)) {
 		rv = PTR_ERR(dummy->disk);
 		goto fail;
