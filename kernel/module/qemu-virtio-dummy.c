@@ -162,6 +162,8 @@ static void virtio_dummy_pci_realize(VirtIOPCIProxy *vpci_dev, Error **errp) {
   DeviceState *vdev = DEVICE(&dev->vdev);
 
   vpci_dev->class_code = PCI_CLASS_OTHERS;
+  // TODO 这里必须设置为 2 之后，virtio 才会变为 msix 的中断
+  vpci_dev->nvectors = 2;
   qdev_realize(vdev, BUS(&vpci_dev->bus), errp);
 }
 
