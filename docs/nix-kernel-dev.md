@@ -60,3 +60,7 @@ sudo ./io_uring /dev/nvme0n1p1
 ```txt
 nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev --command " make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=""$(pwd)"" modules"
 ```
+
+## 太牛了，这个人几乎将 nix 上构建内核所有问题都解决了?
+
+- https://github.com/jordanisaacs/kernel-module-flake

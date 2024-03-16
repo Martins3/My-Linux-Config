@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { },
+  unstable ? import <nixos-unstable> { }
+}:
 
 pkgs.stdenv.mkDerivation {
   name = "yyds";
@@ -27,12 +29,11 @@ pkgs.stdenv.mkDerivation {
     libcap_ng
     liburing
 
-    # rust language
-    # @todo 还没有太搞清楚如何索引 Rust 项目
-    # 但是现在每次下载对应的库需要很长时间
-    # pkgs.cargo
-    # pkgs.rustc
-    # pkgs.rustfmt
+
+	unstable.rustfmt
+	unstable.rustc
+	unstable.cargo
+	unstable.rust-bindgen
 
     # Necessary for the openssl-sys crate:
     pkgs.openssl
