@@ -32,8 +32,6 @@ in
     adoptopenjdk-icedtea-web
     ccls
     cargo
-    unstable.rustc
-    rustfmt
     cmake
     ov # feature rich pager
     # zig
@@ -110,7 +108,7 @@ in
     kexec-tools
     rpm
     stress-ng
-    OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
+    # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     # 通过 tweaks 调整开机自启动
     gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     hexyl # 分析二进制
@@ -134,7 +132,7 @@ in
     # hoard # 暂时不知道怎么使用
     # slirp4netns
     # nix-index
-    nixd
+    # nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
     neovim
@@ -144,7 +142,7 @@ in
     shellcheck
     shfmt
     tree-sitter
-    systeroid
+    # systeroid
     # linuxKernel.packages.linux_5_15.perf
     linuxPackages_6_5.perf
     # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
@@ -170,7 +168,7 @@ in
   ] ++ pkgs.lib.optionals (builtins.currentSystem=="x86_64-linux") [
     auto-cpufreq
     cpuid
-    linuxKernel.packages.linux_latest_libre.turbostat
+    # linuxKernel.packages.linux_latest_libre.turbostat
     pcm
     powertop # 分析功耗
   ] ++ [
