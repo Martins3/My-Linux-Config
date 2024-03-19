@@ -30,10 +30,10 @@ pkgs.stdenv.mkDerivation {
     liburing
 
 
-	unstable.rustfmt
-	unstable.rustc
-	unstable.cargo
-	unstable.rust-bindgen
+	# unstable.rustfmt
+	# unstable.rustc
+	# unstable.cargo
+	# unstable.rust-bindgen
 
     # Necessary for the openssl-sys crate:
     pkgs.openssl
