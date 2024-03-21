@@ -15,4 +15,5 @@ else
 	entry=$(fzf --query="$*" <"$tracepoint_cache")
 fi
 
+set -x
 sudo perf trace -e "${entry}"
