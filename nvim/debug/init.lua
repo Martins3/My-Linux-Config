@@ -12,12 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "axkirillov/hbac.nvim",
-  "olimorris/persisted.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-lua/plenary.nvim",
 }, {})
-
-require("persisted").setup({ autoload = true })
-
-require("hbac").setup({ })

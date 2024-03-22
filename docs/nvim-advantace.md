@@ -30,6 +30,8 @@ https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 - [ ] Softtabstop : 既然是一个 tab 按下去的时候，产生多少个 space 的，那么只有允许 tab expand 的时候才有用吧
 - [ ] 让 Softtabstop 和 Shiftwidth 不相等又什么好处吗?
 
+- https://www.reddit.com/r/neovim/comments/17ak2eq/neovim_is_automatically_removing_trailing/
+
 ### 从远程 server 上复制粘贴
 
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
@@ -67,6 +69,7 @@ autocmd TextYankPost *
 - 这是一个突破口
   - https://www.reddit.com/r/neovim/comments/13yw98e/how_can_i_switch_the_local_input_method_in_vim_on/
 
+似乎有的机器可以这样，有的不可以，没太搞清楚差别。
 ## 黑魔法
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
@@ -101,9 +104,12 @@ https://github.com/nvim-neotest/neotest
 
 - https://github.com/otavioschwanck/arrow.nvim 使用
 
+## 保存的时候，会自动将 tailspace 删除掉
+即使是 debug mode :
+https://github.com/cappyzawa/trim.nvim : 也许靠这个维持生活?
+
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
-  - shellcheck 无法处理 source 其他的文件的情况。
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
   - 集成 https://github.com/crate-ci/typos
   - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
