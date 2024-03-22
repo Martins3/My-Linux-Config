@@ -52,7 +52,7 @@ default.nix
 perf.data
 _EOF
 git apply /home/martins3/.dotfiles/scripts/systemd/virtio-dummy.diff
-ln -sf /home/martins3/.dotfiles/kernel/module/qemu-virtio-dummy.c hw/virtio/virtio-dummy.c
+ln -sf /home/martins3/core/vn/code/module/qemu-virtio-dummy.c hw/virtio/virtio-dummy.c
 
 special_files+=(hw/virtio/virtio-dummy.c)
 for i in "${special_files[@]}"; do
