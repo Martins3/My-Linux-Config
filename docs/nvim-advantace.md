@@ -104,6 +104,11 @@ https://github.com/nvim-neotest/neotest
 
 - https://github.com/otavioschwanck/arrow.nvim 使用
 
+
+## 写这个插件的人水平一般啊
+- https://github.com/OscarCreator/rsync.nvim
+- 完全没必要写这么复杂
+
 ## 保存的时候，会自动将 tailspace 删除掉
 即使是 debug mode :
 https://github.com/cappyzawa/trim.nvim : 也许靠这个维持生活?

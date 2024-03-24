@@ -466,7 +466,12 @@ snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
 
 snippet note_split_cmd_output_to_array "split cmd output to array"
+	# 默认是换行
 	mapfile -t array < <(git log --format=%h --since="24 hours ago")
+	printf "%s\n" "${array[@]}"
+
+	# -d 来指定分隔符, -t 删除掉分隔符
+	mapfile -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
 	printf "%s\n" "${array[@]}"
 
 snippet note_tee "如何 append"

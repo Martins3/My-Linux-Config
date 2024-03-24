@@ -9,7 +9,7 @@ in
   imports = [
     ./sys/cli.nix
     ./sys/kernel-options.nix
-    ./sys/kernel-config.nix
+    # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
   ] ++ (
   if builtins.currentSystem == "x86_64-linux" then [

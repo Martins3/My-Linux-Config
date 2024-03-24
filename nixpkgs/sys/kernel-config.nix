@@ -2,6 +2,7 @@
 
 {
 
+# TODO 这里存在让 fio nullblk 性能下降 10% 的选项，有趣啊
 boot.kernelPatches = [
   {
     name = "tracing";
