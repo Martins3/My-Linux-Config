@@ -32,6 +32,17 @@ https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 
 - https://www.reddit.com/r/neovim/comments/17ak2eq/neovim_is_automatically_removing_trailing/
 
+看后面的转义符，本来是对齐的，现在配置之后，似乎是 tab 装换为 space 了，变的不对齐了
+```c
+#define __WAITQUEUE_INITIALIZER(name, tsk) {					\
+	.private	= tsk,							\
+	.func		= default_wake_function,				\
+	.entry		= { NULL, NULL } }
+
+#define DECLARE_WAITQUEUE(name, tsk)						\
+	struct wait_queue_entry name = __WAITQUEUE_INITIALIZER(name, tsk)
+```
+
 ### 从远程 server 上复制粘贴
 
 在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
@@ -70,6 +81,8 @@ autocmd TextYankPost *
   - https://www.reddit.com/r/neovim/comments/13yw98e/how_can_i_switch_the_local_input_method_in_vim_on/
 
 似乎有的机器可以这样，有的不可以，没太搞清楚差别。
+
+https://github.com/cbochs/portal.nvim : 这个东西好啊
 ## 黑魔法
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)

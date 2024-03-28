@@ -22,6 +22,7 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
+    # quickemu # 安装不上，还浪费了 50G 的存储
     lua-language-server
     stylua
     # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
