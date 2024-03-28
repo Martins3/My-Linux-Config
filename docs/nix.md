@@ -151,7 +151,7 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - NixOS 半年更新一次，更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
 - 查询 nixos 的包和 options : https://search.nixos.org/packages
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
-- 如何升级
+- 如何升级 (update / upgrade)
   - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
 
 ## 自动环境加载

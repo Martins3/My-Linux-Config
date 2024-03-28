@@ -234,7 +234,7 @@ in
     # kvmtool
     packer # 制作 qcow2 镜像
     just # 更加 nb 的执行命令
-    (import (fetchTarball https://install.devenv.sh/latest)).default
+    # (import (fetchTarball https://install.devenv.sh/latest)).default # 浪费人生宝贵的 2h ，不明觉厉
     # @todo 不知道为什么，这种方法不行
     # (import (fetchTarball https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz))
     bridge-utils
