@@ -12,6 +12,7 @@ in
 
   home.packages = with pkgs; [
     gcc
+    libgcc # gcov
     gnuplot
     ccache
     mold
@@ -73,7 +74,7 @@ in
     eza # more powerful ls
     oh-my-posh # @todo for powershell
     gource
-    unstable.fastfetch
+    fastfetch
     bear
     tree
     fd
@@ -93,7 +94,7 @@ in
     iftop
     # neomutt # 邮件列表，很难用
     b4
-    weechat
+    # weechat
     offlineimap
     tcpdump
     ethtool
@@ -118,15 +119,15 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
-    unstable.nixos-shell
-    krunvm  # 有待尝试
+    # unstable.nixos-shell
+    # krunvm  # 有待尝试
     nixpacks
     nix-tree # 动态的展示每一个包的依赖
     buildah
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
     # podman
     # podman-tui
-    k9s
+    # k9s
     # minikube
     # minio
     # dufs # 一个全新的 ftp server
@@ -188,6 +189,7 @@ in
     (python3.withPackages (p: with p; [
       ipython
       autopep8
+      gcovr
       pygments # 让 gdb-dashboard 支持高亮
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
@@ -203,7 +205,7 @@ in
     distrobox # 基于容器来提供各种 distribution
     arp-scan
     nixos-generators
-    unstable.gum
+    gum
     # acpi
     acpica-tools
     asciidoc
@@ -218,7 +220,7 @@ in
     psmisc # 包含 pstree fuser 等工具
     viddy # A modern watch command.
     # mcfly # better ctrl-r for shell
-    unstable.atuin
+    atuin
     pciutils
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
@@ -228,7 +230,7 @@ in
     bat # better cat
     procs # better ps
     tokei # 代码统计工具，比 cloc 性能好
-    unstable.zellij # tmux 替代品
+    zellij # tmux 替代品
     # kvmtool
     packer # 制作 qcow2 镜像
     just # 更加 nb 的执行命令
@@ -281,7 +283,7 @@ in
     # cachix # nixos 的高级玩法，自己架设 binary cache
 
     # lsp
-    unstable.rust-analyzer
+    rust-analyzer
     efm-langserver # 集成 shellcheck
     marksman
     nodePackages.pyright
