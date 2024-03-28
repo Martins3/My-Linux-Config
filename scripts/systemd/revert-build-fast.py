@@ -22,6 +22,8 @@ def repalce_include_with_file(working_dir, file):
             r2 = re.findall(r"# include \"(.*\.c)\"", l)
             # kernel/rcu/tree.c 中最后的几个 .h 展开就是这个样子的
             r3 = re.findall(r"#include \"(tree_.*\.h)\"", l)
+            # kernel/rcu/update.c 包含的 .h
+            r4 = re.findall(r"#include \"(tasks.h)\"", l)
 
             source_files = None
             if r1:
@@ -30,6 +32,8 @@ def repalce_include_with_file(working_dir, file):
                 source_files = r2[0]
             if r3:
                 source_files = r3[0]
+            if r4:
+                source_files = r4[0]
 
             if source_files:
                 l = "// ============> " + l
@@ -64,6 +68,7 @@ if __name__ == "__main__":
 
     dir = "kernel/rcu/"
     reverted_file.append(revert(dir, "tree.c"))
+    reverted_file.append(revert(dir, "update.c"))
 
     for file in reverted_file:
         subprocess.run(["git", "add", file])

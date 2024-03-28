@@ -1,3 +1,4 @@
+## edit
 
 - "| 单位 | 向左移动 | 向右移动 | 向左删除 | 向右删除 |"
 - "| 字符 | Ctrl + B | Ctrl + F | Ctrl + H | Ctrl + D |"
@@ -33,12 +34,27 @@
 - git ls-files --others --exclude-standard >> .gitignore
   - 将没有被跟踪的文件添加到 .gitignore 中
 - git reset : 将所有的内容 unstage
-- git checkout -- fs/ : 将 unstage 的修改删除掉
+- git restore . : 将 unstage 的修改删除掉
+
+### 如何修改一个特定的 commit
+
+参考: https://stackoverflow.com/questions/1186535/how-do-i-modify-a-specific-commit
+
+简而言之就是:
+```sh
+git rebase --interactive bbc643cd~
+# pick 修改为 edit
+# 推出 vim
+# 修改内容，并且 git add
+git commit --amend --signoff
+git rebase --continue
+```
 
 ### submodule
+
 - git submodule update --recursive
 
-### git log
+### log
 
 - git log --format="%h --> %B"
 - git log -S <string> path/to/file : 如果 git blame 一个已经被删除的内容
@@ -65,7 +81,7 @@
 - -> 在一个特定的 commit 上打 tag
 - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
 
-### git patch
+### patch
 
 将 patch 直接作为一个 commit，而不是 diff 信息
 -v 是参数个数。
@@ -76,18 +92,24 @@
 - git format-patch -1 -v # 说明 patch 的版本
 - git am
 
-### git fuzzy am
+### fuzzy am
 
 git am /path/to/some.patch
 patch -p1 < /path/to/some.patch
 git add .
 git am --continue
 
+或者
+git apply --rej
 
-### git checkout to remote branch
+### checkout to remote branch
 
 git fetch
 git switch dev
+
+### autostash
+
+git pull --rebase --autostash
 
 ## redirect
 
@@ -125,8 +147,7 @@ git switch dev
 
 ## dd
 
-- dd if=/dev/zero of=pmem count=4 bs=10M # 基本测试
-- dd if=ubuntu-22.04.2-desktop-amd64.iso of=/dev/sdc # 使用 dd 安装系统
+- dd if=/dev/zero of=pmem oflag=direct count=4 bs=10M # 基本测试
 
 ## ps
 
@@ -141,10 +162,10 @@ git switch dev
 
 - "调试方法 echom 然后 :message 查看，注意不能是 echo"
 
-## nvim:
+## nvim
 
 - vim.api.nvim_err_writeln("hello \n") -- 不要忘记 \n
-- nvim "+let g:auto_session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 _ 60 _ 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
+- nvim "+let g:auto*session_enabled = v:false" -c ":e mm/gup.c" -c "lua vim.loop.new_timer():start(1000 * 60 \_ 30, 0, vim.schedule_wrap(function() vim.api.nvim_command(\"exit\") end))"
 - \r 是换行
 - :%s/$/abc/ 来给每一行的最后增加 abc
 
@@ -192,19 +213,45 @@ git switch dev
 - 让 sudo https://unix.stackexchange.com/questions/83191/how-to-make-sudo-preserve-path
 
 ## ssh
+
 - kill unresponsive hung SSH session : `~.`
 
 ## rg
+
 rg -l blk_update_request
 
-
 ## wget
+
 递归拷贝:
 https://stackoverflow.com/questions/273743/using-wget-to-recursively-fetch-a-directory-with-arbitrary-files-in-it
 
-
 ## fd
+
 fd 使用的是 regex
+
 ```sh
 fd ".*\.md" | wc -l
+```
+
+## xargs
+
+-t : 将要执行的命令打印出来
+-I % : 设置参数为 %
+
+```sh
+ls | xargs -t -I % sh -c 'echo %'
+```
+
+将一个仓库中所有的 apples 替换为 oranges
+
+```sh
+git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
+```
+
+将 foo 下所有的 txt 都删除
+
+```sh
+find ./foo -type f -name "*.txt" -exec rm {} \;
+find ./foo -type f -name "*.txt" | xargs rm
+find . -type f -print | xargs stat -c '%a %n'
 ```

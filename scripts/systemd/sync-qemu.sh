@@ -28,8 +28,17 @@ if [[ $branch != master ]]; then
 	echo "checkout to master"
 fi
 
-git restore --staged .gitignore
-git checkout -- .gitignore
+special_files=(
+	.gitignore
+	hw/virtio/meson.build
+	hw/virtio/virtio.c
+)
+for i in "${special_files[@]}"; do
+	echo "$i"
+	git restore --staged "$i"
+	git checkout -- "$i"
+done
+rm -f hw/virtio/virtio-dummy.c
 
 git pull
 
@@ -40,16 +49,23 @@ cat <<_EOF >>.gitignore
 compile_commands.json
 default.nix
 .envrc
+perf.data
 _EOF
+git apply /home/martins3/.dotfiles/scripts/systemd/virtio-dummy.diff
+ln -f /home/martins3/core/vn/code/module/qemu-virtio-dummy.c hw/virtio/virtio-dummy.c
+
+special_files+=(hw/virtio/virtio-dummy.c)
+for i in "${special_files[@]}"; do
+	git add "$i"
+done
 
 cores=$(getconf _NPROCESSORS_ONLN)
 threads=$((cores - 1))
-
 # --disable-tcg
 # --enable-trace-backends=nop
 
 mkdir -p /home/martins3/core/qemu/instsall
-QEMU_options="  --prefix=martins3 --target-list=x86_64-softmmu --disable-werror --enable-gtk --enable-libusb"
+QEMU_options=" --target-list=$(uname -m)-softmmu --disable-werror --enable-gtk --enable-libusb"
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
 QEMU_options+=" --enable-virtfs"
 

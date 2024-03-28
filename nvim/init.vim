@@ -49,10 +49,6 @@ let g:table_mode_corner='|'
 let g:git_messenger_always_into_popup = v:true
 let g:git_messenger_no_default_mappings = v:true
 
-let g:vista_sidebar_position = "vertical topleft"
-let g:vista_default_executive = 'nvim_lsp'
-" let g:vista_finder_alternative_executives = 'ctags'
-
 " 使用 gx 在 vim 中间直接打开链接
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)

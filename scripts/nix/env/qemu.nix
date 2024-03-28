@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
   name = "martins3's QEMU";
   buildInputs = with pkgs; [
     zlib
-    pkgconfig
+    pkg-config
     ninja
     glib
     pixman

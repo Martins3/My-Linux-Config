@@ -45,7 +45,6 @@
   * [Session](#session)
   * [快速移动](#快速移动)
   * [输入法自动切换](#输入法自动切换)
-  * [从远程 server 上复制粘贴](#从远程-server-上复制粘贴)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -54,7 +53,6 @@
 * [有趣的插件](#有趣的插件)
 * [学习](#学习)
 * [找资源](#找资源)
-* [问题](#问题)
 * [高级话题](#高级话题)
 * [衍生](#衍生)
 
@@ -429,29 +427,28 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 ### 导航
 
-利用 [vista](https://github.com/liuchengxu/vista.vim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
+利用 [aerial.nvim](stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
-| 基于 liuchengxu/vista.vim 的导航栏 |
+| 基于 stevearc/aerial.nvim 的导航栏 |
 | ---------------------------------- |
 | <img src="./img/outline.png" />    |
 
 ### 代码段
 
-基于[UltiSnips](https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt) 可以自己向 UltiSnips/c.snippets，UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。 以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
+基于[friendly-snippets](https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json) 可以自己向 UltiSnips/c.snippets，
+UltiSnips/cpp.snippets 中间添加 C/C++ 的自己定义代码段。
+以前刷 OJ 的时候每次都不知道要加入什么头文件，然后就写了一个自定义 snippet，一键加入所有常用的头文件。
 
 ```snippets
 snippet import
-#include <iostream>
-// 省略部分头文件，具体内容在下方的截图中间
-#include <unordered_map>
-
-using namespace std;
-
-int main(){
-  ${0}
-  return 0;
-}
-endsnippet
+  #include <bits/stdc++.h>
+  // #include "../dbg.hpp"
+  using namespace std;
+  #define REOPEN_READ freopen("/home/maritns3/test/cpp/input.txt", "r", stdin);
+  int main(int argc, char *argv[]){https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
+    ${0}
+  	return 0;
+  }
 ```
 
 | 输入 import 这些内容就自动补全  |
@@ -464,7 +461,7 @@ endsnippet
 | ------------------------------------ |
 | <img src="./img/autocomplete.png" /> |
 
-使用 `enter` 来确认选择，使用 `tab` 移动。
+使用 `enter` 来确认选择，使用 `tab` 选择下一个。
 
 ### Git 集成
 
@@ -626,35 +623,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
 
-### 从远程 server 上复制粘贴
-
-在远程 server 复制，内容会进入到远程 server 的系统剪切板中，但是你往往是想复制本地的电脑的剪切板中。
-
-使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
-
-增加上如下命令到 init.vim ，可以实现自动拷贝到本地电脑中
-```vim
-" "让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
-autocmd TextYankPost *
-    \ if v:event.operator is 'y' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-
-autocmd TextYankPost *
-    \ if v:event.operator is 'd' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
-```
-
-使用方法，选中的内容之后，nvim 的命令行中执行: `OSCYankVisual`
-
-原理上参考:
-- https://news.ycombinator.com/item?id=32037489
-- https://github.com/ojroques/vim-oscyank/issues/24
-
-需要注意的是，这个功能依赖于 terminal 支持 OSC52 ，例如 Windows Terminal 就不支持，如果想在 Windows 中
-连接远程的 nvim，可以将 terminal 切换为 wezterm 等支持 OSC52 功能的终端。
-
 ## 本配置源代码解释
 
 总体来说，本配置的代码就是从上面介绍的各个项目提供的标准配置的组合，然后添加我的一些微调。
@@ -780,8 +748,6 @@ setxkbmap -option caps:swapescape
 - [neodev](https://github.com/folke/neodev.nvim) neovim 开发 lua 插件环境
 - [conflict-marker.vim](https://github.com/rhysd/conflict-marker.vim) : 在 vim 中如何高效解决 git conflict
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) 更加智能的折叠
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip) : snippet 管理器
-  - [介绍从 UltiSnips 切换到 LuaSnip](https://www.reddit.com/r/neovim/comments/weonip/from_ultisnips_to_luasnip/)
 - [nvim-example-lua-plugin](https://github.com/jacobsimpson/nvim-example-lua-plugin) : 插件模板，打造你的第一个插件
 - [codeium](https://github.com/Exafunction/codeium.vim) : Copilot 替代品
 - [nvim-metals](https://github.com/scalameta/nvim-metals) : 芯片前端开发必备
@@ -806,24 +772,6 @@ setxkbmap -option caps:swapescape
 
 1. [vimcolorschemes](https://vimcolorschemes.com/) vim 主题网站
 2. [awesome neovim](https://github.com/rockerBOO/awesome-neovim)
-
-## 问题
-- 极为细节的问题，但是折腾下应该还是可解的
-  - shellcheck 无法处理 source 其他的文件的情况。
-  - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-  - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
-  - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
-  - https://github.com/koalaman/shellcheck/issues/1284
-  - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-  - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
-  - [neodim](https://github.com/zbirenbaum/neodim) : 等待升级到 0.10
-  - crusj/bookmarks.nvim 需要配置 virt_pattern，感觉多次一举
-- nvim 有待解决的问题，不是一时半会可以解决的:
-  1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
-     - https://github.com/jamestthompson3/nvim-remote-containers
-     - https://github.com/OscarCreator/rsync.nvim
-      - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
-  2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 ## 高级话题
 - [高级话题](./nvim-advantace.md)，至少对于我来说比较高级 🤣

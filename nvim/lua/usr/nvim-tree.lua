@@ -38,3 +38,10 @@ require("nvim-tree").setup({
     },
   },
 })
+
+vim.cmd([[
+        :hi NvimTreeExecFile    gui=bold           guifg=#ffa0a0
+        :hi NvimTreeSymlink     gui=bold           guifg=#ffff60
+        :hi NvimTreeSpecialFile gui=bold,underline guifg=#ff80ff
+        :hi NvimTreeImageFile   gui=bold           guifg=#ff80ff
+    ]])

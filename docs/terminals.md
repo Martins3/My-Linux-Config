@@ -11,6 +11,7 @@
 * [Kitty : 2022-2023](#kitty-2022-2023)
 * [Tabby : 几分钟](#tabby-几分钟)
 * [wezterm : 2023-现在](#wezterm-2023-现在)
+* [其他的内容](#其他的内容)
 * [总结](#总结)
 
 <!-- vim-markdown-toc -->
@@ -75,6 +76,10 @@ Alacritty 的优点:
 配置大约花费了半个小时，最后 tab 栏有点丑，其他还好。
 
 <!-- @todo 不知道为什么，最下面有一大片空白的无法被 zellij 或者 nvim 填满，kitty 没有这些问题 -->
+
+## 其他的内容
+- [kernel terminal](https://news.ycombinator.com/item?id=39737810)
+
 ## 总结
 目前，我推荐的 terminal 是:
 - kitty

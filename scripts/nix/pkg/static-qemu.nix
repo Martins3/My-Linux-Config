@@ -166,7 +166,7 @@ let
           # nativeBuildInputs
           makeWrapper = pkgs.makeWrapper;
           python2 = pkgs.python2;
-          pkgconfig = pkgs.pkgconfig;
+          pkg-config = pkgs.pkg-config;
           flex = pkgs.flex;
           bison = pkgs.bison;
           perl = pkgs.perl;

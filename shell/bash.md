@@ -477,3 +477,43 @@ https://a-wing.top/shell/2021/05/01/sh-compatibles-history : 一共三篇
 
 ## 哈哈，的确，bash 只是适合原型验证而已
 https://benjamincongdon.me/blog/2023/10/29/Avoid-Load-bearing-Shell-Scripts/
+
+https://iridakos.com/programming/2018/03/01/bash-programmable-completion-tutorial
+
+https://github.com/phyver/GameShell
+
+https://www.madebygps.com/an-intro-to-finding-things-in-linux/
+
+https://github.com/riquito/tuc
+
+https://github.com/onceupon/Bash-Oneliner
+
+https://questions.wizardzines.com/unix-permissions.html
+
+https://www.noulakaz.net/2007/03/18/a-regular-expression-to-check-for-prime-numbers/
+
+https://zimfw.sh/
+
+https://github.com/barthr/redo
+
+https://github.com/chmln/sd
+
+https://stackoverflow.com/questions/1371261/get-current-directory-or-folder-name-without-the-full-path
+
+https://stackoverflow.com/questions/15622328/how-to-grep-a-string-in-a-directory-and-all-its-subdirectories
+
+https://unix.stackexchange.com/questions/29878/can-i-access-nth-line-number-of-standard-output
+
+https://stackoverflow.com/questions/22190902/cut-or-awk-command-to-print-first-field-of-first-row
+
+https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
+
+https://unix.stackexchange.com/questions/437680/set-data-structure-equivalent-in-bash-shell
+
+https://stackoverflow.com/questions/61811402/remove-all-elements-from-associative-array-bash
+
+https://stackoverflow.com/questions/76750683/bash-pipe-to-grep-in-if-statement-return-value
+  - 这也让人感到太恐惧了吧，pipefail 配合 grep -q 这么搞，谁顶得住
+
+## 尝试一下
+https://github.com/pgrange/bash_unit

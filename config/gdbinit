@@ -15,6 +15,7 @@ dashboard -style prompt_running "\\[\\e[1;32m\\]$\\[\\e[0m\\]"
 
 add-auto-load-safe-path /home/martins3/core/qemu/.gdbinit
 add-auto-load-safe-path /home/martins3/core/linux/scripts/gdb/vmlinux-gdb.py
+add-auto-load-safe-path /home/martins3/core/linux-build/scripts/gdb/vmlinux-gdb.py
 
 # @todo 有趣
 define my-source-profile
