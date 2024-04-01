@@ -126,6 +126,8 @@ https://github.com/nvim-neotest/neotest
 即使是 debug mode :
 https://github.com/cappyzawa/trim.nvim : 也许靠这个维持生活?
 
+## 现在 rafamadriz/friendly-snippets 没办法使用，很奇怪
+
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope

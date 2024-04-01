@@ -16,7 +16,7 @@ in
     # shiori # bookmark 管理，但是没搞懂怎么使用
     unstable.wpsoffice
     unstable.sublime-merge
-    unstable.vscode
+    # unstable.vscode
     unstable.flameshot # 截图
     # unstable.zotero
     unstable.slack
@@ -25,14 +25,14 @@ in
     kitty
     anki
     wezterm
-    wireshark
+    # wireshark
     alacritty
     # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
     # gource
-    unstable.firefox
+    # unstable.firefox
     google-chrome
     # libreoffice
     unstable.thunderbird

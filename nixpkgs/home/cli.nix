@@ -13,9 +13,9 @@ in
   home.packages = with pkgs; [
     gcc
     libgcc # gcov
-    gnuplot
+    # gnuplot
     ccache
-    mold
+    # mold
     go
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
@@ -23,19 +23,19 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
-    # quickemu # 安装不上，还浪费了 50G 的存储
+    quickemu
     lua-language-server
     stylua
     # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
     # libguestfs
     # libguestfs-appliance
-    cloud-utils
+    # cloud-utils
     imagemagick # 压缩照片
     adoptopenjdk-icedtea-web
     ccls
     cargo
     cmake
-    ov # feature rich pager
+    # ov # feature rich pager
     # zig
     dracut
     iw
@@ -160,7 +160,7 @@ in
     # kernelshark
     # trace-cmd
     # hotspot
-    heaptrack
+    # heaptrack
     ltrace # library trace
     bcc
     bpftool
@@ -179,7 +179,7 @@ in
     sqlite
     parted
     sysbench
-    wirelesstools
+    # wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
