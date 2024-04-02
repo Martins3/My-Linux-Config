@@ -481,9 +481,9 @@ snippet note_tee "如何 append"
 
 snippet note_awk "basic"
 	# 读取一行中的第二个，注意，使用小引号
-	awk -F '"' '{print \$2}' your_input_file
+	awk -F '"' '{print $2}' your_input_file
 	# 读取一行中的第二个和第三个，注意，使用小引号
-	awk -F '"' '{printf "%s %s" , \$2 , \$3}' your_input_file
+	awk -F '"' '{printf "%s %s" , $2 , $3}' your_input_file
 	# 1. awk 可以使用 printf
 	# 2. awk 的 END 是处理完之后进行一个操作
 	echo "1\n2 " | awk '{sum+=$1}; END  {printf "average is %f",sum/NR}'

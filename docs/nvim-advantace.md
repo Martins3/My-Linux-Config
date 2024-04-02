@@ -82,7 +82,10 @@ autocmd TextYankPost *
 
 似乎有的机器可以这样，有的不可以，没太搞清楚差别。
 
+从 amd 上连接 13900k 的机器的时候，似乎有时候会出现问题。
+
 https://github.com/cbochs/portal.nvim : 这个东西好啊
+
 ## 黑魔法
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
@@ -127,6 +130,15 @@ https://github.com/nvim-neotest/neotest
 https://github.com/cappyzawa/trim.nvim : 也许靠这个维持生活?
 
 ## 现在 rafamadriz/friendly-snippets 没办法使用，很奇怪
+
+太难受, header 中没有办法使用 once
+
+## 此外，struct-> 补全的时候，会出现在第一个字母上
+
+- 是 ccls 的问题吗?
+
+## 用这个来处理内核中 editor config
+https://stackoverflow.com/questions/70464096/how-can-i-create-a-local-configs-for-neovim-extending-the-global-init-vim
 
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的

@@ -33,6 +33,8 @@ in
     imagemagick # 压缩照片
     adoptopenjdk-icedtea-web
     ccls
+    checkmake
+    # include-what-you-use # 很小的项目都用着不正常
     cargo
     cmake
     # ov # feature rich pager
