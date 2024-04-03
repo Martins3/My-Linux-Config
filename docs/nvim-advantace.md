@@ -114,48 +114,30 @@ https://github.com/nvim-neotest/neotest
 - [ ] https://news.ycombinator.com/item?id=36312027
 - https://m4xshen.dev/posts/vim-command-workflow/
 
-
-## 待处理
-- nvim/lua/usr/nvim-treesitter.lua 全部都是警告
-
-- https://github.com/otavioschwanck/arrow.nvim 使用
-
-
 ## 写这个插件的人水平一般啊
 - https://github.com/OscarCreator/rsync.nvim
 - 完全没必要写这么复杂
 
-## 保存的时候，会自动将 tailspace 删除掉
-即使是 debug mode :
-https://github.com/cappyzawa/trim.nvim : 也许靠这个维持生活?
 
-## 现在 rafamadriz/friendly-snippets 没办法使用，很奇怪
+## .h 默认启用的是 cpp ，但是 cpp 中没有 once
+https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 
-太难受, header 中没有办法使用 once
-
-## 此外，struct-> 补全的时候，会出现在第一个字母上
-
+## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
 - 是 ccls 的问题吗?
-
-## 用这个来处理内核中 editor config
-https://stackoverflow.com/questions/70464096/how-can-i-create-a-local-configs-for-neovim-extending-the-global-init-vim
 
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-  - 集成 https://github.com/crate-ci/typos
   - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
   - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
-  - https://github.com/koalaman/shellcheck/issues/1284
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
-  - leap.nvim 似乎特殊处理过 f/F 以及 t/T 的
-  - [neodim](https://github.com/zbirenbaum/neodim) : 等待升级到 0.10
-  - https://github.com/ryanmsnyder/toggleterm-manager.nvim : 替换下 term
+
 - nvim 有待解决的问题，不是一时半会可以解决的:
   1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
      - https://github.com/jamestthompson3/nvim-remote-containers
      - https://github.com/OscarCreator/rsync.nvim
       - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
+
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 <script src="https://giscus.app/client.js"

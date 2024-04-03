@@ -517,3 +517,9 @@ https://stackoverflow.com/questions/76750683/bash-pipe-to-grep-in-if-statement-r
 
 ## 尝试一下
 https://github.com/pgrange/bash_unit
+
+## 尝试理解下 coproc 吧
+- https://stackoverflow.com/questions/47074232/bash-script-stopping-a-process-running-forever-when-a-line-is-printed
+
+1. 似乎不能连续启动两个 coproc
+2. coproc a (ls > a) 是没有重定向的

@@ -23,6 +23,10 @@ else
   echo "use nix" >> .envrc && direnv allow
 fi
 
+# 内核中很多位置都是存在 trailing whilespace 的，如果设置了这个选项
+# 很多文件会被自动修改，导致从头开始编译
+sed -i "s/trim_trailing_whitespace = true//" .editorconfig
+
 cores=$(getconf _NPROCESSORS_ONLN)
 threads=$cores
 

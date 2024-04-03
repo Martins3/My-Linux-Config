@@ -34,6 +34,7 @@ in
     adoptopenjdk-icedtea-web
     ccls
     checkmake
+    typos # 检查代码中 typo
     # include-what-you-use # 很小的项目都用着不正常
     cargo
     cmake

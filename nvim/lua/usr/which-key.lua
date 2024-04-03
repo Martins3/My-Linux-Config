@@ -10,6 +10,8 @@ wk.setup({
 wk.register({
   ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "document" },
   ["g"] = {
+    a = { "<cmd>Portal jumplist backward<cr>", "jumplist backward" },
+    b = { "<cmd>Portal jumplist forward<cr>", "jumplist forward" },
     d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go to definition" },
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
     w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },

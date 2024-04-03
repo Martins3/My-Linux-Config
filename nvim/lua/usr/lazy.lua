@@ -28,8 +28,10 @@ require("lazy").setup({
   { "hrsh7th/cmp-nvim-lua" },
 
   -- Snippets
-  { "L3MON4D3/LuaSnip" }, --snippet engine
-  { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
 
   -- LSP
   { "neovim/nvim-lspconfig" }, -- enable LSP
@@ -114,12 +116,21 @@ require("lazy").setup({
   "mg979/vim-visual-multi", -- 同时编辑多个位置
   "AckslD/nvim-neoclip.lua", -- 保存 macro
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
+  {
+    "cbochs/portal.nvim",
+    -- Optional dependencies
+    dependencies = {
+      "cbochs/grapple.nvim",
+      "ThePrimeagen/harpoon",
+    },
+  },
   -- 高亮
   "norcalli/nvim-colorizer.lua", -- 显示 #FFFFFF
   "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
   -- 时间管理
   "nvim-orgmode/orgmode", -- orgmode 日程管理
   -- use 'wakatime/vim-wakatime' -- 代码时间统计
+
   -- lsp 增强
   "jackguo380/vim-lsp-cxx-highlight", -- ccls 高亮
   "mattn/efm-langserver", -- 支持 bash
@@ -127,6 +138,8 @@ require("lazy").setup({
   "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
   -- 其他
   "ggandor/leap.nvim", -- 快速移动
+  "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
+
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   "keaising/im-select.nvim", -- 自动切换输入法

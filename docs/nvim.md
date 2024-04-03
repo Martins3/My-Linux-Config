@@ -755,6 +755,7 @@ setxkbmap -option caps:swapescape
 - [NeoComposer](https://github.com/ecthelionvi/NeoComposer.nvim) : 更好地使用 macro
 - [gesture.nvim](https://github.com/notomo/gesture.nvim) : nvim 中鼠标还可以这样用?
 - [legendary.nvim](https://github.com/mrjones2014/legendary.nvim) :  据说比 which-key 好用
+- [neodim](https://github.com/zbirenbaum/neodim) : 降低 没有引用的函数、变量亮度 (这个功能 coc.nvim 本来有，只可惜我换掉了 coc.nvim)
 
 ## 有趣的插件
 
