@@ -26,7 +26,6 @@ require("im_select").setup()
 require("lualine").setup()
 require("numb").setup()
 require("debugprint").setup()
--- require("hardtime").setup() # 一时难以适应
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })

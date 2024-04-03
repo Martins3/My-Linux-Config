@@ -151,7 +151,10 @@ require("lazy").setup({
   "voldikss/vim-translator", -- 翻译
   "nacro90/numb.nvim",
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
-  "m4xshen/hardtime.nvim", -- 训练自己的 vim 习惯，默认没有开启
+  {
+    "m4xshen/hardtime.nvim",
+    opts = { enabled = false },
+  }, -- 训练自己的 vim 习惯，默认没有开启
   {
     "allaman/emoji.nvim",
     ft = "markdown",

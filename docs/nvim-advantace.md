@@ -113,14 +113,11 @@ autocmd TextYankPost *
 - https://github.com/OscarCreator/rsync.nvim
 - 完全没必要写这么复杂
 
-
 ## .h 默认启用的是 cpp ，但是 cpp 中没有 once
 https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 
 ## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
 - 是 ccls 的问题吗?
-
-## [ ] bookmark 删除
 
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
@@ -133,20 +130,3 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
      - https://github.com/OscarCreator/rsync.nvim
       - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
-
-<script src="https://giscus.app/client.js"
-        data-repo="Martins3/My-Linux-Config"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="
-        data-category="General"
-        data-category-id="MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyODc0NjA5"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
-本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。
