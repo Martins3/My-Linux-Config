@@ -16,6 +16,7 @@ require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foregr
 require("nvim-surround").setup()
 require("gitsigns").setup({ signcolumn = false, numhl = true })
 require("leap").add_default_mappings()
+require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
 require("nvim-navic").setup()
@@ -54,13 +55,3 @@ require("bookmarks").setup({
   mappings_enabled = false,
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
-
-require('flit').setup {
-  keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-  -- A string like "nv", "nvo", "o", etc.
-  labeled_modes = "v",
-  multiline = true,
-  -- Like `leap`s similar argument (call-specific overrides).
-  -- E.g.: opts = { equivalence_classes = {} }
-  opts = {}
-}

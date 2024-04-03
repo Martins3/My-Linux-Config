@@ -120,6 +120,10 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 ## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
 - 是 ccls 的问题吗?
 
+## [ ] 切换 .h 和 .c
+
+## [ ] bookmark 删除
+
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope

@@ -31,6 +31,7 @@ wk.register({
     i = { "<cmd>Telescope jumplist<cr>", "search jumplist" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
+    m = { "<cmd>Telescope bookmarks<cr>", "search bookmarks" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
