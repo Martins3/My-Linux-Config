@@ -26,23 +26,23 @@ require("lazy").setup({
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
-  { "octaltree/cmp-look" },
+  { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
-  -- Snippets
+  -- 代码段
   {
     "L3MON4D3/LuaSnip",
     dependencies = { "rafamadriz/friendly-snippets" },
   },
 
-  -- LSP
+  -- lsp
   { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/mason.nvim" }, -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
   { "nvimtools/none-ls.nvim" }, -- for formatters and linters
   { "j-hui/fidget.nvim", tag = "legacy" },
-  { "SmiteshP/nvim-navic" },
+  { "SmiteshP/nvim-navic" }, -- 在 winbar 展示当前的路径
   { "utilyre/barbecue.nvim" },
-  { "kosayoda/nvim-lightbulb" },
+  { "kosayoda/nvim-lightbulb" }, -- 右下角展示索引的进度
 
   --treesitter
   {

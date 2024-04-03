@@ -120,15 +120,11 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 ## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
 - 是 ccls 的问题吗?
 
-## [ ] 切换 .h 和 .c
-
 ## [ ] bookmark 删除
 
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
-  - https://github.com/ranjithshegde/ccls.nvim : treesitter 跳转到函数头还是不精准
-  - https://github.com/uga-rosa/cmp-dictionary/wiki/Examples-of-usage : 补全中没有 10K words 这种数据来源
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
 
 - nvim 有待解决的问题，不是一时半会可以解决的:

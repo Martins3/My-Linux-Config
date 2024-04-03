@@ -16,6 +16,7 @@ wk.register({
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
     w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
+    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct"},
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
     -- x 打开文件
     -- s 用于 leap 跳转到下一个窗口
