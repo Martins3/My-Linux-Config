@@ -1,9 +1,0 @@
-abc
-cde
-abab
-abab()
-hat
-cat
-emacs
-abcefg
-1234
