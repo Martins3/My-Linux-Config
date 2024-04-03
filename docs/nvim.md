@@ -756,6 +756,7 @@ setxkbmap -option caps:swapescape
 - [gesture.nvim](https://github.com/notomo/gesture.nvim) : nvim 中鼠标还可以这样用?
 - [legendary.nvim](https://github.com/mrjones2014/legendary.nvim) :  据说比 which-key 好用
 - [neodim](https://github.com/zbirenbaum/neodim) : 降低 没有引用的函数、变量亮度 (这个功能 coc.nvim 本来有，只可惜我换掉了 coc.nvim)
+- [neotest](https://github.com/nvim-neotest/neotest) : 单元测试插件
 
 ## 有趣的插件
 
@@ -809,5 +810,6 @@ setxkbmap -option caps:swapescape
         crossorigin="anonymous"
         async>
 </script>
+
 
 本站所有文章转发 **CSDN** 将按侵权追究法律责任，其它情况随意。

@@ -15,6 +15,8 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local dict = vim.fn.expand('$HOME/.dotfiles/nvim/10k.txt')
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -71,8 +73,13 @@ cmp.setup({
     { name = "path" },
     { name = "emoji" },
     {
-      name = "dictionary",
+      name = "look",
       keyword_length = 2,
+      option = {
+        convert_case = true,
+        loud = true,
+        dict = dict,
+      },
     },
   },
   confirm_opts = {

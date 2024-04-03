@@ -26,6 +26,7 @@ require("lazy").setup({
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
+  { "octaltree/cmp-look" },
 
   -- Snippets
   {

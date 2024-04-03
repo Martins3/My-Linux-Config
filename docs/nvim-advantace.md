@@ -82,9 +82,7 @@ autocmd TextYankPost *
 
 似乎有的机器可以这样，有的不可以，没太搞清楚差别。
 
-从 amd 上连接 13900k 的机器的时候，似乎有时候会出现问题。
-
-https://github.com/cbochs/portal.nvim : 这个东西好啊
+从 amd 上连接 13900k 的机器的时候，似乎有时候会出现问题的。
 
 ## 黑魔法
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
@@ -105,9 +103,6 @@ https://github.com/cbochs/portal.nvim : 这个东西好啊
 ## tree-sitter
 - https://siraben.dev/2022/03/01/tree-sitter.html
 - https://siraben.dev/2022/03/22/tree-sitter-linter.html
-
-## 插件开发
-https://github.com/nvim-neotest/neotest
 
 ## 参考
 - https://blog.antoyo.xyz/vim-tips
@@ -137,7 +132,6 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
      - https://github.com/jamestthompson3/nvim-remote-containers
      - https://github.com/OscarCreator/rsync.nvim
       - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
-
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 <script src="https://giscus.app/client.js"
