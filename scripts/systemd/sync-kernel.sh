@@ -8,6 +8,9 @@ function finish {
 	fi
 }
 
+use_llvm="LLVM=1"
+use_llvm=""
+
 trap finish EXIT
 
 kcov=${ENABLE_KCOV-}
@@ -70,9 +73,9 @@ if [[ ${kcov} ]]; then
 else
 	# make clean
 	# run "make clean"
-	run "make defconfig kvm_guest.config martins3.config -j"
+	run "make $use_llvm defconfig kvm_guest.config martins3.config -j"
 	# run "chrt -i 0 make CC='ccache gcc' -j$threads"
-	run "chrt -i 0 make -j$threads"
+	run "chrt -i 0 make $use_llvm -j$threads"
 	# python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 	# scripts/systemd/expand-paging_tmpl.sh
 	for i in "${special_files[@]}"; do

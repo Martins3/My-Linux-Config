@@ -69,7 +69,7 @@ QEMU_options=" --target-list=$(uname -m)-softmmu --disable-werror --enable-gtk -
 QEMU_options+=" --enable-virglrenderer --enable-opengl --enable-numa --enable-virtfs --enable-libiscsi"
 QEMU_options+=" --enable-virtfs"
 
-# 使用 clang 构建内核存在两个问题
+# 使用 clang 构建 qemu 存在两个问题
 # 1. 大量的警告，并且必须 -Wno-error=unused-command-line-argument
 # 2. 似乎之后在命令行中 make 就会失败
 #
