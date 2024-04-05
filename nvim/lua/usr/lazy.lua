@@ -160,4 +160,10 @@ require("lazy").setup({
     ft = "markdown",
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
+  {
+    "coffebar/transfer.nvim",
+    lazy = true,
+    cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
+    opts = {},
+  },
 }, {})
