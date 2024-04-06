@@ -99,6 +99,7 @@ require("lazy").setup({
     ft = { "markdown" },
     build = "cd app && npm install",
   },
+  -- 如果发现插件有问题， 可以进入到 ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
   "mzlogin/vim-markdown-toc", -- 自动目录生成
   "dhruvasagar/vim-table-mode", -- 快速编辑 markdown 的表格
   -- 高效编辑
@@ -154,8 +155,8 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    -- "coffebar/transfer.nvim",
-    dir = "/tmp/x/transfer.nvim/",
+    "martins3/rsync.nvim",
+    -- dir = "/home/martins3/core/rsync.nvim/",
     lazy = true,
     enabled = function()
       local root = vim.fn.system("whoami")
