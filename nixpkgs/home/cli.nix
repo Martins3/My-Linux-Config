@@ -2,50 +2,56 @@
 
 let
   unstable = import <unstable> { };
-  x86-manpages = import (fetchTarball "https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz");
 in
 {
   fonts.fontconfig.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.username = "martins3";
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
     gcc
-    gnuplot
+    libgcc # gcov
+    # gnuplot
     ccache
-    mold
+    # mold
     go
+    # gitea # 好吧，还需要手动搭建数据库才可以
+    sipcalc
     ventoy
-    # uutils-coreutils @todo 到时候尝试下 rust 的 coreutils
+    novnc
+    # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
+    quickemu
     lua-language-server
     stylua
     # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
     # libguestfs
     # libguestfs-appliance
-    cloud-utils
+    # cloud-utils
     imagemagick # 压缩照片
     adoptopenjdk-icedtea-web
     ccls
+    checkmake
+    typos # 检查代码中 typo
+    # include-what-you-use # 很小的项目都用着不正常
     cargo
-    unstable.rustc
-    rustfmt
     cmake
-    ov # feature rich pager
+    # ov # feature rich pager
     # zig
     dracut
     iw
     termshark
-    openvswitch
+    openvswitch-lts
+    dnsmasq
     gnumake
     audit # 没啥意义，用不起来
     yarn
     nodejs
     tmux
     tmuxp
-    pueue # TODO 研究下这个怎么利用
+    pueue
     screen
     clash-meta
     tig
@@ -65,12 +71,13 @@ in
     starship
     gdb
     lsof
-    lshw
+    lshw # 侧重于展示 bus 的结构
+    hwloc # 侧重于展示 cache
     hw-probe #  sudo -E hw-probe -all -upload
-    exa # more powerful ls
+    eza # more powerful ls
     oh-my-posh # @todo for powershell
     gource
-    unstable.fastfetch
+    fastfetch
     bear
     tree
     fd
@@ -81,15 +88,16 @@ in
     du-dust # 比 ncdu 更快
     socat # unix domain
     delta # git diff
+    act # Run github action locally
     git-secrets
     nethogs
     sniffnet
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
-    neomutt
+    # neomutt # 邮件列表，很难用
     b4
-    weechat
+    # weechat
     offlineimap
     tcpdump
     ethtool
@@ -97,7 +105,6 @@ in
     sshpass
     gping # better ping
     pingu # interesting ping
-    auto-cpufreq
     # frp # 反向代理
     nbd
     kmon # 方便的管理内核模块
@@ -106,60 +113,76 @@ in
     kexec-tools
     rpm
     stress-ng
-    OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
+    # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
     # 通过 tweaks 调整开机自启动
     gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     hexyl # 分析二进制
-    rasdaemon # @todo 莫名其妙，不知道怎么使用
+    # rasdaemon # @todo 莫名其妙，不知道怎么使用
     nvme-cli
     ninja
     libvirt # 提供 virsh
     qemu
+    # unstable.nixos-shell
+    # krunvm  # 有待尝试
+    nixpacks
+    nix-tree # 动态的展示每一个包的依赖
+    buildah
     virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
-    podman
-    nix-index
+    # podman
+    # podman-tui
+    # k9s
+    # minikube
+    # minio
+    # dufs # 一个全新的 ftp server
+    # hoard # 暂时不知道怎么使用
+    # slirp4netns
+    # nix-index
+    # nixd
     # virt-manager @todo 这到底是个啥，需要使用上吗？
     meson
-    unstable.neovim
+    neovim
     # helix # modern neovim
-    cheat
+    # cheat
     # wakatime
     shellcheck
     shfmt
     tree-sitter
-    systeroid
-    linuxKernel.packages.linux_5_15.perf
-    # linuxPackages_6_5.perf
-    # 当 perf linuxPackages_6_5.perf 的时候，使用如下命令
-    # sudo perf record --call-graph dwarf -p 200454 -- sleep 10
-    # 必然导致 guest crash
-    #
-    # linuxPackages_latest.perf
+    # systeroid
+    # linuxKernel.packages.linux_5_15.perf
+    linuxPackages_6_7.perf
+    # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
+
+    # cflow # 感觉很弱，没用懂
     iperf
     # linuxPackages_latest.systemtap # 似乎这个让 libvirt 的编译开始依赖 systemdtab 的头文件了
     # 其实也不能用
     # ERROR: kernel release isn't found in "/nix/store/n3nrix9pc0m1ywzg8dq71bh2xr82c7l5-linux-6.3.5-dev"
     # 还是在虚拟机勉强维持生活吧
-    unstable.bpftrace # bpftrace 新版本才支持 kfunc
-    blktrace
-    heaptrack
-    kernelshark
-    trace-cmd
-    # ltrace # library trace
-    unstable.bcc
-    # @todo 不知道为什么居然又两个程序
-    # 应该对应的这个: https://github.com/libbpf/bpftool/tree/master/src
+    bpftrace
+    # blktrace
+    # kernelshark
+    # trace-cmd
+    # hotspot
+    # heaptrack
+    ltrace # library trace
+    bcc
     bpftool
-    bpftools
+    procps
+    xdp-tools
     acpi
+  ] ++ pkgs.lib.optionals (builtins.currentSystem=="x86_64-linux") [
+    auto-cpufreq
     cpuid
+    # linuxKernel.packages.linux_latest_libre.turbostat
+    pcm
+    powertop # 分析功耗
+  ] ++ [
     # @todo https://github.com/kkharji/sqlite.lua/issues/28
     # 需要设置 libsqlite3.so 的位置
     sqlite
     parted
     sysbench
-    linuxKernel.packages.linux_latest_libre.turbostat
-    wirelesstools
+    # wirelesstools
     dos2unix
     # @todo 传统调试工具专门整理为一个包
     sysstat # sar, iostat and pidstat mpstat
@@ -169,19 +192,8 @@ in
     (python3.withPackages (p: with p; [
       ipython
       autopep8
+      gcovr
       pygments # 让 gdb-dashboard 支持高亮
-
-      # pandas
-      # pygal
-      # filelock
-      # libvirt
-      # mock
-      # filelock
-      # grpcio
-      # pytest
-      # monotonic
-      # libxml2
-      # ansible
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
@@ -192,13 +204,11 @@ in
     atop
     nmon
     man-pages-posix
-    # x86-manpages # @todo 为什么 rnix-lsp 可以，但是 x86-manpages 不可以
     lazydocker
     distrobox # 基于容器来提供各种 distribution
     arp-scan
-    pcm
     nixos-generators
-    unstable.gum
+    gum
     # acpi
     acpica-tools
     asciidoc
@@ -209,14 +219,12 @@ in
     fio
     genact # A nonsense activity generator
     wtf # The personal information dashboard for your terminal
-    unstable.nixos-shell
     progress # 展示 cp dd 之类的进度条
     psmisc # 包含 pstree fuser 等工具
     viddy # A modern watch command.
     # mcfly # better ctrl-r for shell
-    unstable.atuin
+    atuin
     pciutils
-    powertop # 分析功耗
     lm_sensors # 获取 CPU 温度
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     bcachefs-tools
@@ -225,17 +233,19 @@ in
     bat # better cat
     procs # better ps
     tokei # 代码统计工具，比 cloc 性能好
-    unstable.zellij # tmux 替代品
+    zellij # tmux 替代品
     # kvmtool
     packer # 制作 qcow2 镜像
-    (import (fetchTarball "https://github.com/cachix/devenv/archive/v0.5.tar.gz")) # @todo 和 default.nix 有区别？
+    just # 更加 nb 的执行命令
+    # (import (fetchTarball https://install.devenv.sh/latest)).default # 浪费人生宝贵的 2h ，不明觉厉
+    # @todo 不知道为什么，这种方法不行
+    # (import (fetchTarball https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz))
     bridge-utils
     swtpm # windows 11 启动需要
     # unstable.nushell
     libnotify # 通知小工具
-    # 才知道在 Linux 下也是可以用的 pwsh
-    # 在 nixos 23.04 这个版本中，暂时因为 ssl 的版本，不能使用
     # powershell
+    vector
     dmidecode # sudo dmidecode -t 1
     git-review
 
@@ -249,6 +259,7 @@ in
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
     bc # bash 数值计算
+    bash_unit
 
     # verilator # Fast and robust (System)Verilog simulator/compiler
 
@@ -256,9 +267,11 @@ in
     figlet # 艺术字
     lolcat # 彩虹 cat
     nyancat # 彩虹猫咪
+
     dig # dns分析
     iptraf-ng # 网络流量分析
     nvitop
+    ifmetric
     glances # 又一个 htop
 
     zenith-nvidia # TODO
@@ -267,20 +280,20 @@ in
 
     lcov
 
-    czkawka # 垃圾文件清理
+    # czkawka # 垃圾文件清理
     ipmitool
 
     # cachix # nixos 的高级玩法，自己架设 binary cache
 
     # lsp
-    unstable.rust-analyzer
+    rust-analyzer
     efm-langserver # 集成 shellcheck
     marksman
     nodePackages.pyright
 
     # 为了方便，将常见的 c 库直接放出来
-    libaio
-    liburing
+    # libaio
+    # liburing
   ];
 
   programs.zsh = {
@@ -309,73 +322,9 @@ in
     };
   };
 
-  programs.git = {
-    enable = true;
-    userEmail = "xueshi.hu@smartx.com";
-    userName = "Xueshi Hu";
-
-    extraConfig = {
-      # https://github.com/dandavison/delta
-      # --- begin
-      core = {
-        editor = "nvim";
-        pager = "delta";
-        abbrev = 12;
-      };
-      sendemail={
-        smtpserver = "smtp.googlemail.com";
-        smtpencryption = "tls";
-        smtpserverport = 587;
-        smtpuser = "xueshi.hu@smartx.com";
-        # 参考
-        # https://www.marcusfolkesson.se/blog/get_maintainers-and-git-send-email/
-        linux={
-            tocmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nol";
-            cccmd ="/home/martins3/core/linux/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nom";
-        };
-      };
-      pretty={
-        fixes = "Fixes: %h (\"%s\")";
-        commit = "commit %h (\"%s\")";
-      };
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-      delta = {
-        navigate = "true";
-        light = "false";
-      };
-      merge = {
-        conflictstyle = "diff3";
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      # --- end
-
-      http = {
-        proxy = "http://127.0.0.1:8889";
-      };
-
-      https = {
-        proxy = "http://127.0.0.1:8889";
-      };
-
-      credential = {
-        helper = "store";
-      };
-
-      alias = {
-        # 查询一个 merge commit 中的数值
-        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
-        log-merge = "!f() { git log --oneline --graph --stat \"$1^..$1\"; }; f";
-        # 优雅的打印
-        # https://stackoverflow.com/questions/6191138/how-to-see-commits-that-were-merged-in-to-a-merge-commit
-        adog = "log --all --decorate --oneline --graph";
-        kernel = "log -n 1 --pretty=commit";
-        bug = "log -n 1 --pretty=fixes";
-      };
-    };
+  home.file.gitconfig = {
+    source = ../../config/.gitconfig;
+    target = ".gitconfig";
   };
 
   home.file.gdbinit = {

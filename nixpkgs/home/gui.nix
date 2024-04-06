@@ -16,30 +16,33 @@ in
     # shiori # bookmark 管理，但是没搞懂怎么使用
     unstable.wpsoffice
     unstable.sublime-merge
-    unstable.vscode
+    # unstable.vscode
     unstable.flameshot # 截图
     # unstable.zotero
     unstable.slack
-    # unstable.drawio
+    drawio
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
+    anki
     wezterm
-    wireshark
-    unstable.alacritty
+    # wireshark
+    alacritty
+    # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
     # gource
-    unstable.firefox
+    # unstable.firefox
     google-chrome
+    # libreoffice
     unstable.thunderbird
-    # unstable.feishu
+    feishu
     microsoft-edge
     vlc
     # podman-desktop
     # tdesktop
     # telegram
-    # unstable.clash-verge # 时不时连不上网，难道是我设置不对
+    # clash-verge # 打开之后一块白板，不知道发生了什么
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具
@@ -83,7 +86,7 @@ in
     bpftrace = {
       name = "bpftrace";
       genericName = "bpftrace";
-      exec = "microsoft-edge https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md";
+      exec = "microsoft-edge https://github.com/bpftrace/bpftrace/blob/master/man/adoc/bpftrace.adoc";
       icon = (pkgs.fetchurl {
         url = "https://img.icons8.com/color/512/docker.png";
         sha256 = "0jbjgh9gbh75q7sli8z6zn7m0nxcawq1v4vp1v4np7k4acp7r1dn";

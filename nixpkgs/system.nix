@@ -2,21 +2,20 @@
 { config, pkgs, lib, ... }:
 
 let
-  # mkpasswd -m sha-512
-  passwd = "$6$Iehu.x9i7eiceV.q$X4INuNrrxGvdK546sxdt3IV9yHr90/Mxo7wuIzdowoN..jFSFjX8gHaXchfBxV4pOYM4h38pPJOeuI1X/5fon/";
 
   unstable = import <nixos-unstable> { };
 in
 {
   imports = [
     ./sys/cli.nix
-    ./sys/kernel.nix
+    ./sys/kernel-options.nix
+    # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
-    ./sys/gui.nix # @todo 这个需要学习下 nix 语言了
-  ] ++ (if (builtins.getEnv "DISPLAY") != ""
-  then [
-    ./sys/gui.nix
-  ] else [ ]);
+  ] ++ (
+  if builtins.currentSystem == "x86_64-linux" then [
+      ./sys/gui.nix
+    ] else [ ]
+  );
 
   nix.settings.substituters = [
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
@@ -48,12 +47,18 @@ in
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    bip = "10.11.0.1/16";
+  };
+  virtualisation.podman.enable = true;
   virtualisation.vswitch.enable = true;
+  virtualisation.vswitch.package = pkgs.openvswitch-lts;
+
 
   zramSwap.enable = true;
 
-  networking.proxy.default = "http://127.0.0.1:8889";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.proxy.default = "http://127.0.0.1:8889";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   environment.systemPackages = with pkgs; [
     vim
@@ -62,6 +67,7 @@ in
     zsh
     unstable.tailscale
     cifs-utils
+    k3s
   ];
 
   services.tailscale.enable = true;
@@ -97,6 +103,7 @@ in
   };
 
   networking.firewall.checkReversePath = "loose";
+  # networking.hostName = "martins3-host";
 
   networking.firewall = {
     # enable the firewall
@@ -106,51 +113,53 @@ in
     trustedInterfaces = [ "tailscale0" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    allowedUDPPorts = [ config.services.tailscale.port
+
+      8472 # k3s, flannel: required if using multi-node for inter-node networking
+    ];
 
     # allow you to SSH in over the public internet
     allowedTCPPorts = [
       22 # ssh
       5201 # iperf
+      3434 # http.server
       8889 # clash
-      5900 # qemu vnc
       445 # samba
       /* 8384 # syncthing */
       /* 22000 # syncthing */
+      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
+      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
+      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
+    ];
+
+
+    allowedTCPPortRanges = [
+      { from = 5900; to = 6100; }
     ];
   };
 
   # https://nixos.wiki/wiki/Fwupd
-  services.fwupd.enable = true;
-
-  # @todo ----- 将这块代码移动到设备专用的地方去 -------
-  # @todo 如何处理总是等待 /sys/subsystem/net/devices/enp4s0 的问题
-  # 我靠，不知道什么时候 enp4s0 不见了，systemd 真的复杂啊
-  # tailscale0 建立的网卡是什么原理，真有趣啊
-  # networking.interfaces.enp4s0.useDHCP = false;
-  # networking.bridges.br0.interfaces = [ "enp5s0" ];
-  # sudo ip ad add 10.0.0.1/24 dev enp5s0
-
-  # @todo 这个配置为什么不行
-  /* networking.interfaces.enp5s0.ipv4.addresses = [{ */
-  /*   address = "10.0.0.1"; */
-  /*   prefixLength = 24; */
-  /* }]; */
+  # 似乎没啥用，而且还是存在 bug 的
+  services.fwupd.enable = false;
 
   # wireless and wired coexist
-  # @todo disable this temporarily
   systemd.network.wait-online.timeout = 1;
 
   users.mutableUsers = false;
-  users.users.root.hashedPassword = passwd;
   users.users.martins3 = {
     isNormalUser = true;
     shell = pkgs.zsh;
     # shell = pkgs.nushell;
     home = "/home/martins3";
     extraGroups = [ "wheel" "docker" "libvirtd" ];
-    hashedPassword = passwd;
   };
+
+
+  services.k3s.enable = false;
+  services.k3s.role = "server";
+  services.k3s.extraFlags = toString [
+    # "--kubelet-arg=v=4" # Optionally add additional args to k3s
+  ];
 
   boot = {
     crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
@@ -214,8 +223,6 @@ in
     enable = true;
   };
 
-  services.jenkins.enable = false;
-
   systemd.user.services.kernel = {
     enable = true;
     unitConfig = { };
@@ -249,7 +256,7 @@ in
   };
 
   systemd.user.services.drink_water = {
-    enable = true;
+    enable = false;
     unitConfig = { };
     serviceConfig = {
       Type = "forking";
@@ -269,7 +276,7 @@ in
   };
 
   systemd.user.services.monitor = {
-    enable = true;
+    enable = false;
     unitConfig = { };
     serviceConfig = {
       Type = "simple";
@@ -279,16 +286,25 @@ in
     wantedBy = [ "timers.target" ];
   };
 
-  systemd.user.services.httpd = {
+  systemd.user.services.clash = {
     enable = true;
-    description = "export home dir to LAN";
+    unitConfig = { };
     serviceConfig = {
-      WorkingDirectory = "/home/martins3/";
       Type = "simple";
-      ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server";
+      ExecStart = "${pkgs.clash-meta.outPath}/bin/clash-meta";
       Restart = "no";
     };
-    wantedBy = [ "timers.target" ];
+    wantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services.pueued = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      ExecStart = "${pkgs.pueue.outPath}/bin/pueued -vv";
+      Restart = "no";
+    };
+    wantedBy = [ "default.target" ];
   };
 
   systemd.user.services.kernel_doc = {
@@ -325,16 +341,6 @@ in
   nixpkgs.config.allowUnfree = true;
   # programs.steam.enable = true; # steam 安装
 
-  # @todo 加入的 vfio 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3 不过他的感觉也是瞎写的
-  boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1"
-    "vmd" "null_blk" "scsi_debug" "vhost_net" ];
-  boot.initrd.kernelModules = [];
-  boot.blacklistedKernelModules = [ "nouveau" ];
-
-  boot.extraModprobeConfig = ''
-  options scsi_debug dev_size_mb=100
-'';
-
   services.samba = {
     enable = true;
 
@@ -365,15 +371,17 @@ in
     "vm.overcommit_memory" = 1;
   };
 
+ # https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
  # 这一个例子如何自动 mount 一个盘，但是配置放到 /etc/nixos/configuration.nix
  # 中，参考[1] 但是 options 只有包含一个
  # [1]: https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
  #
- #  fileSystems."/home/martins3/hackme" = {
+ #  fileSystems."/home/martins3/hack" = {
  #    device = "/dev/disk/by-uuid/b709d158-aa6a-4b72-8255-513517548111";
  #    fsType = "auto";
- #    options = [ "user"];
+ #    options = [ "user" "exec" "nofail"];
  #  };
+
 
 
   # 配合使用
@@ -384,3 +392,8 @@ in
     /home/martins3/nfs         127.0.0.1(rw,fsid=0,no_subtree_check)
   '';
 }
+
+
+# 做一个开机任务，记录下 SSD 的写入
+# 🧀  sudo smartctl -t short -a /dev/nvme2n1 | grep "Data Units Written"
+# Data Units Written:                 220,743,742 [113 TB]

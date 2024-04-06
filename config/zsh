@@ -22,12 +22,16 @@ fi
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
-if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
-	export SHELL_ARCH="🐙"
-elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
-	export SHELL_ARCH="🐉"
+if [[ -f ~/core/id ]]; then
+  export SHELL_ARCH=$(cat ~/core/id)
 else
-	export SHELL_ARCH="ARM"
+  if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
+    export SHELL_ARCH="🐙"
+  elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
+    export SHELL_ARCH="🐉"
+  else
+    export SHELL_ARCH="ARM"
+  fi
 fi
 eval "$(starship init zsh)"
 
@@ -112,17 +116,16 @@ function zj() {
 }
 
 alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
-alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf neomutt"
-# alias mutt="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf mutt -f"
 # 快速打开 QEMU
 alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
+alias qt="/home/martins3/.dotfiles/scripts/qemu/launch.sh -t"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
-alias k=/home/martins3/.dotfiles/scripts/qemu/launch.sh
 alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
+alias rkk="/home/martins3/.dotfiles/scripts/qemu/choose_launch.sh"
 # 这里将 $ 转义，从而是执行 ge 命令的时候加载端口而非在
-# @todo 似乎我的 tmux 配置有问题导致 ssh 前需要设置一下环境变量
-alias ge="TERM=xterm-256color ssh -p\$(cat /tmp/martins3/guest-ssh) root@localhost"
-alias gege="TERM=xterm-256color ssh-copy-id -p\$(cat /tmp/martins3/guest-ssh) root@localhost"
+alias ge="/home/martins3/.dotfiles/scripts/qemu/launch.sh -s"
+alias vnc="/home/martins3/.dotfiles/scripts/qemu/launch.sh -v"
+alias gege="/home/martins3/.dotfiles/scripts/qemu/launch.sh -c"
 # 打开工作区间并且构建
 alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
@@ -136,7 +139,7 @@ alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias m="chrt -i 0 make CC='ccache gcc' -j$(getconf _NPROCESSORS_ONLN)"
 alias bu="/home/martins3/.dotfiles/config/sh/build-linux.sh && cd ~/core/linux-build && m"
 alias mc="make clean"
@@ -151,6 +154,7 @@ alias kvm_stat="sudo /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat"
 alias p="python -m venv .venv && source .venv/bin/activate"
 alias i="ipython"
 alias t="/home/martins3/.dotfiles/config/sh/bpftrace.sh"
+alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias tracepoint="/home/martins3/.dotfiles/config/sh/tracepoint.sh"
 alias funcgraph="/home/martins3/.dotfiles/config/sh/funcgraph.sh"
 alias cloc="tokei . -f --sort lines"
@@ -165,4 +169,10 @@ function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
 }
+function check(){
+	cd ~/core/linux
+	tig --author="$*"
+}
+alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
+alias wifi="nmcli dev wifi show-password"

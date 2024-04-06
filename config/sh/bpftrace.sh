@@ -85,7 +85,7 @@ case "$action" in
 		scripts="$entry { @[kstack] = count(); }"
 		;;
 	realtime)
-		scripts="$entry { print(\"hit $entry \n\") }"
+		scripts="$entry { print(\"hit $entry\") }"
 		;;
 	*)
 		exit 1
@@ -93,3 +93,4 @@ case "$action" in
 esac
 echo "sudo bpftrace -e \"$scripts\""
 sudo bpftrace -e "$scripts"
+# XXX 这里使用 bcc 工具集其实会更加简单，新的测试项目用 bcc 实现吧

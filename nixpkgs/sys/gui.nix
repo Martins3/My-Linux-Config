@@ -14,7 +14,7 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # see xieby1
-  fonts.fonts = (
+  fonts.packages = (
     with (import (fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/d881cf9fd64218a99a64a8bdae1272c3f94daea7.tar.gz";
       sha256 = "1jaghsmsc05lvfzaq4qcy281rhq3jlx75q5x2600984kx1amwaal";
@@ -34,11 +34,11 @@
     (stdenv.mkDerivation {
       name = "my_fonts";
       srcs = [(fetchurl {
-        url = "https://github.com/lxgw/LxgwWenKai/releases/download/v1.235.2/LXGWWenKai-Bold.ttf";
-        sha256 = "1v7bczjnadzf2s8q88rm0pf66kaymq3drsll4iy3i5axpbimap18";
+        url = "https://github.com/lxgw/LxgwWenKai/releases/download/v1.315/LXGWWenKaiMono-Bold.ttf";
+        sha256 = "129ikb5d9gqcy801rqqsirqjmz24mgshcc6mgj65bq6w6abs3y7y";
       }) (fetchurl {
-        url = "https://github.com/lxgw/LxgwWenKai/releases/download/v1.235.2/LXGWWenKai-Regular.ttf";
-        sha256 = "06kpqgar0vvsng4gzsnj1app1vkv7v07yqgi5mfwzxch0di5qk3v";
+        url = "https://github.com/lxgw/LxgwWenKai/releases/download/v1.315/LXGWWenKai-Regular.ttf";
+        sha256 = "1ybzbk50l3lmz0aja9cjh40bxcx9py8349qabxplpispk5jyy76d";
       })];
       sourceRoot = "./";
       unpackCmd = ''
@@ -66,10 +66,4 @@
   # https://github.com/kovidgoyal/kitty/issues/403
   environment.variables.GLFW_IM_MODULE = "ibus";
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
-  };
 }

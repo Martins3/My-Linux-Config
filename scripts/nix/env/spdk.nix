@@ -24,7 +24,7 @@ pkgs.mkShell rec {
     python3.pkgs.setuptools
     autoconf
      automake
-    pkgconfig
+    pkg-config
     autoconf
     gettext
     autoconf-archive
@@ -49,6 +49,7 @@ pkgs.mkShell rec {
     openssl
     ncurses
     zlib
+    fuse3
   ];
 
   # @todo 不知道这个是什么原理?
@@ -60,6 +61,8 @@ pkgs.mkShell rec {
 }
 
 /**
+  * git clone https://github.com/spdk/spdk.git
+  * pushd spdk
   * git submodule update --init
   * ./configure
   * make

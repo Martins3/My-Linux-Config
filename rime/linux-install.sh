@@ -13,11 +13,10 @@ fi
 cd ~/core/
 if [[ ! -d plum ]]; then
 	git clone https://github.com/rime/plum
+	cd plum
+	# 使用 plum 安装基础组件
+	rime_dir="$CONFIG_DIR" bash rime-install
 fi
-cd plum
-
-# 使用 plum 安装基础组件
-rime_dir="$CONFIG_DIR" bash rime-install
 
 # 从雾凇拼音 中拷贝词库过来
 function update_idct_from_ice() {

@@ -1,10 +1,20 @@
-{ pkgs ? import <nixpkgs> { },
-  unstable ? import <nixos-unstable> { }
-}:
+# 1. 之前的写法
+# { pkgs ? import <nixpkgs> { },
+#   unstable ? import <nixos-unstable> { }
+# }:
+with import <nixpkgs> {};
 
-pkgs.stdenv.mkDerivation {
+# TODO 很奇怪，LLVM 无法正常构建内核，需要将版本下移到 6.1 左右才可以
+
+# 2. 之前的写法
+# pkgs.stdenv.mkDerivation {
+pkgs.llvmPackages.stdenv.mkDerivation {
+
+# llvmPackages 是可以指定版本的
+# pkgs.llvmPackages_14.stdenv.mkDerivation {
   name = "yyds";
   buildInputs = with pkgs; [
+
     getopt
     flex
     bison
@@ -21,7 +31,8 @@ pkgs.stdenv.mkDerivation {
     ncurses
     openssl
     zlib
-
+    lld
+    llvm
     # selftests
     alsa-lib
     libcap

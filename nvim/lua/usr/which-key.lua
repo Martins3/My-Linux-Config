@@ -10,10 +10,13 @@ wk.setup({
 wk.register({
   ["K"] = { "<cmd>lua vim.lsp.buf.hover()<cr>", "document" },
   ["g"] = {
+    a = { "<cmd>Portal jumplist backward<cr>", "jumplist backward" },
+    b = { "<cmd>Portal jumplist forward<cr>", "jumplist forward" },
     d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "go to definition" },
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
     w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
+    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct"},
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
     -- x 打开文件
     -- s 用于 leap 跳转到下一个窗口
@@ -29,6 +32,7 @@ wk.register({
     i = { "<cmd>Telescope jumplist<cr>", "search jumplist" },
     j = { "<cmd>Telescope emoji<cr>", "search emoji" },
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
+    m = { "<cmd>Telescope bookmarks<cr>", "search bookmarks" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
@@ -124,9 +128,10 @@ wk.register({
       s = { "<cmd>set spell!<cr>", "spell check" },
       w = { "<cmd>set wrap!<cr>", "wrap line" },
       h = { "<cmd>noh<cr>", "Stop the highlighting" },
+      H = { "<cmd>Hardtime toggle<cr>", "toggle hardtime" },
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       t = { "<cmd>set nocursorline<cr> <cmd>TransparentToggle<cr>", "make background transparent" },
-      r = { "<cmd>RsyncSaveSync toggle<cr>", "toggle rsync on save" },
+      r = { "<cmd>TransferToggle<cr>", "toggle rsync on save" },
     },
     x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },

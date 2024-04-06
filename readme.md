@@ -8,17 +8,14 @@
 ## 📚 Document
 
 * 软件篇
-  * [2023 年 vim 的 C/C++ 配置](./docs/nvim.md)
+  * [2024 年 vim 的 C/C++ 配置](./docs/nvim.md)
   * [极简 Tmux 配置](./docs/tmux.md)
   * [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
   * [Rime 输入法配置](./docs/rime.md)
   * [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
   * [2023 年对比一下 ccls 和 clangd](./docs/ccls-vs-clangd.md)
   *  🚧 [NixOS 初步尝试](./docs/nix.md)
-  *  🚧 [如何彻底征服 bash](./shell/bash.md)
-* 硬件篇
-  * TODO
-*  🚧 [题外话: 折腾 Linux 的一些经验之谈](./docs/why.md)
+* [题外话: 为什么我要去折腾 Linux](./docs/why.md)
 
 
 ## ⚙ Install

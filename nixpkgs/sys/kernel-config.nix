@@ -2,51 +2,20 @@
 
 {
 
-  boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_5;
-  };
-
-  boot.kernelParams = [
-    "transparent_hugepage=never"
-    "mitigations=off"
-    # 硬件上都直接不支持了
-    # "tsx=on"
-    # "tsx_async_abort=off"
-
-    # intel_iommu 需要手动打开
-    # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
-    "intel_iommu=on"
-    "iommu=pt"
-    "intremap=on"
-    # "amd_iommu_intr=vapic"
-    # "kvm-amd.avic=1"
-    # "isolcpus=28-31"
-    # "amd_iommu_intr=legacy"
-    # "ftrace=function"
-    # "ftrace_filter=amd_iommu_int_thread"
-
-    # "processor.max_cstate=1"
-    # "intel_idle.max_cstate=0"
-    # "amd_iommu=off"
-    # "amd_iommu=pgtbl_v2"
-    # "iommu=pt"
-    # 手动禁用 avx2
-    # "clearcpuid=156"
-
-    # @todo 不是 systemd 会默认启动 fsck 的吗，这个需要啥
-    # "fsck.mode=force"
-    "fsck.repair=yes"
-    "ftrace=function"
-    "ftrace_filter=dmar_set_interrupt"
-  ];
-
+# TODO 这里存在让 fio nullblk 性能下降 10% 的选项，有趣啊
 boot.kernelPatches = [
   {
     name = "tracing";
     patch = null;
     extraStructuredConfig = {
       BOOTTIME_TRACING = lib.kernel.yes;
+      IRQSOFF_TRACER = lib.kernel.yes;
+      MMIOTRACE = lib.kernel.yes;
+      OSNOISE_TRACER = lib.kernel.yes;
+      FPROBE = lib.kernel.yes;
+      TIMERLAT_TRACER = lib.kernel.yes;
+      PREEMPT_TRACER = lib.kernel.yes;
+      HWLAT_TRACER = lib.kernel.yes;
     };
   }
 
@@ -60,6 +29,15 @@ boot.kernelPatches = [
       DAMON_SYSFS=lib.kernel.yes;
       DAMON_RECLAIM=lib.kernel.yes;
       DAMON_LRU_SORT=lib.kernel.yes;
+    };
+  }
+
+  {
+    name = "hwpoison";
+    patch = null;
+    extraStructuredConfig = {
+      MEMORY_FAILURE=lib.kernel.yes;
+      HWPOISON_INJECT=lib.kernel.yes;
     };
   }
 

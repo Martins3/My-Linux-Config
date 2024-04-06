@@ -465,6 +465,14 @@ snippet xxx_ext "extended template for any bash script"
 snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
 
+snippet note_split_cmd_output_to_array "split cmd output to array"
+	# 默认是换行
+	mapfile -t array < <(git log --format=%h --since="24 hours ago")
+	printf "%s\n" "${array[@]}"
+
+	# -d 来指定分隔符, -t 删除掉分隔符
+	mapfile -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
+	printf "%s\n" "${array[@]}"
 
 snippet note_tee "如何 append"
 	# 使用 -a
@@ -472,8 +480,10 @@ snippet note_tee "如何 append"
 
 
 snippet note_awk "basic"
-	# 读取一行中的第二个
-	awk -F '"' '{print \$2}' your_input_file
+	# 读取一行中的第二个，注意，使用小引号
+	awk -F '"' '{print $2}' your_input_file
+	# 读取一行中的第二个和第三个，注意，使用小引号
+	awk -F '"' '{printf "%s %s" , $2 , $3}' your_input_file
 	# 1. awk 可以使用 printf
 	# 2. awk 的 END 是处理完之后进行一个操作
 	echo "1\n2 " | awk '{sum+=$1}; END  {printf "average is %f",sum/NR}'
@@ -499,22 +509,6 @@ snippet note_awk_regex "awk 中的正则"
 	awk '/hello/ { print "This line contains hello"  "->" $0}' test.txt
 	awk '\$4~/hello/ { print "This field contains hello", $4}' test.txt
 	awk '\$4 == "hello" { print "This field is hello:", $4}' test.txt
-
-
-snippet note_xargs "xargs"
-	# -t : 将要执行的命令打印出来
-	# -I % : 设置参数为 %
-	# ls | xargs -t -I % sh -c 'echo %'
-
-	# 将一个仓库中所有的 apples 替换为 oranges
-	# git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
-
-	# 将 foo 下所有的 txt 都删除
-	# find ./foo -type f -name "*.txt" -exec rm {} \;
-	# find ./foo -type f -name "*.txt" | xargs rm
-
-	# find . -type f -print | xargs stat -c '%a %n'
-
 
 snippet note_basic "bash 基本内容"
 	# 在 set -e 的时候，容忍一个 command 失败:

@@ -15,7 +15,7 @@ pkgs.stdenv.mkDerivation {
     yacc
     bison
     flex
-    pkgconfig
+    pkg-config
     elfutils
     libelf
     autoconf
