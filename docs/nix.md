@@ -1490,3 +1490,6 @@ https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/office/wpsoffice/
 
 ## 基于 nix ?
 https://github.com/flox/flox
+
+## 参考这个资源
+https://dotfiles.github.io/

@@ -69,13 +69,6 @@ require("lazy").setup({
   "gelguy/wilder.nvim", -- 更加智能的命令窗口
   "romgrk/fzy-lua-native", -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent", -- 可以移除掉背景色，让 vim 透明
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    config = function()
-      require("dashboard").setup({})
-    end,
-  },
   -- 颜色主题
   "folke/tokyonight.nvim",
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
@@ -161,9 +154,15 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    "coffebar/transfer.nvim",
+    -- "coffebar/transfer.nvim",
+    dir = "/tmp/x/transfer.nvim/",
     lazy = true,
-    cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
+    enabled = function()
+      local root = vim.fn.system("whoami")
+      root = root:sub(1, -2)
+      return vim.fn.system("whoami") == "martins3\n"
+    end,
+    cmd = { "TransferInit", "TransferToggle" },
     opts = {},
   },
 }, {})

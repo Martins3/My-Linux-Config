@@ -121,7 +121,8 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 
 ## 插件开发
 
-https://github.com/coffebar/transfer.nvim/blob/main/lua/transfer/transfer.lua
+
+https://zignar.net/2023/06/10/debugging-lua-in-neovim/
 
 ## 问题
 - 极为细节的问题，但是折腾下应该还是可解的

@@ -131,7 +131,7 @@ wk.register({
       H = { "<cmd>Hardtime toggle<cr>", "toggle hardtime" },
       m = { "<cmd>TableModeToggle<cr>", "markdown table edit mode" },
       t = { "<cmd>set nocursorline<cr> <cmd>TransparentToggle<cr>", "make background transparent" },
-      r = { "<cmd>RsyncSaveSync toggle<cr>", "toggle rsync on save" },
+      r = { "<cmd>TransferToggle<cr>", "toggle rsync on save" },
     },
     x = { "<cmd>FloatermNew ipython<cr>", "calculated" },
   },
