@@ -1,5 +1,3 @@
-require("orgmode").setup_ts_grammar()
-
 require("orgmode").setup({
   org_agenda_files = { "~/core/org-mode/*" },
   org_default_notes_file = "~/core/org-mode/refile.org",
