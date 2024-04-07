@@ -164,6 +164,7 @@ in
     # trace-cmd
     # hotspot
     # heaptrack
+    coccinelle
     ltrace # library trace
     bcc
     bpftool
@@ -287,9 +288,11 @@ in
 
     # lsp
     rust-analyzer
+    rustfmt
     efm-langserver # 集成 shellcheck
     marksman
     nodePackages.pyright
+
 
     # 为了方便，将常见的 c 库直接放出来
     # libaio
