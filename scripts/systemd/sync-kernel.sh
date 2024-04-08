@@ -9,7 +9,7 @@ function finish {
 }
 
 use_llvm="LLVM=1"
-use_llvm=""
+# use_llvm=""
 
 trap finish EXIT
 

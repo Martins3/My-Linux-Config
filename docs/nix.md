@@ -1493,3 +1493,54 @@ https://github.com/flox/flox
 
 ## 参考这个资源
 https://dotfiles.github.io/
+
+## 太坑了
+- https://github.com/NixOS/nixpkgs/issues/18995
+
+在 clang 自动携带了 flags :
+
+
+## linux defualt.nix
+
+之前的写法
+```nix
+{ pkgs ? import <nixpkgs> { },
+  unstable ? import <nixos-unstable> { }
+}:
+
+pkgs.stdenv.mkDerivation {
+  name = "yyds";
+  buildInputs = with pkgs; [
+  # ....
+  ];
+}
+```
+
+还有一种写法:
+```nix
+with import <nixpkgs> {};
+pkgs.llvmPackages.stdenv.mkDerivation {
+  hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+    getopt
+    flex
+    ];
+}
+```
+
+还有一种写法:
+```nix
+
+with import <nixpkgs> {};
+
+pkgs.llvmPackages_14.stdenv.mkDerivation {
+   hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+  ];
+  }
+
+```
