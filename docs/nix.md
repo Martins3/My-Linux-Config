@@ -1544,3 +1544,5 @@ pkgs.llvmPackages_14.stdenv.mkDerivation {
   }
 
 ```
+
+也可以参考: https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
