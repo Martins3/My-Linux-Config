@@ -23,3 +23,16 @@ https://github.com/kerrickstaley/genanki
 1. 将 baidu.fanyi.com 中的生词全部都导入
 2. 常见的 trace 技术
 3. 完善脚本，支持更新
+
+
+这个调用路径都忘记了，真的需要 anki 来辅助一遍记录下:
+```txt
+@[
+    blkdev_read_iter+5
+    aio_read+312
+    io_submit_one+1406
+    __x64_sys_io_submit+173
+    do_syscall_64+197
+    entry_SYSCALL_64_after_hwframe+111
+]: 3904466
+```
