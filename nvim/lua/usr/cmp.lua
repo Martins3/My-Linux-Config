@@ -15,7 +15,31 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local dict = vim.fn.expand('$HOME/.dotfiles/nvim/10k.txt')
+local dict = vim.fn.expand("$HOME/.dotfiles/nvim/10k.txt")
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    {
+      name = "cmdline",
+      option = {
+        -- ignore_cmds = { "Man", "!" },
+        ignore_cmds = {},
+      },
+    },
+  }),
+})
+
+-- `/` cmdline setup.
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
 
 cmp.setup({
   snippet = {

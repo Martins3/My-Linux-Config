@@ -35,7 +35,6 @@ lua require 'usr'
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'debug.vim',
-      \ 'wilder.vim',
       \ ]
 
 for s:fname in s:core_conf_files

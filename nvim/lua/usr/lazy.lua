@@ -26,6 +26,7 @@ require("lazy").setup({
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
+  { "hrsh7th/cmp-cmdline" },
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
   -- 代码段
@@ -155,8 +156,8 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    "martins3/rsync.nvim",
-    -- dir = "/home/martins3/core/rsync.nvim/",
+    -- "martins3/rsync.nvim",
+    dir = "/home/martins3/core/rsync.nvim/",
     lazy = true,
     enabled = function()
       local root = vim.fn.system("whoami")

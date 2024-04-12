@@ -505,11 +505,11 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 ### vim cmdline 自动补全
 
-通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
+通过 [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline) 可以让 vim cmdline 实现模糊搜索。
 
-| 利用 wilder.nvim 在命令模式自动补全 |
-| ----------------------------------- |
-| <img src="./img/wilder.png" />      |
+| 利用 在命令模式自动补全                                                                                        |
+|----------------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/Martins3/My-Linux-Config/assets/16731244/f3eea191-395f-458f-806a-21942bdc8b86" /> |
 
 ### 终端
 
