@@ -71,3 +71,13 @@ snippet sysfs "add monitor into sysfs"
 
   	return error;
   }
+
+
+
+snippet ktest "add a new ktest"
+  #include "internal.h"
+
+  int test_$1(int action)
+  {
+  	return 0;
+  }
