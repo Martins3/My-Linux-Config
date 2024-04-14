@@ -13,26 +13,29 @@ tab 会被自动修改为 space 吗? 不会，执行 retab 或者 retab! 来转�
 1. Expandtab : 是否展开 tab 为 space
 2. Tabstop : 一个 tab 占用多少个格子
 3. Shiftwidth : 当打开自动缩进的时候，
+
 ```c
 int main(int argc, char *argv[]) { // <- 光标在此处，如果 enter ，下一行
         return 0;
 }
 ```
-https://superuser.com/questions/594583/what-does-shiftwidth-do-in-vim-editor :
-4. Softtabstop : Number of spaces that a <Tab> counts for while performing editing
-	operations, like inserting a <Tab> or using <BS>.
+
+https://superuser.com/questions/594583/what-does-shiftwidth-do-in-vim-editor : 4. Softtabstop : Number of spaces that a <Tab> counts for while performing editing
+operations, like inserting a <Tab> or using <BS>.
 https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
 
 5. smarttab
-https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
+   https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 
 实不相瞒，感觉还是没有太搞清楚.
+
 - [ ] Softtabstop : 既然是一个 tab 按下去的时候，产生多少个 space 的，那么只有允许 tab expand 的时候才有用吧
 - [ ] 让 Softtabstop 和 Shiftwidth 不相等又什么好处吗?
 
 - https://www.reddit.com/r/neovim/comments/17ak2eq/neovim_is_automatically_removing_trailing/
 
 看后面的转义符，本来是对齐的，现在配置之后，似乎是 tab 装换为 space 了，变的不对齐了
+
 ```c
 #define __WAITQUEUE_INITIALIZER(name, tsk) {					\
 	.private	= tsk,							\
@@ -50,6 +53,7 @@ https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 可以让在远程 server 的拷贝的内容直接进入到本地的系统剪切板上。
 
 增加上如下命令到 init.vim ，可以实现自动拷贝到本地电脑中
+
 ```vim
 " "让远程的 server 内容拷贝到系统剪切板中，具体参考 https://github.com/ojroques/vim-oscyank
 autocmd TextYankPost *
@@ -66,6 +70,7 @@ autocmd TextYankPost *
 使用方法，选中的内容之后，nvim 的命令行中执行: `OSCYankVisual`
 
 原理上参考:
+
 - https://news.ycombinator.com/item?id=32037489
 - https://github.com/ojroques/vim-oscyank/issues/24
 
@@ -74,6 +79,7 @@ autocmd TextYankPost *
 
 不知道发生了什么，我现在无需安装任何插件，在 vim 中的任何操作都是直接从服务器拷贝到本地的:
 这个原理太神奇了，现在看来只有两个小问题:
+
 1. gx 打开本地的浏览器(需求比较小)
 2. 输入法的自动切换
 
@@ -85,6 +91,7 @@ autocmd TextYankPost *
 从 amd 上连接 13900k 的机器的时候，似乎有时候会出现问题的。
 
 ## 黑魔法
+
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
 - [vim 中 `<cr>` 和 `<enter>` 有什么区别](https://www.reddit.com/r/vim/comments/u2989c/what_is_the_difference_between_cr_and_enter/)
   - 没有区别，除了拼写不同
@@ -94,6 +101,7 @@ autocmd TextYankPost *
   - `:%norm dw`
 
 ## 调试插件的 bug
+
 为了制作一个最小的复现环境，
 
 使用 .dotfiles/nvim/debug/switch.sh 来来回
@@ -101,37 +109,37 @@ autocmd TextYankPost *
 为 .dotfiles/nvim/debug/init.lua 和本配置
 
 ## tree-sitter
+
 - https://siraben.dev/2022/03/01/tree-sitter.html
 - https://siraben.dev/2022/03/22/tree-sitter-linter.html
 
 ## 参考
+
 - https://blog.antoyo.xyz/vim-tips
 - [ ] https://news.ycombinator.com/item?id=36312027
 - https://m4xshen.dev/posts/vim-command-workflow/
 
-## 写这个插件的人水平一般啊
-- https://github.com/OscarCreator/rsync.nvim
-- 完全没必要写这么复杂
-
 ## .h 默认启用的是 cpp ，但是 cpp 中没有 once
+
 https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 
 ## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
+
 - 是 ccls 的问题吗?
 
 ## 插件开发
 
-
 https://zignar.net/2023/06/10/debugging-lua-in-neovim/
 
+## 尝试掌握下
+
+https://github.com/mrcjkb/rustaceanvim
+
 ## 问题
+
 - 极为细节的问题，但是折腾下应该还是可解的
+
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
 
-- nvim 有待解决的问题，不是一时半会可以解决的:
-  1. 编辑远程代码: 最佳状态是 vscode 的那种模式，收集一些替代，虽然都差的很远
-     - https://github.com/jamestthompson3/nvim-remote-containers
-     - https://github.com/OscarCreator/rsync.nvim
-      - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning:  Clock skew detected.  Your build may be incomplete.
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)

@@ -18,7 +18,7 @@
 '';
 
   boot.kernelParams = [
-    "transparent_hugepage=never"
+    "transparent_hugepage=always"
     "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"
