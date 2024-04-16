@@ -28,6 +28,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     libmnl
     libcap_ng
     liburing
+    libaio
 
 	# unstable.rustfmt
 	# unstable.rustc

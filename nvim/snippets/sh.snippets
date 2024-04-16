@@ -156,29 +156,16 @@ snippet fori "C style for loop"
 
 
 snippet note_getoption "参数选项"
-	function usage() {
-		echo "Usage :   [options] [--]
-
-	    Options:
-	    -h|help       Display this message"
-	}
-
 	cmd=""
 	while getopts "hc:" opt; do
 		case \$opt in
 			c) cmd=\${OPTARG} ;;
-			h)
-				usage
-				exit 0
-				;;
+			h) echo "help" ;;
 			*)
-				echo -e "\n  Option does not exist : OPTARG\n"
-				usage
 				exit 1
 				;;
 		esac
 	done
-	shift $((OPTIND - 1))
 
 
 snippet note_readfile "read file line by line"

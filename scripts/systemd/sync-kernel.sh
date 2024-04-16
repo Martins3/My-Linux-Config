@@ -23,7 +23,7 @@ else
 	git clone https://github.com/torvalds/linux
 	cd linux
 	ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
-  echo "use nix" >> .envrc && direnv allow
+	echo "use nix" >>.envrc && direnv allow
 fi
 
 # 内核中很多位置都是存在 trailing whilespace 的，如果设置了这个选项
@@ -55,7 +55,6 @@ for i in "${special_files[@]}"; do
 done
 
 cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
-cp /home/martins3/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
 
 function run() {
 	if [[ -d /nix ]]; then
@@ -66,22 +65,16 @@ function run() {
 }
 
 SECONDS=0
-if [[ ${kcov} ]]; then
-	run "make mrproper"
-	run "make defconfig kvm_guest.config martins3.config kconv.config -j O=kcov"
-	run "nice -n 19 make -j$threads O=kcov"
-else
-	# make clean
-	# run "make clean"
-	run "make $use_llvm defconfig kvm_guest.config martins3.config -j"
-	# run "chrt -i 0 make CC='ccache gcc' -j$threads"
-	run "chrt -i 0 make $use_llvm -j$threads"
-	# python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
-	# scripts/systemd/expand-paging_tmpl.sh
-	for i in "${special_files[@]}"; do
-		git add "$i"
-	done
-fi
+# make clean
+# run "make clean"
+run "make $use_llvm defconfig kvm_guest.config martins3.config -j"
+# run "chrt -i 0 make CC='ccache gcc' -j$threads"
+run "chrt -i 0 make $use_llvm -j$threads"
+# python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
+# scripts/systemd/expand-paging_tmpl.sh
+for i in "${special_files[@]}"; do
+	git add "$i"
+done
 
 # 系统的 perf 不能用了，暂时靠这个维持生活吧
 # 好家伙，这我整个这个报错

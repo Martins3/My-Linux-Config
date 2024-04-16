@@ -142,6 +142,7 @@ wk.register({
     g = { "<cmd>vsp<cr>", "vertical split window" },
     s = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "delete other window" },
+    M = { "<cmd>Detour<cr>", "maximum current window in a popup" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { "<cmd>AerialToggle!<cr>", "toggle navigator" },
     h = { "<C-w>h", "go to the window left" },

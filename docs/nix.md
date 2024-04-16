@@ -1546,3 +1546,19 @@ pkgs.llvmPackages_14.stdenv.mkDerivation {
 ```
 
 也可以参考: https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+
+
+## 使用 clang 交叉编译内核
+
+https://stackoverflow.com/questions/61771494/how-do-i-cross-compile-llvm-clang-for-aarch64-on-x64-host
+
+```txt
+🧀  clang -arch arm64 aio.c -o main_arm64
+clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-command-line-argument]
+```
+检查内核 compile_commands.json ，果然是没有输出的。
+
+## 搭建下 nixos 上 hack kvm 的方法
+- https://phip1611.de/blog/building-an-out-of-tree-linux-kernel-module-in-nix/
+
+文档还是很简单的，但是这个代码仓库就太复杂了。

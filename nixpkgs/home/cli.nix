@@ -149,7 +149,8 @@ in
     tree-sitter
     # systeroid
     # linuxKernel.packages.linux_5_15.perf
-    linuxPackages_6_7.perf
+    linuxPackages_6_8.perf
+    linuxPackages_6_8.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
     # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
 
     # cflow # 感觉很弱，没用懂
