@@ -23,6 +23,7 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
+    yazi
     quickemu
     lua-language-server
     stylua
