@@ -82,6 +82,8 @@ case $target_dir in
 		cp ~/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 		make ARCH=arm64 LLVM=1 defconfig kvm_guest.config martins3.config -j"$cores"
 		KBUILD_BUILD_TIMESTAMP='' make LLVM=1 CC="ccache clang" ARCH=arm64 -j"$cores"
+		# 在 nixos 上，你需要一点小小的技巧才可以较差编译
+		# 参考 config/sh/test.c
 		./scripts/clang-tools/gen_compile_commands.py
 		sed -i 's/-mabi=lp64//g' compile_commands.json
 		;;

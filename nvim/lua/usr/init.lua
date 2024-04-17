@@ -23,7 +23,7 @@ require("nvim-navic").setup()
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
 require("im_select").setup()
-require("lualine").setup()
+require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 require("numb").setup()
 require("debugprint").setup()
 
