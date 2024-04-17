@@ -143,3 +143,5 @@ https://github.com/mrcjkb/rustaceanvim
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
 
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
+
+## wl-copy 似乎有点扰乱了系统
