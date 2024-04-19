@@ -16,7 +16,7 @@ wk.register({
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
     w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
-    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct"},
+    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
     -- x 打开文件
     -- s 用于 leap 跳转到下一个窗口
@@ -34,6 +34,7 @@ wk.register({
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
     m = { "<cmd>Telescope bookmarks<cr>", "search bookmarks" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
+    y = { "<cmd>lua require('yazi').yazi() <cr>", "yazi" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
     -- leader x used for map language specific function
@@ -76,9 +77,9 @@ wk.register({
     c = {
       -- only works in a c/cpp file
       name = "+ouroboros",
-      c = { "<cmd>Ouroboros<cr>", "open file in current window"},
-      h = { "<cmd>split | Ouroboros<cr>", "open file in a horizontal split"},
-      v = { "<cmd>vsplit | Ouroboros<cr>", "open file in a vertical split"},
+      c = { "<cmd>Ouroboros<cr>", "open file in current window" },
+      h = { "<cmd>split | Ouroboros<cr>", "open file in a horizontal split" },
+      v = { "<cmd>vsplit | Ouroboros<cr>", "open file in a vertical split" },
     },
     f = {
       name = "+file",

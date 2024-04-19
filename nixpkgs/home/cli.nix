@@ -23,7 +23,7 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
-    unstable.yazi
+    # unstable.yazi
     quickemu
     lua-language-server
     stylua
@@ -37,7 +37,7 @@ in
     checkmake
     typos # 检查代码中 typo
     # include-what-you-use # 很小的项目都用着不正常
-    cargo
+    unstable.cargo
     cmake
     # ov # feature rich pager
     # zig

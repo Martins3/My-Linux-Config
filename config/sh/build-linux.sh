@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -E -e -u -o pipefail
-set -x
 
 use_llvm="LLVM=1"
 
 target=""
+target=~/core/linux-build
+
 while getopts "baxg" opt; do
 	case $opt in
 		b) target=~/core/linux-build ;;
@@ -15,7 +16,9 @@ while getopts "baxg" opt; do
 			exit 1
 			;;
 		*)
-			exit 1
+			echo "-b linux-build"
+			echo "-a linux-aarch64"
+			echo "-a linux-gcov"
 			;;
 	esac
 done
@@ -74,9 +77,11 @@ update
 
 cd $target
 cores=$(getconf _NPROCESSORS_ONLN)
+cores=2
 case $target_dir in
 	linux-build)
-		cp $source/.config $target
+		cp $source/.config .
+		chrt -i 0 make LLVM=1 -j"$cores"
 		;;
 	linux-aarch64)
 		cp ~/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
@@ -88,6 +93,7 @@ case $target_dir in
 		sed -i 's/-mabi=lp64//g' compile_commands.json
 		;;
 	linux-gcov)
+		cp ~/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 		cp ~/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
 		make $use_llvm defconfig kvm_guest.config martins3.config kconv.config -j"$cores"
 		nice -n 19 make $use_llvm
