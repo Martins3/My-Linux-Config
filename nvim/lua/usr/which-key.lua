@@ -197,3 +197,20 @@ vim.cmd("autocmd FileType markdown lua MarkdownLeaderX()")
 function MarkdownLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
 end
+
+vim.cmd("autocmd FileType rust lua RunRust()")
+function RunRust()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.keymap.set("n", "<leader>a", function()
+    vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+    -- or vim.lsp.buf.codeAction() if you don't want grouping.
+  end, { silent = true, buffer = bufnr })
+
+  vim.keymap.set("n", "<leader>r", function()
+    vim.cmd.RustLsp("run")
+  end, { silent = true, buffer = bufnr })
+
+  vim.keymap.set("n", "<leader>R", function()
+    vim.cmd.RustLsp("runnables")
+  end, { silent = true, buffer = bufnr })
+end

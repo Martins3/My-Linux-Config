@@ -19,7 +19,6 @@ require("code_runner").setup({
       .. "$fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out",
     sh = "bash $file",
     html = microsoft_edge(),
-    rust = "cargo run",
     r = "Rscript $file",
     lua = "lua $file",
     nix = "nix eval -f $file",
