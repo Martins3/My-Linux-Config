@@ -2,8 +2,9 @@
 
 set -E -e -u -o pipefail
 
-mkdir -p /home/martins3/.config
+mkdir -p /home/martins3/.config/nixpkgs
 ln -sf /home/martins3/.dotfiles/nixpkgs /home/martins3/.config/home-manager
+ln -sf /home/martins3/.dotfiles/nixpkgs/config.nix /home/martins3/.config/nixpkgs/config.nix
 mkdir -p /home/martins3/.config/nix/
 ln -sf /home/martins3/.dotfiles/config/nix.conf /home/martins3/.config/nix/nix.conf
 line="/home/martins3/.config/home-manager/system.nix"
