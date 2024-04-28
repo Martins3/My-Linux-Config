@@ -43,7 +43,7 @@ in
         [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
         old.postInstall;
     }))
-    nur.repos.linyinfeng.wemeet
+    # nur.repos.linyinfeng.wemeet
     microsoft-edge
     vlc
     # podman-desktop

@@ -54,6 +54,7 @@ in
   virtualisation.vswitch.enable = true;
   virtualisation.vswitch.package = pkgs.openvswitch-lts;
 
+  virtualisation.libvirtd.enable = true;
 
   zramSwap.enable = true;
 

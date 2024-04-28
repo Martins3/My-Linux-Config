@@ -139,7 +139,7 @@ in
     # slirp4netns
     # nix-index
     # nixd
-    # virt-manager @todo 这到底是个啥，需要使用上吗？
+    virt-manager
     meson
     neovim
     # helix # modern neovim
