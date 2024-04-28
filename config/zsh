@@ -187,3 +187,4 @@ function yy() {
 	rm -f -- "$tmp"
 }
 export NIXPKGS_ALLOW_INSECURE=1
+export EDITOR=nvim
