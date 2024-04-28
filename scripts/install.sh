@@ -14,8 +14,8 @@ mkdir -p ~/.config/atuin/
 [[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
 [[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
 [[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
-[[ ! -d ~/.config/yazi ]] && ln -sf ~/.dotfiles/config/yazi ~/.config/yazi
 
+ln -sf ~/.dotfiles/config/yazi/yazi.toml ~/.config/yazi/yazi.toml
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml
