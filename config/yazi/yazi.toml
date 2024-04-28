@@ -1,0 +1,4 @@
+[opener]
+open = [
+  { run = 'nautilus --browser "$@"',                desc = "Open", for = "linux" },
+]
