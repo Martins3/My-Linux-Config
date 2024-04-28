@@ -452,6 +452,9 @@ snippet xxx_ext "extended template for any bash script"
 snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
 
+snippet note_split_file_to_array "split file to array"
+	readarray -t arr < all.txt
+
 snippet note_split_cmd_output_to_array "split cmd output to array"
 	# 默认是换行
 	mapfile -t array < <(git log --format=%h --since="24 hours ago")

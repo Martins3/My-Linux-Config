@@ -57,7 +57,7 @@ in
     clash-meta
     tig
     xclip # x clipboard
-    wl-clipboard # wayland clipboard
+    # wl-clipboard # wayland clipboard
     jq
     aspell
     aspellDicts.en

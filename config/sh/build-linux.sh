@@ -3,7 +3,6 @@ set -E -e -u -o pipefail
 
 use_llvm="LLVM=1"
 
-target=""
 target=~/core/linux-build
 
 while getopts "baxg" opt; do
@@ -77,7 +76,7 @@ update
 
 cd $target
 cores=$(getconf _NPROCESSORS_ONLN)
-cores=2
+cores=3
 case $target_dir in
 	linux-build)
 		cp $source/.config .

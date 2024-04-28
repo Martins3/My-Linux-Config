@@ -165,6 +165,7 @@ alias clear_nvim_sessions="rm /home/martins3/.local/share/nvim/sessions/*.vim"
 alias rr=/home/martins3/.dotfiles/config/sh/sync.sh
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
+alias kvm="/home/martins3/core/vn/code/nixos/kvm.sh"
 function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
@@ -185,3 +186,4 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+export NIXPKGS_ALLOW_INSECURE=1

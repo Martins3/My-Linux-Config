@@ -131,9 +131,10 @@ https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
 
 https://zignar.net/2023/06/10/debugging-lua-in-neovim/
 
-## 尝试掌握下
 
-https://github.com/mrcjkb/rustaceanvim
+https://github.com/ibhagwan/smartyank.nvim
+
+## 需要解决下闪退的问题
 
 ## 问题
 
@@ -145,3 +146,6 @@ https://github.com/mrcjkb/rustaceanvim
   2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 ## wl-copy 似乎有点扰乱了系统
+
+## 需要将 bash 整理下
+https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
