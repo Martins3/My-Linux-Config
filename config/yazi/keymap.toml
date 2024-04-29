@@ -1,7 +1,9 @@
-[manager]
-prepend_keymap = [
-	{ on = [ "<C-a>" ], run = 'my-fev-command1', desc = "Just for test!" },
-]
-append_keymap = [
-	{ on = [ "<C-b>" ], run = 'my-fev-command2', desc = "Just for test!" },
-]
+[[manager.prepend_keymap]]
+on   = [ "<C-s>" ]
+run  = 'shell "$SHELL" --block --confirm'
+desc = "Open shell here"
+
+[[manager.prepend_keymap]]
+on   = [ "<C-n>" ]
+run  = 'shell "nautilus --browser . && exit 0" --block --confirm'
+desc = "Open shell here"

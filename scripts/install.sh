@@ -16,6 +16,7 @@ mkdir -p ~/.config/atuin/
 [[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
 
 ln -sf ~/.dotfiles/config/yazi/yazi.toml ~/.config/yazi/yazi.toml
+ln -sf ~/.dotfiles/config/yazi/keymap.toml ~/.config/yazi/keymap.toml
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml
