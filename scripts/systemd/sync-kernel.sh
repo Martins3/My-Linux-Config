@@ -69,7 +69,7 @@ SECONDS=0
 # run "make clean"
 run "make $use_llvm defconfig kvm_guest.config martins3.config -j"
 # run "chrt -i 0 make CC='ccache gcc' -j$threads"
-run "chrt -i 0 make $use_llvm -j$threads"
+run "KBUILD_BUILD_TIMESTAMP='' make $use_llvm CC='ccache clang' -j$threads"
 # python3 /home/martins3/.dotfiles/scripts/systemd/revert-build-fast.py
 # scripts/systemd/expand-paging_tmpl.sh
 for i in "${special_files[@]}"; do
