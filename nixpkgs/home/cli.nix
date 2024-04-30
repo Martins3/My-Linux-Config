@@ -23,7 +23,9 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
-    # unstable.yazi
+    # 文件浏览器
+    # yazi
+    # xplr
     quickemu
     lua-language-server
     stylua
@@ -47,7 +49,7 @@ in
     openvswitch-lts
     dnsmasq
     gnumake
-    audit # 没啥意义，用不起来
+    # audit # 没啥意义，用不起来
     yarn
     nodejs
     tmux
@@ -62,7 +64,6 @@ in
     aspell
     aspellDicts.en
     # yq-go
-    xplr
     htop
     btop
     unzip
@@ -178,6 +179,8 @@ in
     cpuid
     # linuxKernel.packages.linux_latest_libre.turbostat
     pcm
+    # zenith-nvidia # 用处不大，和 top 功能重叠
+    nvitop # 美观，比 nvidia-smi 好用
     powertop # 分析功耗
   ] ++ [
     # @todo https://github.com/kkharji/sqlite.lua/issues/28
@@ -273,11 +276,9 @@ in
 
     dig # dns分析
     iptraf-ng # 网络流量分析
-    nvitop
     ifmetric
     glances # 又一个 htop
 
-    zenith-nvidia # TODO
     smartmontools # 监视硬盘健康
     httpie # http baidu.com
 
@@ -294,11 +295,6 @@ in
     efm-langserver # 集成 shellcheck
     marksman
     nodePackages.pyright
-
-
-    # 为了方便，将常见的 c 库直接放出来
-    # libaio
-    # liburing
   ];
 
   programs.zsh = {

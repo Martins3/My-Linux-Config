@@ -175,7 +175,7 @@ in
         efiSysMountPoint = "/boot";
       };
 
-      systemd-boot.configurationLimit = 10;
+      systemd-boot.configurationLimit = 3;
 
       grub = {
         # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
