@@ -7,6 +7,7 @@ function finish {
 		sleep infinity
 	fi
 }
+HOME=/home/martins3/
 
 use_llvm="LLVM=1"
 # use_llvm=""
@@ -26,10 +27,6 @@ else
 	echo "use nix" >>.envrc && direnv allow
 fi
 
-# 内核中很多位置都是存在 trailing whilespace 的，如果设置了这个选项
-# 很多文件会被自动修改，导致从头开始编译
-sed -i "s/trim_trailing_whitespace = true//" .editorconfig
-
 cores=$(getconf _NPROCESSORS_ONLN)
 threads=$cores
 
@@ -38,6 +35,8 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch == master ]]; then
 	git pull
 fi
+
+git apply $HOME/core/vn/code/module/kernel-patch/0001-martins3-s-hacking-for-linux-kernel.patch
 
 # 1. 内核为了编译速度，使用 #include 直接包含 .c 文件
 # 2. 为了消除重复代码，使用 #include 多次包含文件
@@ -54,7 +53,7 @@ for i in "${special_files[@]}"; do
 	git checkout -- "$i"
 done
 
-cp /home/martins3/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
+cp $HOME/.dotfiles/scripts/systemd/martins3.config kernel/configs/martins3.config
 
 function run() {
 	if [[ -d /nix ]]; then

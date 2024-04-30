@@ -5,11 +5,12 @@ use_llvm="LLVM=1"
 
 target=~/core/linux-build
 
-while getopts "baxg" opt; do
+while getopts "baxgu" opt; do
 	case $opt in
 		b) target=~/core/linux-build ;;
 		a) target=~/core/linux-aarch64 ;;
 		g) target=~/core/linux-gcov ;;
+		u) target=~/core/linux-uml ;;
 		x)
 			echo "build x86 on aarch64 host"
 			exit 1
@@ -75,6 +76,12 @@ fi
 update
 
 cd $target
+
+if [[ ! -e default.nix ]]; then
+	ln -sf /home/martins3/.dotfiles/scripts/nix/env/linux.nix default.nix
+	echo "use nix" >>.envrc && direnv allow
+fi
+
 cores=$(getconf _NPROCESSORS_ONLN)
 cores=3
 case $target_dir in
@@ -96,5 +103,13 @@ case $target_dir in
 		cp ~/.dotfiles/scripts/systemd/kconv.config kernel/configs/kconv.config
 		make $use_llvm defconfig kvm_guest.config martins3.config kconv.config -j"$cores"
 		nice -n 19 make $use_llvm
+		;;
+	linux-uml)
+		use_llvm=""
+		make "$use_llvm" defconfig ARCH=um
+		# make $use_llvm menuconfig ARCH=um
+		make "$use_llvm" ARCH=um
+		# make $use_llvm defconfig kvm_guest.config martins3.config kconv.config -j"$cores"
+		exit 1
 		;;
 esac
