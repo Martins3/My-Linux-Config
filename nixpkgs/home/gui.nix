@@ -37,12 +37,13 @@ in
     # libreoffice
     unstable.thunderbird
     feishu
-    (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
-      postInstall = builtins.replaceStrings
-        ["--run"]
-        [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
-        old.postInstall;
-    }))
+    # 除非先解决掉如何不要天天重新刷新的问题吧
+    # (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
+    #   postInstall = builtins.replaceStrings
+    #     ["--run"]
+    #     [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
+    #     old.postInstall;
+    # }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
     vlc

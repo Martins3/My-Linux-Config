@@ -508,10 +508,8 @@ snippet note_basic "bash 基本内容"
 snippet note_redirect "重定向"
 	# ls > a.txt
 	# ls 2> a.txt
-	# ls 2>&1
-	# ls 2>&1 > a.txt
-	# ls | tee > a.txt
-	# @todo 全部重定向到并且 tee 出来？
+	# ls 2>&1     # 将 stderr 重定向到 stdout
+	# ls &> a.txt # 将 stderr 和 stedout 一起重定向到 file
 
 
 snippet note_function_para "函数基本"

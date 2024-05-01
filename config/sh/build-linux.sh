@@ -105,10 +105,11 @@ case $target_dir in
 		nice -n 19 make $use_llvm
 		;;
 	linux-uml)
+		# 不知道为什么，无法使用 llvm
 		use_llvm=""
 		make "$use_llvm" defconfig ARCH=um
 		# make $use_llvm menuconfig ARCH=um
-		make "$use_llvm" ARCH=um
+		make "$use_llvm" ARCH=um -j"$cores"
 		# make $use_llvm defconfig kvm_guest.config martins3.config kconv.config -j"$cores"
 		exit 1
 		;;

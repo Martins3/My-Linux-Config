@@ -26,7 +26,7 @@ in
     # 文件浏览器
     # yazi
     # xplr
-    quickemu
+
     lua-language-server
     stylua
     # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
@@ -141,6 +141,8 @@ in
     # nix-index
     # nixd
     virt-manager
+    # quickemu
+    debootstrap # 制作 uml 的工具
     meson
     neovim
     # helix # modern neovim
