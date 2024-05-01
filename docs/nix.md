@@ -1562,3 +1562,53 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 - https://phip1611.de/blog/building-an-out-of-tree-linux-kernel-module-in-nix/
 
 文档还是很简单的，但是这个代码仓库就太复杂了。
+
+## 备份一些代码
+```nix
+  systemd.user.services.kernel = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      # User = "martins3";
+      Type = "forking";
+      # RemainAfterExit = true;
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
+      Restart = "no";
+    };
+  };
+
+  # systemctl --user list-timers --all
+  systemd.user.timers.kernel = {
+    enable = true;
+    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.timers.drink_water = {
+    enable = true;
+    timerConfig = { OnCalendar="*:0/5"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.drink_water = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
+      Restart = "no";
+    };
+  };
+
+  systemd.user.services.monitor = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
+      Restart = "no";
+    };
+    wantedBy = [ "timers.target" ];
+  };
+```

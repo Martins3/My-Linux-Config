@@ -224,69 +224,6 @@ in
     enable = true;
   };
 
-  systemd.user.services.kernel = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      # User = "martins3";
-      Type = "forking";
-      # RemainAfterExit = true;
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
-      Restart = "no";
-    };
-  };
-
-  # systemctl --user list-timers --all
-  systemd.user.timers.kernel = {
-    enable = true;
-    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
-    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.timers.qemu = {
-    enable = true;
-    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.timers.drink_water = {
-    enable = true;
-    timerConfig = { OnCalendar="*:0/5"; };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.services.drink_water = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
-      Restart = "no";
-    };
-  };
-
-  systemd.user.services.qemu = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s qemu '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-qemu.sh'";
-      Restart = "no";
-    };
-  };
-
-  systemd.user.services.monitor = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
-      Restart = "no";
-    };
-    wantedBy = [ "timers.target" ];
-  };
-
   systemd.user.services.clash = {
     enable = true;
     unitConfig = { };
