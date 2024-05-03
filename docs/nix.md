@@ -153,6 +153,7 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
 - 如何升级 (update / upgrade)
   - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
+    - sudo nix-channel --update
 
 ## 自动环境加载
 
