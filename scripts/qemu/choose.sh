@@ -19,7 +19,7 @@ function choose_vm() {
 			fi
 		fi
 
-		if [[ $option == "hacking_kernel" && -f $i/initramfs && -s $i/opt/replace_kernel ]]; then
+		if [[ $option == "hacking_kernel" && -s $i/opt/replace_kernel ]]; then
 			live_vms+=("$i")
 		fi
 
