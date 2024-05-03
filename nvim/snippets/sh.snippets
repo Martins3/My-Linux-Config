@@ -685,3 +685,9 @@ snippet note_tricks "" b
 
 snippet note_gum "gum 的常见使用" b
 	gum confirm "Continue?" || exit 0
+
+snippet note_fordir "遍历目录" b
+	for d in */ ; do
+	    [ -L "${d%/}" ] && continue
+	    echo "$d"
+	done
