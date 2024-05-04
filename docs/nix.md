@@ -12,7 +12,7 @@
 
 ## 安装
 
-### 手动安装
+### 在命令行中安装
 
 #### 手动分区
 
@@ -401,6 +401,11 @@ in {
   - 当然还是有点小问题，qcow2 构建直接报错，iso 的使用 qemu-system-x86_64 -cdrom /nix/store/ff5fcyx1ka3kmiw8bxl29l377d4xwn3i-nixos.iso/iso/nixos.iso --enable-kvm 启动，因为目前是含有 mount 的 ，systemd 无法正常启动的
 - nixpacks
   - https://news.ycombinator.com/item?id=32501448
+
+如果是完全手动安装一个，还是实在是太复杂了:
+  - https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html
+    - 这个好归好，但是使用的共享目录啊
+
 
 ## 其他有趣的 Linux Distribution
 
@@ -1340,17 +1345,6 @@ https://elatov.github.io/2022/01/building-a-nix-package/
 https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
-
-
-## 配置文件
-
-```txt
- fileSystems."/home/martins3/hack" = {
-    device = "/dev/disk/by-uuid/8eba61f5-5ed3-4221-ba7a-40b6ef3cbd62";
-    fsType = "auto";
-    options = [ "user"];
-  };
-```
 
 ## 生成密码
 
