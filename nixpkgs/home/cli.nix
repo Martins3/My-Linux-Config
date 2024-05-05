@@ -215,7 +215,7 @@ in
     lazydocker
     distrobox # 基于容器来提供各种 distribution
     arp-scan
-    nixos-generators
+    unstable.nixos-generators
     gum
     # acpi
     acpica-tools

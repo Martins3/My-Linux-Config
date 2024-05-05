@@ -113,11 +113,15 @@ sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
 # 在配置中增加上
 # networking.proxy.default = "http://192.168.64.62:8889"; # 需要提前搭梯子
-sudo nixos rebuild
+sudo nixos-rebuild
 ```
+逆天，这里居然也是会存在问题的，正是鸡生蛋，蛋生鸡的问题。
 
 2. 重启
-3. 首先解决网络问题，使用 sed 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
+
+<-- 这里我们使用了一个备份，直接用吧
+
+3. 首先解决网络问题，使用 nano 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
 4. 打开 shell，执行 `nix-shell -p vim git` ，然后
 
 ```sh
@@ -397,8 +401,8 @@ in {
 - https://github.com/nix-community/nixos-generators
   - nixos-generate -f iso -c /etc/nixos/configuration.nix : 利用 squashfs 直接构建出来安装用 iso
   - 可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的时候还要下载
-  - 而且可以还可以构建 qcow2
-  - 当然还是有点小问题，qcow2 构建直接报错，iso 的使用 qemu-system-x86_64 -cdrom /nix/store/ff5fcyx1ka3kmiw8bxl29l377d4xwn3i-nixos.iso/iso/nixos.iso --enable-kvm 启动，因为目前是含有 mount 的 ，systemd 无法正常启动的
+  - 等待版本升级吧，nixos-generate --disk-size 102400 -f qcow -c /home/martins3/core/vn/docs/qemu/sh/configuration.nix 中 disk-size 不识别，不设置也会报错，看上去这会是一个可行的路线的
+    - 这应该就是正确的解决办法了
 - nixpacks
   - https://news.ycombinator.com/item?id=32501448
 

@@ -1,5 +1,5 @@
 # add this file to /etc/nixos/configuration.nix: imports
-{disable_gui ? 0}:{ config, pkgs, lib, ... }:
+{ boot_efi ? 1, disable_gui ? 0}:{ config, pkgs, lib, ... }:
 
 let
 
@@ -8,12 +8,16 @@ in
 {
   imports = [
     ./sys/cli.nix
-    # ./sys/net.nix
+    ./sys/net.nix
     ./sys/kernel-options.nix
     # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
   ] ++ (
   if disable_gui == 0 && builtins.currentSystem == "x86_64-linux" then [
+      ./sys/gui.nix
+    ] else [ ]
+  ) ++ (
+  if boot_efi == 1 then [
       ./sys/gui.nix
     ] else [ ]
   );
@@ -96,37 +100,6 @@ in
     # "--kubelet-arg=v=4" # Optionally add additional args to k3s
   ];
 
-  boot = {
-    crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
-    crashDump.reservedMemory = "1G";
-    # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
-    tmp.cleanOnBoot = true;
-
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-        efiSysMountPoint = "/boot";
-      };
-
-      systemd-boot.configurationLimit = 3;
-
-      grub = {
-        # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-        # theme = pkgs.nixos-grub2-theme;
-        theme =
-          pkgs.fetchFromGitHub {
-            owner = "shvchk";
-            repo = "fallout-grub-theme";
-            rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
-            sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
-          };
-        devices = [ "nodev" ];
-        efiSupport = true;
-      };
-    };
-    supportedFilesystems = [ "ntfs" ];
-  };
 
   # GPU passthrough with vfio need memlock
   security.pam.loginLimits = [
