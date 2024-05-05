@@ -86,8 +86,9 @@ in
     file
     duf # 更好的 df -h
     zoxide # better jump
-    ncdu # 更加易用的 du
-    du-dust # 比 ncdu 更快
+    # ncdu # 更加易用的 du
+    gdu
+    # du-dust # 方便找大文件
     socat # unix domain
     delta # git diff
     act # Run github action locally

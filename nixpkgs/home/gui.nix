@@ -45,12 +45,11 @@ in
     }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
-    unstable.clash-verge-rev
+    # unstable.clash-verge-rev # 不知道为什么，还是存在问题
     vlc
     # podman-desktop
     # tdesktop
     # telegram
-    # clash-verge # 打开之后一块白板，不知道发生了什么
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具
