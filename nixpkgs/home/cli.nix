@@ -23,6 +23,7 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
+    zfs
     # 文件浏览器
     # yazi
     # xplr

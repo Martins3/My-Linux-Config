@@ -115,6 +115,7 @@ return {
     { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
     { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
     { key = "k",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
+    -- { key = "j",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     {
       key = "LeftArrow",
       mods = "CTRL|SHIFT",
