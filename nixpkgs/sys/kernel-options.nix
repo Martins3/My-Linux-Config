@@ -2,10 +2,13 @@
 
 {
 
-  boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_8;
-  };
+  # kernelPackages = pkgs.linuxPackages_latest;
+
+  # kernelPackages = pkgs.linuxPackages_6_8;
+
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "9f96ca0b";
 
   # @todo 加入的 vfio 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3 不过他的感觉也是瞎写的
   boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1"
