@@ -1611,3 +1611,6 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
     wantedBy = [ "timers.target" ];
   };
 ```
+
+## 如何解决掉本身就在代理的问题
+- https://github.com/NixOS/nixpkgs/issues/27535
