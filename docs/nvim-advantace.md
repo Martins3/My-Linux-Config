@@ -149,3 +149,5 @@ https://github.com/ibhagwan/smartyank.nvim
 
 ## 需要将 bash 整理下
 https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
+
+## 似乎现在超过 1w 行的代码，ccls 的导航栏就消失了

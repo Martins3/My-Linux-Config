@@ -111,6 +111,9 @@ git switch dev
 
 git pull --rebase --autostash
 
+### branch 包含了 tag
+git branch --contains $tag
+
 ## redirect
 
 - https://wizardzines.com/comics/redirects/

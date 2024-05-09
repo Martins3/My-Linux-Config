@@ -143,6 +143,14 @@ return {
       -- action = wezterm.action.ShowLauncher
     },
     {
+      key = "g",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.1.1", "tmux attach || tmux" },
+      }),
+      -- action = wezterm.action.ShowLauncher
+    },
+    {
       key = "i",
       mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({

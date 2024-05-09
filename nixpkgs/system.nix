@@ -18,7 +18,7 @@ in
     ] else [ ]
   ) ++ (
   if boot_efi == 1 then [
-      ./sys/gui.nix
+      ./sys/boot.nix
     ] else [ ]
   );
 
