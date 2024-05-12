@@ -1613,4 +1613,9 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 ```
 
 ## 如何解决掉本身就在代理的问题
-- https://github.com/NixOS/nixpkgs/issues/27535
+- https://github.com/NixOS/nixpkgs/issues/27535 是我操作有问题，不行啊！
+
+## 社区危机
+- https://save-nix-together.org/
+- https://discourse.nixos.org/t/nixos-foundation-board-giving-power-to-the-community/44552?filter=summary
+- https://dataswamp.org/~solene/2024-04-27-nix-internal-crisis.html

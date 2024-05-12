@@ -10,16 +10,16 @@ windows:
     shell_command_before:
       - cd ~/core/vn/code/module/
       - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
-  - window_name: c
-    layout: tiled
-    shell_command_before:
-      - cd ~/core/vn/code/module/c
-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
-  - window_name: rust
-    layout: tiled
-    shell_command_before:
-      - cd ~/core/vn/code/module/rust/
-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+        #  - window_name: c
+        #    layout: tiled
+        #    shell_command_before:
+        #      - cd ~/core/vn/code/module/c
+        #      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+        #  - window_name: rust
+        #    layout: tiled
+        #    shell_command_before:
+        #      - cd ~/core/vn/code/module/rust/
+        #      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
   - window_name: draft
     layout: tiled
     shell_command_before:

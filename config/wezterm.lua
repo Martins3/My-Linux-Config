@@ -108,13 +108,13 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   keys = {
-    { mods = "CTRL|SHIFT", key = "-",           action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
-    { mods = "CTRL|SHIFT", key = "+",           action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
-    { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "k",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
+    { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
+    { key = "j", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "F7", mods = "", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "F8", mods = "", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "k", mods = "CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
     -- { key = "j",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     {
       key = "LeftArrow",
@@ -125,22 +125,6 @@ return {
       key = "RightArrow",
       mods = "CTRL|SHIFT",
       action = wezterm.action.DisableDefaultAssignment,
-    },
-    {
-      key = "t",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action.SpawnCommandInNewTab({
-        args = { "bash", "-l", "-c", "zellij attach || zellij" },
-      }),
-      -- action = wezterm.action.ShowLauncher
-    },
-    {
-      key = "t",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action.SpawnCommandInNewTab({
-        args = { "bash", "-l", "-c", "zellij attach || zellij" },
-      }),
-      -- action = wezterm.action.ShowLauncher
     },
     {
       key = "g",
@@ -157,6 +141,20 @@ return {
         args = { "ssh", "-t", "martins3@192.168.19.55", "tmux attach || tmux" },
       }),
       -- action = wezterm.action.ShowLauncher
+    },
+    {
+      key = "t",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "zsh" },
+      }),
+    },
+    {
+      key = "z",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "/bin/sh", "-l", "-c", "zellij attach || zellij" },
+      }),
     },
     { key = "F8", mods = "", action = wezterm.action.ShowLauncher },
   },
