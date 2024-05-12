@@ -151,3 +151,12 @@ https://github.com/ibhagwan/smartyank.nvim
 https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
 
 ## 似乎现在超过 1w 行的代码，ccls 的导航栏就消失了
+
+## nvim 的启动页有问题
+
+本来应该就是 nvim 的，但是现在变为 No Name 了 ，结果调试，发现这个是 lualine 导致的，暂时没有发现什么好方法:
+
+nvim/lua/usr/init.lua
+```plain
+require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
+```
