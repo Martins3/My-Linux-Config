@@ -132,6 +132,13 @@ return {
       action = wezterm.action.SpawnCommandInNewTab({
         args = { "ssh", "-t", "martins3@10.0.1.1", "tmux attach || tmux" },
       }),
+    },
+    {
+      key = "p",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.1.2", "tmux attach || tmux" },
+      }),
       -- action = wezterm.action.ShowLauncher
     },
     {

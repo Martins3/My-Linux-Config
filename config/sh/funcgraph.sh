@@ -17,4 +17,4 @@ fi
 
 set -x
 # 可以指定 CPU
-sudo perf ftrace -G "${entry% \[*\]}"  -g 'smp_*' -g irq_enter_rcu -g __sysvec_irq_work -g irq_exit_rcu
+sudo perf ftrace -G "${entry% \[*\]}"  -g 'smp_*' -g irq_enter_rcu -g __sysvec_irq_work -g irq_exit_rcu -g __cond_resched

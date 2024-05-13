@@ -328,7 +328,7 @@ in
   };
 
   home.file.gitconfig = {
-    source = ../../config/.gitconfig;
+    source = ../../config/gitconfig;
     target = ".gitconfig";
   };
 
