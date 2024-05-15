@@ -122,6 +122,7 @@ alias qt="/home/martins3/core/vn/code/build/qemu/launch.sh -t"
 alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
 alias kk="/home/martins3/core/vn/code/build/qemu/launch.sh -k"
 alias rkk="/home/martins3/core/vn/code/build/qemu/choose_launch.sh"
+alias nixos="rkk nixos"
 alias uml="/home/martins3/core/vn/docs/kernel/code/um/uml.sh"
 # 这里将 $ 转义，从而是执行 ge 命令的时候加载端口而非在
 alias ge="/home/martins3/core/vn/code/build/qemu/launch.sh -s"

@@ -36,6 +36,15 @@
 - git reset : 将所有的内容 unstage
 - git restore . : 将 unstage 的修改删除掉
 
+### 检查一个文件的历史
+
+tig vl.c
+
+但是如果这一个文件被删除了
+```sh
+tig --  rust/alloc/boxed.rs
+```
+
 ### 如何修改一个特定的 commit
 
 参考: https://stackoverflow.com/questions/1186535/how-do-i-modify-a-specific-commit

@@ -27,6 +27,7 @@ in
     wezterm
     # wireshark
     alacritty
+    # warp-terminal
     # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify

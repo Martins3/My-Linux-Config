@@ -77,7 +77,19 @@ snippet sysfs "add monitor into sysfs"
 snippet ktest "add a new ktest"
   #include "internal.h"
 
+  static bool status_ready = false;
+  static void status_init(void)
+  {
+  	status_ready = true;
+  }
   int test_$1(int action)
   {
+  	if (!status_ready)
+  		status_init();
+
+  	switch (action) {
+  	case 1:
+  		break;
+  	}
   	return 0;
   }
