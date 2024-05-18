@@ -102,6 +102,7 @@ in
 
 
   # GPU passthrough with vfio need memlock
+  # https://www.reddit.com/r/VFIO/comments/aiwrzr/12_qemu_hardware_error_vfio_dma_mapping_failed/
   security.pam.loginLimits = [
     { domain = "*"; type = "-"; item = "memlock"; value = "infinity"; }
   ];

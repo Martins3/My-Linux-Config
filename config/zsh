@@ -127,7 +127,7 @@ alias uml="/home/martins3/core/vn/docs/kernel/code/um/uml.sh"
 # 这里将 $ 转义，从而是执行 ge 命令的时候加载端口而非在
 alias ge="/home/martins3/core/vn/code/build/qemu/launch.sh -s"
 alias vnc="/home/martins3/core/vn/code/build/qemu/launch.sh -v"
-alias gege="/home/martins3/core/vn/code/build/qemu/choose.sh -c"
+alias gege="/home/martins3/core/vn/code/build/qemu/launch.sh -c"
 # 打开工作区间并且构建
 alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
