@@ -34,7 +34,7 @@ pkgs.mkShell rec {
     libtirpc
   ];
 }
-# meson build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
+# meson setup build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
 # cd build && ninja -j30
 # ninja -t compdb > compile_commands.json
 # cp compile_commands.json ..

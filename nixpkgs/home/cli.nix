@@ -35,7 +35,7 @@ in
     # libguestfs-appliance
     # cloud-utils
     imagemagick # 压缩照片
-    adoptopenjdk-icedtea-web
+    # adoptopenjdk-icedtea-web
     ccls
     checkmake
     typos # 检查代码中 typo
@@ -78,8 +78,8 @@ in
     hwloc # 侧重于展示 cache
     hw-probe #  sudo -E hw-probe -all -upload
     eza # more powerful ls
-    oh-my-posh # @todo for powershell
-    gource
+    # oh-my-posh # @todo for powershell
+    # gource
     fastfetch
     bear
     tree
@@ -93,7 +93,7 @@ in
     socat # unix domain
     delta # git diff
     act # Run github action locally
-    git-secrets
+    # git-secrets
     nethogs
     sniffnet
     nmap
@@ -126,6 +126,9 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
+    lima
+    virt-manager
+    # quickemu
     # unstable.nixos-shell
     # krunvm  # 有待尝试
     nixpacks
@@ -142,8 +145,6 @@ in
     # slirp4netns
     # nix-index
     # nixd
-    virt-manager
-    # quickemu
     debootstrap # 制作 uml 的工具
     meson
     neovim
@@ -207,17 +208,16 @@ in
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
-    black # python formatter
     man-pages
     pre-commit
-    # tiptop # TODO : 有趣的性能观测工具，可以了解下其原理
     atop
     nmon
     man-pages-posix
     lazydocker
-    distrobox # 基于容器来提供各种 distribution
+    # distrobox # 基于容器来提供各种 distribution
     arp-scan
-    unstable.nixos-generators
+    # nixos-generators # 基于当前系统生成 qcow2
+    packer # 制作 qcow2 镜像
     gum
     # acpi
     acpica-tools
@@ -240,12 +240,11 @@ in
     bcachefs-tools
     libcgroup
     cpulimit
-    bat # better cat
+    # bat # better cat
     procs # better ps
     tokei # 代码统计工具，比 cloc 性能好
     zellij # tmux 替代品
     # kvmtool
-    packer # 制作 qcow2 镜像
     just # 更加 nb 的执行命令
     # (import (fetchTarball https://install.devenv.sh/latest)).default # 浪费人生宝贵的 2h ，不明觉厉
     # @todo 不知道为什么，这种方法不行
@@ -255,16 +254,15 @@ in
     # unstable.nushell
     libnotify # 通知小工具
     # powershell
-    vector
+    # vector
     dmidecode # sudo dmidecode -t 1
     git-review
 
-    containerd # @todo 测试下
-    nerdctl
-    usbutils
-    # @todo 测试下 ovs
+    # containerd # @todo 测试下
+    # nerdctl
+    # usbutils
 
-    openjdk
+    # openjdk
     # dockerTools @todo # 使用 nixos 构建 docker
     # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
     asciiquarium
@@ -284,7 +282,7 @@ in
     glances # 又一个 htop
 
     smartmontools # 监视硬盘健康
-    httpie # http baidu.com
+    # httpie # http baidu.com
 
     lcov
 
@@ -293,7 +291,8 @@ in
 
     # cachix # nixos 的高级玩法，自己架设 binary cache
 
-    # lsp
+    # lsp && formatter
+    black # python formatter
     rust-analyzer
     rustfmt
     efm-langserver # 集成 shellcheck
