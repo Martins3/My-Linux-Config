@@ -187,5 +187,9 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+function u() {
+	rsync -avzh --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
+	rsync -avzh --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
+}
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
