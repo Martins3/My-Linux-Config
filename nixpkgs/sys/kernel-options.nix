@@ -2,9 +2,8 @@
 
 {
 
-  # kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_6_8;
   boot.supportedFilesystems = [ "bcachefs" ];
 
   # 暂时两个文件系统无法互相兼容
