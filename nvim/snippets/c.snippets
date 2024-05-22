@@ -50,7 +50,7 @@ snippet sysfs "add monitor into sysfs"
 
   static struct attribute *attrs[] = {
   	&foo_attribute.attr,
-    NULL,
+  	NULL,
   };
 
   static struct attribute_group attr_group = {
@@ -61,6 +61,8 @@ snippet sysfs "add monitor into sysfs"
   static int greeter_init(void)
   {
   	int error = 0;
+  	if (mymodule != NULL)
+  		return 0;
   	mymodule = kobject_create_and_add("hacking", kernel_kobj);
   	if (!mymodule)
   		return -ENOMEM;
@@ -71,8 +73,6 @@ snippet sysfs "add monitor into sysfs"
 
   	return error;
   }
-
-
 
 snippet ktest "add a new ktest"
   #include "internal.h"
