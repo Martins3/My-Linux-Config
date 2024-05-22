@@ -427,7 +427,7 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 ### 导航
 
-利用 [aerial.nvim](stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
+利用 [aerial.nvim](https://github.com/stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
 | 基于 stevearc/aerial.nvim 的导航栏 |
 | ---------------------------------- |

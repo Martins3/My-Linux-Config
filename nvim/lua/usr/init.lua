@@ -47,6 +47,7 @@ require("aerial").setup({
     default_direction = "left",
   },
   attach_mode = "global",
+  disable_max_lines = 20000,
 })
 
 -- 书签

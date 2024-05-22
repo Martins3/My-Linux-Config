@@ -150,8 +150,6 @@ https://github.com/ibhagwan/smartyank.nvim
 ## 需要将 bash 整理下
 https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
 
-## 似乎现在超过 1w 行的代码，ccls 的导航栏就消失了
-
 ## nvim 的启动页有问题
 
 本来应该就是 nvim 的，但是现在变为 No Name 了 ，结果调试，发现这个是 lualine 导致的，暂时没有发现什么好方法:
@@ -160,3 +158,11 @@ nvim/lua/usr/init.lua
 ```plain
 require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 ```
+## 也许替换掉
+
+  { "SmiteshP/nvim-navic" },     -- 在 winbar 展示当前的路径
+  { "utilyre/barbecue.nvim" },
+https://nvimdev.github.io/lspsaga/outline/
+
+## 尝试下
+https://github.com/2KAbhishek/termim.nvim
