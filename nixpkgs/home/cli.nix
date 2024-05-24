@@ -245,8 +245,9 @@ in
     tokei # 代码统计工具，比 cloc 性能好
     zellij # tmux 替代品
     # kvmtool
-    just # 更加 nb 的执行命令
+    # just # 在对应的目录中自定义执行命令
     # (import (fetchTarball https://install.devenv.sh/latest)).default # 浪费人生宝贵的 2h ，不明觉厉
+    # unstable.devenv # 需要配置 nix cache ，感觉完全不靠谱啊
     # @todo 不知道为什么，这种方法不行
     # (import (fetchTarball https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz))
     bridge-utils

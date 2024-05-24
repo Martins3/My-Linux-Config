@@ -172,7 +172,7 @@ function config_repo(){
   git config user.email hubachelar@gmail.com
 }
 function check(){
-	cd ~/core/linux
+	cd ~/core/linux-upstream/
 	tig --author="$*"
 }
 alias weather="curl wttr.in/beijin"
