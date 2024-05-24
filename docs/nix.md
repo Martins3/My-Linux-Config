@@ -158,6 +158,7 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - 如何升级 (update / upgrade)
   - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
     - sudo nix-channel --update
+  - 在这里看下日期: https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/
 
 ## 自动环境加载
 

@@ -221,7 +221,8 @@ in
     # acpi
     acpica-tools
     asciidoc
-    # iscsi # @todo 尚未使用过
+    libiscsi
+    # openiscsi
     lsscsi
     sg3_utils # 提供 scsi_logging_level
     targetcli
