@@ -21,6 +21,7 @@ in
     # unstable.zotero
     unstable.slack
     drawio
+    # imagemagick # 压缩照片
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     anki

@@ -16,7 +16,7 @@ in
     # gnuplot
     ccache
     # mold
-    go
+    # go
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
@@ -34,7 +34,6 @@ in
     # libguestfs
     # libguestfs-appliance
     # cloud-utils
-    imagemagick # 压缩照片
     # adoptopenjdk-icedtea-web
     ccls
     checkmake
