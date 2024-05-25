@@ -29,7 +29,7 @@ ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 ln -sf ~/.dotfiles/config/pueue.yml ~/.config/pueue/pueue.yml
 
-# dhruvmanila/browser-bookmarks.nvim
+# a hack way for dhruvmanila/browser-bookmarks.nvim
 ln -sf ~/.config/google-chrome-stable ~/.config/microsoft-edge
 
 mkdir -p ~/.config/efm-langserver/
@@ -40,5 +40,7 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 	echo "tmux plugin install : prefix + I"
 fi
 
-/home/martins3/.dotfiles/rime/linux-install.sh
+if systemctl list-units --type target | grep graphical; then
+	bash "$HOME"/.dotfiles/rime/linux-install.sh
+fi
 echo "Almost finished，open fcitx 5 Configiration"

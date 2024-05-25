@@ -39,7 +39,7 @@ in
     checkmake
     typos # 检查代码中 typo
     # include-what-you-use # 很小的项目都用着不正常
-    unstable.cargo
+    cargo
     cmake
     # ov # feature rich pager
     # zig
