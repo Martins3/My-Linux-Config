@@ -146,7 +146,7 @@ in
     # nixd
     debootstrap # 制作 uml 的工具
     meson
-    unstable.neovim
+    neovim
     # helix # modern neovim
     # cheat
     # wakatime
