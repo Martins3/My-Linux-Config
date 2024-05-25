@@ -22,6 +22,7 @@ require("fidget").setup()
 require("nvim-navic").setup()
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
+-- TODO 只有在 graphical mode 的时候才加载
 require("im_select").setup()
 require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 require("numb").setup()

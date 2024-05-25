@@ -10,6 +10,7 @@ mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
+mkdir -p ~/.config/yazi
 
 [[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
 [[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
