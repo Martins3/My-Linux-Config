@@ -108,13 +108,13 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   check_for_updates = false,
   keys = {
-    { mods = "CTRL|SHIFT", key = "-", action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
-    { mods = "CTRL|SHIFT", key = "+", action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
-    { key = "j", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "k", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "F7", mods = "", action = wezterm.action({ ActivateTabRelative = 1 }) },
-    { key = "F8", mods = "", action = wezterm.action({ ActivateTabRelative = -1 }) },
-    { key = "k", mods = "CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { mods = "CTRL|SHIFT", key = "-",           action = "DecreaseFontSize" }, -- Ctrl-Shift-- (key with -)
+    { mods = "CTRL|SHIFT", key = "+",           action = "IncreaseFontSize" }, -- Ctrl-Shift-+ (key with =)
+    { key = "j",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "k",           mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
+    { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
+    { key = "k",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     -- { key = "j",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     {
       key = "LeftArrow",
@@ -140,6 +140,13 @@ return {
         args = { "ssh", "-t", "martins3@10.0.1.2", "tmux attach || tmux" },
       }),
       -- action = wezterm.action.ShowLauncher
+    },
+    {
+      key = "m",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.0.1", '/bin/sh -l -c "tmux attach || tmux"' },
+      }),
     },
     {
       key = "i",

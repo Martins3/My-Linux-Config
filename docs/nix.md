@@ -39,19 +39,12 @@ nixos-generate-config --root /mnt
 ```nix
  # 将这行注释掉
  # boot.loader.systemd-boot.enable = true;
- # 增加下如下内容
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      grub = {
-        devices = [ "nodev" ];
-        efiSupport = true;
-      };
-    };
-  };
+
+ # 如果是虚拟机，增加下如下内容
+ # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 ```
 
 2. 添加基本的工具方便之后使用
