@@ -158,6 +158,8 @@ nvim/lua/usr/init.lua
 ```plain
 require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 ```
+0.10 的时候，该问题消失了
+
 ## 也许替换掉
 
   { "SmiteshP/nvim-navic" },     -- 在 winbar 展示当前的路径
@@ -166,3 +168,5 @@ https://nvimdev.github.io/lspsaga/outline/
 
 ## 尝试下
 https://github.com/2KAbhishek/termim.nvim
+
+## python 的代码补全消失了

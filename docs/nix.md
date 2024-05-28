@@ -1613,3 +1613,9 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 - https://save-nix-together.org/
 - https://discourse.nixos.org/t/nixos-foundation-board-giving-power-to-the-community/44552?filter=summary
 - https://dataswamp.org/~solene/2024-04-27-nix-internal-crisis.html
+
+
+## 使用 lcov 需要首先配置如下内容
+```txt
+nix-shell -p libgcc
+```
