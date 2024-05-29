@@ -9,6 +9,11 @@
 我特别重视索引的准确程度，ccls 几乎没有出错，但是 clangd 问题很多，而且还出现了
 功能回退的现象。
 
+从项目名称上，大家开始的时候会觉得 clangd 才是 LLVM 的官方项目，而 ccls 是一个个人项目，但是实际上，
+ccls 的作者 MaskRay 的水平远远高于 clangd 的 maintainer ，他在 LLVM 的累积提交的 commit
+超过 3000 个，他的 blog : https://maskray.me/blog/ 水平很高，如果是编译方向的同学，我建议仔细阅读。
+对于 ccls 的代码质量不需要有任何质疑。
+
 ## clangd 的问题
 以内核为例:
 

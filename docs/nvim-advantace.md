@@ -170,3 +170,8 @@ https://nvimdev.github.io/lspsaga/outline/
 https://github.com/2KAbhishek/termim.nvim
 
 ## python 的代码补全消失了
+
+## 的确比较有趣
+https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
+
+其实可以更新下
