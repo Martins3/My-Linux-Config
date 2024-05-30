@@ -76,6 +76,7 @@ sudo dnf install -y fcitx5-rime
 - [Arch Linux 下给 RIME 中](https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/)
 - [Rime 导入搜狗词库](https://www.jianshu.com/p/300bbe1602d4)
   - [”深蓝词库转换“ 一款开源免费的输入法词库转换程序](https://github.com/studyzy/imewlconverter)
+- [也致第一次安装 Rime 的你](https://gitlab.com/xianghongai/Rime/-/tree/main)
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
