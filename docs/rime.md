@@ -64,6 +64,11 @@ sudo dnf install -y fcitx5-rime
 
 参考 [NixOS 中文字体输入法](https://zhuanlan.zhihu.com/p/463403799) 配置。
 
+## 2024-05-30 的发现
+如果似乎是需要将 fcitx 的配置中的 Shift-L 取消掉，不然他会覆盖掉 rime 的行为。
+![image](https://github.com/Martins3/My-Linux-Config/assets/16731244/4b7e55b4-15f6-4eff-8e69-208462b009a1)
+
+
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
