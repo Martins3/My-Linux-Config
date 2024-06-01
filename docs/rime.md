@@ -66,7 +66,9 @@ sudo dnf install -y fcitx5-rime
 
 ## 2024-05-30 的发现
 如果似乎是需要将 fcitx 的配置中的 Shift-L 取消掉，不然他会覆盖掉 rime 的行为。
-![image](https://github.com/Martins3/My-Linux-Config/assets/16731244/4b7e55b4-15f6-4eff-8e69-208462b009a1)
+
+甚至怀疑是键盘的问题，但是实际上并不是；
+https://superuser.com/questions/248517/show-keys-pressed-in-linux
 
 
 ## 参考 && TODO

@@ -121,9 +121,6 @@ alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
 # 打开工作区间并且构建
 alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
-alias ck="/home/martins3/core/vn/code/build/sync-kernel.sh"
-alias cq="/home/martins3/core/vn/code/build/sync-qemu.sh"
-alias du="ncdu"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
@@ -133,7 +130,6 @@ alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
 alias ls="exa --icons"
 alias m="KBUILD_BUILD_TIMESTAMP='' make LLVM=1 CC='ccache clang' -j$(getconf _NPROCESSORS_ONLN)"
-alias bu="/home/martins3/core/vn/code/build/extra.sh"
 alias mc="make clean"
 alias q="exit"
 alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
@@ -156,7 +152,6 @@ alias crash="/home/martins3/core/crash/crash"
 alias clear_nvim_sessions="rm /home/martins3/.local/share/nvim/sessions/*.vim"
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
-alias kvm="/home/martins3/core/vn/code/build/kvm.sh"
 function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
