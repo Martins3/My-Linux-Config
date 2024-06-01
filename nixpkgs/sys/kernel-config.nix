@@ -2,6 +2,8 @@
 
 {
 
+# 使用的语法参考:
+# https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/kernel.nix
 # TODO 这里存在让 fio nullblk 性能下降 10% 的选项，有趣啊
 boot.kernelPatches = [
   # {
@@ -62,6 +64,18 @@ boot.kernelPatches = [
     patch = null;
     extraStructuredConfig = {
       GENERIC_IRQ_DEBUGFS=lib.kernel.yes;
+    };
+  }
+
+
+  {
+    name = "mdev";
+    patch = null;
+    extraStructuredConfig = {
+      SAMPLES=lib.kernel.yes;
+      SAMPLE_VFIO_MDEV_MTTY=lib.kernel.module;
+      SAMPLE_VFIO_MDEV_MDPY=lib.kernel.module;
+      SAMPLE_VFIO_MDEV_MBOCHS=lib.kernel.module;
     };
   }
 
