@@ -79,6 +79,7 @@ https://superuser.com/questions/248517/show-keys-pressed-in-linux
 - [Rime 导入搜狗词库](https://www.jianshu.com/p/300bbe1602d4)
   - [”深蓝词库转换“ 一款开源免费的输入法词库转换程序](https://github.com/studyzy/imewlconverter)
 - [也致第一次安装 Rime 的你](https://gitlab.com/xianghongai/Rime/-/tree/main)
+- [ssnhd 的 rime 教程](https://github.com/ssnhd/rime)
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
