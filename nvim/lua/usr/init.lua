@@ -25,6 +25,7 @@ require("nvim-lightbulb").update_lightbulb()
 require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 require("numb").setup()
 require("debugprint").setup()
+require("toggleterm").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
@@ -36,6 +37,7 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
     vim.cmd("sleep 10m")
   end,
 })
+
 
 -- 导航栏
 require("aerial").setup({

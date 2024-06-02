@@ -100,6 +100,7 @@ wk.register({
     },
     -- 因为 ctrl-i 实际上等同于 tab
     i = { "<c-i>", "go to newer jumplist" },
+    j = {"<cmd>ToggleTerm size=30 direction=horizontal <cr>", "open toggle term"},
     l = {
       name = "+language",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
