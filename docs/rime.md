@@ -70,6 +70,9 @@ sudo dnf install -y fcitx5-rime
 甚至怀疑是键盘的问题，但是实际上并不是；
 https://superuser.com/questions/248517/show-keys-pressed-in-linux
 
+似乎自定义的输入法没办法用了。 例如:
+rime/luna_pinyin.martins3.dict.yaml
+
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
