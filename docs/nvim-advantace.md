@@ -175,3 +175,5 @@ https://github.com/2KAbhishek/termim.nvim
 https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
 
 其实可以更新下
+
+## Markdown 和 bash 的文件类型相关的参数的确需要重构了下了
