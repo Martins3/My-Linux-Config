@@ -90,9 +90,11 @@ sudo dnf install ibus-rime
 ```
 
 ### 存在的问题
-1. 输入数字之后，自动选择数值
-2. NixOS 上的 rime 反而不正常，没有办法输出 smartx
-3. 第一个排序居然是最后的
+1. 自动选择数值
+  - 没太搞懂，虽然说，https://github.com/liubianshi/cmp-lsp-rimels 已经解决了，但是实际上不好用，但是问题不大，因为
+4. , 的输入应该是自动，谁 tm 的输入中文的忽然携带一个英文都好
+3. lua 的输入不太正常
+4. 是否可以变为 toggle 的模式
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
