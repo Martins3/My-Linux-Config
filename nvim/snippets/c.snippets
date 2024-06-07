@@ -58,12 +58,16 @@ snippet sysfs "add monitor into sysfs"
   };
 
   static struct kobject *mymodule;
-  static int greeter_init(void)
+  static DEFINE_MUTEX(test_mutex_hi);
+
+  int greeter_init(void);
+  int greeter_init(void)
   {
   	int error = 0;
+  	guard(mutex)(&test_mutex_hi);
   	if (mymodule != NULL)
   		return 0;
-  	mymodule = kobject_create_and_add("hacking", kernel_kobj);
+  	mymodule = kobject_create_and_add("test", kernel_kobj);
   	if (!mymodule)
   		return -ENOMEM;
 

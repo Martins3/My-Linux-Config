@@ -205,7 +205,7 @@ require("lazy").setup({
     enabled = is_martins3(),
     config = function()
       require("rimels").setup({
-        keys = { start = ";f", stop = ";;", esc = ";j", undo = ";u" },
+        keys = { start = "jk", stop = "jh", esc = ";j", undo = ";u" },
         cmd = { "/home/martins3/.cargo/bin/rime_ls" },
         rime_user_dir = "/home/martins3/.local/share/rime-ls",
         shared_data_dir = "/home/martins3/.local/share/fcitx5/rime",

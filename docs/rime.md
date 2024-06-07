@@ -73,6 +73,26 @@ https://superuser.com/questions/248517/show-keys-pressed-in-linux
 似乎自定义的输入法没办法用了。 例如:
 rime/luna_pinyin.martins3.dict.yaml
 
+## rime-ls
+```sh
+git clone https://github.com/wlh320/rime-ls
+sudo dnf install librime-devel
+cd rime-ls
+cargo build --release
+cp target/release/rime_ls ~/.cargo/bin
+```
+在 asahi linux  fedora 上尝试的时候，还需要安装如下内容:
+
+这是没有图形界面的哦，一样是可以正常使用的
+```sh
+/home/martins3/.dotfiles/rime/linux-install.sh
+sudo dnf install ibus-rime
+```
+
+### 存在的问题
+1. 输入数字之后，自动选择数值
+2. NixOS 上的 rime 反而不正常，没有办法输出 smartx
+3. 第一个排序居然是最后的
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
