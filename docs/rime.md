@@ -94,7 +94,11 @@ sudo dnf install ibus-rime
   - 没太搞懂，虽然说，https://github.com/liubianshi/cmp-lsp-rimels 已经解决了，但是实际上不好用，但是问题不大，因为
 2. , 的输入应该是自动，谁 miaomiao  的输入中文的忽然携带一个英文都好
 3. 是否可以变为 toggle 的模式
-4. 没办法切换为双拼
+4. 没办法切换为双拼，但是在 rime-ls 中是可以的
+```txt
+  schema_trigger_character = "&" -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
+```
+5. 双拼没办法显示当自动匹配的拼音字母
 
 ## 小鹤双拼的配置
 
