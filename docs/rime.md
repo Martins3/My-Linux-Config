@@ -92,9 +92,16 @@ sudo dnf install ibus-rime
 ### 存在的问题
 1. 自动选择数值
   - 没太搞懂，虽然说，https://github.com/liubianshi/cmp-lsp-rimels 已经解决了，但是实际上不好用，但是问题不大，因为
-4. , 的输入应该是自动，谁 tm 的输入中文的忽然携带一个英文都好
-3. lua 的输入不太正常
-4. 是否可以变为 toggle 的模式
+2. , 的输入应该是自动，谁 miaomiao  的输入中文的忽然携带一个英文都好
+3. 是否可以变为 toggle 的模式
+4. 没办法切换为双拼
+
+## 小鹤双拼的配置
+
+- https://github.com/brglng/rime-xhup
+- https://github.com/ASC8384/myRime
+
+配置小鹤双拼还是比较简单的.
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
