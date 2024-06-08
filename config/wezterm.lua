@@ -149,6 +149,13 @@ return {
       }),
     },
     {
+      key = "r",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.0.4", '/bin/sh -l -c "tmux attach || tmux"' },
+      }),
+    },
+    {
       key = "i",
       mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({

@@ -14,7 +14,6 @@ require("usr.which-key")
 require("usr.colorscheme")
 require("usr.colorscheme")
 require("usr.lualine")
-require("usr.rimels")
 require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
 require("nvim-surround").setup()
 require("gitsigns").setup({ signcolumn = false, numhl = true })
@@ -39,7 +38,6 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
     vim.cmd("sleep 10m")
   end,
 })
-
 
 -- 导航栏
 require("aerial").setup({
