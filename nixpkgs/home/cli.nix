@@ -335,8 +335,8 @@ in
 
   home.file.gdbinit = {
     source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/2b107b27949d13f6ef041de6eec1ad2e5f7b4cbf/.gdbinit";
-      sha256 = "02rxyk8hmk7xk1pyhnc5z6a2kqyd63703rymy9rfmypn6057i4sr";
+      url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit";
+      sha256 = "sha256-/NQSg9yDU7K1fjxXXHYkw0zUqg689ATURpXiTj7wPbE=";
       name = "gdbinit";
     };
     target = ".gdbinit";
