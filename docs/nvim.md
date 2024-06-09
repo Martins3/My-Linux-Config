@@ -1,4 +1,4 @@
-# 2023 年 vim 的 C/C++ 配置
+# 2024 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -244,8 +244,6 @@ nvim
 一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建
 
 ```sh
-# rsync.nvim
-cd ~/.local/share/nvim/lazy/rsync.nvim && make -j8
 # markdown-preview.nvim
 cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
 ```
