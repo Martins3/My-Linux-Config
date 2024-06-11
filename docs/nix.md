@@ -1619,3 +1619,5 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 ```txt
 nix-shell -p libgcc
 ```
+
+## nixos 的 kernel 有方便的方法裁剪吗？

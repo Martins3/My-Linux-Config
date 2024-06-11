@@ -105,7 +105,9 @@ sudo dnf install ibus-rime
 - https://github.com/brglng/rime-xhup
 - https://github.com/ASC8384/myRime
 
-配置小鹤双拼还是比较简单的.
+配置小鹤双拼还是比较简单的。
+
+- https://www.zhihu.com/question/20698750
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)

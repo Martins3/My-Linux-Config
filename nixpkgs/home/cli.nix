@@ -34,7 +34,7 @@ in
     # libguestfs
     # libguestfs-appliance
     # cloud-utils
-    # adoptopenjdk-icedtea-web
+    adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
     ccls
     checkmake
     typos # 检查代码中 typo
