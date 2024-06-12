@@ -648,12 +648,17 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 https://www.youtube.com/@NixCon
 
-## 更新 nixos 为 22.11
+## 更新 nixos 为 24.05
 
 内容参考这里:
 
 - https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
 - https://news.ycombinator.com/item?id=33815085
+
+修改 scripts/nix/nix-channel.sh
+```sh
+nixos-rebuild switch --upgrade
+```
 
 ## 垃圾清理
 
@@ -1180,6 +1185,23 @@ man home-configuration.nix 中搜索 dunst
 https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 
 目前使用: clash-verge
+
+### 只是使用 clash-verge
+1. https://github.com/MetaCubeX/meta-rules-dat/releases
+```txt
+WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
+ERRO[2024-06-12T21:17:17.693315974+08:00] can't initial GeoIP: can't download MMDB: conte
+FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOIP,CN,🎯 全
+```
+2. 默认路径: /home/martins3/.config/mihomo
+3. 只需要拷贝 config.yaml
+
+
+### clash-verge
+
+1. 拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb
+ .local/share/io.github.clash-verge-rev.clash-verge-rev
+
 
 ## canTouchEfiVariables 到底是什么来头
 

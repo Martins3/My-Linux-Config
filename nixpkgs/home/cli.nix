@@ -306,8 +306,8 @@ in
     shellAliases = { };
     initExtra = "
     source /home/martins3/.dotfiles/config/zsh
-    source /home/martins3/core/zsh/zsh
     source /home/martins3/core/vn/code/zsh
+    source /home/martins3/core/zsh/zsh
     ";
 
     plugins = [

@@ -47,7 +47,7 @@ in
     }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
-    # unstable.clash-verge-rev # 不知道为什么，还是存在问题
+    clash-verge-rev
     vlc
     # podman-desktop
     # tdesktop
