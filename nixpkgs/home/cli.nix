@@ -37,6 +37,7 @@ in
     adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
     ccls
     checkmake
+    # minicom
     typos # 检查代码中 typo
     # include-what-you-use # 很小的项目都用着不正常
     cargo
@@ -144,7 +145,7 @@ in
     # slirp4netns
     # nix-index
     # nixd
-    debootstrap # 制作 uml 的工具
+    # debootstrap # 制作 uml 的工具
     meson
     neovim
     # helix # modern neovim

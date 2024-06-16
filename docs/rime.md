@@ -50,6 +50,8 @@ sudo dnf install -y fcitx5-rime
   - [简单安利 Rime 输入法](https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more)
 
 
+https://github.com/fcitx/fcitx5-rime/issues/15
+
 ## nixos 的配置
 其他的内容都相同，就是 fcitx 和 rime 的安装和一般的系统不同。
 

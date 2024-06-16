@@ -39,6 +39,7 @@ in
     # libreoffice
     unstable.thunderbird
     feishu
+    netease-cloud-music-gtk
     (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
       postInstall = builtins.replaceStrings
         ["--run"]
