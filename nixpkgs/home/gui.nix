@@ -36,6 +36,7 @@ in
     # gource
     # unstable.firefox
     google-chrome
+    # pot # 启动之后 segfault 了
     # libreoffice
     unstable.thunderbird
     feishu

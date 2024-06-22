@@ -1,4 +1,4 @@
-# NixOS 初步尝试
+#pytest NixOS 初步尝试
 
 声明：
 
@@ -1643,3 +1643,6 @@ nix-shell -p libgcc
 ```
 
 ## nixos 的 kernel 有方便的方法裁剪吗？
+
+## 这个似乎还不错
+https://github.com/gvolpe/nix-config

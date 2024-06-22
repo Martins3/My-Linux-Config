@@ -33,6 +33,7 @@
     "intel_iommu=on"
     "iommu=pt"
     "intremap=on"
+    "rcutree.sysrq_rcu=1"
     # "amd_iommu_intr=vapic"
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"

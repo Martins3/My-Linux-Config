@@ -79,22 +79,19 @@ snippet sysfs "add monitor into sysfs"
   }
 
 snippet ktest "add a new ktest"
-  static bool status_ready = false;
-  static int status_init(void)
+  int test_$1_init(void)
   {
-  	status_ready = true;
+  	return 0;
   }
+
+  int test_$1_exit(void)
+  {
+  	return 0;
+  }
+
   int test_$1(long action)
   {
-  	int ret;
-  	if (!status_ready) {
-  		ret = status_init();
-  		if (ret < 0)
-  			return ret;
-  	}
-
   	switch (action) {
-  	case 1:
   		break;
   	}
   	return 0;

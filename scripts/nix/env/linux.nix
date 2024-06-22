@@ -30,10 +30,10 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     liburing
     libaio
 
-	# unstable.rustfmt
-	# unstable.rustc
-	# unstable.cargo
-	# unstable.rust-bindgen
+	 rustfmt
+	 rustc
+	 cargo
+	 rust-bindgen
 
     # Necessary for the openssl-sys crate:
     pkgs.openssl
