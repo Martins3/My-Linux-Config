@@ -2,6 +2,13 @@
 
 let
   unstable = import <unstable> { };
+
+    # tmux 最近的鼠标拖动会很卡
+    wopkgs = import (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/53951c0c1444e500585205e8b2510270b2ad188f.tar.gz";
+    }) {};
+
+    myPkg = wopkgs.tmux;
 in
 {
   fonts.fontconfig.enable = true;
@@ -53,7 +60,8 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    tmux
+    # tmux
+    myPkg
     tmuxp
     pueue
     screen

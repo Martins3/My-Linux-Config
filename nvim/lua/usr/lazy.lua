@@ -160,7 +160,7 @@ require("lazy").setup({
     config = function()
       require("im_select").setup()
     end,
-    enable = false
+    enabled = false
   }, -- 自动切换输入法
   { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等

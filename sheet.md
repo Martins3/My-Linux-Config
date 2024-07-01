@@ -64,6 +64,8 @@ git rebase --continue
 ### submodule
 
 - git submodule update --recursive
+- git submodule update --init --recursive
+
 
 ### log
 
@@ -213,10 +215,15 @@ git branch --contains $tag
 
 ## tar
 
+### tar.gz
 - tar cvzf name_of_archive_file.tar.gz name_of_directory_to_tar
   - https://unix.stackexchange.com/questions/46969/compress-a-folder-with-tar
   - z : 使用 gzip 压缩
 - tar -xvf
+
+### gz
+gzip -d file.gz
+
 
 ## systemd
 
