@@ -10,15 +10,12 @@ mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
-mkdir -p ~/.config/yazi
 mkdir -p ~/.config/pueue
 
 [[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
 [[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
 [[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
 
-ln -sf ~/.dotfiles/config/yazi/yazi.toml ~/.config/yazi/yazi.toml
-ln -sf ~/.dotfiles/config/yazi/keymap.toml ~/.config/yazi/keymap.toml
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
 ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml

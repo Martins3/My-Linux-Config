@@ -34,7 +34,6 @@ wk.register({
     k = { "<cmd>Telescope colorscheme<cr>", "colorscheme" },
     m = { "<cmd>Telescope bookmarks<cr>", "search bookmarks" },
     o = { "<cmd>Telescope lsp_document_symbols<cr>", "search symbols in file" },
-    y = { "<cmd>lua require('yazi').yazi() <cr>", "yazi" },
     -- leader p used for paste from system clipboard
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", "search symbols in project" },
     -- leader x used for map language specific function

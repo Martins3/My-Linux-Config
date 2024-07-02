@@ -32,7 +32,6 @@ in
     lua
     zfs
     # 文件浏览器
-    # yazi
     # xplr
 
     lua-language-server

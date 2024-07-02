@@ -193,15 +193,6 @@ require("lazy").setup({
     config = true,
   },
   {
-    "mikavilpas/yazi.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    event = "VeryLazy",
-    opts = { open_for_directories = false },
-  },
-
-  {
     "liubianshi/cmp-lsp-rimels",
     dir = "/home/martins3/core/cmp-lsp-rimels",
     -- 这个插件让正常的补全很卡
