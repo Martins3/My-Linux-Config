@@ -2,7 +2,7 @@
 set -E -e -u -o pipefail
 cd ~ || exit 0
 if [[ ! -d ~/.dotfiles ]]; then
-	git clone https://github.com/Martins3/My-Linux-config .dotfiles
+  git clone https://github.com/Martins3/My-Linux-config .dotfiles
 fi
 mkdir -p ~/.config
 mkdir -p ~/.config/wtf
@@ -10,6 +10,7 @@ mkdir -p ~/.config/wezterm
 mkdir -p ~/.config/zathura
 mkdir -p ~/.cargo
 mkdir -p ~/.config/atuin/
+mkdir -p ~/.config/pueue
 
 [[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
 [[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
@@ -22,21 +23,23 @@ ln -sf ~/.dotfiles/config/alacritty.toml ~/.alacritty.toml
 ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
 ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
-ln -sf ~/.dotfiles/config/cargo.conf ~/.cargo/config
+ln -sf ~/.dotfiles/config/cargo.toml ~/.cargo/config.toml
 ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 ln -sf ~/.dotfiles/config/pueue.yml ~/.config/pueue/pueue.yml
 
-# dhruvmanila/browser-bookmarks.nvim
+# a hack way for dhruvmanila/browser-bookmarks.nvim
 ln -sf ~/.config/google-chrome-stable ~/.config/microsoft-edge
 
 mkdir -p ~/.config/efm-langserver/
 ln -sf ~/.dotfiles/nvim/efm.yaml ~/.config/efm-langserver/config.yaml
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	echo "tmux plugin install : prefix + I"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "tmux plugin install : prefix + I"
 fi
 
-/home/martins3/.dotfiles/rime/linux-install.sh
-echo "Almost finished，open fcitx 5 Configiration"
+if systemctl list-units --type target | grep graphical; then
+  bash "$HOME"/.dotfiles/rime/linux-install.sh
+  echo "Almost finished，open fcitx 5 Configiration"
+fi

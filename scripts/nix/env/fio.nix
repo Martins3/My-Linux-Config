@@ -9,7 +9,6 @@ pkgs.mkShell {
 			autoconf
 			gettext
 			autoconf-archive
-			autoconf
 			automake
 			libtool
 			bison

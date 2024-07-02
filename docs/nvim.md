@@ -1,4 +1,4 @@
-# 2023 年 vim 的 C/C++ 配置
+# 2024 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -244,8 +244,6 @@ nvim
 一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建
 
 ```sh
-# rsync.nvim
-cd ~/.local/share/nvim/lazy/rsync.nvim && make -j8
 # markdown-preview.nvim
 cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
 ```
@@ -427,7 +425,7 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 ### 导航
 
-利用 [aerial.nvim](stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
+利用 [aerial.nvim](https://github.com/stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
 | 基于 stevearc/aerial.nvim 的导航栏 |
 | ---------------------------------- |
@@ -505,11 +503,11 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 ### vim cmdline 自动补全
 
-通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
+通过 [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline) 可以让 vim cmdline 实现模糊搜索。
 
-| 利用 wilder.nvim 在命令模式自动补全 |
-| ----------------------------------- |
-| <img src="./img/wilder.png" />      |
+| 利用 在命令模式自动补全                                                                                        |
+|----------------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/Martins3/My-Linux-Config/assets/16731244/f3eea191-395f-458f-806a-21942bdc8b86" /> |
 
 ### 终端
 

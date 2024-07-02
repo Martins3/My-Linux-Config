@@ -115,6 +115,7 @@ return {
     { key = "F7",          mods = "",           action = wezterm.action({ ActivateTabRelative = 1 }) },
     { key = "F8",          mods = "",           action = wezterm.action({ ActivateTabRelative = -1 }) },
     { key = "k",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
+    -- { key = "j",           mods = "CTRL",       action = wezterm.action({ ActivateTabRelative = 1 }) },
     {
       key = "LeftArrow",
       mods = "CTRL|SHIFT",
@@ -126,20 +127,33 @@ return {
       action = wezterm.action.DisableDefaultAssignment,
     },
     {
-      key = "t",
+      key = "g",
       mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({
-        args = { "bash", "-l", "-c", "zellij attach || zellij" },
+        args = { "ssh", "-t", "martins3@10.0.1.1", "tmux attach || tmux" },
+      }),
+    },
+    {
+      key = "p",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.1.2", "tmux attach || tmux" },
       }),
       -- action = wezterm.action.ShowLauncher
     },
     {
-      key = "t",
+      key = "m",
       mods = "CTRL|SHIFT",
       action = wezterm.action.SpawnCommandInNewTab({
-        args = { "bash", "-l", "-c", "zellij attach || zellij" },
+        args = { "ssh", "-t", "martins3@10.0.0.1", '/bin/sh -l -c "tmux attach || tmux"' },
       }),
-      -- action = wezterm.action.ShowLauncher
+    },
+    {
+      key = "r",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "ssh", "-t", "martins3@10.0.0.4", '/bin/sh -l -c "tmux attach || tmux"' },
+      }),
     },
     {
       key = "i",
@@ -148,6 +162,20 @@ return {
         args = { "ssh", "-t", "martins3@192.168.19.55", "tmux attach || tmux" },
       }),
       -- action = wezterm.action.ShowLauncher
+    },
+    {
+      key = "t",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "zsh" },
+      }),
+    },
+    {
+      key = "z",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.SpawnCommandInNewTab({
+        args = { "/bin/sh", "-l", "-c", "zellij attach || zellij" },
+      }),
     },
     { key = "F8", mods = "", action = wezterm.action.ShowLauncher },
   },
@@ -163,20 +191,12 @@ return {
   use_fancy_tab_bar = false,
   launch_menu = {
     {
-      label = "M2-wired",
-      args = { "ssh", "-b", "10.0.0.1", "-t", "martins3@10.0.0.2", "zellij attach || zellij" },
-    },
-    {
       label = "Mi-wired",
       args = { "ssh", "-b", "10.0.0.1", "-t", "martins3@10.0.0.2", "zellij attach || zellij" },
     },
     {
       label = "M2",
       args = { "ssh", "-t", "martins3@192.168.11.99", "zellij attach || zellij" },
-    },
-    {
-      label = "Mi",
-      args = { "ssh", "-t", "martins3@192.168.11.17", "zellij attach || zellij" },
     },
     {
       label = "zellij",
@@ -201,7 +221,7 @@ return {
   },
   -- 这两个配置是互斥的，前面那个是使用模糊颜色，后面使用图片
   -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  window_background_opacity = 0.9,
+  window_background_opacity = 1.0,
   window_background_gradient = {
     orientation = "Vertical",
     interpolation = "Linear",

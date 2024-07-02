@@ -11,6 +11,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function is_martins3()
+  local root = vim.fn.system("whoami")
+  root = root:sub(1, -2)
+  return vim.fn.system("whoami") == "martins3\n"
+end
+
+-- FIXME windows 和 mac 也许不可以使用这个方法
+local function is_graphic_mode()
+  local exit = os.execute("ls " .. os.getenv("HOME") .. "/Pictures/")
+  return exit == 0
+end
+
 require("lazy").setup({
   -- 基础
   "nvim-lua/plenary.nvim", -- 很多 lua 插件依赖的库
@@ -26,6 +38,7 @@ require("lazy").setup({
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
+  { "hrsh7th/cmp-cmdline" },
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
   -- 代码段
@@ -131,13 +144,24 @@ require("lazy").setup({
   "mattn/efm-langserver", -- 支持 bash
   "gbrlsnchs/telescope-lsp-handlers.nvim",
   "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
   -- 其他
   "ggandor/leap.nvim", -- 快速移动
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
-  "keaising/im-select.nvim", -- 自动切换输入法
+  {
+    "keaising/im-select.nvim",
+    config = function()
+      require("im_select").setup()
+    end,
+    enabled = false
+  }, -- 自动切换输入法
   { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
@@ -155,15 +179,76 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    "martins3/rsync.nvim",
-    -- dir = "/home/martins3/core/rsync.nvim/",
+    -- "martins3/rsync.nvim",
+    dir = "/home/martins3/core/rsync.nvim/",
     lazy = true,
-    enabled = function()
-      local root = vim.fn.system("whoami")
-      root = root:sub(1, -2)
-      return vim.fn.system("whoami") == "martins3\n"
-    end,
+    enabled = is_martins3(),
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},
+  },
+  "carbon-steel/detour.nvim",
+  {
+    "NStefan002/2048.nvim",
+    cmd = "Play2048",
+    config = true,
+  },
+  {
+    "liubianshi/cmp-lsp-rimels",
+    dir = "/home/martins3/core/cmp-lsp-rimels",
+    -- 这个插件让正常的补全很卡
+    enabled = false,
+    config = function()
+      local compare = require("cmp.config.compare")
+      local cmp = require("cmp")
+      cmp.setup({
+        -- 设置排序顺序
+        sorting = {
+          comparators = {
+            compare.sort_text,
+            compare.offset,
+            compare.exact,
+            compare.score,
+            compare.recently_used,
+            compare.kind,
+            compare.length,
+            compare.order,
+          },
+        },
+      })
+
+      require("rimels").setup({
+        keys = { start = "jk", stop = "jh", esc = ";j", undo = ";u" },
+        cmd = { "/home/martins3/.cargo/bin/rime_ls" },
+        rime_user_dir = "/home/martins3/.local/share/rime-ls",
+        shared_data_dir = "/home/martins3/.local/share/fcitx5/rime",
+        filetypes = { "NO_DEFAULT_FILETYPES" },
+        single_file_support = true,
+        settings = {},
+        docs = {
+          description = [[https://www.github.com/wlh320/rime-ls, A language server for librime]],
+        },
+        max_candidates = 9,
+        trigger_characters = {},
+        schema_trigger_character = "&", -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
+        probes = {
+          ignore = {},
+          using = {},
+          add = {},
+        },
+        detectors = {
+          with_treesitter = {},
+          with_syntax = {},
+        },
+        cmp_keymaps = {
+          disable = {
+            space = false,
+            numbers = false,
+            enter = false,
+            brackets = false,
+            backspace = false,
+          },
+        },
+      })
+    end,
   },
 }, {})

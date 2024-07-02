@@ -36,11 +36,22 @@
 - git reset : 将所有的内容 unstage
 - git restore . : 将 unstage 的修改删除掉
 
+### 检查一个文件的历史
+
+tig vl.c
+
+但是如果这一个文件被删除了
+
+```sh
+tig --  rust/alloc/boxed.rs
+```
+
 ### 如何修改一个特定的 commit
 
 参考: https://stackoverflow.com/questions/1186535/how-do-i-modify-a-specific-commit
 
 简而言之就是:
+
 ```sh
 git rebase --interactive bbc643cd~
 # pick 修改为 edit
@@ -53,6 +64,8 @@ git rebase --continue
 ### submodule
 
 - git submodule update --recursive
+- git submodule update --init --recursive
+
 
 ### log
 
@@ -72,13 +85,21 @@ git rebase --continue
 
 - git fetch origin
 - git reset --hard origin/master
-- -> 如何将多个 commit squash 一下
+
+### 如何将多个 commit squash 一下
+
 - git reset --soft HEAD~3 && git commit
-- -> 撤销一个 commit
+
+### 撤销一个 commit
+
 - git reset --soft HEAD^
-- -> 拉取 tags
+
+### 拉取 tags
+
 - git fetch --tags
-- -> 在一个特定的 commit 上打 tag
+
+### 在一个特定的 commit 上打 tag
+
 - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
 
 ### patch
@@ -110,6 +131,10 @@ git switch dev
 ### autostash
 
 git pull --rebase --autostash
+
+### branch 包含了 tag
+
+git branch --contains $tag
 
 ## redirect
 
@@ -190,10 +215,15 @@ git pull --rebase --autostash
 
 ## tar
 
+### tar.gz
 - tar cvzf name_of_archive_file.tar.gz name_of_directory_to_tar
   - https://unix.stackexchange.com/questions/46969/compress-a-folder-with-tar
   - z : 使用 gzip 压缩
 - tar -xvf
+
+### gz
+gzip -d file.gz
+
 
 ## systemd
 

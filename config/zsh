@@ -116,22 +116,11 @@ function zj() {
 }
 
 alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
-# 快速打开 QEMU
-alias dk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -d"
-alias qt="/home/martins3/.dotfiles/scripts/qemu/launch.sh -t"
-alias rk=/home/martins3/core/vn/docs/qemu/sh/alpine.sh
-alias kk="/home/martins3/.dotfiles/scripts/qemu/launch.sh -k"
-alias rkk="/home/martins3/.dotfiles/scripts/qemu/choose_launch.sh"
-# 这里将 $ 转义，从而是执行 ge 命令的时候加载端口而非在
-alias ge="/home/martins3/.dotfiles/scripts/qemu/launch.sh -s"
-alias vnc="/home/martins3/.dotfiles/scripts/qemu/launch.sh -v"
-alias gege="/home/martins3/.dotfiles/scripts/qemu/launch.sh -c"
+
+
 # 打开工作区间并且构建
 alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
-alias ck="/home/martins3/.dotfiles/config/sh/compile-kernel.sh"
-alias cq="/home/martins3/.dotfiles/config/sh/compile-qemu.sh"
-alias du="ncdu"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
@@ -139,12 +128,10 @@ alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
 alias knews="/home/martins3/.dotfiles/scripts/systemd/news.sh kernel"
 alias ldc="lazydocker"
-alias ls="eza --icons"
-alias m="chrt -i 0 make CC='ccache gcc' -j$(getconf _NPROCESSORS_ONLN)"
-alias bu="/home/martins3/.dotfiles/config/sh/build-linux.sh && cd ~/core/linux-build && m"
+alias ls="exa --icons"
+alias m="KBUILD_BUILD_TIMESTAMP='' make LLVM=1 CC='ccache clang' -j$(getconf _NPROCESSORS_ONLN)"
 alias mc="make clean"
 alias q="exit"
-alias qnews="/home/martins3/.dotfiles/scripts/systemd/news.sh qemu"
 alias v="mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)"
 alias vs="/home/martins3/.dotfiles/config/sh/close-nvim.sh"
 alias vc="rm -r ~/.local/share/nvim/sessions"
@@ -153,16 +140,10 @@ alias he="nvim +10000  /home/martins3/.dotfiles/sheet.md"
 alias kvm_stat="sudo /home/martins3/core/linux/tools/kvm/kvm_stat/kvm_stat"
 alias p="python -m venv .venv && source .venv/bin/activate"
 alias i="ipython"
-alias t="/home/martins3/.dotfiles/config/sh/bpftrace.sh"
 alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
-alias tracepoint="/home/martins3/.dotfiles/config/sh/tracepoint.sh"
-alias funcgraph="/home/martins3/.dotfiles/config/sh/funcgraph.sh"
 alias cloc="tokei . -f --sort lines"
-alias gscp="/home/martins3/.dotfiles/config/sh/gscp.sh"
 alias static="nix-shell -p gcc glibc.static --command zsh"
 alias crash="/home/martins3/core/crash/crash"
-alias clear_nvim_sessions="rm /home/martins3/.local/share/nvim/sessions/*.vim"
-alias rr=/home/martins3/.dotfiles/config/sh/sync.sh
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
 function config_repo(){
@@ -170,9 +151,16 @@ function config_repo(){
   git config user.email hubachelar@gmail.com
 }
 function check(){
-	cd ~/core/linux
+	cd ~/core/linux-upstream/
 	tig --author="$*"
 }
 alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
+
+function u() {
+	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
+	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
+}
+export NIXPKGS_ALLOW_INSECURE=1
+export EDITOR=nvim

@@ -1,4 +1,4 @@
-# NixOS 初步尝试
+#pytest NixOS 初步尝试
 
 声明：
 
@@ -12,7 +12,7 @@
 
 ## 安装
 
-### 手动安装
+### 在命令行中安装
 
 #### 手动分区
 
@@ -39,19 +39,12 @@ nixos-generate-config --root /mnt
 ```nix
  # 将这行注释掉
  # boot.loader.systemd-boot.enable = true;
- # 增加下如下内容
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      grub = {
-        devices = [ "nodev" ];
-        efiSupport = true;
-      };
-    };
-  };
+
+ # 如果是虚拟机，增加下如下内容
+ # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 ```
 
 2. 添加基本的工具方便之后使用
@@ -113,11 +106,15 @@ sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
 # 在配置中增加上
 # networking.proxy.default = "http://192.168.64.62:8889"; # 需要提前搭梯子
-sudo nixos rebuild
+sudo nixos-rebuild
 ```
+逆天，这里居然也是会存在问题的，正是鸡生蛋，蛋生鸡的问题。
 
 2. 重启
-3. 首先解决网络问题，使用 sed 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
+
+<-- 这里我们使用了一个备份，直接用吧
+
+3. 首先解决网络问题，使用 nano 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
 4. 打开 shell，执行 `nix-shell -p vim git` ，然后
 
 ```sh
@@ -153,6 +150,8 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
 - 如何升级 (update / upgrade)
   - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
+    - sudo nix-channel --update
+  - 在这里看下日期: https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/
 
 ## 自动环境加载
 
@@ -396,10 +395,15 @@ in {
 - https://github.com/nix-community/nixos-generators
   - nixos-generate -f iso -c /etc/nixos/configuration.nix : 利用 squashfs 直接构建出来安装用 iso
   - 可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的时候还要下载
-  - 而且可以还可以构建 qcow2
-  - 当然还是有点小问题，qcow2 构建直接报错，iso 的使用 qemu-system-x86_64 -cdrom /nix/store/ff5fcyx1ka3kmiw8bxl29l377d4xwn3i-nixos.iso/iso/nixos.iso --enable-kvm 启动，因为目前是含有 mount 的 ，systemd 无法正常启动的
+  - 等待版本升级吧，nixos-generate --disk-size 102400 -f qcow -c /home/martins3/core/vn/docs/qemu/sh/configuration.nix 中 disk-size 不识别，不设置也会报错，看上去这会是一个可行的路线的
+    - 这应该就是正确的解决办法了
 - nixpacks
   - https://news.ycombinator.com/item?id=32501448
+
+如果是完全手动安装一个，还是实在是太复杂了:
+  - https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html
+    - 这个好归好，但是使用的共享目录啊
+
 
 ## 其他有趣的 Linux Distribution
 
@@ -644,12 +648,17 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 https://www.youtube.com/@NixCon
 
-## 更新 nixos 为 22.11
+## 更新 nixos 为 24.05
 
 内容参考这里:
 
 - https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
 - https://news.ycombinator.com/item?id=33815085
+
+修改 scripts/nix/nix-channel.sh
+```sh
+nixos-rebuild switch --upgrade
+```
 
 ## 垃圾清理
 
@@ -1177,6 +1186,23 @@ https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 
 目前使用: clash-verge
 
+### 只是使用 clash-verge
+1. https://github.com/MetaCubeX/meta-rules-dat/releases
+```txt
+WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
+ERRO[2024-06-12T21:17:17.693315974+08:00] can't initial GeoIP: can't download MMDB: conte
+FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOIP,CN,🎯 全
+```
+2. 默认路径: /home/martins3/.config/mihomo
+3. 只需要拷贝 config.yaml
+
+
+### clash-verge
+
+1. 拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb
+ .local/share/io.github.clash-verge-rev.clash-verge-rev
+
+
 ## canTouchEfiVariables 到底是什么来头
 
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
@@ -1340,17 +1366,6 @@ https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
 
-
-## 配置文件
-
-```txt
- fileSystems."/home/martins3/hack" = {
-    device = "/dev/disk/by-uuid/8eba61f5-5ed3-4221-ba7a-40b6ef3cbd62";
-    fsType = "auto";
-    options = [ "user"];
-  };
-```
-
 ## 生成密码
 
 mkpasswd -m sha-512 abc
@@ -1493,3 +1508,143 @@ https://github.com/flox/flox
 
 ## 参考这个资源
 https://dotfiles.github.io/
+
+## 太坑了
+- https://github.com/NixOS/nixpkgs/issues/18995
+
+在 clang 自动携带了 flags :
+
+
+## linux defualt.nix
+
+之前的写法
+```nix
+{ pkgs ? import <nixpkgs> { },
+  unstable ? import <nixos-unstable> { }
+}:
+
+pkgs.stdenv.mkDerivation {
+  name = "yyds";
+  buildInputs = with pkgs; [
+  # ....
+  ];
+}
+```
+
+还有一种写法:
+```nix
+with import <nixpkgs> {};
+pkgs.llvmPackages.stdenv.mkDerivation {
+  hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+    getopt
+    flex
+    ];
+}
+```
+
+还有一种写法:
+```nix
+
+with import <nixpkgs> {};
+
+pkgs.llvmPackages_14.stdenv.mkDerivation {
+   hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+  ];
+  }
+
+```
+
+也可以参考: https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+
+
+## 使用 clang 交叉编译内核
+
+https://stackoverflow.com/questions/61771494/how-do-i-cross-compile-llvm-clang-for-aarch64-on-x64-host
+
+```txt
+🧀  clang -arch arm64 aio.c -o main_arm64
+clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-command-line-argument]
+```
+检查内核 compile_commands.json ，果然是没有输出的。
+
+## 搭建下 nixos 上 hack kvm 的方法
+- https://phip1611.de/blog/building-an-out-of-tree-linux-kernel-module-in-nix/
+
+文档还是很简单的，但是这个代码仓库就太复杂了。
+
+## 备份一些代码
+```nix
+  systemd.user.services.kernel = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      # User = "martins3";
+      Type = "forking";
+      # RemainAfterExit = true;
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
+      Restart = "no";
+    };
+  };
+
+  # systemctl --user list-timers --all
+  systemd.user.timers.kernel = {
+    enable = true;
+    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.timers.drink_water = {
+    enable = true;
+    timerConfig = { OnCalendar="*:0/5"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.drink_water = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
+      Restart = "no";
+    };
+  };
+
+  systemd.user.services.monitor = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
+      Restart = "no";
+    };
+    wantedBy = [ "timers.target" ];
+  };
+```
+
+## 如何解决掉本身就在代理的问题
+- https://github.com/NixOS/nixpkgs/issues/27535 是我操作有问题，不行啊！
+
+## 社区危机
+- https://save-nix-together.org/
+- https://discourse.nixos.org/t/nixos-foundation-board-giving-power-to-the-community/44552?filter=summary
+- https://dataswamp.org/~solene/2024-04-27-nix-internal-crisis.html
+- https://www.reddit.com/r/NixOS/comments/1dqn9os/4_out_of_5_nixos_board_members_have_quit/
+  - 还是要凉凉吗?
+
+
+## 使用 lcov 需要首先配置如下内容
+```txt
+nix-shell -p libgcc
+```
+
+## nixos 的 kernel 有方便的方法裁剪吗？
+
+## 这个似乎还不错
+https://github.com/gvolpe/nix-config

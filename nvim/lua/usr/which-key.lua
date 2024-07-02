@@ -16,7 +16,7 @@ wk.register({
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "go to reference" },
     w = { "<cmd>Telescope diagnostics<cr>", "diagnostics" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "go to implementation" },
-    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct"},
+    j = { "<cmd>lua require('barbecue.ui').navigate(-1)<cr>", "go to the head of function / struct" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
     -- x 打开文件
     -- s 用于 leap 跳转到下一个窗口
@@ -76,9 +76,9 @@ wk.register({
     c = {
       -- only works in a c/cpp file
       name = "+ouroboros",
-      c = { "<cmd>Ouroboros<cr>", "open file in current window"},
-      h = { "<cmd>split | Ouroboros<cr>", "open file in a horizontal split"},
-      v = { "<cmd>vsplit | Ouroboros<cr>", "open file in a vertical split"},
+      c = { "<cmd>Ouroboros<cr>", "open file in current window" },
+      h = { "<cmd>split | Ouroboros<cr>", "open file in a horizontal split" },
+      v = { "<cmd>vsplit | Ouroboros<cr>", "open file in a vertical split" },
     },
     f = {
       name = "+file",
@@ -99,6 +99,7 @@ wk.register({
     },
     -- 因为 ctrl-i 实际上等同于 tab
     i = { "<c-i>", "go to newer jumplist" },
+    j = {"<cmd>ToggleTerm size=30 direction=horizontal <cr>", "open toggle term"},
     l = {
       name = "+language",
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
@@ -142,6 +143,7 @@ wk.register({
     g = { "<cmd>vsp<cr>", "vertical split window" },
     s = { "<cmd>sp<cr>", "horizontal split window" },
     m = { "<cmd>only<cr>", "delete other window" },
+    M = { "<cmd>Detour<cr>", "maximum current window in a popup" },
     u = { "<cmd>UndotreeToggle<cr>", "open undo tree" },
     n = { "<cmd>AerialToggle!<cr>", "toggle navigator" },
     h = { "<C-w>h", "go to the window left" },
@@ -194,4 +196,21 @@ end
 vim.cmd("autocmd FileType markdown lua MarkdownLeaderX()")
 function MarkdownLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
+end
+
+vim.cmd("autocmd FileType rust lua RunRust()")
+function RunRust()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.keymap.set("n", "<leader>a", function()
+    vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+    -- or vim.lsp.buf.codeAction() if you don't want grouping.
+  end, { silent = true, buffer = bufnr })
+
+  vim.keymap.set("n", "<leader>r", function()
+    vim.cmd.RustLsp("run")
+  end, { silent = true, buffer = bufnr })
+
+  vim.keymap.set("n", "<leader>R", function()
+    vim.cmd.RustLsp("runnables")
+  end, { silent = true, buffer = bufnr })
 end

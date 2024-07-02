@@ -34,3 +34,5 @@ perf.data.old
 *.qcow2
 __pycache__
 kernel/module/.gdb_history
+
+.nvim

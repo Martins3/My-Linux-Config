@@ -18,13 +18,11 @@ pkgs.stdenv.mkDerivation {
     pkg-config
     elfutils
     libelf
-    autoconf
     automake
     libtool
     nasm
     pkgconf
 
-    autoconf
     automake
     gcc
     git
