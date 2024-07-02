@@ -30,10 +30,11 @@ in
     novnc
     # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
     lua
-    zfs
+    # zfs
     # 文件浏览器
     # xplr
 
+    pass # wireguard 作者维护的密码管理工具
     lua-language-server
     stylua
     # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
