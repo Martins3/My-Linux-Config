@@ -192,6 +192,7 @@ require("lazy").setup({
     cmd = "Play2048",
     config = true,
   },
+  'ojroques/nvim-osc52',
   {
     "liubianshi/cmp-lsp-rimels",
     dir = "/home/martins3/core/cmp-lsp-rimels",

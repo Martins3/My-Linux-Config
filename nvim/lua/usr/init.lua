@@ -56,3 +56,11 @@ require("bookmarks").setup({
   mappings_enabled = false,
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
+
+function copy()
+  if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+    require('osc52').copy_register('+')
+  end
+end
+
+vim.api.nvim_create_autocmd('TextYankPost', {callback = copy})
