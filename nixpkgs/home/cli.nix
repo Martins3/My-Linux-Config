@@ -270,7 +270,10 @@ in
 
     # containerd # @todo 测试下
     # nerdctl
-    # usbutils
+    usbutils
+    pwru # ebpf 抓包工具
+    calcure # 日历，@todo 可以定制化的，有趣
+    pahole
 
     # openjdk
     # dockerTools @todo # 使用 nixos 构建 docker

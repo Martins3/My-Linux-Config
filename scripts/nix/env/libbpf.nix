@@ -11,13 +11,18 @@ with import <nixpkgs> { };
 # 感觉 nixos 上使用很难
 (mkShell.override { stdenv = clangStdenv; }) {
   buildInputs = [
-    libbpf
-    zlib
-    elfutils
-    libcap
-    libbfd
-    llvm
     bpftool
+    elfutils
+    libbfd
+    libbpf
+    libcap
+    llvm
   ];
 }
 
+# libbfd 和 libcap 是做啥的不知道，但是构建的过程中的确要
+#
+# ...                        libbfd: [ OFF ]
+# ...               clang-bpf-co-re: [ on  ]
+# ...                          llvm: [ on  ]
+# ...                        libcap: [ OFF ]
