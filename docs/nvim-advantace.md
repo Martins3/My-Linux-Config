@@ -177,3 +177,7 @@ https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#fea
 其实可以更新下
 
 ## Markdown 和 bash 的文件类型相关的参数的确需要重构了下了
+
+## 真的有趣，需要重启 tmux  才可以解决
+1. 远程连接后，vim 无法正常拷贝
+2. 如果远程连接后 ，本地无法正常拷贝

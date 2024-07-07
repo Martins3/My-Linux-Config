@@ -60,8 +60,8 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    # tmux
-    myPkg
+    unstable.tmux
+    # myPkg
     tmuxp
     pueue
     screen
@@ -103,7 +103,7 @@ in
     act # Run github action locally
     # git-secrets
     nethogs
-    sniffnet
+    # sniffnet # 一个直接简单易用的
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
@@ -237,20 +237,20 @@ in
     targetcli
     fio
     genact # A nonsense activity generator
-    wtf # The personal information dashboard for your terminal
+    # wtf # The personal information dashboard for your terminal
     progress # 展示 cp dd 之类的进度条
     psmisc # 包含 pstree fuser 等工具
     viddy # A modern watch command.
     # mcfly # better ctrl-r for shell
     atuin
     pciutils
-    lm_sensors # 获取 CPU 温度
+    # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     bcachefs-tools
     libcgroup
     cpulimit
     # bat # better cat
-    procs # better ps
+    # procs # better ps ，但是 ps 才是 yyds
     tokei # 代码统计工具，比 cloc 性能好
     zellij # tmux 替代品
     # kvmtool
@@ -284,12 +284,12 @@ in
 
     # verilator # Fast and robust (System)Verilog simulator/compiler
 
-    cowsay
-    figlet # 艺术字
-    lolcat # 彩虹 cat
-    nyancat # 彩虹猫咪
+    # cowsay
+    # figlet # 艺术字
+    # lolcat # 彩虹 cat
+    # nyancat # 彩虹猫咪
 
-    dig # dns分析
+    dig # dns 分析
     iptraf-ng # 网络流量分析
     ifmetric
     glances # 又一个 htop
