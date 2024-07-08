@@ -113,6 +113,13 @@ sudo dnf install ibus-rime
 
 - [ ] 如何将 emoji 去掉?
 
+## 使用 rime-ice 加上 rime-auto-deploy
+
+https://github.com/iDvel/rime-ice
+https://github.com/Mark24Code/rime-auto-deploy
+
+直接无敌!
+
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
