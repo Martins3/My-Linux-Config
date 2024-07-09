@@ -124,7 +124,14 @@ https://github.com/Mark24Code/rime-auto-deploy
 - [ ] 默认上屏的操作
 - [ ] 不要展示拼音
 
-https://github.com/iDvel/rime-ice/issues/133 : wsm 如何搞
+
+https://github.com/iDvel/rime-ice/issues/133 :
+https://www.mintimate.cc/zh/guide/faQ.html#linux%E8%96%84%E8%8D%B7%E9%85%8D%E7%BD%AE%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8
+
+
+实在是太复杂了，我靠 : 似乎这里没有插件，所以有问题
+https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/development/libraries/librime/default.nix
+
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
