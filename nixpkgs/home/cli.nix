@@ -24,6 +24,7 @@ in
     ccache
     # mold
     # go
+    ruby
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
@@ -222,6 +223,9 @@ in
     nmon
     man-pages-posix
     lazydocker
+    distrobox
+    minicom
+    boxbuddy
     # distrobox # 基于容器来提供各种 distribution
     arp-scan
     # nixos-generators # 基于当前系统生成 qcow2

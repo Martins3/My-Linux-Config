@@ -1648,3 +1648,8 @@ nix-shell -p libgcc
 
 ## 这个似乎还不错
 https://github.com/gvolpe/nix-config
+
+## 其他的 immutable 系统
+https://news.ycombinator.com/item?id=40817199
+
+Aeon 非常奇怪，安装不可以用 cdrom ，而且必须是 UEFI

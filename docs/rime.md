@@ -120,6 +120,12 @@ https://github.com/Mark24Code/rime-auto-deploy
 
 直接无敌!
 
+- [ ] 这个基础上处理下模糊音
+- [ ] 默认上屏的操作
+- [ ] 不要展示拼音
+
+https://github.com/iDvel/rime-ice/issues/133 : wsm 如何搞
+
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
