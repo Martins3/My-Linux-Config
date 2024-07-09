@@ -21,7 +21,9 @@ fi
 # 从雾凇拼音 中拷贝词库过来
 function update_idct_from_ice() {
 	cd ~/core
-	git clone https://github.com/iDvel/rime-ice || true
+	if [[ ! -d rime-ice ]]; then
+		git clone https://github.com/iDvel/rime-ice
+	fi
 	cd rime-ice
 	git pull
 	cp -r cn_dicts "$CONFIG_DIR"
