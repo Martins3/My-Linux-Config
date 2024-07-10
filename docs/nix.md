@@ -722,6 +722,12 @@ programs.steam.enable = true;
 
 - tailscale : https://tailscale.com/blog/nixos-minecraft/
 
+tskey-auth-XXX 上网页上 generate 的:
+
+```sh
+sudo tailscale up --auth-key tskey-auth-XXX
+```
+
 ### [ ] wireguard
 
 ## wasm
