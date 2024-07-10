@@ -22,7 +22,7 @@ fi
 function update_idct_from_ice() {
 	cd ~/core
 	if [[ ! -d rime-ice ]]; then
-		git clone https://github.com/iDvel/rime-ice
+		git clone --depth=1 https://github.com/iDvel/rime-ice
 	fi
 	cd rime-ice
 	git pull

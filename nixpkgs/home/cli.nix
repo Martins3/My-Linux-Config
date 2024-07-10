@@ -219,14 +219,13 @@ in
     # perl
     man-pages
     pre-commit
-    atop
+    atop # 类似 htop ，但是展示的内容不同
     nmon
     man-pages-posix
     lazydocker
-    distrobox
+    distrobox # 基于容器来提供各种 distribution
+    boxbuddy # distrobox 的图形工具
     minicom
-    boxbuddy
-    # distrobox # 基于容器来提供各种 distribution
     arp-scan
     # nixos-generators # 基于当前系统生成 qcow2
     packer # 制作 qcow2 镜像
