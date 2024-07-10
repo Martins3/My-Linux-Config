@@ -23,8 +23,9 @@ in
     # gnuplot
     ccache
     # mold
-    # go
+    go
     ruby
+    openfortivpn
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
@@ -94,7 +95,7 @@ in
     tree
     fd
     file
-    duf # 更好的 df -h
+    unstable.duf # 更好的 df -h
     zoxide # better jump
     # ncdu # 更加易用的 du
     gdu
