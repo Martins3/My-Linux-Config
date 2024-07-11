@@ -19,14 +19,14 @@ index 8cd5a1cb4a8f..7120b5b877af 100644
    programs.home-manager.enable = true;
  }
 diff --git a/nixpkgs/home/app/gnome.nix b/nixpkgs/home/app/gnome.nix
-index 48fc862dcbab..bf4156b70918 100644
+index 48fc862dcbab..08d320b33283 100644
 --- a/nixpkgs/home/app/gnome.nix
 +++ b/nixpkgs/home/app/gnome.nix
 @@ -12,6 +12,8 @@
      bing-wallpaper-changer
      gtile
      hide-top-bar
-+        customize-ibus
++    customize-ibus
 +
      # lightdark-theme-switcher
    ]);
@@ -54,7 +54,7 @@ index 48fc862dcbab..bf4156b70918 100644
 +    };
 +    "org/gnome/shell/extensions/customize-ibus" = {
 +      candidate-orientation = lib.hm.gvariant.mkUint32 1;
-+      custom-font="Iosevka Nerd Font 12";
++      custom-font="Iosevka Nerd Font 10";
 +      enable-orientation=true;
 +      input-indicator-only-on-toggle=false;
 +      input-indicator-only-use-ascii=false;

@@ -7,7 +7,7 @@ set -E -e -u -o pipefail
 CONFIG_DIR=~/Library/Rime # maos
 if [[ $OSTYPE == "linux-gnu"* ]]; then
 	# CONFIG_DIR=$HOME/.local/share/fcitx5/rime/
-	CONFIG_DIR=$HOME/.local/share/ibus/rime
+	CONFIG_DIR=$HOME/.config/ibus/rime
 fi
 mkdir -p "$CONFIG_DIR"
 

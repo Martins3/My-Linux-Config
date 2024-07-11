@@ -132,6 +132,12 @@ https://www.mintimate.cc/zh/guide/faQ.html#linux%E8%96%84%E8%8D%B7%E9%85%8D%E7%B
 实在是太复杂了，我靠 : 似乎这里没有插件，所以有问题
 https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/development/libraries/librime/default.nix
 
+## 切换 ibus 和 fcitx5
+
+似乎 fcitx5 很简单：
+
+https://github.com/fcitx/fcitx5-rime
+https://github.com/rime/ibus-rime/issues : 这个不维护了
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
