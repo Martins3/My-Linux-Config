@@ -158,6 +158,7 @@ in
     # debootstrap # 制作 uml 的工具
     meson
     neovim
+    # zed-editor
     # helix # modern neovim
     # cheat
     # wakatime
