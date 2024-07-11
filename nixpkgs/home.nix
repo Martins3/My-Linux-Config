@@ -15,15 +15,6 @@ in
     ] else [ ]
   );
 
-
-  # 为了保证任何时候都安装 im-select ，否则无法
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
-  };
-
   # nixpkgs.overlays = [ neovim.overlay ];
   programs.home-manager.enable = true;
 }
