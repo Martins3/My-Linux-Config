@@ -6,17 +6,19 @@ set -E -e -u -o pipefail
 # https://wiki.archlinux.org/title/Rime
 CONFIG_DIR=~/Library/Rime # maos
 if [[ $OSTYPE == "linux-gnu"* ]]; then
-	CONFIG_DIR=$HOME/.local/share/fcitx5/rime/
+	# CONFIG_DIR=$HOME/.local/share/fcitx5/rime/
+	CONFIG_DIR=$HOME/.local/share/ibus/rime
 fi
+mkdir -p "$CONFIG_DIR"
 
 # 安装 plum
 cd ~/core/
 if [[ ! -d plum ]]; then
 	git clone https://github.com/rime/plum
-	cd plum
-	# 使用 plum 安装基础组件
-	rime_dir="$CONFIG_DIR" bash rime-install
 fi
+cd plum
+# 使用 plum 安装基础组件
+rime_dir="$CONFIG_DIR" bash rime-install
 
 # 从雾凇拼音 中拷贝词库过来
 function update_idct_from_ice() {

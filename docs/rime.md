@@ -125,7 +125,7 @@ https://github.com/Mark24Code/rime-auto-deploy
 - [ ] 不要展示拼音
 
 
-https://github.com/iDvel/rime-ice/issues/133 :
+https://github.com/iDvel/rime-ice/issues/133
 https://www.mintimate.cc/zh/guide/faQ.html#linux%E8%96%84%E8%8D%B7%E9%85%8D%E7%BD%AE%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8
 
 
