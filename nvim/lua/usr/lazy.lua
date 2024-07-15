@@ -154,7 +154,7 @@ require("lazy").setup({
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
-  "tyru/open-browser.vim", -- 使用 gx 打开链接
+  "tyru/open-browser.vim", -- 使用 gx 打开链接, TODO 这个插件可以替换下
   {
     "keaising/im-select.nvim",
     config = function()

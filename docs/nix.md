@@ -1659,3 +1659,60 @@ https://github.com/gvolpe/nix-config
 https://news.ycombinator.com/item?id=40817199
 
 Aeon 非常奇怪，安装不可以用 cdrom ，而且必须是 UEFI
+
+## nixos 下 bcc 不可以正常使用
+
+https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/by-name/bc/bcc/package.nix
+
+需要我更加深入的理解才可以:
+
+在 bcc 的构建的 nix 中，的确有:
+```txt
+  export PYTHONPATH=$out/${python3.sitePackages}:$PYTHONPATH
+```
+
+这个也是 https://github.com/iovisor/bcc/blob/master/FAQ.txt 中提到的:
+
+```txt
+Q: hello_world.py fails with:
+   ImportError: No module named bcc
+A: checkout "sudo make install" output to find out bpf package installation site,
+   add it to the PYTHONPATH env variable before running the program.
+   export PYTHONPATH=$(dirname `find /usr/lib -name bcc`):$PYTHONPATH
+```
+
+似乎是不可以的，进入到 bcc 中，其中连 bcc 的工具都没有，很惨:
+
+```sh
+cd $(nix-build -E "(import <nixpkgs> {}).bcc" --no-out-link)
+```
+
+## 编译 bpf 的时候有警告
+
+linux/tools/bpf/runqslower 下
+
+如果是: make LLVM=1
+```txt
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clangclang: : warning: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]-lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output/bpftool/bootstrap/bpftool
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//vmlinux.h
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.bpf.o
+clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/llmjvk4i2yncv8xqdvs4382wr3kgdmvp-gcc-13.2.0' [-Wunused-command-line-argument]
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.skel.h
+  CC      /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.o
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower
+```
+如果是: make
+```txt
+clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/llmjvk4i2yncv8xqdvs4382wr3kgdmvp-gcc-13.2.0' [-Wunused-command-line-argument]
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.skel.h
+  CC      /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.o
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower
+```
