@@ -6,13 +6,14 @@ pkgs.mkShell {
     pkgs.cargo
     pkgs.rustc
     pkgs.rustfmt
+    pkgs.rustup
+    pkgs.protobuf
 
     # Necessary for the openssl-sys crate:
-    pkgs.openssl
-    pkgs.pkg-config
+    # pkgs.openssl
+    # pkgs.pkg-config
 
-    pkgs.wasm-pack
-    pkgs.rustup
+    # pkgs.wasm-pack
     # pkgs.wasmer
     # pkgs.wasmtime
   ];
