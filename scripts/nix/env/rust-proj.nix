@@ -7,6 +7,7 @@ pkgs.mkShell {
     pkgs.rustc
     pkgs.rustfmt
     pkgs.rustup
+    # 测试 gRPC
     pkgs.protobuf
 
     # Necessary for the openssl-sys crate:

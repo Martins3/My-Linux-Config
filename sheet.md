@@ -158,6 +158,10 @@ git branch --contains $tag
 - grep -r . /sys/module/zswap/parameters/
   - 打印的同时又展示出来数值
   - 或者 cd /sys/module/zswap/parameters/ && grep -r .
+- grep -v -E "pciehp|vmwgfx"
+  - 打印不用包含 pciehp|vmwgfx 的
+  - -v 是 revert 的选择的意思
+
 
 ## printf
 
