@@ -64,8 +64,8 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    unstable.tmux
-    # myPkg
+    # unstable.tmux
+    myPkg
     tmuxp
     pueue
     screen
