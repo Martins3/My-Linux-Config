@@ -12,6 +12,8 @@ require("usr.telescope")
 require("usr.version")
 require("usr.which-key")
 require("usr.colorscheme")
+require("usr.colorscheme")
+require("usr.lualine")
 require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
 require("nvim-surround").setup()
 require("gitsigns").setup({ signcolumn = false, numhl = true })
@@ -22,10 +24,9 @@ require("fidget").setup()
 require("nvim-navic").setup()
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
-require("im_select").setup()
-require("lualine").setup()
 require("numb").setup()
 require("debugprint").setup()
+require("toggleterm").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
@@ -47,6 +48,7 @@ require("aerial").setup({
     default_direction = "left",
   },
   attach_mode = "global",
+  disable_max_lines = 20000,
 })
 
 -- 书签
@@ -54,3 +56,11 @@ require("bookmarks").setup({
   mappings_enabled = false,
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
+
+function copy()
+  if vim.v.event.operator == 'y' and vim.v.event.regname == '+' then
+    require('osc52').copy_register('+')
+  end
+end
+
+vim.api.nvim_create_autocmd('TextYankPost', {callback = copy})

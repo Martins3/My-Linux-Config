@@ -5,51 +5,38 @@ let
 in
 pkgs.mkShell rec {
   nativeBuildInputs = with pkgs.buildPackages; [
-    cunit
-    dpdk
-    libaio
-    libbsd
-    libuuid
-    numactl
-    openssl
-    ncurses
-    python3
-    lcov
-    /* elfutils */
-    python3Packages.pyelftools
-     pkg-config
      nasm
+     pkg-config
      yasm
-    python3
-    python3.pkgs.setuptools
+    /* elfutils */
     autoconf
-     automake
-    pkg-config
-    autoconf
-    gettext
     autoconf-archive
-    autoconf
     automake
-    libtool
     bison
-    flex
-
-
-    pkg-config
     cunit
     dpdk
+    flex
+    fuse3
+    gettext
     jansson
+    lcov
     libaio
     libbsd
     libelf
-    libuuid
-    libpcap
     libnl
+    libpcap
+    libtool
+    liburing
+    libuuid
+    ncurses
+    ncurses
     numactl
     openssl
-    ncurses
+    pkg-config
+    python3
+    python3.pkgs.setuptools
+    python3Packages.pyelftools
     zlib
-    fuse3
   ];
 
   # @todo 不知道这个是什么原理?
@@ -64,6 +51,6 @@ pkgs.mkShell rec {
   * git clone https://github.com/spdk/spdk.git
   * pushd spdk
   * git submodule update --init
-  * ./configure
+  * ./configure --with-ublk
   * make
 */

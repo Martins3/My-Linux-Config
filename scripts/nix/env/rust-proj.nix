@@ -1,18 +1,19 @@
 # https://discourse.nixos.org/t/how-can-i-set-up-my-rust-programming-environment/4501/6
-{ pkgs ? import <unstable> { } }:
+{ pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell {
   buildInputs = [
     pkgs.cargo
     pkgs.rustc
     pkgs.rustfmt
+    pkgs.rustup
+    pkgs.protobuf
 
     # Necessary for the openssl-sys crate:
-    pkgs.openssl
-    pkgs.pkg-config
+    # pkgs.openssl
+    # pkgs.pkg-config
 
-    pkgs.wasm-pack
-    pkgs.rustup
+    # pkgs.wasm-pack
     # pkgs.wasmer
     # pkgs.wasmtime
   ];

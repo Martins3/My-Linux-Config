@@ -22,7 +22,7 @@ map <leader>d "+d
 " set foldexpr=nvim_treesitter#foldexpr()
 
 " floaterm 功能很强大，但是性能不行，
-" 如果执行的命令存在大量输出，可能卡死整个 nvim
+" 如果执行的命令存在大量输出，例如编译内核，会将一个 CPU 100% 利用率
 let g:floaterm_width = 0.7
 let g:floaterm_height = 0.7
 let g:floaterm_keymap_prev   = '<C-p>'
@@ -35,7 +35,6 @@ lua require 'usr'
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'debug.vim',
-      \ 'wilder.vim',
       \ ]
 
 for s:fname in s:core_conf_files

@@ -21,12 +21,14 @@ in
     # unstable.zotero
     unstable.slack
     drawio
+    # imagemagick # 压缩照片
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     anki
     wezterm
     # wireshark
     alacritty
+    # warp-terminal
     # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
@@ -34,15 +36,24 @@ in
     # gource
     # unstable.firefox
     google-chrome
+    # pot # 启动之后 segfault 了
     # libreoffice
     unstable.thunderbird
     feishu
+    netease-cloud-music-gtk
+    (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
+      postInstall = builtins.replaceStrings
+        ["--run"]
+        [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
+        old.postInstall;
+    }))
+    # nur.repos.linyinfeng.wemeet
     microsoft-edge
+    clash-verge-rev
     vlc
     # podman-desktop
     # tdesktop
     # telegram
-    # clash-verge # 打开之后一块白板，不知道发生了什么
     # gparted # 需要 GTK，使用 disk 也不错
     # rofi # @todo rofi 的使用
     # scrcpy # Android 的投屏工具

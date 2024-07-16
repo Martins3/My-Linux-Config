@@ -156,29 +156,16 @@ snippet fori "C style for loop"
 
 
 snippet note_getoption "参数选项"
-	function usage() {
-		echo "Usage :   [options] [--]
-
-	    Options:
-	    -h|help       Display this message"
-	}
-
 	cmd=""
 	while getopts "hc:" opt; do
 		case \$opt in
 			c) cmd=\${OPTARG} ;;
-			h)
-				usage
-				exit 0
-				;;
+			h) echo "help" ;;
 			*)
-				echo -e "\n  Option does not exist : OPTARG\n"
-				usage
 				exit 1
 				;;
 		esac
 	done
-	shift $((OPTIND - 1))
 
 
 snippet note_readfile "read file line by line"
@@ -465,6 +452,9 @@ snippet xxx_ext "extended template for any bash script"
 snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
 
+snippet note_split_file_to_array "split file to array"
+	readarray -t arr < all.txt
+
 snippet note_split_cmd_output_to_array "split cmd output to array"
 	# 默认是换行
 	mapfile -t array < <(git log --format=%h --since="24 hours ago")
@@ -518,13 +508,11 @@ snippet note_basic "bash 基本内容"
 snippet note_redirect "重定向"
 	# ls > a.txt
 	# ls 2> a.txt
-	# ls 2>&1
-	# ls 2>&1 > a.txt
-	# ls | tee > a.txt
-	# @todo 全部重定向到并且 tee 出来？
+	# ls 2>&1     # 将 stderr 重定向到 stdout
+	# ls &> a.txt # 将 stderr 和 stedout 一起重定向到 file
 
 
-snippet note_function_para "函数基本"
+snippet note_function_arg "函数基本"
 	# \$1~\$9：函数的第一个到第9个的参数。
 	# \$0 : 函数所在的脚本名。
 	# $# : 函数的参数总数。
@@ -697,3 +685,9 @@ snippet note_tricks "" b
 
 snippet note_gum "gum 的常见使用" b
 	gum confirm "Continue?" || exit 0
+
+snippet note_fordir "遍历目录" b
+	for d in /tmp/*/ ; do
+	    [ -L "${d%/}" ] && continue
+	    echo "$d"
+	done
