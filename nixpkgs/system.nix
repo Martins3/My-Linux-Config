@@ -124,11 +124,13 @@ in
 
   documentation.enable = true;
 
-  # earlyoom 检查方法 sudo journalctl -u earlyoom | grep sending
+  # sudo systemctl status systemd-oomd.service
+  # sudo journalctl -u systemd-oomd.service
   # @todo services 和 systemd 的差别是什么?
-  systemd.oomd = {
-    enable = true;
-  };
+  systemd.oomd.enable = true;
+
+  # 使用方法 : sudo lldpcli show neighbor
+  services.lldpd.enable = true;
 
   systemd.user.services.clash = {
     enable = false;
