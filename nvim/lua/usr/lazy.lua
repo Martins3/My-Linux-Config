@@ -171,7 +171,7 @@ require("lazy").setup({
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   {
     "m4xshen/hardtime.nvim",
-    opts = { enabled = false },
+    enabled = false -- 2024-07-20 升级之后无法正常使用
   }, -- 训练自己的 vim 习惯，默认没有开启
   {
     "allaman/emoji.nvim",
