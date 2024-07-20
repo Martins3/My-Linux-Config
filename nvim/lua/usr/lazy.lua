@@ -124,14 +124,6 @@ require("lazy").setup({
   "mg979/vim-visual-multi", -- 同时编辑多个位置
   "AckslD/nvim-neoclip.lua", -- 保存 macro
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
-  {
-    "cbochs/portal.nvim",
-    -- Optional dependencies
-    dependencies = {
-      "cbochs/grapple.nvim",
-      "ThePrimeagen/harpoon",
-    },
-  },
   -- 高亮
   "norcalli/nvim-colorizer.lua", -- 显示 #FFFFFF
   "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
