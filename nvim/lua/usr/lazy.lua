@@ -178,7 +178,6 @@ require("lazy").setup({
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},
   },
-  "carbon-steel/detour.nvim",
   {
     "NStefan002/2048.nvim",
     cmd = "Play2048",

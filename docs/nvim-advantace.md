@@ -166,6 +166,7 @@ require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
 
   { "SmiteshP/nvim-navic" },     -- 在 winbar 展示当前的路径
   { "utilyre/barbecue.nvim" },
+
 https://nvimdev.github.io/lspsaga/outline/
 
 ## 尝试下
