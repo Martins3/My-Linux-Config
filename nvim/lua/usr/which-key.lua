@@ -147,6 +147,8 @@ wk.add({
   },
 })
 
+vim.api.nvim_set_keymap("i", "<c-g>", "<cmd>!ibus engine rime<cr>", { noremap = true })
+
 -- 部分格式化，which-key 的设置方法有问题，似乎只是语法没有理解到位
 -- https://vi.stackexchange.com/questions/36946/how-to-add-keymapping-for-lsp-code-formatting-in-visual-mode
 function FormatFunction()

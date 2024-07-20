@@ -167,7 +167,7 @@ in
     shellcheck
     shfmt
     tree-sitter
-    # systeroid
+    systeroid
     # linuxKernel.packages.linux_5_15.perf
     linuxPackages_6_9.perf
     linuxPackages_6_9.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
