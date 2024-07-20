@@ -139,6 +139,78 @@ https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/development/libraries/lib
 https://github.com/fcitx/fcitx5-rime
 https://github.com/rime/ibus-rime/issues : 这个不维护了
 
+## rimels 初步尝试
+```diff
+diff --git a/nvim/lua/usr/lazy.lua b/nvim/lua/usr/lazy.lua
+index f49b0c7ef8a1..d1459b277c94 100644
+--- a/nvim/lua/usr/lazy.lua
++++ b/nvim/lua/usr/lazy.lua
+@@ -185,63 +185,4 @@ require("lazy").setup({
+     config = true,
+   },
+   'ojroques/nvim-osc52',
+-  {
+-    "liubianshi/cmp-lsp-rimels",
+-    dir = "/home/martins3/core/cmp-lsp-rimels",
+-    -- 这个插件让正常的补全很卡
+-    enabled = false,
+-    config = function()
+-      local compare = require("cmp.config.compare")
+-      local cmp = require("cmp")
+-      cmp.setup({
+-        -- 设置排序顺序
+-        sorting = {
+-          comparators = {
+-            compare.sort_text,
+-            compare.offset,
+-            compare.exact,
+-            compare.score,
+-            compare.recently_used,
+-            compare.kind,
+-            compare.length,
+-            compare.order,
+-          },
+-        },
+-      })
+-
+-      require("rimels").setup({
+-        keys = { start = "jk", stop = "jh", esc = ";j", undo = ";u" },
+-        cmd = { "/home/martins3/.cargo/bin/rime_ls" },
+-        rime_user_dir = "/home/martins3/.local/share/rime-ls",
+-        shared_data_dir = "/home/martins3/.local/share/fcitx5/rime",
+-        filetypes = { "NO_DEFAULT_FILETYPES" },
+-        single_file_support = true,
+-        settings = {},
+-        docs = {
+-          description = [[https://www.github.com/wlh320/rime-ls, A language server for librime]],
+-        },
+-        max_candidates = 9,
+-        trigger_characters = {},
+-        schema_trigger_character = "&", -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
+-        probes = {
+-          ignore = {},
+-          using = {},
+-          add = {},
+-        },
+-        detectors = {
+-          with_treesitter = {},
+-          with_syntax = {},
+-        },
+-        cmp_keymaps = {
+-          disable = {
+-            space = false,
+-            numbers = false,
+-            enter = false,
+-            brackets = false,
+-            backspace = false,
+-          },
+-        },
+-      })
+-    end,
+-  },
+ }, {})
+```
+
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
