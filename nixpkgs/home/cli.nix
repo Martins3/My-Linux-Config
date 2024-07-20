@@ -25,6 +25,7 @@ in
     # mold
     go
     ruby
+    unstable.serpl
     openfortivpn
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc

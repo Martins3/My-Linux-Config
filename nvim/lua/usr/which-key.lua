@@ -82,6 +82,7 @@ wk.add({
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   -- <space> o 被 orgmode 使用
   { "<space>q",  "<cmd>qa<cr>",                                       desc = "close vim" },
+
   { "<space>s",  group = "search" },
   {
     "<space>sP",
@@ -91,6 +92,8 @@ wk.add({
   { "<space>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",         desc = "search in current buffer" },
   { "<space>sg", "<cmd>Telescope git_status<cr>",                        desc = "search git status" },
   { "<space>sp", "<cmd>lua require('spectre').open()<cr>",               desc = "search in project" },
+  { "<space>si", "<cmd>FloatermNew serpl<cr>",                           desc = "search with serpl" },
+
   { "<space>t",  group = "toggle" },
   { "<space>t7", "<cmd>let &cc = &cc == '' ? '75' : ''<cr>",             desc = "highlight 75 line" },
   { "<space>t8", "<cmd>let &cc = &cc == '' ? '81' : ''<cr>",             desc = "highlight 80 line" },
