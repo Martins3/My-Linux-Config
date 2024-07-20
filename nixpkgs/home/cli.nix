@@ -65,7 +65,7 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    # unstable.tmux
+    # tmux
     myPkg
     tmuxp
     pueue
@@ -98,7 +98,7 @@ in
     tree
     fd
     file
-    unstable.duf # 更好的 df -h
+    duf # 更好的 df -h
     zoxide # better jump
     # ncdu # 更加易用的 du
     gdu
@@ -264,12 +264,12 @@ in
     # kvmtool
     # just # 在对应的目录中自定义执行命令
     # (import (fetchTarball https://install.devenv.sh/latest)).default # 浪费人生宝贵的 2h ，不明觉厉
-    # unstable.devenv # 需要配置 nix cache ，感觉完全不靠谱啊
+    # devenv # 需要配置 nix cache ，感觉完全不靠谱啊
     # @todo 不知道为什么，这种方法不行
     # (import (fetchTarball https://github.com/blitz/x86-manpages-nix/archive/master.tar.gz))
     bridge-utils
     swtpm # windows 11 启动需要
-    # unstable.nushell
+    # nushell
     libnotify # 通知小工具
     # powershell
     # vector
