@@ -23,6 +23,7 @@ in
     # gnuplot
     ccache
     # mold
+    spin swarm # 形式化验证工具
     go
     ruby
     unstable.serpl
