@@ -51,7 +51,7 @@ in
     microsoft-edge
     clash-verge-rev
     vlc
-    # podman-desktop
+    podman-desktop
     # tdesktop
     # telegram
     # gparted # 需要 GTK，使用 disk 也不错
