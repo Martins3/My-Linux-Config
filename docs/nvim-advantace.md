@@ -186,3 +186,5 @@ https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#fea
 2. 如果远程连接后 ，本地无法正常拷贝
 
 https://github.com/nvim-neorocks/nvim-best-practices
+
+## 如果可以在 terminal 中连续的两个 esc ，就推出 terminal ，那个是极好的

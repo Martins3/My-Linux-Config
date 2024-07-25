@@ -229,6 +229,8 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
+看看这个 https://github.com/astral-sh/uv
+
 ## [ ] cpp
 
 - https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/

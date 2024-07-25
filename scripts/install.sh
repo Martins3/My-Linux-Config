@@ -18,7 +18,6 @@ mkdir -p ~/.config/pueue
 
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
-ln -sf ~/.dotfiles/config/alacritty.yml ~/.alacritty.yml
 ln -sf ~/.dotfiles/config/alacritty.toml ~/.alacritty.toml
 ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
 ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
