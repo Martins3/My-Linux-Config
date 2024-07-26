@@ -1718,3 +1718,6 @@ clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/
   CC      /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.o
   LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower
 ```
+
+## 看看这个吧
+https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
