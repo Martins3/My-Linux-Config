@@ -230,6 +230,7 @@ in
     man-pages-posix
     lazydocker
     docker-compose
+    runc
     openssl
     distrobox # 基于容器来提供各种 distribution
     boxbuddy # distrobox 的图形工具

@@ -25,6 +25,7 @@ in
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     anki
+    foliate # 电子书
     wezterm
     # wireshark
     alacritty
