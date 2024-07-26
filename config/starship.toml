@@ -82,3 +82,6 @@ format = "[$env_value]($style) "
 [character]
 success_symbol = "[🧀](bold green) "
 error_symbol = "[🤒](bold red) "
+
+[container]
+format = '[🦭]($style) '
