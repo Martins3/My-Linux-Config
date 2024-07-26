@@ -2,7 +2,7 @@
 set -E -e -u -o pipefail
 cd ~ || exit 0
 if [[ ! -d ~/.dotfiles ]]; then
-  git clone https://github.com/Martins3/My-Linux-config .dotfiles
+	git clone https://github.com/Martins3/My-Linux-config .dotfiles
 fi
 mkdir -p ~/.config
 mkdir -p ~/.config/wtf
@@ -27,18 +27,19 @@ ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
 ln -sf ~/.dotfiles/config/pueue.yml ~/.config/pueue/pueue.yml
 
-# a hack way for dhruvmanila/browser-bookmarks.nvim
-ln -sf ~/.config/google-chrome-stable ~/.config/microsoft-edge
+if [[ ! -L ~/.gitconfig ]]; then
+	ln -sf ~/.dotfiles/config/gitconfig ~/.gitconfig
+fi
 
 mkdir -p ~/.config/efm-langserver/
 ln -sf ~/.dotfiles/nvim/efm.yaml ~/.config/efm-langserver/config.yaml
 
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  echo "tmux plugin install : prefix + I"
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	echo "tmux plugin install : prefix + I"
 fi
 
 if systemctl list-units --type target | grep graphical; then
-  bash "$HOME"/.dotfiles/rime/linux-install.sh
-  echo "Almost finished，open fcitx 5 Configiration"
+	bash "$HOME"/.dotfiles/rime/linux-install.sh
+	echo "Almost finished，open fcitx 5 Configiration"
 fi
