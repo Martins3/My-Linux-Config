@@ -232,6 +232,7 @@ in
     docker-compose
     runc
     crun
+    youki
     openssl
     distrobox # 基于容器来提供各种 distribution
     boxbuddy # distrobox 的图形工具
