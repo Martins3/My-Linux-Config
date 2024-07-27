@@ -231,6 +231,7 @@ in
     lazydocker
     docker-compose
     runc
+    crun
     openssl
     distrobox # 基于容器来提供各种 distribution
     boxbuddy # distrobox 的图形工具
