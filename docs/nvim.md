@@ -787,6 +787,9 @@ setxkbmap -option caps:swapescape
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel nvim 配置
+10. [Haystack](https://news.ycombinator.com/item?id=41068719) : 一个基于 canvas 的编辑器
+
+
 
 
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)
