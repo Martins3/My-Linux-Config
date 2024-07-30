@@ -9,6 +9,7 @@ bindkey '^r' _atuin_search_widget
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 
 source /etc/os-release
