@@ -161,10 +161,16 @@ alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
 
-function u() {
-	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/core/vn ~/core
-	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/.dotfiles ~
-}
+if env | grep container &>/dev/null ; then
+  function u() {
+  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/.dotfiles ~
+  }
+else
+  function u() {
+  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/core/vn ~/core
+  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/.dotfiles ~
+  }
+fi
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
