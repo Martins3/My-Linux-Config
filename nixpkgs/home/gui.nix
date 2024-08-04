@@ -26,7 +26,7 @@ in
     kitty
     anki
     foliate # 电子书
-    wezterm
+    # wezterm # 2024-08-02 这个版本的 wez 有 bug
     # wireshark
     alacritty
     # warp-terminal
@@ -34,7 +34,7 @@ in
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
-    # gource
+    gource
     # unstable.firefox
     google-chrome
     # pot # 启动之后 segfault 了

@@ -144,7 +144,7 @@ in
     virt-manager
     # quickemu
     # unstable.nixos-shell
-    # krunvm  # 有待尝试
+    krunvm  # 有待尝试
     nixpacks
     nix-tree # 动态的展示每一个包的依赖
     buildah

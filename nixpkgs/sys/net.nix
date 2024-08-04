@@ -33,6 +33,16 @@
     '';
   };
 
+  networking.nat = {
+  enable = true;
+  internalInterfaces = ["br-in"];
+  externalInterface = "wlo1";
+  internalIPs =
+    [
+    "10.0.0.0/16"
+    ];
+  };
+
   networking.firewall.checkReversePath = "loose";
   # networking.hostName = "martins3-host";
 

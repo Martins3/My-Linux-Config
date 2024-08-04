@@ -137,6 +137,10 @@ https://zignar.net/2023/06/10/debugging-lua-in-neovim/
 https://github.com/ibhagwan/smartyank.nvim
 
 ## 需要解决下闪退的问题
+当然，是 session 的原因，但是，我非常怀疑和 nvim tree 有关的
+
+## 尝试下
+https://github.com/abecodes/tabout.nvim
 
 ## 问题
 
