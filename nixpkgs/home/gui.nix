@@ -51,6 +51,7 @@ in
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
     clash-verge-rev
+    # clash-nyanpasu
     vlc
     podman-desktop
     # tdesktop

@@ -34,7 +34,7 @@
   };
 
   networking.nat = {
-  enable = true;
+  enable = false;
   internalInterfaces = ["br-in"];
   externalInterface = "wlo1";
   internalIPs =
