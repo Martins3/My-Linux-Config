@@ -76,7 +76,7 @@
 
 
     allowedTCPPortRanges = [
-      { from = 5900; to = 6100; }
+      { from = 5900; to = 6500; }
     ];
   };
 
