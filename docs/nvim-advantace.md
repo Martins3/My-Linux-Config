@@ -192,3 +192,6 @@ https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#fea
 https://github.com/nvim-neorocks/nvim-best-practices
 
 ## 如果可以在 terminal 中连续的两个 esc ，就推出 terminal ，那个是极好的
+
+## sqlite ，好麻烦啊!
+https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
