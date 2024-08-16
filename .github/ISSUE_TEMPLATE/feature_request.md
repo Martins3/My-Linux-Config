@@ -8,5 +8,5 @@ assignees: Martins3
 ---
 
 - What's your suggestion?
-- Why is better?
+- Why is this better?
 - How to implement your ideas?
