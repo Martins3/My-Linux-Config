@@ -691,3 +691,6 @@ snippet note_fordir "遍历目录" b
 	    [ -L "${d%/}" ] && continue
 	    echo "$d"
 	done
+
+snippet note_fzf "fzf 常见技巧" b
+	word=$(printf "%s\n" "${items[@]}" | fzf)
