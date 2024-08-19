@@ -10,5 +10,5 @@ file=$(printf "%s\n" "${items[@]}" | fzf)
 
 gum confirm "Continue at [$(pwd)] with [$file]" || exit 0
 
-ln "$PROGDIR/$file" default.nix
+ln -s "$PROGDIR/$file" default.nix
 echo "use nix" >>.envrc && direnv allow

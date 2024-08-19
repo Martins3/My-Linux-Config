@@ -195,3 +195,9 @@ https://github.com/nvim-neorocks/nvim-best-practices
 
 ## sqlite ，好麻烦啊!
 https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
+
+## 看看这个
+https://github.com/chrishrb/gx.nvim
+
+## 用用这个软件
+https://github.com/mpv-player/mpv
