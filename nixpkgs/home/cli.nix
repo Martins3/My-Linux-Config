@@ -24,6 +24,7 @@ in
     ccache
     # mold
     spin swarm # 形式化验证工具
+    hdparm
     go
     ruby
     unstable.serpl

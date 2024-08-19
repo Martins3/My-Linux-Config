@@ -42,12 +42,13 @@ in
     unstable.thunderbird
     feishu
     netease-cloud-music-gtk
-    (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
-      postInstall = builtins.replaceStrings
-        ["--run"]
-        [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
-        old.postInstall;
-    }))
+    # 似乎微信又不可以用了，哈哈
+    # (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
+    #   postInstall = builtins.replaceStrings
+    #     ["--run"]
+    #     [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
+    #     old.postInstall;
+    # }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
     clash-verge-rev

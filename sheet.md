@@ -163,10 +163,6 @@ git branch --contains $tag
   - -v 是 revert 的选择的意思
 
 
-## printf
-
-- 打印数组，是针对所有成员一次操作的
-
 ## curl
 
 - curl -LO --output-dir . www.baidu.com
@@ -236,11 +232,8 @@ gzip -d file.gz
 - systemctl list-unit-files
 
 ## centos
-
 - nmcli networking off
 - nmcli networking on
-- 在 /etc/resolv.conf 中增加，如果遇到 `wget: unable to resolve host address`
-  nameserver 114.114.114.114
 
 ## sudo
 
@@ -249,10 +242,6 @@ gzip -d file.gz
 ## ssh
 
 - kill unresponsive hung SSH session : `~.`
-
-## rg
-
-rg -l blk_update_request
 
 ## wget
 
@@ -265,27 +254,4 @@ fd 使用的是 regex
 
 ```sh
 fd ".*\.md" | wc -l
-```
-
-## xargs
-
--t : 将要执行的命令打印出来
--I % : 设置参数为 %
-
-```sh
-ls | xargs -t -I % sh -c 'echo %'
-```
-
-将一个仓库中所有的 apples 替换为 oranges
-
-```sh
-git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
-```
-
-将 foo 下所有的 txt 都删除
-
-```sh
-find ./foo -type f -name "*.txt" -exec rm {} \;
-find ./foo -type f -name "*.txt" | xargs rm
-find . -type f -print | xargs stat -c '%a %n'
 ```

@@ -115,6 +115,9 @@ sudo dnf install ibus-rime
 
 - [ ] 如何将 emoji 去掉?
 
+
+不能在赞同了: https://www.zhihu.com/question/383416202/answer/2584564433
+
 ## 使用 rime-ice 加上 rime-auto-deploy
 
 https://github.com/iDvel/rime-ice

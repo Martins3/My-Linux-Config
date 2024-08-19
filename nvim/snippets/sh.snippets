@@ -121,6 +121,7 @@ snippet note_glob_basic "glob basic"
 
 
 snippet note_glob_number "glob 量词"
+	# 只有打开了 extglob 才可以用如下的量词
 	# glob 量词和 regex 中 ? * + 类似
 	?(pattern-list)：匹配零个或一个模式。
 	*(pattern-list)：匹配零个或多个模式。
@@ -128,13 +129,15 @@ snippet note_glob_number "glob 量词"
 	@(pattern-list)：只匹配一个模式。
 	!(pattern-list)：匹配给定模式以外的任何内容。
 
-	# 比如匹配
-	shopt -s extglob nullglob
-	for i in rime/*.@(yaml|txt);do
-	  echo $i
-	done
-
+	# 例子 1
+	shopt -s extglob
 	[[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
+
+	# 例子 2
+	shopt -s extglob
+	mm=kernel.v59
+	a=${mm%%.v+([[:digit:]])} # $a 是 kernel
+
 
 
 snippet note_glob "globstar"
@@ -143,9 +146,18 @@ snippet note_glob "globstar"
 	# failglob 参数使得通配符不匹配任何文件名时，Bash 会直接报错，而不是让各个命令去处理。
 	# nullglob 参数可以让通配符不匹配任何文件名时，返回空字符。
 	# globstar参数可以使得**匹配零个或多个子目录。该参数默认是关闭的。
+
 	# 例如可以，使用下面的命令来 匹配当前目录下的所有 sh 文件
 	shopt -s globstar
 	git checkout -- **/*.sh
+
+	# 例如这里，如果没有 nullglob ，那么会输出 rime/*.@(yaml|txt)
+	# 而如果有了，当不没有匹配到的时候，可以什么都不输出
+	shopt -s extglob nullglob
+	for i in rime/*.@(yaml|txt);do
+	  echo $i
+	done
+
 
 
 snippet fori "C style for loop"
@@ -416,6 +428,9 @@ snippet note_secure "make bash more secure"
 
 
 snippet note_sed "sed"
+	# 删除匹配到的内容
+	sed -i '/pattern to match/d' ./infile
+
 	# 在 a.sh 中的第一行的位置插入 hello world
 	sed -i '1i hello world;' a.sh
 
@@ -694,3 +709,27 @@ snippet note_fordir "遍历目录" b
 
 snippet note_fzf "fzf 常见技巧" b
 	word=$(printf "%s\n" "${items[@]}" | fzf)
+
+snippet note_rg "rg 常见技巧" b
+	word=$(printf "%s\n" "${items[@]}" | fzf)
+	# 不去搜索一个目录，一类文件
+	rg apple -g '!path/to/dir' -g '!*.md' -g "!unitest.sh"
+	# 只是去搜索一个目录和文件
+	rg apple -g 'path/to/dir' -g '*.md'
+	## 显示匹配的文件
+	rg -l blk_update_request
+
+snippet note_xargs "rg 常见技巧" b
+	-t : 将要执行的命令打印出来
+	-I % : 设置参数为 %
+
+	ls | xargs -t -I % sh -c 'echo %'
+
+	将一个仓库中所有的 apples 替换为 oranges
+
+	git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
+
+	将 foo 下所有的 txt 都删除
+	find ./foo -type f -name "*.txt" -exec rm {} \;
+	find ./foo -type f -name "*.txt" | xargs rm
+	find . -type f -print | xargs stat -c '%a %n'
