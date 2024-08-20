@@ -26,3 +26,5 @@ function q {
 function c {
 	clear
 }
+
+oh-my-posh init pwsh | Invoke-Expression
