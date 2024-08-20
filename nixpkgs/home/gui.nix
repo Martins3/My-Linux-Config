@@ -14,34 +14,34 @@ in
   home.packages = with pkgs; [
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
-    unstable.wpsoffice
-    unstable.sublime-merge
-    # unstable.vscode
-    unstable.flameshot # 截图
+    wpsoffice
+    # sublime-merge
+    # vscode
+    flameshot # 截图
     # unstable.zotero
-    unstable.slack
-    drawio
+    # slack
+    # drawio
     # imagemagick # 压缩照片
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
-    anki
-    foliate # 电子书
+    # anki
+    # foliate # 电子书
     # wezterm # 2024-08-02 这个版本的 wez 有 bug
     # wireshark
-    alacritty
+    # alacritty
     # warp-terminal
     # unstable.spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
-    gource
+    # gource
     # unstable.firefox
-    google-chrome
+    # google-chrome
     # pot # 启动之后 segfault 了
     # libreoffice
-    unstable.thunderbird
-    feishu
-    netease-cloud-music-gtk
+    # thunderbird
+    # feishu
+    # netease-cloud-music-gtk
     # 似乎微信又不可以用了，哈哈
     # (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
     #   postInstall = builtins.replaceStrings
@@ -53,8 +53,8 @@ in
     microsoft-edge
     clash-verge-rev
     # clash-nyanpasu
-    vlc
-    podman-desktop
+    # vlc
+    # podman-desktop
     # tdesktop
     # telegram
     # gparted # 需要 GTK，使用 disk 也不错
