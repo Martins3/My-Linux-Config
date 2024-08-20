@@ -479,9 +479,11 @@ snippet note_split_cmd_output_to_array "split cmd output to array"
 	mapfile -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
 	printf "%s\n" "${array[@]}"
 
-snippet note_tee "如何 append"
-	# 使用 -a
-	cat /proc/cpuinfo | grep "$i" | tee -a a
+snippet note_tee ""
+	# 基本使用
+	ls | tee abc.txt
+	# 默认会将文件覆盖掉，可以使用 -a 来 append
+	cat /proc/cpuinfo | grep "$i" | tee -a abc.txt
 
 
 snippet note_awk "basic"
