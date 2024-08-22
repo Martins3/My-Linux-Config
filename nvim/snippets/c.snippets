@@ -78,25 +78,6 @@ snippet sysfs "add monitor into sysfs"
   	return error;
   }
 
-snippet ktest "add a new ktest"
-  int test_$1_init(void)
-  {
-  	return 0;
-  }
-
-  int test_$1_exit(void)
-  {
-  	return 0;
-  }
-
-  int test_$1(long action)
-  {
-  	switch (action) {
-  		break;
-  	}
-  	return 0;
-  }
-
 snippet ktrace "add a new tracepoint"
   TRACE_EVENT($1,
 

@@ -458,11 +458,16 @@ snippet xxx_ext "extended template for any bash script"
 	shopt -s inherit_errexit
 	PROGNAME=$(basename "\$0")
 	PROGDIR=$(readlink -m "$(dirname "\$0")")
+
+	arg=${1:-}
+	if [[ -z $arg ]]; then
+		echo "arg empty"
+	fi
+
 	for i in "$@"; do
 		echo "$i"
 	done
 	cd "$(dirname "\$0")"
-
 
 snippet note_split_string_to_array "split string to array"
 	IFS=';' read -r -a ADDR <<< "$IN"
