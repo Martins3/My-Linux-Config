@@ -75,7 +75,6 @@ in
     clash-meta
     tig
     gitui
-    xsel
     xclip # x clipboard
     # wl-clipboard # wayland clipboard
     jq

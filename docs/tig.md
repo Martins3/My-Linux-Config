@@ -34,10 +34,14 @@ bind status D ?@rm %(file)
 <!-- - [ ] 还不如直接将 git.md 和 github.md 使用总结到一起 -->
 
 ## 尝试下 gitui
-1. 修改关闭的快捷键，不要用 esc 而是 q 会更好
 2. 在 terminal 的配色导致看不到 tab f
 3. 无法像 tig 一样直接查看一个文件或者一个目录的历史
-4. 显示
+3. copy 无法使用
+4. 编辑文件的功能无法使用
+
+好处:
+1. 性能
+2. stage 和 unstage 原生支持
 
 
 <script src="https://giscus.app/client.js"

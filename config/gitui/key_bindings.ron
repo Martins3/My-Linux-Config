@@ -38,8 +38,8 @@
 
     abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
 
-    // 自己加的
+    // 但是还是不好用，最后一个界面退出需要 ctrl-c
     exit: Some(( code: Char('c'), modifiers: "CONTROL")),
     exit_popup: Some(( code: Char('q'), modifiers: "")),
-    // diff_stage_lines : Some(( code: Char('x'), modifiers: "")),
+    quit: Some(( code: Char('c'), modifiers: "CONTROL")),
 )
