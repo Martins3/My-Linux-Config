@@ -63,6 +63,7 @@ wk.add({
   { "<space>ga", "<cmd>Git add -A<cr>",                               desc = "git stage all changes" },
   { "<space>gb", "<cmd>Git blame<cr>",                                desc = "git blame" },
   { "<space>gc", "<cmd>Git commit<cr>",                               desc = "git commit" },
+  { "<space>gg", "<cmd>FloatermNew gitui<cr>",                        desc = "gitui" },
   { "<space>gl", "<cmd>FloatermNew tig %<cr>",                        desc = "log of file" },
   { "<space>gm", "<cmd>GitMessenger<cr>",                             desc = "show git blame of current line" },
   { "<space>gp", "<cmd>Git push<cr>",                                 desc = "git push" },

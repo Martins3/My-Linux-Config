@@ -14,7 +14,7 @@ in
   home.packages = with pkgs; [
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
-    wpsoffice
+    unstable.wpsoffice
     # sublime-merge
     # vscode
     flameshot # 截图

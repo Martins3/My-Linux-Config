@@ -74,6 +74,8 @@ in
     screen
     clash-meta
     tig
+    gitui
+    xsel
     xclip # x clipboard
     # wl-clipboard # wayland clipboard
     jq
@@ -110,6 +112,7 @@ in
     act # Run github action locally
     # git-secrets
     nethogs
+    bandwidth
     # sniffnet # 一个直接简单易用的
     nmap
     # dhcpcd # 这个东西和 nixos 不兼容

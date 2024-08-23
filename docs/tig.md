@@ -33,6 +33,13 @@ bind status D ?@rm %(file)
 <!-- - [ ] 测试 mrege 也是一个小问题 https://github.com/christoomey/vim-conflicted -->
 <!-- - [ ] 还不如直接将 git.md 和 github.md 使用总结到一起 -->
 
+## 尝试下 gitui
+1. 修改关闭的快捷键，不要用 esc 而是 q 会更好
+2. 在 terminal 的配色导致看不到 tab f
+3. 无法像 tig 一样直接查看一个文件或者一个目录的历史
+4. 显示
+
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="

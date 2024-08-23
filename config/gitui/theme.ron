@@ -1,0 +1,6 @@
+(
+    selection_bg: Some("Yellow"),
+    // selection_bg: Some("Blue"),
+    selection_fg: Some("#ffffff"),
+    // line_break: Some("¶"),
+)
