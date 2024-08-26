@@ -38,8 +38,8 @@
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"
     # "amd_iommu_intr=legacy"
-    # "ftrace=function"
-    # "ftrace_filter=amd_iommu_int_thread"
+    "ftrace=function"
+    "ftrace_filter=request_firmware"
 
     # "processor.max_cstate=1"
     # "intel_idle.max_cstate=0"

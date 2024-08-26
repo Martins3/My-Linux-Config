@@ -187,7 +187,7 @@ in
     bpftrace
     blktrace
     # kernelshark
-    # trace-cmd
+    trace-cmd
     # hotspot
     # heaptrack
     coccinelle
