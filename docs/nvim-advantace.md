@@ -201,3 +201,5 @@ https://github.com/chrishrb/gx.nvim
 
 ## 用用这个软件
 https://github.com/mpv-player/mpv
+
+https://vim-racer.com/

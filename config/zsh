@@ -125,6 +125,7 @@ alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
 alias c="clear"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"
+alias gg="gitui --watcher"
 alias win="/home/martins3/core/vn/docs/qemu/sh/windows.sh"
 alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
