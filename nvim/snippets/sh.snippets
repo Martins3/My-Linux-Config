@@ -183,10 +183,7 @@ snippet note_getoption "参数选项"
 snippet note_readfile "read file line by line"
 	# https://stackoverflow.com/questions/10929453/read-a-file-line-by-line-assigning-the-value-to-a-variable
 	while read -r line; do
-	        read -ra array <<< "\$line"
-	        for w in "${array[@]}"; do
-	                echo "[$w]"
-	        done
+		echo $line
 	done <ByMyWill.md
 
 
@@ -399,7 +396,7 @@ snippet note_forfiles "遍历一个文件夹下文件"
 snippet note_head "head lines of file"
 	# Usage: head "n" "file"
 	head() {
-	        mapfile -tn "$1" line <"$2"
+	        readarray -tn "$1" line <"$2"
 	        printf '%s\n' "${line[@]}"
 	}
 
@@ -407,7 +404,7 @@ snippet note_head "head lines of file"
 snippet note_tail "tail lines of file"
 	tail() {
 	        # Usage: tail "n" "file"
-	        mapfile -tn 0 line < "$2"
+	        readarray -tn 0 line < "$2"
 	        printf '%s\n' "${line[@]: -$1}"
 	}
 
@@ -469,20 +466,32 @@ snippet xxx_ext "extended template for any bash script"
 	done
 	cd "$(dirname "\$0")"
 
-snippet note_split_string_to_array "split string to array"
-	IFS=';' read -r -a ADDR <<< "$IN"
+snippet note_split_into_array "split string to array"
+	# readarray 和 mapfile 是一个命令，规定以后只是用 readarray
+	# -d 来指定分隔符, -t 删除掉分隔符， 默认分隔符是 break line
+	# 一共三个方法，但是实际上也就是三种重定向的方法而已
 
-snippet note_split_file_to_array "split file to array"
+	# 1. string
+  x="a;b;c"
+	readarray -t -d ; y <<<"$x"
+	printf "%s \n" "${y[@]}"
+
+  x="a
+	b
+	c"
+	readarray -t y <<<"$x"
+	printf "%s \n" "${y[@]}"
+
+	# 2. 文件
 	readarray -t arr < all.txt
 
-snippet note_split_cmd_output_to_array "split cmd output to array"
-	# 默认是换行
-	mapfile -t array < <(git log --format=%h --since="24 hours ago")
+	# 3. 命令
+	readarray -t array < <(git log --format=%h --since="24 hours ago")
 	printf "%s\n" "${array[@]}"
 
-	# -d 来指定分隔符, -t 删除掉分隔符
-	mapfile -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
+	readarray -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
 	printf "%s\n" "${array[@]}"
+	# grep a.sh < <(ls) 等价于 ls | grep a.sh
 
 snippet note_tee ""
 	# 基本使用
