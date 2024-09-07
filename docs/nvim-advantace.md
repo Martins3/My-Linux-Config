@@ -203,3 +203,7 @@ https://github.com/chrishrb/gx.nvim
 https://github.com/mpv-player/mpv
 
 https://vim-racer.com/
+
+https://github.com/sindrets/diffview.nvim : 尝试下
+
+https://github.com/cbochs/grapple.nvim

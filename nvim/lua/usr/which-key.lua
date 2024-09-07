@@ -67,7 +67,7 @@ wk.add({
   { "<space>gl", "<cmd>FloatermNew tig %<cr>",                        desc = "log of file" },
   { "<space>gm", "<cmd>GitMessenger<cr>",                             desc = "show git blame of current line" },
   { "<space>gp", "<cmd>Git push<cr>",                                 desc = "git push" },
-  -- { "<space>gs", "<cmd>FloatermNew tig status<cr>",                   desc = "git status" },
+  { "<space>gs", "<cmd>FloatermNew tig status<cr>",                   desc = "git status" },
   -- 因为 ctrl-i 实际上等同于 tab
   { "<space>i",  "<c-i>",                                             desc = "go to newer jumplist" },
   { "<space>j",  "<cmd>ToggleTerm size=30 direction=horizontal <cr>", desc = "open toggle term" },

@@ -169,7 +169,8 @@ if env | grep container &>/dev/null ; then
   }
 else
   function u() {
-  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
+    # 还是用 git 同步吧，太麻烦了
+  	# rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
   	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
   }
 fi

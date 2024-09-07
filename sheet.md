@@ -55,7 +55,7 @@ tig --  rust/alloc/boxed.rs
 ```sh
 git rebase --interactive bbc643cd~
 # pick 修改为 edit
-# 推出 vim
+# 退出 vim
 # 修改内容，并且 git add
 git commit --amend --signoff
 git rebase --continue
