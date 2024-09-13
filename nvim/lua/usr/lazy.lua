@@ -159,7 +159,6 @@ require("lazy").setup({
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译
-  "nacro90/numb.nvim",
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   {
     "m4xshen/hardtime.nvim",

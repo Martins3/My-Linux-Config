@@ -25,7 +25,6 @@ require("fidget").setup()
 require("nvim-navic").setup()
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
-require("numb").setup()
 require("debugprint").setup()
 require("toggleterm").setup()
 
