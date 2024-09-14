@@ -207,3 +207,33 @@ https://vim-racer.com/
 https://github.com/sindrets/diffview.nvim : 尝试下
 
 https://github.com/cbochs/grapple.nvim
+
+
+## 似乎没什么用的
+
+```lua
+  {
+    "cshuaimin/ssr.nvim",
+    module = "ssr",
+    vim.keymap.set({ "n", "x" }, "<leader>r", function()
+      require("ssr").open()
+    end),
+  }, -- 结构化查询和替换
+
+  {
+    "NStefan002/2048.nvim",
+    cmd = "Play2048",
+    config = true,
+  },
+```
+
+```lua
+'m4xshen/hardtime.nvim'
+"azabiong/vim-highlighter", -- 高亮多个搜索内容
+"dstein64/vim-startuptime", -- 分析 nvim 启动时间
+'wakatime/vim-wakatime' -- 代码时间统计
+"tpope/vim-repeat", -- 更加强大的 `.`
+"mg979/vim-visual-multi", -- 同时编辑多个位置
+"AckslD/nvim-neoclip.lua", -- 保存 macro
+"nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
+```

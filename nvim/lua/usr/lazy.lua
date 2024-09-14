@@ -64,14 +64,6 @@ require("lazy").setup({
   },
   "RRethy/nvim-treesitter-textsubjects",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  {
-    "cshuaimin/ssr.nvim",
-    module = "ssr",
-    vim.keymap.set({ "n", "x" }, "<leader>r", function()
-      require("ssr").open()
-    end),
-  }, -- 结构化查询和替换
-
   -- ui
   "stevearc/aerial.nvim", -- 导航栏
   "kyazdani42/nvim-tree.lua", -- 文件树
@@ -99,7 +91,6 @@ require("lazy").setup({
       return vim.fn.executable("make") == 1
     end,
   },
-  "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
   "voldikss/vim-floaterm", -- 终端
   "akinsho/toggleterm.nvim", -- 性能好点，但是易用性和稳定性都比较差
@@ -118,18 +109,14 @@ require("lazy").setup({
   -- 高效编辑
   "tpope/vim-commentary", -- 快速注释代码
   "kylechui/nvim-surround", -- 快速编辑单词两侧的符号
-  "tpope/vim-repeat", -- 更加强大的 `.`
   "windwp/nvim-autopairs", -- 自动括号匹配
   "mbbill/undotree", -- 显示编辑的历史记录
-  "mg979/vim-visual-multi", -- 同时编辑多个位置
-  "AckslD/nvim-neoclip.lua", -- 保存 macro
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
   -- 高亮
   "norcalli/nvim-colorizer.lua", -- 显示 #FFFFFF
   "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
   -- 时间管理
   "nvim-orgmode/orgmode", -- orgmode 日程管理
-  -- use 'wakatime/vim-wakatime' -- 代码时间统计
 
   -- lsp 增强
   "jackguo380/vim-lsp-cxx-highlight", -- ccls 高亮
@@ -146,26 +133,20 @@ require("lazy").setup({
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
-  "tyru/open-browser.vim", -- 使用 gx 打开链接, TODO 这个插件可以替换下
+  "tyru/open-browser.vim", -- 使用 gx 打开链接
   {
     "keaising/im-select.nvim",
     config = function()
       require("im_select").setup()
     end,
-    enabled = false
+    enabled = false,
   }, -- 自动切换输入法
   {
     "olimorris/persisted.nvim",
   }, -- 自动保存关闭时候的会话
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
-  "azabiong/vim-highlighter", -- 高亮多个搜索内容
-  "dstein64/vim-startuptime", -- 分析 nvim 启动时间
   "voldikss/vim-translator", -- 翻译
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
-  {
-    "m4xshen/hardtime.nvim",
-    enabled = false -- 2024-07-20 升级之后无法正常使用
-  }, -- 训练自己的 vim 习惯，默认没有开启
   {
     "allaman/emoji.nvim",
     ft = "markdown",
@@ -179,10 +160,5 @@ require("lazy").setup({
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},
   },
-  {
-    "NStefan002/2048.nvim",
-    cmd = "Play2048",
-    config = true,
-  },
-  'ojroques/nvim-osc52',
+  "ojroques/nvim-osc52",
 }, {})
