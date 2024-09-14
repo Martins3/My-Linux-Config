@@ -154,7 +154,9 @@ require("lazy").setup({
     end,
     enabled = false
   }, -- 自动切换输入法
-  { "olimorris/persisted.nvim", opts = { autoload = true } }, -- 打开 vim 的时候，自动恢复为上一次关闭的状态
+  {
+    "olimorris/persisted.nvim",
+  }, -- 自动保存关闭时候的会话
   "anuvyklack/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
   "azabiong/vim-highlighter", -- 高亮多个搜索内容
   "dstein64/vim-startuptime", -- 分析 nvim 启动时间

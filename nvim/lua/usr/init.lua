@@ -64,3 +64,7 @@ local function copy()
 end
 
 vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+
+require("persisted").setup({
+  autoload = true,
+})
