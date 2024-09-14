@@ -261,6 +261,8 @@ in
     # mcfly # better ctrl-r for shell
     atuin
     pciutils
+    usbutils
+    cyme # 一个更加好看的 usbutils
     # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
     libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
     bcachefs-tools
@@ -287,7 +289,6 @@ in
 
     # containerd # @todo 测试下
     # nerdctl
-    usbutils
     pwru # ebpf 抓包工具
     calcure # 日历，@todo 可以定制化的，有趣
     pahole
