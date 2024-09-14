@@ -38,8 +38,10 @@
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"
     # "amd_iommu_intr=legacy"
-    "ftrace=function"
-    "ftrace_filter=request_firmware"
+    #
+    # 打开这个选项之后，iperf3 性能只有之前的 1/5
+    # "ftrace=function"
+    # "ftrace_filter=request_firmware"
 
     # "processor.max_cstate=1"
     # "intel_idle.max_cstate=0"
