@@ -5,37 +5,36 @@ let
 in
 pkgs.mkShell rec {
   nativeBuildInputs = with pkgs.buildPackages; [
-     nasm
-     pkg-config
-     yasm
-    /* elfutils */
-    autoconf
-    autoconf-archive
-    automake
-    bison
-    cunit
-    dpdk
-    flex
-    fuse3
-    gettext
-    jansson
-    lcov
-    libaio
-    libbsd
-    libelf
-    libnl
-    libpcap
-    libtool
-    liburing
-    libuuid
-    ncurses
-    ncurses
-    numactl
-    openssl
-    pkg-config
-    python3
-    python3.pkgs.setuptools
-    python3Packages.pyelftools
+      nasm
+      pkg-config
+      yasm
+      /* elfutils */
+      autoconf
+      autoconf-archive
+      automake
+      bison
+      cunit
+      dpdk
+      flex
+      fuse3
+      gettext
+      jansson
+      lcov
+      libaio
+      libbsd
+      libelf
+      libnl
+      libpcap
+      libtool
+      liburing
+      libuuid
+      ncurses
+      numactl
+      openssl
+      (python3.withPackages (p: with p; [
+                             setuptools
+                             pyelftools
+      ]))
     zlib
   ];
 

@@ -300,8 +300,6 @@ in
     bc # bash 数值计算
     bash_unit
 
-    # verilator # Fast and robust (System)Verilog simulator/compiler
-
     # cowsay
     # figlet # 艺术字
     # lolcat # 彩虹 cat

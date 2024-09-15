@@ -1721,3 +1721,15 @@ clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/
 
 ## 看看这个吧
 https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
+
+## nixos 的动态库
+构建项目如果发现没有动态库，基本的解决思路是:
+
+参考 https://discourse.nixos.org/t/where-can-i-get-libgthread-2-0-so-0/16937/6
+
+使用 nix-index 也许可以定位是那个包提供的，在 nix 中添加:
+
+例如，这个提供了 stdc++ ，libGL 和 glib2 的动态库的位置:
+```nix
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.glib.out}/lib";
+```
