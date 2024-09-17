@@ -7,9 +7,12 @@ pkgs.llvmPackages.stdenv.mkDerivation {
         llvm
         verilator
         mill
+        dtc # device-tree-compiler
         (python3.withPackages (p: with p; [
           setuptools
         ]))
+        circt
+
     ];
       shellHook = ''
       export XS_PROJECT_ROOT=$(pwd)
@@ -24,4 +27,4 @@ pkgs.llvmPackages.stdenv.mkDerivation {
 # git submodule update --init XiangShan && make -C XiangShan init;
 # cd XiangShan
 # make verilog
-# 但是 make 最后会有错误
+# 但是 make 最后会有错误，对比一下 xiby1 的 config 是什么原因吧
