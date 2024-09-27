@@ -23,6 +23,7 @@
 
   boot.kernelParams = [
     "transparent_hugepage=always"
+    "kvm.halt_poll_ns=0"
     "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"

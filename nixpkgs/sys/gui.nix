@@ -12,6 +12,11 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = false;
   services.xserver.desktopManager.gnome.enable = true;
+  # TODO 似乎还是不太行
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "martins3";
+  services.xserver.displayManager.gdm.autoLogin.delay = 1;
+
 
   # see xieby1
   fonts.packages = (

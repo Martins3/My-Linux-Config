@@ -20,6 +20,9 @@ in
   home.packages = with pkgs; [
     gcc
     libgcc # gcov
+    libclang # 各种 clang 基本工具，例如 clang-doc
+    libllvm
+    lld
     # gnuplot
     ccache
     # mold
@@ -27,6 +30,7 @@ in
     hdparm
     go
     ruby
+    ouch # 压缩，解压缩
     unstable.serpl
     openfortivpn
     # gitea # 好吧，还需要手动搭建数据库才可以
@@ -114,6 +118,7 @@ in
     bandwidth
     # sniffnet # 一个直接简单易用的
     nmap
+    conntrack-tools # 分析 conntrack 表
     # dhcpcd # 这个东西和 nixos 不兼容
     iftop
     # neomutt # 邮件列表，很难用
@@ -151,7 +156,7 @@ in
     nixpacks
     nix-tree # 动态的展示每一个包的依赖
     buildah
-    virtiofsd # 之前 https://gitlab.com/virtio-fs/virtiofsd ，似乎之前是在 qemu 中的
+    virtiofsd
     # podman
     # podman-tui
     # k9s
@@ -174,9 +179,11 @@ in
     tree-sitter
     systeroid
     # linuxKernel.packages.linux_5_15.perf
-    linuxPackages_6_9.perf
-    linuxPackages_6_9.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
-    # linuxPackages_6_5.sysdig # 没法用，还需要内核模块
+    linuxPackages_6_10.perf
+    linuxPackages_6_10.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
+    # 没法用，还需要内核模块
+    # error opening device /dev/scap0. Make sure you have root credentials and that the scap module is loaded: No such file or directory
+    linuxPackages_6_10.sysdig
 
     # cflow # 感觉很弱，没用懂
     iperf
