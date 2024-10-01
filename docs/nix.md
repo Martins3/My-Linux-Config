@@ -198,6 +198,25 @@ sudo smbpasswd -a martins3
 
 在 windows 那一侧使用 martins3 和新设置的密码来登录。
 
+#### fedora 上 enable
+
+```sh
+sudo dnf install samba
+sudo systemctl enable smb --now
+```
+
+sudo smbpasswd -a martins3
+
+在 /etc/samba/smb.conf 的结尾地方添加:
+```txt
+[public]
+        path = home/martins3/core
+        browseable = yes
+        read only = no
+        guest ok = yes
+```
+总体来说，失败，一会儿再去尝试吧
+
 ### syncthing
 
 强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
@@ -1733,3 +1752,6 @@ https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
 ```nix
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.glib.out}/lib";
 ```
+
+## cppman 是一个 python 库，但是没有办法安装
+https://github.com/aitjcize/cppman
