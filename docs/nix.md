@@ -225,7 +225,7 @@ pip install setuptools # 结果 readonly 文件系统
 正确的解决办法是，之后，就按照正常的系统中使用 python:
 
 ```sh
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 

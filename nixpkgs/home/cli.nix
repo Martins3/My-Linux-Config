@@ -230,6 +230,7 @@ in
       autopep8
       gcovr
       pygments # 让 gdb-dashboard 支持高亮
+      pytest
     ]))
     # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
     # perl
