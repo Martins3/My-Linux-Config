@@ -1755,3 +1755,25 @@ https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
 
 ## cppman 是一个 python 库，但是没有办法安装
 https://github.com/aitjcize/cppman
+
+## 如何自动 login 似乎在图形界面上才可以配置
+
+https://help.gnome.org/admin/system-admin-guide/stable/login-automatic.html.en
+
+配置之后接入如下:
+```txt
+🧀  cat /etc/gdm/custom.conf
+[daemon]
+AutomaticLogin=martins3
+AutomaticLoginEnable=true
+WaylandEnable=false
+```
+
+但是使用 nixos 的配置:
+
+```txt
+  services.displayMnager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "martins3";
+  services.xserver.displayManager.gdm.autoLogin.delay = 1;
+```
+会有很多诡异的想象。
