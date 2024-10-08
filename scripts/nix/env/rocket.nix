@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.llvmPackages.stdenv.mkDerivation {
-    name = "xiang";
+    name = "rocket-chip";
     buildInputs = with pkgs; [
         bison
         llvm

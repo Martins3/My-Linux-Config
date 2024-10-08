@@ -1,4 +1,4 @@
-#pytest NixOS 初步尝试
+# NixOS 初步尝试
 
 声明：
 
@@ -1757,6 +1757,8 @@ https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
 https://github.com/aitjcize/cppman
 
 ## 如何自动 login 似乎在图形界面上才可以配置
+
+在 settings 中搜 login ，有一个 autoLogin 的选项。
 
 https://help.gnome.org/admin/system-admin-guide/stable/login-automatic.html.en
 

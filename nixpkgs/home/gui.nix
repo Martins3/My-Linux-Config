@@ -19,7 +19,7 @@ in
     # vscode
     flameshot # 截图
     # unstable.zotero
-    # slack
+    slack
     # drawio
     # imagemagick # 压缩照片
     # variety # wallpaper 但是 bing wallpaper 已经够好了
@@ -30,7 +30,7 @@ in
     # wireshark
     # alacritty
     # warp-terminal
-    # unstable.spacedrive # 一打开就 crash 了，目前没法用
+    # spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
@@ -58,7 +58,7 @@ in
     # tdesktop
     # telegram
     # gparted # 需要 GTK，使用 disk 也不错
-    # rofi # @todo rofi 的使用
+    # rofi # @todo rofi 如何使用
     # scrcpy # Android 的投屏工具
     # xmind
     # obsidian
