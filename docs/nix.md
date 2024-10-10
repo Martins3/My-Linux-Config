@@ -1779,3 +1779,98 @@ WaylandEnable=false
   services.xserver.displayManager.gdm.autoLogin.delay = 1;
 ```
 会有很多诡异的想象。
+
+## ocaml
+
+```txt
+🧀  opam install herdtools7
+[NOTE] External dependency handling not supported for OS family 'nixos'.
+       You can disable this check using 'opam option --global depext=false'
+The following actions will be performed:
+  ∗ install conf-which      1        [required by herdtools7]
+  ∗ install conf-gmp        4        [required by zarith]
+  ∗ install conf-pkg-config 3        [required by zarith]
+  ∗ install dune            3.16.0   [required by herdtools7]
+  ∗ install ocamlfind       1.9.6    [required by zarith]
+  ∗ install menhirSdk       20240715 [required by menhir]
+  ∗ install menhirLib       20240715 [required by menhir]
+  ∗ install menhirCST       20240715 [required by menhir]
+  ∗ install zarith          1.14     [required by herdtools7]
+  ∗ install menhir          20240715 [required by herdtools7]
+  ∗ install herdtools7      7.57
+===== ∗ 11 =====
+Do you want to continue? [Y/n] Y
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Processing  5/33: [conf-gmp.4/test.c: dl] [dune.3.16.0: dl] [herdtools7.7.57: dl]
+[ERROR] The compilation of conf-pkg-config.3 failed at "pkg-config --help".
+∗ installed conf-which.1
+⬇ retrieved conf-gmp.4  (https://opam.ocaml.org/cache)
+[ERROR] The compilation of conf-gmp.4 failed at "sh -exc cc -c $CFLAGS -I/usr/local/include test.c".
+⬇ retrieved herdtools7.7.57  (https://opam.ocaml.org/cache)
+⬇ retrieved dune.3.16.0  (https://opam.ocaml.org/cache)
+⬇ retrieved menhir.20240715  (https://opam.ocaml.org/cache)
+⬇ retrieved menhirSdk.20240715  (cached)
+⬇ retrieved menhirCST.20240715  (https://opam.ocaml.org/cache)
+⬇ retrieved ocamlfind.1.9.6  (https://opam.ocaml.org/cache)
+⬇ retrieved zarith.1.14  (https://opam.ocaml.org/cache)
+∗ installed ocamlfind.1.9.6
+⬇ retrieved menhirLib.20240715  (https://opam.ocaml.org/cache)
+∗ installed dune.3.16.0
+∗ installed menhirCST.20240715
+∗ installed menhirSdk.20240715
+∗ installed menhirLib.20240715
+∗ installed menhir.20240715
+
+#=== ERROR while compiling conf-pkg-config.3 ==================================#
+# context     2.1.5 | linux/x86_64 | ocaml.5.2.0 | https://opam.ocaml.org#f302b6aaf01995b706f9b5a0a8fc2e6bb299
+eae8
+# path        ~/.opam/default/.opam-switch/build/conf-pkg-config.3
+# command     ~/.opam/opam-init/hooks/sandbox.sh build pkg-config --help
+# exit-code   10
+# env-file    ~/.opam/log/conf-pkg-config-1134447-8c5011.env
+# output-file ~/.opam/log/conf-pkg-config-1134447-8c5011.out
+### output ###
+# [ERROR] Command not found: pkg-config
+
+
+#=== ERROR while compiling conf-gmp.4 =========================================#
+# context     2.1.5 | linux/x86_64 | ocaml.5.2.0 | https://opam.ocaml.org#f302b6aaf01995b706f9b5a0a8fc2e6bb299
+eae8
+# path        ~/.opam/default/.opam-switch/build/conf-gmp.4
+# command     ~/.opam/opam-init/hooks/sandbox.sh build sh -exc cc -c $CFLAGS -I/usr/local/include test.c
+# exit-code   1
+# env-file    ~/.opam/log/conf-gmp-1134447-2aea49.env
+# output-file ~/.opam/log/conf-gmp-1134447-2aea49.out
+### output ###
+# + cc -c -I/usr/local/include test.c
+# test.c:1:10: fatal error: gmp.h: No such file or directory
+#     1 | #include <gmp.h>
+#       |          ^~~~~~~
+# compilation terminated.
+
+
+
+<><> Error report <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+┌─ The following actions failed
+│ λ build conf-gmp        4
+│ λ build conf-pkg-config 3
+└─
+┌─ The following changes have been performed (the rest was aborted)
+│ ∗ install conf-which 1
+│ ∗ install dune       3.16.0
+│ ∗ install menhir     20240715
+│ ∗ install menhirCST  20240715
+│ ∗ install menhirLib  20240715
+│ ∗ install menhirSdk  20240715
+│ ∗ install ocamlfind  1.9.6
+└─
+
+The former state can be restored with:
+    /nix/store/sgxvws7lxhhz60j0l3grnkv6wa7fyx8v-opam-2.1.5/bin/.opam-wrapped switch import
+"/home/martins3/.opam/default/.opam-switch/backup/state-20241004072102.export"
+```
+
+但是，如果这个时候 nix-shell -p gmp pkg-config ，那么还是可以正确的使用的。
+
+看来的确是可以的

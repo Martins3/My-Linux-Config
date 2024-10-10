@@ -25,6 +25,7 @@ in
     lld
     # gnuplot
     ccache
+    opam
     # mold
     spin swarm # 形式化验证工具
     hdparm

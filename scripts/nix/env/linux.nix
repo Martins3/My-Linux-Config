@@ -29,10 +29,9 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     libcap_ng
     liburing
     libaio
-
-	 rustfmt
-	 rustc
-	 cargo
+    rustfmt
+    rustc
+    cargo
 	 rust-bindgen
 
     # Necessary for the openssl-sys crate:
