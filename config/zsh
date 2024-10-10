@@ -142,7 +142,6 @@ alias vs="/home/martins3/.dotfiles/config/sh/close-nvim.sh"
 alias vc="rm -r ~/.local/share/nvim/sessions"
 alias he="nvim +10000  /home/martins3/.dotfiles/sheet.md"
 alias kvm_stat="sudo /home/martins3/data/linux/tools/kvm/kvm_stat/kvm_stat"
-alias p="python -m venv .venv && source .venv/bin/activate"
 alias i="ipython"
 alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
@@ -174,6 +173,15 @@ else
   	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
   }
 fi
+
+# TODO 我理解应该可以通过 default.nix 自动实现加载
+# 但是我不会
+function p(){
+  if [[ ! -d .venv ]]; then
+    python3 -m venv .venv
+  fi
+   source .venv/bin/activate
+}
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
