@@ -189,6 +189,7 @@ sudo smbpasswd -a martins3
 ```
 
 在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
+注意，这里的 public 和配置文件中对应的。
 
 如果遇到需要密码的时候，但是密码不对
 
@@ -199,6 +200,7 @@ sudo smbpasswd -a martins3
 在 windows 那一侧使用 martins3 和新设置的密码来登录。
 
 #### fedora 上 enable
+将 fedora 的文件 贡献给 windows
 
 ```sh
 sudo dnf install samba

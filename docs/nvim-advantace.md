@@ -237,3 +237,8 @@ https://github.com/cbochs/grapple.nvim
 "AckslD/nvim-neoclip.lua", -- 保存 macro
 "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
 ```
+
+这个应该是用点用的:
+https://github.com/ptdewey/pendulum-nvim
+
+没办法正常使用，如果可以用的话，那么是极好的

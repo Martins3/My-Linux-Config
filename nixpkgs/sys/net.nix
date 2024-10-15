@@ -105,6 +105,13 @@
         /* "force user" = "username"; */
         /* "force group" = "groupname"; */
       };
+
+      iso = {
+        path = "/home/martins3/hack/iso";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+      };
     };
   };
 

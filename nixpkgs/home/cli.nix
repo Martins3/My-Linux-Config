@@ -125,7 +125,7 @@ in
     # neomutt # 邮件列表，很难用
     b4
     # weechat
-    offlineimap
+    # offlineimap # 下载邮件的工具，很难用
     tcpdump
     ethtool
     proxychains-ng
@@ -137,7 +137,7 @@ in
     kmon # 方便的管理内核模块
     numactl
     # numatop # CPU 根本不支持
-    kexec-tools
+    # kexec-tools # 实际上没有办法用
     rpm
     stress-ng
     # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
@@ -149,14 +149,14 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
-    lima
+    # lima # 虚拟机工具
     virt-manager
     # quickemu
     # unstable.nixos-shell
     krunvm  # 有待尝试
-    nixpacks
+    # nixpacks
     nix-tree # 动态的展示每一个包的依赖
-    buildah
+    # buildah
     virtiofsd
     # podman
     # podman-tui
@@ -290,7 +290,6 @@ in
     bridge-utils
     swtpm # windows 11 启动需要
     # nushell
-    libnotify # 通知小工具
     # powershell
     # vector
     dmidecode # sudo dmidecode -t 1
