@@ -235,7 +235,6 @@ https://github.com/cbochs/grapple.nvim
 "tpope/vim-repeat", -- 更加强大的 `.`
 "mg979/vim-visual-multi", -- 同时编辑多个位置
 "AckslD/nvim-neoclip.lua", -- 保存 macro
-"nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
 ```
 
 这个应该是用点用的:

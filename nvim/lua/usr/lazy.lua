@@ -91,6 +91,7 @@ require("lazy").setup({
       return vim.fn.executable("make") == 1
     end,
   },
+  "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
   "voldikss/vim-floaterm", -- 终端
   "akinsho/toggleterm.nvim", -- 性能好点，但是易用性和稳定性都比较差

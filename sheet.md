@@ -224,6 +224,9 @@ git branch --contains $tag
 ### gz
 gzip -d file.gz
 
+### ouch
+ouch -h
+
 
 ## systemd
 

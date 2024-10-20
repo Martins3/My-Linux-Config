@@ -38,7 +38,7 @@ require("telescope").setup({
 -- load_extension, somewhere after setup function:
 require("telescope").load_extension("fzf")
 -- require("telescope").load_extension("neoclip")
--- require('telescope').load_extension("frecency")
+require('telescope').load_extension("frecency")
 require("telescope").load_extension("lsp_handlers")
 require("telescope").load_extension("bookmarks")
 require("telescope").load_extension("emoji")
