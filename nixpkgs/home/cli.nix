@@ -31,9 +31,8 @@ in
     hdparm
     go
     ruby
-    ouch # 压缩，解压缩
-    unstable.serpl
-    openfortivpn
+    ouch # 简化压缩/解压缩的使用
+    unstable.serpl # nvim 中的集成
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
@@ -58,6 +57,7 @@ in
     checkmake
     # minicom
     typos # 检查代码中 typo
+    # typst # latex 替代品
     # include-what-you-use # 很小的项目都用着不正常
     cargo
     cmake
@@ -117,6 +117,7 @@ in
     # git-secrets
     nethogs
     bandwidth
+    # openfortivpn # TODO 真的可以用吗?
     # sniffnet # 一个直接简单易用的
     nmap
     conntrack-tools # 分析 conntrack 表

@@ -22,7 +22,7 @@ wk.add({
   { "<leader>F", "<cmd>Telescope git_files<cr>",                      desc = "search files (exclude submodules)" },
   { "<leader>G", "<cmd>Telescope grep_string<cr>",                    desc = "live grep cursor word" },
   { "<leader>b", "<cmd>Telescope buffers<cr>",                        desc = "searcher buffers" },
-  { "<leader>c", "<cmd>Telescope frecency<cr>",                       desc = "search files sort with edit history" },
+  { "<leader>c", "<cmd>Telescope frecency workspace=CWD<cr>",                       desc = "search files sort with edit history" },
   { "<leader>f", "<cmd>Telescope find_files<cr>",                     desc = "search files (include submodules)" },
   { "<leader>g", "<cmd>Telescope live_grep<cr>",                      desc = "live grep" },
   { "<leader>h", "<cmd>Telescope help_tags<cr>",                      desc = "search vim manual" },
