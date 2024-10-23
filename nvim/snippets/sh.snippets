@@ -178,6 +178,7 @@ snippet note_getoption "参数选项"
 				;;
 		esac
 	done
+	shift $((OPTIND-1))
 
 
 snippet note_readfile "read file line by line"
@@ -443,6 +444,9 @@ snippet note_sed "sed"
 
 	# 替换
 	sed -i 's/old-text/new-text/g' input.txt
+
+	# 删除
+	sed '/pattern to match/d' ./infile.txt
 
 
 

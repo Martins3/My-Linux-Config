@@ -174,8 +174,7 @@ else
   }
 fi
 
-# TODO 我理解应该可以通过 default.nix 自动实现加载
-# 但是我不会
+# TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
     python3 -m venv .venv
@@ -185,3 +184,11 @@ function p(){
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
+
+if [ -e /home/martins3/core/vn/code/zsh  ]; then
+  . /home/martins3/core/vn/code/zsh
+fi
+
+if [ -e /home/martins3/core/zsh/zsh ]; then
+  . /home/martins3/core/zsh/zsh
+fi
