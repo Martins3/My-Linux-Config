@@ -1876,3 +1876,7 @@ The former state can be restored with:
 但是，如果这个时候 nix-shell -p gmp pkg-config ，那么还是可以正确的使用的。
 
 看来的确是可以的
+
+## 指定动态库
+
+参考 scripts/nix/env/uboot.nix

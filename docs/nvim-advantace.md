@@ -241,3 +241,13 @@ https://github.com/cbochs/grapple.nvim
 https://github.com/ptdewey/pendulum-nvim
 
 没办法正常使用，如果可以用的话，那么是极好的
+
+导航栏中，对于
+```txt
+			WRITE_ONCE(mm_state->seq, mm_state->seq + 1);
+```
+
+会显示出来:
+```txt
+  󰊕  __compiletime_assert_1139
+```

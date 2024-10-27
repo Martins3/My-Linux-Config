@@ -11,8 +11,9 @@ pkgs.mkShell {
     pkgs.protobuf
 
     # Necessary for the openssl-sys crate:
-    # pkgs.openssl
-    # pkgs.pkg-config
+    pkgs.openssl
+    pkgs.pkg-config
+    pkgs.fuse
 
     # pkgs.wasm-pack
     # pkgs.wasmer
