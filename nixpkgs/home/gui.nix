@@ -43,6 +43,7 @@ in
     # thunderbird
     # feishu
     # netease-cloud-music-gtk
+    # yesplaymusic # 似乎这个也不错
     # 似乎微信又不可以用了，哈哈
     # (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
     #   postInstall = builtins.replaceStrings
