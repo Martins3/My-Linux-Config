@@ -18,6 +18,7 @@ in
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
+    git
     gcc
     libgcc # gcov
     libclang # 各种 clang 基本工具，例如 clang-doc
@@ -371,7 +372,7 @@ in
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit";
-      sha256 = "sha256-/NQSg9yDU7K1fjxXXHYkw0zUqg689ATURpXiTj7wPbE=";
+      sha256 = "1chhyk7rhm1ysbdi4rzmik25cdfyv4kmgzx70yfgsxr9cjw4kllb";
       name = "gdbinit";
     };
     target = ".gdbinit";

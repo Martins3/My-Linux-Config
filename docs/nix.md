@@ -1880,3 +1880,8 @@ The former state can be restored with:
 ## 指定动态库
 
 参考 scripts/nix/env/uboot.nix
+
+## [ ] 有没有办法，只有 cache 我需要的内容
+https://discourse.nixos.org/t/introducing-attic-a-self-hostable-nix-binary-cache-server/24343
+
+似乎只有自己去 push 就可以了
