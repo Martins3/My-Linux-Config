@@ -4,13 +4,13 @@ let
 
 # 用这种方法来使用最新的 neovim ，但是不一定编译成功
 # neovim = builtins.getFlake "github:neovim/neovim?dir=contrib";
-
+  opt = import ./opt.nix;
 in
 {
   imports = [
     ./home/cli.nix
   ] ++ (
-  if builtins.currentSystem == "x86_64-linux" then [
+  if opt.isGui then [
       ./home/gui.nix
     ] else [ ]
   );

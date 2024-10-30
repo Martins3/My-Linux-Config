@@ -1,3 +1,16 @@
+if [[ -d $HOME/.nix-profile/bin ]];then
+  # 如果在 fedora 中安装 nix ，需要首先加载环境变量
+  if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+  eval "$(direnv hook zsh)"
+
+  function en_direnv() {
+    echo "use nix" >> .envrc && direnv allow
+  }
+  export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
+fi
+
+
 eval "$(zoxide init zsh)"
 
 export ATUIN_NOBIND="true"
@@ -14,19 +27,6 @@ export PATH="$HOME/go/bin:$PATH"
 
 # ocaml 的包管理器是 opam ，为了给他一个依赖环境
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-if [[ -d $HOME/.nix-profile/bin ]];then
-  eval "$(direnv hook zsh)"
-
-  function en_direnv() {
-    echo "use nix" >> .envrc && direnv allow
-  }
-  export NIX_CONF_DIR=$HOME/.config/nixpkgs/nix
-  if [[ ! -d /etc/nixos/ ]]; then
-     # 如果在 fedora 中安装 nixos ，需要这个加载环境
-    if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-  fi
-fi
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
