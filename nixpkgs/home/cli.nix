@@ -18,6 +18,8 @@ in
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
+    strace
+    vim
     git
     gcc
     libgcc # gcov
@@ -73,8 +75,8 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    # tmux
-    myPkg
+    tmux
+    # myPkg
     tmuxp
     pueue
     screen
