@@ -38,6 +38,10 @@ ln -sf ~/.dotfiles/nvim/efm.yaml ~/.config/efm-langserver/config.yaml
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	echo "tmux plugin install : prefix + I"
+  # TODO 真的服了，各种问题
+  # 1. catppuccin/tmux 这个项目 api 变化太快
+  # 2. 下载之后自动 checkout
+  cd .tmux/plugins/tmux && checkout 7a284c98e5df4cc84a1a45ad633916
 fi
 
 if systemctl list-units --type target | grep graphical; then
