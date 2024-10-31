@@ -1885,3 +1885,12 @@ The former state can be restored with:
 https://discourse.nixos.org/t/introducing-attic-a-self-hostable-nix-binary-cache-server/24343
 
 似乎只有自己去 push 就可以了
+
+## 如何快速拷贝
+nix-store export 和 import
+
+nix-copy-closure
+
+## 组织，他们有好多个项目
+- https://zero-to-nix.com/
+- https://github.com/DeterminateSystems
