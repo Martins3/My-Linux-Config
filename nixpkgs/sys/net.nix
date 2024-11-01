@@ -118,6 +118,8 @@
 
   # 配合使用
   # sudo mount -t nfs4 10.0.0.2:/home/martins3/hack /home/martins3/hack
+  # 有的 guest os 环境必须用 mount.nfs
+  # sudo mount.nfs 10.0.0.2:/home/martins3/core/vn /home/martins3/core/vn
   # 1. 这个时候居然可以删除掉 nfs ，乌鱼子
   # 2. 如果不增加 no_root_squash ，在 fedora 虚拟机中没有 write 权限，但是在 nixos guest 中可以，因为 feodra 默认 root
   #   - https://serverfault.com/questions/611007/unable-to-write-to-mount-point-nfs-server-getting-permission-denied
@@ -125,5 +127,6 @@
   services.nfs.server.enable = true;
   services.nfs.server.exports = ''
     /home/martins3/hack         10.0.0.2/16(rw,no_subtree_check)
+    /home/martins3/core/vn      10.0.0.2/16(rw,no_subtree_check)
   '';
 }

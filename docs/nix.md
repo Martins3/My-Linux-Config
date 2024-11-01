@@ -1886,11 +1886,11 @@ https://discourse.nixos.org/t/introducing-attic-a-self-hostable-nix-binary-cache
 
 似乎只有自己去 push 就可以了
 
-## 如何快速拷贝
+## 如何快速拷贝，也许可以尝试一下，但是不容易
 nix-store export 和 import
 
 nix-copy-closure
 
-## 组织，他们有好多个项目
+## 如果可以构建一个 local cache ，那么就完美了
 - https://zero-to-nix.com/
 - https://github.com/DeterminateSystems
