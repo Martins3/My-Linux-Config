@@ -1894,3 +1894,6 @@ nix-copy-closure
 ## 如果可以构建一个 local cache ，那么就完美了
 - https://zero-to-nix.com/
 - https://github.com/DeterminateSystems
+
+## 事到如今，批评还是很多的
+https://www.reddit.com/r/NixOS/comments/1gfx95g/leaving_nix_dont_expect_anyone_to_care_but_you/

@@ -154,7 +154,7 @@ alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
 alias ins="/home/martins3/.dotfiles/scripts/nix/env/install.sh"
 alias xx="sudo shutdown now"
-alias t="tmux attach || tmux"
+alias tm="tmux attach || tmux"
 function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com

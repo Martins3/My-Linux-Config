@@ -18,6 +18,7 @@ in
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
+    nfs-utils # 提供 mount.nfs
     strace
     vim
     git
@@ -35,7 +36,6 @@ in
     go
     ruby
     ouch # 简化压缩/解压缩的使用
-    unstable.serpl # nvim 中的集成
     # gitea # 好吧，还需要手动搭建数据库才可以
     sipcalc
     ventoy
@@ -171,10 +171,12 @@ in
     # hoard # 暂时不知道怎么使用
     # slirp4netns
     # nix-index
-    # nixd
+    nixd
+    nixfmt-rfc-style
     # debootstrap # 制作 uml 的工具
     meson
-    neovim
+    unstable.neovim
+    luarocks
     # zed-editor # 默认不支持中文，放弃
     # helix # modern neovim
     # cheat
@@ -188,7 +190,7 @@ in
     linuxPackages_6_10.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
     # 没法用，还需要内核模块
     # error opening device /dev/scap0. Make sure you have root credentials and that the scap module is loaded: No such file or directory
-    linuxPackages_6_10.sysdig
+    # linuxPackages_6_10.sysdig
 
     # cflow # 感觉很弱，没用懂
     iperf
