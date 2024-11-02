@@ -31,6 +31,10 @@
 
 ## git
 
+常用:
+git commit --amend --signoff
+git pull --rebase --autostash
+
 - git ls-files --others --exclude-standard >> .gitignore
   - 将没有被跟踪的文件添加到 .gitignore 中
 - git reset : 将所有的内容 unstage
