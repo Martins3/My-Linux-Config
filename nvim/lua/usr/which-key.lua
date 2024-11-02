@@ -33,6 +33,7 @@ wk.add({
   { "<leader>o", "<cmd>Telescope lsp_document_symbols<cr>",           desc = "search symbols in file" },
   -- leader p used for paste from system clipboard
   { "<leader>s", "<cmd>Telescope lsp_dynamic_workspace_symbols <cr>", desc = "search symbols in project" },
+  -- leader t : markdown table mode
   -- leader x used for map language specific function
   -- " 使用 <leader> [number] 切换到第 [number] 个 window
   { "<space>0",  "<cmd>10wincmd w <cr>",                              desc = "jump to window 0" },
@@ -60,15 +61,11 @@ wk.add({
   { "<space>fs", "<cmd>w<cr>",                                        desc = "save file" },
   { "<space>ft", "<cmd>NvimTreeToggle<cr>",                           desc = "toggle file tree" },
   { "<space>g",  group = "git" },
-  { "<space>gL", "<cmd>FloatermNew tig<cr>",                          desc = "log of project" },
   { "<space>ga", "<cmd>Git add -A<cr>",                               desc = "git stage all changes" },
   { "<space>gb", "<cmd>Git blame<cr>",                                desc = "git blame" },
   { "<space>gc", "<cmd>Git commit<cr>",                               desc = "git commit" },
-  { "<space>gg", "<cmd>FloatermNew gitui<cr>",                        desc = "gitui" },
-  { "<space>gl", "<cmd>FloatermNew tig %<cr>",                        desc = "log of file" },
   { "<space>gm", "<cmd>GitMessenger<cr>",                             desc = "show git blame of current line" },
   { "<space>gp", "<cmd>Git push<cr>",                                 desc = "git push" },
-  { "<space>gs", "<cmd>FloatermNew tig status<cr>",                   desc = "git status" },
   -- 因为 ctrl-i 实际上等同于 tab
   { "<space>i",  "<c-i>",                                             desc = "go to newer jumplist" },
   { "<space>j",  "<cmd>ToggleTerm size=30 direction=horizontal <cr>", desc = "open toggle term" },
@@ -94,7 +91,6 @@ wk.add({
   { "<space>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",         desc = "search in current buffer" },
   { "<space>sg", "<cmd>Telescope git_status<cr>",                        desc = "search git status" },
   { "<space>sp", "<cmd>lua require('spectre').open()<cr>",               desc = "search in project" },
-  { "<space>si", "<cmd>FloatermNew serpl<cr>",                           desc = "search with serpl" },
 
   { "<space>t",  group = "toggle" },
   { "<space>t7", "<cmd>let &cc = &cc == '' ? '75' : ''<cr>",             desc = "highlight 75 line" },
@@ -107,7 +103,6 @@ wk.add({
   { "<space>ts", "<cmd>set spell!<cr>",                                  desc = "spell check" },
   { "<space>tt", "<cmd>set nocursorline<cr> <cmd>TransparentToggle<cr>", desc = "make background transparent" },
   { "<space>tw", "<cmd>set wrap!<cr>",                                   desc = "wrap line" },
-  { "<space>x",  "<cmd>FloatermNew ipython<cr>",                         desc = "calculated" },
   { "<tab>",     "<cmd>wincmd w<cr>",                                    desc = "switch window" },
   { "K",         "<cmd>lua vim.lsp.buf.hover()<cr>",                     desc = "document" },
   { "c",         group = "window" },

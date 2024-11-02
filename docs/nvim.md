@@ -513,8 +513,6 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:
 
-- `Ctrl` `n` : 创建新的 terminal window
-- `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
 
 | 打开悬浮终端，并且运行 htop 的结果 |
@@ -531,6 +529,9 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 - 如果同时使用多个终端，其管理难度简直逆天。
 - 没有简洁的 voidkiss 中 FloatermNew 的功能。
   综上，我认为最近两年没有必要切换。
+
+2024-11-02 ，升级 nvim 0.10.1 之后，FloatermNew 已经不可以用了，所以还是
+使用 akinsho/toggleterm.nvim 了
 
 ### 一键运行代码
 

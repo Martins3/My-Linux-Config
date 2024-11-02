@@ -21,14 +21,6 @@ map <leader>d "+d
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 
-" floaterm 功能很强大，但是性能不行，
-" 如果执行的命令存在大量输出，例如编译内核，会将一个 CPU 100% 利用率
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<C-t>'
-
 " 加载 lua 配置
 lua require 'usr'
 
