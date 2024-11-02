@@ -22,7 +22,7 @@ wk.add({
   { "<leader>F", "<cmd>Telescope git_files<cr>",                      desc = "search files (exclude submodules)" },
   { "<leader>G", "<cmd>Telescope grep_string<cr>",                    desc = "live grep cursor word" },
   { "<leader>b", "<cmd>Telescope buffers<cr>",                        desc = "searcher buffers" },
-  { "<leader>c", "<cmd>Telescope frecency workspace=CWD<cr>",                       desc = "search files sort with edit history" },
+  { "<leader>c", "<cmd>Telescope frecency workspace=CWD<cr>",         desc = "search files sort with edit history" },
   { "<leader>f", "<cmd>Telescope find_files<cr>",                     desc = "search files (include submodules)" },
   { "<leader>g", "<cmd>Telescope live_grep<cr>",                      desc = "live grep" },
   { "<leader>h", "<cmd>Telescope help_tags<cr>",                      desc = "search vim manual" },
@@ -63,7 +63,7 @@ wk.add({
   { "<space>g",  group = "git" },
   { "<space>ga", "<cmd>Git add -A<cr>",                               desc = "git stage all changes" },
   { "<space>gb", "<cmd>Git blame<cr>",                                desc = "git blame" },
-  { "<space>gc", "<cmd>Git commit<cr>",                               desc = "git commit" },
+  { "<space>gc", "<cmd>Git commit --signoff<cr>",                     desc = "git commit" },
   { "<space>gm", "<cmd>GitMessenger<cr>",                             desc = "show git blame of current line" },
   { "<space>gp", "<cmd>Git push<cr>",                                 desc = "git push" },
   -- 因为 ctrl-i 实际上等同于 tab

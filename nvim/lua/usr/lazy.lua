@@ -17,12 +17,6 @@ local function is_martins3()
   return vim.fn.system("whoami") == "martins3\n"
 end
 
--- FIXME windows 和 mac 也许不可以使用这个方法
-local function is_graphic_mode()
-  local exit = os.execute("ls " .. os.getenv("HOME") .. "/Pictures/")
-  return exit == 0
-end
-
 require("lazy").setup({
   -- 基础
   "nvim-lua/plenary.nvim", -- 很多 lua 插件依赖的库
