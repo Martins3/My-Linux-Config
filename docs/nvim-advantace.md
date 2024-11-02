@@ -251,3 +251,10 @@ https://github.com/ptdewey/pendulum-nvim
 ```txt
   󰊕  __compiletime_assert_1139
 ```
+
+## 重新配置一下 lsp
+
+发现有 0.10.2 有严重的 bug ，
+https://lsp-zero.netlify.app/docs/language-server-configuration.html
+
+应该还是哪里配置的有问题吧

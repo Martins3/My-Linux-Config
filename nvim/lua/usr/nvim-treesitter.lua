@@ -19,8 +19,8 @@ require("nvim-treesitter.configs").setup({
     "scala",
     "cpp",
     "python",
-    "markdown",
-    "markdown_inline", -- 让 markdown 里面的代码段可以高亮
+    -- "markdown",
+    -- "markdown_inline", -- 让 markdown 里面的代码段可以高亮
     -- 'comment' -- 更好的高亮 TODO XXX NOTE FIXME ，但是其让 url 的高亮过于明显
     "rst",
     "llvm",

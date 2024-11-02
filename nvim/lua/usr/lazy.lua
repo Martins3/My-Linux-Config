@@ -45,11 +45,10 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/mason.nvim" }, -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
-  { "nvimtools/none-ls.nvim" }, -- for formatters and linters
-  { "j-hui/fidget.nvim", tag = "legacy" },
+  { "j-hui/fidget.nvim", tag = "legacy" }, -- 右下角展示索引状态
   { "SmiteshP/nvim-navic" }, -- 在 winbar 展示当前的路径
-  { "utilyre/barbecue.nvim" },
-  { "kosayoda/nvim-lightbulb" }, -- 右下角展示索引的进度
+  { "utilyre/barbecue.nvim" }, -- 和 nvim-navic 配合使用
+  { "kosayoda/nvim-lightbulb" }, -- 展示 code action
 
   --treesitter
   {
