@@ -23,13 +23,13 @@ require("leap").add_default_mappings()
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
-require("nvim-navic").setup()
+-- require("nvim-navic").setup() -- 这个插件很久没更新了
 require("barbecue").setup()
 require("nvim-lightbulb").update_lightbulb()
 require("debugprint").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
-require("luasnip.loaders.from_snipmate").lazy_load({ paths = "~/.config/nvim/snippets/" })
+require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
 
 -- workaround for https://github.com/neovim/neovim/issues/21856
