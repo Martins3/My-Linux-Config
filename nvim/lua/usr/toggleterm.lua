@@ -1,19 +1,19 @@
--- TODO 显然可以注册成函数
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "tig status", hidden = true, direction = "float" })
-local ls = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true, direction = "float" })
-local ipython = Terminal:new({ cmd = "ipython", hidden = true, direction = "float" })
 
+-- TODO 这些重复的内容显然可以注册成函数
 function _lazygit_toggle()
+  local lazygit = Terminal:new({ cmd = "tig status", hidden = true, direction = "float" })
   lazygit:toggle()
 end
 
 function _ls_toggle()
+  local ls = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true, direction = "float" })
   ls:toggle()
   print(vim.api.nvim_buf_get_name(0))
 end
 
 function _ipython_toggle()
+local ipython = Terminal:new({ cmd = "ipython", hidden = true, direction = "float" })
   ipython:toggle()
 end
 
