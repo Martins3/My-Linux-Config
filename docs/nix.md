@@ -471,7 +471,7 @@ setxkbmap -option caps:swapescape
 
 - [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
 
-# Nix/NixOs 踩坑记录
+## Nix/NixOs 踩坑记录
 
 最近时不时的在 hacknews 上看到 nix 相关的讨论:
 

@@ -167,7 +167,6 @@ in
     # k9s
     # minikube
     # minio
-    # dufs # 一个全新的 ftp server
     # hoard # 暂时不知道怎么使用
     # slirp4netns
     # nix-index
@@ -175,7 +174,7 @@ in
     nixfmt-rfc-style
     # debootstrap # 制作 uml 的工具
     meson
-    neovim
+    unstable.neovim
     luarocks
     # zed-editor # 默认不支持中文，放弃
     # helix # modern neovim
