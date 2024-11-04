@@ -153,7 +153,6 @@ require("lazy").setup({
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},
   },
-  "ojroques/nvim-osc52",
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",
