@@ -69,7 +69,7 @@ in
     dracut
     iw
     termshark
-    openvswitch-lts
+    # openvswitch-lts # 其实这里是重复安装了
     dnsmasq
     gnumake
     # audit # 没啥意义，用不起来
