@@ -86,6 +86,7 @@ require("lazy").setup({
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
+  'rebelot/terminal.nvim',
   "akinsho/toggleterm.nvim", -- nvim 中打开终端
   "CRAG666/code_runner.nvim", -- 一键运行代码
   "samjwill/nvim-unception", -- 嵌套 nvim 自动 offload 到 host 中
