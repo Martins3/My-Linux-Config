@@ -75,8 +75,8 @@ in
     # audit # 没啥意义，用不起来
     yarn
     nodejs
-    tmux
-    # myPkg
+    # tmux
+    myPkg
     tmuxp
     pueue
     screen
@@ -174,7 +174,7 @@ in
     nixfmt-rfc-style
     # debootstrap # 制作 uml 的工具
     meson
-    unstable.neovim
+    neovim
     luarocks
     # zed-editor # 默认不支持中文，放弃
     # helix # modern neovim

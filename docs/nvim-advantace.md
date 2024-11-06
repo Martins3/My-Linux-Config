@@ -258,3 +258,8 @@ https://github.com/ptdewey/pendulum-nvim
 https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 应该还是哪里配置的有问题吧
+
+
+## 调试一个小问题:
+1. cmp 失败的更快
+2. 都是在打开一个新文件的时候
