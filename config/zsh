@@ -85,7 +85,7 @@ function tpx() {
   done
 
   if cat /proc/cpuinfo | grep hypervisor &> /dev/null ; then
-    PROXY_SERVER_IP="http://10.0.2.2"
+    PROXY_SERVER_IP="http://10.0.0.2"
     PROXY_SERVER_PORT=8889
   fi
 
