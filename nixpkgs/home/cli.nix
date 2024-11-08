@@ -194,6 +194,7 @@ in
     systeroid
     # linuxKernel.packages.linux_5_15.perf
     # linuxPackages.perf
+    linuxKernel.packages.linux_6_6.perf
     # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
     # linuxPackages_6_10.kernel.dev
 

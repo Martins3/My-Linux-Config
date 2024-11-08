@@ -1922,3 +1922,4 @@ nix/profiles/profile🔒 🌳
 🧀  pwd
 /home/martins3/.local/state/nix/profiles/profile
 ```
+应该是和这个有关系: linuxPackages_6_10.kernel.dev
