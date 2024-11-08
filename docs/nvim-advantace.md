@@ -259,8 +259,7 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 应该还是哪里配置的有问题吧
 
-
-## 调试一个小问题:
+## 调试一个小问题
 1. cmp 失败的更快
 2. 都是在打开一个新文件的时候
 
@@ -269,3 +268,11 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
   - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md : 而且他这里也封装了 terminal
 
 - https://www.reddit.com/r/neovim/comments/1gk0phq/tinkering_with_neovim/
+
+从 before branch ，忽然发现:
+
+Markdown 中
+- fafa
+- enter 之后没有自动补全了，难道 cmp 配置错误了
+
+很奇怪，为什么没有 lsp ，导航栏还是可以工作的

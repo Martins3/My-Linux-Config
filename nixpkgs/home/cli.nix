@@ -9,6 +9,12 @@ let
     }) {};
 
     myPkg = wopkgs.tmux;
+
+    qemu_pkgs = import (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
+    }) {};
+
+    qemu6 = qemu_pkgs.qemu_full;
 in
 {
   fonts.fontconfig.enable = true;
@@ -153,6 +159,8 @@ in
     ninja
     libvirt # 提供 virsh
     qemu
+    # qemu6
+
     # lima # 虚拟机工具
     virt-manager
     # quickemu
