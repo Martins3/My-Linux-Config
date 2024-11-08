@@ -20,10 +20,10 @@
 	colorMoved = "default"
 
 [http]
-	proxy = "http://127.0.0.1:8889"
+	proxy = "http://10.0.0.2:8889"
 
 [https]
-	proxy = "http://127.0.0.1:8889"
+	proxy = "http://10.0.0.2:8889"
 
 [interactive]
 	diffFilter = "delta --color-only"
