@@ -1897,3 +1897,28 @@ nix-copy-closure
 
 ## 事到如今，批评还是很多的
 https://www.reddit.com/r/NixOS/comments/1gfx95g/leaving_nix_dont_expect_anyone_to_care_but_you/
+
+## [ ] home-manager 按照到 fedora 中，为什么最后还是有 vmlinux ，而且是 300 多 M
+
+哪里配置的有问题吗?
+```txt
+🧀  l
+Permissions Size User     Date Modified Name
+dr-xr-xr-x     - martins3  1 Jan  1970   bin
+dr-xr-xr-x     - martins3  1 Jan  1970   etc
+lrwxrwxrwx     - martins3  1 Jan  1970   include -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/include
+dr-xr-xr-x     - martins3  1 Jan  1970   lib
+dr-xr-xr-x     - martins3  1 Jan  1970   libexec
+lrwxrwxrwx     - martins3  1 Jan  1970   manifest.nix -> /nix/store/3i0bzw19pdx2nyrccbfqy2fz5c0sq1wa-env-manifest.nix
+lrwxrwxrwx     - martins3  1 Jan  1970   rplugin.vim -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/rplugin.vim
+lrwxrwxrwx     - martins3  1 Jan  1970   run -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/run
+lrwxrwxrwx     - martins3  1 Jan  1970   sbin -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/sbin
+dr-xr-xr-x     - martins3  1 Jan  1970   share
+lrwxrwxrwx     - martins3  1 Jan  1970   usr -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/usr
+lrwxrwxrwx     - martins3  1 Jan  1970   var -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/var
+lrwxrwxrwx     - martins3  1 Jan  1970   vmlinux -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/vmlinux
+lrwxrwxrwx     - martins3  1 Jan  1970   x86_64-unknown-linux-gnu -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/x86_64-unknown-linux-gnu
+nix/profiles/profile🔒 🌳
+🧀  pwd
+/home/martins3/.local/state/nix/profiles/profile
+```

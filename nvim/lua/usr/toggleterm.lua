@@ -6,15 +6,6 @@ function _lazygit_toggle()
     cmd = "tig status",
     hidden = true,
     direction = "float",
-    -- function to run on opening the terminal
-    on_open = function(term)
-      vim.cmd("startinsert!")
-      vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-    end,
-    -- function to run on closing the terminal
-    on_close = function(term)
-      vim.cmd("startinsert!")
-    end,
   })
   lazygit:toggle()
 end
@@ -31,9 +22,9 @@ function _ipython_toggle()
 end
 
 require("toggleterm").setup({
-  shade_terminals = false,
   direction = "float",
   open_mapping = [[<c-t>]],
+  persist_mode = false, -- 总是进入到 insert mode 中
 })
 
 vim.api.nvim_set_keymap("n", "<space>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
@@ -47,11 +38,3 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-
-vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "TermOpen" }, {
-  callback = function(args)
-    if vim.startswith(vim.api.nvim_buf_get_name(args.buf), "term://") then
-      vim.cmd("startinsert!")
-    end
-  end,
-})

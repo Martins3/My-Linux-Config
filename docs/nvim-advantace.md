@@ -263,3 +263,9 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 ## 调试一个小问题:
 1. cmp 失败的更快
 2. 都是在打开一个新文件的时候
+
+## 可以的
+- https://www.reddit.com/r/neovim/comments/1gl5uaz/snacksnvim_a_collection_of_small_qol_plugins_for/
+  - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md : 而且他这里也封装了 terminal
+
+- https://www.reddit.com/r/neovim/comments/1gk0phq/tinkering_with_neovim/
