@@ -193,8 +193,10 @@ in
     tree-sitter
     systeroid
     # linuxKernel.packages.linux_5_15.perf
-    linuxPackages_6_10.perf
-    linuxPackages_6_10.kernel.dev # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix 放到一起
+    # linuxPackages.perf
+    # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
+    # linuxPackages_6_10.kernel.dev
+
     # 没法用，还需要内核模块
     # error opening device /dev/scap0. Make sure you have root credentials and that the scap module is loaded: No such file or directory
     # linuxPackages_6_10.sysdig

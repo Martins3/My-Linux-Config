@@ -131,8 +131,8 @@ function zj() {
 alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
 
 
-# 打开工作区间并且构建
-alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && exit"
+# 自动打开工作区
+alias b="/home/martins3/.dotfiles/config/sh/tmux.sh && [[ -n $TMUX ]] && exit"
 alias c="clear"
 alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
 alias gs="tig status"

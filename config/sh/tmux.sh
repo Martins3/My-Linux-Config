@@ -12,13 +12,7 @@ function usage() {
 }
 
 function note() {
-	if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
-		tmuxp load -d ~/.dotfiles/config/tmux-note.yaml
-	elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
-		tmuxp load -d ~/.dotfiles/config/tmux-note-private.yaml
-	else
-		echo "not implement Yet"
-	fi
+	tmuxp load -d ~/.dotfiles/config/tmux-note.yaml
 }
 
 function code() {
