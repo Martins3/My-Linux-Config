@@ -24,7 +24,6 @@ in
   home.homeDirectory = "/home/martins3";
 
   home.packages = with pkgs; [
-    nfs-utils # 提供 mount.nfs
     strace
     vim
     git
