@@ -1923,3 +1923,55 @@ nix/profiles/profile🔒 🌳
 /home/martins3/.local/state/nix/profiles/profile
 ```
 应该是和这个有关系: linuxPackages_6_10.kernel.dev
+
+
+## rust
+使用 https://github.com/hyperlight-dev/hyperlight 的时候，发现了一个问题
+
+执行 just rg
+```txt
+error[E0463]: can't find crate for `core`
+  |
+  = note: the `x86_64-unknown-none` target may not be installed
+  = help: consider downloading the target with `rustup target add x86_64-unknown-none`
+
+For more information about this error, try `rustc --explain E0463`.
+error: could not compile `log` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `scopeguard` (lib) due to 1 previous error
+error: could not compile `bitflags` (lib) due to 1 previous error
+error: could not compile `itoa` (lib) due to 1 previous error
+error: could not compile `ryu` (lib) due to 1 previous error
+error: could not compile `memchr` (lib) due to 1 previous error
+error: could not compile `anyhow` (lib) due to 1 previous error
+error: could not compile `serde` (lib) due to 1 previous error
+error: Recipe `build-rust-guests` failed on line 38 with exit code 101
+
+```
+
+```txt
+🤒  rustup target add x86_64-unknown-none
+info: syncing channel updates for '1.81.0-x86_64-unknown-linux-gnu'
+info: latest update on 2024-09-05, rust version 1.81.0 (eeb90cda1 2024-09-04)
+info: downloading component 'cargo'
+  8.3 MiB /   8.3 MiB (100 %)   5.4 MiB/s in  2s ETA:  0s
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+ 15.9 MiB /  15.9 MiB (100 %)   5.2 MiB/s in  4s ETA:  0s
+info: downloading component 'rust-std'
+ 26.8 MiB /  26.8 MiB (100 %)   4.6 MiB/s in  7s ETA:  0s
+info: downloading component 'rustc'
+ 66.9 MiB /  66.9 MiB (100 %)   3.6 MiB/s in 20s ETA:  0s
+info: downloading component 'rustfmt'
+info: installing component 'cargo'
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+info: installing component 'rust-std'
+ 26.8 MiB /  26.8 MiB (100 %)  24.9 MiB/s in  1s ETA:  0s
+info: installing component 'rustc'
+ 66.9 MiB /  66.9 MiB (100 %)  26.9 MiB/s in  2s ETA:  0s
+info: installing component 'rustfmt'
+info: downloading component 'rust-std' for 'x86_64-unknown-none'
+ 11.3 MiB /  11.3 MiB (100 %)   4.8 MiB/s in  3s ETA:  0s
+info: installing component 'rust-std' for 'x86_64-unknown-none'
+```
