@@ -34,7 +34,17 @@ vim.api.nvim_set_keymap("n", "<space>x", "<cmd>lua _ipython_toggle()<CR>", { nor
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+
+  vim.keymap.set("t", "<c-s>", "<cmd>TermSelect<CR>", opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+function get_terminal()
+  local m = vim.api.nvim_buf_get_name(0)
+  print(string.match(m, '%d$'))
+end
+
+vim.api.nvim_set_keymap("n", "<c-s>", "<cmd>TermSelect<CR>",
+  { noremap = true, silent = true })
