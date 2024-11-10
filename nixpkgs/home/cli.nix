@@ -159,6 +159,9 @@ in
     libvirt # 提供 virsh
     qemu
     # qemu6
+    # ceph
+    # 真的奇怪，ceph 和 bcc 居然用冲突
+    bcc
 
     # lima # 虚拟机工具
     virt-manager
@@ -169,7 +172,7 @@ in
     nix-tree # 动态的展示每一个包的依赖
     # buildah
     virtiofsd
-    # podman
+    podman
     # podman-tui
     # k9s
     # minikube
@@ -181,7 +184,7 @@ in
     nixfmt-rfc-style
     # debootstrap # 制作 uml 的工具
     meson
-    neovim
+    unstable.neovim
     luarocks
     # zed-editor # 默认不支持中文，放弃
     # helix # modern neovim
@@ -215,7 +218,6 @@ in
     # heaptrack
     coccinelle
     ltrace # library trace
-    bcc
     bpftool
     procps
     xdp-tools
