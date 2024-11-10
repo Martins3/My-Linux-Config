@@ -242,6 +242,7 @@ https://github.com/ptdewey/pendulum-nvim
 
 没办法正常使用，如果可以用的话，那么是极好的
 
+## 如何处理
 导航栏中，对于
 ```txt
 			WRITE_ONCE(mm_state->seq, mm_state->seq + 1);
@@ -254,14 +255,7 @@ https://github.com/ptdewey/pendulum-nvim
 
 ## 重新配置一下 lsp
 
-发现有 0.10.2 有严重的 bug ，
 https://lsp-zero.netlify.app/docs/language-server-configuration.html
-
-应该还是哪里配置的有问题吧
-
-## 调试一个小问题
-1. cmp 失败的更快
-2. 都是在打开一个新文件的时候
 
 ## 可以的
 - https://www.reddit.com/r/neovim/comments/1gl5uaz/snacksnvim_a_collection_of_small_qol_plugins_for/
@@ -271,10 +265,10 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 从 before branch ，忽然发现:
 
-Markdown 中
+## Markdown 中
 - fafa
 - enter 之后没有自动补全了，难道 cmp 配置错误了
 
-很奇怪，为什么没有 lsp ，导航栏还是可以工作的
-
-## 是不是把整个 neovim 的 cache 全部都删掉，来尝试 0.10.2
+## 花费无数时间，最后才可以知道的
+- https://github.com/anuvyklack/hydra.nvim 是会触发 nvim 的 bug
+- https://github.com/nvimtools/hydra.nvim
