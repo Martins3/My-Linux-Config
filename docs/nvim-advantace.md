@@ -257,10 +257,12 @@ https://github.com/ptdewey/pendulum-nvim
 
 https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
-## 可以的
+## 又是一堆 neovim 的小插件
 - https://www.reddit.com/r/neovim/comments/1gl5uaz/snacksnvim_a_collection_of_small_qol_plugins_for/
-  - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md : 而且他这里也封装了 terminal
+  - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md 
+  : 而且他这里也封装了 terminal
 
+## 看看这个
 - https://www.reddit.com/r/neovim/comments/1gk0phq/tinkering_with_neovim/
 
 从 before branch ，忽然发现:
