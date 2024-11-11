@@ -209,7 +209,9 @@ https://github.com/sindrets/diffview.nvim : 尝试下
 https://github.com/cbochs/grapple.nvim
 
 
-## 似乎没什么用的
+## [ ] tree-sitter 和 vim 的各种操作的语义
+
+text obj 的含义
 
 ```lua
   {
@@ -227,6 +229,7 @@ https://github.com/cbochs/grapple.nvim
   },
 ```
 
+## [ ] 看看这些都如何用
 ```lua
 'm4xshen/hardtime.nvim'
 "azabiong/vim-highlighter", -- 高亮多个搜索内容
@@ -242,7 +245,7 @@ https://github.com/ptdewey/pendulum-nvim
 
 没办法正常使用，如果可以用的话，那么是极好的
 
-## 如何处理
+## [ ] 如何处理
 导航栏中，对于
 ```txt
 			WRITE_ONCE(mm_state->seq, mm_state->seq + 1);
@@ -253,24 +256,31 @@ https://github.com/ptdewey/pendulum-nvim
   󰊕  __compiletime_assert_1139
 ```
 
-## 重新配置一下 lsp
+看看主流配置是如何使用导航栏的
+
+## [ ]  重新配置一下 lsp
 
 https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 ## 又是一堆 neovim 的小插件
 - https://www.reddit.com/r/neovim/comments/1gl5uaz/snacksnvim_a_collection_of_small_qol_plugins_for/
   - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md 
-  : 而且他这里也封装了 terminal
+    - 他这里封装了 terminal，不好用
 
 ## 看看这个
 - https://www.reddit.com/r/neovim/comments/1gk0phq/tinkering_with_neovim/
 
-从 before branch ，忽然发现:
 
-## Markdown 中
+## [ ] Markdown 中，list 不会自动补全了
+从 before branch ，忽然发现:
 - fafa
 - enter 之后没有自动补全了，难道 cmp 配置错误了
 
 ## 花费无数时间，最后才可以知道的
 - https://github.com/anuvyklack/hydra.nvim 是会触发 nvim 的 bug
 - https://github.com/nvimtools/hydra.nvim
+
+## [ ] 检查这个文档，发现其实英语的自动检查是有希望的
+- https://github.com/williamboman/mason-lspconfig.nvim
+
+harper_ls
