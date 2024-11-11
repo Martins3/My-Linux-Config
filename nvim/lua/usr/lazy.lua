@@ -82,7 +82,7 @@ require("lazy").setup({
   -- 命令执行
   "akinsho/toggleterm.nvim",  -- nvim 中打开终端
   "CRAG666/code_runner.nvim", -- 一键运行代码
-  "samjwill/nvim-unception",  -- 嵌套 nvim 自动 offload 到 host 中
+  "samjwill/nvim-unception",  -- 嵌套 nvim 自动 offload 到 host nvim 的终端中
   -- markdown
   {
     "iamcco/markdown-preview.nvim",

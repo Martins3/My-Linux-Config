@@ -92,6 +92,12 @@ autocmd TextYankPost *
 
 似乎是 tmux 的问题，用 zellij 测试看看吧
 
+### 真的有趣，需要重启 tmux  才可以解决
+1. 远程连接后，vim 无法正常拷贝
+2. 如果远程连接后 ，本地无法正常拷贝
+
+原因，应该是依赖 tmux 的底层实现的
+
 ## 黑魔法
 
 - [`ctrl i`实际上等同于 tab 的](https://github.com/neoclide/coc.nvim/issues/1089), 重新映射为 `<Space>` `i`， 🤡 用了 5 年 vim 才知道这个。
@@ -185,10 +191,6 @@ https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#fea
 
 ## Markdown 和 bash 的文件类型相关的参数的确需要重构了下了
 
-## 真的有趣，需要重启 tmux  才可以解决
-1. 远程连接后，vim 无法正常拷贝
-2. 如果远程连接后 ，本地无法正常拷贝
-
 https://github.com/nvim-neorocks/nvim-best-practices
 
 ## 如果可以在 terminal 中连续的两个 esc ，就推出 terminal ，那个是极好的
@@ -207,6 +209,7 @@ https://vim-racer.com/
 https://github.com/sindrets/diffview.nvim : 尝试下
 
 https://github.com/cbochs/grapple.nvim
+  - 和 nvim-telescope/telescope-frecency.nvim 对比下，真的很慢
 
 
 ## [ ] tree-sitter 和 vim 的各种操作的语义
@@ -284,3 +287,12 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 - https://github.com/williamboman/mason-lspconfig.nvim
 
 harper_ls
+
+## [ ] 解决 nixos 中这个问题
+https://github.com/aitjcize/cppman
+
+快捷键也是不好用的，应该类似 `K`
+
+而且 c 语言中的 man 可不可以有类似的搞法
+
+## [ ] 似乎我的 markdown 的 format 无法正常工作了
