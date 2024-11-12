@@ -1,5 +1,4 @@
 # vim 的高级话题
-
 ## tab 和 space
 
 tab 会被自动修改为 space 吗? 不会，执行 retab 或者 retab! 来转换。
@@ -296,3 +295,6 @@ https://github.com/aitjcize/cppman
 而且 c 语言中的 man 可不可以有类似的搞法
 
 ## [ ] 似乎我的 markdown 的 format 无法正常工作了
+
+## [ ]  orgmode 用起来？
+https://beorg.app/orgmode/letsgetgoing/

@@ -97,6 +97,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
+    { name = 'orgmode' },
     {
       name = "look",
       keyword_length = 2,

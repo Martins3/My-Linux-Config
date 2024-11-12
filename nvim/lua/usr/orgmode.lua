@@ -10,9 +10,11 @@ require("orgmode").setup({
       org_agenda_todo = "t",
     },
     org = {
+      -- 修改 TODO 的状态
       org_todo = "t",
-      -- org_cycle use `Tab` which making window switch unusble
+      -- 打开或者折叠，默认映射为 tab ，但是 tab 用于在 window 直接的移动，所以重新映射为 x
       org_cycle = "x",
+      -- 插入新的代办
       org_insert_todo_heading = "<leader>a",
     },
   },
@@ -28,7 +30,7 @@ require("orgmode").setup({
       template = "* TODO %?\n SCHEDULED: %t",
       target = "~/core/org-mode/work.org",
     },
-    sw = {
+    ts = {
       description = "Study Task",
       template = "* TODO %?\n SCHEDULED: %t",
       target = "~/core/org-mode/study.org",
