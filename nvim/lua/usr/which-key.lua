@@ -106,7 +106,6 @@ wk.add({
   { "<tab>",     "<cmd>wincmd w<cr>",                                    desc = "switch window" },
   { "K",         "<cmd>lua vim.lsp.buf.hover()<cr>",                     desc = "document" },
   { "c",         group = "window" },
-  { "cM",        "<cmd>Detour<cr>",                                      desc = "maximum current window in a popup" },
   -- i f a t 被 textobject 所使用
   { "cg",        "<cmd>vsp<cr>",                                         desc = "vertical split window" },
   { "ch",        "<C-w>h",                                               desc = "go to the window left" },
@@ -118,8 +117,6 @@ wk.add({
   { "cs",        "<cmd>sp<cr>",                                          desc = "horizontal split window" },
   { "cu",        "<cmd>UndotreeToggle<cr>",                              desc = "open undo tree" },
   { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",               desc = "go to declaration" },
-  { "ga",        "<cmd>Portal jumplist backward<cr>",                    desc = "jumplist backward" },
-  { "gb",        "<cmd>Portal jumplist forward<cr>",                     desc = "jumplist forward" },
   { "gd",        "<cmd>lua vim.lsp.buf.definition()<cr>",                desc = "go to definition" },
   { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>",            desc = "go to implementation" },
   {
@@ -163,6 +160,7 @@ end
 
 vim.api.nvim_set_keymap("v", "<space>lf", "<Esc><cmd>lua FormatFunction()<CR>", { noremap = true })
 
+-- TODO 这两个写有问题，FileType 不是这么用的
 vim.cmd("autocmd FileType sh lua BashLeaderX()")
 function BashLeaderX()
   vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })

@@ -298,3 +298,6 @@ https://github.com/aitjcize/cppman
 
 ## [ ]  orgmode 用起来？
 https://beorg.app/orgmode/letsgetgoing/
+
+## [ ] 这个经常不准
+lua require('barbecue.ui').navigate(-1)
