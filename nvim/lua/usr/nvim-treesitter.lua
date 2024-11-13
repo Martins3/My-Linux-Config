@@ -78,7 +78,7 @@ require("nvim-treesitter.configs").setup({
         ["xK"] = "@class.outer",
       },
       goto_previous_start = {
-        ["xh"] = "@function.outer",
+        ["gj"] = "@function.outer",
         ["xH"] = "@class.outer",
       },
       goto_previous_end = {

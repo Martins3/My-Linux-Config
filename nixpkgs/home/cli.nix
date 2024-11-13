@@ -182,7 +182,7 @@ in
       nix-tree # 动态的展示每一个包的依赖
       # buildah
       virtiofsd
-      podman
+      # podman # 暂时不需要
       # podman-tui
       # k9s
       # minikube

@@ -301,3 +301,34 @@ https://beorg.app/orgmode/letsgetgoing/
 
 ## [ ] 这个经常不准
 lua require('barbecue.ui').navigate(-1)
+
+似乎都是不准的，难受
+./barbecue.diff
+
+```c
+void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
+{
+	if (!map)
+		return;
+
+	if (!map->hva)
+		return;
+
+	if (map->page != KVM_UNMAPPED_PAGE)
+		kunmap(map->page);
+#ifdef CONFIG_HAS_IOMEM
+	else
+		memunmap(map->hva);
+#endif
+
+	if (dirty)
+		kvm_vcpu_mark_page_dirty(vcpu, map->gfn);
+
+	kvm_release_pfn(map->pfn, dirty);
+
+	map->hva = NULL;
+	map->page = NULL;
+}
+```
+使用 tree-sitter 的模式，如果从下面 gj，最后会跳到 else 那里。
+看来是 tree sitter 的 bug 了。

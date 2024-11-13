@@ -119,11 +119,6 @@ wk.add({
   { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",               desc = "go to declaration" },
   { "gd",        "<cmd>lua vim.lsp.buf.definition()<cr>",                desc = "go to definition" },
   { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>",            desc = "go to implementation" },
-  {
-    "gj",
-    "<cmd>lua require('barbecue.ui').navigate(-1)<cr>",
-    desc = "go to the head of function / struct",
-  },
   { "gr", "<cmd>lua vim.lsp.buf.references()<cr>",                 desc = "go to reference" },
   { "gw", "<cmd>Telescope diagnostics<cr>",                        desc = "diagnostics" },
   { "m",  group = "bookmarks" },
