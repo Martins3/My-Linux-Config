@@ -13,8 +13,8 @@ Hydra({
   mode = "n",
   body = "ca",
   heads = {
-    { "j",     "<cmd>vertical resize +10<cr>" },
-    { "k",     "<cmd>vertical resize -10<cr>" },
+    { "h",     "<cmd>vertical resize +10<cr>" },
+    { "l",     "<cmd>vertical resize -10<cr>" },
     { "<Esc>", nil,                           { exit = true } },
     { "<CR>",  nil,                           { exit = true } },
   },
