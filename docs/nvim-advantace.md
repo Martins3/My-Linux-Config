@@ -332,3 +332,5 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 ```
 使用 tree-sitter 的模式，如果从下面 gj，最后会跳到 else 那里。
 看来是 tree sitter 的 bug 了。
+
+而且无法跳到结构体的开始位置

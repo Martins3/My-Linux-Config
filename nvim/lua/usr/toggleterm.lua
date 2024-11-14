@@ -13,7 +13,6 @@ end
 function _ls_toggle()
   local ls = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true, direction = "float" })
   ls:toggle()
-  print(vim.api.nvim_buf_get_name(0))
 end
 
 function _ipython_toggle()
