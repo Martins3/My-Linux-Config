@@ -153,7 +153,6 @@ alias i="ipython"
 alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
 alias static="nix-shell -p gcc glibc.static --command zsh"
-alias crash="/home/martins3/core/crash/crash"
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
 alias ins="/home/martins3/.dotfiles/scripts/nix/env/install.sh"

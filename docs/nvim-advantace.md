@@ -146,6 +146,7 @@ https://github.com/ibhagwan/smartyank.nvim
 
 ## 尝试下
 https://github.com/abecodes/tabout.nvim
+https://github.com/YaroSpace/lua-console.nvim
 
 ## 问题
 
@@ -158,18 +159,9 @@ https://github.com/abecodes/tabout.nvim
 
 ## wl-copy 似乎有点扰乱了系统
 
+
 ## 需要将 bash 整理下
 https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
-
-## nvim 的启动页有问题
-
-本来应该就是 nvim 的，但是现在变为 No Name 了 ，结果调试，发现这个是 lualine 导致的，暂时没有发现什么好方法:
-
-nvim/lua/usr/init.lua
-```plain
-require("lualine").setup({ extensions = { "nvim-tree", "fugitive" } })
-```
-0.10 的时候，该问题消失了
 
 ## 也许替换掉
 
@@ -334,3 +326,6 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 看来是 tree sitter 的 bug 了。
 
 而且无法跳到结构体的开始位置
+
+## [ ] 这个还是不错的
+- https://github.com/glepnir/nvim

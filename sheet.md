@@ -16,9 +16,12 @@
 - rpm -ql bison.rpm 检查 rpm 中存在多少文件
 - rpm -qp bison.rpm 检查这就是一个 rpm 文件
 - rpm -q --scripts 执行脚本
+- rpm -ql 系统已经存在的一个包
+- rpm -qlp htop.el7.x86_64.rpm
 
 ## find
 
+- find /sys -name numa_node -exec cat {} +
 - "find /tmp -size 0 -print0 -delete: 删除大小为 0 的文件"
 - "@todo 这里没有完全搞清楚"
 - "find 和 xargs 混合使用的时候，分别加上 -print0 和 -0"
