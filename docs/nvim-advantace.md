@@ -258,7 +258,7 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 ## 又是一堆 neovim 的小插件
 - https://www.reddit.com/r/neovim/comments/1gl5uaz/snacksnvim_a_collection_of_small_qol_plugins_for/
-  - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md 
+  - https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md
     - 他这里封装了 terminal，不好用
 
 ## 看看这个
@@ -329,3 +329,16 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 
 ## [ ] 这个还是不错的
 - https://github.com/glepnir/nvim
+
+## [ ] bug : bash 的跳转不正常了
+shellcheck 的问题吗?
+
+## [ ] zellij 的问题更多了
+
+1. nvim 无法在其中拷贝
+2. ui 总是在闪烁啊
+
+## 升级方法
+cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
+
+找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉

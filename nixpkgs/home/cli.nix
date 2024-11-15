@@ -90,8 +90,8 @@ in
       # audit # 没啥意义，用不起来
       yarn
       nodejs
-      # tmux
-      myPkg
+      tmux
+      # myPkg
       tmuxp
       pueue
       screen
