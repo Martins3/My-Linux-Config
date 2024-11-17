@@ -33,6 +33,17 @@ bind status D ?@rm %(file)
 <!-- - [ ] 测试 mrege 也是一个小问题 https://github.com/christoomey/vim-conflicted -->
 <!-- - [ ] 还不如直接将 git.md 和 github.md 使用总结到一起 -->
 
+## 尝试下 gitui
+3. 无法像 tig 一样直接查看一个文件或者一个目录的历史
+3. copy 无法使用
+4. 不可以调整 layout ，而且左侧的框框太大了
+
+好处:
+1. 性能
+2. stage 和 unstage 原生支持
+3. 搜索根据强大
+
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="

@@ -16,9 +16,12 @@
 - rpm -ql bison.rpm 检查 rpm 中存在多少文件
 - rpm -qp bison.rpm 检查这就是一个 rpm 文件
 - rpm -q --scripts 执行脚本
+- rpm -ql 系统已经存在的一个包
+- rpm -qlp htop.el7.x86_64.rpm
 
 ## find
 
+- find /sys -name numa_node -exec cat {} +
 - "find /tmp -size 0 -print0 -delete: 删除大小为 0 的文件"
 - "@todo 这里没有完全搞清楚"
 - "find 和 xargs 混合使用的时候，分别加上 -print0 和 -0"
@@ -31,20 +34,35 @@
 
 ## git
 
+常用:
+git commit --amend --signoff
+git pull --rebase --autostash
+
 - git ls-files --others --exclude-standard >> .gitignore
   - 将没有被跟踪的文件添加到 .gitignore 中
 - git reset : 将所有的内容 unstage
 - git restore . : 将 unstage 的修改删除掉
+
+### 检查一个文件的历史
+
+tig vl.c
+
+但是如果这一个文件被删除了
+
+```sh
+tig --  rust/alloc/boxed.rs
+```
 
 ### 如何修改一个特定的 commit
 
 参考: https://stackoverflow.com/questions/1186535/how-do-i-modify-a-specific-commit
 
 简而言之就是:
+
 ```sh
 git rebase --interactive bbc643cd~
 # pick 修改为 edit
-# 推出 vim
+# 退出 vim
 # 修改内容，并且 git add
 git commit --amend --signoff
 git rebase --continue
@@ -53,6 +71,8 @@ git rebase --continue
 ### submodule
 
 - git submodule update --recursive
+- git submodule update --init --recursive
+
 
 ### log
 
@@ -72,13 +92,21 @@ git rebase --continue
 
 - git fetch origin
 - git reset --hard origin/master
-- -> 如何将多个 commit squash 一下
+
+### 如何将多个 commit squash 一下
+
 - git reset --soft HEAD~3 && git commit
-- -> 撤销一个 commit
+
+### 撤销一个 commit
+
 - git reset --soft HEAD^
-- -> 拉取 tags
+
+### 拉取 tags
+
 - git fetch --tags
-- -> 在一个特定的 commit 上打 tag
+
+### 在一个特定的 commit 上打 tag
+
 - git tag tagname fb24344513a2ce7dd870c8b002485ded9758d475
 
 ### patch
@@ -111,6 +139,10 @@ git switch dev
 
 git pull --rebase --autostash
 
+### branch 包含了 tag
+
+git branch --contains $tag
+
 ## redirect
 
 - https://wizardzines.com/comics/redirects/
@@ -133,10 +165,10 @@ git pull --rebase --autostash
 - grep -r . /sys/module/zswap/parameters/
   - 打印的同时又展示出来数值
   - 或者 cd /sys/module/zswap/parameters/ && grep -r .
+- grep -v -E "pciehp|vmwgfx"
+  - 打印不用包含 pciehp|vmwgfx 的
+  - -v 是 revert 的选择的意思
 
-## printf
-
-- 打印数组，是针对所有成员一次操作的
 
 ## curl
 
@@ -190,10 +222,18 @@ git pull --rebase --autostash
 
 ## tar
 
+### tar.gz
 - tar cvzf name_of_archive_file.tar.gz name_of_directory_to_tar
   - https://unix.stackexchange.com/questions/46969/compress-a-folder-with-tar
   - z : 使用 gzip 压缩
 - tar -xvf
+
+### gz
+gzip -d file.gz
+
+### ouch
+ouch -h
+
 
 ## systemd
 
@@ -202,11 +242,8 @@ git pull --rebase --autostash
 - systemctl list-unit-files
 
 ## centos
-
 - nmcli networking off
 - nmcli networking on
-- 在 /etc/resolv.conf 中增加，如果遇到 `wget: unable to resolve host address`
-  nameserver 114.114.114.114
 
 ## sudo
 
@@ -215,10 +252,6 @@ git pull --rebase --autostash
 ## ssh
 
 - kill unresponsive hung SSH session : `~.`
-
-## rg
-
-rg -l blk_update_request
 
 ## wget
 
@@ -231,27 +264,4 @@ fd 使用的是 regex
 
 ```sh
 fd ".*\.md" | wc -l
-```
-
-## xargs
-
--t : 将要执行的命令打印出来
--I % : 设置参数为 %
-
-```sh
-ls | xargs -t -I % sh -c 'echo %'
-```
-
-将一个仓库中所有的 apples 替换为 oranges
-
-```sh
-git grep -l 'apples' | xargs sed -i 's/apples/oranges/g'
-```
-
-将 foo 下所有的 txt 都删除
-
-```sh
-find ./foo -type f -name "*.txt" -exec rm {} \;
-find ./foo -type f -name "*.txt" | xargs rm
-find . -type f -print | xargs stat -c '%a %n'
 ```

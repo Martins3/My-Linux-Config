@@ -1,4 +1,4 @@
-# 2023 年 vim 的 C/C++ 配置
+# 2024 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -21,6 +21,7 @@
 * [基本操作](#基本操作)
   * [退出](#退出)
   * [复制粘贴](#复制粘贴)
+    * [从远程 server 上复制粘贴本地的剪切板中](#从远程-server-上复制粘贴本地的剪切板中)
   * [符号搜索](#符号搜索)
   * [定义和引用](#定义和引用)
   * [注释](#注释)
@@ -29,6 +30,7 @@
   * [字符串搜索和替换](#字符串搜索和替换)
   * [file tree](#file-tree)
   * [window](#window)
+    * [调整一个 window 的大小](#调整一个-window-的大小)
   * [buffer](#buffer)
   * [文件搜索](#文件搜索)
   * [导航](#导航)
@@ -44,7 +46,6 @@
   * [markdown 集成](#markdown-集成)
   * [Session](#session)
   * [快速移动](#快速移动)
-  * [输入法自动切换](#输入法自动切换)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -244,8 +245,6 @@ nvim
 一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建
 
 ```sh
-# rsync.nvim
-cd ~/.local/share/nvim/lazy/rsync.nvim && make -j8
 # markdown-preview.nvim
 cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
 ```
@@ -315,6 +314,17 @@ map <leader>p "+p
 map <leader>d "+d
 ```
 所以现在可以使用，`,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
+
+#### 从远程 server 上复制粘贴本地的剪切板中
+
+假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
+neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
+
+如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 
+
+原理上参考:
+- https://news.ycombinator.com/item?id=32037489
+- https://github.com/ojroques/vim-oscyank/issues/24
 
 ### 符号搜索
 
@@ -404,9 +414,19 @@ vim 内置了强大的搜索替换功能
 | ----------- | -------------- |
 | `<Tab>`     | 进入下一个窗口 |
 | `c` `g`     | 水平拆分窗口   |
-| `c` `f`     | 垂直拆分窗口   |
+| `c` `s`     | 垂直拆分窗口   |
 | `q`         | 关闭窗口       |
 | `c` `m`     | 当前窗口最大化 |
+
+
+#### 调整一个 window 的大小
+
+nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
+将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
+
+利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
+`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。 
+
 
 ### buffer
 
@@ -427,7 +447,7 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 
 ### 导航
 
-利用 [aerial.nvim](stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
+利用 [aerial.nvim](https://github.com/stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
 
 | 基于 stevearc/aerial.nvim 的导航栏 |
 | ---------------------------------- |
@@ -505,18 +525,16 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 ### vim cmdline 自动补全
 
-通过 [wilder.nvim](https://github.com/gelguy/wilder.nvim) 可以让 vim cmdline 实现模糊搜索。
+通过 [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline) 可以让 vim cmdline 实现模糊搜索。
 
-| 利用 wilder.nvim 在命令模式自动补全 |
-| ----------------------------------- |
-| <img src="./img/wilder.png" />      |
+| 利用 在命令模式自动补全                                                                                        |
+|----------------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/Martins3/My-Linux-Config/assets/16731244/f3eea191-395f-458f-806a-21942bdc8b86" /> |
 
 ### 终端
 
 利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:
 
-- `Ctrl` `n` : 创建新的 terminal window
-- `Ctrl` `p` : 切换到 `prev` 的 terminal window
 - `Ctrl` `t` : 显示/隐藏窗口
 
 | 打开悬浮终端，并且运行 htop 的结果 |
@@ -533,6 +551,9 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 - 如果同时使用多个终端，其管理难度简直逆天。
 - 没有简洁的 voidkiss 中 FloatermNew 的功能。
   综上，我认为最近两年没有必要切换。
+
+2024-11-02 ，升级 nvim 0.10.1 之后，FloatermNew 已经不可以用了，所以还是
+使用 akinsho/toggleterm.nvim 了
 
 ### 一键运行代码
 
@@ -607,21 +628,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 | `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                    |
 | `gf`     | 打开光标所在文件                                                            |
 | `%`      | 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转 |
-
-### 输入法自动切换
-
-在 vim 中使用中文输入法，如果打字完成，进入 normal 模式，使用 gg 想要移动到文件的第一行，结果发现 gg 被中文输入法截断了。
-所以需要一个插件可以在进入 normal 的模式的时候中文输入法切走。
-
-可以使用两套方案，但是原理都是相同的，
-
-- 方案 1:
-  - 使用 [fcitx.nvim](https://github.com/h-hg/fcitx.nvim)，其代码相当简洁优雅。
-  - 如果是在 MacOS 上，需要在系统中安装 [fcitx-remote-for-osx](https://github.com/xcodebuild/fcitx-remote-for-osx) 来切换输入法。
-- 方案 2:
-  - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
-
-当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
 
 ## 本配置源代码解释
 
@@ -789,6 +795,9 @@ setxkbmap -option caps:swapescape
 7. [helix](https://github.com/helix-editor/helix) : 和 neovim 类似，号称更加 modern 的编辑器
 8. [vim-keybindings-everywhere-the-ultimate-list](https://github.com/erikw/vim-keybindings-everywhere-the-ultimate-list) : 在其他程序中使用 vim 的键位映射。
 9. [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel nvim 配置
+10. [Haystack](https://news.ycombinator.com/item?id=41068719) : 一个基于 canvas 的编辑器
+
+
 
 
 [^2]: [I do not use a debugger](https://lemire.me/blog/2016/06/21/i-do-not-use-a-debugger/)

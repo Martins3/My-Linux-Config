@@ -4,37 +4,36 @@ let
 in
 pkgs.mkShell rec {
   buildInputs = with pkgs; [
-    meson
-    docutils
-    libxml2 # for xmllint
-    libxslt # for xsltproc
-    gettext
-    makeWrapper
-    pkg-config
-    perl
-    perlPackages.XMLXPath
-    rpcsvc-proto
-    glib
+    # @todo 增加一个 WITH_NUMACTL
     bash
     bash-completion
     curl
     dbus
+    docutils
+    gettext
     glib
     gnutls
     libgcrypt
     libpcap
     libtasn1
-    libxml2
+    libtirpc
+    libxml2 # for xmllint
+    libxslt # for xsltproc
+    makeWrapper
+    meson
+    numad
+    perl
+    perlPackages.XMLXPath
+    pkg-config
     python3
     readline
+    rpcsvc-proto
     xhtml1
-    numad
     yajl
-    # @todo 增加一个 WITH_NUMACTL
-    libtirpc
   ];
 }
-# meson build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
+# 如果重新配置 meson setup --reconfigure build
+# meson setup build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
 # cd build && ninja -j30
 # ninja -t compdb > compile_commands.json
 # cp compile_commands.json ..

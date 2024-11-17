@@ -4,8 +4,6 @@ au FocusGained,BufEnter * :checktime
 set autowrite
 autocmd FocusLost,BufLeave * silent! update
 
-" 在 terminal 中也是使用 esc 来进入 normal 模式
-tnoremap  <Esc>  <C-\><C-n>
 " 映射 leader 键为 ,
 let g:mapleader = ','
 " 将 q 映射为 <leader>q，因为录制宏的操作比较少，而关掉窗口的操作非常频繁
@@ -21,21 +19,12 @@ map <leader>d "+d
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 
-" floaterm 功能很强大，但是性能不行，
-" 如果执行的命令存在大量输出，可能卡死整个 nvim
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-n>'
-let g:floaterm_keymap_toggle = '<C-t>'
-
 " 加载 lua 配置
 lua require 'usr'
 
 " 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
 let s:core_conf_files = [
       \ 'debug.vim',
-      \ 'wilder.vim',
       \ ]
 
 for s:fname in s:core_conf_files

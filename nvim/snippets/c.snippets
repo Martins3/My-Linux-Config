@@ -25,12 +25,12 @@ snippet import "template"
   }
 
 snippet sysfs "add monitor into sysfs"
-  int foo;
+  long int foo;
   EXPORT_SYMBOL(foo);
   static ssize_t foo_show(struct kobject *kobj, struct kobj_attribute *attr,
   			char *buf)
   {
-  	return sysfs_emit(buf, "%d\n", foo);
+  	return sysfs_emit(buf, "%ld\n", foo);
   }
 
   static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
@@ -38,7 +38,7 @@ snippet sysfs "add monitor into sysfs"
   {
   	int ret;
 
-  	ret = kstrtoint(buf, 10, &foo);
+  	ret = kstrtol(buf, 10, &foo);
   	if (ret < 0)
   		return ret;
 
@@ -50,7 +50,7 @@ snippet sysfs "add monitor into sysfs"
 
   static struct attribute *attrs[] = {
   	&foo_attribute.attr,
-    NULL,
+  	NULL,
   };
 
   static struct attribute_group attr_group = {
@@ -58,10 +58,16 @@ snippet sysfs "add monitor into sysfs"
   };
 
   static struct kobject *mymodule;
-  static int greeter_init(void)
+  static DEFINE_MUTEX(test_mutex_hi);
+
+  int greeter_init(void);
+  int greeter_init(void)
   {
   	int error = 0;
-  	mymodule = kobject_create_and_add("hacking", kernel_kobj);
+  	guard(mutex)(&test_mutex_hi);
+  	if (mymodule != NULL)
+  		return 0;
+  	mymodule = kobject_create_and_add("test", kernel_kobj);
   	if (!mymodule)
   		return -ENOMEM;
 
@@ -71,3 +77,16 @@ snippet sysfs "add monitor into sysfs"
 
   	return error;
   }
+
+snippet ktrace "add a new tracepoint"
+  TRACE_EVENT($1,
+
+  	    TP_PROTO(int count),
+
+  	    TP_ARGS(count),
+
+  	    TP_STRUCT__entry(__field(u32, count)),
+
+  	    TP_fast_assign(__entry->count = count;),
+
+  	    TP_printk("$1 : %lu ", (unsigned long)__entry->count));

@@ -3,7 +3,7 @@
 {
   services.xserver = {
     enable = true;
-    xkbOptions = "caps:swapescape";
+    xkb.options = "caps:swapescape";
     # 暂时可以使用这个维持生活吧
     # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
     # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
@@ -65,5 +65,10 @@
   # 解决 kitty 和 wezterm 无法使用 fcitx5 输入法的问题
   # https://github.com/kovidgoyal/kitty/issues/403
   environment.variables.GLFW_IM_MODULE = "ibus";
+  i18n.inputMethod.enabled = "ibus";
+  i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [
+    rime
+  ];
+
 
 }

@@ -23,6 +23,7 @@ require("nvim-treesitter.configs").setup({
     "markdown_inline", -- 让 markdown 里面的代码段可以高亮
     -- 'comment' -- 更好的高亮 TODO XXX NOTE FIXME ，但是其让 url 的高亮过于明显
     "rst",
+    "llvm",
   },
 })
 
@@ -77,7 +78,7 @@ require("nvim-treesitter.configs").setup({
         ["xK"] = "@class.outer",
       },
       goto_previous_start = {
-        ["xh"] = "@function.outer",
+        ["gj"] = "@function.outer",
         ["xH"] = "@class.outer",
       },
       goto_previous_end = {

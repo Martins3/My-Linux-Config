@@ -2,14 +2,18 @@
 
 {
 
-  boot = {
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_8;
-  };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.supportedFilesystems = [ "bcachefs" ];
+
+  # 暂时两个文件系统无法互相兼容
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.supportedFilesystems = [ "zfs" ];
+  # networking.hostId = "9f96ca0b";
 
   # @todo 加入的 vfio 参考 https://gist.github.com/CRTified/43b7ce84cd238673f7f24652c85980b3 不过他的感觉也是瞎写的
   boot.kernelModules = [ "vfio_pci" "vfio_iommu_type1"
-    "vmd" "null_blk" "scsi_debug" "vhost_net" ];
+    "vmd" "null_blk" "scsi_debug" "vhost_net" "nvmet" "nvmet-tcp" ];
   boot.initrd.kernelModules = [];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
@@ -18,7 +22,8 @@
 '';
 
   boot.kernelParams = [
-    "transparent_hugepage=never"
+    "transparent_hugepage=always"
+    "kvm.halt_poll_ns=0"
     "mitigations=off"
     # 硬件上都直接不支持了
     # "tsx=on"
@@ -29,12 +34,15 @@
     "intel_iommu=on"
     "iommu=pt"
     "intremap=on"
+    "rcutree.sysrq_rcu=1"
     # "amd_iommu_intr=vapic"
     # "kvm-amd.avic=1"
     # "isolcpus=28-31"
     # "amd_iommu_intr=legacy"
+    #
+    # 打开这个选项之后，iperf3 性能只有之前的 1/5
     # "ftrace=function"
-    # "ftrace_filter=amd_iommu_int_thread"
+    # "ftrace_filter=request_firmware"
 
     # "processor.max_cstate=1"
     # "intel_idle.max_cstate=0"

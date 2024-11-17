@@ -15,36 +15,52 @@ in
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
     unstable.wpsoffice
-    unstable.sublime-merge
-    # unstable.vscode
-    unstable.flameshot # 截图
+    # sublime-merge
+    # vscode
+    flameshot # 截图
     # unstable.zotero
-    unstable.slack
-    drawio
+    slack
+    # drawio
+    # imagemagick # 压缩照片
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
-    anki
-    wezterm
+    libnotify # 通知小工具
+    # anki
+    # foliate # 电子书
+    # wezterm # 2024-08-02 这个版本的 wez 有 bug
     # wireshark
-    alacritty
-    # unstable.spacedrive # 一打开就 crash 了，目前没法用
+    # alacritty
+    # warp-terminal
+    # spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
     # spotify
     # joplin-desktop # 还有 joplin
     # gource
     # unstable.firefox
-    google-chrome
+    # google-chrome
+    # pot # 启动之后 segfault 了
     # libreoffice
-    unstable.thunderbird
-    feishu
+    # thunderbird
+    # feishu
+    # netease-cloud-music-gtk
+    # yesplaymusic # 似乎这个也不错
+    # 似乎微信又不可以用了，哈哈
+    # (nur.repos.xddxdd.wechat-uos.overrideAttrs (old: {
+    #   postInstall = builtins.replaceStrings
+    #     ["--run"]
+    #     [''--set WECHAT_DATA_DIR ${config.home.homeDirectory}/.local/share/wechat-uos/data --run'']
+    #     old.postInstall;
+    # }))
+    # nur.repos.linyinfeng.wemeet
     microsoft-edge
-    vlc
+    clash-verge-rev
+    # clash-nyanpasu
+    # vlc
     # podman-desktop
     # tdesktop
     # telegram
-    # clash-verge # 打开之后一块白板，不知道发生了什么
     # gparted # 需要 GTK，使用 disk 也不错
-    # rofi # @todo rofi 的使用
+    # rofi # @todo rofi 如何使用
     # scrcpy # Android 的投屏工具
     # xmind
     # obsidian

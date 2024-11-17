@@ -12,7 +12,7 @@
 
 ## 安装
 
-### 手动安装
+### 在命令行中安装
 
 #### 手动分区
 
@@ -39,19 +39,12 @@ nixos-generate-config --root /mnt
 ```nix
  # 将这行注释掉
  # boot.loader.systemd-boot.enable = true;
- # 增加下如下内容
-  boot = {
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      grub = {
-        devices = [ "nodev" ];
-        efiSupport = true;
-      };
-    };
-  };
+
+ # 如果是虚拟机，增加下如下内容
+ # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 ```
 
 2. 添加基本的工具方便之后使用
@@ -113,11 +106,15 @@ sudo chmod +w /etc/nixos/configuration.nix
 sudo vim /etc/nixos/configuration.nix
 # 在配置中增加上
 # networking.proxy.default = "http://192.168.64.62:8889"; # 需要提前搭梯子
-sudo nixos rebuild
+sudo nixos-rebuild
 ```
+逆天，这里居然也是会存在问题的，正是鸡生蛋，蛋生鸡的问题。
 
 2. 重启
-3. 首先解决网络问题，使用 sed 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
+
+<-- 这里我们使用了一个备份，直接用吧
+
+3. 首先解决网络问题，使用 nano 将 /etc/nixos/configuration.nix 中的 networking.proxy 的两个配置修改正确。
 4. 打开 shell，执行 `nix-shell -p vim git` ，然后
 
 ```sh
@@ -153,6 +150,8 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
 - 如何升级 (update / upgrade)
   - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
+    - sudo nix-channel --update
+  - 在这里看下日期: https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/
 
 ## 自动环境加载
 
@@ -190,6 +189,7 @@ sudo smbpasswd -a martins3
 ```
 
 在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
+注意，这里的 public 和配置文件中对应的。
 
 如果遇到需要密码的时候，但是密码不对
 
@@ -198,6 +198,26 @@ sudo smbpasswd -a martins3
 ```
 
 在 windows 那一侧使用 martins3 和新设置的密码来登录。
+
+#### fedora 上 enable
+将 fedora 的文件 贡献给 windows
+
+```sh
+sudo dnf install samba
+sudo systemctl enable smb --now
+```
+
+sudo smbpasswd -a martins3
+
+在 /etc/samba/smb.conf 的结尾地方添加:
+```txt
+[public]
+        path = home/martins3/core
+        browseable = yes
+        read only = no
+        guest ok = yes
+```
+总体来说，失败，一会儿再去尝试吧
 
 ### syncthing
 
@@ -225,10 +245,12 @@ pip install setuptools # 结果 readonly 文件系统
 
 正确的解决办法是，之后，就按照正常的系统中使用 python:
 
-```txt
-python -m venv .venv
+```sh
+python3 -m venv .venv
 source .venv/bin/activate
 ```
+
+看看这个 https://github.com/astral-sh/uv
 
 ## [ ] cpp
 
@@ -396,10 +418,15 @@ in {
 - https://github.com/nix-community/nixos-generators
   - nixos-generate -f iso -c /etc/nixos/configuration.nix : 利用 squashfs 直接构建出来安装用 iso
   - 可以通过 configuration.nix 直接打包出来 iso，这不就免除了每次手动安装 iso 的时候还要下载
-  - 而且可以还可以构建 qcow2
-  - 当然还是有点小问题，qcow2 构建直接报错，iso 的使用 qemu-system-x86_64 -cdrom /nix/store/ff5fcyx1ka3kmiw8bxl29l377d4xwn3i-nixos.iso/iso/nixos.iso --enable-kvm 启动，因为目前是含有 mount 的 ，systemd 无法正常启动的
+  - 等待版本升级吧，nixos-generate --disk-size 102400 -f qcow -c /home/martins3/core/vn/docs/qemu/sh/configuration.nix 中 disk-size 不识别，不设置也会报错，看上去这会是一个可行的路线的
+    - 这应该就是正确的解决办法了
 - nixpacks
   - https://news.ycombinator.com/item?id=32501448
+
+如果是完全手动安装一个，还是实在是太复杂了:
+  - https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html
+    - 这个好归好，但是使用的共享目录啊
+
 
 ## 其他有趣的 Linux Distribution
 
@@ -444,7 +471,7 @@ setxkbmap -option caps:swapescape
 
 - [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
 
-# Nix/NixOs 踩坑记录
+## Nix/NixOs 踩坑记录
 
 最近时不时的在 hacknews 上看到 nix 相关的讨论:
 
@@ -644,12 +671,17 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 https://www.youtube.com/@NixCon
 
-## 更新 nixos 为 22.11
+## 更新 nixos 为 24.05
 
 内容参考这里:
 
 - https://nixos.org/manual/nixos/stable/index.html#sec-upgrading
 - https://news.ycombinator.com/item?id=33815085
+
+修改 scripts/nix/nix-channel.sh
+```sh
+nixos-rebuild switch --upgrade
+```
 
 ## 垃圾清理
 
@@ -712,6 +744,12 @@ programs.steam.enable = true;
 ### tailscale
 
 - tailscale : https://tailscale.com/blog/nixos-minecraft/
+
+tskey-auth-XXX 上网页上 generate 的:
+
+```sh
+sudo tailscale up --auth-key tskey-auth-XXX
+```
 
 ### [ ] wireguard
 
@@ -1004,7 +1042,7 @@ nixos 的处理方式:
 ubuntu 的处理方式:
 
 ```txt
-smtxauto@node1:/var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
+var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
 |/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E
 ```
 
@@ -1012,7 +1050,7 @@ smtxauto@node1:/var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
 
 ```txt
 ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: called for pid 17767, signal 11, core limit 0, dump mode 1
-ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /home/smtxauto/a.out (command line "./a.out")
+ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /a.out (command line "./a.out")
 ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable does not belong to a package, ignoring
 ```
 
@@ -1177,6 +1215,23 @@ https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 
 目前使用: clash-verge
 
+### 只是使用 clash-verge
+1. https://github.com/MetaCubeX/meta-rules-dat/releases
+```txt
+WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
+ERRO[2024-06-12T21:17:17.693315974+08:00] can't initial GeoIP: can't download MMDB: conte
+FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOIP,CN,🎯 全
+```
+2. 默认路径: /home/martins3/.config/mihomo
+3. 只需要拷贝 config.yaml
+
+
+### clash-verge
+
+1. 拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb
+ .local/share/io.github.clash-verge-rev.clash-verge-rev
+
+
 ## canTouchEfiVariables 到底是什么来头
 
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
@@ -1340,17 +1395,6 @@ https://github.com/svanderburg/node2nix
 
 https://github.com/nix-community/NixOS-WSL
 
-
-## 配置文件
-
-```txt
- fileSystems."/home/martins3/hack" = {
-    device = "/dev/disk/by-uuid/8eba61f5-5ed3-4221-ba7a-40b6ef3cbd62";
-    fsType = "auto";
-    options = [ "user"];
-  };
-```
-
 ## 生成密码
 
 mkpasswd -m sha-512 abc
@@ -1493,3 +1537,447 @@ https://github.com/flox/flox
 
 ## 参考这个资源
 https://dotfiles.github.io/
+
+## 太坑了
+- https://github.com/NixOS/nixpkgs/issues/18995
+
+在 clang 自动携带了 flags :
+
+
+## linux defualt.nix
+
+之前的写法
+```nix
+{ pkgs ? import <nixpkgs> { },
+  unstable ? import <nixos-unstable> { }
+}:
+
+pkgs.stdenv.mkDerivation {
+  name = "yyds";
+  buildInputs = with pkgs; [
+  # ....
+  ];
+}
+```
+
+还有一种写法:
+```nix
+with import <nixpkgs> {};
+pkgs.llvmPackages.stdenv.mkDerivation {
+  hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+    getopt
+    flex
+    ];
+}
+```
+
+还有一种写法:
+```nix
+
+with import <nixpkgs> {};
+
+pkgs.llvmPackages_14.stdenv.mkDerivation {
+   hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+
+  ];
+  }
+
+```
+
+也可以参考: https://nixos.wiki/wiki/Using_Clang_instead_of_GCC
+
+
+## 使用 clang 交叉编译内核
+
+https://stackoverflow.com/questions/61771494/how-do-i-cross-compile-llvm-clang-for-aarch64-on-x64-host
+
+```txt
+🧀  clang -arch arm64 aio.c -o main_arm64
+clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-command-line-argument]
+```
+检查内核 compile_commands.json ，果然是没有输出的。
+
+## 搭建下 nixos 上 hack kvm 的方法
+- https://phip1611.de/blog/building-an-out-of-tree-linux-kernel-module-in-nix/
+
+文档还是很简单的，但是这个代码仓库就太复杂了。
+
+## 备份一些代码
+```nix
+  systemd.user.services.kernel = {
+    enable = true;
+    unitConfig = { };
+    serviceConfig = {
+      # User = "martins3";
+      Type = "forking";
+      # RemainAfterExit = true;
+      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
+      Restart = "no";
+    };
+  };
+
+  # systemctl --user list-timers --all
+  systemd.user.timers.kernel = {
+    enable = true;
+    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
+    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.timers.drink_water = {
+    enable = true;
+    timerConfig = { OnCalendar="*:0/5"; };
+    wantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.drink_water = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
+      Restart = "no";
+    };
+  };
+
+  systemd.user.services.monitor = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
+      Restart = "no";
+    };
+    wantedBy = [ "timers.target" ];
+  };
+```
+
+## 如何解决掉本身就在代理的问题
+- https://github.com/NixOS/nixpkgs/issues/27535 是我操作有问题，不行啊！
+
+## 社区危机
+- https://save-nix-together.org/
+- https://discourse.nixos.org/t/nixos-foundation-board-giving-power-to-the-community/44552?filter=summary
+- https://dataswamp.org/~solene/2024-04-27-nix-internal-crisis.html
+- https://www.reddit.com/r/NixOS/comments/1dqn9os/4_out_of_5_nixos_board_members_have_quit/
+  - 还是要凉凉吗?
+
+
+## 使用 lcov 需要首先配置如下内容
+```txt
+nix-shell -p libgcc
+```
+
+## nixos 的 kernel 有方便的方法裁剪吗？
+
+## 这个似乎还不错
+https://github.com/gvolpe/nix-config
+
+## 其他的 immutable 系统
+https://news.ycombinator.com/item?id=40817199
+
+Aeon 非常奇怪，安装不可以用 cdrom ，而且必须是 UEFI
+
+## nixos 下 bcc 不可以正常使用
+
+https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/by-name/bc/bcc/package.nix
+
+需要我更加深入的理解才可以:
+
+在 bcc 的构建的 nix 中，的确有:
+```txt
+  export PYTHONPATH=$out/${python3.sitePackages}:$PYTHONPATH
+```
+
+这个也是 https://github.com/iovisor/bcc/blob/master/FAQ.txt 中提到的:
+
+```txt
+Q: hello_world.py fails with:
+   ImportError: No module named bcc
+A: checkout "sudo make install" output to find out bpf package installation site,
+   add it to the PYTHONPATH env variable before running the program.
+   export PYTHONPATH=$(dirname `find /usr/lib -name bcc`):$PYTHONPATH
+```
+
+似乎是不可以的，进入到 bcc 中，其中连 bcc 的工具都没有，很惨:
+
+```sh
+cd $(nix-build -E "(import <nixpkgs> {}).bcc" --no-out-link)
+```
+
+## 编译 bpf 的时候有警告
+
+linux/tools/bpf/runqslower 下
+
+如果是: make LLVM=1
+```txt
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clangclang: : warning: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]-lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+clang: warning: -lLLVM-17: 'linker' input unused [-Wunused-command-line-argument]
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output/bpftool/bootstrap/bpftool
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//vmlinux.h
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.bpf.o
+clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/llmjvk4i2yncv8xqdvs4382wr3kgdmvp-gcc-13.2.0' [-Wunused-command-line-argument]
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.skel.h
+  CC      /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.o
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower
+```
+如果是: make
+```txt
+clang: warning: argument unused during compilation: '--gcc-toolchain=/nix/store/llmjvk4i2yncv8xqdvs4382wr3kgdmvp-gcc-13.2.0' [-Wunused-command-line-argument]
+  GEN     /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.skel.h
+  CC      /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower.o
+  LINK    /home/martins3/data/linux/tools/bpf/runqslower/.output//runqslower
+```
+
+## 看看这个吧
+https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
+
+## nixos 的动态库
+构建项目如果发现没有动态库，基本的解决思路是:
+
+参考 https://discourse.nixos.org/t/where-can-i-get-libgthread-2-0-so-0/16937/6
+
+使用 nix-index 也许可以定位是那个包提供的，在 nix 中添加:
+
+例如，这个提供了 stdc++ ，libGL 和 glib2 的动态库的位置:
+```nix
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.glib.out}/lib";
+```
+
+## cppman 是一个 python 库，但是没有办法安装
+https://github.com/aitjcize/cppman
+
+## 如何自动 login 似乎在图形界面上才可以配置
+
+在 settings 中搜 login ，有一个 autoLogin 的选项。
+
+https://help.gnome.org/admin/system-admin-guide/stable/login-automatic.html.en
+
+配置之后接入如下:
+```txt
+🧀  cat /etc/gdm/custom.conf
+[daemon]
+AutomaticLogin=martins3
+AutomaticLoginEnable=true
+WaylandEnable=false
+```
+
+但是使用 nixos 的配置:
+
+```txt
+  services.displayMnager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "martins3";
+  services.xserver.displayManager.gdm.autoLogin.delay = 1;
+```
+会有很多诡异的想象。
+
+## ocaml
+
+```txt
+🧀  opam install herdtools7
+[NOTE] External dependency handling not supported for OS family 'nixos'.
+       You can disable this check using 'opam option --global depext=false'
+The following actions will be performed:
+  ∗ install conf-which      1        [required by herdtools7]
+  ∗ install conf-gmp        4        [required by zarith]
+  ∗ install conf-pkg-config 3        [required by zarith]
+  ∗ install dune            3.16.0   [required by herdtools7]
+  ∗ install ocamlfind       1.9.6    [required by zarith]
+  ∗ install menhirSdk       20240715 [required by menhir]
+  ∗ install menhirLib       20240715 [required by menhir]
+  ∗ install menhirCST       20240715 [required by menhir]
+  ∗ install zarith          1.14     [required by herdtools7]
+  ∗ install menhir          20240715 [required by herdtools7]
+  ∗ install herdtools7      7.57
+===== ∗ 11 =====
+Do you want to continue? [Y/n] Y
+
+<><> Processing actions <><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+Processing  5/33: [conf-gmp.4/test.c: dl] [dune.3.16.0: dl] [herdtools7.7.57: dl]
+[ERROR] The compilation of conf-pkg-config.3 failed at "pkg-config --help".
+∗ installed conf-which.1
+⬇ retrieved conf-gmp.4  (https://opam.ocaml.org/cache)
+[ERROR] The compilation of conf-gmp.4 failed at "sh -exc cc -c $CFLAGS -I/usr/local/include test.c".
+⬇ retrieved herdtools7.7.57  (https://opam.ocaml.org/cache)
+⬇ retrieved dune.3.16.0  (https://opam.ocaml.org/cache)
+⬇ retrieved menhir.20240715  (https://opam.ocaml.org/cache)
+⬇ retrieved menhirSdk.20240715  (cached)
+⬇ retrieved menhirCST.20240715  (https://opam.ocaml.org/cache)
+⬇ retrieved ocamlfind.1.9.6  (https://opam.ocaml.org/cache)
+⬇ retrieved zarith.1.14  (https://opam.ocaml.org/cache)
+∗ installed ocamlfind.1.9.6
+⬇ retrieved menhirLib.20240715  (https://opam.ocaml.org/cache)
+∗ installed dune.3.16.0
+∗ installed menhirCST.20240715
+∗ installed menhirSdk.20240715
+∗ installed menhirLib.20240715
+∗ installed menhir.20240715
+
+#=== ERROR while compiling conf-pkg-config.3 ==================================#
+# context     2.1.5 | linux/x86_64 | ocaml.5.2.0 | https://opam.ocaml.org#f302b6aaf01995b706f9b5a0a8fc2e6bb299
+eae8
+# path        ~/.opam/default/.opam-switch/build/conf-pkg-config.3
+# command     ~/.opam/opam-init/hooks/sandbox.sh build pkg-config --help
+# exit-code   10
+# env-file    ~/.opam/log/conf-pkg-config-1134447-8c5011.env
+# output-file ~/.opam/log/conf-pkg-config-1134447-8c5011.out
+### output ###
+# [ERROR] Command not found: pkg-config
+
+
+#=== ERROR while compiling conf-gmp.4 =========================================#
+# context     2.1.5 | linux/x86_64 | ocaml.5.2.0 | https://opam.ocaml.org#f302b6aaf01995b706f9b5a0a8fc2e6bb299
+eae8
+# path        ~/.opam/default/.opam-switch/build/conf-gmp.4
+# command     ~/.opam/opam-init/hooks/sandbox.sh build sh -exc cc -c $CFLAGS -I/usr/local/include test.c
+# exit-code   1
+# env-file    ~/.opam/log/conf-gmp-1134447-2aea49.env
+# output-file ~/.opam/log/conf-gmp-1134447-2aea49.out
+### output ###
+# + cc -c -I/usr/local/include test.c
+# test.c:1:10: fatal error: gmp.h: No such file or directory
+#     1 | #include <gmp.h>
+#       |          ^~~~~~~
+# compilation terminated.
+
+
+
+<><> Error report <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+┌─ The following actions failed
+│ λ build conf-gmp        4
+│ λ build conf-pkg-config 3
+└─
+┌─ The following changes have been performed (the rest was aborted)
+│ ∗ install conf-which 1
+│ ∗ install dune       3.16.0
+│ ∗ install menhir     20240715
+│ ∗ install menhirCST  20240715
+│ ∗ install menhirLib  20240715
+│ ∗ install menhirSdk  20240715
+│ ∗ install ocamlfind  1.9.6
+└─
+
+The former state can be restored with:
+    /nix/store/sgxvws7lxhhz60j0l3grnkv6wa7fyx8v-opam-2.1.5/bin/.opam-wrapped switch import
+"/home/martins3/.opam/default/.opam-switch/backup/state-20241004072102.export"
+```
+
+但是，如果这个时候 nix-shell -p gmp pkg-config ，那么还是可以正确的使用的。
+
+看来的确是可以的
+
+## 指定动态库
+
+参考 scripts/nix/env/uboot.nix
+
+## [ ] 有没有办法，只有 cache 我需要的内容
+https://discourse.nixos.org/t/introducing-attic-a-self-hostable-nix-binary-cache-server/24343
+
+似乎只有自己去 push 就可以了
+
+## 如何快速拷贝，也许可以尝试一下，但是不容易
+nix-store export 和 import
+
+nix-copy-closure
+
+## 如果可以构建一个 local cache ，那么就完美了
+- https://zero-to-nix.com/
+- https://github.com/DeterminateSystems
+
+## 事到如今，批评还是很多的
+https://www.reddit.com/r/NixOS/comments/1gfx95g/leaving_nix_dont_expect_anyone_to_care_but_you/
+
+## [ ] home-manager 按照到 fedora 中，为什么最后还是有 vmlinux ，而且是 300 多 M
+
+哪里配置的有问题吗?
+```txt
+🧀  l
+Permissions Size User     Date Modified Name
+dr-xr-xr-x     - martins3  1 Jan  1970   bin
+dr-xr-xr-x     - martins3  1 Jan  1970   etc
+lrwxrwxrwx     - martins3  1 Jan  1970   include -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/include
+dr-xr-xr-x     - martins3  1 Jan  1970   lib
+dr-xr-xr-x     - martins3  1 Jan  1970   libexec
+lrwxrwxrwx     - martins3  1 Jan  1970   manifest.nix -> /nix/store/3i0bzw19pdx2nyrccbfqy2fz5c0sq1wa-env-manifest.nix
+lrwxrwxrwx     - martins3  1 Jan  1970   rplugin.vim -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/rplugin.vim
+lrwxrwxrwx     - martins3  1 Jan  1970   run -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/run
+lrwxrwxrwx     - martins3  1 Jan  1970   sbin -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/sbin
+dr-xr-xr-x     - martins3  1 Jan  1970   share
+lrwxrwxrwx     - martins3  1 Jan  1970   usr -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/usr
+lrwxrwxrwx     - martins3  1 Jan  1970   var -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/var
+lrwxrwxrwx     - martins3  1 Jan  1970   vmlinux -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/vmlinux
+lrwxrwxrwx     - martins3  1 Jan  1970   x86_64-unknown-linux-gnu -> /nix/store/di2a4smdj8li54di42chyfr261chw4rz-home-manager-path/x86_64-unknown-linux-gnu
+nix/profiles/profile🔒 🌳
+🧀  pwd
+/home/martins3/.local/state/nix/profiles/profile
+```
+应该是和这个有关系: linuxPackages_6_10.kernel.dev
+
+
+## rust
+使用 https://github.com/hyperlight-dev/hyperlight 的时候，发现了一个问题
+
+执行 just rg
+```txt
+error[E0463]: can't find crate for `core`
+  |
+  = note: the `x86_64-unknown-none` target may not be installed
+  = help: consider downloading the target with `rustup target add x86_64-unknown-none`
+
+For more information about this error, try `rustc --explain E0463`.
+error: could not compile `log` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `scopeguard` (lib) due to 1 previous error
+error: could not compile `bitflags` (lib) due to 1 previous error
+error: could not compile `itoa` (lib) due to 1 previous error
+error: could not compile `ryu` (lib) due to 1 previous error
+error: could not compile `memchr` (lib) due to 1 previous error
+error: could not compile `anyhow` (lib) due to 1 previous error
+error: could not compile `serde` (lib) due to 1 previous error
+error: Recipe `build-rust-guests` failed on line 38 with exit code 101
+
+```
+
+```txt
+🤒  rustup target add x86_64-unknown-none
+info: syncing channel updates for '1.81.0-x86_64-unknown-linux-gnu'
+info: latest update on 2024-09-05, rust version 1.81.0 (eeb90cda1 2024-09-04)
+info: downloading component 'cargo'
+  8.3 MiB /   8.3 MiB (100 %)   5.4 MiB/s in  2s ETA:  0s
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+ 15.9 MiB /  15.9 MiB (100 %)   5.2 MiB/s in  4s ETA:  0s
+info: downloading component 'rust-std'
+ 26.8 MiB /  26.8 MiB (100 %)   4.6 MiB/s in  7s ETA:  0s
+info: downloading component 'rustc'
+ 66.9 MiB /  66.9 MiB (100 %)   3.6 MiB/s in 20s ETA:  0s
+info: downloading component 'rustfmt'
+info: installing component 'cargo'
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+info: installing component 'rust-std'
+ 26.8 MiB /  26.8 MiB (100 %)  24.9 MiB/s in  1s ETA:  0s
+info: installing component 'rustc'
+ 66.9 MiB /  66.9 MiB (100 %)  26.9 MiB/s in  2s ETA:  0s
+info: installing component 'rustfmt'
+info: downloading component 'rust-std' for 'x86_64-unknown-none'
+ 11.3 MiB /  11.3 MiB (100 %)   4.8 MiB/s in  3s ETA:  0s
+info: installing component 'rust-std' for 'x86_64-unknown-none'
+```
+
+或者说，rust 中的如下命令如何 nix 化
+```txt
+rustup target add x86_64-unknown-none
+rustup target add x86_64-pc-windows-msvc
+```

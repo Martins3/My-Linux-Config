@@ -1,5 +1,5 @@
 # add this file to /etc/nixos/configuration.nix: imports
-{ config, pkgs, lib, ... }:
+{ boot_efi ? 1, disable_gui ? 0}:{ config, pkgs, lib, ... }:
 
 let
 
@@ -8,14 +8,21 @@ in
 {
   imports = [
     ./sys/cli.nix
+    ./sys/net.nix
     ./sys/kernel-options.nix
-    # ./sys/kernel-config.nix
+    ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
   ] ++ (
-  if builtins.currentSystem == "x86_64-linux" then [
+  if disable_gui == 0 && builtins.currentSystem == "x86_64-linux" then [
       ./sys/gui.nix
     ] else [ ]
+  ) ++ (
+  if boot_efi == 1 then [
+      ./sys/boot.nix
+    ] else [ ]
   );
+
+  services.openssh.enable = true;
 
   nix.settings.substituters = [
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
@@ -31,21 +38,6 @@ in
 
   programs.zsh.enable = true;
 
-
-  nixpkgs.overlays = [
-    (let
-     pinnedPkgs = import(pkgs.fetchFromGitHub {
-       owner = "NixOS";
-       repo = "nixpkgs";
-       rev = "b6bbc53029a31f788ffed9ea2d459f0bb0f0fbfc";
-       sha256 = "sha256-JVFoTY3rs1uDHbh0llRb1BcTNx26fGSLSiPmjojT+KY=";
-       }) {};
-     in
-     final: prev: {
-     docker = pinnedPkgs.docker;
-     })
-  ];
-
   virtualisation.docker.enable = true;
   virtualisation.docker.daemon.settings = {
     bip = "10.11.0.1/16";
@@ -53,9 +45,11 @@ in
   virtualisation.podman.enable = true;
   virtualisation.vswitch.enable = true;
   virtualisation.vswitch.package = pkgs.openvswitch-lts;
+  # services.fstrim.enable = true;
 
+  virtualisation.libvirtd.enable = true;
 
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
 
   # networking.proxy.default = "http://127.0.0.1:8889";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -67,83 +61,14 @@ in
     zsh
     unstable.tailscale
     cifs-utils
+    parted
     k3s
   ];
-
-  services.tailscale.enable = true;
-
-  # http://127.0.0.1:19999/
-  # services.netdata.enable = true;
-
-  systemd.services.tailscale-autoconnect = {
-    description = "Automatic connection to Tailscale";
-
-    # make sure tailscale is running before trying to connect to tailscale
-    after = [ "network-pre.target" "tailscale.service" ];
-    wants = [ "network-pre.target" "tailscale.service" ];
-    wantedBy = [ "multi-user.target" ];
-
-    # set this service as a oneshot job
-    serviceConfig.Type = "oneshot";
-
-    # have the job run this shell script
-    script = with pkgs; ''
-      # wait for tailscaled to settle
-      sleep 2
-
-      # check if we are already authenticated to tailscale
-      status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-      if [ $status = "Running" ]; then # if so, then do nothing
-        exit 0
-      fi
-
-      # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up -authkey $(cat /home/martins3/.tailscale-credentials)
-    '';
-  };
-
-  networking.firewall.checkReversePath = "loose";
-  # networking.hostName = "martins3-host";
-
-  networking.firewall = {
-    # enable the firewall
-    enable = true;
-
-    # always allow traffic from your Tailscale network
-    trustedInterfaces = [ "tailscale0" ];
-
-    # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port
-
-      8472 # k3s, flannel: required if using multi-node for inter-node networking
-    ];
-
-    # allow you to SSH in over the public internet
-    allowedTCPPorts = [
-      22 # ssh
-      5201 # iperf
-      3434 # http.server
-      8889 # clash
-      445 # samba
-      /* 8384 # syncthing */
-      /* 22000 # syncthing */
-      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
-    ];
-
-
-    allowedTCPPortRanges = [
-      { from = 5900; to = 6100; }
-    ];
-  };
 
   # https://nixos.wiki/wiki/Fwupd
   # 似乎没啥用，而且还是存在 bug 的
   services.fwupd.enable = false;
 
-  # wireless and wired coexist
-  systemd.network.wait-online.timeout = 1;
 
   users.mutableUsers = false;
   users.users.martins3 = {
@@ -161,44 +86,12 @@ in
     # "--kubelet-arg=v=4" # Optionally add additional args to k3s
   ];
 
-  boot = {
-    crashDump.enable = false; # TODO 这个东西形同虚设，无须浪费表情
-    crashDump.reservedMemory = "1G";
-    # nixos 的 /tmp 不是 tmpfs 的，但是我希望重启之后，/tmp 被清空
-    tmp.cleanOnBoot = true;
-
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-        efiSysMountPoint = "/boot";
-      };
-
-      systemd-boot.configurationLimit = 10;
-
-      grub = {
-        # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-        # theme = pkgs.nixos-grub2-theme;
-        theme =
-          pkgs.fetchFromGitHub {
-            owner = "shvchk";
-            repo = "fallout-grub-theme";
-            rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
-            sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
-          };
-        devices = [ "nodev" ];
-        efiSupport = true;
-      };
-    };
-    supportedFilesystems = [ "ntfs" ];
-  };
 
   # GPU passthrough with vfio need memlock
+  # https://www.reddit.com/r/VFIO/comments/aiwrzr/12_qemu_hardware_error_vfio_dma_mapping_failed/
   security.pam.loginLimits = [
     { domain = "*"; type = "-"; item = "memlock"; value = "infinity"; }
   ];
-
-  services.openssh.enable = true;
 
   # 默认是 cgroup v2
   # systemd.enableUnifiedCgroupHierarchy = false; # cgroup v1
@@ -217,77 +110,16 @@ in
 
   documentation.enable = true;
 
-  # earlyoom 检查方法 sudo journalctl -u earlyoom | grep sending
+  # sudo systemctl status systemd-oomd.service
+  # sudo journalctl -u systemd-oomd.service
   # @todo services 和 systemd 的差别是什么?
-  systemd.oomd = {
-    enable = true;
-  };
+  systemd.oomd.enable = true;
 
-  systemd.user.services.kernel = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      # User = "martins3";
-      Type = "forking";
-      # RemainAfterExit = true;
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
-      Restart = "no";
-    };
-  };
-
-  # systemctl --user list-timers --all
-  systemd.user.timers.kernel = {
-    enable = true;
-    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
-    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.timers.qemu = {
-    enable = true;
-    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.timers.drink_water = {
-    enable = true;
-    timerConfig = { OnCalendar="*:0/5"; };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.services.drink_water = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
-      Restart = "no";
-    };
-  };
-
-  systemd.user.services.qemu = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s qemu '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-qemu.sh'";
-      Restart = "no";
-    };
-  };
-
-  systemd.user.services.monitor = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
-      Restart = "no";
-    };
-    wantedBy = [ "timers.target" ];
-  };
+  # 使用方法 : sudo lldpcli show neighbor
+  services.lldpd.enable = true;
 
   systemd.user.services.clash = {
-    enable = true;
+    enable = false;
     unitConfig = { };
     serviceConfig = {
       Type = "simple";
@@ -341,31 +173,6 @@ in
   nixpkgs.config.allowUnfree = true;
   # programs.steam.enable = true; # steam 安装
 
-  services.samba = {
-    enable = true;
-
-    /* syncPasswordsByPam = true; */
-
-    # This adds to the [global] section:
-    extraConfig = ''
-      browseable = yes
-      smb encrypt = required
-    '';
-
-    shares = {
-      public = {
-        path = "/home/martins3/core/winshare";
-        browseable = "yes";
-        "read only" = "no";
-        "guest ok" = "yes";
-        /* "create mask" = "0644"; */
-        /* "directory mask" = "0755"; */
-        /* "force user" = "username"; */
-        /* "force group" = "groupname"; */
-      };
-    };
-  };
-
   boot.kernel.sysctl = {
     # "vm.swappiness" = 200;
     "vm.overcommit_memory" = 1;
@@ -382,15 +189,6 @@ in
  #    options = [ "user" "exec" "nofail"];
  #  };
 
-
-
-  # 配合使用
-  # sudo mount -t nfs 127.0.0.1:/home/martins3/nfs /mnt
-  # 这个时候居然可以删除掉 nfs ，乌鱼子
-  services.nfs.server.enable = true;
-  services.nfs.server.exports = ''
-    /home/martins3/nfs         127.0.0.1(rw,fsid=0,no_subtree_check)
-  '';
 }
 
 

@@ -1,5 +1,6 @@
 patch:
   schema_list:
+    - schema: double_pinyin_flypy # 小鹤
     - schema: luna_pinyin_simp # 全拼
   menu:
     page_size: 5

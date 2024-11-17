@@ -50,6 +50,8 @@ sudo dnf install -y fcitx5-rime
   - [简单安利 Rime 输入法](https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more)
 
 
+https://github.com/fcitx/fcitx5-rime/issues/15
+
 ## nixos 的配置
 其他的内容都相同，就是 fcitx 和 rime 的安装和一般的系统不同。
 
@@ -64,6 +66,156 @@ sudo dnf install -y fcitx5-rime
 
 参考 [NixOS 中文字体输入法](https://zhuanlan.zhihu.com/p/463403799) 配置。
 
+## 2024-05-30 的发现
+如果似乎是需要将 fcitx 的配置中的 Shift-L 取消掉，不然他会覆盖掉 rime 的行为。
+
+甚至怀疑是键盘的问题，但是实际上并不是；
+https://superuser.com/questions/248517/show-keys-pressed-in-linux
+
+似乎自定义的输入法没办法用了。 例如:
+rime/luna_pinyin.martins3.dict.yaml
+
+## rime-ls
+```sh
+git clone https://github.com/wlh320/rime-ls
+sudo dnf install librime-devel
+cd rime-ls
+cargo build --release
+cp target/release/rime_ls ~/.cargo/bin
+```
+在 asahi linux  fedora 上尝试的时候，还需要安装如下内容:
+
+这是没有图形界面的哦，一样是可以正常使用的
+```sh
+/home/martins3/.dotfiles/rime/linux-install.sh
+sudo dnf install ibus-rime
+```
+
+### 存在的问题
+1. 自动选择数值
+  - 没太搞懂，虽然说，https://github.com/liubianshi/cmp-lsp-rimels 已经解决了，但是实际上不好用，但是问题不大，因为
+2. , 的输入应该是自动，谁 miaomiao  的输入中文的忽然携带一个英文都好
+3. 是否可以变为 toggle 的模式
+4. 没办法切换为双拼，但是在 rime-ls 中是可以的
+```txt
+  schema_trigger_character = "&" -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
+```
+5. 双拼没办法显示当自动匹配的拼音字母
+
+## 小鹤双拼的配置
+
+- https://github.com/brglng/rime-xhup
+- https://github.com/ASC8384/myRime
+
+配置小鹤双拼还是比较简单的。
+
+- https://www.zhihu.com/question/20698750
+
+![](https://pica.zhimg.com/v2-8d8018a2e277a8b9c2e3ba4baa2a3632_r.jpg?source=1def8aca)
+
+- [ ] 如何将 emoji 去掉?
+
+
+不能在赞同了: https://www.zhihu.com/question/383416202/answer/2584564433
+
+## 使用 rime-ice 加上 rime-auto-deploy
+
+https://github.com/iDvel/rime-ice
+https://github.com/Mark24Code/rime-auto-deploy
+
+直接无敌!
+
+- [ ] 这个基础上处理下模糊音
+- [ ] 默认上屏的操作
+- [ ] 不要展示拼音
+
+
+https://github.com/iDvel/rime-ice/issues/133
+https://www.mintimate.cc/zh/guide/faQ.html#linux%E8%96%84%E8%8D%B7%E9%85%8D%E7%BD%AE%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8
+
+
+实在是太复杂了，我靠 : 似乎这里没有插件，所以有问题
+https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/development/libraries/librime/default.nix
+
+## 切换 ibus 和 fcitx5
+
+似乎 fcitx5 很简单：
+
+https://github.com/fcitx/fcitx5-rime
+https://github.com/rime/ibus-rime/issues : 这个不维护了
+
+## rimels 初步尝试
+```diff
+diff --git a/nvim/lua/usr/lazy.lua b/nvim/lua/usr/lazy.lua
+index f49b0c7ef8a1..d1459b277c94 100644
+--- a/nvim/lua/usr/lazy.lua
++++ b/nvim/lua/usr/lazy.lua
+@@ -185,63 +185,4 @@ require("lazy").setup({
+     config = true,
+   },
+   'ojroques/nvim-osc52',
+-  {
+-    "liubianshi/cmp-lsp-rimels",
+-    dir = "/home/martins3/core/cmp-lsp-rimels",
+-    -- 这个插件让正常的补全很卡
+-    enabled = false,
+-    config = function()
+-      local compare = require("cmp.config.compare")
+-      local cmp = require("cmp")
+-      cmp.setup({
+-        -- 设置排序顺序
+-        sorting = {
+-          comparators = {
+-            compare.sort_text,
+-            compare.offset,
+-            compare.exact,
+-            compare.score,
+-            compare.recently_used,
+-            compare.kind,
+-            compare.length,
+-            compare.order,
+-          },
+-        },
+-      })
+-
+-      require("rimels").setup({
+-        keys = { start = "jk", stop = "jh", esc = ";j", undo = ";u" },
+-        cmd = { "/home/martins3/.cargo/bin/rime_ls" },
+-        rime_user_dir = "/home/martins3/.local/share/rime-ls",
+-        shared_data_dir = "/home/martins3/.local/share/fcitx5/rime",
+-        filetypes = { "NO_DEFAULT_FILETYPES" },
+-        single_file_support = true,
+-        settings = {},
+-        docs = {
+-          description = [[https://www.github.com/wlh320/rime-ls, A language server for librime]],
+-        },
+-        max_candidates = 9,
+-        trigger_characters = {},
+-        schema_trigger_character = "&", -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
+-        probes = {
+-          ignore = {},
+-          using = {},
+-          add = {},
+-        },
+-        detectors = {
+-          with_treesitter = {},
+-          with_syntax = {},
+-        },
+-        cmp_keymaps = {
+-          disable = {
+-            space = false,
+-            numbers = false,
+-            enter = false,
+-            brackets = false,
+-            backspace = false,
+-          },
+-        },
+-      })
+-    end,
+-  },
+ }, {})
+```
+
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
@@ -71,6 +223,8 @@ sudo dnf install -y fcitx5-rime
 - [Arch Linux 下给 RIME 中](https://anclark.github.io/2020/11/23/Struggle_with_Linux/%E7%BB%99RIME%E4%B8%AD%E5%B7%9E%E9%9F%B5%E6%B7%BB%E5%8A%A0%E8%AF%8D%E5%BA%93/)
 - [Rime 导入搜狗词库](https://www.jianshu.com/p/300bbe1602d4)
   - [”深蓝词库转换“ 一款开源免费的输入法词库转换程序](https://github.com/studyzy/imewlconverter)
+- [也致第一次安装 Rime 的你](https://gitlab.com/xianghongai/Rime/-/tree/main)
+- [ssnhd 的 rime 教程](https://github.com/ssnhd/rime)
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

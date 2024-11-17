@@ -4,7 +4,7 @@ pkgs = import <nixpkgs> { };
 in
 pkgs.mkShell rec {
   nativeBuildInputs = with pkgs.buildPackages; [
-    ninja
+      ninja
       meson
       numactl
       elfutils

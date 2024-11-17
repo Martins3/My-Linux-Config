@@ -8,7 +8,6 @@ local servers = {
   "lua_ls",
   "marksman",
   "pyright",
-  "rust_analyzer",
   "vimls",
   "yamlls",
   -- "tsserver",
