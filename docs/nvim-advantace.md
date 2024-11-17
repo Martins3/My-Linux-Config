@@ -338,6 +338,20 @@ shellcheck 的问题吗?
 1. nvim 无法在其中拷贝
 2. ui 总是在闪烁啊
 
+## [ ] 不知道为什么，这里很多地方都没有办法跳转
+- https://github.com/danobi/vmtest
+
+例如这里的 remove_file ，而且被高亮为红色了:
+```rs
+impl Drop for Qemu {
+    fn drop(&mut self) {
+        let _ = fs::remove_file(self.qga_sock.as_path());
+        let _ = fs::remove_file(self.qmp_sock.as_path());
+        let _ = fs::remove_file(self.command_sock.as_path());
+    }
+}
+```
+
 ## 升级方法
 cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 

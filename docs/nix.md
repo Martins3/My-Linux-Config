@@ -1975,3 +1975,9 @@ info: downloading component 'rust-std' for 'x86_64-unknown-none'
  11.3 MiB /  11.3 MiB (100 %)   4.8 MiB/s in  3s ETA:  0s
 info: installing component 'rust-std' for 'x86_64-unknown-none'
 ```
+
+或者说，rust 中的如下命令如何才可以
+```txt
+rustup target add x86_64-unknown-none
+rustup target add x86_64-pc-windows-msvc
+```
