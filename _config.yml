@@ -1,2 +1,4 @@
 title: 工欲善其事,必先利其器
-theme: jekyll-theme-cayman
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+- jekyll-remote-theme
