@@ -36,12 +36,12 @@ require("lazy").setup({
   },
 
   -- lsp
-  { "neovim/nvim-lspconfig" },             -- enable LSP
-  { "williamboman/mason.nvim" },           -- simple to use language server installer
+  { "neovim/nvim-lspconfig" },                            -- enable LSP
+  { "williamboman/mason.nvim" },                          -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
   { "j-hui/fidget.nvim",                tag = "legacy" }, -- 右下角展示索引状态
-  { "SmiteshP/nvim-navic" },               -- 在 winbar 展示当前的路径
-  { "utilyre/barbecue.nvim" },             -- 和 nvim-navic 配合使用
+  { "SmiteshP/nvim-navic" },                              -- 在 winbar 展示当前的路径
+  { "utilyre/barbecue.nvim" },                            -- 和 nvim-navic 配合使用
   -- { "kosayoda/nvim-lightbulb" },           -- 展示 code action
 
   --treesitter
@@ -61,6 +61,7 @@ require("lazy").setup({
   "gelguy/wilder.nvim",                                             -- 更加智能的命令窗口
   "romgrk/fzy-lua-native",                                          -- wilder.nvim 的依赖
   "xiyaowong/nvim-transparent",                                     -- 可以移除掉背景色，让 vim 透明
+  { 'nvim-focus/focus.nvim', version = '*', },
   -- 颜色主题
   "folke/tokyonight.nvim",
   { "catppuccin/nvim",      name = "catppuccin",       priority = 1000 },
@@ -80,9 +81,9 @@ require("lazy").setup({
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
-  "akinsho/toggleterm.nvim",  -- nvim 中打开终端
-  "CRAG666/code_runner.nvim", -- 一键运行代码
-  "samjwill/nvim-unception",  -- 嵌套 nvim 自动 offload 到 host nvim 的终端中
+  "akinsho/toggleterm.nvim",                -- nvim 中打开终端
+  "CRAG666/code_runner.nvim",               -- 一键运行代码
+  "samjwill/nvim-unception",                -- 嵌套 nvim 自动 offload 到 host nvim 的终端中
   -- markdown
   {
     "iamcco/markdown-preview.nvim",
@@ -119,11 +120,11 @@ require("lazy").setup({
     lazy = false,   -- This plugin is already lazy
   },
   -- 其他
-  "ggandor/leap.nvim",                         -- 快速移动
-  "ggandor/flit.nvim",                         -- 利用 leap.nvim 强化 f/F t/T
+  "ggandor/leap.nvim",                                  -- 快速移动
+  "ggandor/flit.nvim",                                  -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim",          branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
-  "tyru/open-browser.vim",                     -- 使用 gx 打开链接
+  "tyru/open-browser.vim",                              -- 使用 gx 打开链接
   {
     "keaising/im-select.nvim",
     config = function()
