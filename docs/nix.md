@@ -1042,7 +1042,7 @@ nixos 的处理方式:
 ubuntu 的处理方式:
 
 ```txt
-smtxauto@node1:/var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
+var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
 |/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E
 ```
 
@@ -1050,7 +1050,7 @@ smtxauto@node1:/var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
 
 ```txt
 ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: called for pid 17767, signal 11, core limit 0, dump mode 1
-ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /home/smtxauto/a.out (command line "./a.out")
+ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /a.out (command line "./a.out")
 ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable does not belong to a package, ignoring
 ```
 
@@ -1976,7 +1976,7 @@ info: downloading component 'rust-std' for 'x86_64-unknown-none'
 info: installing component 'rust-std' for 'x86_64-unknown-none'
 ```
 
-或者说，rust 中的如下命令如何才可以
+或者说，rust 中的如下命令如何 nix 化
 ```txt
 rustup target add x86_64-unknown-none
 rustup target add x86_64-pc-windows-msvc

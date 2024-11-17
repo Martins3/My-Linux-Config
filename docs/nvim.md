@@ -21,6 +21,7 @@
 * [基本操作](#基本操作)
   * [退出](#退出)
   * [复制粘贴](#复制粘贴)
+    * [从远程 server 上复制粘贴本地的剪切板中](#从远程-server-上复制粘贴本地的剪切板中)
   * [符号搜索](#符号搜索)
   * [定义和引用](#定义和引用)
   * [注释](#注释)
@@ -29,6 +30,7 @@
   * [字符串搜索和替换](#字符串搜索和替换)
   * [file tree](#file-tree)
   * [window](#window)
+    * [调整一个 window 的大小](#调整一个-window-的大小)
   * [buffer](#buffer)
   * [文件搜索](#文件搜索)
   * [导航](#导航)
@@ -44,7 +46,6 @@
   * [markdown 集成](#markdown-集成)
   * [Session](#session)
   * [快速移动](#快速移动)
-  * [输入法自动切换](#输入法自动切换)
 * [本配置源代码解释](#本配置源代码解释)
 * [FAQ](#faq)
 * [vim 的小技巧](#vim-的小技巧)
@@ -314,6 +315,17 @@ map <leader>d "+d
 ```
 所以现在可以使用，`,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
 
+#### 从远程 server 上复制粘贴本地的剪切板中
+
+假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
+neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
+
+如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 
+
+原理上参考:
+- https://news.ycombinator.com/item?id=32037489
+- https://github.com/ojroques/vim-oscyank/issues/24
+
 ### 符号搜索
 
 利用 [telescope](https://github.com/nvim-telescope) 快速搜索 file，buffer，function 等
@@ -402,9 +414,19 @@ vim 内置了强大的搜索替换功能
 | ----------- | -------------- |
 | `<Tab>`     | 进入下一个窗口 |
 | `c` `g`     | 水平拆分窗口   |
-| `c` `f`     | 垂直拆分窗口   |
+| `c` `s`     | 垂直拆分窗口   |
 | `q`         | 关闭窗口       |
 | `c` `m`     | 当前窗口最大化 |
+
+
+#### 调整一个 window 的大小
+
+nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
+将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
+
+利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
+`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。 
+
 
 ### buffer
 
@@ -606,21 +628,6 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 | `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                    |
 | `gf`     | 打开光标所在文件                                                            |
 | `%`      | 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转 |
-
-### 输入法自动切换
-
-在 vim 中使用中文输入法，如果打字完成，进入 normal 模式，使用 gg 想要移动到文件的第一行，结果发现 gg 被中文输入法截断了。
-所以需要一个插件可以在进入 normal 的模式的时候中文输入法切走。
-
-可以使用两套方案，但是原理都是相同的，
-
-- 方案 1:
-  - 使用 [fcitx.nvim](https://github.com/h-hg/fcitx.nvim)，其代码相当简洁优雅。
-  - 如果是在 MacOS 上，需要在系统中安装 [fcitx-remote-for-osx](https://github.com/xcodebuild/fcitx-remote-for-osx) 来切换输入法。
-- 方案 2:
-  - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
-
-当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
 
 ## 本配置源代码解释
 
