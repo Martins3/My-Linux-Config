@@ -25,6 +25,7 @@ in
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     libnotify # 通知小工具
+    vmware-workstation
     # anki
     # foliate # 电子书
     # wezterm # 2024-08-02 这个版本的 wez 有 bug
