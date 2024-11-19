@@ -363,6 +363,7 @@ in
       black # python formatter
       rust-analyzer
       rustfmt
+      clippy
       efm-langserver # 集成 shellcheck
       marksman
       nodePackages.pyright
