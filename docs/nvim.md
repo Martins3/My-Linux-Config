@@ -82,7 +82,7 @@
 
 其实关于 vim 的基本知识教程有很多，这里我推荐两个网站
 
-1. [openvim](https://www.openvim.com/tutorial.html): 交互式的学习 vim
+1. [OpenVim](https://openvim.com): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
 
 如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hjkl 之类的操作之后，之后可以
