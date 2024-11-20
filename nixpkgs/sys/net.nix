@@ -62,7 +62,7 @@
     # allow you to SSH in over the public internet
     allowedTCPPorts = [
       22 # ssh
-      5201 5202 5203 # iperf
+      5201 5202 5203 # iperf3
       3434 # http.server
       8889 # clash
       445 # samba
@@ -114,6 +114,9 @@
       };
     };
   };
+
+  # networking.proxy.default = "http://127.0.0.1:8889";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 
   # 配合使用

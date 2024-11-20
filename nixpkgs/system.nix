@@ -28,7 +28,6 @@ in
     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     "https://cache.nixos.org/"
   ];
-
   time.timeZone = "Asia/Shanghai";
   time.hardwareClockInLocalTime = true;
 
@@ -38,22 +37,6 @@ in
 
   programs.zsh.enable = true;
 
-  # virtualisation.vmware.host.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.docker.daemon.settings = {
-    bip = "10.11.0.1/16";
-  };
-  virtualisation.podman.enable = true;
-  virtualisation.vswitch.enable = true;
-  virtualisation.vswitch.package = pkgs.openvswitch-lts;
-  # services.fstrim.enable = true;
-
-  virtualisation.libvirtd.enable = true;
-
-  # zramSwap.enable = true;
-
-  # networking.proxy.default = "http://127.0.0.1:8889";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   environment.systemPackages = with pkgs; [
     vim
@@ -66,11 +49,6 @@ in
     k3s
   ];
 
-  # https://nixos.wiki/wiki/Fwupd
-  # 似乎没啥用，而且还是存在 bug 的
-  services.fwupd.enable = false;
-
-
   users.mutableUsers = false;
   users.users.martins3 = {
     isNormalUser = true;
@@ -80,6 +58,11 @@ in
     extraGroups = [ "wheel" "docker" "libvirtd" ];
   };
 
+
+
+  # https://nixos.wiki/wiki/Fwupd
+  # 似乎没啥用，而且还是存在 bug 的
+  services.fwupd.enable = false;
 
   services.k3s.enable = false;
   services.k3s.role = "server";
@@ -115,81 +98,19 @@ in
   # sudo journalctl -u systemd-oomd.service
   # @todo services 和 systemd 的差别是什么?
   systemd.oomd.enable = true;
+  services.irqbalance.enable = false; # 将其自动 disable 掉
 
   # 使用方法 : sudo lldpcli show neighbor
   services.lldpd.enable = true;
 
-  systemd.user.services.clash = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.clash-meta.outPath}/bin/clash-meta";
-      Restart = "no";
-    };
-    wantedBy = [ "default.target" ];
-  };
-
-  systemd.user.services.pueued = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      ExecStart = "${pkgs.pueue.outPath}/bin/pueued -vv";
-      Restart = "no";
-    };
-    wantedBy = [ "default.target" ];
-  };
-
-  systemd.user.services.kernel_doc = {
-    enable = true;
-    description = "export kernel doc at 127.0.0.1:3434";
-    serviceConfig = {
-      WorkingDirectory = "/home/martins3/core/linux/Documentation/output";
-      Type = "simple";
-      ExecStart = "/home/martins3/.nix-profile/bin/python -m http.server 3434";
-      Restart = "no";
-    };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.services.hugepage = {
-    enable = true;
-    description = "make user process access hugepage";
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "/run/current-system/sw/bin/chmod o+w /dev/hugepages/";
-      Restart = "no";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
   # @todo 使用下吧
-  systemd.services.iscsid = {
-    enable = true;
-  };
-  nix.settings.experimental-features = "nix-command flakes";
-  # 因为使用的最新内核，打开这个会导致更新过于频繁
   system.autoUpgrade.enable = false;
 
   nixpkgs.config.allowUnfree = true;
   # programs.steam.enable = true; # steam 安装
 
-  boot.kernel.sysctl = {
-    # "vm.swappiness" = 200;
-    "vm.overcommit_memory" = 1;
-  };
-
- # https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
- # 这一个例子如何自动 mount 一个盘，但是配置放到 /etc/nixos/configuration.nix
- # 中，参考[1] 但是 options 只有包含一个
- # [1]: https://unix.stackexchange.com/questions/533265/how-to-mount-internal-drives-as-a-normal-user-in-nixos
- #
- #  fileSystems."/home/martins3/hack" = {
- #    device = "/dev/disk/by-uuid/b709d158-aa6a-4b72-8255-513517548111";
- #    fsType = "auto";
- #    options = [ "user" "exec" "nofail"];
- #  };
-
+  nix.settings.experimental-features = "nix-command flakes";
+  # 因为使用的最新内核，打开这个会导致更新过于频繁
 }
 
 

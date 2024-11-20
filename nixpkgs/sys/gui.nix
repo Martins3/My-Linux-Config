@@ -70,5 +70,16 @@
     rime
   ];
 
+  systemd.user.services.clash = {
+    enable = false;
+    unitConfig = { };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.clash-meta.outPath}/bin/clash-meta";
+      Restart = "no";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
 
 }
