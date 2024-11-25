@@ -49,7 +49,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     # numa_num_possible_cpus
     # libperl
     libunwind
-    lzma
+    xz
     zstd
     perl
     # @todo 不知道为什么现在 perf 缺少这个库

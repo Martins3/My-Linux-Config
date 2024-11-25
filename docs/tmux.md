@@ -137,6 +137,8 @@ bind-key -n -N 'Toggle popup window' C-h if-shell -F '#{==:#{session_name},popup
   - https://news.ycombinator.com/item?id=21055468
 - [catppuccin 主题](https://github.com/catppuccin/tmux)
 
+## 教程
+- https://leimao.github.io/blog/Tmux-Tutorial/
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

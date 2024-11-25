@@ -302,11 +302,18 @@ impl Drop for Qemu {
 }
 ```
 
+## [ ] nvim 放着不动就会有 5% 的 CPU 使用率
+这不对吧
+
+## [ ] 这个有趣的
+https://github.com/nvzone/menu
+
+https://github.com/t-troebst/perfanno.nvim
+
 ## 升级方法
 cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 
 找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
-
 
 ## 被废弃的方法
 ### 输入法自动切换
