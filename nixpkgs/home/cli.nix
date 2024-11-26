@@ -49,6 +49,7 @@ in
       hdparm
       go
       ruby
+      # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
       # gitea # 好吧，还需要手动搭建数据库才可以
       sipcalc

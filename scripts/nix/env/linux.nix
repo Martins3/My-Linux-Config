@@ -3,7 +3,6 @@ pkgs.llvmPackages.stdenv.mkDerivation {
   hardeningDisable = [ "all" ];
   name = "yyds";
   buildInputs = with pkgs; [
-
     getopt
     flex
     bison
@@ -31,10 +30,9 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     libaio
 
     # Necessary for the openssl-sys crate:
-    pkgs.openssl
-    pkgs.pkg-config
-
-    pkgs.graphviz
+    openssl
+    pkg-config
+    graphviz
 
     (python3.withPackages (
       p: with p; [
@@ -54,7 +52,8 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     perl
     # @todo 不知道为什么现在 perf 缺少这个库
     libtraceevent
-    # libclang
+    libclang
+    clang
 
     rustc
     rust-bindgen
