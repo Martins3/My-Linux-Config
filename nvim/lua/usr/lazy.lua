@@ -162,6 +162,10 @@ require("lazy").setup({
       -- See below for full list of options 👇
     },
   },
+  {
+    'mcauley-penney/visual-whitespace.nvim',
+    config = true
+  }, -- 在 visual mode 展示空白字符
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",

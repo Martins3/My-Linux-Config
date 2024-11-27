@@ -1981,3 +1981,5 @@ info: installing component 'rust-std' for 'x86_64-unknown-none'
 rustup target add x86_64-unknown-none
 rustup target add x86_64-pc-windows-msvc
 ```
+## cache
+https://github.com/nix-community/harmonia
