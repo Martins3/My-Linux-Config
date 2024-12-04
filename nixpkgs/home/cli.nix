@@ -49,6 +49,7 @@ in
       hdparm
       go
       ruby
+      # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
       # gitea # 好吧，还需要手动搭建数据库才可以
       sipcalc
@@ -90,8 +91,8 @@ in
       # audit # 没啥意义，用不起来
       yarn
       nodejs
-      tmux
-      # myPkg
+      # tmux
+      myPkg
       tmuxp
       pueue
       screen
@@ -363,6 +364,7 @@ in
       black # python formatter
       rust-analyzer
       rustfmt
+      clippy
       efm-langserver # 集成 shellcheck
       marksman
       nodePackages.pyright

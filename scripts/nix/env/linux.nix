@@ -1,9 +1,8 @@
-with import <nixpkgs> {};
+with import <unstable> { };
 pkgs.llvmPackages.stdenv.mkDerivation {
-   hardeningDisable = [ "all" ];
+  hardeningDisable = [ "all" ];
   name = "yyds";
   buildInputs = with pkgs; [
-
     getopt
     flex
     bison
@@ -29,35 +28,40 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     libcap_ng
     liburing
     libaio
-    rustfmt
-    rustc
-    cargo
-	 rust-bindgen
 
     # Necessary for the openssl-sys crate:
-    pkgs.openssl
-    pkgs.pkg-config
+    openssl
+    pkg-config
+    graphviz
 
-    pkgs.graphviz
-
-    (python3.withPackages (p: with p; [
-      sphinx
-      # 修改 Documentation/conf.py 中 html_theme = 'sphinx_rtd_theme'
-      sphinx-rtd-theme
-      pyyaml
-    ]))
+    (python3.withPackages (
+      p: with p; [
+        sphinx
+        # 修改 Documentation/conf.py 中 html_theme = 'sphinx_rtd_theme'
+        sphinx-rtd-theme
+        pyyaml
+      ]
+    ))
     libopcodes
     numactl
-    /* numa_num_possible_cpus */
-    /* libperl */
+    # numa_num_possible_cpus
+    # libperl
     libunwind
-    lzma
+    xz
     zstd
     perl
     # @todo 不知道为什么现在 perf 缺少这个库
     libtraceevent
-    # libclang
+    libclang
+    clang
+
+    rustc
+    rust-bindgen
+    rustfmt
+    clippy
   ];
+
+  RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.
   # RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
