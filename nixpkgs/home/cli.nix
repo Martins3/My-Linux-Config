@@ -306,7 +306,7 @@ in
       cyme # 一个更加好看的 usbutils
       # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
       libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
-      bcachefs-tools
+      # bcachefs-tools
       libcgroup
       cpulimit
       # bat # better cat
