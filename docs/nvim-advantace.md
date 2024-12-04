@@ -310,6 +310,8 @@ https://github.com/nvzone/menu
 
 https://github.com/t-troebst/perfanno.nvim
 
+## [ ] 如何跳到屏幕的开始
+
 ## 升级方法
 cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 
@@ -330,3 +332,8 @@ cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
   - [coc-imselect](https://github.com/neoclide/coc-imselect) 自动包含了 fcitx-remote-for-osx 的功能，无论是在 MacOS 上还是 Linux 上都是相同的。
 
 当我在切换到 MacOS 的时候，发现输入法的自动切换不能正常工作，最后通过这个 [commit](https://github.com/Martins3/fcitx.nvim/commit/f1c97b6821a76263a84addfe5c6fdb4178e90ca9) 进行了修复。
+
+## 很难受，在 linux 中现在不可以用了，真的有点抽象了
+- https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
+
+https://github.com/LintaoAmons/bookmarks.nvim

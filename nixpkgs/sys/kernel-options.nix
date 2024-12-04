@@ -32,7 +32,7 @@
     # intel_iommu 需要手动打开
     # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
     "intel_iommu=on"
-    "iommu=pt"
+    # "iommu=pt"
     "intremap=on"
     "rcutree.sysrq_rcu=1"
     # "amd_iommu_intr=vapic"
