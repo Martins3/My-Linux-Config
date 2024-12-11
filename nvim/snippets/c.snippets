@@ -81,12 +81,12 @@ snippet sysfs "add monitor into sysfs"
 snippet ktrace "add a new tracepoint"
   TRACE_EVENT($1,
 
-  	    TP_PROTO(int count),
+  	    TP_PROTO(u64 count),
 
   	    TP_ARGS(count),
 
-  	    TP_STRUCT__entry(__field(u32, count)),
+  	    TP_STRUCT__entry(__field(u64, count)),
 
   	    TP_fast_assign(__entry->count = count;),
 
-  	    TP_printk("$1 : %lu ", (unsigned long)__entry->count));
+  	    TP_printk("$1 : %llx ", __entry->count));
