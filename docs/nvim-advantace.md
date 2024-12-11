@@ -337,3 +337,5 @@ cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 - https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
 
 https://github.com/LintaoAmons/bookmarks.nvim
+
+https://github.com/OXY2DEV/markview.nvim
