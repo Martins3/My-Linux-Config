@@ -193,6 +193,14 @@ function p(){
   fi
    source .venv/bin/activate
 }
+
+function initrd(){
+  if [[ ! -f $1 ]]; then
+    echo "not a file"
+    return
+  fi
+  ln -sf $(realpath $1) initrd
+}
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
