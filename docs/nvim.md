@@ -320,7 +320,7 @@ map <leader>d "+d
 假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
 neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
 
-如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 
+如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank)
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
@@ -425,7 +425,7 @@ nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使
 将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
 
 利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
-`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。 
+`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。
 
 
 ### buffer
@@ -768,6 +768,8 @@ setxkbmap -option caps:swapescape
 
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
+- [OXY2DEV/markview.nvim](https://github.com/OXY2DEV/markview.nvim) : markdown 的预览
+- [NStefan002/screenkey.nvim](https://github.com/NStefan002/screenkey.nvim) : 展示在 vim 中敲下的键
 
 ## 学习
 

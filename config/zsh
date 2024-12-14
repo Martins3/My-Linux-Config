@@ -48,6 +48,10 @@ function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
 }
 
+function initrd_extract() {
+  zcat $1 | cpio -ivdm
+}
+
 function tpx() {
   PROXY_SERVER_IP="http://127.0.0.1"
   PROXY_SERVER_PORT=8889
