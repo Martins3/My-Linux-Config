@@ -770,6 +770,7 @@ setxkbmap -option caps:swapescape
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
 - [OXY2DEV/markview.nvim](https://github.com/OXY2DEV/markview.nvim) : markdown 的预览
 - [NStefan002/screenkey.nvim](https://github.com/NStefan002/screenkey.nvim) : 展示在 vim 中敲下的键
+- https://github.com/nvzone/showkeys
 
 ## 学习
 

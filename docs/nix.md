@@ -1983,3 +1983,6 @@ rustup target add x86_64-pc-windows-msvc
 ```
 ## cache
 https://github.com/nix-community/harmonia
+
+## 仔细看看这个
+https://github.com/NixOS-CN
