@@ -49,6 +49,7 @@ in
       hdparm
       go
       ruby
+      # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
       # gitea # 好吧，还需要手动搭建数据库才可以
       sipcalc
@@ -90,8 +91,8 @@ in
       # audit # 没啥意义，用不起来
       yarn
       nodejs
-      tmux
-      # myPkg
+      # tmux
+      myPkg
       tmuxp
       pueue
       screen
@@ -305,7 +306,7 @@ in
       cyme # 一个更加好看的 usbutils
       # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
       libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
-      bcachefs-tools
+      # bcachefs-tools
       libcgroup
       cpulimit
       # bat # better cat
@@ -363,6 +364,7 @@ in
       black # python formatter
       rust-analyzer
       rustfmt
+      clippy
       efm-langserver # 集成 shellcheck
       marksman
       nodePackages.pyright

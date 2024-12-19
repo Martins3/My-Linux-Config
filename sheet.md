@@ -235,12 +235,6 @@ gzip -d file.gz
 ouch -h
 
 
-## systemd
-
-- systemctl --user list-timers --all
-- systemctl list-timers --all
-- systemctl list-unit-files
-
 ## centos
 - nmcli networking off
 - nmcli networking on

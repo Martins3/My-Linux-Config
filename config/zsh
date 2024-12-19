@@ -48,6 +48,10 @@ function rpm_extract() {
   rpm2cpio $1 | cpio -idmv
 }
 
+function initrd_extract() {
+  zcat $1 | cpio -ivdm
+}
+
 function tpx() {
   PROXY_SERVER_IP="http://127.0.0.1"
   PROXY_SERVER_PORT=8889
@@ -192,6 +196,14 @@ function p(){
     python3 -m venv .venv
   fi
    source .venv/bin/activate
+}
+
+function initrd(){
+  if [[ ! -f $1 ]]; then
+    echo "not a file"
+    return
+  fi
+  ln -sf $(realpath $1) initrd
 }
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim

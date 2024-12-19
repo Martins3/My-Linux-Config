@@ -95,6 +95,7 @@ wk.add({
   { "<space>t",  group = "toggle" },
   { "<space>t7", "<cmd>let &cc = &cc == '' ? '75' : ''<cr>",             desc = "highlight 75 line" },
   { "<space>t8", "<cmd>let &cc = &cc == '' ? '81' : ''<cr>",             desc = "highlight 80 line" },
+  { "<space>ta", "<cmd>TimerlyToggle<cr>",                             desc = "toggle hardtime" },
   { "<space>tH", "<cmd>Hardtime toggle<cr>",                             desc = "toggle hardtime" },
   { "<space>tb", "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>",           desc = "automaticall break line at 80" },
   { "<space>th", "<cmd>noh<cr>",                                         desc = "Stop the highlighting" },
