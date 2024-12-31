@@ -144,7 +144,7 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    dir = "/home/martins3/core/rsync.nvim/",
+    "Martins3/rsync.nvim",
     lazy = true,
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},

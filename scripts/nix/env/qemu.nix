@@ -23,10 +23,10 @@ pkgs.stdenv.mkDerivation {
     libseccomp
     libssh
     libbpf
-    libusb
+    libusb1
     zstd
     virglrenderer
-    epoxy
+    libepoxy
     numactl
     (python3.withPackages (p: with p; [
       sphinx

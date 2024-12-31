@@ -229,7 +229,7 @@ in
       # heaptrack
       coccinelle
       ltrace # library trace
-      bpftool
+      bpftools
       procps
       xdp-tools
       acpi
@@ -367,7 +367,7 @@ in
       clippy
       efm-langserver # 集成 shellcheck
       marksman
-      nodePackages.pyright
+      pyright
     ];
 
   programs.zsh = {
