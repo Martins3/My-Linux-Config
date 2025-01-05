@@ -10,8 +10,14 @@
     description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale
-    after = [ "network-pre.target" "tailscale.service" ];
-    wants = [ "network-pre.target" "tailscale.service" ];
+    after = [
+      "network-pre.target"
+      "tailscale.service"
+    ];
+    wants = [
+      "network-pre.target"
+      "tailscale.service"
+    ];
     wantedBy = [ "multi-user.target" ];
 
     # set this service as a oneshot job
@@ -34,13 +40,10 @@
   };
 
   networking.nat = {
-  enable = false;
-  internalInterfaces = ["br-in"];
-  externalInterface = "wlo1";
-  internalIPs =
-    [
-    "10.0.0.0/16"
-    ];
+    enable = false;
+    internalInterfaces = [ "br-in" ];
+    externalInterface = "wlo1";
+    internalIPs = [ "10.0.0.0/16" ];
   };
 
   networking.firewall.checkReversePath = "loose";
@@ -54,7 +57,8 @@
     trustedInterfaces = [ "tailscale0" ];
 
     # allow the Tailscale UDP port through the firewall
-    allowedUDPPorts = [ config.services.tailscale.port
+    allowedUDPPorts = [
+      config.services.tailscale.port
 
       8472 # k3s, flannel: required if using multi-node for inter-node networking
     ];
@@ -62,21 +66,25 @@
     # allow you to SSH in over the public internet
     allowedTCPPorts = [
       22 # ssh
-      5201 5202 5203 # iperf3
+      5201
+      5202
+      5203 # iperf3
       3434 # http.server
       8889 # clash
       445 # samba
-      /* 8384 # syncthing */
-      /* 22000 # syncthing */
+      # 8384 # syncthing
+      # 22000 # syncthing
       6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
       2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
       2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       2049 # nfs
     ];
 
-
     allowedTCPPortRanges = [
-      { from = 5900; to = 6500; }
+      {
+        from = 5900;
+        to = 6500;
+      }
     ];
   };
 
@@ -86,24 +94,24 @@
   services.samba = {
     enable = true;
 
-    /* syncPasswordsByPam = true; */
+    # syncPasswordsByPam = true;
 
-    # This adds to the [global] section:
-    extraConfig = ''
-      browseable = yes
-      smb encrypt = required
-    '';
+    settings = {
+      # This adds to the [global] section:
+      global = {
+        browseable = "yes";
+        "smb encrypt" = "required";
+      };
 
-    shares = {
       public = {
         path = "/home/martins3/core/winshare";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "yes";
-        /* "create mask" = "0644"; */
-        /* "directory mask" = "0755"; */
-        /* "force user" = "username"; */
-        /* "force group" = "groupname"; */
+        # "create mask" = "0644";
+        # "directory mask" = "0755";
+        # "force user" = "username";
+        # "force group" = "groupname";
       };
 
       iso = {
@@ -117,7 +125,6 @@
 
   # networking.proxy.default = "http://127.0.0.1:8889";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
 
   # 配合使用
   # sudo mount -t nfs4 10.0.0.2:/home/martins3/hack /home/martins3/hack

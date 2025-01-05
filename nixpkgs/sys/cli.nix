@@ -66,7 +66,7 @@
   };
   virtualisation.podman.enable = true;
   virtualisation.vswitch.enable = true;
-  virtualisation.vswitch.package = pkgs.openvswitch-lts;
+  virtualisation.vswitch.package = pkgs.openvswitch;
   # services.fstrim.enable = true;
   virtualisation.libvirtd.enable = true;
 

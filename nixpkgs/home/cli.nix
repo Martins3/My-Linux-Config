@@ -85,7 +85,7 @@ in
       dracut
       iw
       termshark
-      # openvswitch-lts # 其实这里是重复安装了
+      # openvswitch-lts
       dnsmasq
       gnumake
       # audit # 没啥意义，用不起来
@@ -132,6 +132,7 @@ in
       # du-dust # 方便找大文件
       socat # unix domain
       delta # git diff
+      git-filter-repo # 批量修改历史
       act # Run github action locally
       # git-secrets
       nethogs
