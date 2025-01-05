@@ -53,7 +53,7 @@ function initrd_extract() {
 }
 
 function tpx() {
-  PROXY_SERVER_IP="http://127.0.0.1"
+  PROXY_SERVER_IP="http://10.0.0.2"
   PROXY_SERVER_PORT=8889
   while getopts "ga:p:hu" opt; do
     case $opt in
@@ -62,7 +62,7 @@ function tpx() {
         PROXY_SERVER_PORT=8889
         ;;
       a)
-        PROXY_SERVER_IP=${OPTARG}
+        PROXY_SERVER_IP="http://${OPTARG}"
         ;;
       p)
         PROXY_SERVER_PORT=${OPTARG}
@@ -87,11 +87,6 @@ function tpx() {
         ;;
     esac # --- end of case ---
   done
-
-  if cat /proc/cpuinfo | grep hypervisor &> /dev/null ; then
-    PROXY_SERVER_IP="http://10.0.0.2"
-    PROXY_SERVER_PORT=8889
-  fi
 
   set -x
   export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"

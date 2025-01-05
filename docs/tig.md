@@ -43,6 +43,7 @@ bind status D ?@rm %(file)
 2. stage 和 unstage 原生支持
 3. 搜索根据强大
 
+- https://stackoverflow.com/questions/77841799/how-to-search-commit-body-in-gitui
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
