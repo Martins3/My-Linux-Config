@@ -43,7 +43,7 @@ in
       # gnuplot
       ccache
       opam
-      devbox # 提供 devmem 等工具
+      busybox # 提供 devmem 等工具
       # mold
       spin
       swarm # 形式化验证工具
