@@ -57,7 +57,7 @@ in
       ventoy
       rsync
       novnc
-      postman # 不会用
+      # postman # 不会用，API 工具
       grpcurl
       # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
       lua
@@ -284,7 +284,7 @@ in
       minicom
       arp-scan
       # nixos-generators # 基于当前系统生成 qcow2
-      packer # 制作 qcow2 镜像
+      # packer # 制作 qcow2 镜像
       gum
       # acpi
       acpica-tools
