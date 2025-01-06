@@ -10,6 +10,8 @@
 * [为什么我不再使用 coc.nvim](#为什么我不再使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
+  * [终端代理](#终端代理)
+  * [git 代理](#git-代理)
   * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
   * [安装 nerdfonts](#安装-nerdfonts)
@@ -136,7 +138,7 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽�
 reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，开箱即用。](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 
 但是到了 2023 年，虽然我认为 fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，[但是社区的人几乎都倒向了 native lsp](https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/)。
-虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容稍微变化了一些。
+虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容变复杂了很多 :( 。
 
 当然，也可能我端午节的时候太清闲了。
 
@@ -165,12 +167,53 @@ reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，�
 整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 虽然我自己不用 Ubuntu，考虑到大多数新手使用的是 Ubuntu ，这里给出一个基于 Ubuntu 的安装介绍。
 
+### 终端代理
+在执行命令的终端执行如下命令，修改环境代理相关的环境变量:
+```sh
+export https_proxy=http://10.0.0.2:8889
+export http_proxy=http://10.0.0.2:8889
+export HTTPS_PROXY=http://10.0.0.2:8889
+export HTTP_PROXY=http://10.0.0.2:8889
+export ftp_proxy=http://10.0.0.2:8889
+export FTP_PROXY=http://10.0.0.2:8889
+```
+这里的 10.0.0.2 和 8889 是你的代理配置的结果，使用 wget www.google.com 来做测试:
+如果配置正常，应该是这样的结果:
+```txt
+🧀  wget www.google.com
+Prepended http:// to 'www.google.com'
+--2025-01-06 12:23:06--  http://www.google.com/
+Connecting to 10.0.0.2:8889... connected.
+Proxy request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s    in 0.06s
+
+2025-01-06 12:23:07 (342 KB/s) - ‘index.html’ saved [19852]
+```
+
+### git 代理
+
+在 ~/.gitconfig 中添加如下配置，当 git clone 走 https 的时候，会使用代理。
+当然，这里的 10.0.0.2 和 8889 也需要替换为你的代理配置。
+```txt
+[http]
+        proxy = "http://10.0.0.2:8889"
+
+[https]
+        proxy = "http://10.0.0.2:8889"
+
+```
+
 ### 安装各种依赖
 
 ```sh
-sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+sudo apt update
+# 基本工具
+sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep fzf npm yarn
 
-# 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+# neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 ```
 
@@ -178,10 +221,17 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 
 - 当前配置需要 neovim 0.9 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
-其实也就是下面三条命令
+其实也就是下面几条命令:
 
+获取到源码，并且 checkout 到最新的 release :
 ```sh
-git clone --depth=1 https://github.com/neovim/neovim && cd neovim
+git clone https://github.com/neovim/neovim && cd neovim
+git branch -a
+git checkout release-0.10 # 2025-01-06 的最新 release 是 2025
+```
+
+编译并且安装:
+```sh
 make CMAKE_BUILD_TYPE=Release -j8
 sudo make install
 ```
@@ -320,7 +370,7 @@ map <leader>d "+d
 假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
 neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
 
-如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank) 
+如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank)
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
@@ -425,7 +475,7 @@ nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使
 将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
 
 利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
-`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。 
+`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。
 
 
 ### buffer
@@ -768,6 +818,9 @@ setxkbmap -option caps:swapescape
 
 - [zone.nvim](https://github.com/tamton-aquib/zone.nvim) : 屏保
 - [cellular-automaton.nvim](https://github.com/Eandrju/cellular-automaton.nvim) : 细胞自动机
+- [OXY2DEV/markview.nvim](https://github.com/OXY2DEV/markview.nvim) : markdown 的预览
+- [NStefan002/screenkey.nvim](https://github.com/NStefan002/screenkey.nvim) : 展示在 vim 中敲下的键
+- https://github.com/nvzone/showkeys
 
 ## 学习
 

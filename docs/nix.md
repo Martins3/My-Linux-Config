@@ -148,11 +148,6 @@ nix-prefetch-url https://github.com/Aloxaf/fzf-tab
 - NixOS 半年更新一次，更新 Nixos 和设置源相同，更新 NixOS 之后可能发现某些配置开始报错，但是问题不大，查询一下社区的相关文档一一调整即可。
 - 查询 nixos 的包和 options : https://search.nixos.org/packages
 - 安装特定版本，使用这个网站: https://lazamar.co.uk/nix-versions/
-- 如何升级 (update / upgrade)
-  - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
-    - sudo nix-channel --update
-  - 在这里看下日期: https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/
-
 ## 自动环境加载
 
 - 使用了 [direnv](https://github.com/zsh-users/zsh-autosuggestions) 自动 load 环境，对于有需要路径上进行如下操作:
@@ -671,7 +666,15 @@ https://ryantm.github.io/nixpkgs/builders/packages/linux/
 
 https://www.youtube.com/@NixCon
 
-## 更新 nixos 为 24.05
+## 如何升级 (update / upgrade)
+
+### 小版本更新
+  - https://superuser.com/questions/1604694/how-to-update-every-package-on-nixos
+    - sudo nix-channel --update
+  - 在这里看下日期: https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/
+
+
+### 更新 nixos 为 24.11
 
 内容参考这里:
 
@@ -682,6 +685,8 @@ https://www.youtube.com/@NixCon
 ```sh
 nixos-rebuild switch --upgrade
 ```
+
+如果仅仅安装了 home-manager ，那么使用 sudo ，会遇到网络问题的。
 
 ## 垃圾清理
 
@@ -1981,3 +1986,8 @@ info: installing component 'rust-std' for 'x86_64-unknown-none'
 rustup target add x86_64-unknown-none
 rustup target add x86_64-pc-windows-msvc
 ```
+## cache
+https://github.com/nix-community/harmonia
+
+## 仔细看看这个
+https://github.com/NixOS-CN

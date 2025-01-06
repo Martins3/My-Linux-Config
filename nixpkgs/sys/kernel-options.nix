@@ -4,9 +4,9 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_6_8;
-  boot.supportedFilesystems = [ "bcachefs" ];
+  # boot.supportedFilesystems = [ "bcachefs" ];
 
-  # 暂时两个文件系统无法互相兼容
+  # zfs 需要 stable 的版本才可以
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   # boot.supportedFilesystems = [ "zfs" ];
   # networking.hostId = "9f96ca0b";
@@ -32,7 +32,7 @@
     # intel_iommu 需要手动打开
     # 不信请看 zcat /proc/config.gz | grep CONFIG_INTEL_IOMMU_DEFAULT_ON
     "intel_iommu=on"
-    "iommu=pt"
+    # "iommu=pt"
     "intremap=on"
     "rcutree.sysrq_rcu=1"
     # "amd_iommu_intr=vapic"

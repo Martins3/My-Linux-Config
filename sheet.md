@@ -168,6 +168,10 @@ git branch --contains $tag
 - grep -v -E "pciehp|vmwgfx"
   - 打印不用包含 pciehp|vmwgfx 的
   - -v 是 revert 的选择的意思
+- grep 向前向后展示
+  - grep -B 3 -A 2 foo README.txt
+  - 其中 B 是 before , A 是 after 的意思
+
 
 
 ## curl
@@ -234,12 +238,6 @@ gzip -d file.gz
 ### ouch
 ouch -h
 
-
-## systemd
-
-- systemctl --user list-timers --all
-- systemctl list-timers --all
-- systemctl list-unit-files
 
 ## centos
 - nmcli networking off

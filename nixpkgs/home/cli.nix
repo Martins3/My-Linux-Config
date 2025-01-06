@@ -43,19 +43,21 @@ in
       # gnuplot
       ccache
       opam
+      busybox # 提供 devmem 等工具
       # mold
       spin
       swarm # 形式化验证工具
       hdparm
       go
       ruby
+      # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
       # gitea # 好吧，还需要手动搭建数据库才可以
       sipcalc
       ventoy
       rsync
       novnc
-      postman # 不会用
+      # postman # 不会用，API 工具
       grpcurl
       # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
       lua
@@ -84,14 +86,14 @@ in
       dracut
       iw
       termshark
-      # openvswitch-lts # 其实这里是重复安装了
+      # openvswitch-lts
       dnsmasq
       gnumake
       # audit # 没啥意义，用不起来
       yarn
       nodejs
-      tmux
-      # myPkg
+      # tmux
+      myPkg
       tmuxp
       pueue
       screen
@@ -131,6 +133,7 @@ in
       # du-dust # 方便找大文件
       socat # unix domain
       delta # git diff
+      git-filter-repo # 批量修改历史
       act # Run github action locally
       # git-secrets
       nethogs
@@ -161,7 +164,6 @@ in
       stress-ng
       # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
       # 通过 tweaks 调整开机自启动
-      gnome3.gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
       hexyl # 分析二进制
       # rasdaemon # @todo 莫名其妙，不知道怎么使用
       nvme-cli
@@ -194,7 +196,7 @@ in
       nixfmt-rfc-style
       # debootstrap # 制作 uml 的工具
       meson
-      unstable.neovim
+      neovim
       luarocks
       # zed-editor # 默认不支持中文，放弃
       # helix # modern neovim
@@ -228,7 +230,7 @@ in
       # heaptrack
       coccinelle
       ltrace # library trace
-      bpftool
+      bpftools
       procps
       xdp-tools
       acpi
@@ -282,7 +284,7 @@ in
       minicom
       arp-scan
       # nixos-generators # 基于当前系统生成 qcow2
-      packer # 制作 qcow2 镜像
+      # packer # 制作 qcow2 镜像
       gum
       # acpi
       acpica-tools
@@ -305,7 +307,7 @@ in
       cyme # 一个更加好看的 usbutils
       # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
       libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
-      bcachefs-tools
+      # bcachefs-tools
       libcgroup
       cpulimit
       # bat # better cat
@@ -363,9 +365,10 @@ in
       black # python formatter
       rust-analyzer
       rustfmt
+      clippy
       efm-langserver # 集成 shellcheck
       marksman
-      nodePackages.pyright
+      pyright
     ];
 
   programs.zsh = {

@@ -52,19 +52,19 @@ require("lazy").setup({
   "RRethy/nvim-treesitter-textsubjects",
   "nvim-treesitter/nvim-treesitter-textobjects",
   -- ui
-  "stevearc/aerial.nvim",                                           -- 导航栏
-  "kyazdani42/nvim-tree.lua",                                       -- 文件树
-  "akinsho/bufferline.nvim",                                        -- buffer
-  "nvim-lualine/lualine.nvim",                                      -- 状态栏
-  "kazhala/close-buffers.nvim",                                     -- 一键删除不可见 buffer
-  { "axkirillov/hbac.nvim", event = "SessionLoadPost", opts = {} }, -- 自动删除长期不用的 buffer
-  "gelguy/wilder.nvim",                                             -- 更加智能的命令窗口
-  "romgrk/fzy-lua-native",                                          -- wilder.nvim 的依赖
-  "xiyaowong/nvim-transparent",                                     -- 可以移除掉背景色，让 vim 透明
+  "stevearc/aerial.nvim",                                            -- 导航栏
+  "kyazdani42/nvim-tree.lua",                                        -- 文件树
+  "akinsho/bufferline.nvim",                                         -- buffer
+  "nvim-lualine/lualine.nvim",                                       -- 状态栏
+  "kazhala/close-buffers.nvim",                                      -- 一键删除不可见 buffer
+  { "axkirillov/hbac.nvim",  event = "SessionLoadPost", opts = {} }, -- 自动删除长期不用的 buffer
+  "gelguy/wilder.nvim",                                              -- 更加智能的命令窗口
+  "romgrk/fzy-lua-native",                                           -- wilder.nvim 的依赖
+  "xiyaowong/nvim-transparent",                                      -- 可以移除掉背景色，让 vim 透明
   { 'nvim-focus/focus.nvim', version = '*', },
   -- 颜色主题
   "folke/tokyonight.nvim",
-  { "catppuccin/nvim",      name = "catppuccin",       priority = 1000 },
+  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
   -- git 管理
   "tpope/vim-fugitive",      -- 显示 git blame，实现一些基本操作的快捷执行
   "rhysd/git-messenger.vim", -- 利用 git blame 显示当前行的 commit message
@@ -120,11 +120,11 @@ require("lazy").setup({
     lazy = false,   -- This plugin is already lazy
   },
   -- 其他
-  "ggandor/leap.nvim",                                  -- 快速移动
-  "ggandor/flit.nvim",                                  -- 利用 leap.nvim 强化 f/F t/T
+  "ggandor/leap.nvim",                         -- 快速移动
+  "ggandor/flit.nvim",                         -- 利用 leap.nvim 强化 f/F t/T
 
-  { "crusj/bookmarks.nvim",          branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
-  "tyru/open-browser.vim",                              -- 使用 gx 打开链接
+  { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
+  "tyru/open-browser.vim",                     -- 使用 gx 打开链接
   {
     "keaising/im-select.nvim",
     config = function()
@@ -144,11 +144,28 @@ require("lazy").setup({
     opts = { enable_cmp_integration = true },
   }, -- emoji 支持
   {
-    dir = "/home/martins3/core/rsync.nvim/",
+    "Martins3/rsync.nvim",
     lazy = true,
     cmd = { "TransferInit", "TransferToggle" },
     opts = {},
   },
+  {
+    "epwalsh/pomo.nvim",
+    version = "*", -- Recommended, use latest release instead of latest commit
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+    dependencies = {
+      -- Optional, but highly recommended if you want to use the "Default" timer
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      -- See below for full list of options 👇
+    },
+  },
+  {
+    'mcauley-penney/visual-whitespace.nvim',
+    config = true
+  }, -- 在 visual mode 展示空白字符
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",
