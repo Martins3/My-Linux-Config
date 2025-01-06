@@ -121,6 +121,8 @@ wk.add({
   { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>",            desc = "go to implementation" },
   { "gr", "<cmd>lua vim.lsp.buf.references()<cr>",                 desc = "go to reference" },
   { "gw", "<cmd>Telescope diagnostics<cr>",                        desc = "diagnostics" },
+  { "gn", "<cmd>lua vim.diagnostic.goto_next()<cr>",               desc = "go to next error" },
+  { "gN", "<cmd>lua vim.diagnostic.goto_prev()<cr>",               desc = "go to prev error" },
   { "m",  group = "bookmarks" },
   { "ma", "<cmd>Telescope bookmarks<cr>",                          desc = "search bookmarks" },
   { "md", "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
