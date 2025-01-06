@@ -317,6 +317,11 @@ cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 
 找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
 
+## 还是有必要看看的
+很多东西过时了，但是还是有很多可以参考的
+https://danielmiessler.com/study/vim
+
+
 ## 被废弃的方法
 ### 输入法自动切换
 
