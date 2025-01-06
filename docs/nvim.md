@@ -10,6 +10,8 @@
 * [为什么我不再使用 coc.nvim](#为什么我不再使用-cocnvim)
 * [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
 * [安装](#安装)
+  * [终端代理](#终端代理)
+  * [git 代理](#git-代理)
   * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
   * [安装 nerdfonts](#安装-nerdfonts)
@@ -165,12 +167,52 @@ reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，�
 整个环境的安装主要是 neovim ccls，下面说明一下安装主要步骤以及其需要注意的一些小问题。对于新手，安装过程并不简单，遇到问题多 Google，或者 issue 直接和我讨论。
 虽然我自己不用 Ubuntu，考虑到大多数新手使用的是 Ubuntu ，这里给出一个基于 Ubuntu 的安装介绍。
 
+### 终端代理
+在执行命令的终端执行如下命令，修改环境代理相关的环境变量:
+```sh
+export https_proxy=http://10.0.0.2:8889
+export http_proxy=http://10.0.0.2:8889
+export HTTPS_PROXY=http://10.0.0.2:8889
+export HTTP_PROXY=http://10.0.0.2:8889
+export ftp_proxy=http://10.0.0.2:8889
+export FTP_PROXY=http://10.0.0.2:8889
+```
+这里的 10.0.0.2 和 8889 是你的代理配置的结果，使用 wget www.google.com 来做测试:
+如果配置正常，应该是这样的结果:
+```txt
+🧀  wget www.google.com
+Prepended http:// to 'www.google.com'
+--2025-01-06 12:23:06--  http://www.google.com/
+Connecting to 10.0.0.2:8889... connected.
+Proxy request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html’
+
+index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s    in 0.06s
+
+2025-01-06 12:23:07 (342 KB/s) - ‘index.html’ saved [19852]
+```
+
+### git 代理
+
+在 ~/.gitconfig 中添加如下配置，当 git clone 走 https 的时候，会使用代理。
+当然，这里的 10.0.0.2 和 8889 也需要替换为你的代理配置。
+```txt
+[http]
+        proxy = "http://10.0.0.2:8889"
+
+[https]
+        proxy = "http://10.0.0.2:8889"
+
+```
+
 ### 安装各种依赖
 
 ```sh
-sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep
+# 基本工具
+sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep fzf
 
-# 安装 neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+# neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 ```
 
@@ -178,10 +220,17 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 
 - 当前配置需要 neovim 0.9 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
-其实也就是下面三条命令
+其实也就是下面几条命令:
 
+获取到源码，并且 checkout 到最新的 release :
 ```sh
-git clone --depth=1 https://github.com/neovim/neovim && cd neovim
+git clone https://github.com/neovim/neovim && cd neovim
+git branch -a
+git checkout release-0.10 # 2025-01-06 的最新 release 是 2025
+```
+
+编译并且安装:
+```sh
 make CMAKE_BUILD_TYPE=Release -j8
 sudo make install
 ```
