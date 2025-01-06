@@ -138,7 +138,7 @@ coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽�
 reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，开箱即用。](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
 
 但是到了 2023 年，虽然我认为 fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，[但是社区的人几乎都倒向了 native lsp](https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/)。
-虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容稍微变化了一些。
+虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容变复杂了很多 :( 。
 
 当然，也可能我端午节的时候太清闲了。
 
@@ -209,8 +209,9 @@ index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s  
 ### 安装各种依赖
 
 ```sh
+sudo apt update
 # 基本工具
-sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep fzf
+sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep fzf npm yarn
 
 # neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
 sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
