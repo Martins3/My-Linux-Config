@@ -317,6 +317,11 @@ cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 
 找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
 
+## 还是有必要看看的
+很多东西过时了，但是还是有很多可以参考的
+https://danielmiessler.com/study/vim
+
+
 ## 被废弃的方法
 ### 输入法自动切换
 
@@ -339,3 +344,16 @@ cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
 https://github.com/LintaoAmons/bookmarks.nvim
 
 https://github.com/OXY2DEV/markview.nvim
+
+https://github.com/bash-lsp/bash-language-server
+
+https://news.ycombinator.com/item?id=42674116
+
+https://news.ycombinator.com/item?id=40179194
+https://m4xshen.dev/posts/vim-command-workflow
+
+## https://github.com/yetone/avante.nvim
+配合 deepseek 用用看看效果，不过可以继续等等
+
+
+https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi

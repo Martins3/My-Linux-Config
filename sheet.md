@@ -263,3 +263,15 @@ fd 使用的是 regex
 ```sh
 fd ".*\.md" | wc -l
 ```
+
+## docker
+
+基本安装部署:
+```sh
+sudo yum -y install docker
+sudo systemctl enable docker
+sudo systemctl start docker
+# sudo groupadd docker
+# sudo gpasswd -a "$USER" docker
+sudo usermod -a -G docker "$USER"
+```

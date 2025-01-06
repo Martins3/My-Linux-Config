@@ -1991,3 +1991,7 @@ https://github.com/nix-community/harmonia
 
 ## 仔细看看这个
 https://github.com/NixOS-CN
+
+## home manager 可以管理 systemd 吗?
+
+https://news.ycombinator.com/item?id=42666851

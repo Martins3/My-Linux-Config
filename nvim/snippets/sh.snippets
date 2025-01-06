@@ -30,14 +30,15 @@ snippet note_variable_special "特殊变量"
 
 
 snippet note_variable_special2 "特殊常量"
+	# 1. 计时
 	SECONDS=0 # 初始化，也可以赋其他的数值，
 	sleep 1
-	echo $SECCOND # 输出 1
-
-	echo "${FUNCNAME[@]}" # 调用栈
-
-	$OSTYPE" == "linux-gnu" # 操作系统的版本
-
+	echo $SECONDS # 输出 1
+	# 2. 调用栈
+	echo "${FUNCNAME[@]}"
+  # 3. 操作系统的版本
+	$OSTYPE" == "linux-gnu"
+	# 4. 随机
 	echo $RANDOM # 输出 [0, 32767] 的数值
 
 
@@ -243,6 +244,7 @@ snippet note_string_replace "string replace"
 	# filename=$(basename -- "$fullfile")
 	# extension="${filename#*.}"
 	# filename="${filename%.*}"
+	# dirname "$filename"
 
 
 snippet note_cmpbool "compare file"
@@ -493,6 +495,7 @@ snippet note_split_into_array "split string to array"
 	readarray -t array < <(git log --format=%h --since="24 hours ago")
 	printf "%s\n" "${array[@]}"
 
+	# 4. 默认都是换行作为分割，-d 来指定分割
 	readarray -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
 	printf "%s\n" "${array[@]}"
 	# grep a.sh < <(ls) 等价于 ls | grep a.sh
@@ -708,6 +711,7 @@ snippet note_tricks "" b
 
 snippet note_gum "gum 的常见使用" b
 	gum confirm "Continue?" || exit 0
+	gum input --placeholder "scope"
 
 snippet note_fordir "遍历目录" b
 	for d in /tmp/*/ ; do

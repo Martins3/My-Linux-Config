@@ -65,7 +65,8 @@
   # 解决 kitty 和 wezterm 无法使用 fcitx5 输入法的问题
   # https://github.com/kovidgoyal/kitty/issues/403
   environment.variables.GLFW_IM_MODULE = "ibus";
-  i18n.inputMethod.enabled = "ibus";
+  i18n.inputMethod.enable = true;
+  i18n.inputMethod.type = "ibus";
   i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [
     rime
   ];
