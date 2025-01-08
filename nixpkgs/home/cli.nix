@@ -44,6 +44,7 @@ in
       ccache
       opam
       busybox # 提供 devmem 等工具
+      yazi
       # mold
       spin
       swarm # 形式化验证工具
@@ -53,12 +54,12 @@ in
       # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
       # gitea # 好吧，还需要手动搭建数据库才可以
-      sipcalc
+      sipcalc # ip 计算
       ventoy
       rsync
       novnc
       # postman # 不会用，API 工具
-      grpcurl
+      # grpcurl # rpc 相关
       # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
       lua
       # zfs
@@ -72,7 +73,7 @@ in
       # libguestfs
       # libguestfs-appliance
       # cloud-utils
-      adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
+      # adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
       ccls
       checkmake
       # minicom
@@ -208,7 +209,7 @@ in
       systeroid
       # linuxKernel.packages.linux_5_15.perf
       # linuxPackages.perf
-      linuxKernel.packages.linux_6_6.perf
+      linuxKernel.packages.linux_6_12.perf
       # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
       # linuxPackages_6_10.kernel.dev
 
