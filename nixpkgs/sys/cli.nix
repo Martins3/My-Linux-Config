@@ -5,6 +5,7 @@
   boot.kernel.sysctl = {
     # "vm.swappiness" = 200;
     "vm.overcommit_memory" = 1;
+    "kernel.dmesg_restrict" = 0;
   };
 
   # https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
@@ -34,7 +35,6 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-
   systemd.user.services.kernel_doc = {
     enable = true;
     description = "export kernel doc at 127.0.0.1:3434";
@@ -46,8 +46,6 @@
     };
     wantedBy = [ "timers.target" ];
   };
-
-
 
   systemd.user.services.pueued = {
     enable = true;
@@ -71,6 +69,5 @@
   virtualisation.libvirtd.enable = true;
 
   # zramSwap.enable = true;
-
 
 }

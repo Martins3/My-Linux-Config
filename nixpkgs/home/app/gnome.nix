@@ -4,7 +4,7 @@
 # no need log out to reload extension: <alt>+F2 r
 {
   home.packages = (with pkgs; [
-    gnome.gnome-sound-recorder
+    gnome-sound-recorder
   ])
   ++ (with pkgs.gnomeExtensions; [
     unite
