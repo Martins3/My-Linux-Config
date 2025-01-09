@@ -43,7 +43,7 @@ in
       # gnuplot
       ccache
       opam
-      busybox # 提供 devmem 等工具
+      # busybox # 提供 devmem 等工具，但是会覆盖很多工具
       yazi
       # mold
       spin
