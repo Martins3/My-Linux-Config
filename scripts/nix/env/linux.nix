@@ -1,4 +1,4 @@
-with import <unstable> { };
+with import <nixpkgs> { };
 pkgs.llvmPackages.stdenv.mkDerivation {
   hardeningDisable = [ "all" ];
   name = "yyds";
