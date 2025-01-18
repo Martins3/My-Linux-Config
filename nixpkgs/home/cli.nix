@@ -187,10 +187,13 @@ in
       virtiofsd
       # podman # 暂时不需要
       # podman-tui
-      # k9s
-      # minikube
+      k9s
       # minio
-      # hoard # 暂时不知道怎么使用
+      kubectl
+      # kubeadm
+      kubernetes-helm
+      kind
+      minikube
       # slirp4netns
       # nix-index
       nixd
@@ -210,6 +213,7 @@ in
       # linuxKernel.packages.linux_5_15.perf
       # linuxPackages.perf
       linuxKernel.packages.linux_6_12.perf
+      gperftools # 主要提供 pprof 功能，但是没用过
       # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
       # linuxPackages_6_10.kernel.dev
 

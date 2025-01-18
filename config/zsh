@@ -170,17 +170,6 @@ alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
 
 alias f=/home/martins3/.fix.sh
-if env | grep container &>/dev/null ; then
-  function u() {
-  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/.dotfiles ~
-  }
-else
-  function u() {
-    # 还是用 git 同步吧，太麻烦了
-  	# rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
-  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
-  }
-fi
 
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
