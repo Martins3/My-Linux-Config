@@ -494,6 +494,7 @@ snippet note_split_into_array "split string to array"
 	readarray -t array < <(git log --format=%h --since="24 hours ago")
 	printf "%s\n" "${array[@]}"
 
+	# 4. 默认都是换行作为分割，-d 来指定分割
 	readarray -t -d " " parent < <(git show --no-patch --format="%P" f80e8b)
 	printf "%s\n" "${array[@]}"
 	# grep a.sh < <(ls) 等价于 ls | grep a.sh
@@ -709,6 +710,7 @@ snippet note_tricks "" b
 
 snippet note_gum "gum 的常见使用" b
 	gum confirm "Continue?" || exit 0
+	gum input --placeholder "scope"
 
 snippet note_fordir "遍历目录" b
 	for d in /tmp/*/ ; do

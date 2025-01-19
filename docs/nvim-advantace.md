@@ -344,3 +344,7 @@ https://danielmiessler.com/study/vim
 https://github.com/LintaoAmons/bookmarks.nvim
 
 https://github.com/OXY2DEV/markview.nvim
+
+https://github.com/bash-lsp/bash-language-server
+
+https://news.ycombinator.com/item?id=42674116

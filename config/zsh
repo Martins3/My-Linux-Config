@@ -149,7 +149,7 @@ alias vc="rm -r ~/.local/share/nvim/sessions"
 alias he="nvim +10000 $HOME/.dotfiles/sheet.md"
 alias kvm_stat="sudo $HOME/data/linux/tools/kvm/kvm_stat/kvm_stat"
 alias i="ipython"
-alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
+# alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
 alias static="nix-shell -p gcc glibc.static --command zsh"
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
@@ -169,8 +169,6 @@ alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
 
-alias f=/home/martins3/.fix.sh
-
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
@@ -179,13 +177,6 @@ function p(){
    source .venv/bin/activate
 }
 
-function initrd(){
-  if [[ ! -f $1 ]]; then
-    echo "not a file"
-    return
-  fi
-  ln -sf $(realpath $1) initrd
-}
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
