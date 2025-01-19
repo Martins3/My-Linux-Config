@@ -50,7 +50,6 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     xz
     zstd
     perl
-    # @todo 不知道为什么现在 perf 缺少这个库
     libtraceevent
     libclang
     clang
