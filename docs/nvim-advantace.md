@@ -348,3 +348,6 @@ https://github.com/OXY2DEV/markview.nvim
 https://github.com/bash-lsp/bash-language-server
 
 https://news.ycombinator.com/item?id=42674116
+
+https://news.ycombinator.com/item?id=40179194
+https://m4xshen.dev/posts/vim-command-workflow
