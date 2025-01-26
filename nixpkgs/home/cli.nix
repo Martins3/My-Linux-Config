@@ -53,6 +53,7 @@ in
       ruby
       # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
+      # xpipe # 管理服务器的工具
       # gitea # 好吧，还需要手动搭建数据库才可以
       sipcalc # ip 计算
       ventoy
@@ -376,6 +377,10 @@ in
       marksman
       pyright
     ];
+
+  programs.fish = {
+    enable = true;
+  };
 
   programs.zsh = {
     enable = true;
