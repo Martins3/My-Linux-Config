@@ -32,7 +32,7 @@
   * [字符串搜索和替换](#字符串搜索和替换)
   * [file tree](#file-tree)
   * [window](#window)
-    * [调整一个 window 的大小](#调整一个-window-的大小)
+    * [window resize](#window-resize)
   * [buffer](#buffer)
   * [文件搜索](#文件搜索)
   * [导航](#导航)
@@ -368,9 +368,15 @@ map <leader>d "+d
 #### 从远程 server 上复制粘贴本地的剪切板中
 
 假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
-neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
+neovim 在 0.10 中增加了一个新功能 oscyank，通过该功能可以直接复制到你在使用的 windows 电脑的剪切板中。
 
 如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank)
+
+如果是在 tmux 中使用，那么 tmux 中需要添加如下配置:
+```txt
+# Allow clipboard with OSC-52 work, see https://github.com/tmux/tmux/wiki/Clipboard
+set -s set-clipboard on
+```
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
@@ -469,7 +475,7 @@ vim 内置了强大的搜索替换功能
 | `c` `m`     | 当前窗口最大化 |
 
 
-#### 调整一个 window 的大小
+#### window resize
 
 nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
 将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
