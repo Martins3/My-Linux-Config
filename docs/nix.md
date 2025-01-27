@@ -1218,9 +1218,6 @@ man home-configuration.nix 中搜索 dunst
 在 profiles 中右键，参考
 https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
 
-目前使用: clash-verge
-
-### 只是使用 clash-verge
 1. https://github.com/MetaCubeX/meta-rules-dat/releases
 ```txt
 WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
@@ -1230,12 +1227,8 @@ FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOI
 2. 默认路径: /home/martins3/.config/mihomo
 3. 只需要拷贝 config.yaml
 
-
-### clash-verge
-
-1. 拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb
- .local/share/io.github.clash-verge-rev.clash-verge-rev
-
+拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb 到
+~/.local/share/io.github.clash-verge-rev.clash-verge-rev
 
 ## canTouchEfiVariables 到底是什么来头
 

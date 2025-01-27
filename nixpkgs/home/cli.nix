@@ -165,7 +165,6 @@ in
       rpm
       stress-ng
       # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
-      # 通过 tweaks 调整开机自启动
       hexyl # 分析二进制
       # rasdaemon # @todo 莫名其妙，不知道怎么使用
       nvme-cli
