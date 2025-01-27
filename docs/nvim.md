@@ -496,12 +496,9 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 | <img src="./img/search-files.png" /> |
 
 ### 导航
+基于 [lspsaga](https://nvimdev.github.io/lspsaga/outline/)
 
-利用 [aerial.nvim](https://github.com/stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
-
-| 基于 stevearc/aerial.nvim 的导航栏 |
-| ---------------------------------- |
-| <img src="./img/outline.png" />    |
+![Image](https://github.com/user-attachments/assets/f01b92ec-1392-4bca-8f81-cf9947d33d5d)
 
 ### 代码段
 
