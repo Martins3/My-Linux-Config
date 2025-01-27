@@ -43,9 +43,27 @@ require("lazy").setup({
   {
     'nvimdev/lspsaga.nvim',
     config = function()
-        require('lspsaga').setup({})
+      require('lspsaga').setup({
+        lightbulb = {
+          enable = false,
+        },
+        outline = {
+          win_position = 'left',
+          win_width = 20,
+          auto_preview = false,
+          detail = true,
+          auto_close = false ,
+          close_after_jump = true,
+          keys = {
+            toggle_or_jump = 'o',
+            quit = 'q',
+            jump = '<cr>',
+          },
+        }
+      })
     end,
-  }, -- lsp 增强，例如提供 winbar 功能
+  }, -- lsp 增强，例如提供 winbar 和 outline 的功能
+  -- 配置文件在 https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
 
   --treesitter
   {
@@ -55,7 +73,6 @@ require("lazy").setup({
   "RRethy/nvim-treesitter-textsubjects",
   "nvim-treesitter/nvim-treesitter-textobjects",
   -- ui
-  "stevearc/aerial.nvim",                                            -- 导航栏
   "kyazdani42/nvim-tree.lua",                                        -- 文件树
   "akinsho/bufferline.nvim",                                         -- buffer
   "nvim-lualine/lualine.nvim",                                       -- 状态栏

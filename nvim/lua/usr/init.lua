@@ -36,18 +36,6 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
   end,
 })
 
--- 导航栏
-require("aerial").setup({
-  backends = { "markdown", "man", "lsp", "treesitter" },
-  layout = {
-    max_width = { 30, 0.15 },
-    placement = "edge",
-    default_direction = "left",
-  },
-  attach_mode = "global",
-  disable_max_lines = 20000,
-})
-
 -- 书签
 require("bookmarks").setup({
   mappings_enabled = false,
