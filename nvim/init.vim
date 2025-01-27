@@ -22,15 +22,6 @@ map <leader>d "+d
 " 加载 lua 配置
 lua require 'usr'
 
-" 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
-let s:core_conf_files = [
-      \ 'debug.vim',
-      \ ]
-
-for s:fname in s:core_conf_files
-  execute printf('source %s/vim/%s', stdpath('config'), s:fname)
-endfor
-
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 
@@ -45,7 +36,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " 自动关闭 vim 如果 window 中只有一个 filetree
 " https://github.com/kyazdani42/nvim-tree.lua
-autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+" autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 
 " 定义预先录制的 macro
 let @j = 'ysiw`\<Esc>' " 在一个 word 两侧添加上 `，例如将 abc 变为 `abc`

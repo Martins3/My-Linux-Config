@@ -91,6 +91,14 @@ tmux new-session -d -s my_session || true
 tmux new-window -d "fio test.fio"
 ```
 
+## 一些技巧
+给每一个 tmux pane 设置标题:
+```txt
+set -g pane-border-status top
+set -g pane-border-format " [ ###P #T ] "
+bind T command-prompt -p "Set Pane title:" "select-pane -T '%1'"
+```
+
 ## 最近遇到的 tmux 问题
 - 有时候，nvim 报告 Clipboard 是 tmux，但是实际上下面的才是正确的
 ```txt

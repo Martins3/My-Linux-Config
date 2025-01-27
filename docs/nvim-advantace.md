@@ -1,49 +1,4 @@
 # vim 的高级话题
-## tab 和 space
-
-tab 会被自动修改为 space 吗? 不会，执行 retab 或者 retab! 来转换。
-
-就是这个插件让我感到恐惧
-"tpope/vim-sleuth"
-
-- https://tedlogan.com/techblog3.html
-- https://gist.github.com/LunarLambda/4c444238fb364509b72cfb891979f1dd
-
-1. Expandtab : 是否展开 tab 为 space
-2. Tabstop : 一个 tab 占用多少个格子
-3. Shiftwidth : 当打开自动缩进的时候，
-
-```c
-int main(int argc, char *argv[]) { // <- 光标在此处，如果 enter ，下一行
-        return 0;
-}
-```
-
-https://superuser.com/questions/594583/what-does-shiftwidth-do-in-vim-editor : 4. Softtabstop : Number of spaces that a <Tab> counts for while performing editing
-operations, like inserting a <Tab> or using <BS>.
-https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
-
-5. smarttab
-   https://vi.stackexchange.com/questions/34454/how-does-smarttab-actually-works
-
-实不相瞒，感觉还是没有太搞清楚.
-
-- [ ] Softtabstop : 既然是一个 tab 按下去的时候，产生多少个 space 的，那么只有允许 tab expand 的时候才有用吧
-- [ ] 让 Softtabstop 和 Shiftwidth 不相等又什么好处吗?
-
-- https://www.reddit.com/r/neovim/comments/17ak2eq/neovim_is_automatically_removing_trailing/
-
-看后面的转义符，本来是对齐的，现在配置之后，似乎是 tab 装换为 space 了，变的不对齐了
-
-```c
-#define __WAITQUEUE_INITIALIZER(name, tsk) {					\
-	.private	= tsk,							\
-	.func		= default_wake_function,				\
-	.entry		= { NULL, NULL } }
-
-#define DECLARE_WAITQUEUE(name, tsk)						\
-	struct wait_queue_entry name = __WAITQUEUE_INITIALIZER(name, tsk)
-```
 
 ## 黑魔法
 
@@ -55,6 +10,7 @@ https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
 - [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
   - `:%norm dw`
 
+
 ## 调试插件的 bug
 
 为了制作一个最小的复现环境，
@@ -62,6 +18,20 @@ https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
 使用 .dotfiles/nvim/debug/switch.sh 来来回
 
 为 .dotfiles/nvim/debug/init.lua 和本配置
+
+## 踩坑
+1. 一个错误的配置
+
+自动关闭 vim 如果 window 中只有一个 filetree
+```txt
+https://github.com/kyazdani42/nvim-tree.lua
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+```
+应该是这个导致 session 无法正常工作的
+
+2. 强制升级方法
+cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
+找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
 
 ## tree-sitter
 
@@ -74,29 +44,9 @@ https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
 - [ ] https://news.ycombinator.com/item?id=36312027
 - https://m4xshen.dev/posts/vim-command-workflow/
 
-## .h 默认启用的是 cpp ，但是 cpp 中没有 once
-
-- https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/c/c.json
-
-- https://www.reddit.com/r/neovim/comments/13yw98e/how_can_i_switch_the_local_input_method_in_vim_on/
-
-## [ ] 此外，struct-> 补全的时候，会出现在第一个字母上
-
-- 是 ccls 的问题吗?
-
-## 插件开发
-
-https://zignar.net/2023/06/10/debugging-lua-in-neovim/
-
-
-https://github.com/ibhagwan/smartyank.nvim
-
-## 需要解决下闪退的问题
-当然，是 session 的原因，但是，我非常怀疑和 nvim tree 有关的
 
 ## 尝试下
-https://github.com/abecodes/tabout.nvim
-https://github.com/YaroSpace/lua-console.nvim
+- https://github.com/abecodes/tabout.nvim
 
 ## 问题
 
@@ -105,30 +55,13 @@ https://github.com/YaroSpace/lua-console.nvim
   - ,s 的时候，正好匹配的那个总是不是第一个，检查一下 telescope
   - https://www.trickster.dev/post/vim-is-touch-typing-on-steroids/ : 从后往前阅读
 
-  2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
-
-## wl-copy 似乎有点扰乱了系统
+2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
 
-## 需要将 bash 整理下
-https://unix.stackexchange.com/questions/65932/how-to-get-the-first-word-of-a-string
-
-## 也许替换掉
-
-  { "SmiteshP/nvim-navic" },     -- 在 winbar 展示当前的路径
-  { "utilyre/barbecue.nvim" },
-
-https://nvimdev.github.io/lspsaga/outline/
-
-## 尝试下
-https://github.com/2KAbhishek/termim.nvim
-
-## python 的代码补全消失了
-
-## 的确比较有趣
-https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
-
-其实可以更新下
+## 意义不大
+- https://github.com/2KAbhishek/termim.nvim
+- https://github.com/ibhagwan/smartyank.nvim
+- https://github.com/chrishrb/gx.nvim : 我原来用的啥实现 gx 的来着
 
 ## Markdown 和 bash 的文件类型相关的参数的确需要重构了下了
 
@@ -139,8 +72,6 @@ https://github.com/nvim-neorocks/nvim-best-practices
 ## sqlite ，好麻烦啊!
 https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
 
-## 看看这个
-https://github.com/chrishrb/gx.nvim
 
 ## 用用这个软件
 https://github.com/mpv-player/mpv
@@ -203,7 +134,6 @@ https://github.com/ptdewey/pendulum-nvim
 看看主流配置是如何使用导航栏的
 
 ## [ ]  重新配置一下 lsp
-
 https://lsp-zero.netlify.app/docs/language-server-configuration.html
 
 ## 又是一堆 neovim 的小插件
@@ -218,7 +148,7 @@ https://lsp-zero.netlify.app/docs/language-server-configuration.html
 ## [ ] Markdown 中，list 不会自动补全了
 从 before branch ，忽然发现:
 - fafa
-- enter 之后没有自动补全了，难道 cmp 配置错误了
+- enter 之后没有自动补全了 - 了，难道 cmp 配置错误了
 
 ## 花费无数时间，最后才可以知道的
 - https://github.com/anuvyklack/hydra.nvim 是会触发 nvim 的 bug
@@ -280,42 +210,16 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 ## [ ] 这个还是不错的
 - https://github.com/glepnir/nvim
 
-## [ ] bug : bash 的跳转不正常了
-shellcheck 的问题吗?
-
 ## [ ] zellij 的问题更多了
-
 1. nvim 无法在其中拷贝
 2. ui 总是在闪烁啊
-
-## [ ] 不知道为什么，这里很多地方都没有办法跳转
-- https://github.com/danobi/vmtest
-
-例如这里的 remove_file ，而且被高亮为红色了:
-```rs
-impl Drop for Qemu {
-    fn drop(&mut self) {
-        let _ = fs::remove_file(self.qga_sock.as_path());
-        let _ = fs::remove_file(self.qmp_sock.as_path());
-        let _ = fs::remove_file(self.command_sock.as_path());
-    }
-}
-```
 
 ## [ ] nvim 放着不动就会有 5% 的 CPU 使用率
 这不对吧
 
-## [ ] 这个有趣的
-https://github.com/nvzone/menu
-
-https://github.com/t-troebst/perfanno.nvim
+- https://github.com/t-troebst/perfanno.nvim : perf 展示到 nvim 中
 
 ## [ ] 如何跳到屏幕的开始
-
-## 升级方法
-cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
-
-找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
 
 ## 还是有必要看看的
 很多东西过时了，但是还是有很多可以参考的
@@ -341,6 +245,7 @@ https://danielmiessler.com/study/vim
 ## 很难受，在 linux 中现在不可以用了，真的有点抽象了
 - https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
 
+## 插件
 https://github.com/LintaoAmons/bookmarks.nvim
 
 https://github.com/OXY2DEV/markview.nvim
@@ -348,12 +253,36 @@ https://github.com/OXY2DEV/markview.nvim
 https://github.com/bash-lsp/bash-language-server
 
 https://news.ycombinator.com/item?id=42674116
-
 https://news.ycombinator.com/item?id=40179194
 https://m4xshen.dev/posts/vim-command-workflow
 
+https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
+```sh
+:sort u
+```
+
 ## https://github.com/yetone/avante.nvim
 配合 deepseek 用用看看效果，不过可以继续等等
+也看看这个 : https://github.com/olimorris/codecompanion.nvim
+类似的这个效果有吗? https://github.com/continuedev/continue
 
 
-https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
+https://github.com/prochri/telescope-all-recent.nvim
+
+cline
+
+沉浸式翻译
+
+## 话说，有没有类似 mason-lspconfig 来解决字体安装的
+
+## 这个工具可以理解下
+https://github.com/analysis-tools-dev/static-analysis
+
+## 配置一下这个
+https://github.com/zbirenbaum/copilot.lua
+
+## 有趣
+https://github.com/Chenyu-otf/chenyuluoyan_thin
+
+## 把这个安排上
+https://github.com/huacnlee/autocorrect

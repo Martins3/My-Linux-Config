@@ -19,12 +19,6 @@
 [diff]
 	colorMoved = "default"
 
-[http]
-	proxy = "http://10.0.0.2:8889"
-
-[https]
-	proxy = "http://10.0.0.2:8889"
-
 [interactive]
 	diffFilter = "delta --color-only"
 
@@ -48,3 +42,9 @@
 [user]
 	email = "xueshi.hu@smartx.com"
 	name = "Xueshi Hu"
+
+# 不同的机器有不同的 git proxy 的方法
+# 检查方法
+# git config --get http.proxy
+[include]
+    path = ~/.gitconfig-local

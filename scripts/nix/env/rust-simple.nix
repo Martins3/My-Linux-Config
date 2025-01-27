@@ -1,25 +1,48 @@
 # https://discourse.nixos.org/t/how-can-i-set-up-my-rust-programming-environment/4501/6
-{ pkgs ? import <nixpkgs> { } }:
-
-pkgs.mkShell {
-  buildInputs = [
-    pkgs.cargo
-    pkgs.rustc
-    pkgs.rustfmt
-    pkgs.rustup
+with import <nixpkgs> { };
+pkgs.llvmPackages.stdenv.mkDerivation {
+  hardeningDisable = [ "all" ];
+  name = "yyds";
+  buildInputs = with pkgs; [
+    cargo
+    rustc
+    rustfmt
+    rustup
     # 测试 gRPC
-    pkgs.protobuf
+    protobuf
 
     # Necessary for the openssl-sys crate:
-    pkgs.openssl
-    pkgs.pkg-config
-    pkgs.fuse
+    openssl
+    pkg-config
+    fuse
 
-    # pkgs.wasm-pack
-    # pkgs.wasmer
-    # pkgs.wasmtime
+    rust-analyzer
+    # wasm-pack
+    # wasmer
+    # wasmtime
+    libclang
+    libseccomp
+    linuxHeaders
+    cmake
+    glibc
+    glibc.dev
+    # firecracker 中 aws-lc 需要，搞了半天才知道
+    (python3.withPackages (
+      p: with p; [
+        seccomp
+      ]
+    ))
+
+    # IronRDP
+    alsa-lib
+    libopus
+
+    # alacritty
+    fontconfig
   ];
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.
+  LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
   RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  BINDGEN_EXTRA_CLANG_ARGS = "-I${pkgs.glibc.dev}/include -I${pkgs.linuxHeaders}/include";
 }

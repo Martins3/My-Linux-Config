@@ -11,10 +11,13 @@ in
     ./app/gnome.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
     unstable.wpsoffice
+    # remmina # 远程桌面工具，体验一般
     # sublime-merge
     # vscode
     flameshot # 截图
@@ -25,12 +28,13 @@ in
     # variety # wallpaper 但是 bing wallpaper 已经够好了
     kitty
     libnotify # 通知小工具
-    vmware-workstation
+    # vmware-workstation
     # anki
     # foliate # 电子书
-    # wezterm # 2024-08-02 这个版本的 wez 有 bug
+    wezterm # 2024-08-02 这个版本的 wez 有 bug
     # wireshark
-    # alacritty
+    alacritty
+    putty
     # warp-terminal
     # spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us
@@ -43,6 +47,7 @@ in
     # libreoffice
     # thunderbird
     # feishu
+    # wechat-uos
     # netease-cloud-music-gtk
     # yesplaymusic # 似乎这个也不错
     # 似乎微信又不可以用了，哈哈
@@ -54,8 +59,9 @@ in
     # }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
-    clash-verge-rev
-    gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
+    # clash-verge-rev
+    # 通过 tweaks 调整开机自启动
+    # gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     # clash-nyanpasu
     # vlc
     # podman-desktop
@@ -67,6 +73,9 @@ in
     # xmind
     # obsidian
     # rustdesk
+
+    # distrobox # 基于容器来提供各种 distribution
+    # boxbuddy # distrobox 的图形工具
   ];
 
   xdg.desktopEntries = {

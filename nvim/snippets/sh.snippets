@@ -88,15 +88,11 @@ snippet note_here "heredoc"
 snippet note_case "switch case"
 	case "$action" in
 	a | b)
-	  echo for a or b
-	  ;;&
-	b | c)
-	  echo for c or b
-	  ;;&
-	a | b | c) ;;
+		echo for a or b
+		;;
 	*)
-	  echo for everything ELSE
-	  ;;
+		echo for everything ELSE
+		;;
 	esac
 
 
@@ -121,7 +117,7 @@ snippet note_glob_basic "glob basic"
 	# done
 
 
-snippet note_glob_number "glob 量词"
+snippet note_glob_quantifier "glob 量词"
 	# 只有打开了 extglob 才可以用如下的量词
 	# glob 量词和 regex 中 ? * + 类似
 	?(pattern-list)：匹配零个或一个模式。
@@ -130,8 +126,14 @@ snippet note_glob_number "glob 量词"
 	@(pattern-list)：只匹配一个模式。
 	!(pattern-list)：匹配给定模式以外的任何内容。
 
-	# 例子 1
-	shopt -s extglob
+	if [[ aaa == ?(aa)a ]]; then
+		echo "a"
+	fi
+
+	if [[ bbb == ?(aaa)?(bbb) ]]; then
+		echo "b"
+	fi
+
 	[[ $1 == ?(-)+([0-9]) ]] && echo "$1 is an integer"
 
 	# 例子 2
@@ -156,15 +158,15 @@ snippet note_glob "globstar"
 	# 而如果有了，当不没有匹配到的时候，可以什么都不输出
 	shopt -s extglob nullglob
 	for i in rime/*.@(yaml|txt);do
-	  echo $i
+		echo $i
 	done
 
 
 
 snippet fori "C style for loop"
-	VAR=50
-	for ((i=0;i<=VAR;i=i + 4)); do
-	        printf '%s\n' "$i"
+	VAR=10
+	for ((i=0;i<VAR;i=i + 1)); do
+		printf '%s\n' "$i"
 	done
 
 
@@ -192,7 +194,7 @@ snippet note_readfile "read file line by line"
 snippet note_string_issubstr "is substring"
 	string='My long string'
 	if [[ $string == *"My long"* ]]; then
-	        echo "It's there!"
+					echo "It's there!"
 	fi
 
 
@@ -251,7 +253,7 @@ snippet note_cmpbool "compare file"
 	the_world_is_flat=true
 	# ...do something interesting...
 	if [[ "$the_world_is_flat" == true ]] ; then
-	  echo 'Be careful not to fall off!'
+		echo 'Be careful not to fall off!'
 	fi
 
 
@@ -341,19 +343,19 @@ snippet note_cmpint "compare int"
 snippet note_select "compare int"
 	select brand in Samsung Sony iphone symphony Walton
 	do
-	        echo "You have chosen $brand"
+		echo "You have chosen $brand"
 	done
 
 
 snippet note_forarray "for every element in array"
 	for i in "${$1[@]}"; do
-	        echo "$i"
+		echo "$i"
 	done
 
 
 snippet note_forarrayindex "for every element in array"
 	for ((i=0;i<${#$1[@]};i++)); do
-	        printf '%s\n' "${$1[i]}"
+		printf '%s\n' "${$1[i]}"
 	done
 
 
@@ -365,9 +367,9 @@ snippet note_arrayprint "print array"
 snippet note_trim_string "trim string"
 	# Usage: trim_string "   example   string    "
 	function trim_string() {
-	        : "${1#"${1%%[![:space:]]*}"}"
-	        : "${_%"${_##*[![:space:]]}"}"
-	        printf '%s\n' "$_"
+					: "${1#"${1%%[![:space:]]*}"}"
+					: "${_%"${_##*[![:space:]]}"}"
+					printf '%s\n' "$_"
 	}
 
 
@@ -375,10 +377,10 @@ snippet note_trim_all "trim all"
 	# shellcheck disable=SC2086,SC2048
 	# Usage: trim_all "   example   string    "
 	function trim_all() {
-	        set -f
-	        set -- $*
-	        printf '%s\n' "$*"
-	        set +f
+					set -f
+					set -- $*
+					printf '%s\n' "$*"
+					set +f
 	}
 
 
@@ -386,29 +388,29 @@ snippet note_forfiles "遍历一个文件夹下文件"
 	# 递归的遍历
 	shopt -s globstar
 	for file in "$(pwd)"/**; do
-	        printf '%s\n' "$file"
+					printf '%s\n' "\$file"
 	done
 	shopt -u globstar
 
 	# 仅仅显示当前目录的文件和目录
 	for file in "$(pwd)"/*; do
-	        printf '%s\n' "$file"
+					printf '%s\n' "\$file"
 	done
 
 
 snippet note_head "head lines of file"
 	# Usage: head "n" "file"
 	head() {
-	        readarray -tn "$1" line <"$2"
-	        printf '%s\n' "${line[@]}"
+					readarray -tn "$1" line <"$2"
+					printf '%s\n' "${line[@]}"
 	}
 
 
 snippet note_tail "tail lines of file"
 	tail() {
-	        # Usage: tail "n" "file"
-	        readarray -tn 0 line < "$2"
-	        printf '%s\n' "${line[@]: -$1}"
+					# Usage: tail "n" "file"
+					readarray -tn 0 line < "$2"
+					printf '%s\n' "${line[@]: -$1}"
 	}
 
 
@@ -462,7 +464,7 @@ snippet xxx_ext "extended template for any bash script"
 	PROGNAME=$(basename "\$0")
 	PROGDIR=$(readlink -m "$(dirname "\$0")")
 
-	arg=${1:-}
+	arg=\${1:-}
 	if [[ -z $arg ]]; then
 		echo "arg empty"
 	fi
@@ -500,12 +502,15 @@ snippet note_split_into_array "split string to array"
 	printf "%s\n" "${array[@]}"
 	# grep a.sh < <(ls) 等价于 ls | grep a.sh
 
-snippet note_tee ""
+snippet note_tee "tee"
 	# 基本使用
 	ls | tee abc.txt
 	# 默认会将文件覆盖掉，可以使用 -a 来 append
 	cat /proc/cpuinfo | grep "$i" | tee -a abc.txt
 
+snippet note_read "read"
+	read -r username
+	echo "\$username"
 
 snippet note_awk "basic"
 	# 读取一行中的第二个，注意，使用小引号
@@ -550,7 +555,7 @@ snippet note_redirect "重定向"
 	# ls &> a.txt # 将 stderr 和 stedout 一起重定向到 file
 
 
-snippet note_function_arg "函数基本"
+snippet note_function_arg "函数参数"
 	# \$1~\$9：函数的第一个到第9个的参数。
 	# \$0 : 函数所在的脚本名。
 	# $# : 函数的参数总数。
@@ -558,6 +563,21 @@ snippet note_function_arg "函数基本"
 	# $@ : 是数组
 	# $* : 是单个数值，这导致的参数中的 "a b" 被理解为单个数值
 
+snippet note_function_array_arg "函数数组参数"
+	# 一般操作
+	print_array() {
+			local arr=("$@")
+			for element in "${arr[@]}"; do
+					echo "$element"
+			done
+	}
+
+	fruits=(apple banana orange)
+
+	print_array "${fruits[@]}"
+	print_array a b c
+
+	# 扩展
 	function test_para() {
 		for i in "${@:1}"; do
 			echo "$i"
@@ -611,8 +631,8 @@ snippet note_function_return "关于函数返回值"
 
 snippet note_is_number "is number"
 	re='^[0-9]+$'
-	if ! [[ $number =~ $re ]] ; then
-	  echo "not a number"
+	if ! [[ \$number =~ \$re ]] ; then
+		echo "not a number"
 	fi
 
 
@@ -647,10 +667,10 @@ snippet note_array_basic "array basic"
 snippet note_trap "使用 trap 来清理工作"
 	# 捕获所有的退出
 	function finish {
-	  if [[ $? == 0 ]]; then
-	    echo "bad"
-	  fi
-	  echo "good"
+		if [[ $? == 0 ]]; then
+			echo "bad"
+		fi
+		echo "good"
 	}
 
 	trap finish EXIT
@@ -671,12 +691,12 @@ snippet note_associative_array "associative array"
 
 	# 使用 ！来遍历 key
 	for k in "${!a[@]}"; do
-	  echo "$k -> ${a[$k]}"
+		echo "$k -> ${a[$k]}"
 	done
 
 	# 不使用 ! 就是遍历 value
 	for v in "${a[@]}"; do
-	  echo "$v"
+		echo "$v"
 	done
 
 	echo "${#a[@]}"
@@ -714,9 +734,9 @@ snippet note_gum "gum 的常见使用" b
 	gum input --placeholder "scope"
 
 snippet note_fordir "遍历目录" b
-	for d in /tmp/*/ ; do
-	    [ -L "${d%/}" ] && continue
-	    echo "$d"
+	for d in ./*/ ; do
+			[ -L "${d%/}" ] && continue
+			echo "$d"
 	done
 
 snippet note_fzf "fzf 常见技巧" b
@@ -745,3 +765,8 @@ snippet note_xargs "rg 常见技巧" b
 	find ./foo -type f -name "*.txt" -exec rm {} \;
 	find ./foo -type f -name "*.txt" | xargs rm
 	find . -type f -print | xargs stat -c '%a %n'
+
+snippet note_cut "cut 常用" b
+	echo "apple,banana,orange" | cut -d',' -f2
+	echo "apple,banana,orange" | cut -d',' -f1,3
+	echo "apple,banana,orange,grape" | cut -d',' -f2-4

@@ -52,7 +52,7 @@ require("lazy").setup({
           win_width = 20,
           auto_preview = false,
           detail = true,
-          auto_close = false ,
+          auto_close = false,
           close_after_jump = true,
           keys = {
             toggle_or_jump = 'o',
@@ -158,11 +158,7 @@ require("lazy").setup({
   "nvimtools/hydra.nvim",                             -- 消除重复快捷键，可以用于调整 window 大小等
   "voldikss/vim-translator",                          -- 翻译
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
-  {
-    "allaman/emoji.nvim",
-    ft = "markdown",
-    opts = { enable_cmp_integration = true },
-  }, -- emoji 支持
+  { "xiyaowong/telescope-emoji.nvim" },
   {
     "Martins3/rsync.nvim",
     lazy = true,
@@ -170,22 +166,34 @@ require("lazy").setup({
     opts = {},
   },
   {
-    "epwalsh/pomo.nvim",
-    version = "*", -- Recommended, use latest release instead of latest commit
-    lazy = true,
-    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
-    dependencies = {
-      -- Optional, but highly recommended if you want to use the "Default" timer
-      "rcarriga/nvim-notify",
-    },
-    opts = {
-      -- See below for full list of options 👇
-    },
-  },
-  {
     'mcauley-penney/visual-whitespace.nvim',
-    config = true
+    config = true,
+    branch = "compat-v10", -- nvim 0.11 版本不兼容了
   }, -- 在 visual mode 展示空白字符
+  {
+    "yetone/avante.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      provider = "deepseek",
+      vendors = {
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+        },
+      },
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
+    }
+  },
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",
@@ -204,4 +212,12 @@ require("lazy").setup({
       end)
     end,
   },
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    dependencies = { "folke/snacks.nvim", lazy = true },
+    keys = {},
+  },
+  'pteroctopus/faster.nvim', -- 打开大文件的时候自动 disable 一些功能，例如高亮等
 }, {})
