@@ -12,7 +12,7 @@ with import <nixpkgs> { };
 (mkShell.override { stdenv = clangStdenv; }) {
   hardeningDisable = [ "all" ];
   buildInputs = [
-    bpftool
+    bpftools
     elfutils
     libbfd
     libbpf
