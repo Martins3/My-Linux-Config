@@ -1,5 +1,5 @@
 /* https://discourse.nixos.org/t/how-to-make-mkshell-to-use-clangs-stdenv/9484 */
-with import <nixpkgs> { };
+with import <unstable> { };
 
 # https://github.com/iovisor/bcc/tree/master/libbpf-tools
 # 有点难
