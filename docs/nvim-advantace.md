@@ -354,6 +354,7 @@ https://m4xshen.dev/posts/vim-command-workflow
 
 ## https://github.com/yetone/avante.nvim
 配合 deepseek 用用看看效果，不过可以继续等等
-
+也看看这个 : https://github.com/olimorris/codecompanion.nvim
+类似的这个效果有吗? https://github.com/continuedev/continue
 
 https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
