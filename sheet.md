@@ -275,3 +275,6 @@ sudo systemctl start docker
 # sudo gpasswd -a "$USER" docker
 sudo usermod -a -G docker "$USER"
 ```
+
+## navi
+也许尝试下
