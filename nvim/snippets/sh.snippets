@@ -462,7 +462,7 @@ snippet xxx_ext "extended template for any bash script"
 	PROGNAME=$(basename "\$0")
 	PROGDIR=$(readlink -m "$(dirname "\$0")")
 
-	arg=${1:-}
+	arg=\${1:-}
 	if [[ -z $arg ]]; then
 		echo "arg empty"
 	fi

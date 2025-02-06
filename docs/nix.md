@@ -1988,3 +1988,7 @@ https://github.com/NixOS-CN
 ## home manager 可以管理 systemd 吗?
 
 https://news.ycombinator.com/item?id=42666851
+
+
+## kernel 配置在这里的
+kernel-modules/lib/modules/6.12.7/modules.devname

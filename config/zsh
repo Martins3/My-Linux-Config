@@ -44,59 +44,6 @@ fi
 eval "$(starship init zsh)"
 
 
-function rpm_extract() {
-  rpm2cpio $1 | cpio -idmv
-}
-
-function initrd_extract() {
-  zcat $1 | cpio -ivdm
-}
-
-function tpx() {
-  PROXY_SERVER_IP="http://10.0.0.2"
-  PROXY_SERVER_PORT=8889
-  while getopts "ga:p:hu" opt; do
-    case $opt in
-      g)
-        PROXY_SERVER_IP="http://10.0.2.2"
-        PROXY_SERVER_PORT=8889
-        ;;
-      a)
-        PROXY_SERVER_IP="http://${OPTARG}"
-        ;;
-      p)
-        PROXY_SERVER_PORT=${OPTARG}
-        ;;
-      u)
-        export https_proxy=
-        export http_proxy=
-        export HTTPS_PROXY=
-        export HTTP_PROXY=
-        export ftp_proxy=
-        export FTP_PROXY=
-
-        return
-        ;;
-      h)
-        echo "-g : use this in QEMU"
-        echo "-a : ip address"
-        echo "-p : ip port"
-        ;;
-      *)
-        exit 1
-        ;;
-    esac # --- end of case ---
-  done
-
-  set -x
-  export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export http_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export HTTPS_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export HTTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export ftp_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-}
-
 # https://www.reddit.com/r/zellij/comments/10skez0/does_zellij_support_changing_tabs_name_according/
 # rename zellij tab automatically
 zellij_tab_name_update() {
