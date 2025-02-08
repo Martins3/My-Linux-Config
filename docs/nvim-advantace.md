@@ -358,3 +358,5 @@ https://m4xshen.dev/posts/vim-command-workflow
 类似的这个效果有吗? https://github.com/continuedev/continue
 
 https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
+
+https://github.com/prochri/telescope-all-recent.nvim

@@ -118,7 +118,7 @@ git rebase --continue
 - git format-patch -1 HEAD # 指定当从当前的 HEAD
 - git format-patch -1 # HEAD 是默认的
 - git format-patch -1 -v # 说明 patch 的版本
-- git am
+- git am --whitespace=fix
 
 ### fuzzy am
 
