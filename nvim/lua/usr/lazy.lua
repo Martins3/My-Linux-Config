@@ -207,7 +207,7 @@ require("lazy").setup({
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
+      -- "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
@@ -233,10 +233,11 @@ require("lazy").setup({
       {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',
+        -- 把两个都移除 markdown 移除掉
         opts = {
-          file_types = { "markdown", "Avante" },
+          file_types = {  "Avante" },
         },
-        ft = { "markdown", "Avante" },
+        ft = { "Avante" },
       },
     },
   },

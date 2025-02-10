@@ -360,3 +360,10 @@ https://m4xshen.dev/posts/vim-command-workflow
 https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
 
 https://github.com/prochri/telescope-all-recent.nvim
+
+cline
+
+沉浸式翻译
+
+## 有时候有用
+https://github.com/pteroctopus/faster.nvim?tab=readme-ov-file

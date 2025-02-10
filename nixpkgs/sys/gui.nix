@@ -72,7 +72,7 @@
   ];
 
   systemd.user.services.clash = {
-    enable = false;
+    enable = true;
     unitConfig = { };
     serviceConfig = {
       Type = "simple";

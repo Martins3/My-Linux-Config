@@ -43,7 +43,7 @@ in
     # libreoffice
     # thunderbird
     # feishu
-    wechat-uos
+    # wechat-uos
     # netease-cloud-music-gtk
     # yesplaymusic # 似乎这个也不错
     # 似乎微信又不可以用了，哈哈
@@ -55,7 +55,7 @@ in
     # }))
     # nur.repos.linyinfeng.wemeet
     microsoft-edge
-    clash-verge-rev
+    # clash-verge-rev
     # 通过 tweaks 调整开机自启动
     gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     # clash-nyanpasu

@@ -1213,23 +1213,6 @@ https://wiki.archlinux.org/title/Desktop_notifications
 [dunst](https://github.com/dunst-project/dunst)
 man home-configuration.nix 中搜索 dunst
 
-## clash 配置
-
-在 profiles 中右键，参考
-https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
-
-1. https://github.com/MetaCubeX/meta-rules-dat/releases
-```txt
-WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
-ERRO[2024-06-12T21:17:17.693315974+08:00] can't initial GeoIP: can't download MMDB: conte
-FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOIP,CN,🎯 全
-```
-2. 默认路径: /home/martins3/.config/mihomo
-3. 只需要拷贝 config.yaml
-
-拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb 到
-~/.local/share/io.github.clash-verge-rev.clash-verge-rev
-
 ## canTouchEfiVariables 到底是什么来头
 
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
