@@ -1975,3 +1975,6 @@ https://news.ycombinator.com/item?id=42666851
 
 ## kernel 配置在这里的
 kernel-modules/lib/modules/6.12.7/modules.devname
+
+## uv 来解决 python3 的环境问题可以吗?
+https://github.com/astral-sh/uv

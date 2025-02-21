@@ -219,7 +219,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 
 ### 安装 nvim
 
-- 当前配置需要 neovim 0.9 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.10 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面几条命令:
 
@@ -232,19 +232,19 @@ git checkout release-0.10 # 2025-01-06 的最新 release 是 2025
 
 编译并且安装:
 ```sh
-make CMAKE_BUILD_TYPE=Release -j8
+make CMAKE_BUILD_TYPE=Release -j16
 sudo make install
 ```
 
 ### 安装 nerdfonts
-
-先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
-
 注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。
 
+nerd-fonts 版本和字体可以到 [releases](https://github.com/ryanoasis/nerd-fonts/releases/) 界面选择
+
+假如需要 FiraCode ，在 Linux 下也就是这几条命令:
 ```sh
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hasklig.zip
-unzip Hasklig.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
+unzip FiraCode.zip -d ~/.fonts
 fc-cache -fv
 ```
 

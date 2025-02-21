@@ -412,3 +412,5 @@ fun! TrimWhitespace()
 endfun
 command! TrimWhitespace call TrimWhitespace()
 ```
+
+## 话说，有没有类似 mason-lspconfig 来解决字体安装的
