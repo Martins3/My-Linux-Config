@@ -170,8 +170,8 @@ in
       nvme-cli
       ninja
       libvirt # 提供 virsh
-      qemu
-      # qemu6
+      # qemu
+      qemu6
       # ceph
       # 真的奇怪，ceph 和 bcc 居然用冲突
       bcc

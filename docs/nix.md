@@ -1978,3 +1978,15 @@ kernel-modules/lib/modules/6.12.7/modules.devname
 
 ## uv 来解决 python3 的环境问题可以吗?
 https://github.com/astral-sh/uv
+
+## 原来 rust-analyzer 是一个软连接啊
+```txt
+🧀  l /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer
+Permissions Size User Date Modified Name
+lrwxrwxrwx     - root  1 Jan  1970   /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer -> rustup
+```
+
+这样可以解决:
+```txt
+rustup component add rust-analyzer
+```
