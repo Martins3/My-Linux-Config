@@ -143,6 +143,9 @@ git pull --rebase --autostash
 
 git branch --contains $tag
 
+### 在一个文件中搜索历史
+git log  -S amd_e400_idle  arch/x86/kernel/process.c
+
 ## redirect
 
 - https://wizardzines.com/comics/redirects/

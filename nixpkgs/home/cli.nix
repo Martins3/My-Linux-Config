@@ -135,6 +135,7 @@ in
       # du-dust # 方便找大文件
       socat # unix domain
       delta # git diff
+      icdiff
       git-filter-repo # 批量修改历史
       act # Run github action locally
       # git-secrets

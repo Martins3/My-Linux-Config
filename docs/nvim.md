@@ -285,7 +285,7 @@ cd ~ # 保证在根目录下
 ```sh
 git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
 ln -s ~/.dotfiles/nvim ~/.config/nvim # 创建一个软链接指向此处
-nvim --headless +PlugInstall +qall
+nvim --headless +qall # 不去打开 nvim 的界面，仅仅显示 nvim 的安装插件的日志
 ```
 
 然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件.
