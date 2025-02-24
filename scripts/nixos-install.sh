@@ -2,11 +2,13 @@
 
 set -E -e -u -o pipefail
 
-mkdir -p "$HOME"/.config/nixpkgs
-ln -sf "$HOME"/.dotfiles/nixpkgs "$HOME"/.config/home-manager
-ln -sf "$HOME"/.dotfiles/nixpkgs/config.nix "$HOME"/.config/nixpkgs/config.nix
-mkdir -p "$HOME"/.config/nix/
-ln -sf "$HOME"/.dotfiles/config/nix.conf "$HOME"/.config/nix/nix.conf
+if [[ -d "$HOME"/.config/nixpkgs ]]; then
+	mkdir -p "$HOME"/.config/nixpkgs
+	mkdir -p "$HOME"/.config/nix/
+	ln -sf "$HOME"/.dotfiles/nixpkgs "$HOME"/.config/home-manager
+	ln -sf "$HOME"/.dotfiles/nixpkgs/config.nix "$HOME"/.config/nixpkgs/config.nix
+	ln -sf "$HOME"/.dotfiles/config/nix.conf "$HOME"/.config/nix/nix.conf
+fi
 
 if [[ -f /etc/nixos/configuration.nix ]]; then
 	line="(import $HOME/.config/home-manager/system.nix { disable_gui = 0; })"
@@ -27,7 +29,6 @@ else
   isGui = false;
 }
 _EOF
-
 fi
 
 nix-shell '<home-manager>' -A install

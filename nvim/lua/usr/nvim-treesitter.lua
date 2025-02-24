@@ -2,12 +2,10 @@ require("nvim-treesitter.configs").setup({
   -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
   highlight = {
     enable = true,
-    disable = { "org", "c", "cpp" },
-    additional_vim_regex_highlighting = { "org" },
+    disable = { "c", "cpp" },
   },
   -- ensure_installed = "maintained", 安装目前维护的所有语言 treesitter 插件。
   ensure_installed = {
-    "org",
     "lua",
     "java",
     "rust",
@@ -24,6 +22,7 @@ require("nvim-treesitter.configs").setup({
     "rst",
     "llvm",
     "gitcommit",
+    "git_rebase",
     "html",
   },
 })
