@@ -414,3 +414,6 @@ command! TrimWhitespace call TrimWhitespace()
 ```
 
 ## 话说，有没有类似 mason-lspconfig 来解决字体安装的
+
+## 这个工具可以理解下
+https://github.com/analysis-tools-dev/static-analysis
