@@ -131,7 +131,3 @@ export PATH=$PATH:/usr/share/bcc/tools
 if [ -e /home/martins3/core/vn/code/zsh  ]; then
   . /home/martins3/core/vn/code/zsh
 fi
-
-if [ -e /home/martins3/core/zsh/zsh ]; then
-  . /home/martins3/core/zsh/zsh
-fi
