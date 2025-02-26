@@ -135,10 +135,6 @@ git apply --rej
 git fetch
 git switch dev
 
-### autostash
-
-git pull --rebase --autostash
-
 ### branch 包含了 tag
 
 git branch --contains $tag

@@ -275,7 +275,8 @@ in
       ))
       # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
       # perl
-      # man-pages
+      man-db
+      man-pages
       # man-pages-posix
       pre-commit
       atop # 类似 htop ，但是展示的内容不同

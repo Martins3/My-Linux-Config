@@ -31,7 +31,10 @@ require("telescope").setup({
         -- insert emoji when picked
         vim.api.nvim_put({ emoji.value }, 'c', false, true)
       end,
-    }
+    },
+    frecency = {
+      -- auto_validate = false,
+    },
   },
 })
 
