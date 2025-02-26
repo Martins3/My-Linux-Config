@@ -44,59 +44,6 @@ fi
 eval "$(starship init zsh)"
 
 
-function rpm_extract() {
-  rpm2cpio $1 | cpio -idmv
-}
-
-function initrd_extract() {
-  zcat $1 | cpio -ivdm
-}
-
-function tpx() {
-  PROXY_SERVER_IP="http://10.0.0.2"
-  PROXY_SERVER_PORT=8889
-  while getopts "ga:p:hu" opt; do
-    case $opt in
-      g)
-        PROXY_SERVER_IP="http://10.0.2.2"
-        PROXY_SERVER_PORT=8889
-        ;;
-      a)
-        PROXY_SERVER_IP="http://${OPTARG}"
-        ;;
-      p)
-        PROXY_SERVER_PORT=${OPTARG}
-        ;;
-      u)
-        export https_proxy=
-        export http_proxy=
-        export HTTPS_PROXY=
-        export HTTP_PROXY=
-        export ftp_proxy=
-        export FTP_PROXY=
-
-        return
-        ;;
-      h)
-        echo "-g : use this in QEMU"
-        echo "-a : ip address"
-        echo "-p : ip port"
-        ;;
-      *)
-        exit 1
-        ;;
-    esac # --- end of case ---
-  done
-
-  set -x
-  export https_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export http_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export HTTPS_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export HTTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export ftp_proxy="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-  export FTP_PROXY="$PROXY_SERVER_IP:$PROXY_SERVER_PORT"
-}
-
 # https://www.reddit.com/r/zellij/comments/10skez0/does_zellij_support_changing_tabs_name_according/
 # rename zellij tab automatically
 zellij_tab_name_update() {
@@ -138,7 +85,7 @@ alias gs="tig status"
 alias gg="gitui --watcher"
 alias kernel_version="git describe --contains"
 # https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias m="KBUILD_BUILD_TIMESTAMP='' make LLVM=1 CC='ccache clang' -j$(getconf _NPROCESSORS_ONLN)"
 alias im="ibus engine rime"
 alias mc="make clean"
@@ -149,7 +96,7 @@ alias vc="rm -r ~/.local/share/nvim/sessions"
 alias he="nvim +10000 $HOME/.dotfiles/sheet.md"
 alias kvm_stat="sudo $HOME/data/linux/tools/kvm/kvm_stat/kvm_stat"
 alias i="ipython"
-alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
+# alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
 alias static="nix-shell -p gcc glibc.static --command zsh"
 alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
@@ -169,22 +116,6 @@ alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
 
-alias f=/home/martins3/.fix.sh
-alias mod=$HOME/core/vn/code/src/m/mod.sh
-
-
-if env | grep container &>/dev/null ; then
-  function u() {
-  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.2.2:/home/martins3/.dotfiles ~
-  }
-else
-  function u() {
-    # 还是用 git 同步吧，太麻烦了
-  	# rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/core/vn ~/core
-  	rsync -avzh --delete --filter="dir-merge,- .gitignore" martins3@10.0.0.2:/home/martins3/.dotfiles ~
-  }
-fi
-
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
@@ -193,21 +124,10 @@ function p(){
    source .venv/bin/activate
 }
 
-function initrd(){
-  if [[ ! -f $1 ]]; then
-    echo "not a file"
-    return
-  fi
-  ln -sf $(realpath $1) initrd
-}
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
 
 if [ -e /home/martins3/core/vn/code/zsh  ]; then
   . /home/martins3/core/vn/code/zsh
-fi
-
-if [ -e /home/martins3/core/zsh/zsh ]; then
-  . /home/martins3/core/zsh/zsh
 fi

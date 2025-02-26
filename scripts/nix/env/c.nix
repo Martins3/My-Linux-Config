@@ -6,6 +6,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
   buildInputs = with pkgs; [
       libpcap
       liburing
+      libtraceevent
       glib
       pkg-config
       fuse3

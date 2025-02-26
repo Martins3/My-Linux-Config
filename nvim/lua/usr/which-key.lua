@@ -114,7 +114,7 @@ wk.add({
   { "ck",        "<C-w>k",                                               desc = "go to the window up" },
   { "cl",        "<C-w>l",                                               desc = "go to the window right" },
   { "cm",        "<cmd>only<cr>",                                        desc = "delete other window" },
-  { "cn",        "<cmd>AerialToggle!<cr>",                               desc = "toggle navigator" },
+  { "cn",        "<cmd>Lspsaga outline<cr>",                               desc = "toggle navigator" },
   { "cs",        "<cmd>sp<cr>",                                          desc = "horizontal split window" },
   { "cu",        "<cmd>UndotreeToggle<cr>",                              desc = "open undo tree" },
   { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",               desc = "go to declaration" },

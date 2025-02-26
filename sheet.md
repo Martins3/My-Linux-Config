@@ -118,7 +118,7 @@ git rebase --continue
 - git format-patch -1 HEAD # 指定当从当前的 HEAD
 - git format-patch -1 # HEAD 是默认的
 - git format-patch -1 -v # 说明 patch 的版本
-- git am
+- git am --whitespace=fix
 
 ### fuzzy am
 
@@ -135,13 +135,12 @@ git apply --rej
 git fetch
 git switch dev
 
-### autostash
-
-git pull --rebase --autostash
-
 ### branch 包含了 tag
 
 git branch --contains $tag
+
+### 在一个文件中搜索历史
+git log  -S amd_e400_idle  arch/x86/kernel/process.c
 
 ## redirect
 
@@ -263,3 +262,18 @@ fd 使用的是 regex
 ```sh
 fd ".*\.md" | wc -l
 ```
+
+## docker
+
+基本安装部署:
+```sh
+sudo yum -y install docker
+sudo systemctl enable docker
+sudo systemctl start docker
+# sudo groupadd docker
+# sudo gpasswd -a "$USER" docker
+sudo usermod -a -G docker "$USER"
+```
+
+## navi
+也许尝试下

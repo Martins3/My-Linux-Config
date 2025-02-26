@@ -14,6 +14,8 @@ require("usr.colorscheme")
 require("usr.bufferline")
 require("usr.lualine")
 require("usr.neovide")
+require("usr.bactrace")
+require("usr.util")
 require("usr.toggleterm")
 -- require("usr.window-focus")
 require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
@@ -23,9 +25,6 @@ require("leap").add_default_mappings()
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
--- require("nvim-navic").setup() -- 这个插件很久没更新了，也不需要在这里配置
-require("barbecue").setup()
--- require("nvim-lightbulb").update_lightbulb()
 require("debugprint").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
@@ -37,18 +36,6 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
     vim.cmd("sleep 10m")
   end,
-})
-
--- 导航栏
-require("aerial").setup({
-  backends = { "markdown", "man", "lsp", "treesitter" },
-  layout = {
-    max_width = { 30, 0.15 },
-    placement = "edge",
-    default_direction = "left",
-  },
-  attach_mode = "global",
-  disable_max_lines = 20000,
 })
 
 -- 书签

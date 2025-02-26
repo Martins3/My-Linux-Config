@@ -114,8 +114,8 @@
         # "force group" = "groupname";
       };
 
-      iso = {
-        path = "/home/martins3/hack/iso";
+      hack = {
+        path = "/home/martins3/hack";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "yes";

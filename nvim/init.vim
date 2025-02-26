@@ -22,15 +22,6 @@ map <leader>d "+d
 " 加载 lua 配置
 lua require 'usr'
 
-" 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
-let s:core_conf_files = [
-      \ 'debug.vim',
-      \ ]
-
-for s:fname in s:core_conf_files
-  execute printf('source %s/vim/%s', stdpath('config'), s:fname)
-endfor
-
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 

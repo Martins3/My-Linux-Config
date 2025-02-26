@@ -43,7 +43,8 @@ in
       # gnuplot
       ccache
       opam
-      busybox # 提供 devmem 等工具
+      # busybox # 提供 devmem 等工具，但是会覆盖很多工具
+      yazi
       # mold
       spin
       swarm # 形式化验证工具
@@ -52,13 +53,14 @@ in
       ruby
       # procdump 微软的 ProcDump 的 linux 移植
       ouch # 简化压缩/解压缩的使用
+      # xpipe # 管理服务器的工具
       # gitea # 好吧，还需要手动搭建数据库才可以
-      sipcalc
+      sipcalc # ip 计算
       ventoy
       rsync
       novnc
       # postman # 不会用，API 工具
-      grpcurl
+      # grpcurl # rpc 相关
       # uutils-coreutils # @todo 到时候尝试下 rust 的 coreutils
       lua
       # zfs
@@ -72,7 +74,7 @@ in
       # libguestfs
       # libguestfs-appliance
       # cloud-utils
-      adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
+      # adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
       ccls
       checkmake
       # minicom
@@ -133,6 +135,7 @@ in
       # du-dust # 方便找大文件
       socat # unix domain
       delta # git diff
+      icdiff
       git-filter-repo # 批量修改历史
       act # Run github action locally
       # git-secrets
@@ -163,14 +166,13 @@ in
       rpm
       stress-ng
       # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
-      # 通过 tweaks 调整开机自启动
       hexyl # 分析二进制
       # rasdaemon # @todo 莫名其妙，不知道怎么使用
       nvme-cli
       ninja
       libvirt # 提供 virsh
-      qemu
-      # qemu6
+      # qemu
+      qemu6
       # ceph
       # 真的奇怪，ceph 和 bcc 居然用冲突
       bcc
@@ -186,10 +188,13 @@ in
       virtiofsd
       # podman # 暂时不需要
       # podman-tui
-      # k9s
-      # minikube
+      k9s
       # minio
-      # hoard # 暂时不知道怎么使用
+      kubectl
+      # kubeadm
+      kubernetes-helm
+      kind
+      minikube
       # slirp4netns
       # nix-index
       nixd
@@ -208,7 +213,8 @@ in
       systeroid
       # linuxKernel.packages.linux_5_15.perf
       # linuxPackages.perf
-      linuxKernel.packages.linux_6_6.perf
+      linuxKernel.packages.linux_6_12.perf
+      gperftools # 主要提供 pprof 功能，但是没用过
       # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
       # linuxPackages_6_10.kernel.dev
 
@@ -223,14 +229,15 @@ in
       # ERROR: kernel release isn't found in "/nix/store/n3nrix9pc0m1ywzg8dq71bh2xr82c7l5-linux-6.3.5-dev"
       # 还是在虚拟机勉强维持生活吧
       bpftrace
-      blktrace
+      # blktrace
+      bpftools
+      bpftune
       # kernelshark
       trace-cmd
       # hotspot
       # heaptrack
       coccinelle
       ltrace # library trace
-      bpftools
       procps
       xdp-tools
       acpi
@@ -268,11 +275,12 @@ in
       ))
       # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
       # perl
+      man-db
       man-pages
+      # man-pages-posix
       pre-commit
       atop # 类似 htop ，但是展示的内容不同
       nmon
-      man-pages-posix
       lazydocker
       docker-compose
       runc
@@ -371,6 +379,10 @@ in
       pyright
     ];
 
+  programs.fish = {
+    enable = true;
+  };
+
   programs.zsh = {
     enable = true;
     shellAliases = { };
@@ -404,7 +416,7 @@ in
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit";
-      sha256 = "1chhyk7rhm1ysbdi4rzmik25cdfyv4kmgzx70yfgsxr9cjw4kllb";
+      sha256 = "09zfi18yq34gpkwlcd170rxcd0nyn1spxrzh762whaz8vzp4gfkh";
       name = "gdbinit";
     };
     target = ".gdbinit";

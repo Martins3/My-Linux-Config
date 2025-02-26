@@ -40,9 +40,30 @@ require("lazy").setup({
   { "williamboman/mason.nvim" },                          -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
   { "j-hui/fidget.nvim",                tag = "legacy" }, -- 右下角展示索引状态
-  { "SmiteshP/nvim-navic" },                              -- 在 winbar 展示当前的路径
-  { "utilyre/barbecue.nvim" },                            -- 和 nvim-navic 配合使用
-  -- { "kosayoda/nvim-lightbulb" },           -- 展示 code action
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+      require('lspsaga').setup({
+        lightbulb = {
+          enable = false,
+        },
+        outline = {
+          win_position = 'left',
+          win_width = 20,
+          auto_preview = false,
+          detail = true,
+          auto_close = false,
+          close_after_jump = true,
+          keys = {
+            toggle_or_jump = 'o',
+            quit = 'q',
+            jump = '<cr>',
+          },
+        }
+      })
+    end,
+  }, -- lsp 增强，例如提供 winbar 和 outline 的功能
+  -- 配置文件在 https://github.com/nvimdev/lspsaga.nvim/blob/main/lua/lspsaga/init.lua
 
   --treesitter
   {
@@ -52,7 +73,6 @@ require("lazy").setup({
   "RRethy/nvim-treesitter-textsubjects",
   "nvim-treesitter/nvim-treesitter-textobjects",
   -- ui
-  "stevearc/aerial.nvim",                                            -- 导航栏
   "kyazdani42/nvim-tree.lua",                                        -- 文件树
   "akinsho/bufferline.nvim",                                         -- buffer
   "nvim-lualine/lualine.nvim",                                       -- 状态栏
@@ -138,11 +158,7 @@ require("lazy").setup({
   "nvimtools/hydra.nvim",                             -- 消除重复快捷键，可以用于调整 window 大小等
   "voldikss/vim-translator",                          -- 翻译
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
-  {
-    "allaman/emoji.nvim",
-    ft = "markdown",
-    opts = { enable_cmp_integration = true },
-  }, -- emoji 支持
+  { "xiyaowong/telescope-emoji.nvim" },
   {
     "Martins3/rsync.nvim",
     lazy = true,
@@ -166,6 +182,30 @@ require("lazy").setup({
     'mcauley-penney/visual-whitespace.nvim',
     config = true
   }, -- 在 visual mode 展示空白字符
+  {
+    "yetone/avante.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      provider = "deepseek",
+      vendors = {
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+        },
+      },
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
+    }
+  },
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",
