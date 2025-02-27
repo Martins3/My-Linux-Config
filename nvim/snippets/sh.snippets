@@ -617,7 +617,7 @@ snippet note_function_return "关于函数返回值"
 
 snippet note_is_number "is number"
 	re='^[0-9]+$'
-	if ! [[ $number =~ $re ]] ; then
+	if ! [[ \$number =~ \$re ]] ; then
 		echo "not a number"
 	fi
 

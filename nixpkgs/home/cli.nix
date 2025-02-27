@@ -109,6 +109,7 @@ in
       aspellDicts.en
       # yq-go
       htop
+      # glances # 又一个 htop
       btop
       unzip
       fzf
@@ -282,7 +283,7 @@ in
       atop # 类似 htop ，但是展示的内容不同
       nmon
       lazydocker
-      docker-compose
+      # docker-compose
       runc
       crun
       youki
@@ -314,7 +315,9 @@ in
       usbutils
       cyme # 一个更加好看的 usbutils
       # lm_sensors # 获取 CPU 温度，但是 btop 差不多可以了
-      libxfs # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
+      # @todo 使用 sudo mkfs.xfs -f /dev/sda1 还是需要 nix-shell -p libxfs
+      # nixos 有这个问题，如果只是安装 home-manger 没有这个问题
+      libxfs
       # bcachefs-tools
       libcgroup
       cpulimit
@@ -357,7 +360,6 @@ in
       dig # dns 分析
       iptraf-ng # 网络流量分析
       ifmetric
-      glances # 又一个 htop
 
       smartmontools # 监视硬盘健康
       # httpie # http baidu.com
