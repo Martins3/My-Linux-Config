@@ -86,6 +86,7 @@ in
       # ov # feature rich pager
       # zig
       dracut
+      zstd
       iw
       termshark
       # openvswitch-lts
