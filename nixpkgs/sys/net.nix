@@ -78,6 +78,7 @@
       2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
       2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       2049 # nfs
+      8000 # python3 -m http.server
     ];
 
     allowedTCPPortRanges = [
