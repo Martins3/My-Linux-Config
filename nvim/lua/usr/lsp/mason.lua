@@ -10,6 +10,7 @@ local servers = {
   "pyright",
   "vimls",
   "yamlls",
+  -- "typos_lsp",
   -- "tsserver",
 }
 
@@ -24,7 +25,8 @@ local settings = {
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
-  PATH = "append", -- mason 如果系统中安装
+  PATH = "append",
+  -- 如果系统中安装对应的 lsp，优先使用系统中的 lsp
 }
 
 require("mason").setup(settings)
@@ -38,7 +40,9 @@ if not lspconfig_status_ok then
   return
 end
 
-local all_servers = {"ccls", "nixd"}
+-- TODO lspconfig 到底是什么作用来着 ?
+-- 由于动态库的原因 Mason 安装的在 nixos 中无法使用
+local all_servers = { "nixd", "typos_lsp" }
 for i = 1, #servers do
   all_servers[#all_servers + 1] = servers[i]
 end
@@ -53,6 +57,9 @@ for _, server in pairs(all_servers) do
 
   server = vim.split(server, "@")[1]
 
+  -- TODO 其实都可以合并起来的，不要搞这些无聊的文件了
+  -- 如果有额外的配置，那么加载 nvim/lua/usr/lsp/settings/ 下配置
+  -- 配置参考 https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ccls
   local require_ok, conf_opts = pcall(require, "usr.lsp.settings." .. server)
   if require_ok then
     opts = vim.tbl_deep_extend("force", conf_opts, opts)

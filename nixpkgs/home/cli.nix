@@ -379,6 +379,7 @@ in
       clippy
       efm-langserver # 集成 shellcheck
       marksman
+      typos-lsp
       pyright
     ];
 
