@@ -203,7 +203,7 @@ in
       nixfmt-rfc-style
       # debootstrap # 制作 uml 的工具
       meson
-      neovim
+      unstable.neovim
       luarocks
       # zed-editor # 默认不支持中文，放弃
       # helix # modern neovim

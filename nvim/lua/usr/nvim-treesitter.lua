@@ -22,9 +22,11 @@ require("nvim-treesitter.configs").setup({
     "rst",
     "llvm",
     "gitcommit",
+    "gitignore",
     "git_rebase",
     "html",
     "perl", -- 内核的一些脚本是 perl
+    "make",
   },
 })
 
