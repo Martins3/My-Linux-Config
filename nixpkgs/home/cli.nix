@@ -300,7 +300,7 @@ in
       acpica-tools
       asciidoc
       libiscsi
-      # openiscsi
+      openiscsi
       lsscsi
       sg3_utils # 提供 scsi_logging_level
       targetcli
