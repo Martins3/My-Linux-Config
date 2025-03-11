@@ -79,12 +79,13 @@
       2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       2049 # nfs
       8000 # python3 -m http.server
+      6000 # nbd
     ];
 
     allowedTCPPortRanges = [
       {
         from = 5900;
-        to = 6500;
+        to = 10000;
       }
     ];
   };

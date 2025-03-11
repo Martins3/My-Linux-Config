@@ -33,6 +33,7 @@ in
     with pkgs;
     [
       strace
+      intentrace # see docs/trace/strace.md
       vim
       git
       gcc

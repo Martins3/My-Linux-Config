@@ -8,9 +8,11 @@ sudo nix-channel --add https://github.com/nix-community/home-manager/archive/rel
 # sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable/ unstable
 # sudo nix-channel --add https://nixos.org/channels/nixos-unstable/ nixos-unstable
 
-sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-24.11 nixos
+if [[ -f /etc/nixos/configuration.nix ]]; then
+	sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-24.11 nixos
+	sudo nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-unstable/ nixos-unstable
+fi
 sudo nix-channel --add https://mirror.tuna.tsinghua.edu.cn/nix-channels/nixos-24.11 nixpkgs
 sudo nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable unstable
-sudo nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixos-unstable/ nixos-unstable
 
 sudo nix-channel --update

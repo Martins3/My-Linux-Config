@@ -421,3 +421,6 @@ https://github.com/analysis-tools-dev/static-analysis
 ## 现在很多语言的 format 都不可以用了
 1. markdown
 2. python
+
+## 配置一下这个
+https://github.com/zbirenbaum/copilot.lua
