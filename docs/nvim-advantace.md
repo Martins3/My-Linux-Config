@@ -424,3 +424,7 @@ https://github.com/analysis-tools-dev/static-analysis
 
 ## 配置一下这个
 https://github.com/zbirenbaum/copilot.lua
+
+## 这个可以搞一下，似乎又发展了一段时间
+- https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
+- https://github.com/microsoft/vscode-cpptools
