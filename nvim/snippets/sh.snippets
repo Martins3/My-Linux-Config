@@ -552,7 +552,7 @@ snippet note_redirect "重定向"
 	# ls &> a.txt # 将 stderr 和 stedout 一起重定向到 file
 
 
-snippet note_function_arg "函数基本"
+snippet note_function_arg "函数参数"
 	# \$1~\$9：函数的第一个到第9个的参数。
 	# \$0 : 函数所在的脚本名。
 	# $# : 函数的参数总数。
@@ -560,6 +560,21 @@ snippet note_function_arg "函数基本"
 	# $@ : 是数组
 	# $* : 是单个数值，这导致的参数中的 "a b" 被理解为单个数值
 
+snippet note_function_array_arg "函数数组参数"
+	# 一般操作
+	print_array() {
+			local arr=("$@")
+			for element in "${arr[@]}"; do
+					echo "$element"
+			done
+	}
+
+	fruits=(apple banana orange)
+
+	print_array "${fruits[@]}"
+	print_array a b c
+
+	# 扩展
 	function test_para() {
 		for i in "${@:1}"; do
 			echo "$i"
@@ -716,7 +731,7 @@ snippet note_gum "gum 的常见使用" b
 	gum input --placeholder "scope"
 
 snippet note_fordir "遍历目录" b
-	for d in /tmp/*/ ; do
+	for d in ./*/ ; do
 			[ -L "${d%/}" ] && continue
 			echo "$d"
 	done
