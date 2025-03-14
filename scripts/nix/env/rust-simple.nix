@@ -23,9 +23,14 @@ pkgs.mkShell {
     # pkgs.wasmtime
     pkgs.libclang
     pkgs.libseccomp
+    pkgs.linuxHeaders
+    pkgs.cmake
   ];
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.
   LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
   RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  BINDGEN_EXTRA_CLANG_ARGS = "-I${pkgs.glibc.dev}/include -I${pkgs.linuxHeaders}/include";
+  CFLAGS = "-I${pkgs.glibc.dev}/include -I${pkgs.openssl.dev}/include";
+  CXXFLAGS = "-I${pkgs.glibc.dev}/include -I${pkgs.openssl.dev}/include";
 }

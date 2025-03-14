@@ -428,3 +428,8 @@ https://github.com/zbirenbaum/copilot.lua
 ## 这个可以搞一下，似乎又发展了一段时间
 - https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
 - https://github.com/microsoft/vscode-cpptools
+
+## 为什么现在无法利用 buffer 中内容补全了
+
+## 有趣
+https://github.com/Chenyu-otf/chenyuluoyan_thin

@@ -1990,3 +1990,7 @@ lrwxrwxrwx     - root  1 Jan  1970   /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj79
 ```txt
 rustup component add rust-analyzer
 ```
+
+## 这个功能对于我来说，很重要
+安装的时候可以不用联网。
+https://github.com/tfc/nixos-auto-installer
