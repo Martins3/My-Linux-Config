@@ -24,7 +24,7 @@ if [[ -f /etc/nixos/configuration.nix ]]; then
 	sudo nixos-rebuild switch
 else
 	# 和 nixpkgs/opt.nix 对应，用于仅仅安装 home-manager
-	cat <<_EOF >/home/martins3/opt-local.nix
+	cat <<_EOF >"$HOME"/opt-local.nix
 {
   isGui = false;
 }
