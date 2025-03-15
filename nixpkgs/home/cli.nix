@@ -45,6 +45,9 @@ in
       ccache
       opam
       # busybox # 提供 devmem 等工具，但是会覆盖很多工具
+      debootstrap # 制作 rootfs 的工具
+      fakeroot
+      moreutils # jq 无法本地修改，提供 sponge
       yazi
       # mold
       spin

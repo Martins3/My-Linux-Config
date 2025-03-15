@@ -40,7 +40,11 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 
 -- 书签
 require("bookmarks").setup({
-  mappings_enabled = false,
+  mappings_enabled = true,
+  keymap = {
+    toggle = "mc",
+    delete = "dd",
+  },
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
 

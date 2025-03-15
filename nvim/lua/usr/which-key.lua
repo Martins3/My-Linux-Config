@@ -125,6 +125,7 @@ wk.add({
   { "m",  group = "bookmarks" },
   { "ma", "<cmd>Telescope bookmarks<cr>",                          desc = "search bookmarks" },
   { "md", "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
+  { "md", "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
   { "mm", "<cmd>lua require'bookmarks'.add_bookmarks()<cr>",       desc = "add bookmarks" },
   { "mn", "<cmd>lua require'bookmarks.list'.show_desc() <cr>",     desc = "show bookmark note" },
   { "q",  "<cmd>q<cr>",                                            desc = "close window" },
