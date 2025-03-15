@@ -2,7 +2,7 @@
 
 set -E -e -u -o pipefail
 
-if [[ -d "$HOME"/.config/nixpkgs ]]; then
+if [[ ! -d "$HOME"/.config/nixpkgs ]]; then
 	mkdir -p "$HOME"/.config/nixpkgs
 	mkdir -p "$HOME"/.config/nix/
 	ln -sf "$HOME"/.dotfiles/nixpkgs "$HOME"/.config/home-manager

@@ -33,7 +33,10 @@ export PATH="$HOME/go/bin:$PATH"
 if [[ -f ~/core/id ]]; then
   export SHELL_ARCH=$(cat ~/core/id)
 else
-  if grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
+
+  if [[ "$(uname)" == "Darwin" ]]; then
+    export SHELL_ARCH="🐶"
+  elif grep "GenuineIntel" /proc/cpuinfo >/dev/null; then
     export SHELL_ARCH="🐙"
   elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
     export SHELL_ARCH="🐉"
@@ -74,7 +77,7 @@ function zj() {
 	fi
 }
 
-alias px="proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf"
+alias px="proxychains4 -f $HOME/.dotfiles/config/proxychain.conf"
 
 
 # 自动打开工作区
@@ -102,9 +105,9 @@ alias i="ipython"
 # alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
 alias static="nix-shell -p gcc glibc.static --command zsh"
-alias wez=/home/martins3/.dotfiles/config/sh/wez-opacity.sh
+alias wez=$HOME/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
-alias ins="/home/martins3/.dotfiles/scripts/nix/env/install.sh"
+alias ins="$HOME/.dotfiles/scripts/nix/env/install.sh"
 alias xx="sudo shutdown now"
 alias tm="tmux attach || tmux"
 function config_repo(){
@@ -131,6 +134,6 @@ export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
 
-if [ -e /home/martins3/core/vn/code/zsh  ]; then
-  . /home/martins3/core/vn/code/zsh
+if [ -e $HOME/core/vn/code/zsh  ]; then
+  . $HOME/core/vn/code/zsh
 fi

@@ -395,7 +395,7 @@ in
     enable = true;
     shellAliases = { };
     initExtra = "
-    source /home/martins3/.dotfiles/config/zsh
+    source ${config.home.homeDirectory}/.dotfiles/config/zsh
     ";
 
     plugins = [
