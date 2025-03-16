@@ -27,7 +27,8 @@ require("nvim-treesitter.configs").setup({
     "html",
     "perl", -- 内核的一些脚本是 perl
     "make",
-    "kconfig"
+    "kconfig",
+    "toml",
   },
 })
 
