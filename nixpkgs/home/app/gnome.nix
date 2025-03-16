@@ -122,7 +122,14 @@
       switch-to-application-3 = [ ];
       switch-to-application-4 = [ ];
       switch-windows = [ "<Super>Tab" ];
+      # 似乎默认切换就是按照  workspace 的，这是极好的
+      switch-windows-directly = [ "<Control>l" ];
+      switch-to-workspace-1 = [ "<Control>1" ];
+      switch-to-workspace-2 = [ "<Control>2" ];
+      switch-to-workspace-3 = [ "<Control>3" ];
+      switch-to-workspace-4 = [ "<Control>4" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
+
       move-to-workspace-left = [ "<Control>Home" ];
       move-to-workspace-right = [ "<Control>End" ];
     };
