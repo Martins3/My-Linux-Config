@@ -1691,6 +1691,21 @@ A: checkout "sudo make install" output to find out bpf package installation site
 cd $(nix-build -E "(import <nixpkgs> {}).bcc" --no-out-link)
 ```
 
+### 2025-03-16 bcc 工具也不可以使用了
+```txt
+🧀  sudo wqlat
+<built-in>:1:10: fatal error: './include/linux/kconfig.h' file not found
+    1 | #include "./include/linux/kconfig.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+Traceback (most recent call last):
+  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/share/bcc/tools/.wqlat-wrapped", line 162, in <module>
+    b = BPF(text=bpf_text)
+        ^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/lib/python3.12/site-packages/bcc-0.31.0-py3.12.egg/bcc/__init__.py", line 480, in __init__
+Exception: Failed to compile BPF module <text>
+```
+
 ## 编译 bpf 的时候有警告
 
 linux/tools/bpf/runqslower 下
