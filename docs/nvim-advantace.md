@@ -433,3 +433,6 @@ https://github.com/zbirenbaum/copilot.lua
 
 ## 有趣
 https://github.com/Chenyu-otf/chenyuluoyan_thin
+
+## 把这个安排上
+https://github.com/huacnlee/autocorrect

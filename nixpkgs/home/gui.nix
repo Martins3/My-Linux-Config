@@ -33,6 +33,7 @@ in
     wezterm # 2024-08-02 这个版本的 wez 有 bug
     # wireshark
     alacritty
+    putty
     # warp-terminal
     # spacedrive # 一打开就 crash 了，目前没法用
     # zoom-us

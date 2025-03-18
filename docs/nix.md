@@ -2009,3 +2009,8 @@ rustup component add rust-analyzer
 ## 这个功能对于我来说，很重要
 安装的时候可以不用联网。
 https://github.com/tfc/nixos-auto-installer
+
+## nixos 的 kernel 为什么默认打开了
+```txt
+# CONFIG_KFENCE is not set
+```
