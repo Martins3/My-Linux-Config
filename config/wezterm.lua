@@ -20,7 +20,7 @@ local function get_font_size()
   end
 
   -- intel 上使用的是一个 4k 27 寸 显示器
-  return 9.2
+  return 19.2
 end
 
 local function basename(s)
@@ -180,7 +180,8 @@ return {
     { key = "F8", mods = "", action = wezterm.action.ShowLauncher },
   },
   adjust_window_size_when_changing_font_size = false,
-  default_prog = { "bash", "-l", "-c", "/usr/bin/env tmux attach || /usr/bin/env tmux" },
+  default_prog = { "zsh" },
+  -- default_prog = { "bash", "-l", "-c", "/usr/bin/env tmux attach || /usr/bin/env tmux" },
   -- default_prog = { '/bin/sh', '-l', '-c', 'zellij attach || /usr/bin/env zellij' },
   color_scheme = "Solarized (dark) (terminal.sexy)",
   font_size = get_font_size(),

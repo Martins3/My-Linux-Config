@@ -11,6 +11,8 @@ in
     ./app/gnome.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
@@ -69,6 +71,9 @@ in
     # xmind
     # obsidian
     # rustdesk
+
+    # distrobox # 基于容器来提供各种 distribution
+    # boxbuddy # distrobox 的图形工具
   ];
 
   xdg.desktopEntries = {
