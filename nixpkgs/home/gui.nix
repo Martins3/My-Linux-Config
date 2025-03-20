@@ -60,7 +60,7 @@ in
     microsoft-edge
     # clash-verge-rev
     # 通过 tweaks 调整开机自启动
-    gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
+    # gnome-tweaks # @todo 确定是这里设置的，还是只是一个 extension
     # clash-nyanpasu
     # vlc
     # podman-desktop
