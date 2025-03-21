@@ -28,7 +28,6 @@ with pkgs;
   libclang # 各种 clang 基本工具，例如 clang-doc
   libllvm
   lld
-  myPkg
   # gnuplot
   ccache
   opam
@@ -273,6 +272,7 @@ with pkgs;
   stress-ng
   # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
   hexyl # 分析二进制
+  hyperfine # 命令行性能测试工具
   # rasdaemon # @todo 莫名其妙，不知道怎么使用
   ninja
 
@@ -388,15 +388,17 @@ with pkgs;
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
+  clash-meta
 
   # lsp && formatter
   black # python formatter
-  rust-analyzer
-  rustfmt
-  clippy
+  # 似乎不需要在这里安装 rust 的工具
+  # rust-analyzer
+  # rustfmt
+  # clippy
+
   efm-langserver # 集成 shellcheck
-  marksman
-  typos-lsp
+  # marksman
+  # typos-lsp
   pyright
-  clash-meta
 ]

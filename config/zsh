@@ -92,9 +92,7 @@ alias ls="eza"
 # alias ls="eza --icons"
 # 不知道为什么 --icons 会让自动补全消失了
 alias l="ls -lah --icons"
-alias m="KBUILD_BUILD_TIMESTAMP='' make LLVM=1 CC='ccache clang' -j$(getconf _NPROCESSORS_ONLN)"
 alias im="ibus engine rime"
-alias mc="make clean"
 alias q="exit"
 alias v="mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)"
 alias vs="$HOME/.dotfiles/config/sh/close-nvim.sh"
@@ -115,7 +113,7 @@ function config_repo(){
   git config user.email hubachelar@gmail.com
 }
 function check(){
-	cd ~/core/linux-upstream/
+	cd ~/data/linux-upstream/
 	tig --author="$*"
 }
 alias weather="curl wttr.in/beijin"
