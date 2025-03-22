@@ -1,5 +1,4 @@
-# vim 的高级话题
-## tab 和 space
+# vim 的高级话题 ## tab 和 space
 
 tab 会被自动修改为 space 吗? 不会，执行 retab 或者 retab! 来转换。
 
@@ -436,3 +435,11 @@ https://github.com/Chenyu-otf/chenyuluoyan_thin
 
 ## 把这个安排上
 https://github.com/huacnlee/autocorrect
+
+## 一个非常坑的配置
+自动关闭 vim 如果 window 中只有一个 filetree
+```txt
+https://github.com/kyazdani42/nvim-tree.lua
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+```
+应该是这个导致 session 无法正常工作的
