@@ -398,7 +398,7 @@ with pkgs;
   # clippy
 
   efm-langserver # 集成 shellcheck
-  # marksman
+  marksman # nixos 不可以通过 mason 来安装，有动态库的问题
   # typos-lsp
   pyright
 ]

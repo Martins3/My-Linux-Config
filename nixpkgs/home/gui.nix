@@ -17,6 +17,7 @@ in
     neovide
     # shiori # bookmark 管理，但是没搞懂怎么使用
     unstable.wpsoffice
+    # remmina # 远程桌面工具，体验一般
     # sublime-merge
     # vscode
     flameshot # 截图

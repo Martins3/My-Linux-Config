@@ -97,6 +97,7 @@ alias q="exit"
 alias v="mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)"
 alias vs="$HOME/.dotfiles/config/sh/close-nvim.sh"
 alias vc="rm -r ~/.local/share/nvim/sessions"
+alias vc='echo "nvim-tree bug is not fixed ?"'
 alias he="nvim +10000 $HOME/.dotfiles/sheet.md"
 alias kvm_stat="sudo $HOME/data/linux/tools/kvm/kvm_stat/kvm_stat"
 alias i="ipython"
