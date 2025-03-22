@@ -31,13 +31,6 @@ require("debugprint").setup()
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
 
--- workaround for https://github.com/neovim/neovim/issues/21856
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.cmd("sleep 10m")
-  end,
-})
-
 -- 书签
 require("bookmarks").setup({
   mappings_enabled = true,
