@@ -2,12 +2,10 @@ require("nvim-treesitter.configs").setup({
   -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
   highlight = {
     enable = true,
-    disable = { "org", "c", "cpp" },
-    additional_vim_regex_highlighting = { "org" },
+    disable = { "c", "cpp" },
   },
   -- ensure_installed = "maintained", 安装目前维护的所有语言 treesitter 插件。
   ensure_installed = {
-    "org",
     "lua",
     "java",
     "rust",
@@ -23,7 +21,14 @@ require("nvim-treesitter.configs").setup({
     -- 'comment' -- 更好的高亮 TODO XXX NOTE FIXME ，但是其让 url 的高亮过于明显
     "rst",
     "llvm",
+    "gitcommit",
+    "gitignore",
+    "git_rebase",
     "html",
+    "perl", -- 内核的一些脚本是 perl
+    "make",
+    "kconfig",
+    "toml",
   },
 })
 

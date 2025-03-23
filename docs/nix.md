@@ -183,7 +183,7 @@ npm install -g prettier
 sudo smbpasswd -a martins3
 ```
 
-在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.2.2\public` 即可。
+在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.0.2\public` 即可。
 注意，这里的 public 和配置文件中对应的。
 
 如果遇到需要密码的时候，但是密码不对
@@ -1213,30 +1213,6 @@ https://wiki.archlinux.org/title/Desktop_notifications
 [dunst](https://github.com/dunst-project/dunst)
 man home-configuration.nix 中搜索 dunst
 
-## clash 配置
-
-在 profiles 中右键，参考
-https://docs.cfw.lbyczf.com/contents/ui/profiles/rules.html
-
-目前使用: clash-verge
-
-### 只是使用 clash-verge
-1. https://github.com/MetaCubeX/meta-rules-dat/releases
-```txt
-WARN[2024-06-12T21:15:47.692663784+08:00] MMDB invalid, remove and download
-ERRO[2024-06-12T21:17:17.693315974+08:00] can't initial GeoIP: can't download MMDB: conte
-FATA[2024-06-12T21:17:17.693330996+08:00] Parse config error: rules[10045] [GEOIP,CN,🎯 全
-```
-2. 默认路径: /home/martins3/.config/mihomo
-3. 只需要拷贝 config.yaml
-
-
-### clash-verge
-
-1. 拷贝 https://github.com/MetaCubeX/meta-rules-dat/releases 中的 country.mmdb
- .local/share/io.github.clash-verge-rev.clash-verge-rev
-
-
 ## canTouchEfiVariables 到底是什么来头
 
 https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
@@ -1715,6 +1691,21 @@ A: checkout "sudo make install" output to find out bpf package installation site
 cd $(nix-build -E "(import <nixpkgs> {}).bcc" --no-out-link)
 ```
 
+### 2025-03-16 bcc 工具也不可以使用了
+```txt
+🧀  sudo wqlat
+<built-in>:1:10: fatal error: './include/linux/kconfig.h' file not found
+    1 | #include "./include/linux/kconfig.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+Traceback (most recent call last):
+  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/share/bcc/tools/.wqlat-wrapped", line 162, in <module>
+    b = BPF(text=bpf_text)
+        ^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/lib/python3.12/site-packages/bcc-0.31.0-py3.12.egg/bcc/__init__.py", line 480, in __init__
+Exception: Failed to compile BPF module <text>
+```
+
 ## 编译 bpf 的时候有警告
 
 linux/tools/bpf/runqslower 下
@@ -1991,3 +1982,35 @@ https://github.com/nix-community/harmonia
 
 ## 仔细看看这个
 https://github.com/NixOS-CN
+
+## home manager 可以管理 systemd 吗?
+
+https://news.ycombinator.com/item?id=42666851
+
+
+## kernel 配置在这里的
+kernel-modules/lib/modules/6.12.7/modules.devname
+
+## uv 来解决 python3 的环境问题可以吗?
+https://github.com/astral-sh/uv
+
+## 原来 rust-analyzer 是一个软连接啊
+```txt
+🧀  l /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer
+Permissions Size User Date Modified Name
+lrwxrwxrwx     - root  1 Jan  1970   /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer -> rustup
+```
+
+这样可以解决:
+```txt
+rustup component add rust-analyzer
+```
+
+## 这个功能对于我来说，很重要
+安装的时候可以不用联网。
+https://github.com/tfc/nixos-auto-installer
+
+## nixos 的 kernel 为什么默认打开了
+```txt
+# CONFIG_KFENCE is not set
+```

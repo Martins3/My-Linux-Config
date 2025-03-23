@@ -69,21 +69,17 @@
       5201
       5202
       5203 # iperf3
-      3434 # http.server
       8889 # clash
       445 # samba
       # 8384 # syncthing
       # 22000 # syncthing
-      6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
-      2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
-      2380 # k3s, etcd peers: required if using a "High Availability Embedded etcd" configuration
       2049 # nfs
     ];
 
     allowedTCPPortRanges = [
       {
-        from = 5900;
-        to = 6500;
+        from = 50000;
+        to = 60000;
       }
     ];
   };
@@ -114,8 +110,8 @@
         # "force group" = "groupname";
       };
 
-      iso = {
-        path = "/home/martins3/hack/iso";
+      hack = {
+        path = "/home/martins3/hack";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "yes";

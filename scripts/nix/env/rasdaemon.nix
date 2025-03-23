@@ -12,7 +12,6 @@ pkgs.stdenv.mkDerivation {
     perlPackages.DBDSQLite # (if sqlite3 will be used)
 
     # 将这个作为基础
-    yacc
     bison
     flex
     pkg-config
