@@ -2014,3 +2014,10 @@ https://github.com/tfc/nixos-auto-installer
 ```txt
 # CONFIG_KFENCE is not set
 ```
+
+## 系统中的 contained 是从哪里来的
+
+```txt
+        ├─containerd-shim─┬─redis-server───4*[{redis-server}]
+        │                 └─12*[{containerd-shim}]
+```
