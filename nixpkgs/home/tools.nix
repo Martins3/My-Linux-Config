@@ -19,6 +19,9 @@ in
 with pkgs;
 [
   vim
+  gnumake
+  yarn
+  nodejs
   starship
   atuin
   eza # more powerful ls
@@ -37,7 +40,7 @@ with pkgs;
   spin
   swarm # 形式化验证工具
   go
-  ruby
+  # ruby
   # procdump 微软的 ProcDump 的 linux 移植
   ouch # 简化压缩/解压缩的使用
   # xpipe # 管理服务器的工具
@@ -54,15 +57,11 @@ with pkgs;
   # xplr
 
   pass # wireguard 作者维护的密码管理工具
-  lua-language-server
-  stylua
   # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
   # libguestfs
   # libguestfs-appliance
   # cloud-utils
   # adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
-  ccls
-  checkmake
   # minicom
   typos # 检查代码中 typo
   # typst # latex 替代品
@@ -74,10 +73,7 @@ with pkgs;
   zstd
   termshark
   dnsmasq
-  gnumake
   # audit # 没啥意义，用不起来
-  yarn
-  nodejs
   # tmux
   old_tmux
   tmuxp
@@ -92,7 +88,7 @@ with pkgs;
   unzip
   fzf
   ripgrep
-  # TODO 似乎这个真的是多余的，但是为什么只有到 mac 上才发现
+  # TODO 似乎这个 binutils 真的是多余的，但是为什么只有到 mac 上才发现
   # binutils
   lsof
 ]
@@ -174,19 +170,23 @@ with pkgs;
 
   # podman # 暂时不需要
   # podman-tui
-  k9s
   # minio
-  kubectl
   # kubeadm
-  kubernetes-helm
-  kind
-  minikube
   # slirp4netns
+  # runc
+  # crun
+  # youki
+  # kind
+  # 需要的话，打开这几个看看
+  # k9s
+  # kubectl
+  # kubernetes-helm
+  # minikube
 
   # openvswitch-lts # 通过 nixpkgs/sys/cli.nix 安装
   bridge-utils
 
-  # TODO TODO TODO 谁包含了 ceph
+  # TODO 谁包含了 ceph
   # qemu
   # qemu6
   # lima # 虚拟机工具
@@ -200,7 +200,7 @@ with pkgs;
   virtiofsd
   # nixpacks
 
-  # 想不到 ltrace 内核不支持
+  # 想不到 ltrace macos 不支持
   ltrace # library trace
 
   parted
@@ -210,10 +210,6 @@ with pkgs;
   atop # 类似 htop ，但是展示的内容不同
   # TODO 做什么的
   # nmon
-
-  runc
-  crun
-  youki
 
   psmisc # 包含 pstree fuser 等工具
 
@@ -250,8 +246,8 @@ with pkgs;
   socat # unix domain
   delta # git diff
   icdiff
-  git-filter-repo # 批量修改历史
-  act # Run github action locally
+  # git-filter-repo # 批量修改历史
+  # act # Run github action locally
   # git-secrets
   bandwidth
   # openfortivpn # TODO 真的可以用吗?
@@ -278,7 +274,7 @@ with pkgs;
 
   nix-tree # 动态的展示每一个包的依赖
   # nix-index
-  nixd
+  nixd # nix 语言的 lsp
   nixfmt-rfc-style
   # debootstrap # 制作 uml 的工具
   meson
@@ -310,7 +306,7 @@ with pkgs;
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
   # 需要设置 libsqlite3.so 的位置
-  sqlite
+  # sqlite
   # wirelesstools
   dos2unix
   # @todo 传统调试工具专门整理为一个包
@@ -397,6 +393,10 @@ with pkgs;
   # rustfmt
   # clippy
 
+  ccls
+  checkmake
+  stylua
+  lua-language-server
   efm-langserver # 集成 shellcheck
   marksman # nixos 不可以通过 mason 来安装，有动态库的问题
   # typos-lsp
