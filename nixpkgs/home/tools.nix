@@ -35,7 +35,7 @@ with pkgs;
   ccache
   opam
   moreutils # jq 无法本地修改，提供 sponge
-  yazi
+  unstable.yazi
   # mold
   spin
   swarm # 形式化验证工具

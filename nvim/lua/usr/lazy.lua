@@ -224,4 +224,11 @@ require("lazy").setup({
       end)
     end,
   },
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    dependencies = { "folke/snacks.nvim", lazy = true },
+    keys = { },
+  }
 }, {})

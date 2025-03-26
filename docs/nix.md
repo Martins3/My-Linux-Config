@@ -2012,7 +2012,7 @@ https://github.com/tfc/nixos-auto-installer
 
 ## nixos 的 kernel 为什么默认打开了
 ```txt
-# CONFIG_KFENCE is not set
+CONFIG_KFENCE=y
 ```
 
 ## 系统中的 contained 是从哪里来的
@@ -2021,3 +2021,7 @@ https://github.com/tfc/nixos-auto-installer
         ├─containerd-shim─┬─redis-server───4*[{redis-server}]
         │                 └─12*[{containerd-shim}]
 ```
+
+## coreutils 中的 .envrc 可以关注下
+
+https://github.com/uutils/coreutils/blob/main/.envrc

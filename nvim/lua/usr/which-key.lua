@@ -58,6 +58,7 @@ wk.add({
   { "<space>cv", "<cmd>vsplit | Ouroboros<cr>",                       desc = "open file in a vertical split" },
   { "<space>f",  group = "file" },
   { "<space>fo", "<cmd>NvimTreeFindFile<cr>",                         desc = "open file in dir" },
+  { "<space>fy", "<cmd>Yazi<cr>",                         desc = "open file in dir" },
   { "<space>fs", "<cmd>w<cr>",                                        desc = "save file" },
   { "<space>ft", "<cmd>NvimTreeToggle<cr>",                           desc = "toggle file tree" },
   { "<space>g",  group = "git" },
