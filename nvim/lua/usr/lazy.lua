@@ -219,6 +219,4 @@ require("lazy").setup({
     keys = {},
   },
   'pteroctopus/faster.nvim', -- 打开大文件的时候自动 disable 一些功能，例如高亮等
-
-  { 'echasnovski/mini.nvim', version = '*' },
 }, {})

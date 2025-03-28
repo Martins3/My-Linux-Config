@@ -211,7 +211,6 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 - https://github.com/glepnir/nvim
 
 ## [ ] zellij 的问题更多了
-
 1. nvim 无法在其中拷贝
 2. ui 总是在闪烁啊
 
@@ -281,10 +280,6 @@ https://github.com/analysis-tools-dev/static-analysis
 
 ## 配置一下这个
 https://github.com/zbirenbaum/copilot.lua
-
-## 这个可以搞一下，似乎又发展了一段时间
-- https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
-- https://github.com/microsoft/vscode-cpptools
 
 ## 有趣
 https://github.com/Chenyu-otf/chenyuluoyan_thin

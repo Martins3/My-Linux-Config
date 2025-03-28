@@ -566,9 +566,9 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 | ----------------------------- |
 | <img src="./img/debug.png" /> |
 
-一种更强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，但是现在还不成熟:
-- 需要安装多个插件；
-- 配置文件比较复杂，尝试过一次，但是放弃了，对应的代码在[这个位置](https://github.com/Martins3/My-Linux-Config/tree/debug/nvim/lua/debugxx)。
+一种更强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，具体配置参考，我目前兴趣不大:
+- https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
+- https://github.com/microsoft/vscode-cpptools
 
 此外还有插件 [nvim-gdb](https://github.com/sakhnik/nvim-gdb) ，也许可以勉强维持生活。
 
