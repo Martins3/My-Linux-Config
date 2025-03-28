@@ -166,19 +166,6 @@ require("lazy").setup({
     opts = {},
   },
   {
-    "epwalsh/pomo.nvim",
-    version = "*", -- Recommended, use latest release instead of latest commit
-    lazy = true,
-    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
-    dependencies = {
-      -- Optional, but highly recommended if you want to use the "Default" timer
-      "rcarriga/nvim-notify",
-    },
-    opts = {
-      -- See below for full list of options 👇
-    },
-  },
-  {
     'mcauley-penney/visual-whitespace.nvim',
     config = true
   }, -- 在 visual mode 展示空白字符
@@ -229,6 +216,7 @@ require("lazy").setup({
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
     dependencies = { "folke/snacks.nvim", lazy = true },
-    keys = { },
-  }
+    keys = {},
+  },
+  'pteroctopus/faster.nvim' -- 打开大文件的时候自动 disable 一些功能，例如高亮等
 }, {})
