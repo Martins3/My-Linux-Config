@@ -9,3 +9,9 @@
 - 是 ccls 的问题吗?
 
 ## python 的代码补全消失了
+
+## 现在很多语言的 format 都不可以用了
+1. markdown
+2. python
+
+## 为什么现在无法利用 buffer 中内容补全了

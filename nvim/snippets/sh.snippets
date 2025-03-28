@@ -762,3 +762,8 @@ snippet note_xargs "rg 常见技巧" b
 	find ./foo -type f -name "*.txt" -exec rm {} \;
 	find ./foo -type f -name "*.txt" | xargs rm
 	find . -type f -print | xargs stat -c '%a %n'
+
+snippet note_cut "cut 常用" b
+	echo "apple,banana,orange" | cut -d',' -f2
+	echo "apple,banana,orange" | cut -d',' -f1,3
+	echo "apple,banana,orange,grape" | cut -d',' -f2-4

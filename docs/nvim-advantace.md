@@ -10,6 +10,7 @@
 - [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
   - `:%norm dw`
 
+
 ## 调试插件的 bug
 
 为了制作一个最小的复现环境，
@@ -17,6 +18,20 @@
 使用 .dotfiles/nvim/debug/switch.sh 来来回
 
 为 .dotfiles/nvim/debug/init.lua 和本配置
+
+## 踩坑
+1. 一个错误的配置
+
+自动关闭 vim 如果 window 中只有一个 filetree
+```txt
+https://github.com/kyazdani42/nvim-tree.lua
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+```
+应该是这个导致 session 无法正常工作的
+
+2. 强制升级方法
+cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
+找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
 
 ## tree-sitter
 
@@ -29,14 +44,9 @@
 - [ ] https://news.ycombinator.com/item?id=36312027
 - https://m4xshen.dev/posts/vim-command-workflow/
 
-## 插件开发
-
-https://zignar.net/2023/06/10/debugging-lua-in-neovim/
-https://github.com/ibhagwan/smartyank.nvim
 
 ## 尝试下
-https://github.com/abecodes/tabout.nvim
-https://github.com/YaroSpace/lua-console.nvim
+- https://github.com/abecodes/tabout.nvim
 
 ## 问题
 
@@ -47,13 +57,11 @@ https://github.com/YaroSpace/lua-console.nvim
 
 2. [gcov](https://marketplace.visualstudio.com/items?itemName=JacquesLucke.gcov-viewer)
 
-## wl-copy 似乎有点扰乱了系统
 
-## 尝试下
+## 意义不大
 - https://github.com/2KAbhishek/termim.nvim
-
-## 的确比较有趣
-https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-bufremove.md#features
+- https://github.com/ibhagwan/smartyank.nvim
+- https://github.com/chrishrb/gx.nvim : 我原来用的啥实现 gx 的来着
 
 ## Markdown 和 bash 的文件类型相关的参数的确需要重构了下了
 
@@ -64,8 +72,6 @@ https://github.com/nvim-neorocks/nvim-best-practices
 ## sqlite ，好麻烦啊!
 https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
 
-## 看看这个
-https://github.com/chrishrb/gx.nvim
 
 ## 用用这个软件
 https://github.com/mpv-player/mpv
@@ -216,11 +222,6 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 
 ## [ ] 如何跳到屏幕的开始
 
-## 升级方法
-cd $HOME/.local/share/nvim/lazy/ && rm -rf hydra.nvim
-
-找到 nvim/lazy-lock.json ，将其中 hydra.nvim 那个删掉
-
 ## 还是有必要看看的
 很多东西过时了，但是还是有很多可以参考的
 https://danielmiessler.com/study/vim
@@ -253,7 +254,6 @@ https://github.com/OXY2DEV/markview.nvim
 https://github.com/bash-lsp/bash-language-server
 
 https://news.ycombinator.com/item?id=42674116
-
 https://news.ycombinator.com/item?id=40179194
 https://m4xshen.dev/posts/vim-command-workflow
 
@@ -274,29 +274,10 @@ cline
 
 沉浸式翻译
 
-## 似乎用途不大了
-```vim
-" 将各种命令的执行结果放到 buffer 中，比如 Redir messages
-" https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
-
-" 删除 trailing space 和消除 tab space 混用
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-    retab
-endfun
-command! TrimWhitespace call TrimWhitespace()
-```
-
 ## 话说，有没有类似 mason-lspconfig 来解决字体安装的
 
 ## 这个工具可以理解下
 https://github.com/analysis-tools-dev/static-analysis
-
-## 现在很多语言的 format 都不可以用了
-1. markdown
-2. python
 
 ## 配置一下这个
 https://github.com/zbirenbaum/copilot.lua
@@ -305,18 +286,8 @@ https://github.com/zbirenbaum/copilot.lua
 - https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
 - https://github.com/microsoft/vscode-cpptools
 
-## 为什么现在无法利用 buffer 中内容补全了
-
 ## 有趣
 https://github.com/Chenyu-otf/chenyuluoyan_thin
 
 ## 把这个安排上
 https://github.com/huacnlee/autocorrect
-
-## 一个非常坑的配置
-自动关闭 vim 如果 window 中只有一个 filetree
-```txt
-https://github.com/kyazdani42/nvim-tree.lua
-autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-```
-应该是这个导致 session 无法正常工作的

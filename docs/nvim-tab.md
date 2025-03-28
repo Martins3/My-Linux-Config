@@ -43,3 +43,18 @@ https://vi.stackexchange.com/questions/4244/what-is-softtabstop-used-for
 #define DECLARE_WAITQUEUE(name, tsk)						\
 	struct wait_queue_entry name = __WAITQUEUE_INITIALIZER(name, tsk)
 ```
+
+## 似乎用途不大了
+```vim
+" 将各种命令的执行结果放到 buffer 中，比如 Redir messages
+" https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
+
+" 删除 trailing space 和消除 tab space 混用
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+    retab
+endfun
+command! TrimWhitespace call TrimWhitespace()
+```
