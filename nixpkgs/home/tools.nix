@@ -39,6 +39,7 @@ with pkgs;
   # mold
   spin
   swarm # 形式化验证工具
+  bat
   go
   # ruby
   # procdump 微软的 ProcDump 的 linux 移植

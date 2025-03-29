@@ -343,19 +343,19 @@ snippet note_cmpint "compare int"
 snippet note_select "compare int"
 	select brand in Samsung Sony iphone symphony Walton
 	do
-					echo "You have chosen $brand"
+		echo "You have chosen $brand"
 	done
 
 
 snippet note_forarray "for every element in array"
 	for i in "${$1[@]}"; do
-					echo "$i"
+		echo "$i"
 	done
 
 
 snippet note_forarrayindex "for every element in array"
 	for ((i=0;i<${#$1[@]};i++)); do
-					printf '%s\n' "${$1[i]}"
+		printf '%s\n' "${$1[i]}"
 	done
 
 
