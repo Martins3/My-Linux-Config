@@ -51,3 +51,21 @@ require("persisted").setup({
     return true
   end,
 })
+
+vim.api.nvim_create_user_command(
+  'InsertUUID',
+  function()
+    local handle = io.popen('uuidgen')
+    if not handle then
+      vim.notify("Failed to generate UUID", vim.log.levels.ERROR)
+      return
+    end
+
+    local uuid = handle:read('*a'):gsub('\n', '')
+    handle:close()
+
+    local formatted_uuid = '<!-- ' .. uuid .. ' -->'
+    vim.api.nvim_put({ formatted_uuid }, '', false, true)
+  end,
+  { desc = 'insert a generated UUID as an HTML comment' }
+)
