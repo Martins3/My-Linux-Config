@@ -145,7 +145,6 @@ with pkgs;
 
   # cflow # 感觉很弱，没用懂
   strace
-  intentrace # see docs/trace/strace.md
 
   pahole
   xdp-tools
@@ -303,6 +302,7 @@ with pkgs;
   # zenith-nvidia # 用处不大，和 top 功能重叠
   nvitop # 美观，比 nvidia-smi 好用
   powertop # 分析功耗
+  intentrace # strace 类似工具 TODO 居然不支持 aarch64
 ]
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
