@@ -278,7 +278,7 @@ with pkgs;
   nixfmt-rfc-style
   # debootstrap # 制作 uml 的工具
   meson
-  unstable.neovim
+  neovim
   luarocks
   # zed-editor # 默认不支持中文，放弃
   # helix # modern neovim
@@ -307,7 +307,7 @@ with pkgs;
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
   # 需要设置 libsqlite3.so 的位置
-  # sqlite
+  sqlite
   # wirelesstools
   dos2unix
   # @todo 传统调试工具专门整理为一个包

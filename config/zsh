@@ -106,7 +106,6 @@ alias static="nix-shell -p gcc glibc.static --command zsh"
 alias wez=$HOME/.dotfiles/config/sh/wez-opacity.sh
 alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
 alias ins="$HOME/.dotfiles/scripts/nix/env/install.sh"
-alias xx="sudo shutdown now"
 alias tm="tmux attach || tmux"
 function config_repo(){
   git config user.name martins3
