@@ -15,3 +15,6 @@
 2. python
 
 ## 为什么现在无法利用 buffer 中内容补全了
+
+## bash 敲 while ，后面的选择无法选中
+而且 while keyword 的提示也会快速消失。

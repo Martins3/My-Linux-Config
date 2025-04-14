@@ -164,9 +164,9 @@ snippet note_glob "globstar"
 
 
 snippet fori "C style for loop"
-	VAR=50
-	for ((i=0;i<=VAR;i=i + 4)); do
-					printf '%s\n' "$i"
+	VAR=10
+	for ((i=0;i<VAR;i=i + 1)); do
+		printf '%s\n' "$i"
 	done
 
 
@@ -502,12 +502,15 @@ snippet note_split_into_array "split string to array"
 	printf "%s\n" "${array[@]}"
 	# grep a.sh < <(ls) 等价于 ls | grep a.sh
 
-snippet note_tee ""
+snippet note_tee "tee"
 	# 基本使用
 	ls | tee abc.txt
 	# 默认会将文件覆盖掉，可以使用 -a 来 append
 	cat /proc/cpuinfo | grep "$i" | tee -a abc.txt
 
+snippet note_read "read"
+	read -r username
+	echo "\$username"
 
 snippet note_awk "basic"
 	# 读取一行中的第二个，注意，使用小引号
