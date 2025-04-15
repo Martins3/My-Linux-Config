@@ -39,7 +39,8 @@
     abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
 
     // 这个退出不太智能，无法根据上下文判断
-    exit: Some(( code: Char('x'), modifiers: "")),
-    exit_popup: Some(( code: Char('q'), modifiers: "")),
-    quit: Some(( code: Char('x'), modifiers: "")),
+    // TODO 这里有 bug ，在 log -> 搜索 中如果输入 x ，那么会直接退出
+    // exit: Some(( code: Char('x'), modifiers: "")),
+    // exit_popup: Some(( code: Char('q'), modifiers: "")),
+    // quit: Some(( code: Char('x'), modifiers: "")),
 )

@@ -1,8 +1,9 @@
+let
+  homeDirectory = builtins.getEnv "HOME";  # 使用环境变量 HOME
+  optConfig = if (builtins.pathExists "${homeDirectory}/opt-local.nix")
+    then import "${homeDirectory}/opt-local.nix"
+    else {};
+in
 {
   isGui = true;
-}
-// (
-if (builtins.pathExists /home/martins3/opt-local.nix)
-  then import /home/martins3/opt-local.nix
-  else {}
-)
+} // optConfig

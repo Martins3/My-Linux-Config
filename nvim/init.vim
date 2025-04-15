@@ -22,15 +22,6 @@ map <leader>d "+d
 " 加载 lua 配置
 lua require 'usr'
 
-" 加载 vim 配置, 参考 https://github.com/jdhao/nvim-config
-let s:core_conf_files = [
-      \ 'debug.vim',
-      \ ]
-
-for s:fname in s:core_conf_files
-  execute printf('source %s/vim/%s', stdpath('config'), s:fname)
-endfor
-
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
 
@@ -45,8 +36,10 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " 自动关闭 vim 如果 window 中只有一个 filetree
 " https://github.com/kyazdani42/nvim-tree.lua
+
 " 关闭特性，开启后会导致nvim 目录时发生闪退
 " Disable the feature; enabling it causes Neovim to crash when accessing directories.
+
 " autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 
 " 定义预先录制的 macro

@@ -14,6 +14,8 @@ require("usr.colorscheme")
 require("usr.bufferline")
 require("usr.lualine")
 require("usr.neovide")
+require("usr.bactrace")
+require("usr.util")
 require("usr.toggleterm")
 -- require("usr.window-focus")
 require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
@@ -23,37 +25,19 @@ require("leap").add_default_mappings()
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
--- require("nvim-navic").setup() -- 这个插件很久没更新了，也不需要在这里配置
-require("barbecue").setup()
--- require("nvim-lightbulb").update_lightbulb()
 require("debugprint").setup()
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
 
--- workaround for https://github.com/neovim/neovim/issues/21856
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    vim.cmd("sleep 10m")
-  end,
-})
-
--- 导航栏
-require("aerial").setup({
-  backends = { "markdown", "man", "lsp", "treesitter" },
-  layout = {
-    max_width = { 30, 0.15 },
-    placement = "edge",
-    default_direction = "left",
-  },
-  attach_mode = "global",
-  disable_max_lines = 20000,
-})
-
 -- 书签
 require("bookmarks").setup({
-  mappings_enabled = false,
+  mappings_enabled = true,
+  keymap = {
+    toggle = "mc",
+    delete = "dd",
+  },
   virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
 })
 
@@ -67,3 +51,21 @@ require("persisted").setup({
     return true
   end,
 })
+
+vim.api.nvim_create_user_command(
+  'InsertUUID',
+  function()
+    local handle = io.popen('uuidgen')
+    if not handle then
+      vim.notify("Failed to generate UUID", vim.log.levels.ERROR)
+      return
+    end
+
+    local uuid = handle:read('*a'):gsub('\n', '')
+    handle:close()
+
+    local formatted_uuid = '<!-- ' .. uuid .. ' -->'
+    vim.api.nvim_put({ formatted_uuid }, '', false, true)
+  end,
+  { desc = 'insert a generated UUID as an HTML comment' }
+)

@@ -16,10 +16,10 @@ require("telescope").setup({
 
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "respect_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "respect_case",     -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
     bookmarks = {
@@ -28,8 +28,12 @@ require("telescope").setup({
     },
     emoji = {
       action = function(emoji)
-        vim.api.nvim_put({ emoji.value }, "c", false, true) -- 选择 emoji 之后直接插入符号
+        -- insert emoji when picked
+        vim.api.nvim_put({ emoji.value }, 'c', false, true)
       end,
+    },
+    frecency = {
+      -- auto_validate = false,
     },
   },
 })

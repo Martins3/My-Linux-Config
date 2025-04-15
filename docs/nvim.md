@@ -32,7 +32,7 @@
   * [字符串搜索和替换](#字符串搜索和替换)
   * [file tree](#file-tree)
   * [window](#window)
-    * [调整一个 window 的大小](#调整一个-window-的大小)
+    * [window resize](#window-resize)
   * [buffer](#buffer)
   * [文件搜索](#文件搜索)
   * [导航](#导航)
@@ -219,7 +219,7 @@ sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cm
 
 ### 安装 nvim
 
-- 当前配置需要 neovim 0.9 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+- 当前配置需要 neovim 0.10 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 其实也就是下面几条命令:
 
@@ -232,19 +232,19 @@ git checkout release-0.10 # 2025-01-06 的最新 release 是 2025
 
 编译并且安装:
 ```sh
-make CMAKE_BUILD_TYPE=Release -j8
+make CMAKE_BUILD_TYPE=Release -j16
 sudo make install
 ```
 
 ### 安装 nerdfonts
-
-先[下载](https://www.nerdfonts.com/font-downloads)，再[安装](https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0)，最后设置就好了。
-
 注意，需要修改 terminal 的字体为 nerdfonts 中才不会出现乱码。
 
+nerd-fonts 版本和字体可以到 [releases](https://github.com/ryanoasis/nerd-fonts/releases/) 界面选择
+
+假如需要 FiraCode ，在 Linux 下也就是这几条命令:
 ```sh
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hasklig.zip
-unzip Hasklig.zip -d ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
+unzip FiraCode.zip -d ~/.fonts
 fc-cache -fv
 ```
 
@@ -285,7 +285,7 @@ cd ~ # 保证在根目录下
 ```sh
 git clone --depth=1 https://github.com/martins3/My-Linux-config .dotfiles # 随便什么名字
 ln -s ~/.dotfiles/nvim ~/.config/nvim # 创建一个软链接指向此处
-nvim
+nvim --headless +qall # 不去打开 nvim 的界面，仅仅显示 nvim 的安装插件的日志
 ```
 
 然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件.
@@ -368,9 +368,15 @@ map <leader>d "+d
 #### 从远程 server 上复制粘贴本地的剪切板中
 
 假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
-neovim 在 0.10 中增加了一个新功能，可以直接复制到 windows 的剪切板中。
+neovim 在 0.10 中增加了一个新功能 oscyank，通过该功能可以直接复制到你在使用的 windows 电脑的剪切板中。
 
 如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank)
+
+如果是在 tmux 中使用，那么 tmux 中需要添加如下配置:
+```txt
+# Allow clipboard with OSC-52 work, see https://github.com/tmux/tmux/wiki/Clipboard
+set -s set-clipboard on
+```
 
 原理上参考:
 - https://news.ycombinator.com/item?id=32037489
@@ -469,7 +475,7 @@ vim 内置了强大的搜索替换功能
 | `c` `m`     | 当前窗口最大化 |
 
 
-#### 调整一个 window 的大小
+#### window resize
 
 nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
 将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
@@ -496,12 +502,9 @@ telescope 同样可以用于搜索文件使用 `,` `f` + 文件名
 | <img src="./img/search-files.png" /> |
 
 ### 导航
+基于 [lspsaga](https://nvimdev.github.io/lspsaga/outline/)
 
-利用 [aerial.nvim](https://github.com/stevearc/aerial.nvim) 实现函数侧边栏导航(类似于 tagbar) ，打开关闭的快捷键 `c` `n`。
-
-| 基于 stevearc/aerial.nvim 的导航栏 |
-| ---------------------------------- |
-| <img src="./img/outline.png" />    |
+![Image](https://github.com/user-attachments/assets/f01b92ec-1392-4bca-8f81-cf9947d33d5d)
 
 ### 代码段
 
@@ -563,9 +566,9 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 | ----------------------------- |
 | <img src="./img/debug.png" /> |
 
-一种更强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，但是现在还不成熟:
-- 需要安装多个插件；
-- 配置文件比较复杂，尝试过一次，但是放弃了，对应的代码在[这个位置](https://github.com/Martins3/My-Linux-Config/tree/debug/nvim/lua/debugxx)。
+一种更强大的方法是通过 [nvim-dap](https://github.com/mfussenegger/nvim-dap) 来构建，具体配置参考，我目前兴趣不大:
+- https://www.johntobin.ie/blog/debugging_in_neovim_with_nvim-dap/
+- https://github.com/microsoft/vscode-cpptools
 
 此外还有插件 [nvim-gdb](https://github.com/sakhnik/nvim-gdb) ，也许可以勉强维持生活。
 

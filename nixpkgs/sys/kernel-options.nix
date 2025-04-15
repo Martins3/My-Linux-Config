@@ -22,7 +22,7 @@
 '';
 
   boot.kernelParams = [
-    "transparent_hugepage=always"
+    "transparent_hugepage=never"
     "kvm.halt_poll_ns=0"
     "mitigations=off"
     # 硬件上都直接不支持了
