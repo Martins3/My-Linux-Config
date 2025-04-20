@@ -43,4 +43,7 @@
     // exit: Some(( code: Char('x'), modifiers: "")),
     // exit_popup: Some(( code: Char('q'), modifiers: "")),
     // quit: Some(( code: Char('x'), modifiers: "")),
+
+    // 不知道咋地，总是一不小心就按了 q ，重新加载 kernel 的 log 就有点慢了
+    quit: Some(( code: Char('c'), modifiers: "CONTROL")),
 )
