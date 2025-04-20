@@ -129,6 +129,13 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 ## 更多参考
 - https://github.com/MaskRay/ccls/issues/880
 
+## 2025/4 的更新
+clangd 在 kernel/time/ntp.c
+检查到了这个是不需要的
+```txt
+#include "timekeeping_internal.h"
+```
+
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"
         data-repo-id="MDEwOlJlcG9zaXRvcnkyMTUwMDkyMDU="
