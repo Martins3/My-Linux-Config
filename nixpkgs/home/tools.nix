@@ -118,7 +118,7 @@ with pkgs;
   dracut
   ventoy
   gdb
-  # iw # TODO 做啥的来着
+  iw # wifi 管理
 
   # busybox # 提供 devmem 等工具，但是会覆盖很多工具
   debootstrap # 制作 rootfs 的工具
