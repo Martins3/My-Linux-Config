@@ -265,6 +265,7 @@ with pkgs;
   sshpass
   gping # better ping
   pingu # interesting ping
+  fping # 更高性能的 ping
   # frp # 反向代理
   nbd
   stress-ng
