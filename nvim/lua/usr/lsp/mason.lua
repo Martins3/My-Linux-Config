@@ -47,9 +47,9 @@ end
 --
 -- clangd 和 ccls 切换非常简单，在这里注释掉对方就可以了
 local all_servers = {
-  -- "ccls",
+  "ccls",
   "nixd",
-  "clangd",
+  -- "clangd",
 }
 for i = 1, #servers do
   all_servers[#all_servers + 1] = servers[i]
