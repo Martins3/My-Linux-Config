@@ -134,8 +134,8 @@ with pkgs;
   hw-probe # sudo -E hw-probe -all -upload
   # linuxKernel.packages.linux_5_15.perf
   # linuxPackages.perf
-  linuxKernel.packages.linux_6_14.perf
-  linuxKernel.packages.linux_6_14.mm-tools
+  linuxKernel.packages.linux_6_6.perf
+  linuxKernel.packages.linux_6_6.mm-tools
   oxtools # 提供 vmtop
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
