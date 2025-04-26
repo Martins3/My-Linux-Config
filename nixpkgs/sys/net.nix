@@ -133,6 +133,6 @@
   services.nfs.server.enable = true;
   services.nfs.server.exports = ''
     /home/martins3/hack         10.0.0.2/16(rw,no_subtree_check)
-    /home/martins3/core/vn      10.0.0.2/16(rw,no_subtree_check)
+    /home/martins3/data/vn      10.0.0.2/16(rw,no_subtree_check)
   '';
 }
