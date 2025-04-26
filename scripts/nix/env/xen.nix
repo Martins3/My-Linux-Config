@@ -21,5 +21,10 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     # ./configure
     # make world
     # make install
+    # 如果在虚拟机中使用，那么需要添加这个
+    # qemu
+    xen
+    python3.pkgs.setuptools
+    python3.pkgs.distutils
   ];
 }
