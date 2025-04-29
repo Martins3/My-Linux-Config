@@ -326,6 +326,7 @@ with pkgs;
       pytest
     ]
   ))
+  uv # 似乎现在大家更加推荐使用这个作为 python 的包管理器
   # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
   # perl
   man-db

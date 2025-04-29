@@ -1,7 +1,7 @@
 with import <nixpkgs> { };
 pkgs.llvmPackages.stdenv.mkDerivation {
-  hardeningDisable = [ "all" ];
-  name = "yyds";
+  # hardeningDisable = [ "all" ];
+  name = "xen";
   buildInputs = with pkgs; [
 
     libuuid

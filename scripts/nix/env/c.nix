@@ -10,6 +10,6 @@ pkgs.llvmPackages.stdenv.mkDerivation {
       glib
       pkg-config
       fuse3
-      glibc.static
+      glibc.static # 可以静态编译
   ];
 }
