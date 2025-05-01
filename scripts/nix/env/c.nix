@@ -10,5 +10,6 @@ pkgs.llvmPackages.stdenv.mkDerivation {
       glib
       pkg-config
       fuse3
+      glibc.static
   ];
 }
