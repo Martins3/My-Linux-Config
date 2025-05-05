@@ -2032,3 +2032,8 @@ https://github.com/uutils/coreutils/blob/main/.envrc
 https://github.com/nix-community/nix-ld
 
 似乎 pkg-config 就可以帮我们把动态库都找到，也就不需要额外的 config 了。
+
+## 未解之谜
+
+- clash 到底可不可以使用？为什么 13900k 不可以?
+- firecracker 为什么在 amd 中不行?
