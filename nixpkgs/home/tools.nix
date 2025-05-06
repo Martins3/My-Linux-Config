@@ -252,7 +252,7 @@ with pkgs;
   # act # Run github action locally
   # git-secrets
   bandwidth
-  # openfortivpn # TODO 真的可以用吗?
+  openfortivpn # 有趣，真的可以使用这个
   # sniffnet # 一个直接简单易用的
   nmap
   iftop
