@@ -189,14 +189,14 @@ with pkgs;
   bridge-utils
 
   # TODO 谁包含了 ceph
-  # qemu
+  qemu
   # qemu6
   # lima # 虚拟机工具
   # libvirt # 提供 virsh
-  # virt-manager # TODO 这个是图形程序吧?
+  # virt-manager # qemu 的图形管理
   # quickemu
   # krunvm # 有待尝试
-  # unstable.nixos-shell
+  # nixos-shell # 效果一般，不够灵活
 
   # buildah
   virtiofsd

@@ -286,3 +286,18 @@ https://github.com/Chenyu-otf/chenyuluoyan_thin
 
 ## 把这个安排上
 https://github.com/huacnlee/autocorrect
+
+
+## 有的插件已经不兼容了，需要升级到 nvim 0.11
+
+目前是这两个:
+```txt
+  { "williamboman/mason.nvim", branch="v1.x" },                          -- simple to use language server installer
+  { "williamboman/mason-lspconfig.nvim", branch="v1.x" },
+  {
+    'mcauley-penney/visual-whitespace.nvim',
+    config = true,
+    branch = "compat-v10", -- FIXME nvim 0.11 版本不兼容了
+  }, -- 在 visual mode 展示空白字符
+
+```

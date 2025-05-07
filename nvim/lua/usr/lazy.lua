@@ -37,8 +37,8 @@ require("lazy").setup({
 
   -- lsp
   { "neovim/nvim-lspconfig" },                            -- enable LSP
-  { "williamboman/mason.nvim" },                          -- simple to use language server installer
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason.nvim", branch="v1.x" },                          -- simple to use language server installer
+  { "williamboman/mason-lspconfig.nvim", branch="v1.x" },
   { "j-hui/fidget.nvim",                tag = "legacy" }, -- 右下角展示索引状态
   {
     'nvimdev/lspsaga.nvim',
@@ -168,7 +168,7 @@ require("lazy").setup({
   {
     'mcauley-penney/visual-whitespace.nvim',
     config = true,
-    branch = "compat-v10", -- nvim 0.11 版本不兼容了
+    branch = "compat-v10", -- FIXME nvim 0.11 版本不兼容了
   }, -- 在 visual mode 展示空白字符
   {
     "yetone/avante.nvim",
