@@ -37,8 +37,8 @@ require("lazy").setup({
 
   -- lsp
   { "neovim/nvim-lspconfig" },                            -- enable LSP
-  { "williamboman/mason.nvim" },                          -- simple to use language server installer
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason.nvim", branch="v1.x" },                          -- simple to use language server installer
+  { "williamboman/mason-lspconfig.nvim", branch="v1.x" },
   { "j-hui/fidget.nvim",                tag = "legacy" }, -- 右下角展示索引状态
   {
     'nvimdev/lspsaga.nvim',
@@ -168,7 +168,7 @@ require("lazy").setup({
   {
     'mcauley-penney/visual-whitespace.nvim',
     config = true,
-    branch = "compat-v10", -- nvim 0.11 版本不兼容了
+    branch = "compat-v10", -- FIXME nvim 0.11 版本不兼容了
   }, -- 在 visual mode 展示空白字符
   {
     "yetone/avante.nvim",
@@ -218,6 +218,14 @@ require("lazy").setup({
     event = "VeryLazy",
     dependencies = { "folke/snacks.nvim", lazy = true },
     keys = {},
+    enabled = false, -- 升级到 0.11 的时候才可以使用
   },
   'pteroctopus/faster.nvim', -- 打开大文件的时候自动 disable 一些功能，例如高亮等
+
+  {
+    "ptdewey/pendulum-nvim",
+    config = function()
+      require("pendulum").setup()
+    end,
+  }
 }, {})

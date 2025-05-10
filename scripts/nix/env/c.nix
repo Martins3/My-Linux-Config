@@ -10,5 +10,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
       glib
       pkg-config
       fuse3
+      # glibc.static # 可以静态编译
+      # 2025-05-09 发现添加上这个，编译运行，程序会直接 crash 的。
   ];
 }

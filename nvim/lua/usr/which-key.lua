@@ -47,7 +47,7 @@ wk.add({
   { "<space>8",  "<cmd>8wincmd w <cr>",                               desc = "jump to window 8" },
   { "<space>9",  "<cmd>9wincmd w <cr>",                               desc = "jump to window 9" },
   { "<space>a",  group = "misc" },
-  { "<space>aa", "<cmd>InsertUUID<cr>",                    desc = "remove trailing space" },
+  { "<space>aa", "<cmd>InsertUUID<cr>",                               desc = "remove trailing space" },
   { "<space>ad", "<cmd>call TrimWhitespace()<cr>",                    desc = "remove trailing space" },
   { "<space>at", "<Plug>Translate",                                   desc = "translate current word" },
   { "<space>b",  group = "buffer" },
@@ -159,16 +159,20 @@ end
 
 vim.api.nvim_set_keymap("v", "<space>lf", "<Esc><cmd>lua FormatFunction()<CR>", { noremap = true })
 
--- TODO 这两个写有问题，FileType 不是这么用的
-vim.cmd("autocmd FileType sh lua BashLeaderX()")
-function BashLeaderX()
-  vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })
-end
+-- 添加自适应的命令
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sh",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { buffer = true, silent = true })
+  end
+})
 
-vim.cmd("autocmd FileType markdown lua MarkdownLeaderX()")
-function MarkdownLeaderX()
-  vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
-end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":MarkdownPreview<CR>", { buffer = true, silent = false })
+  end
+})
 
 vim.cmd("autocmd FileType rust lua RunRust()")
 function RunRust()

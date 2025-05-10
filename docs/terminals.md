@@ -10,8 +10,8 @@
 * [Alacritty : 2020-2022](#alacritty-2020-2022)
 * [Kitty : 2022-2023](#kitty-2022-2023)
 * [Tabby : 几分钟](#tabby-几分钟)
-* [wezterm : 2023-现在](#wezterm-2023-现在)
-* [其他的内容](#其他的内容)
+* [wezterm : 2023-2024](#wezterm-2023-2024)
+* [Windows Terminal + wezterm + Kitty : 2025](#windows-terminal-wezterm-kitty-2025)
 * [总结](#总结)
 
 <!-- vim-markdown-toc -->
@@ -70,15 +70,23 @@ Alacritty 的优点:
 
 非常的酷炫，但是性能不行。
 
-## wezterm : 2023-现在
+## wezterm : 2023-2024
 
 我发现我切换到 nixos 之后，kitty 中不能输入中文了，所以就换成了 [wezterm](https://github.com/wez/wezterm) 。
 配置大约花费了半个小时，最后 tab 栏有点丑，其他还好。
 
 <!-- @todo 不知道为什么，最下面有一大片空白的无法被 zellij 或者 nvim 填满，kitty 没有这些问题 -->
 
-## 其他的内容
-- [kernel terminal](https://news.ycombinator.com/item?id=39737810)
+## Windows Terminal + wezterm + Kitty : 2025
+
+上班的时候使用 Windows ，用 Window 系统自带的 Windows Terminal。
+
+在出租屋的时候使用 macos ，用 wezterm 。
+
+不上班的时候使用 Linux 桌面环境，用 Kitty 。
+
+对于我来说，这个几个 terminal emulator 其实差不多，在这个环境如果有问题，
+那么就立刻换另外一个。
 
 ## 总结
 目前，我推荐的 terminal 是:

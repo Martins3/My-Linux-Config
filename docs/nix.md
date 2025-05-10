@@ -2014,6 +2014,7 @@ https://github.com/tfc/nixos-auto-installer
 ```txt
 CONFIG_KFENCE=y
 ```
+看看这个导致了多少的性能损失 和 内存损失。
 
 ## 系统中的 contained 是从哪里来的
 
@@ -2025,3 +2026,14 @@ CONFIG_KFENCE=y
 ## coreutils 中的 .envrc 可以关注下
 
 https://github.com/uutils/coreutils/blob/main/.envrc
+
+
+## 研究下动态库吧，每次都要卡好久的时间
+https://github.com/nix-community/nix-ld
+
+似乎 pkg-config 就可以帮我们把动态库都找到，也就不需要额外的 config 了。
+
+## 未解之谜
+
+- clash 到底可不可以使用？为什么 13900k 不可以?
+- firecracker 为什么在 amd 中不行?

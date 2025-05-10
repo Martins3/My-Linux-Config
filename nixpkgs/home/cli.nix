@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  stdenv,
-  lib,
   ...
 }:
 

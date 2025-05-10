@@ -118,7 +118,7 @@ with pkgs;
   dracut
   ventoy
   gdb
-  # iw # TODO 做啥的来着
+  iw # wifi 管理
 
   # busybox # 提供 devmem 等工具，但是会覆盖很多工具
   debootstrap # 制作 rootfs 的工具
@@ -134,7 +134,9 @@ with pkgs;
   hw-probe # sudo -E hw-probe -all -upload
   # linuxKernel.packages.linux_5_15.perf
   # linuxPackages.perf
-  linuxKernel.packages.linux_6_12.perf
+  linuxKernel.packages.linux_6_6.perf
+  linuxKernel.packages.linux_6_6.mm-tools
+  oxtools # 提供 vmtop
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
   # linuxPackages_6_10.kernel.dev
@@ -187,14 +189,14 @@ with pkgs;
   bridge-utils
 
   # TODO 谁包含了 ceph
-  # qemu
+  qemu
   # qemu6
   # lima # 虚拟机工具
   # libvirt # 提供 virsh
-  # virt-manager # TODO 这个是图形程序吧?
+  # virt-manager # qemu 的图形管理
   # quickemu
   # krunvm # 有待尝试
-  # unstable.nixos-shell
+  # nixos-shell # 效果一般，不够灵活
 
   # buildah
   virtiofsd
@@ -250,7 +252,7 @@ with pkgs;
   # act # Run github action locally
   # git-secrets
   bandwidth
-  # openfortivpn # TODO 真的可以用吗?
+  openfortivpn # 有趣，真的可以使用这个
   # sniffnet # 一个直接简单易用的
   nmap
   iftop
@@ -263,6 +265,7 @@ with pkgs;
   sshpass
   gping # better ping
   pingu # interesting ping
+  fping # 更高性能的 ping
   # frp # 反向代理
   nbd
   stress-ng
@@ -323,6 +326,7 @@ with pkgs;
       pytest
     ]
   ))
+  uv # 似乎现在大家更加推荐使用这个作为 python 的包管理器
   # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
   # perl
   man-db
@@ -385,7 +389,7 @@ with pkgs;
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
-  clash-meta
+  # clash-meta
 
   # lsp && formatter
   black # python formatter
