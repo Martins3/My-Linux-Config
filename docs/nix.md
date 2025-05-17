@@ -2037,3 +2037,7 @@ https://github.com/nix-community/nix-ld
 
 - clash 到底可不可以使用？为什么 13900k 不可以?
 - firecracker 为什么在 amd 中不行?
+
+
+## 这个东西好啊
+https://github.com/nix-community/nh

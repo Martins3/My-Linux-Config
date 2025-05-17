@@ -81,7 +81,7 @@ wk.add({
   { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   -- <space> o 被 orgmode 使用
-  { "<space>q",  "<cmd>qa<cr>",                                       desc = "close vim" },
+  { "<space>q",  "<cmd>wqa<cr>",                                      desc = "close vim" },
 
   { "<space>s",  group = "search" },
   {
@@ -130,7 +130,7 @@ wk.add({
   { "md",        "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
   { "mm",        "<cmd>lua require'bookmarks'.add_bookmarks()<cr>",       desc = "add bookmarks" },
   { "mn",        "<cmd>lua require'bookmarks.list'.show_desc() <cr>",     desc = "show bookmark note" },
-  { "q",         "<cmd>q<cr>",                                            desc = "close window" },
+  { "q",         "<cmd>q<cr>",                                           desc = "close current window" },
 })
 
 wk.add({
