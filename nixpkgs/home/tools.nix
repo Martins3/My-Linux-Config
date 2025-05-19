@@ -136,7 +136,6 @@ with pkgs;
   # linuxPackages.perf
   linuxKernel.packages.linux_6_6.perf
   linuxKernel.packages.linux_6_6.mm-tools
-  oxtools # 提供 vmtop
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
   # linuxPackages_6_10.kernel.dev
@@ -304,6 +303,7 @@ with pkgs;
   pcm
   # zenith-nvidia # 用处不大，和 top 功能重叠
   nvitop # 美观，比 nvidia-smi 好用
+  oxtools # 提供 vmtop ，这个工具 arm 没有我是没想到的
   powertop # 分析功耗
   intentrace # strace 类似工具 TODO 居然不支持 aarch64
 ]
