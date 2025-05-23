@@ -2,9 +2,9 @@
   pkgs ? import <nixpkgs> { },
 }:
 
-# 各种 C 环境合集都放这里了
 pkgs.llvmPackages.stdenv.mkDerivation {
   name = "C";
+  hardeningDisable = [ "all" ];
   buildInputs = with pkgs; [
     cmake
     pkg-config
@@ -16,5 +16,5 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     "-DCMAKE_INSTALL_RUNDIR=/run"
     "-DCMAKE_INSTALL_SHAREDSTATEDIR=/var/lib"
   ];
-
 }
+# 直接执行其中的 ./build.sh 就可以了
