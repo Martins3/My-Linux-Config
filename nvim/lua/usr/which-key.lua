@@ -81,7 +81,11 @@ wk.add({
   { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   -- <space> o 被 orgmode 使用
-  { "<space>q",  "<cmd>wqa<cr>",                                      desc = "close vim" },
+  --
+  -- 为什么是 qa 而不是 wqa ，发现如果 nvim 打开了 terminal ，如果执行 wqa 会有这个错误
+  -- E948: Job still running
+  -- E676: No matching autocommands for buftype= buffer
+  { "<space>q",  "<cmd>qa<cr>",                                      desc = "close vim" },
 
   { "<space>s",  group = "search" },
   {
