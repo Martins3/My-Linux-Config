@@ -10,15 +10,6 @@
 - [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
   - `:%norm dw`
 
-- [ ] `:options` 检查所有的 options
-- `set!` : 检查修改过的项目
-
-## augroup
-
-https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
-
-:augroup
-
 
 ## 调试插件的 bug
 
@@ -78,13 +69,9 @@ https://github.com/nvim-neorocks/nvim-best-practices
 
 ## 如果可以在 terminal 中连续的两个 esc ，就推出 terminal ，那个是极好的
 
-## https://github.com/danielfalk/smart-open.nvim
-依赖于 sqlite ，提供了方法 sqlite 在 nixos 中的方法，但是没有
-这个项目自己似乎凉了
+## sqlite ，好麻烦啊!
+https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
 
-类似的功能，但是似乎也凉了
-https://github.com/cbochs/grapple.nvim
-  - 和 nvim-telescope/telescope-frecency.nvim 对比下，真的很慢
 
 ## 用用这个软件
 https://github.com/mpv-player/mpv
@@ -93,6 +80,8 @@ https://vim-racer.com/
 
 https://github.com/sindrets/diffview.nvim : 尝试下
 
+https://github.com/cbochs/grapple.nvim
+  - 和 nvim-telescope/telescope-frecency.nvim 对比下，真的很慢
 
 
 ## [ ] tree-sitter 和 vim 的各种操作的语义
@@ -125,6 +114,11 @@ text obj 的含义
 "mg979/vim-visual-multi", -- 同时编辑多个位置
 "AckslD/nvim-neoclip.lua", -- 保存 macro
 ```
+
+这个应该是用点用的:
+https://github.com/ptdewey/pendulum-nvim
+
+没办法正常使用，如果可以用的话，那么是极好的
 
 ## [ ] 如何处理
 导航栏中，对于
