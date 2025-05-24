@@ -3,7 +3,7 @@
 }:
 
 pkgs.llvmPackages.stdenv.mkDerivation {
-  name = "C";
+  name = "rdma";
   hardeningDisable = [ "all" ];
   buildInputs = with pkgs; [
     cmake
@@ -18,3 +18,4 @@ pkgs.llvmPackages.stdenv.mkDerivation {
   ];
 }
 # 直接执行其中的 ./build.sh 就可以了
+# cd build &&  ninja -t compdb > ../compile_commands.json
