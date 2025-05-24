@@ -118,7 +118,7 @@ alias wifi="nmcli dev wifi show-password"
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
-    python3 -m venv .venv
+    uv venv
   fi
    source .venv/bin/activate
 }

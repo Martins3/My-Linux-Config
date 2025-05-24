@@ -2033,6 +2033,10 @@ https://github.com/nix-community/nix-ld
 
 似乎 pkg-config 就可以帮我们把动态库都找到，也就不需要额外的 config 了。
 
+路径中不能有空格，不然 ld 会有报错
+```txt
+/nix/store/bwkb907myixfzzykp21m9iczkhrq5pfy-binutils-2.43.1/bin/ld: cannot find b/outputs/out/lib: No such file or directory
+```
 ## 未解之谜
 
 - clash 到底可不可以使用？为什么 13900k 不可以?
