@@ -30,8 +30,8 @@ export PATH="$HOME/go/bin:$PATH"
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
-if [[ -f ~/core/id ]]; then
-  export SHELL_ARCH=$(cat ~/core/id)
+if [[ -f ~/data/id ]]; then
+  export SHELL_ARCH=$(cat ~/data/id)
 else
 
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -111,10 +111,6 @@ function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
 }
-function check(){
-	cd ~/data/linux-upstream/
-	tig --author="$*"
-}
 alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
 alias wifi="nmcli dev wifi show-password"
@@ -122,7 +118,7 @@ alias wifi="nmcli dev wifi show-password"
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
-    python3 -m venv .venv
+    uv venv
   fi
    source .venv/bin/activate
 }
@@ -131,6 +127,6 @@ export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
 
-if [ -e $HOME/core/vn/code/zsh  ]; then
-  . $HOME/core/vn/code/zsh
+if [ -e $HOME/data/vn/code/zsh  ]; then
+  . $HOME/data/vn/code/zsh
 fi

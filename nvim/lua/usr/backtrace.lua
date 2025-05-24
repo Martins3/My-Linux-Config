@@ -25,8 +25,13 @@ function ProcessClipboard()
     return
   end
 
-  local project = '/home/martins3/core/vn'
-  vim.fn.system(project .. '/code/qemu/trim.sh')
+  local project = '/home/martins3/data/vn'
+  local script_path = project .. '/code/qemu/trim.sh'
+  if vim.fn.filereadable(script_path) == 1 then
+    vim.fn.system(script_path)
+  else
+    print("Script not found: " .. script_path)
+  end
 
   file = io.open(tmp, "r")
   if file then
