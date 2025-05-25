@@ -98,6 +98,7 @@ with pkgs;
   # 真的奇怪，ceph 和 bcc 居然用冲突
   bcc
   nvme-cli
+  nvmet-cli
 
   kmon # 方便的管理内核模块
   numactl

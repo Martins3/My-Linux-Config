@@ -2045,3 +2045,10 @@ https://github.com/nix-community/nix-ld
 
 ## 这个东西好啊
 https://github.com/nix-community/nh
+
+## 搞不清楚 rust 如何修改版本
+
+本来用 rustup 很简单的
+
+现在 firecracker 的这个直接给我干蒙了
+c846b998efbc3f1f7cd66c7
