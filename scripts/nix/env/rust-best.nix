@@ -1,5 +1,3 @@
-# https://wiki.nixos.org/wiki/Rust
-# 适用于 firecracker
 {
   pkgs ? import <nixpkgs> { },
 }:
@@ -12,15 +10,26 @@ pkgs.callPackage (
     mkShell,
     rustup,
     rustPlatform,
+
   }:
   mkShell {
     strictDeps = true;
-    nativeBuildInputs = [
+    nativeBuildInputs = with pkgs; [
       rustup
       rustPlatform.bindgenHook
+      linuxHeaders
+
+      # firecracker 中 aws-lc
+      (python3.withPackages (
+        p: with p; [
+          seccomp
+        ]
+      ))
+
     ];
     # libraries here
-    buildInputs = [
+    buildInputs = with pkgs; [
+      libseccomp
     ];
     RUSTC_VERSION = overrides.toolchain.channel;
     # https://github.com/rust-lang/rust-bindgen#environment-variables
@@ -30,3 +39,4 @@ pkgs.callPackage (
     '';
   }
 ) { }
+# firecracker : 直接 cargo build 就可以了

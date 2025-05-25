@@ -18,18 +18,10 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     # wasmer
     # wasmtime
     libclang
-    libseccomp
-    linuxHeaders
     cmake
     glibc
     glibc.dev
 
-    # firecracker 中 aws-lc 
-    (python3.withPackages (
-      p: with p; [
-        seccomp
-      ]
-    ))
 
     fuse
 
