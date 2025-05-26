@@ -2046,9 +2046,18 @@ https://github.com/nix-community/nix-ld
 ## 这个东西好啊
 https://github.com/nix-community/nh
 
-## 搞不清楚 rust 如何修改版本
+## 真的有点累了
+https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
 
-本来用 rustup 很简单的
+```txt
+  × Querying Python at `/home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13` failed with exit status exit
+  │ status: 127
+  │ --- stdout:
 
-现在 firecracker 的这个直接给我干蒙了
-c846b998efbc3f1f7cd66c7
+  │ --- stderr:
+  │ Could not start dynamically linked executable: /home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13
+  │ NixOS cannot run dynamically linked executables intended for generic
+  │ linux environments out of the box. For more information, see:
+  │ https://nix.dev/permalink/stub-ld
+  │ ---
+```

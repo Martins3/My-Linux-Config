@@ -32,8 +32,14 @@ pkgs.stdenv.mkDerivation {
       sphinx
       sphinx-rtd-theme
     ]))
-
     flex
     bison
+    rustc
+    rust-bindgen
+    rustfmt
+    clippy
+    rdma-core
   ];
+
+  RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 }
