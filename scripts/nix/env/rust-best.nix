@@ -38,7 +38,7 @@ pkgs.callPackage (
     '';
   }
 ) { }
-# firecracker : 直接 cargo build 就可以了
+# firecracker : 直接 cargo build --features "gdb" 就可以了
 # 如果 rust-analyzer 立刻退出，那么试试，基本都是可以解决
 # rustup component add rust-analyzer
 # 虽然不知道为什么
