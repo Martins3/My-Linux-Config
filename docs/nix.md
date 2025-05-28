@@ -2061,3 +2061,7 @@ https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
   │ https://nix.dev/permalink/stub-ld
   │ ---
 ```
+在 fedora + home-manager 中可以，为什么在 nixos 中就不可以。
+
+## 看看这个
+https://saylesss88.github.io/Getting_Started_with_Nix_1.html
