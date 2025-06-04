@@ -2065,3 +2065,11 @@ https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
 
 ## 看看这个
 https://saylesss88.github.io/Getting_Started_with_Nix_1.html
+
+## 才意识到
+如果有了 glibc.static 之后，之后普通的 gcc hello.c 都是自动和 static 链接的
+
+可怕；
+```txt
+nix-shell -p gcc glibc.static --command zsh
+```

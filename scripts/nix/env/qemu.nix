@@ -42,6 +42,7 @@ pkgs.stdenv.mkDerivation {
     rustfmt
     clippy
     rdma-core
+    lttng-ust
   ];
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

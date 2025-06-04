@@ -312,3 +312,7 @@ https://github.com/huacnlee/autocorrect
 overseer.nvim
 
 https://github.com/aaronik/treewalker.nvim
+
+
+## 一个新的 c lsp ，保持关注吧
+https://github.com/clice-project/clice

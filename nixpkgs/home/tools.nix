@@ -158,6 +158,7 @@ with pkgs;
   pwru # ebpf 抓包工具
   # kernelshark
   trace-cmd
+  lttng-tools
   # hotspot
   # heaptrack
   coccinelle
