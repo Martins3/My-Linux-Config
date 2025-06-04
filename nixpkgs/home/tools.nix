@@ -159,6 +159,7 @@ with pkgs;
   # kernelshark
   trace-cmd
   lttng-tools
+  babeltrace2
   # hotspot
   # heaptrack
   coccinelle
