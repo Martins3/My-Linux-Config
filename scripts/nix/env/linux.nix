@@ -58,6 +58,9 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     rust-bindgen
     rustfmt
     clippy
+
+    # netlink 用户态测试
+    libnl
   ];
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

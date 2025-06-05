@@ -2014,6 +2014,7 @@ https://github.com/tfc/nixos-auto-installer
 ```txt
 CONFIG_KFENCE=y
 ```
+看看这个导致了多少的性能损失 和 内存损失。
 
 ## 系统中的 contained 是从哪里来的
 
@@ -2025,3 +2026,55 @@ CONFIG_KFENCE=y
 ## coreutils 中的 .envrc 可以关注下
 
 https://github.com/uutils/coreutils/blob/main/.envrc
+
+
+## 研究下动态库吧，每次都要卡好久的时间
+https://github.com/nix-community/nix-ld
+
+似乎 pkg-config 就可以帮我们把动态库都找到，也就不需要额外的 config 了。
+
+路径中不能有空格，不然 ld 会有报错
+```txt
+/nix/store/bwkb907myixfzzykp21m9iczkhrq5pfy-binutils-2.43.1/bin/ld: cannot find b/outputs/out/lib: No such file or directory
+```
+## 未解之谜
+
+- clash 到底可不可以使用？为什么 13900k 不可以?
+- firecracker 为什么在 amd 中不行?
+
+
+## 这个东西好啊
+https://github.com/nix-community/nh
+
+## 真的有点累了
+https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
+
+```txt
+  × Querying Python at `/home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13` failed with exit status exit
+  │ status: 127
+  │ --- stdout:
+
+  │ --- stderr:
+  │ Could not start dynamically linked executable: /home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13
+  │ NixOS cannot run dynamically linked executables intended for generic
+  │ linux environments out of the box. For more information, see:
+  │ https://nix.dev/permalink/stub-ld
+  │ ---
+```
+在 fedora + home-manager 中可以，为什么在 nixos 中就不可以。
+
+## 看看这个
+https://saylesss88.github.io/Getting_Started_with_Nix_1.html
+
+## 才意识到
+如果有了 glibc.static 之后，之后普通的 gcc hello.c 都是自动和 static 链接的
+
+可怕；
+```txt
+nix-shell -p gcc glibc.static --command zsh
+```
+
+## 只能说，有一点赞同
+https://aruarian.dance/blog/you-do-not-need-nixos/
+
+图形界面用起来痛苦，但是 cli 很好
