@@ -2073,3 +2073,8 @@ https://saylesss88.github.io/Getting_Started_with_Nix_1.html
 ```txt
 nix-shell -p gcc glibc.static --command zsh
 ```
+
+## 只能说，有一点赞同
+https://aruarian.dance/blog/you-do-not-need-nixos/
+
+图形界面用起来痛苦，但是 cli 很好
