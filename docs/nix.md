@@ -2078,3 +2078,6 @@ nix-shell -p gcc glibc.static --command zsh
 https://aruarian.dance/blog/you-do-not-need-nixos/
 
 图形界面用起来痛苦，但是 cli 很好
+
+## 和 rpm ostree 对比一下?
+https://github.com/zdyxry/isengard
