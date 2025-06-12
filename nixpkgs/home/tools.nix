@@ -401,6 +401,7 @@ with pkgs;
   # rustfmt
   # clippy
 
+  butane
   ccls
   checkmake
   stylua

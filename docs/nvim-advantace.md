@@ -316,3 +316,6 @@ https://github.com/aaronik/treewalker.nvim
 
 ## 一个新的 c lsp ，保持关注吧
 https://github.com/clice-project/clice
+
+## 这个就是我想要的效果
+https://www.reddit.com/r/neovim/comments/1l7u7s2/floating_toggleable_terminal_manager_wip_how_to/
