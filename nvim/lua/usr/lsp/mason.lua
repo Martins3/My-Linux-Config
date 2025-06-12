@@ -44,7 +44,13 @@ end
 -- TODO lspconfig 到底是什么作用来着 ?
 -- 由于动态库的原因 Mason 安装的在 nixos 中无法使用
 -- TODO  typos_lsp 需要一些特殊的配置才可以正常工作，否则很容易误报
-local all_servers = { "ccls", "nixd", }
+--
+-- clangd 和 ccls 切换非常简单，在这里注释掉对方就可以了
+local all_servers = {
+  "ccls",
+  "nixd",
+  -- "clangd",
+}
 for i = 1, #servers do
   all_servers[#all_servers + 1] = servers[i]
 end
