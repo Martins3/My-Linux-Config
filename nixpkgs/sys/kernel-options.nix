@@ -2,7 +2,7 @@
 
 {
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_6_8;
   # boot.supportedFilesystems = [ "bcachefs" ];
 

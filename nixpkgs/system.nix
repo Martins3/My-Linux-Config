@@ -10,7 +10,7 @@ in
     ./sys/cli.nix
     ./sys/net.nix
     ./sys/kernel-options.nix
-    ./sys/kernel-config.nix
+    # ./sys/kernel-config.nix
     # ./sys/kernel-419.nix
   ] ++ (
   if disable_gui == 0 && builtins.currentSystem == "x86_64-linux" then [

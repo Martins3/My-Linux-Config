@@ -116,6 +116,13 @@
         "read only" = "no";
         "guest ok" = "yes";
       };
+
+      data = {
+        path = "/home/martins3/data";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+      };
     };
   };
 
