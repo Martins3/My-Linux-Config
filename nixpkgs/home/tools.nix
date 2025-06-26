@@ -10,10 +10,17 @@ let
   }) { };
   old_tmux = tmux_pkgs.tmux;
 
+  # qemu 6
+  qemu_pkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
+  }) { };
+
+  # qemu 2.12
   # qemu_pkgs = import (builtins.fetchTarball {
-  #   url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
-  # }) { };
-  # qemu6 = qemu_pkgs.qemu_full;
+  #       url = "https://github.com/NixOS/nixpkgs/archive/676f09be679e3d4d8758356914ef4ae81388bcc5.tar.gz";
+  #   }) {};
+
+  qemu6 = qemu_pkgs.qemu;
 
 in
 with pkgs;
