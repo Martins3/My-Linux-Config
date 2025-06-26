@@ -18,3 +18,8 @@ aio.c:(.text.startup+0x38): undefined reference to `io_setup'
 collect2: error: ld returned 1 exit status
 ```
 解决办法居然是 -laio
+
+
+## 总是在一起的
+autoconf
+automake
