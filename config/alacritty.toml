@@ -23,7 +23,7 @@ background = "0x002b36"
 foreground = "0x839496"
 
 [font]
-size = 9.0
+size = 15.0
 
 [font.normal]
 family = "FiraCode Nerd Font"
@@ -35,3 +35,14 @@ program = "zsh"
 decorations = "none"
 opacity = 0.98
 startup_mode = "Maximized"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control|Shift"
+action = "IncreaseFontSize"
+
+# 这个为什么配置不失效，而且如何取消掉默认的 control + 和 control 的行为
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control|Shift"
+action = "DecreaseFontSize"

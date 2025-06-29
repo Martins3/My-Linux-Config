@@ -38,9 +38,27 @@
 
     abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
 
-    // 这个退出不太智能，无法根据上下文判断
-    // TODO 这里有 bug ，在 log -> 搜索 中如果输入 x ，那么会直接退出
-    // exit: Some(( code: Char('x'), modifiers: "")),
+    // 相较于 lazygit 有两点不太习惯，
+    // 1. 例如当在 Status 中选中了一个文件，按道理可以通过 h 退出，因为是通过 l 进入
+    // 但是当前是 exit_popup ，所以需要是 q
+    // 2. 按道理，当到了主界面，如果继续按 q 就可以退出程序，但是不可以，需要按 K 才可以，
+    // 因为程序的退出需要是 K ，这有一个好处，就是防止误退出
+    //
+    // 默认配置:
+    //	exit: GituiKeyEvent::new(KeyCode::Char('c'),  KeyModifiers::CONTROL),
+		//	quit: GituiKeyEvent::new(KeyCode::Char('q'),  KeyModifiers::empty()),
+		//	exit_popup: GituiKeyEvent::new(KeyCode::Esc,  KeyModifiers::empty()),
+
+    // 不知道咋地，总是一不小心就按了 q ，重新加载 kernel 的 log 就有点慢了
+    // quit : 退出程序
+    // exit_popup : 退出搜索和 commit 细节
+    // 这个就使用默认的，exit 和 quit 有什么区别吗？
+    quit: Some(( code: Char('K'), modifiers: "SHIFT")),
+    // exit: Some(( code: Char('c'), modifiers: "CONTROL")),
+    // exit_popup 最好还是用 esc ，不然搜索工具遇到对应字符就会退出
     // exit_popup: Some(( code: Char('q'), modifiers: "")),
-    // quit: Some(( code: Char('x'), modifiers: "")),
+
+    // TODO
+    // 1. 有办法让 tree 配置为 tig 模式吗?
+    // 2. 类似使用 tig $hash 的方法?
 )

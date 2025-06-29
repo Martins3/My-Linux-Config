@@ -2014,6 +2014,7 @@ https://github.com/tfc/nixos-auto-installer
 ```txt
 CONFIG_KFENCE=y
 ```
+看看这个导致了多少的性能损失 和 内存损失。
 
 ## 系统中的 contained 是从哪里来的
 
@@ -2025,3 +2026,120 @@ CONFIG_KFENCE=y
 ## coreutils 中的 .envrc 可以关注下
 
 https://github.com/uutils/coreutils/blob/main/.envrc
+
+
+## 研究下动态库吧，每次都要卡好久的时间
+https://github.com/nix-community/nix-ld
+
+似乎 pkg-config 就可以帮我们把动态库都找到，也就不需要额外的 config 了。
+
+路径中不能有空格，不然 ld 会有报错
+```txt
+/nix/store/bwkb907myixfzzykp21m9iczkhrq5pfy-binutils-2.43.1/bin/ld: cannot find b/outputs/out/lib: No such file or directory
+```
+## 未解之谜
+
+- clash 到底可不可以使用？为什么 13900k 不可以?
+- firecracker 为什么在 amd 中不行?
+
+
+## 这个东西好啊
+https://github.com/nix-community/nh
+
+## 真的有点累了
+https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
+
+```txt
+  × Querying Python at `/home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13` failed with exit status exit
+  │ status: 127
+  │ --- stdout:
+
+  │ --- stderr:
+  │ Could not start dynamically linked executable: /home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13
+  │ NixOS cannot run dynamically linked executables intended for generic
+  │ linux environments out of the box. For more information, see:
+  │ https://nix.dev/permalink/stub-ld
+  │ ---
+```
+在 fedora + home-manager 中可以，为什么在 nixos 中就不可以。
+
+## 看看这个
+https://saylesss88.github.io/Getting_Started_with_Nix_1.html
+
+## 才意识到
+如果有了 glibc.static 之后，之后普通的 gcc hello.c 都是自动和 static 链接的
+
+可怕；
+```txt
+nix-shell -p gcc glibc.static --command zsh
+```
+
+## 只能说，有一点赞同
+https://aruarian.dance/blog/you-do-not-need-nixos/
+
+图形界面用起来痛苦，但是 cli 很好
+
+## 和 rpm ostree 对比一下?
+https://github.com/zdyxry/isengard
+
+
+## 不理解为什么为什么构建了，但是启动之后，动态库就找不到了
+```txt
+/home/martins3/data/qemu-f9a3def17b2a////install/bin/qemu-system-x86_64: error while loading shared libraries: libpixman-1.so.0: cannot open shared object file: No such file or directory
+```
+
+```txt
+🤒  ldd /home/martins3/data/qemu-f9a3def17b2a/install/bin/qemu-system-x86_64
+        linux-vdso.so.1 (0x00007ffc98df6000)
+        libepoxy.so.0 => /usr/lib64/libepoxy.so.0 (0x00007f3ef3e13000)
+        libudev.so.1 => /usr/lib64/libudev.so.1 (0x00007f3ef3de9000)
+        libusb-1.0.so.0 => /usr/lib64/libusb-1.0.so.0 (0x00007f3ef3dcb000)
+        libseccomp.so.2 => /usr/lib64/libseccomp.so.2 (0x00007f3ef3daa000)
+        libgio-2.0.so.0 => /usr/lib64/libgio-2.0.so.0 (0x00007f3ef3bc7000)
+        libgobject-2.0.so.0 => /usr/lib64/libgobject-2.0.so.0 (0x00007f3ef3b6d000)
+        libglib-2.0.so.0 => /usr/lib64/libglib-2.0.so.0 (0x00007f3ef3a36000)
+        libz.so.1 => /usr/lib64/libz.so.1 (0x00007f3ef3a1c000)
+        librdmacm.so.1 => /nix/store/0g8xcpg1c1i5ywqaxmqg2im4xx2q5f6f-rdma-core-54.2/lib/librdmacm.so.1 (0x00007f3ef39fc000)
+        libibverbs.so.1 => /nix/store/0g8xcpg1c1i5ywqaxmqg2im4xx2q5f6f-rdma-core-54.2/lib/libibverbs.so.1 (0x00007f3ef39da000)
+        libzstd.so.1 => /usr/lib64/libzstd.so.1 (0x00007f3ef38cb000)
+        libslirp.so.0 => not found
+        libvirglrenderer.so.1 => /usr/lib64/libvirglrenderer.so.1 (0x00007f3ef3855000)
+        libiscsi.so.10 => not found
+        libaio.so.1 => /nix/store/h32pz141kxm622pqdlik469jpf80pvbr-libaio-0.3.113/lib/libaio.so.1 (0x00007f3ef3850000)
+        liburing.so.2 => not found
+        libnfs.so.14 => not found
+        libssh.so.4 => /usr/lib64/libssh.so.4 (0x00007f3ef37df000)
+        libgmodule-2.0.so.0 => /usr/lib64/libgmodule-2.0.so.0 (0x00007f3ef37d9000)
+        libbz2.so.1 => /nix/store/vrqss3954zk1c52mda3xf1rv7wc5ygba-bzip2-1.0.8/lib/libbz2.so.1 (0x00007f3ef37c6000)
+        libm.so.6 => /nix/store/5m9amsvvh2z8sl7jrnc87hzy21glw6k1-glibc-2.40-66/lib/libm.so.6 (0x00007f3ef36df000)
+        libc.so.6 => /nix/store/5m9amsvvh2z8sl7jrnc87hzy21glw6k1-glibc-2.40-66/lib/libc.so.6 (0x00007f3ef34e7000)
+        /nix/store/5m9amsvvh2z8sl7jrnc87hzy21glw6k1-glibc-2.40-66/lib/ld-linux-x86-64.so.2 => /lib64/ld-linux-x86-64.so.2 (0x00007f3ef59a9000)
+        libmount.so.1 => /usr/lib64/libmount.so.1 (0x00007f3ef3485000)
+        libselinux.so.1 => /usr/lib64/libselinux.so.1 (0x00007f3ef3459000)
+        libffi.so.8 => /usr/lib64/libffi.so.8 (0x00007f3ef344d000)
+        libpcre.so.1 => /usr/lib64/libpcre.so.1 (0x00007f3ef33d4000)
+        libnl-3.so.200 => /nix/store/8bv2z2ygrfz54dgyj8dvz5c8k891wkw4-libnl-3.10.0/lib/libnl-3.so.200 (0x00007f3ef33af000)
+        libnl-route-3.so.200 => /nix/store/8bv2z2ygrfz54dgyj8dvz5c8k891wkw4-libnl-3.10.0/lib/libnl-route-3.so.200 (0x00007f3ef3310000)
+        libdrm.so.2 => /usr/lib64/libdrm.so.2 (0x00007f3ef32fb000)
+        libgbm.so.1 => /usr/lib64/libgbm.so.1 (0x00007f3ef32eb000)
+        libX11.so.6 => /usr/lib64/libX11.so.6 (0x00007f3ef31a8000)
+        libcrypto.so.1.1 => /usr/lib64/libcrypto.so.1.1 (0x00007f3ef2ebe000)
+        libgssapi_krb5.so.2 => /usr/lib64/libgssapi_krb5.so.2 (0x00007f3ef2e69000)
+        libkrb5.so.3 => /usr/lib64/libkrb5.so.3 (0x00007f3ef2d80000)
+        libk5crypto.so.3 => /usr/lib64/libk5crypto.so.3 (0x00007f3ef2d68000)
+        libcom_err.so.2 => /usr/lib64/libcom_err.so.2 (0x00007f3ef2d62000)
+        libblkid.so.1 => /usr/lib64/libblkid.so.1 (0x00007f3ef2d0d000)
+        libpcre2-8.so.0 => /usr/lib64/libpcre2-8.so.0 (0x00007f3ef2c73000)
+        libpthread.so.0 => /nix/store/5m9amsvvh2z8sl7jrnc87hzy21glw6k1-glibc-2.40-66/lib/libpthread.so.0 (0x00007f3ef2c6c000)
+        libwayland-server.so.0 => /usr/lib64/libwayland-server.so.0 (0x00007f3ef2c55000)
+        libexpat.so.1 => /usr/lib64/libexpat.so.1 (0x00007f3ef2c24000)
+        libstdc++.so.6 => /usr/lib64/libstdc++.so.6 (0x00007f3ef2a43000)
+        libxcb.so.1 => /usr/lib64/libxcb.so.1 (0x00007f3ef2a18000)
+        libkrb5support.so.0 => /usr/lib64/libkrb5support.so.0 (0x00007f3ef2a06000)
+        libkeyutils.so.1 => /usr/lib64/libkeyutils.so.1 (0x00007f3ef29fd000)
+        libresolv.so.2 => /usr/lib64/libresolv.so.2 (0x00007f3ef29e9000)
+        libgcc_s.so.1 => /usr/lib64/libgcc_s.so.1 (0x00007f3ef29cf000)
+        libXau.so.6 => /usr/lib64/libXau.so.6 (0x00007f3ef29ca000)
+```
+在 qemu 中执行 make install 导致的，有点坑了
+但是在两个机器上测试，不是稳定复现的。
