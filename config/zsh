@@ -30,8 +30,8 @@ export PATH="$HOME/go/bin:$PATH"
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
-if [[ -f ~/core/id ]]; then
-  export SHELL_ARCH=$(cat ~/core/id)
+if [[ -f ~/data/id ]]; then
+  export SHELL_ARCH=$(cat ~/data/id)
 else
 
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -94,26 +94,17 @@ alias ls="eza"
 alias l="ls -lah --icons"
 alias im="ibus engine rime"
 alias q="exit"
-alias v="mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)"
-alias vs="$HOME/.dotfiles/config/sh/close-nvim.sh"
-alias vc="rm -r ~/.local/share/nvim/sessions"
-alias vc='echo "nvim-tree bug is not fixed ?"'
-alias kvm_stat="sudo $HOME/data/linux/tools/kvm/kvm_stat/kvm_stat"
+alias v=nvim
 alias i="ipython"
 # alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
 alias cloc="tokei . -f --sort lines"
 alias static="nix-shell -p gcc glibc.static --command zsh"
 alias wez=$HOME/.dotfiles/config/sh/wez-opacity.sh
-alias hz="viddy 'cat /proc/cpuinfo | grep MHz'"
 alias ins="$HOME/.dotfiles/scripts/nix/env/install.sh"
 alias tm="tmux attach || tmux"
 function config_repo(){
   git config user.name martins3
   git config user.email hubachelar@gmail.com
-}
-function check(){
-	cd ~/data/linux-upstream/
-	tig --author="$*"
 }
 alias weather="curl wttr.in/beijin"
 alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
@@ -122,7 +113,7 @@ alias wifi="nmcli dev wifi show-password"
 # TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
 function p(){
   if [[ ! -d .venv ]]; then
-    python3 -m venv .venv
+    uv venv
   fi
    source .venv/bin/activate
 }
@@ -131,6 +122,6 @@ export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
 export PATH=$PATH:/usr/share/bcc/tools
 
-if [ -e $HOME/core/vn/code/zsh  ]; then
-  . $HOME/core/vn/code/zsh
+if [ -e $HOME/data/vn/code/zsh  ]; then
+  . $HOME/data/vn/code/zsh
 fi
