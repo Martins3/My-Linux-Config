@@ -1,6 +1,6 @@
 require("usr.options")
 require("usr.lazy")
-require("usr.lsp")
+require("usr.mason")
 require("usr.cmp")
 require("usr.code_runner")
 require("usr.hydra")
@@ -14,11 +14,9 @@ require("usr.colorscheme")
 require("usr.bufferline")
 require("usr.lualine")
 require("usr.neovide")
-require("usr.bactrace")
 require("usr.util")
 require("usr.toggleterm")
--- require("usr.window-focus")
-require("colorizer").setup({ "css", "javascript", "vim", html = { mode = "foreground" } })
+require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
 require("nvim-surround").setup()
 require("gitsigns").setup({ signcolumn = false, numhl = true })
 require("leap").add_default_mappings()
@@ -52,20 +50,6 @@ require("persisted").setup({
   end,
 })
 
-vim.api.nvim_create_user_command(
-  'InsertUUID',
-  function()
-    local handle = io.popen('uuidgen')
-    if not handle then
-      vim.notify("Failed to generate UUID", vim.log.levels.ERROR)
-      return
-    end
-
-    local uuid = handle:read('*a'):gsub('\n', '')
-    handle:close()
-
-    local formatted_uuid = '<!-- ' .. uuid .. ' -->'
-    vim.api.nvim_put({ formatted_uuid }, '', false, true)
-  end,
-  { desc = 'insert a generated UUID as an HTML comment' }
-)
+require('gitsigns').setup {
+  current_line_blame = true,
+}

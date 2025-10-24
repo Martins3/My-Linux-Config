@@ -165,7 +165,7 @@ snippet note_glob "globstar"
 
 snippet fori "C style for loop"
 	VAR=10
-	for ((i=0;i<VAR;i=i + 1)); do
+	for ((i = 0; i < VAR; i = i + 1)); do
 		printf '%s\n' "$i"
 	done
 
@@ -261,22 +261,21 @@ snippet note_cmpbool "compare file"
 snippet note_cmpfile "compare file"
 	# https://wangdoc.com/bash/condition.html
 	# [[ -a file ]]：如果 file 存在，则为true。
-	# [[ -b file ]]：如果 file 存在并且是一个块（设备）文件，则为true。
-	# [[ -c file ]]：如果 file 存在并且是一个字符（设备）文件，则为true。
-	# [[ -d file ]]：如果 file 存在并且是一个目录，则为true。
+	# [[ -b file ]]：如果 file 存在并且是块（设备）文件，则为true。
+	# [[ -c file ]]：如果 file 存在并且是字符（设备）文件，则为true。
+	# [[ -d file ]]：如果 file 存在并且是目录，则为true。
 	# [[ -e file ]]：如果 file 存在，则为true。
-	# [[ -f file ]]：如果 file 存在并且是一个普通文件，则为true。
+	# [[ -f file ]]：如果 file 存在并且是普通文件，则为true。
 	# [[ -g file ]]：如果 file 存在并且设置了组 ID，则为true。
 	# [[ -G file ]]：如果 file 存在并且属于有效的组 ID，则为true。
-	# [[ -h file ]]：如果 file 存在并且是符号链接，则为true。
 	# [[ -k file ]]：如果 file 存在并且设置了它的“sticky bit”，则为true。
-	# [[ -L file ]]：如果 file 存在并且是一个符号链接，则为true。
+	# [[ -L file ]]：如果 file 存在并且是符号链接，则为true。
 	# [[ -N file ]]：如果 file 存在并且自上次读取后已被修改，则为true。
 	# [[ -O file ]]：如果 file 存在并且属于有效的用户 ID，则为true。
-	# [[ -p file ]]：如果 file 存在并且是一个命名管道，则为true。
+	# [[ -p file ]]：如果 file 存在并且是命名管道，则为true。
 	# [[ -r file ]]：如果 file 存在并且可读（当前用户有可读权限），则为true。
 	# [[ -s file ]]：如果 file 存在且其长度大于零，则为true。
-	# [[ -S file ]]：如果 file 存在且是一个网络 socket，则为true。
+	# [[ -S file ]]：如果 file 存在且是网络 socket，则为true。
 	# [[ -t fd ]]：如果 fd 是一个文件描述符，并且重定向到终端，则为true。 这可以用来判断是否重定向了标准输入／输出／错误。
 	# [[ -u file ]]：如果 file 存在并且设置了 setuid 位，则为true。
 	# [[ -w file ]]：如果 file 存在并且可写（当前用户拥有可写权限），则为true。

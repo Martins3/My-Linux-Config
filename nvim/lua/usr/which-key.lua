@@ -47,7 +47,7 @@ wk.add({
   { "<space>8",  "<cmd>8wincmd w <cr>",                               desc = "jump to window 8" },
   { "<space>9",  "<cmd>9wincmd w <cr>",                               desc = "jump to window 9" },
   { "<space>a",  group = "misc" },
-  { "<space>aa", "<cmd>InsertUUID<cr>",                    desc = "remove trailing space" },
+  { "<space>aa", "<cmd>InsertUUID<cr>",                               desc = "remove trailing space" },
   { "<space>ad", "<cmd>call TrimWhitespace()<cr>",                    desc = "remove trailing space" },
   { "<space>at", "<Plug>Translate",                                   desc = "translate current word" },
   { "<space>b",  group = "buffer" },
@@ -62,18 +62,22 @@ wk.add({
   { "<space>fs", "<cmd>w<cr>",                                        desc = "save file" },
   { "<space>ft", "<cmd>NvimTreeToggle<cr>",                           desc = "toggle file tree" },
   { "<space>g",  group = "git" },
-  { "<space>ga", "<cmd>Git add -A<cr>",                               desc = "git stage all changes" },
-  { "<space>gb", "<cmd>Git blame<cr>",                                desc = "git blame" },
-  { "<space>gc", "<cmd>Git commit --signoff<cr>",                     desc = "git commit" },
-  { "<space>gm", "<cmd>GitMessenger<cr>",                             desc = "show git blame of current line" },
-  { "<space>gp", "<cmd>Git push<cr>",                                 desc = "git push" },
+  { "<space>ga", "<cmd>Git add -A<cr>",                                desc = "git stage all changes" },
+  { "<space>gb", "<cmd>Gitsigns blame <cr>",                           desc = "git blame" },
+  { "<space>gB", "<cmd>Git blame <cr>",                                desc = "git blame" },
+  { "<space>gc", "<cmd>Git commit --signoff<cr>",                      desc = "git commit" },
+  { "<space>gg", "<cmd>GitConflictListQf<cr>",                         desc = "git conflict quick fix" },
+  { "<space>gh", "<cmd>lua require('gitsigns').setqflist('all') <cr>", desc = "git show hook" },
+  { "<space>gm", "<cmd>GitMessenger<cr>",                              desc = "git blame of current line" },
+  { "<space>gx", "<cmd>Gitsigns toggle_current_line_blame<cr>",        desc = "git toggle blame of current line" },
+  { "<space>gp", "<cmd>Git push<cr>",                                  desc = "git push" },
   -- 因为 ctrl-i 实际上等同于 tab
   { "<space>i",  "<c-i>",                                             desc = "go to newer jumplist" },
   { "<space>j",  "<cmd>ToggleTerm size=30 direction=horizontal <cr>", desc = "open toggle term" },
   { "<space>l",  group = "language" },
   { "<space>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",            desc = "code action" },
   { "<space>lc", "<cmd>Commentary<cr>",                               desc = "comment code" },
-  { "<space>lf", "<cmd> lua vim.lsp.buf.format{ async = true }<cr>",  desc = "format current buffer" },
+  -- <space>lf 格式化代码
   { "<space>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", desc = "lsp goto next" },
   { "<space>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", desc = "lsp goto prev" },
   { "<space>ln", "<cmd>lua vim.lsp.buf.rename()<cr>",                 desc = "rename" },
@@ -81,7 +85,11 @@ wk.add({
   { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   -- <space> o 被 orgmode 使用
-  { "<space>q",  "<cmd>qa<cr>",                                       desc = "close vim" },
+  --
+  -- 为什么是 qa 而不是 wqa ，发现如果 nvim 打开了 terminal ，如果执行 wqa 会有这个错误
+  -- E948: Job still running
+  -- E676: No matching autocommands for buftype= buffer
+  { "<space>q",  "<cmd>qa<cr>",                                      desc = "close vim" },
 
   { "<space>s",  group = "search" },
   {
@@ -114,13 +122,13 @@ wk.add({
   { "ck",        "<C-w>k",                                                desc = "go to the window up" },
   { "cl",        "<C-w>l",                                                desc = "go to the window right" },
   { "cm",        "<cmd>only<cr>",                                         desc = "delete other window" },
-  { "cn",        "<cmd>Lspsaga outline<cr>",                              desc = "toggle navigator" },
+  { "cn",        "<cmd>AerialToggle!<cr>",                                      desc = "toggle navigator" },
   { "cs",        "<cmd>sp<cr>",                                           desc = "horizontal split window" },
   { "cu",        "<cmd>UndotreeToggle<cr>",                               desc = "open undo tree" },
   { "gD",        "<cmd>lua vim.lsp.buf.declaration()<cr>",                desc = "go to declaration" },
-  { "gd",        "<cmd>lua vim.lsp.buf.definition()<cr>",                 desc = "go to definition" },
+  { "gd",        "<cmd>Telescope lsp_definitions<cr>",                 desc = "go to definition" },
   { "gi",        "<cmd>lua vim.lsp.buf.implementation()<cr>",             desc = "go to implementation" },
-  { "gr",        "<cmd>lua vim.lsp.buf.references()<cr>",                 desc = "go to reference" },
+  { "gr",        "<cmd>Telescope lsp_references<cr>",                     desc = "go to reference" },
   { "gw",        "<cmd>Telescope diagnostics<cr>",                        desc = "diagnostics" },
   { "gn",        "<cmd>lua vim.diagnostic.goto_next()<cr>",               desc = "go to next error" },
   { "gN",        "<cmd>lua vim.diagnostic.goto_prev()<cr>",               desc = "go to prev error" },
@@ -130,7 +138,7 @@ wk.add({
   { "md",        "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
   { "mm",        "<cmd>lua require'bookmarks'.add_bookmarks()<cr>",       desc = "add bookmarks" },
   { "mn",        "<cmd>lua require'bookmarks.list'.show_desc() <cr>",     desc = "show bookmark note" },
-  { "q",         "<cmd>q<cr>",                                            desc = "close window" },
+  { "q",         "<cmd>q<cr>",                                           desc = "close current window" },
 })
 
 wk.add({
@@ -145,30 +153,20 @@ wk.add({
 
 vim.api.nvim_set_keymap("i", "<c-g>", "<cmd>!ibus engine rime<cr>", { noremap = true })
 
--- 部分格式化，which-key 的设置方法有问题，似乎只是语法没有理解到位
--- https://vi.stackexchange.com/questions/36946/how-to-add-keymapping-for-lsp-code-formatting-in-visual-mode
-function FormatFunction()
-  vim.lsp.buf.format({
-    async = true,
-    range = {
-      ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-      ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-    },
-  })
-end
+-- 添加自适应的命令
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sh",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { buffer = true, silent = true })
+  end
+})
 
-vim.api.nvim_set_keymap("v", "<space>lf", "<Esc><cmd>lua FormatFunction()<CR>", { noremap = true })
-
--- TODO 这两个写有问题，FileType 不是这么用的
-vim.cmd("autocmd FileType sh lua BashLeaderX()")
-function BashLeaderX()
-  vim.api.nvim_set_keymap("n", "<leader>x", ":!chmod +x %<CR>", { noremap = false, silent = true })
-end
-
-vim.cmd("autocmd FileType markdown lua MarkdownLeaderX()")
-function MarkdownLeaderX()
-  vim.api.nvim_set_keymap("n", "<leader>x", ":MarkdownPreview<CR>", { noremap = false, silent = true })
-end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":MarkdownPreview<CR>", { buffer = true, silent = false })
+  end
+})
 
 vim.cmd("autocmd FileType rust lua RunRust()")
 function RunRust()

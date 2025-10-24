@@ -8,5 +8,6 @@ require("bufferline").setup({
     show_close_icon = false,
     max_name_length = 80,
   },
-  highlights = require("catppuccin.groups.integrations.bufferline").get()
+  -- 2025-08-27 : catppuccin doesn't work after update
+  -- highlights = require("catppuccin.groups.integrations.bufferline").get()
 })
