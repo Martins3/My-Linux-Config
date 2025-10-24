@@ -39,7 +39,6 @@
   * [代码段](#代码段)
   * [代码补全](#代码补全)
   * [Git 集成](#git-集成)
-  * [Github 集成](#github-集成)
   * [调试](#调试)
   * [vim cmdline 自动补全](#vim-cmdline-自动补全)
   * [终端](#终端)
@@ -544,18 +543,6 @@ snippet import
 2. [GitMessenger](https://github.com/voldikss/vim-floaterm)可以显示所在行的 git blame 信息。
 3. [vim-fugitive](https://github.com/tpope/vim-fugitive) : 查看每一行的 blame, 提交代码等
 
-### Github 集成
-
-通过 [github cli](https://github.com/cli/cli) 可以在终端上操作 github 上的 issue / pull request 等，
-而通过 [octo.nvim](https://github.com/pwntester/octo.nvim) 可以将 github 进一步继承到 nvim 中。
-
-1. 安装 github cli 参考[这里](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
-2. 使用方法参考 octo.nvim 的 README.md
-
-| 直接查看本项目中的 issue     |
-| ---------------------------- |
-| <img src="./img/octo.png" /> |
-
 ### 调试
 
 我一般使用 [gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard)，不使用额外的 vim 配置。
@@ -580,33 +567,35 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 通过 [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline) 可以让 vim cmdline 实现模糊搜索。
 
-| 利用 在命令模式自动补全                                                                                        |
+| 在命令模式自动补全                                                                                        |
 |----------------------------------------------------------------------------------------------------------------|
 | <img src="https://github.com/Martins3/My-Linux-Config/assets/16731244/f3eea191-395f-458f-806a-21942bdc8b86" /> |
 
 ### 终端
 
-利用 `voidkiss/floaterm` 可以实现将终端以 float window 的形式打开，我映射的快捷键分别为:
+- `Ctrl` `t` : toggle terminal ，如果当前在 terminal 中，那么就关闭，否则在右侧打开一个。
+- `Ctrl` `n` : 打开新的 terminal
+- `Ctrl` `p` : 使用 Telescope 搜索已经打开的 terminal
 
-- `Ctrl` `t` : 显示/隐藏窗口
+在屏幕打开一个 window 来实现 terminal :
+<img width="3834" height="1870" alt="Image" src="https://github.com/user-attachments/assets/594aca08-6a9d-4628-a993-8db63100c618" />
 
-| 打开悬浮终端，并且运行 htop 的结果 |
-| ---------------------------------- |
-| <img src="./img/floaterm.png" />   |
+搜索 terminal :
+<img width="3839" height="1961" alt="Image" src="https://github.com/user-attachments/assets/97bdd8e2-cae0-4437-9d1a-ec5146e43ac5" />
 
-关于 `voidkiss/floaterm` 和 `akinsho/toggleterm.nvim` 的对比:
 
-1. voidkiss 的更加稳定，功能更多。但是有严重的性能问题，例如编译内核的过程中，产生的 log 可能导致 nvim 卡死。
-2. akinsho 项目更加新，使用 lua 写的，在 UI 上更加灵活，但是存在一些细微的 bug 和功能缺失。
-
-- 终端丢失。
-- 切换终端的时候莫名奇妙进入 normal mode
-- 如果同时使用多个终端，其管理难度简直逆天。
-- 没有简洁的 voidkiss 中 FloatermNew 的功能。
-  综上，我认为最近两年没有必要切换。
+为什么不直接用现成的 terminal 插件，
+1. `voidkiss/floaterm` 的更加稳定，功能更多。但是有严重的性能问题，例如编译内核的过程中，产生的 log 可能导致 nvim 卡死。
+2. `akinsho/toggleterm.nvim` 项目更加新，使用 lua 写的，在 UI 上更加灵活，但是存在一些细微的 bug 和功能缺失。
+  - 如果同时使用多个终端，其管理难度简直逆天。
+  - 没有简洁的 voidkiss 中 FloatermNew 的功能，需要写一些配置文件。
+3. 逛 reddit 偶然发现 [nvzone/floaterm](https://www.reddit.com/r/neovim/comments/1lbzm1z/floaterm_beautiful_terminal_buffer_manager/)
+看上去满足我的多 terminal 管理的需求，但是不成熟。
 
 2024-11-02 ，升级 nvim 0.10.1 之后，FloatermNew 已经不可以用了，所以还是
 使用 akinsho/toggleterm.nvim 了
+
+2025-07-04 ，借助 deepseek 的辅助，用 64 行就写了一个 terminal 配置，基本达到我的需求
 
 ### 一键运行代码
 
@@ -647,7 +636,7 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 使用命令 SessionDelete 可以删除掉保存的 session 。
 
-如果想要清理所有 sessions 使用如下命令发。
+如果想要清理所有 sessions ，使用如下命令。
 
 ```sh
 rm -r ~/.local/share/nvim/sessions
@@ -674,13 +663,13 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 如果想要让自己彻底的移除掉低效移动的坏习惯，还是得靠 [m4xshen/hardtime.nvim](https://github.com/m4xshen/hardtime.nvim)
 
-| binding  | function                                                                    |
-| -------- | --------------------------------------------------------------------------- |
-| `CTRL-o` | 跳转的位置的回溯                                                            |
-| `g;`     | 跳转到刚刚编辑的位置                                                        |
-| `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                    |
-| `gf`     | 打开光标所在文件                                                            |
-| `%`      | 跳转到包围的 ([{}]) 或者在匹配的 #if, #ifdef, #else, #elif, #endif 之间跳转 |
+| binding  | function                                                                              |
+| -------- | ---------------------------------------------------------------------------           |
+| `CTRL-o` | 跳转的位置的回溯                                                                      |
+| `g;`     | 跳转到刚刚编辑的位置                                                                  |
+| `gi`     | 跳转到刚刚编辑的位置，并且进入到插入模式                                              |
+| `gf`     | 打开光标所在文件                                                                      |
+| `%`      | 跳转到包围的 ([{}]) 或者在匹配的 `#if`, `#ifdef`, `#else`, `#elif`, `#endif` 之间跳转 |
 
 ## 本配置源代码解释
 
@@ -688,16 +677,13 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是关于 vim 其他的配置。
 
-- init.vim : vim 的基础设置，在其中加载 vim/ 和 lua/usr 下的配置文件
-- vim/
-  - debug.vim : 定义了两个函数
-  - misc.vim : 各种插件的细微的修改
-- lua/init.lua : 加载其他的 lua 配置
+- init.vim : 基础设置，和 lua/usr 下的配置文件
+- lua/init.lua : 基础 加载其他的 lua 配置
 - lua/usr
-  - packer.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
+  - lazy.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua ... : 一些插件的默认配置的调整，都非常短。
-  - lsp : native lsp 相关的配置
+- lsp : lsp server 相关的配置，自动加载
 - UltiSnips/ : 自定义的代码段，主要是 bash 相关的
 
 ## FAQ
@@ -793,10 +779,10 @@ setxkbmap -option caps:swapescape
 
 ## 值得一看的配置
 
+- [NvChad](https://github.com/NvChad/NvChad) : 个人推荐
 - [LazyVim](https://github.com/LazyVim/LazyVim) : folke 大神写的 nvim 配置
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 这绝对是开始使用 lua 来配置的 nvim 开始的好地方。强烈推荐。
-- [LunarVim](https://github.com/LunarVim/LunarVim) 超过 15000 star 的 IDE 配置
-- [NvChad](https://github.com/NvChad/NvChad) 同上
+- [LunarVim](https://github.com/LunarVim/LunarVim) 超过 18k star 的 IDE 配置
 - [jdhao/nvim-config](https://github.com/jdhao/nvim-config) : jdhao 的配置
 - [nyoom.nvim](https://github.com/nyoom-engineering/nyoom.nvim) : 纯 fennel
 
