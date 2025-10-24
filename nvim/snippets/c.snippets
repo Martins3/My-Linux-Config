@@ -90,3 +90,10 @@ snippet ktrace "add a new tracepoint"
   	    TP_fast_assign(__entry->count = count;),
 
   	    TP_printk("$1 : %llx ", __entry->count));
+
+snippet show_locks "show locks every two seconds"
+  static unsigned long jiffies_at_begin = 0;
+  if (time_after(jiffies, jiffies_at_begin + HZ * 2)) {
+  	debug_show_held_locks(current);
+  	jiffies_at_begin = jiffies;
+  }

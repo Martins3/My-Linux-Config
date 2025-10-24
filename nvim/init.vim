@@ -19,15 +19,16 @@ map <leader>d "+d
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 
+" 让光标自动进入到 popup window 中间
+" 去掉默认的 <leader>gm 快捷键，这个配置需要在 which-key 前面配置才可以生效
+let g:git_messenger_always_into_popup = v:true
+let g:git_messenger_no_default_mappings = v:true
+
 " 加载 lua 配置
 lua require 'usr'
 
 " 在 markdown 中间编辑 table
 let g:table_mode_corner='|'
-
-" 让光标自动进入到 popup window 中间
-let g:git_messenger_always_into_popup = v:true
-let g:git_messenger_no_default_mappings = v:true
 
 " 使用 gx 在 vim 中间直接打开链接
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
@@ -48,11 +49,5 @@ let @k = 'ysiw"\<Esc>'
 
 let g:loaded_perl_provider = 0
 
-" this keymapping originally set by whichkey doesn't work in neovim 0.8
-noremap <Space>bc :BDelete hidden<cr>
-
 let g:gitblame_delay = 1500
 let g:gitblame_ignored_filetypes = ['lua', 'markdown', 'sh']
-
-" 因为 nvim-treesitter-textobjects 使用 x 来跳转，原始的 x 被映射为 xx
-nn xx x

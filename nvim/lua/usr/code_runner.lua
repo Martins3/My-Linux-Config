@@ -22,5 +22,6 @@ require("code_runner").setup({
     r = "Rscript $file",
     lua = "lua $file",
     nix = "nix eval -f $file",
+    ps1 = "powershell -ExecutionPolicy Bypass -File $file",
   },
 })
