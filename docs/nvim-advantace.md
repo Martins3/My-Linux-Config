@@ -10,6 +10,15 @@
 - [如何删除每一行的第一个字符](https://stackoverflow.com/questions/1568115/delete-first-word-of-each-line)
   - `:%norm dw`
 
+- [ ] `:options` 检查所有的 options
+- `set!` : 检查修改过的项目
+
+## augroup
+
+https://vi.stackexchange.com/questions/9455/why-should-i-use-augroup
+
+:augroup
+
 
 ## 调试插件的 bug
 
@@ -69,9 +78,13 @@ https://github.com/nvim-neorocks/nvim-best-practices
 
 ## 如果可以在 terminal 中连续的两个 esc ，就推出 terminal ，那个是极好的
 
-## sqlite ，好麻烦啊!
-https://github.com/danielfalk/smart-open.nvim 依赖于 sqlite ，nixos 上无法解决
+## https://github.com/danielfalk/smart-open.nvim
+依赖于 sqlite ，提供了方法 sqlite 在 nixos 中的方法，但是没有
+这个项目自己似乎凉了
 
+类似的功能，但是似乎也凉了
+https://github.com/cbochs/grapple.nvim
+  - 和 nvim-telescope/telescope-frecency.nvim 对比下，真的很慢
 
 ## 用用这个软件
 https://github.com/mpv-player/mpv
@@ -80,8 +93,6 @@ https://vim-racer.com/
 
 https://github.com/sindrets/diffview.nvim : 尝试下
 
-https://github.com/cbochs/grapple.nvim
-  - 和 nvim-telescope/telescope-frecency.nvim 对比下，真的很慢
 
 
 ## [ ] tree-sitter 和 vim 的各种操作的语义
@@ -114,11 +125,6 @@ text obj 的含义
 "mg979/vim-visual-multi", -- 同时编辑多个位置
 "AckslD/nvim-neoclip.lua", -- 保存 macro
 ```
-
-这个应该是用点用的:
-https://github.com/ptdewey/pendulum-nvim
-
-没办法正常使用，如果可以用的话，那么是极好的
 
 ## [ ] 如何处理
 导航栏中，对于
@@ -219,12 +225,9 @@ void kvm_vcpu_unmap(struct kvm_vcpu *vcpu, struct kvm_host_map *map, bool dirty)
 
 - https://github.com/t-troebst/perfanno.nvim : perf 展示到 nvim 中
 
-## [ ] 如何跳到屏幕的开始
-
 ## 还是有必要看看的
 很多东西过时了，但是还是有很多可以参考的
 https://danielmiessler.com/study/vim
-
 
 ## 被废弃的方法
 ### 输入法自动切换
@@ -286,3 +289,41 @@ https://github.com/Chenyu-otf/chenyuluoyan_thin
 
 ## 把这个安排上
 https://github.com/huacnlee/autocorrect
+
+## 可以尝试一下，一个新的 task runner
+overseer.nvim
+
+https://github.com/aaronik/treewalker.nvim
+
+
+## 一个新的 c lsp ，保持关注吧
+https://github.com/clice-project/clice
+
+## neovim lsp  相关
+:checkhealth lsp
+
+https://gpanders.com/blog/whats-new-in-neovim-0-11/#lspa
+
+## vim-matchup 会引入严重的性能问题
+
+```txt
+  "andymass/vim-matchup", -- 高亮匹配的元素，例如 #if 和 #endif
+```
+
+但是，现在 #if 和 #endif 的确是没有办法识别了
+
+## neovim 迭代极快，问题极多
+https://news.ycombinator.com/item?id=45121915
+
+## julia evans 切换到 helix 的体验
+https://news.ycombinator.com/item?id=45539609
+
+https://news.ycombinator.com/item?id=45559076
+
+## 记录一个极其诡异的问题
+
+```txt
+export https_proxy=
+export http_proxy=
+```
+可以解决 bear -- make 的时候，解决 rpc 相关的报错
