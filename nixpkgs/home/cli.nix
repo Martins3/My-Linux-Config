@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  stdenv,
-  lib,
   ...
 }:
 
@@ -23,7 +21,7 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = { };
-    initExtra = "
+    initContent = "
     source ${config.home.homeDirectory}/.dotfiles/config/zsh
     ";
 

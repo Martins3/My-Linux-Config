@@ -19,6 +19,10 @@ pkgs.stdenv.mkDerivation {
   ];
 
   buildInputs = with pkgs; [
+    autoconf
+    libtool
+    automake
+
     elfutils
     cunit
     dpdk
@@ -38,7 +42,7 @@ pkgs.stdenv.mkDerivation {
     zstd
   ];
 
-  propagatedBuildInputs  = with pkgs; [ 
+  propagatedBuildInputs  = with pkgs; [
     python3.pkgs.configshell
   ];
 

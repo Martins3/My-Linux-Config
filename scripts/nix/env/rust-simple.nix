@@ -2,36 +2,28 @@
 with import <nixpkgs> { };
 pkgs.llvmPackages.stdenv.mkDerivation {
   hardeningDisable = [ "all" ];
-  name = "yyds";
+  name = "simple-rust";
   buildInputs = with pkgs; [
     cargo
     rustc
     rustfmt
     rustup
-    # 测试 gRPC
-    protobuf
 
-    # Necessary for the openssl-sys crate:
+    # Necessary for the openssl-sys crate
     openssl
     pkg-config
-    fuse
 
     rust-analyzer
     # wasm-pack
     # wasmer
     # wasmtime
     libclang
-    libseccomp
-    linuxHeaders
     cmake
     glibc
     glibc.dev
-    # firecracker 中 aws-lc 需要，搞了半天才知道
-    (python3.withPackages (
-      p: with p; [
-        seccomp
-      ]
-    ))
+
+
+    fuse
 
     # IronRDP
     alsa-lib
@@ -39,6 +31,9 @@ pkgs.llvmPackages.stdenv.mkDerivation {
 
     # alacritty
     fontconfig
+
+    # 测试 gRPC
+    protobuf
   ];
 
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.
