@@ -10,10 +10,17 @@ let
   }) { };
   old_tmux = tmux_pkgs.tmux;
 
+  # qemu 6
+  qemu_pkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
+  }) { };
+
+  # qemu 2.12
   # qemu_pkgs = import (builtins.fetchTarball {
-  #   url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
-  # }) { };
-  # qemu6 = qemu_pkgs.qemu_full;
+  #       url = "https://github.com/NixOS/nixpkgs/archive/676f09be679e3d4d8758356914ef4ae81388bcc5.tar.gz";
+  #   }) {};
+
+  qemu6 = qemu_pkgs.qemu;
 
 in
 with pkgs;
@@ -31,6 +38,7 @@ with pkgs;
   libclang # 各种 clang 基本工具，例如 clang-doc
   libllvm
   lld
+  valgrind
   # gnuplot
   ccache
   opam
@@ -98,34 +106,37 @@ with pkgs;
   # 真的奇怪，ceph 和 bcc 居然用冲突
   bcc
   nvme-cli
+  nvmet-cli
 
-  kmon # 方便的管理内核模块
+  # kmon # 方便的管理内核模块
   numactl
   # numatop # CPU 根本不支持
   # kexec-tools # 实际上没有办法用
   rpm
 
   ethtool
-  conntrack-tools # 分析 conntrack 表
+  # conntrack-tools # 分析 conntrack 表
   # dhcpcd # 这个东西和 nixos 不兼容
   nethogs
-  systeroid
+  netcat # 提供 nc 命令
+  # systeroid
   xclip # x clipboard
   # wl-clipboard # wayland clipboard
   aspell
   aspellDicts.en
 
   dracut
-  ventoy
+  # ventoy # 被 ban 掉了
   gdb
-  # iw # TODO 做啥的来着
+  iw # wifi 管理
 
-  # busybox # 提供 devmem 等工具，但是会覆盖很多工具
-  debootstrap # 制作 rootfs 的工具
-  fakeroot
+  # busybox # 提供 devmem 等工具，但是会覆盖很多工具，不要打开
+  # debootstrap # 制作 rootfs 的工具
+  # fakeroot
 
   libgcc # gcov
 
+  drm_info
   ipmitool
   hdparm
   smartmontools # 监视硬盘健康
@@ -134,10 +145,12 @@ with pkgs;
   hw-probe # sudo -E hw-probe -all -upload
   # linuxKernel.packages.linux_5_15.perf
   # linuxPackages.perf
-  linuxKernel.packages.linux_6_12.perf
+  linuxKernel.packages.linux_6_6.perf
+  linuxKernel.packages.linux_6_6.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
   # linuxPackages_6_10.kernel.dev
+  coccinelle
 
   # 没法用，还需要内核模块
   # error opening device /dev/scap0. Make sure you have root credentials and that the scap module is loaded: No such file or directory
@@ -148,7 +161,6 @@ with pkgs;
 
   pahole
   xdp-tools
-  acpi
   bpftrace
   # blktrace
   bpftools
@@ -156,19 +168,23 @@ with pkgs;
   pwru # ebpf 抓包工具
   # kernelshark
   trace-cmd
+  lttng-tools
+  babeltrace2
   # hotspot
   # heaptrack
-  coccinelle
 
-  # acpi
+  # 固件相关
+  acpi
   acpica-tools
+  dmidecode # sudo dmidecode -t 1
+
   libiscsi
   openiscsi
   lsscsi
   sg3_utils # 提供 scsi_logging_level
   targetcli
 
-  # podman # 暂时不需要
+  podman # 无需 systemd ，home-manger 就可以安装
   # podman-tui
   # minio
   # kubeadm
@@ -187,14 +203,14 @@ with pkgs;
   bridge-utils
 
   # TODO 谁包含了 ceph
-  # qemu
+  qemu
   # qemu6
   # lima # 虚拟机工具
   # libvirt # 提供 virsh
-  # virt-manager # TODO 这个是图形程序吧?
+  # virt-manager # qemu 的图形管理
   # quickemu
   # krunvm # 有待尝试
-  # unstable.nixos-shell
+  # nixos-shell # 效果一般，不够灵活
 
   # buildah
   virtiofsd
@@ -203,7 +219,6 @@ with pkgs;
   # 想不到 ltrace macos 不支持
   ltrace # library trace
 
-  parted
   sysbench
 
   sysstat # sar, iostat and pidstat mpstat
@@ -222,13 +237,13 @@ with pkgs;
   # nixos 有这个问题，如果只是安装 home-manger 没有这个问题
   libxfs
   # bcachefs-tools
+  quota
   libcgroup
   cpulimit
 
-  dmidecode # sudo dmidecode -t 1
 
-  iptraf-ng # 网络流量分析
-  ifmetric
+  # iptraf-ng # 网络流量分析
+  # ifmetric
 ]
 ++ [
   # oh-my-posh # @todo for powershell
@@ -238,6 +253,8 @@ with pkgs;
   tree
   fd
   file
+  # 磁盘管理工具
+  # parted
   duf # 更好的 df -h
   zoxide # better jump
   # ncdu # 更加易用的 du
@@ -250,7 +267,7 @@ with pkgs;
   # act # Run github action locally
   # git-secrets
   bandwidth
-  # openfortivpn # TODO 真的可以用吗?
+  openfortivpn
   # sniffnet # 一个直接简单易用的
   nmap
   iftop
@@ -262,13 +279,13 @@ with pkgs;
   proxychains-ng
   sshpass
   gping # better ping
-  pingu # interesting ping
+  fping # 更高性能的 ping
   # frp # 反向代理
   nbd
   stress-ng
   # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
   hexyl # 分析二进制
-  hyperfine # 命令行性能测试工具
+  # hyperfine # 命令行性能测试工具
   # rasdaemon # @todo 莫名其妙，不知道怎么使用
   ninja
 
@@ -278,7 +295,7 @@ with pkgs;
   nixfmt-rfc-style
   # debootstrap # 制作 uml 的工具
   meson
-  neovim
+  unstable.neovim
   luarocks
   # zed-editor # 默认不支持中文，放弃
   # helix # modern neovim
@@ -300,7 +317,8 @@ with pkgs;
   # linuxKernel.packages.linux_latest_libre.turbostat
   pcm
   # zenith-nvidia # 用处不大，和 top 功能重叠
-  nvitop # 美观，比 nvidia-smi 好用
+  # nvitop # 美观，比 nvidia-smi 好用
+  oxtools # 提供 vmtop ，这个工具 arm 没有我是没想到的
   powertop # 分析功耗
   intentrace # strace 类似工具 TODO 居然不支持 aarch64
 ]
@@ -323,21 +341,22 @@ with pkgs;
       pytest
     ]
   ))
+  uv # 似乎现在大家更加推荐使用这个作为 python 的包管理器
   # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
   # perl
-  man-db
-  man-pages
-  # man-pages-posix
+  # man-db
+  # man-pages
+  man-pages-posix
   pre-commit
   lazydocker
   # docker-compose
   openssl
   minicom
-  arp-scan
+  # arp-scan
   # nixos-generators # 基于当前系统生成 qcow2
   # packer # 制作 qcow2 镜像
   gum
-  asciidoc
+  # asciidoc # 忘记做啥的了
   fio
   genact # A nonsense activity generator
   # wtf # The personal information dashboard for your terminal
@@ -363,29 +382,31 @@ with pkgs;
 
   # containerd # @todo 测试下
   # nerdctl
+
   calcure # 日历，@todo 可以定制化的，有趣
 
   # openjdk
   # dockerTools @todo # 使用 nixos 构建 docker
   # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools
-  asciiquarium
   bc # bash 数值计算
-  bash_unit
+  # bash_unit
 
   # cowsay
+  # asciiquarium # 海底世界
   # figlet # 艺术字
   # lolcat # 彩虹 cat
   # nyancat # 彩虹猫咪
 
-  dig # dns 分析
+  # dig # dns 分析
 
+  # butane # fedora coreos 的安装工具
   # httpie # http baidu.com
   lcov
 
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
-  clash-meta
+  # clash-meta
 
   # lsp && formatter
   black # python formatter
@@ -396,10 +417,13 @@ with pkgs;
 
   ccls
   checkmake
-  stylua
-  lua-language-server
-  efm-langserver # 集成 shellcheck
-  marksman # nixos 不可以通过 mason 来安装，有动态库的问题
+  # stylua
+  nasm
+  deno # 用于 markdown 格式化
+
+  # efm-langserver # 集成 shellcheck
+  # lua-language-server
+  # marksman # nixos 不可以通过 mason 来安装，有动态库的问题
   # typos-lsp
-  pyright
+  # pyright
 ]

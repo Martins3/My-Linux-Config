@@ -1,13 +1,12 @@
 let
   pkgs = import <nixpkgs> { };
 in
-pkgs.mkShell rec {
+pkgs.mkShell {
   buildInputs = with pkgs; [
     autoconf
     automake
     libtool
 		pkg-config
-
     liburing
   ];
 }
