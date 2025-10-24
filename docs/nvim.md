@@ -205,6 +205,14 @@ index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s  
 
 ```
 
+如果需要配置不同的机器使用不同的 git 代理，可以在 ~/.gitconfig 中添加如下内容
+```txt
+[include]
+    path = ~/.gitconfig-local
+```
+然后 ~/.gitconfig-local 中配置代理信息。
+
+
 ### 安装各种依赖
 
 ```sh
