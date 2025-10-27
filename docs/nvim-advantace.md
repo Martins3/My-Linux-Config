@@ -327,3 +327,8 @@ export https_proxy=
 export http_proxy=
 ```
 可以解决 bear -- make 的时候，解决 rpc 相关的报错
+
+## 这个是可以解决我们的问题的
+rachartier/tiny-inline-diagnostic.nvim
+
+不过用起来有点 bug 
