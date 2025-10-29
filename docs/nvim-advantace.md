@@ -259,10 +259,6 @@ https://news.ycombinator.com/item?id=42674116
 https://news.ycombinator.com/item?id=40179194
 https://m4xshen.dev/posts/vim-command-workflow
 
-https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
-```sh
-:sort u
-```
 
 ## https://github.com/yetone/avante.nvim
 配合 deepseek 用用看看效果，不过可以继续等等
