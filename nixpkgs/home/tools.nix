@@ -285,6 +285,7 @@ with pkgs;
   stress-ng
   # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
   hexyl # 分析二进制
+  hevi # 
   # hyperfine # 命令行性能测试工具
   # rasdaemon # @todo 莫名其妙，不知道怎么使用
   ninja
