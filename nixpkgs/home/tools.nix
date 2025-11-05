@@ -407,7 +407,7 @@ with pkgs;
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
-  # clash-meta
+  clash-meta
 
   # lsp && formatter
   black # python formatter
