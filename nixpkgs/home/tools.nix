@@ -145,7 +145,7 @@ with pkgs;
   hw-probe # sudo -E hw-probe -all -upload
   # linuxKernel.packages.linux_5_15.perf
   # linuxPackages.perf
-  linuxKernel.packages.linux_6_6.perf
+  # linuxKernel.packages.linux_6_6.perf
   linuxKernel.packages.linux_6_6.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
@@ -162,7 +162,7 @@ with pkgs;
   pahole
   xdp-tools
   bpftrace
-  # blktrace
+  blktrace
   bpftools
   bpftune
   pwru # ebpf 抓包工具
@@ -285,6 +285,7 @@ with pkgs;
   stress-ng
   # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
   hexyl # 分析二进制
+  hevi # 
   # hyperfine # 命令行性能测试工具
   # rasdaemon # @todo 莫名其妙，不知道怎么使用
   ninja
@@ -406,7 +407,7 @@ with pkgs;
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
-  # clash-meta
+  clash-meta
 
   # lsp && formatter
   black # python formatter

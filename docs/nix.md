@@ -171,57 +171,15 @@ npm install -g prettier
 # npm install -g @microsoft/inshellisense
 ```
 
-## 共享
-
-### 使用 samba 实现目录共享
-
-参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
-
-此外，在 Linux 中设置
-
-```sh
-sudo smbpasswd -a martins3
-```
-
-在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.0.2\public` 即可。
-注意，这里的 public 和配置文件中对应的。
-
-如果遇到需要密码的时候，但是密码不对
-
-```txt
-sudo smbpasswd -a martins3
-```
-
-在 windows 那一侧使用 martins3 和新设置的密码来登录。
-
-#### fedora 上 enable
-将 fedora 的文件 贡献给 windows
-
-```sh
-sudo dnf install samba
-sudo systemctl enable smb --now
-```
-
-sudo smbpasswd -a martins3
-
-在 /etc/samba/smb.conf 的结尾地方添加:
-```txt
-[public]
-        path = home/martins3/core
-        browseable = yes
-        read only = no
-        guest ok = yes
-```
-总体来说，失败，一会儿再去尝试吧
-
-### syncthing
+## syncthing
 
 强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
 
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing
 
-使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
+使用注意项，可以在两个机器中编辑同一个文件夹中的文件，
+但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
 
 ## python
 
