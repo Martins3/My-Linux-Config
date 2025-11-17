@@ -1,11 +1,11 @@
 snippet lpr
-  pr_info("[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+  pr_info("[martins3:%s:%d] ${0}\n", __func__, __LINE__);
 
 snippet qpr
-  printf("[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+  printf("[martins3:%s:%d] ${0}\n", __func__, __LINE__);
 
 snippet seapr
-  dprintf(1, "[martins3:%s:%d] ${0}\n", __FUNCTION__, __LINE__);
+  dprintf(1, "[martins3:%s:%d] ${0}\n", __func__, __LINE__);
 
 snippet import "template"
   #include <assert.h>  // assert
