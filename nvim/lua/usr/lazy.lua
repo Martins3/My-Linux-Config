@@ -179,7 +179,6 @@ require("lazy").setup({
     "olimorris/persisted.nvim",
   }, -- 自动保存关闭时候的会话
   "nvimtools/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
-  "voldikss/vim-translator", -- 翻译
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   { "xiyaowong/telescope-emoji.nvim" },
   {

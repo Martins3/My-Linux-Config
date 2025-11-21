@@ -49,7 +49,6 @@ wk.add({
   { "<space>a",  group = "misc" },
   { "<space>aa", "<cmd>InsertUUID<cr>",                               desc = "remove trailing space" },
   { "<space>ad", "<cmd>call TrimWhitespace()<cr>",                    desc = "remove trailing space" },
-  { "<space>at", "<Plug>Translate",                                   desc = "translate current word" },
   { "<space>b",  group = "buffer" },
   { "<space>bd", "<cmd>bdelete %<cr>",                                desc = "close current buffers" },
   -- only works in a c/cpp file
