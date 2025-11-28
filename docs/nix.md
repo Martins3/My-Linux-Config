@@ -141,6 +141,7 @@ sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 
 ```sh
 nix-prefetch-url https://github.com/Aloxaf/fzf-tab
+nix-prefetch-url https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 ```
 
 - nixos 默认是打开防火墙的

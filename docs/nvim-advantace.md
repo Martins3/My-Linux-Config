@@ -328,3 +328,5 @@ export http_proxy=
 rachartier/tiny-inline-diagnostic.nvim
 
 不过用起来有点 bug 
+
+## 现在 nvim 到底使用什么翻译还是一个小问题
