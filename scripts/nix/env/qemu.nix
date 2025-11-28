@@ -43,6 +43,8 @@ pkgs.stdenv.mkDerivation {
     clippy
     rdma-core
     lttng-ust
+    # 提供 libcurl 库，给 block/curl.c 使用
+    curl
   ];
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
