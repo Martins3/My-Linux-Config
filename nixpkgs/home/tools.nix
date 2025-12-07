@@ -111,7 +111,7 @@ with pkgs;
   # kmon # 方便的管理内核模块
   numactl
   # numatop # CPU 根本不支持
-  # kexec-tools # 实际上没有办法用
+  # kexec-tools # nixos 中没法用
   rpm
 
   ethtool
@@ -393,11 +393,11 @@ with pkgs;
   bc # bash 数值计算
   # bash_unit
 
-  # cowsay
-  # asciiquarium # 海底世界
-  # figlet # 艺术字
-  # lolcat # 彩虹 cat
-  # nyancat # 彩虹猫咪
+  cowsay
+  asciiquarium # 海底世界
+  figlet # 艺术字
+  lolcat # 彩虹 cat
+  nyancat # 彩虹猫咪
 
   # dig # dns 分析
 
