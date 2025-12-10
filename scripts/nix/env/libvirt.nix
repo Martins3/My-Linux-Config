@@ -30,10 +30,34 @@ pkgs.mkShell rec {
     rpcsvc-proto
     xhtml1
     yajl
+    json_c
+    libssh2
+    systemd
+    openssl
+    audit
+    libnl
+    libnftnl
+    iptables
+    dnsmasq
+    ebtables
+    iproute2
+    bridge-utils
+    util-linux
+    parted
+    fuse3
+    libiscsi
+    libnbd
+    glusterfs
+    avahi
+    polkit
+    numactl
+    libapparmor
+    libselinux
+    libseccomp
+    libpciaccess
   ];
 }
 # 如果重新配置 meson setup --reconfigure build
 # meson setup build -Ddriver_qemu=enabled -Ddriver_libvirtd=enabled -Ddriver_remote=enabled
-# cd build && ninja -j30
-# ninja -t compdb > compile_commands.json
-# cp compile_commands.json ..
+# cd build && ninja -j128
+# ninja -t compdb > ../compile_commands.json
