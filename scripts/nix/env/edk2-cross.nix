@@ -16,5 +16,6 @@ pkgs.mkShell {
   ]);
 }
 
+# 交叉编译:
 # ➜ source edksetup.sh
 # ➜ export GCC5_AARCH64_PREFIX=aarch64-unknown-linux-gnu-  # nixos 中
