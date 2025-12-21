@@ -257,7 +257,7 @@ fc-cache -fv
 
 ### 安装 bear
 
-clangd 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
+clangd/ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
 
 ```sh
 sudo apt install bear
@@ -272,12 +272,18 @@ sudo apt install bear
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
+注: 如果在 `bear -- make` 的时候遇到了 rpc 相关的报错，可以尝试取消一下代理，也就是
+```sh
+export https_proxy=
+export http_proxy=
+```
+
 ### 安装各种 lsp
 
 通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
 在 neovim 中执行 `:Mason` 可以检查各种插件的执行状态。
 
-对于 mason 不支持的 lsp，就需要手动安装了，例如 `sudo apt install ccls`
+对于 mason 不支持的 lsp，就需要手动安装了，目前只有 ccls ，例如 `sudo apt install ccls`
 - [ccls](https://github.com/MaskRay/ccls/wiki/Install)
 
 ### 安装本配置
