@@ -17,7 +17,8 @@ snippet note_variable_default "变量默认值"
 	echo 4 ${EGGS:-spam}  # 4 spam
 
 	# 使用场景:
-	# 1. 一个文件如果存在参数 var=${1-}，之后根据 if [[ $var ]];then 来检测
+	# 1. var=${1-}，之后根据 if [[ $var ]];then 来检测
+	# 2. local a=${1:-apple} 配置默认参数为 apple
 
 
 
