@@ -784,10 +784,6 @@ https://github.com/NixOS/nixpkgs/issues/53085
 
 https://fbinfer.com/docs/getting-started/
 
-## 虚拟机中安装
-
-- gui.nix 不会被 include 进去
-
 ## 有些需要手动设置的内容
 
 gnome 有些内容需要手动设置
@@ -801,7 +797,8 @@ npm install -g @lint-md/cli@beta
 pre-commit install
 ```
 
-但是 pre-commit 不知道为什么，并没有起效。 4. escape and capslock 的切换
+但是 pre-commit 不知道为什么，并没有起效。 
+4. escape and capslock 的切换
 
 ```sh
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
@@ -1369,7 +1366,7 @@ https://aruarian.dance/blog/you-do-not-need-nixos/
 https://github.com/zdyxry/isengard
 
 
-## 不理解为什么为什么构建了，但是启动之后，动态库就找不到了
+## 不理解为什么构建了，但是启动之后，动态库就找不到了
 ```txt
 /home/martins3/data/qemu-f9a3def17b2a////install/bin/qemu-system-x86_64: error while loading shared libraries: libpixman-1.so.0: cannot open shared object file: No such file or directory
 ```
