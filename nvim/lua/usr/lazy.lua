@@ -140,7 +140,7 @@ require("lazy").setup({
     ft = { "markdown" },
   },
   -- 如果发现插件有问题， 可以进入到 ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
-  "mzlogin/vim-markdown-toc", -- 自动目录生成
+  "mzlogin/vim-markdown-toc", -- 自动生成 markdown 文章的目录
   "dhruvasagar/vim-table-mode", -- 快速编辑 markdown 的表格
   -- 高效编辑
   "tpope/vim-commentary", -- 快速注释代码

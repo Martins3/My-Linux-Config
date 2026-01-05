@@ -35,6 +35,7 @@ with pkgs;
   git
   tig
   gcc
+  include-what-you-use
   libclang # 各种 clang 基本工具，例如 clang-doc
   libllvm
   lld
@@ -74,7 +75,6 @@ with pkgs;
   # minicom
   typos # 检查代码中 typo
   # typst # latex 替代品
-  # include-what-you-use # 很小的项目都用着不正常
   cargo
   cmake
   # ov # feature rich pager
