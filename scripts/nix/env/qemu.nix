@@ -45,6 +45,7 @@ pkgs.stdenv.mkDerivation {
     lttng-ust
     # 提供 libcurl 库，给 block/curl.c 使用
     curl
+    alsa-lib
   ];
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
