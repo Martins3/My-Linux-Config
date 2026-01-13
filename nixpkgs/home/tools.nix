@@ -276,6 +276,7 @@ with pkgs;
   # weechat
   # offlineimap # 下载邮件的工具，很难用
   tcpdump
+  tcptrace
   proxychains-ng
   sshpass
   gping # better ping
