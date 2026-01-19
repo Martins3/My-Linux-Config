@@ -203,8 +203,7 @@ with pkgs;
   # openvswitch-lts # 通过 nixpkgs/sys/cli.nix 安装
   bridge-utils
 
-  # TODO 谁包含了 ceph
-  qemu
+  # qemu
   # qemu6
   # lima # 虚拟机工具
   # libvirt # 提供 virsh
@@ -224,8 +223,7 @@ with pkgs;
 
   sysstat # sar, iostat and pidstat mpstat
   atop # 类似 htop ，但是展示的内容不同
-  # TODO 做什么的
-  # nmon
+  # nmon # 又一个 monitor
 
   psmisc # 包含 pstree fuser 等工具
 
