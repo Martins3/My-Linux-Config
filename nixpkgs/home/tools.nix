@@ -145,7 +145,8 @@ with pkgs;
   hw-probe # sudo -E hw-probe -all -upload
   # linuxKernel.packages.linux_5_15.perf
   # linuxPackages.perf
-  linuxKernel.packages.linux_6_18.perf
+  perf
+  # linuxKernel.packages.linux_6_18.perf
   linuxKernel.packages.linux_6_18.cpupower
   linuxKernel.packages.linux_6_18.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
@@ -182,8 +183,8 @@ with pkgs;
   libiscsi
   openiscsi
   lsscsi
-  sg3_utils # 提供 scsi_logging_level
-  targetcli
+  # sg3_utils # 提供 scsi_logging_level
+  # targetcli-fb
 
   podman # 无需 systemd ，home-manger 就可以安装
   # podman-tui
@@ -265,8 +266,8 @@ with pkgs;
   # git-filter-repo # 批量修改历史
   # act # Run github action locally
   # git-secrets
-  bandwidth
-  openfortivpn
+  # bandwidth 已经不维护了
+  # openfortivpn # 可以用的
   # sniffnet # 一个直接简单易用的
   nmap
   iftop
