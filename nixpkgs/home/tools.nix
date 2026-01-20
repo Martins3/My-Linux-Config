@@ -204,7 +204,7 @@ with pkgs;
   # openvswitch-lts # 通过 nixpkgs/sys/cli.nix 安装
   bridge-utils
 
-  # qemu
+  qemu
   # qemu6
   # lima # 虚拟机工具
   # libvirt # 提供 virsh
