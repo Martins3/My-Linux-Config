@@ -143,10 +143,8 @@ with pkgs;
   lshw # 侧重于展示 bus 的结构
   hwloc # 侧重于展示 cache
   hw-probe # sudo -E hw-probe -all -upload
-  # linuxKernel.packages.linux_5_15.perf
-  # linuxPackages.perf
   perf
-  # linuxKernel.packages.linux_6_18.perf
+  linuxKernel.packages.linux_6_18.turbostat
   linuxKernel.packages.linux_6_18.cpupower
   linuxKernel.packages.linux_6_18.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
@@ -317,13 +315,12 @@ with pkgs;
 ++ pkgs.lib.optionals (builtins.currentSystem == "x86_64-linux") [
   auto-cpufreq
   cpuid
-  # linuxKernel.packages.linux_latest_libre.turbostat
   pcm
   # zenith-nvidia # 用处不大，和 top 功能重叠
   # nvitop # 美观，比 nvidia-smi 好用
   oxtools # 提供 vmtop ，这个工具 arm 没有我是没想到的
   powertop # 分析功耗
-  intentrace # strace 类似工具 TODO 居然不支持 aarch64
+  # intentrace # strace 类似工具，2026-01-20 已经不更新了
 ]
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
