@@ -175,6 +175,7 @@ with pkgs;
 
   # 固件相关
   acpi
+  acpitool
   acpica-tools
   dmidecode # sudo dmidecode -t 1
 

@@ -15,7 +15,7 @@ in
   home.packages = import ./tools.nix { inherit pkgs; };
 
   programs.fish = {
-    enable = true;
+    enable = false;
   };
 
   programs.zsh = {
