@@ -47,11 +47,6 @@ sudo ./io_uring /dev/nvme0n1p1
 
 阅读一下 : https://matklad.github.io/2022/03/14/rpath-or-why-lld-doesnt-work-on-nixos.html
 
-## perf
-
-2. 通过 pkgs.linuxPackages_latest.perf:  perf 开始提示缺少 libtraceevent 来支持 tracepoint 了
-1. 6.3 内核无法编译了，之前还是可以手动编译的
-
 ## linuxHeaders
 不知道这个包是做啥的
 
@@ -64,3 +59,6 @@ nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev --command " make -C $(n
 ## 太牛了，这个人几乎将 nix 上构建内核所有问题都解决了?
 
 - https://github.com/jordanisaacs/kernel-module-flake
+
+## 类似
+tools/power/cpupower/ 这个需要在一个普通的 fedora 环境中编译
