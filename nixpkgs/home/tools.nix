@@ -177,6 +177,7 @@ with pkgs;
   acpi
   acpitool
   acpica-tools
+  i7z # 观察 cstate
   dmidecode # sudo dmidecode -t 1
 
   libiscsi
@@ -381,8 +382,8 @@ with pkgs;
   # vector
   git-review
 
-  # containerd # @todo 测试下
-  # nerdctl
+  # containerd # @todo 测试下，按道理 containerd 不是一个服务吗?
+  nerdctl
 
   calcure # 日历，@todo 可以定制化的，有趣
 
