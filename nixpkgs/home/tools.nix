@@ -417,6 +417,7 @@ with pkgs;
   # rustfmt
   # clippy
 
+  cppman
   ccls
   checkmake
   # stylua
