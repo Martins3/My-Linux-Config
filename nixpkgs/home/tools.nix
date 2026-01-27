@@ -144,7 +144,6 @@ with pkgs;
   hwloc # 侧重于展示 cache
   hw-probe # sudo -E hw-probe -all -upload
   perf
-  # linuxKernel.packages.linux_6_18.turbostat # arm 环境没有
   linuxKernel.packages.linux_6_18.cpupower
   linuxKernel.packages.linux_6_18.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
@@ -177,7 +176,6 @@ with pkgs;
   acpi
   acpitool
   acpica-tools
-  i7z # 观察 cstate
   dmidecode # sudo dmidecode -t 1
 
   libiscsi
@@ -323,6 +321,8 @@ with pkgs;
   oxtools # 提供 vmtop ，这个工具 arm 没有我是没想到的
   powertop # 分析功耗
   # intentrace # strace 类似工具，2026-01-20 已经不更新了
+  i7z # 观察 cstate
+  linuxKernel.packages.linux_6_18.turbostat # arm 环境没有
 ]
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
