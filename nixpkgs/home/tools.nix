@@ -144,7 +144,7 @@ with pkgs;
   hwloc # 侧重于展示 cache
   hw-probe # sudo -E hw-probe -all -upload
   perf
-  linuxKernel.packages.linux_6_18.turbostat
+  # linuxKernel.packages.linux_6_18.turbostat # arm 环境没有
   linuxKernel.packages.linux_6_18.cpupower
   linuxKernel.packages.linux_6_18.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
