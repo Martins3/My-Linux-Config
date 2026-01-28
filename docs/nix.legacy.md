@@ -303,3 +303,54 @@ index 8490c95..c1c018b 100644
 ```
 
 还是感觉收益不大，而且启动之后 edge 无法使用。再度放弃。
+
+## nixos 支持 kernel dump 的功能
+否则找不到 /proc/vmcore
+
+参考:
+- https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/misc/crashdump.nix
+- https://search.nixos.org/options?channel=22.05&show=boot.crashDump.enable&from=0&size=50&sort=relevance&type=packages&query=boot.crashDump.enable
+
+使用这个方法可以检查到 CONFIG 的确修改过:
+https://superuser.com/questions/287371/obtain-kernel-config-from-currently-running-linux-system
+
+```txt
+➜  .dotfiles git:(backup) zgrep CONFIG_CRASH /proc/config.gz
+CONFIG_CRASH_DUMP=y
+CONFIG_CRASH_CORE=y
+```
+
+crashdump.nix 中，postCommand 是给
+
+- [ ] 无法理解，在 nixos 的启动中，我检查到了这个
+```txt
+[    2.473781] stage-2-init: running activation script...
+[    2.843469] stage-2-init: setting up /etc...
+[    3.453159] stage-2-init: loading crashdump kernel...
+```
+
+https://gist.github.com/Mic92/4fdf9a55131a7452f97003f445294f97
+
+
+## 痛苦的回忆
+```sh
+function nixos_crash_workaround() {
+	dump_guest_path=$1
+	vmlinux=$2
+	# nixos 中构建不出来 crash ，用 docker 来 workaround
+	local image_dir
+	local vmlinux_dir
+	image_dir=$(dirname "$dump_guest_path")
+	image=$(basename "$dump_guest_path")
+	vmlinux_dir=$(dirname "$vmlinux")
+	vmlinux=$(basename "$vmlinux")
+	echo "$image_dir"
+	echo "$vmlinux_dir"
+	set -x
+	docker run -it --rm --workdir /root \
+		-v "$image_dir":/root/image \
+		-v "$vmlinux_dir":/root/vmlinux \
+		fedora:initrd \
+		crash "/root/image/$image" "/root/vmlinux/$vmlinux"
+}
+```
