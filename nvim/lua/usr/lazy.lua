@@ -163,7 +163,9 @@ require("lazy").setup({
     lazy = false, -- This plugin is already lazy
   },
   -- 其他
-  "ggandor/leap.nvim", -- 快速移动
+  {
+    url = "https://codeberg.org/andyg/leap.nvim",   -- 快速移动
+  },
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
