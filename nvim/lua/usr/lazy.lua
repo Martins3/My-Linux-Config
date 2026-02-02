@@ -260,7 +260,7 @@ require("lazy").setup({
     event = "VeryLazy",
     dependencies = { "folke/snacks.nvim", lazy = true },
     keys = {},
-    enabled = true, -- 升级到 0.11 的时候才可以使用
+    enabled = true,
   },
   "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
 }, {})
