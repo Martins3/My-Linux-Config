@@ -243,7 +243,7 @@ require("lazy").setup({
       local cppman = require("cppman")
       cppman.setup()
 
-      -- Make a keymap to open the word under cursor in CPPman
+      -- Make a keymap to open the word under cursor in cppman
       vim.keymap.set("n", "<leader>cm", function()
         cppman.open_cppman_for(vim.fn.expand("<cword>"))
       end)
@@ -260,7 +260,7 @@ require("lazy").setup({
     event = "VeryLazy",
     dependencies = { "folke/snacks.nvim", lazy = true },
     keys = {},
-    enabled = false, -- 升级到 0.11 的时候才可以使用
+    enabled = true, -- 升级到 0.11 的时候才可以使用
   },
   "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
 }, {})
