@@ -263,4 +263,12 @@ require("lazy").setup({
     enabled = true,
   },
   "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    opts = {
+       host = '10.0.0.2',
+    },  -- lazy.nvim will implicitly calls `setup {}`
+  },
 }, {})
