@@ -1,4 +1,4 @@
-local opts = {
+return {
   init_options = {
     index = {
       threads = 0,
@@ -16,5 +16,3 @@ local opts = {
     },
   },
 }
-
-return opts
