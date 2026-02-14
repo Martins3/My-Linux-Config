@@ -213,6 +213,28 @@ require("lazy").setup({
     config = true,
   }, -- 在 visual mode 展示空白字符
   {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      -- bigfile = { enabled = true },
+      -- dashboard = { enabled = true },
+      -- explorer = { enabled = true },
+      -- indent = { enabled = true },
+      input = { enabled = true },
+      -- picker = { enabled = true },
+      -- notifier = { enabled = true },
+      -- quickfile = { enabled = true },
+      -- scope = { enabled = true },
+      -- scroll = { enabled = true },
+      -- statuscolumn = { enabled = true },
+      -- words = { enabled = true },
+    },
+  },
+  {
     "yetone/avante.nvim",
     enabled = true,
     build = vim.fn.has("win32") ~= 0
@@ -222,7 +244,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "claude",
+      provider = "kimi-cli",
 
       providers = {
         moonshot = {
