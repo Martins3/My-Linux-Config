@@ -440,6 +440,8 @@ set -s set-clipboard on
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
 
+很多 lsp 内置了格式化能力，但是有的 lsp 不行，对于那些后者，可以通过 [conform.nvim](https://github.com/stevearc/conform.nvim) 来解决。
+
 ### 重命名
 
 有时候，写了一个函数名，然后多次调用，最后发现函数名的单词写错了，一个个的修改非常的让人窒息。使用 `<space>` `l` `n` 在需要重命名的元素上，即可批量重命名。
