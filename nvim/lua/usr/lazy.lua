@@ -214,24 +214,28 @@ require("lazy").setup({
   }, -- 在 visual mode 展示空白字符
   {
     "yetone/avante.nvim",
-    enabled = false,
+    enabled = true,
+      build = vim.fn.has("win32") ~= 0
+      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "deepseek",
-      vendors = {
-        deepseek = {
-          __inherited_from = "openai",
-          api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
-        },
+         provider = "claude",
+
+             providers = {
+       moonshot = {
+        endpoint = "https://api.moonshot.ai/v1",
+        model = "kimi-k2-0711-preview",
+        timeout = 30000, -- 超时时间（毫秒）
+          extra_request_body = {
+            temperature = 0.75,
+            max_tokens = 32768,
+          },
       },
+    }
     },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
     },
