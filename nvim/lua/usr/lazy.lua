@@ -215,26 +215,26 @@ require("lazy").setup({
   {
     "yetone/avante.nvim",
     enabled = true,
-      build = vim.fn.has("win32") ~= 0
-      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      or "make",
+    build = vim.fn.has("win32") ~= 0
+        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+        or "make",
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-         provider = "claude",
+      provider = "claude",
 
-             providers = {
-       moonshot = {
-        endpoint = "https://api.moonshot.ai/v1",
-        model = "kimi-k2-0711-preview",
-        timeout = 30000, -- 超时时间（毫秒）
+      providers = {
+        moonshot = {
+          endpoint = "https://api.moonshot.ai/v1",
+          model = "kimi-k2-0711-preview",
+          timeout = 30000, -- 超时时间（毫秒）
           extra_request_body = {
             temperature = 0.75,
             max_tokens = 32768,
           },
-      },
-    }
+        },
+      }
     },
     dependencies = {
       -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
