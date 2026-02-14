@@ -691,14 +691,47 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是关于 vim 其他的配置。
 
-- init.vim : 基础设置，和 lua/usr 下的配置文件
-- lua/init.lua : 基础 加载其他的 lua 配置
+- init.vim : 基础选项设置，然后加载 lua 配置
 - lua/usr
+  - init.lua : 加载其他的 lua 配置
   - lazy.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua ... : 一些插件的默认配置的调整，都非常短。
 - lsp : lsp server 相关的配置，自动加载
-- UltiSnips/ : 自定义的代码段，主要是 bash 相关的
+- snippets/ : 自定义的代码段，主要是 bash 相关的
+
+如何添加一个新的语言的支持，这里使用 typst 作为例子:
+1. 找到该语言公认比较好的 lsp ，发现是 tinymist
+2. 找到关于 neovim 的配置，也就是 https://myriad-dreamin.github.io/tinymist/frontend/neovim.html
+3. 修改 mason.lua ，添加配置文件到 lua/lsp 下，也就是:
+
+```diff
+diff --git a/nvim/lsp/tinymist.lua b/nvim/lsp/tinymist.lua
+new file mode 100644
+index 000000000000..862d4bd69dfb
+--- /dev/null
++++ b/nvim/lsp/tinymist.lua
+@@ -0,0 +1,7 @@
++return {
++     settings = {
++        formatterMode = "typstyle",
++        exportPdf = "onType",
++        semanticTokens = "disable"
++    }
++}
+diff --git a/nvim/lua/usr/mason.lua b/nvim/lua/usr/mason.lua
+index d7ad28d583cf..4c46c2f7f32c 100644
+--- a/nvim/lua/usr/mason.lua
++++ b/nvim/lua/usr/mason.lua
+@@ -16,6 +16,7 @@ local servers = {
+   "vimls",
+   "yamlls",
+   "perlnavigator",
++  "tinymist",
+   -- "typos_lsp",
+   -- "tsserver",
+ }
+```
 
 ## FAQ
 
