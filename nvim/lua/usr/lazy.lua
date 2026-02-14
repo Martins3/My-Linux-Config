@@ -268,7 +268,8 @@ require("lazy").setup({
     lazy = false, -- or ft = 'typst'
     version = '1.*',
     opts = {
-       host = '10.0.0.2',
+       host = '172.17.127.73', -- 这个总是需要修改，就有点烦
+       port = 8001,
     },  -- lazy.nvim will implicitly calls `setup {}`
   },
 }, {})
