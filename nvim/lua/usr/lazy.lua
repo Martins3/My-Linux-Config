@@ -244,13 +244,22 @@ require("lazy").setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "kimi-cli",
-
+      -- 使用 kimi-cli 的 ACP 模式
+      provider = "mmm",
+      -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
+      acp_providers = {
+        ["mmm"] = {
+          command = "kimi acp",
+          args = {  },  -- 注意：不是 "--acp"
+          env = {},
+        },
+      },
+      -- 保留 API 直连模式配置（备用）
       providers = {
         moonshot = {
           endpoint = "https://api.moonshot.ai/v1",
           model = "kimi-k2-0711-preview",
-          timeout = 30000, -- 超时时间（毫秒）
+          timeout = 30000,
           extra_request_body = {
             temperature = 0.75,
             max_tokens = 32768,
