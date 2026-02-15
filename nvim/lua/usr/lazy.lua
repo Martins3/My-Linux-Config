@@ -248,7 +248,7 @@ require("lazy").setup({
       provider = "mmm",
       -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
       acp_providers = {
-        [""] = {
+        ["mmm"] = {
           command = "kimi",
           args = { "acp" },
         },
