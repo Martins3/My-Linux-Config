@@ -424,6 +424,7 @@ with pkgs;
   # stylua
   nasm
   deno # 用于 markdown 格式化
+  opencode
 
   # efm-langserver # 集成 shellcheck
   # lua-language-server
