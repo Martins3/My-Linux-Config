@@ -47,6 +47,7 @@ require("toggleterm").setup({
   direction = "float",
   open_mapping = [[<c-t>]],
   persist_mode = false, -- 总是进入到 insert mode 中
+  auto_scroll = false, -- 如果屏幕中出现新的内容，不要将屏幕滑动最下
 })
 
 vim.api.nvim_set_keymap("n", "<space>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
