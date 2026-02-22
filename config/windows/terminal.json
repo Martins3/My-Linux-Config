@@ -59,6 +59,10 @@
         },
         {
             "id": null,
+            "keys": "alt+right"
+        },
+        {
+            "id": null,
             "keys": "ctrl+v"
         },
         {
@@ -158,6 +162,10 @@
             "keys": "ctrl+alt+2"
         },
         {
+            "id": null,
+            "keys": "alt+left"
+        },
+        {
             "id": "Terminal.SwitchToTab2",
             "keys": "alt+3"
         },
@@ -192,6 +200,30 @@
         {
             "id": null,
             "keys": "ctrl+alt+8"
+        },
+        {
+            "id": "Terminal.MoveFocusUp",
+            "keys": "alt+k"
+        },
+        {
+            "id": null,
+            "keys": "alt+up"
+        },
+        {
+            "id": "Terminal.MoveFocusDown",
+            "keys": "alt+j"
+        },
+        {
+            "id": null,
+            "keys": "alt+down"
+        },
+        {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "alt+l"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "alt+h"
         }
     ],
     "minimizeToNotificationArea": false,
