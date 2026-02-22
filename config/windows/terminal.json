@@ -54,16 +54,20 @@
     "keybindings": 
     [
         {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
+            "id": null,
+            "keys": "ctrl+numpad_minus"
         },
         {
             "id": null,
             "keys": "ctrl+v"
         },
         {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
             "id": null,
-            "keys": "ctrl+numpad_minus"
+            "keys": "ctrl+minus"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -71,15 +75,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+minus"
+            "keys": "ctrl+c"
         },
         {
             "id": null,
             "keys": "ctrl+shift+tab"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+c"
         },
         {
             "id": null,
@@ -106,6 +106,10 @@
             "keys": "ctrl+tab"
         },
         {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "alt+1"
+        },
+        {
             "id": null,
             "keys": "alt+f4"
         },
@@ -118,6 +122,14 @@
             "keys": "f2"
         },
         {
+            "id": null,
+            "keys": "ctrl+alt+7"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+4"
+        },
+        {
             "id": "User.adjustFontSize.E2698FAA",
             "keys": "ctrl+shift+minus"
         },
@@ -126,8 +138,60 @@
             "keys": "ctrl+w"
         },
         {
+            "id": "Terminal.SwitchToTab5",
+            "keys": "alt+6"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+1"
+        },
+        {
             "id": "User.adjustFontSize.E04D5229",
             "keys": "ctrl+shift+plus"
+        },
+        {
+            "id": "Terminal.SwitchToTab1",
+            "keys": "alt+2"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "id": "Terminal.SwitchToTab2",
+            "keys": "alt+3"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+3"
+        },
+        {
+            "id": "Terminal.SwitchToTab3",
+            "keys": "alt+4"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "alt+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "id": "Terminal.SwitchToTab6",
+            "keys": "alt+7"
+        },
+        {
+            "id": "Terminal.SwitchToTab7",
+            "keys": "alt+8"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+8"
         }
     ],
     "minimizeToNotificationArea": false,
