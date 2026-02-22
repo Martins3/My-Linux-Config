@@ -32,10 +32,6 @@ $files = @(
       target = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
     }
     @{
-      source = "$dotfiles\config\windows\pwsh.ps1";
-      target = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
-    }
-    @{
       source = "$dotfiles\config\wezterm.lua";
       target = "$HOME\.config\wezterm\wezterm.lua"
     }
