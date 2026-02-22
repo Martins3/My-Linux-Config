@@ -26,6 +26,7 @@ Set-Alias ls lsd
 function l { lsd -lah  @args }
 Set-Alias c Clear-Host
 Set-Alias v nvim
+Set-Alias gs gitui
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
@@ -104,3 +105,5 @@ if ($MyInvocation.InvocationName -ne '.') {
     Write-Host "  sshmac 00:15:5d:00:08:04"
     Write-Host "  Ssh-ToMac 00155d000804 -Username root"
 }
+
+Import-Module git-aliases -DisableNameChecking
