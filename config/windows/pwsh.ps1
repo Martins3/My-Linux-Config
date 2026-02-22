@@ -27,7 +27,7 @@ function l { lsd -lah  @args }
 Set-Alias c Clear-Host
 Set-Alias v nvim
 
-# Invoke-Expression (&starship init powershell)
+Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # oh-my-posh init pwsh | Invoke-Expression
 

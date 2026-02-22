@@ -39,6 +39,10 @@ $files = @(
       source = "$dotfiles\config\tigrc.conf";
       target = "$HOME\.tigrc"
     }
+    @{
+      source = "$dotfiles\config\starship.toml";
+      target = "$HOME\.config\starship.toml"
+    }
 )
 
 foreach ($file in $files) {
