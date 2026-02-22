@@ -33,3 +33,5 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
+
+$env:Path = "C:\Users\97936\.local\bin;$env:Path"
