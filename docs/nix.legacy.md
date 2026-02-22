@@ -333,6 +333,8 @@ https://gist.github.com/Mic92/4fdf9a55131a7452f97003f445294f97
 
 
 ## 痛苦的回忆
+
+垃圾 nixos ，让 initrd 的打包始终存在问题:
 ```sh
 function nixos_crash_workaround() {
 	dump_guest_path=$1
