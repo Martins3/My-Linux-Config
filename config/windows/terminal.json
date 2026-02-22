@@ -49,7 +49,7 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{1651e694-e5a5-4f4a-af7c-e557dd5aea6e}",
+    "defaultProfile": "{8f75c83d-4957-4f19-8fd5-d4c36ae09910}",
     "disableAnimations": true,
     "keybindings": 
     [
@@ -236,6 +236,63 @@
                 "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
                 "name": "hyper-v",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@10.0.0.2",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{8f75c83d-4957-4f19-8fd5-d4c36ae09910}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "ASUS",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@100.68.116.54",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{1e565f4e-c11a-4dc1-9d27-fc37de876cbc}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "asus tailscale",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@10.0.0.3",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{90f079e1-a660-406d-959b-1a25455fa0fa}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "mac",
                 "opacity": 98,
                 "snapOnInput": true,
                 "startingDirectory": "%USERPROFILE%",
