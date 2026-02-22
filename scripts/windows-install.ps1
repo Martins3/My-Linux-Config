@@ -51,5 +51,6 @@ foreach ($file in $files) {
         Write-Host "✅ Copied $($file.source)"
     }
 }
+
 # TODO 为什么这个脚本 执行的这么慢啊
 # https://learnxinyminutes.com/powershell/
