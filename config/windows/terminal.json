@@ -12,6 +12,10 @@
             "id": "User.adjustFontSize.E2698FAA"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -21,19 +25,11 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
             "command": 
             {
                 "action": "prevTab"
             },
             "id": "User.prevTab.0"
-        },
-        {
-            "command": "closePane",
-            "id": "User.closePane"
         },
         {
             "command": 
@@ -42,6 +38,10 @@
                 "delta": 1
             },
             "id": "User.adjustFontSize.E04D5229"
+        },
+        {
+            "command": "closePane",
+            "id": "User.closePane"
         }
     ],
     "alwaysOnTop": false,
@@ -49,13 +49,21 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{8f75c83d-4957-4f19-8fd5-d4c36ae09910}",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "disableAnimations": true,
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "ctrl+numpad_minus"
+            "id": "Terminal.SplitPaneRight",
+            "keys": "ctrl+shift+5"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "alt+h"
+        },
+        {
+            "id": "Terminal.SplitPaneDown",
+            "keys": "alt+shift+'"
         },
         {
             "id": null,
@@ -63,11 +71,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+numpad_minus"
         },
         {
             "id": "User.find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
         },
         {
             "id": null,
@@ -79,11 +91,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+c"
+            "keys": "ctrl+shift+tab"
         },
         {
             "id": null,
-            "keys": "ctrl+shift+tab"
+            "keys": "ctrl+c"
         },
         {
             "id": null,
@@ -98,24 +110,24 @@
             "keys": "shift+insert"
         },
         {
-            "id": "User.prevTab.0",
-            "keys": "ctrl+k"
-        },
-        {
             "id": null,
             "keys": "win+sc(41)"
+        },
+        {
+            "id": "User.prevTab.0",
+            "keys": "ctrl+k"
         },
         {
             "id": null,
             "keys": "ctrl+tab"
         },
         {
-            "id": "Terminal.SwitchToTab0",
-            "keys": "alt+1"
-        },
-        {
             "id": null,
             "keys": "alt+f4"
+        },
+        {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "alt+1"
         },
         {
             "id": null,
@@ -126,32 +138,32 @@
             "keys": "f2"
         },
         {
-            "id": null,
-            "keys": "ctrl+alt+7"
+            "id": "User.adjustFontSize.E2698FAA",
+            "keys": "ctrl+shift+minus"
         },
         {
             "id": null,
             "keys": "ctrl+alt+4"
         },
         {
-            "id": "User.adjustFontSize.E2698FAA",
-            "keys": "ctrl+shift+minus"
+            "id": null,
+            "keys": "ctrl+alt+7"
         },
         {
             "id": "User.closePane",
             "keys": "ctrl+w"
         },
         {
-            "id": "Terminal.SwitchToTab5",
-            "keys": "alt+6"
+            "id": "User.adjustFontSize.E04D5229",
+            "keys": "ctrl+shift+plus"
         },
         {
             "id": null,
             "keys": "ctrl+alt+1"
         },
         {
-            "id": "User.adjustFontSize.E04D5229",
-            "keys": "ctrl+shift+plus"
+            "id": "Terminal.SwitchToTab5",
+            "keys": "alt+6"
         },
         {
             "id": "Terminal.SwitchToTab1",
@@ -162,12 +174,12 @@
             "keys": "ctrl+alt+2"
         },
         {
-            "id": null,
-            "keys": "alt+left"
-        },
-        {
             "id": "Terminal.SwitchToTab2",
             "keys": "alt+3"
+        },
+        {
+            "id": null,
+            "keys": "alt+left"
         },
         {
             "id": null,
@@ -220,10 +232,6 @@
         {
             "id": "Terminal.MoveFocusRight",
             "keys": "alt+l"
-        },
-        {
-            "id": "Terminal.MoveFocusLeft",
-            "keys": "alt+h"
         }
     ],
     "minimizeToNotificationArea": false,
