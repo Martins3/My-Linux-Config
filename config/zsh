@@ -30,8 +30,8 @@ export PATH="$HOME/go/bin:$PATH"
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
-if [[ -f ~/data/id ]]; then
-  export SHELL_ARCH=$(cat ~/data/id)
+if [[ -f ~/id ]]; then
+  export SHELL_ARCH=$(cat ~/id)
 else
 
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -41,7 +41,7 @@ else
   elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
     export SHELL_ARCH="🐉"
   else
-    export SHELL_ARCH="ARM"
+    export SHELL_ARCH="🥑"
   fi
 fi
 eval "$(starship init zsh)"
