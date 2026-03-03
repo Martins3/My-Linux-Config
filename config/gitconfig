@@ -3,6 +3,7 @@
 	bug = "log -n 1 --pretty=fixes"
 	kernel = "log -n 1 --pretty=commit"
 	log-merge = "!f() { git log --oneline --graph --stat \"$1^..$1\"; }; f"
+  test = "stash push --keep-index"
 
 [core]
 	abbrev = 12
@@ -24,6 +25,7 @@
 
 [merge]
 	conflictstyle = "diff3"
+
 
 [pretty]
 	commit = "commit %h (\"%s\")"
