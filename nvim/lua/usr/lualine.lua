@@ -1,24 +1,29 @@
-vim.b.rime_enabled = false
-local toggle_rime = function(client_id)
-  vim.lsp.buf_request(0, "workspace/executeCommand", { command = "rime-ls.toggle-rime" }, function(_, result, ctx, _)
-    if ctx.client_id == client_id then
-      vim.b.rime_enabled = result
-    end
-  end)
-end
-
--- update lualine
-local function rime_status()
-  if vim.b.rime_enabled then
-    return "ㄓ"
-  else
-    return ""
+local function get_transfer_status()
+  local ok, transfer = pcall(require, "transfer")
+  if not ok then
+    return nil
   end
+  local status = transfer.get_status()
+  local icons = {
+    disabled = "",
+    idle = "🌕",
+  }
+  return icons[status] or nil
 end
 
 require("lualine").setup({
   extensions = { "nvim-tree", "fugitive" },
   sections = {
-    lualine_x = { rime_status, "encoding", "fileformat", "filetype" },
+    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_c = {
+      {
+        function()
+          return get_transfer_status() or ""
+        end,
+        cond = function()
+          return get_transfer_status() ~= nil
+        end,
+      },
+    }
   },
 })
