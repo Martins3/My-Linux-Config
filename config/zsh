@@ -30,8 +30,8 @@ export PATH="$HOME/go/bin:$PATH"
 
 # 参考 https://gist.github.com/iansu/1ad9fc5db90aafbf14ce58e99d5940ef
 # prompt 中通过不同的 emoji 来标识架构
-if [[ -f ~/data/id ]]; then
-  export SHELL_ARCH=$(cat ~/data/id)
+if [[ -f ~/id ]]; then
+  export SHELL_ARCH=$(cat ~/id)
 else
 
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -41,7 +41,7 @@ else
   elif grep "AuthenticAMD" /proc/cpuinfo >/dev/null; then
     export SHELL_ARCH="🐉"
   else
-    export SHELL_ARCH="ARM"
+    export SHELL_ARCH="🥑"
   fi
 fi
 eval "$(starship init zsh)"
@@ -64,64 +64,10 @@ zellij_tab_name_update() {
 zellij_tab_name_update
 chpwd_functions+=(zellij_tab_name_update)
 
-function zj() {
-	if [[ -n $ZELLIJ ]]; then
-		if [[ $# -ne 1 ]]; then
-			echo "usage: zj name"
-			exit 1
-		fi
-		dirname="/tmp/martins3/$1"
-		mkdir -p "$dirname"
-		cd "$dirname"
-		nohup zellij action rename-tab "$1" >/dev/null 2>&1
-	fi
-}
-
-alias px="proxychains4 -f $HOME/.dotfiles/config/proxychain.conf"
-
-
-# 自动打开工作区
-alias b="$HOME/.dotfiles/config/sh/tmux.sh && exit"
-alias c="clear"
-alias git_ignore="echo \$(git status --porcelain | grep '^??' | cut -c4-) > .gitignore"
-alias gs="tig status"
-alias gg="gitui --watcher"
-alias kernel_version="git describe --contains"
-# https://unix.stackexchange.com/questions/45120/given-a-git-commit-hash-how-to-find-out-which-kernel-release-contains-it
-alias ls="eza"
-# alias ls="eza --icons"
-# 不知道为什么 --icons 会让自动补全消失了
-alias l="ls -lah --icons"
-alias im="ibus engine rime"
-alias q="exit"
-alias v=nvim
-alias i="ipython"
-# alias f="xclip -o >> /home/martins3/core/vn/fun.md && echo '' >> /home/martins3/core/vn/fun.md && cat /home/martins3/core/vn/fun.md"
-alias cloc="tokei . -f --sort lines"
-alias static="nix-shell -p gcc glibc.static --command zsh"
-alias wez=$HOME/.dotfiles/config/sh/wez-opacity.sh
-alias ins="$HOME/.dotfiles/scripts/nix/env/install.sh"
-alias tm="tmux attach || tmux"
-function config_repo(){
-  git config user.name martins3
-  git config user.email hubachelar@gmail.com
-}
-alias weather="curl wttr.in/beijin"
-alias drop_cache="echo 3 | sudo tee /proc/sys/vm/drop_caches"
-alias wifi="nmcli dev wifi show-password"
-
-# TODO 我理解应该可以通过 default.nix 自动实现 source .venv/bin/activate
-function p(){
-  if [[ ! -d .venv ]]; then
-    uv venv
-  fi
-   source .venv/bin/activate
-}
-
-export NIXPKGS_ALLOW_INSECURE=1
-export EDITOR=nvim
-export PATH=$PATH:/usr/share/bcc/tools
 
 if [ -e $HOME/data/vn/code/zsh  ]; then
   . $HOME/data/vn/code/zsh
 fi
+
+export NIXPKGS_ALLOW_INSECURE=1
+export EDITOR=nvim
