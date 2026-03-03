@@ -140,7 +140,7 @@ require("lazy").setup({
     ft = { "markdown" },
   },
   -- 如果发现插件有问题， 可以进入到 ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
-  "mzlogin/vim-markdown-toc", -- 自动目录生成
+  "mzlogin/vim-markdown-toc", -- 自动生成 markdown 文章的目录
   "dhruvasagar/vim-table-mode", -- 快速编辑 markdown 的表格
   -- 高效编辑
   "tpope/vim-commentary", -- 快速注释代码
@@ -163,7 +163,9 @@ require("lazy").setup({
     lazy = false, -- This plugin is already lazy
   },
   -- 其他
-  "ggandor/leap.nvim", -- 快速移动
+  {
+    url = "https://codeberg.org/andyg/leap.nvim",   -- 快速移动
+  },
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
@@ -182,9 +184,10 @@ require("lazy").setup({
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   { "xiyaowong/telescope-emoji.nvim" },
   {
+    dir = "/home/martins3/data/rsync.nvim/",
     "Martins3/rsync.nvim",
     lazy = true,
-    cmd = { "TransferInit", "TransferToggle" },
+    cmd = { "TransferInit", "TransferToggle", "TransferShow"  },
     opts = {},
   },
 
@@ -210,25 +213,51 @@ require("lazy").setup({
     config = true,
   }, -- 在 visual mode 展示空白字符
   {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      -- bigfile = { enabled = true },
+      -- dashboard = { enabled = true },
+      -- explorer = { enabled = true },
+      -- indent = { enabled = true },
+      input = { enabled = true },
+      -- picker = { enabled = true },
+      -- notifier = { enabled = true },
+      -- quickfile = { enabled = true },
+      -- scope = { enabled = true },
+      -- scroll = { enabled = true },
+      -- statuscolumn = { enabled = true },
+      -- words = { enabled = true },
+    },
+  },
+  {
     "yetone/avante.nvim",
     enabled = false,
+    build = vim.fn.has("win32") ~= 0
+        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+        or "make",
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "deepseek",
-      vendors = {
-        deepseek = {
-          __inherited_from = "openai",
-          api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
+      -- 使用 kimi-cli 的 ACP 模式
+      provider = "kimi-cli",
+      -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
+      acp_providers = {
+        ["kimi-cli"] = {
+          command = "kimi",
+          args = { "acp" },
         },
+
       },
+      -- 保留 API 直连模式配置（备用）
+      providers = {
+      }
     },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
     },
@@ -240,7 +269,7 @@ require("lazy").setup({
       local cppman = require("cppman")
       cppman.setup()
 
-      -- Make a keymap to open the word under cursor in CPPman
+      -- Make a keymap to open the word under cursor in cppman
       vim.keymap.set("n", "<leader>cm", function()
         cppman.open_cppman_for(vim.fn.expand("<cword>"))
       end)
@@ -257,7 +286,16 @@ require("lazy").setup({
     event = "VeryLazy",
     dependencies = { "folke/snacks.nvim", lazy = true },
     keys = {},
-    enabled = false, -- 升级到 0.11 的时候才可以使用
+    enabled = true,
   },
   "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    opts = {
+       host = '172.17.127.73', -- 这个总是需要修改，就有点烦
+       port = 8001,
+    },  -- lazy.nvim will implicitly calls `setup {}`
+  },
 }, {})

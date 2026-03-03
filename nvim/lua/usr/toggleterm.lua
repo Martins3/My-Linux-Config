@@ -38,15 +38,22 @@ function _ipython_toggle()
   ipython:toggle()
 end
 
+function _qwen_toggle()
+  local qwen = Terminal:new({ cmd = "qwen", hidden = true, direction = "float" })
+  qwen:toggle()
+end
+
 require("toggleterm").setup({
   direction = "float",
   open_mapping = [[<c-t>]],
   persist_mode = false, -- 总是进入到 insert mode 中
+  auto_scroll = false, -- 如果屏幕中出现新的内容，不要将屏幕滑动最下
 })
 
 vim.api.nvim_set_keymap("n", "<space>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<space>gl", "<cmd>lua _ls_toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<space>x", "<cmd>lua _ipython_toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>e", "<cmd>lua _qwen_toggle()<CR>", { noremap = true, silent = true })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
