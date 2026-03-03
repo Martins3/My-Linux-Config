@@ -16,6 +16,7 @@ local servers = {
   "vimls",
   "yamlls",
   "perlnavigator",
+  "tinymist",
   -- "typos_lsp",
   -- "tsserver",
 }
