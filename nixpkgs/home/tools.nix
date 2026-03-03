@@ -35,6 +35,7 @@ with pkgs;
   git
   tig
   gcc
+  include-what-you-use
   libclang # 各种 clang 基本工具，例如 clang-doc
   libllvm
   lld
@@ -74,7 +75,6 @@ with pkgs;
   # minicom
   typos # 检查代码中 typo
   # typst # latex 替代品
-  # include-what-you-use # 很小的项目都用着不正常
   cargo
   cmake
   # ov # feature rich pager
@@ -111,7 +111,7 @@ with pkgs;
   # kmon # 方便的管理内核模块
   numactl
   # numatop # CPU 根本不支持
-  # kexec-tools # 实际上没有办法用
+  # kexec-tools # nixos 中没法用
   rpm
 
   ethtool
@@ -143,10 +143,9 @@ with pkgs;
   lshw # 侧重于展示 bus 的结构
   hwloc # 侧重于展示 cache
   hw-probe # sudo -E hw-probe -all -upload
-  # linuxKernel.packages.linux_5_15.perf
-  # linuxPackages.perf
-  linuxKernel.packages.linux_6_6.perf
-  linuxKernel.packages.linux_6_6.mm-tools
+  perf
+  linuxKernel.packages.linux_6_18.cpupower
+  linuxKernel.packages.linux_6_18.mm-tools
   gperftools # 主要提供 pprof 功能，但是没用过
   # TODO 怎么将内核和 nixpkgs/sys/kernel-options.nix ，而且 kernel.dev 做啥用的
   # linuxPackages_6_10.kernel.dev
@@ -162,7 +161,7 @@ with pkgs;
   pahole
   xdp-tools
   bpftrace
-  # blktrace
+  blktrace
   bpftools
   bpftune
   pwru # ebpf 抓包工具
@@ -175,14 +174,15 @@ with pkgs;
 
   # 固件相关
   acpi
+  acpitool
   acpica-tools
   dmidecode # sudo dmidecode -t 1
 
   libiscsi
   openiscsi
   lsscsi
-  sg3_utils # 提供 scsi_logging_level
-  targetcli
+  # sg3_utils # 提供 scsi_logging_level
+  # targetcli-fb
 
   podman # 无需 systemd ，home-manger 就可以安装
   # podman-tui
@@ -202,7 +202,6 @@ with pkgs;
   # openvswitch-lts # 通过 nixpkgs/sys/cli.nix 安装
   bridge-utils
 
-  # TODO 谁包含了 ceph
   qemu
   # qemu6
   # lima # 虚拟机工具
@@ -223,8 +222,7 @@ with pkgs;
 
   sysstat # sar, iostat and pidstat mpstat
   atop # 类似 htop ，但是展示的内容不同
-  # TODO 做什么的
-  # nmon
+  # nmon # 又一个 monitor
 
   psmisc # 包含 pstree fuser 等工具
 
@@ -266,8 +264,8 @@ with pkgs;
   # git-filter-repo # 批量修改历史
   # act # Run github action locally
   # git-secrets
-  bandwidth
-  openfortivpn
+  # bandwidth 已经不维护了
+  # openfortivpn # 可以用的
   # sniffnet # 一个直接简单易用的
   nmap
   iftop
@@ -276,6 +274,7 @@ with pkgs;
   # weechat
   # offlineimap # 下载邮件的工具，很难用
   tcpdump
+  tcptrace
   proxychains-ng
   sshpass
   gping # better ping
@@ -285,6 +284,7 @@ with pkgs;
   stress-ng
   # OVMFFull # 存储在 /run/libvirt/nix-ovmf/ 下
   hexyl # 分析二进制
+  hevi # 
   # hyperfine # 命令行性能测试工具
   # rasdaemon # @todo 莫名其妙，不知道怎么使用
   ninja
@@ -296,6 +296,7 @@ with pkgs;
   # debootstrap # 制作 uml 的工具
   meson
   unstable.neovim
+  # translate-shell # TODO 需要下联网问题
   luarocks
   # zed-editor # 默认不支持中文，放弃
   # helix # modern neovim
@@ -314,13 +315,14 @@ with pkgs;
 ++ pkgs.lib.optionals (builtins.currentSystem == "x86_64-linux") [
   auto-cpufreq
   cpuid
-  # linuxKernel.packages.linux_latest_libre.turbostat
   pcm
   # zenith-nvidia # 用处不大，和 top 功能重叠
   # nvitop # 美观，比 nvidia-smi 好用
   oxtools # 提供 vmtop ，这个工具 arm 没有我是没想到的
   powertop # 分析功耗
-  intentrace # strace 类似工具 TODO 居然不支持 aarch64
+  # intentrace # strace 类似工具，2026-01-20 已经不更新了
+  i7z # 观察 cstate
+  linuxKernel.packages.linux_6_18.turbostat # arm 环境没有
 ]
 ++ [
   # @todo https://github.com/kkharji/sqlite.lua/issues/28
@@ -380,8 +382,8 @@ with pkgs;
   # vector
   git-review
 
-  # containerd # @todo 测试下
-  # nerdctl
+  # containerd # @todo 测试下，按道理 containerd 不是一个服务吗?
+  nerdctl
 
   calcure # 日历，@todo 可以定制化的，有趣
 
@@ -391,11 +393,11 @@ with pkgs;
   bc # bash 数值计算
   # bash_unit
 
-  # cowsay
-  # asciiquarium # 海底世界
-  # figlet # 艺术字
-  # lolcat # 彩虹 cat
-  # nyancat # 彩虹猫咪
+  cowsay
+  asciiquarium # 海底世界
+  figlet # 艺术字
+  lolcat # 彩虹 cat
+  nyancat # 彩虹猫咪
 
   # dig # dns 分析
 
@@ -406,7 +408,7 @@ with pkgs;
   # czkawka # 垃圾文件清理
 
   # cachix # nixos 的高级玩法，自己架设 binary cache
-  # clash-meta
+  clash-meta
 
   # lsp && formatter
   black # python formatter
@@ -415,11 +417,14 @@ with pkgs;
   # rustfmt
   # clippy
 
+  typst
+  cppman
   ccls
   checkmake
   # stylua
   nasm
   deno # 用于 markdown 格式化
+  opencode
 
   # efm-langserver # 集成 shellcheck
   # lua-language-server

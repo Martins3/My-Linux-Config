@@ -1,3 +1,4 @@
+# 执行 code/qemu/bios_build.sh 来操作
 { pkgs ? import <nixpkgs> { } }:
 
   pkgs.stdenv.mkDerivation {

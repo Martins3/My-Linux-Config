@@ -1,13 +1,14 @@
 let
   pkgs = import <nixpkgs> { };
 in
-pkgs.stdenv.mkDerivation {
-  # pkgs.clangStdenv.mkDerivation {
+# pkgs.stdenv.mkDerivation {
+pkgs.clangStdenv.mkDerivation {
 
   # 添加上这个才可以添加 --enable-debug
   hardeningDisable = [ "all" ];
   name = "martins3's QEMU";
   buildInputs = with pkgs; [
+    ncurses
     zlib
     pkg-config
     ninja
@@ -31,10 +32,12 @@ pkgs.stdenv.mkDerivation {
     virglrenderer
     libepoxy
     numactl
-    (python3.withPackages (p: with p; [
-      sphinx
-      sphinx-rtd-theme
-    ]))
+    (python3.withPackages (
+      p: with p; [
+        sphinx
+        sphinx-rtd-theme
+      ]
+    ))
     flex
     bison
     rustc
@@ -43,6 +46,9 @@ pkgs.stdenv.mkDerivation {
     clippy
     rdma-core
     lttng-ust
+    # 提供 libcurl 库，给 block/curl.c 使用
+    curl
+    alsa-lib
   ];
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";

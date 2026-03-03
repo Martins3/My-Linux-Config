@@ -15,7 +15,7 @@ in
   home.packages = import ./tools.nix { inherit pkgs; };
 
   programs.fish = {
-    enable = true;
+    enable = false;
   };
 
   programs.zsh = {
@@ -51,7 +51,7 @@ in
   home.file.gdbinit = {
     source = pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit";
-      sha256 = "09zfi18yq34gpkwlcd170rxcd0nyn1spxrzh762whaz8vzp4gfkh";
+      sha256 = "0drplmbbrv9i1djsg59hpnb9878y6hspqmrc6rfyss35c260z952";
       name = "gdbinit";
     };
     target = ".gdbinit";
