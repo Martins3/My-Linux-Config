@@ -12,6 +12,10 @@
             "id": "User.adjustFontSize.E2698FAA"
         },
         {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -21,19 +25,11 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
             "command": 
             {
                 "action": "prevTab"
             },
             "id": "User.prevTab.0"
-        },
-        {
-            "command": "closePane",
-            "id": "User.closePane"
         },
         {
             "command": 
@@ -42,6 +38,10 @@
                 "delta": 1
             },
             "id": "User.adjustFontSize.E04D5229"
+        },
+        {
+            "command": "closePane",
+            "id": "User.closePane"
         }
     ],
     "alwaysOnTop": false,
@@ -49,10 +49,30 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{1651e694-e5a5-4f4a-af7c-e557dd5aea6e}",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "disableAnimations": true,
     "keybindings": 
     [
+        {
+            "id": "Terminal.SplitPaneRight",
+            "keys": "ctrl+shift+5"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "alt+h"
+        },
+        {
+            "id": "Terminal.SplitPaneDown",
+            "keys": "alt+shift+'"
+        },
+        {
+            "id": null,
+            "keys": "alt+right"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+numpad_minus"
+        },
         {
             "id": "User.find",
             "keys": "ctrl+shift+f"
@@ -63,15 +83,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+numpad_minus"
+            "keys": "ctrl+minus"
         },
         {
             "id": "User.splitPane.A6751878",
             "keys": "alt+shift+d"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+minus"
         },
         {
             "id": null,
@@ -94,12 +110,12 @@
             "keys": "shift+insert"
         },
         {
-            "id": "User.prevTab.0",
-            "keys": "ctrl+k"
-        },
-        {
             "id": null,
             "keys": "win+sc(41)"
+        },
+        {
+            "id": "User.prevTab.0",
+            "keys": "ctrl+k"
         },
         {
             "id": null,
@@ -108,6 +124,10 @@
         {
             "id": null,
             "keys": "alt+f4"
+        },
+        {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "alt+1"
         },
         {
             "id": null,
@@ -122,12 +142,96 @@
             "keys": "ctrl+shift+minus"
         },
         {
+            "id": null,
+            "keys": "ctrl+alt+4"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+7"
+        },
+        {
             "id": "User.closePane",
             "keys": "ctrl+w"
         },
         {
             "id": "User.adjustFontSize.E04D5229",
             "keys": "ctrl+shift+plus"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+1"
+        },
+        {
+            "id": "Terminal.SwitchToTab5",
+            "keys": "alt+6"
+        },
+        {
+            "id": "Terminal.SwitchToTab1",
+            "keys": "alt+2"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "id": "Terminal.SwitchToTab2",
+            "keys": "alt+3"
+        },
+        {
+            "id": null,
+            "keys": "alt+left"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+3"
+        },
+        {
+            "id": "Terminal.SwitchToTab3",
+            "keys": "alt+4"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "alt+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "id": "Terminal.SwitchToTab6",
+            "keys": "alt+7"
+        },
+        {
+            "id": "Terminal.SwitchToTab7",
+            "keys": "alt+8"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+8"
+        },
+        {
+            "id": "Terminal.MoveFocusUp",
+            "keys": "alt+k"
+        },
+        {
+            "id": null,
+            "keys": "alt+up"
+        },
+        {
+            "id": "Terminal.MoveFocusDown",
+            "keys": "alt+j"
+        },
+        {
+            "id": null,
+            "keys": "alt+down"
+        },
+        {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "alt+l"
         }
     ],
     "minimizeToNotificationArea": false,
@@ -236,6 +340,63 @@
                 "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
                 "name": "hyper-v",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@10.0.0.2",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{8f75c83d-4957-4f19-8fd5-d4c36ae09910}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "ASUS",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@100.68.116.54",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{1e565f4e-c11a-4dc1-9d27-fc37de876cbc}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "asus tailscale",
+                "opacity": 98,
+                "snapOnInput": true,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "altGrAliasing": true,
+                "antialiasingMode": "grayscale",
+                "closeOnExit": "automatic",
+                "commandline": "ssh martins3@10.0.0.3",
+                "cursorShape": "bar",
+                "font": 
+                {
+                    "size": 12
+                },
+                "guid": "{90f079e1-a660-406d-959b-1a25455fa0fa}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "name": "mac",
                 "opacity": 98,
                 "snapOnInput": true,
                 "startingDirectory": "%USERPROFILE%",

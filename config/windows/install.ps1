@@ -11,3 +11,9 @@ scoop install Sysinternals zoxide make go ripgrep
 scoop install ntop python gdu
 scoop install ntop python wget
 # scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+
+# https://github.com/gluons/powershell-git-aliases
+scoop install git-aliases
+
+# uv
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
