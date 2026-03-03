@@ -184,10 +184,10 @@ require("lazy").setup({
   { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
   { "xiyaowong/telescope-emoji.nvim" },
   {
-    -- dir = "/home/martins3/data/rsync.nvim/",
+    dir = "/home/martins3/data/rsync.nvim/",
     "Martins3/rsync.nvim",
     lazy = true,
-    cmd = { "TransferInit", "TransferToggle" },
+    cmd = { "TransferInit", "TransferToggle", "TransferShow"  },
     opts = {},
   },
 
