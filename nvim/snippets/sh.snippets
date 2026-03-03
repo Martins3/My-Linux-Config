@@ -17,7 +17,8 @@ snippet note_variable_default "变量默认值"
 	echo 4 ${EGGS:-spam}  # 4 spam
 
 	# 使用场景:
-	# 1. 一个文件如果存在参数 var=${1-}，之后根据 if [[ $var ]];then 来检测
+	# 1. var=${1-}，之后根据 if [[ $var ]];then 来检测
+	# 2. local a=${1:-apple} 配置默认参数为 apple
 
 
 
@@ -461,7 +462,7 @@ snippet xxx "template for any bash script"
 snippet xxx_ext "extended template for any bash script"
 	shopt -s inherit_errexit
 	PROGNAME=$(basename "\$0")
-	PROGDIR=$(readlink -m "$(dirname "\$0")")
+	PROGDIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 	arg=\${1:-}
 	if [[ -z $arg ]]; then
@@ -709,6 +710,7 @@ snippet note_variable_indirect "" b
 
 snippet note_shellcheck "屏蔽 shellcheck" b
 	# shellcheck disable=code
+	# shellcheck source=path/to/include.sh
 
 
 snippet note_array_contains "测试是否包含一个元素" b
