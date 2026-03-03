@@ -26,6 +26,4 @@
 ### 2024.11
 - 兼容 nvim 0.10 
 - 将 terminal 替换为 toggleterm 了
-- 将 https://github.com/anuvyklack/hydra.nvim 替换为
-https://github.com/nvimtools/hydra.nvim ， anuvyklack/hydra.nvim 已经不维护了，
-而且在 nvim 0.10 上有一个非常严重的 bug ，花了 2 天在找到。
+- 将 anuvyklack/hydra.nvim 替换为 nvimtools/hydra.nvim ， 前者已经不维护了，在 nvim 0.10 上有一个非常严重的 bug ，花了 2 天在找到。

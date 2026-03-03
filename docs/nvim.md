@@ -205,6 +205,14 @@ index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s  
 
 ```
 
+如果需要配置不同的机器使用不同的 git 代理，可以在 ~/.gitconfig 中添加如下内容
+```txt
+[include]
+    path = ~/.gitconfig-local
+```
+然后 ~/.gitconfig-local 中配置代理信息。
+
+
 ### 安装各种依赖
 
 ```sh
@@ -249,7 +257,7 @@ fc-cache -fv
 
 ### 安装 bear
 
-clangd 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
+clangd/ccls 需要通过 [bear](https://github.com/rizsotto/Bear) 生成的 `compile_commands.json` 来构建索引数据。
 
 ```sh
 sudo apt install bear
@@ -264,12 +272,18 @@ sudo apt install bear
 
 一个工程只要生成 `compile_commands.json`，那么一切就大功告成了。
 
+注: 如果在 `bear -- make` 的时候遇到了 rpc 相关的报错，可以尝试取消一下代理，也就是
+```sh
+export https_proxy=
+export http_proxy=
+```
+
 ### 安装各种 lsp
 
 通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
 在 neovim 中执行 `:Mason` 可以检查各种插件的执行状态。
 
-对于 mason 不支持的 lsp，就需要手动安装了，例如 `sudo apt install ccls`
+对于 mason 不支持的 lsp，就需要手动安装了，目前只有 ccls ，例如 `sudo apt install ccls`
 - [ccls](https://github.com/MaskRay/ccls/wiki/Install)
 
 ### 安装本配置
@@ -425,6 +439,8 @@ set -s set-clipboard on
 
 1. https://github.com/MaskRay/ccls/blob/master/.clang-format : 将代码格式为 LLVM 风格
 2. https://github.com/torvalds/linux/blob/master/.clang-format : 代码格式为 linux kernel 风格
+
+很多 lsp 内置了格式化能力，但是有的 lsp 不行，对于那些后者，可以通过 [conform.nvim](https://github.com/stevearc/conform.nvim) 来解决。
 
 ### 重命名
 
@@ -677,14 +693,47 @@ vim 基本的移动技术，例如 e b w G gg 之类的就不说了， 下面简
 
 nvim 配置在仓库的位置为 ./nvim 中，其他的目录不用管，那是关于 vim 其他的配置。
 
-- init.vim : 基础设置，和 lua/usr 下的配置文件
-- lua/init.lua : 基础 加载其他的 lua 配置
+- init.vim : 基础选项设置，然后加载 lua 配置
 - lua/usr
+  - init.lua : 加载其他的 lua 配置
   - lazy.lua : 安装的插件，按照作用放到一起，每一个插件是做什么的都有注释。
   - which-key.lua : 快捷键的配置
   - nvim-tree.lua ... : 一些插件的默认配置的调整，都非常短。
 - lsp : lsp server 相关的配置，自动加载
-- UltiSnips/ : 自定义的代码段，主要是 bash 相关的
+- snippets/ : 自定义的代码段，主要是 bash 相关的
+
+如何添加一个新的语言的支持，这里使用 typst 作为例子:
+1. 找到该语言公认比较好的 lsp ，发现是 tinymist
+2. 找到关于 neovim 的配置，也就是 https://myriad-dreamin.github.io/tinymist/frontend/neovim.html
+3. 修改 mason.lua ，添加配置文件到 lua/lsp 下，也就是:
+
+```diff
+diff --git a/nvim/lsp/tinymist.lua b/nvim/lsp/tinymist.lua
+new file mode 100644
+index 000000000000..862d4bd69dfb
+--- /dev/null
++++ b/nvim/lsp/tinymist.lua
+@@ -0,0 +1,7 @@
++return {
++     settings = {
++        formatterMode = "typstyle",
++        exportPdf = "onType",
++        semanticTokens = "disable"
++    }
++}
+diff --git a/nvim/lua/usr/mason.lua b/nvim/lua/usr/mason.lua
+index d7ad28d583cf..4c46c2f7f32c 100644
+--- a/nvim/lua/usr/mason.lua
++++ b/nvim/lua/usr/mason.lua
+@@ -16,6 +16,7 @@ local servers = {
+   "vimls",
+   "yamlls",
+   "perlnavigator",
++  "tinymist",
+   -- "typos_lsp",
+   -- "tsserver",
+ }
+```
 
 ## FAQ
 

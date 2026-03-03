@@ -259,10 +259,6 @@ https://news.ycombinator.com/item?id=42674116
 https://news.ycombinator.com/item?id=40179194
 https://m4xshen.dev/posts/vim-command-workflow
 
-https://stackoverflow.com/questions/351161/removing-duplicate-rows-in-vi
-```sh
-:sort u
-```
 
 ## https://github.com/yetone/avante.nvim
 配合 deepseek 用用看看效果，不过可以继续等等
@@ -320,10 +316,12 @@ https://news.ycombinator.com/item?id=45539609
 
 https://news.ycombinator.com/item?id=45559076
 
-## 记录一个极其诡异的问题
+## 这个是可以解决我们的问题的
+rachartier/tiny-inline-diagnostic.nvim
 
-```txt
-export https_proxy=
-export http_proxy=
-```
-可以解决 bear -- make 的时候，解决 rpc 相关的报错
+不过用起来有点 bug 
+
+## 现在 nvim 到底使用什么翻译还是一个小问题
+
+## tree-sitter 类似的？
+https://ast-grep.github.io/

@@ -141,6 +141,7 @@ sudo /home/martins3/.dotfiles/scripts/nixos-install.sh
 
 ```sh
 nix-prefetch-url https://github.com/Aloxaf/fzf-tab
+nix-prefetch-url https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 ```
 
 - nixos 默认是打开防火墙的
@@ -171,57 +172,15 @@ npm install -g prettier
 # npm install -g @microsoft/inshellisense
 ```
 
-## 共享
-
-### 使用 samba 实现目录共享
-
-参考配置: https://gist.github.com/vy-let/a030c1079f09ecae4135aebf1e121ea6
-
-此外，在 Linux 中设置
-
-```sh
-sudo smbpasswd -a martins3
-```
-
-在 windows 虚拟机中，打开文件浏览器, 右键 `网络`，选择 `映射网络驱动器`，在文件夹中填写路径 `\\10.0.0.2\public` 即可。
-注意，这里的 public 和配置文件中对应的。
-
-如果遇到需要密码的时候，但是密码不对
-
-```txt
-sudo smbpasswd -a martins3
-```
-
-在 windows 那一侧使用 martins3 和新设置的密码来登录。
-
-#### fedora 上 enable
-将 fedora 的文件 贡献给 windows
-
-```sh
-sudo dnf install samba
-sudo systemctl enable smb --now
-```
-
-sudo smbpasswd -a martins3
-
-在 /etc/samba/smb.conf 的结尾地方添加:
-```txt
-[public]
-        path = home/martins3/core
-        browseable = yes
-        read only = no
-        guest ok = yes
-```
-总体来说，失败，一会儿再去尝试吧
-
-### syncthing
+## syncthing
 
 强烈推荐，相当于一个自动触发的 rsync ，配置也很容易:
 
 - https://wes.today/nixos-syncthing/
 - https://nixos.wiki/wiki/Syncthing
 
-使用注意项，可以在两个机器中编辑同一个文件夹中的文件，但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
+使用注意项，可以在两个机器中编辑同一个文件夹中的文件，
+但是注意不要同时多个机器上编辑同一个文件，否则存在冲突。
 
 ## python
 
@@ -269,17 +228,6 @@ https://xieby1.github.io/scripts/index.html
 ```sh
 nix-shell '<nixpkgs>' -A lua --command zsh
 ```
-
-## kernel
-
-- https://nixos.wiki/wiki/Linux_kernel
-- https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU
-- https://nixos.org/manual/nixos/stable/#sec-kernel-config
-
-总体来说，构建
-
-- 从哪里获取到 debuginfo ，如果可以获取，那么就可以使用 crash 来实现实时系统的分析
-- drgn 无法安装，使用也是未知
 
 ## pkgs.stdenv.mkDerivation 和 pkgs.mkShell 的区别是什么
 
@@ -807,207 +755,9 @@ xfs_repair -L /dev/dm-1
 使用 pyright 安装的时候，出现如下错误。
 libstdc++.so.6
 
-## 构建 qemu guest 镜像
-
-- https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
-
-虽然执行有点问题，但是值得借鉴:
-
-```sh
-#! /nix/store/96ky1zdkpq871h2dlk198fz0zvklr1dr-bash-5.1-p16/bin/bash
-
-export PATH=/nix/store/wxb674h6dp7h63na8z6jwpagps811jl7-coreutils-9.1/bin${PATH:+:}$PATH
-
-set -e
-
-NIX_DISK_IMAGE=$(readlink -f "${NIX_DISK_IMAGE:-./nixos.qcow2}")
-
-if ! test -e "$NIX_DISK_IMAGE"; then
-    /nix/store/zsf59dn5sak8pbq4l3g5kqp7adyv3fph-qemu-host-cpu-only-7.1.0/bin/qemu-img create -f qcow2 "$NIX_DISK_IMAGE" \
-      1024M
-fi
-
-# Create a directory for storing temporary data of the running VM.
-if [ -z "$TMPDIR" ] || [ -z "$USE_TMPDIR" ]; then
-    TMPDIR=$(mktemp -d nix-vm.XXXXXXXXXX --tmpdir)
-fi
-
-
-
-# Create a directory for exchanging data with the VM.
-mkdir -p "$TMPDIR/xchg"
-
-
-
-cd "$TMPDIR"
-
-
-
-
-# Start QEMU.
-exec /nix/store/zsf59dn5sak8pbq4l3g5kqp7adyv3fph-qemu-host-cpu-only-7.1.0/bin/qemu-kvm -cpu max \
-    -name nixos \
-    -m 1024 \
-    -smp 1 \
-    -device virtio-rng-pci \
-    -net nic,netdev=user.0,model=virtio -netdev user,id=user.0,"$QEMU_NET_OPTS" \
-    -virtfs local,path=/nix/store,security_model=none,mount_tag=nix-store \
-    -virtfs local,path="${SHARED_DIR:-$TMPDIR/xchg}",security_model=none,mount_tag=shared \
-    -virtfs local,path="$TMPDIR"/xchg,security_model=none,mount_tag=xchg \
-    -drive cache=writeback,file="$NIX_DISK_IMAGE",id=drive1,if=none,index=1,werror=report -device virtio-blk-pci,drive=drive1 \
-    -device virtio-keyboard \
-    -usb \
-    -device usb-tablet,bus=usb-bus.0 \
-    -kernel ${NIXPKGS_QEMU_KERNEL_nixos:-/nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/kernel} \
-    -initrd /nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/initrd \
-    -append "$(cat /nix/store/k9xnkgjs5dwjzww8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/kernel-params) init=/nix/store/k9xnkgjs5dwjzw
-w8n9c3dsx3hl7axl5k-nixos-system-nixos-22.11.2999.a7cc81913bb/init regInfo=/nix/store/byyk6x729q54ys1dv8m852v5f7g39ssn-closure-info/registration consol
-e=ttyS0,115200n8 console=tty0 $QEMU_KERNEL_PARAMS" \
-    $QEMU_OPTS \
-    "$@"
-```
-
-- [ ] [Kernel Debugging with QEMU](https://nixos.wiki/wiki/Kernel_Debugging_with_QEMU) : 看上去这就是我们需要的，但是实际上，还是差点意思
-
-  - https://wiki.cont.run/kernel-development-with-nix/
-  - https://jade.fyi/blog/nixos-disk-images-m1/
-
-- https://hoverbear.org/blog/nix-flake-live-media/
-
-- [ ] https://jade.fyi/blog/nixos-disk-images-m1/
-
-- [ ] https://mattwidmann.net/notes/running-nixos-in-a-vm/
-- [ ] https://nixos.mayflower.consulting/blog/2018/09/11/custom-images/
-
-感觉目前的时机不成熟，或者我对于这个的理解有问题。
-
-- 因为 nixos 的 initrd 如果和 kernel 不匹配的话，应该启动不了
-
-  - 使用 execsnoop 看启动参数吧
-
-- 确实提供过如何制作 make-disk-image.nix 的操作，但是还是远远不够
-- https://github.com/NixOS/nixpkgs/blob/master/nixos/lib/make-disk-image.nix
-- https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/qemu-guest.nix
-
-- 有很多人介绍 nixos 如何制作出来 iso 的，然后再去安装，其实也算是一个路径，但是 -kernel 问题必须解决。
-
-总之，等我对于 nixos 理解在深入一点再来搞这个问题吧。
-
-而且，无论如何，都是需要在 guest 中使用 crash 的。
-
-在 guest 中使用 docker 环境？
-
-不要把简单问题复杂化了！
-
-使用 shell 初始化即可，遇到问题，以后再说。
-
-而且导致无法 dracut
-
-虽然尝试将其作为完全的测试的 Guest 是失败了，但是
-使用 nixos 搭建一个和 host 机器完全相同的虚拟机，然后可以实现 host guest 环境对比
-
-## 桌面环境
-
-- https://wiki.hyprland.org/Nix/
-- https://github.com/yaocccc/dwm : 看上去还不错，还有 bilibili 的介绍
-
-启用 hyprland 的方法:
-
-```diff
-commit 6746b06b79275b160a433567b47d5e6c49445e77
-Author: Martins3 <hubachelar@gmail.com>
-Date:   Sun Jun 25 22:23:53 2023 +0800
-
-    cool
-
-diff --git a/nixpkgs/home/gui.nix b/nixpkgs/home/gui.nix
-index 8f0d909..fac00dc 100644
---- a/nixpkgs/home/gui.nix
-+++ b/nixpkgs/home/gui.nix
-@@ -19,7 +19,7 @@ in
- {
-
-   imports = [
--    ./app/gnome.nix
-+    # ./app/gnome.nix
-   ];
-
-   home.packages = with pkgs; [
-diff --git a/nixpkgs/sys/gui.nix b/nixpkgs/sys/gui.nix
-index 61f4f3e..a525fb5 100644
---- a/nixpkgs/sys/gui.nix
-+++ b/nixpkgs/sys/gui.nix
-@@ -1,17 +1,17 @@
- { config, pkgs, ... }:
-
- {
--  services.xserver = {
--    enable = true;
--    xkbOptions = "caps:swapescape";
--    # 暂时可以使用这个维持生活吧
--    # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
--    # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
--  };
-+  # services.xserver = {
-+  #   enable = true;
-+  #   xkbOptions = "caps:swapescape";
-+  #   # 暂时可以使用这个维持生活吧
-+  #   # gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
-+  #   # https://nixos.org/manual/nixos/stable/index.html#sec-gnome-gsettings-overrides
-+  # };
-
--  services.xserver.displayManager.gdm.enable = true;
--  services.xserver.displayManager.gdm.wayland = false;
--  services.xserver.desktopManager.gnome.enable = true;
-+  # services.xserver.displayManager.gdm.enable = true;
-+  # services.xserver.displayManager.gdm.wayland = false;
-+  # services.xserver.desktopManager.gnome.enable = true;
-
-   # see xieby1
-   fonts.fonts = (
-diff --git a/nixpkgs/system.nix b/nixpkgs/system.nix
-index 8490c95..c1c018b 100644
---- a/nixpkgs/system.nix
-+++ b/nixpkgs/system.nix
-@@ -20,6 +20,12 @@ in
-     "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-     "https://cache.nixos.org/"
-   ];
-+  programs.hyprland.enable = true;
-+ services.xserver.desktopManager = {
-+    gnome.enable = false;
-+    plasma5.enable = false;
-+    xterm.enable = false;
-+  };
-
-   time.timeZone = "Asia/Shanghai";
-   time.hardwareClockInLocalTime = true;
-```
-
-还是感觉收益不大，而且启动之后 edge 无法使用。再度放弃。
-
-## 如何调试 host 内核
-
-参考 nixpkgs/pkgs/os-specific/linux/kernel/linux-6.2.nix ，我发现其
-
-- [ ] nixpkgs/pkgs/top-level/linux-kernels.nix 中应该会告诉是否打了 patch 以及函数的情况
-  - [ ] 使用 /proc/config.gz 维持下生活吧
-  - sudo insmod arch/x86/kvm/kvm-intel.ko # 似乎不行
-  - 修改一个字母，所有内容全部重新编译，这不科学啊！
-
 ## cargo install 几乎没有成功过
 
 cargo install rusty-krab-manager
-
-## virt-manager 可以尝试一下
-
-https://nixos.wiki/wiki/Virt-manager
-
-```txt
-virtualisation.libvirtd.enable = true;
-programs.dconf.enable = true;
-environment.systemPackages = with pkgs; [ virt-manager ];
-```
 
 ## [NixOS 常见问题解答](https://github.com/nixos-cn/NixOS-FAQ)
 
@@ -1030,49 +780,9 @@ nixos 中文社区下的项目 https://github.com/nixos-cn/flakes :
 
 https://github.com/NixOS/nixpkgs/issues/53085
 
-## coredump
-
-- 存储在 /var/lib/systemd/coredump
-- 解压方法: zstd -d core.qemu.zst
-- 分析方法: gdb path/to/the/binary path/to/the/core/dump/file
-
-nixos 的处理方式:
-
-```txt
-🧀  cat /proc/sys/kernel/core_pattern
-|/nix/store/34am2kh69ll6q03731imxf21jdbizda2-systemd-251.15/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
-```
-
-ubuntu 的处理方式:
-
-```txt
-var/lib/systemd/coredump$  cat /proc/sys/kernel/core_pattern
-|/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E
-```
-
-通过检查 /var/log/apport.log 可以知道
-
-```txt
-ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: called for pid 17767, signal 11, core limit 0, dump mode 1
-ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable: /a.out (command line "./a.out")
-ERROR: apport (pid 17768) Thu Apr 27 03:08:58 2023: executable does not belong to a package, ignoring
-```
-
-所以需要调整一下:
-
-```sh
-ulimit -c unlimited
-```
-
-其路径也是在 /var/lib/apport/coredump 中。
-
 ## [ ] infer 处理下
 
 https://fbinfer.com/docs/getting-started/
-
-## 虚拟机中安装
-
-- gui.nix 不会被 include 进去
 
 ## 有些需要手动设置的内容
 
@@ -1087,7 +797,8 @@ npm install -g @lint-md/cli@beta
 pre-commit install
 ```
 
-但是 pre-commit 不知道为什么，并没有起效。 4. escape and capslock 的切换
+但是 pre-commit 不知道为什么，并没有起效。 
+4. escape and capslock 的切换
 
 ```sh
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
@@ -1111,58 +822,6 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 可以参考这个
 https://www.reddit.com/r/vim/comments/1442ads/mapping_capslock_to_esc_is_life_changing/
 
-## dual boot 双系统
-
-https://nixos.wiki/wiki/Bootloader
-
-在 13900K 上可以采用这个系统，但是笔记本上似乎有问题，而且 grub 本身有时候会出现问题。
-
-```nix
-  /* /dev/nvme1n2p3: BLOCK_SIZE="512" UUID="0470864A70864302" TYPE="ntfs" PARTUUID="8402854e-03" */
-  /* /dev/nvme1n2p1: LABEL="M-gM-3M-;M-gM-;M-^_M-dM-?M-^]M-gM-^UM-^Y" BLOCK_SIZE="512" UUID="409E41739E416310" TYPE="ntfs" PARTUUID="8402854e-01" */
-  /* /dev/nvme1n2p2: BLOCK_SIZE="512" UUID="02084242084234C7" TYPE="ntfs" PARTUUID="8402854e-02" */
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      # https://www.reddit.com/r/NixOS/comments/wjskae/how_can_i_change_grub_theme_from_the/
-      # theme = pkgs.nixos-grub2-theme;
-      theme =
-        pkgs.fetchFromGitHub {
-          owner = "shvchk";
-          repo = "fallout-grub-theme";
-          rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
-          sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
-        };
-      # despite what the configuration.nix manpage seems to indicate,
-      # as of release 17.09, setting device to "nodev" will still call
-      # `grub-install` if efiSupport is true
-      # (the devices list is not used by the EFI grub install,
-      # but must be set to some value in order to pass an assert in grub.nix)
-      devices = [ "nodev" ];
-      efiSupport = true;
-
-      # useOSProber = true; # 没有说的那么不堪，还是很好用的
-
-      enable = true;
-      # set $FS_UUID to the UUID of the EFI partition
-      # /dev/nvme1n1p1: BLOCK_SIZE="512" UUID="3A22AF3A22AEF9D1" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1b23d1fb-c1ad-4b8b-83e1-79005771a027"
-      extraEntries = ''
-        menuentry "Windows" {
-          insmod part_gpt
-          insmod fat
-          search --fs-uuid --set=root 4957-45A0
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
-      version = 2;
-    };
-  };
-```
-
 ## manifest.nix 被损坏
 
 - https://github.com/NixOS/nixpkgs/issues/18279
@@ -1177,19 +836,6 @@ nix-env --rollback
 
 ```nix
 home-manager switch
-```
-
-## lsof 存在警告
-
-```txt
-[sudo] password for martins3:
-lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
-      Output information may be incomplete.
-lsof: WARNING: can't stat() fuse.portal file system /run/user/1000/doc
-      Output information may be incomplete.
-COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF     NODE NAME
-zsh     34262 martins3  cwd    DIR  259,2     4096 39060352 bus
-sleep   34801 martins3  cwd    DIR  259,2     4096 39060352 bus
 ```
 
 ## sway : i3-compatible Wayland compositor
@@ -1212,37 +858,6 @@ https://wiki.archlinux.org/title/Desktop_notifications
 [dunst](https://github.com/dunst-project/dunst)
 man home-configuration.nix 中搜索 dunst
 
-## canTouchEfiVariables 到底是什么来头
-
-https://nixos.wiki/wiki/Bootloader 中最后提到如何增加 efi
-
-```sh
-efibootmgr -c -d /dev/nvme0n1 -p 1 -L NixOS-boot -l '\EFI\NixOS-boot\grubx64.efi'
-```
-
-1. 注意，-p 1 来设置那个 partition 的。
-2. 后面的那个路径需要将 boot 分区 mount 然后具体产看，还有一次是设置的 "\EFI\nixo\BOOTX64.efi"
-
-这个说的是什么意思来着:
-
-```nix
-efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-```
-
-我设置的是 /boot 似乎影响也不大啊!
-
-不知道为什么 efibootmgr 在 home.cli 中无法安装。
-
-删除一个:
-
-```txt
-sudo efibootmgr  -B -b 3 # 3 是参数
-```
-
-设置优先级
-sudo efibootmgr -o 0,1,2
-
-
 ## flakes book
 
 - https://github.com/ryan4yin/nixos-and-flakes-book
@@ -1263,24 +878,8 @@ sudo efibootmgr -o 0,1,2
 sudo proxychains4 -f /home/martins3/.dotfiles/config/proxychain.conf  nixos-rebuild switch
 ```
 
-
 ## 不知道如何调试代码，debug symbol 如何加载
-
 - https://nixos.wiki/wiki/Debug_Symbols
-
-## [x] sar 无法正常使用
-
-```txt
-🧀  sar
-Cannot open /var/log/sa/sa21: No such file or directory
-Please check if data collecting is enabled
-```
-
-兄弟，是这个:
-
-```sh
-sar -n DEV 1
-```
 
 ## 如何在 cgroup 中编译内核
 
@@ -1296,68 +895,15 @@ sudo cgexec -g memory:mem3 nix-shell --command "make -j32"
 sudo cgexec -g memory:mem3 make -j32
 ```
 
-## 文摘
+## 教程
 
 - [my first expression of nix](https://news.ycombinator.com/item?id=36387874_)
   - https://mtlynch.io/notes/nix-first-impressions/
     https://news.ycombinator.com/item?id=36387874
     https://news.ycombinator.com/item?id=32922901
-
-## 搞搞 cuda 吧
-
-https://nixos.org/community/teams/cuda
-
-```nix
-# Run with `nix-shell cuda-shell.nix`
-{ pkgs ? import <nixpkgs> {} }:
-pkgs.mkShell {
-   name = "cuda-env-shell";
-   buildInputs = with pkgs; [
-     git gitRepo gnupg autoconf curl
-     procps gnumake util-linux m4 gperf unzip
-     cudatoolkit linuxPackages.nvidia_x11
-     libGLU libGL
-     xorg.libXi xorg.libXmu freeglut
-     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
-     ncurses5 stdenv.cc binutils
-   ];
-   shellHook = ''
-      export CUDA_PATH=${pkgs.cudatoolkit}
-      export LD_LIBRARY_PATH=${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.ncurses5}/lib
-      export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-      export EXTRA_CCFLAGS="-I/usr/include"
-   '';
-}
-```
-
-然后配合这个 : https://github.com/Tony-Tan/CUDA_Freshman
-
-https://news.ycombinator.com/item?id=37818570
-
-## 微信
-
-```nix
-  wrapWine_nix = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/wrapWine.nix";
-    hash = "sha256-4vdks0N46J/n8r3wdChXcJbBHPrbTexEN+yMi7zAbKs=";
-  };
-  weixin_nix = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/xieby1/nix_config/d57b5c4b1532eb5599b23c13ed063b2fa81edfa7/usr/gui/weixin.nix";
-    hash = "sha256-ql6BE/IZBM31W/yqCayAdktcV2QZ/maVzwskybFZwz0=";
-  };
-  weixin = import weixin_nix {
-    wrapWine = import wrapWine_nix { inherit pkgs; };
-  };
-```
-
-## 又一个教程
-
 - https://gitlab.com/engmark/nix-start
 - https://github.com/Misterio77/nix-starter-configs
 
-## 构建内核的确方便，但是构建过程不能利用 cacahe ，现在修改一个 patch 就要重新构建整个内核，很烦
-
-此外，现在 systemd 中构建一次之后，在 zsh 中还是需要重新 make 一次
 
 ## 如何在 nixpkgs 的基础上稍作修改制作自己的包
 
@@ -1379,27 +925,6 @@ https://github.com/nix-community/NixOS-WSL
 
 mkpasswd -m sha-512 abc
 
-## 构建 github action
-
-```txt
-  services.github-runners = {
-    testrunner = {
-      enable = true;
-      user = "martins3";
-      name = "test-runner";
-      # token file is somewhere on local machine - in my case, it's not currently managed by nix
-      tokenFile = "/home/martins3/.github-runners";
-      url = "https://github.com/Martins3/R9000P";
-    };
-  };
-```
-
-tokenFile 只是需要包含 github 指导步骤中的 token 即可
-
-```txt
-./config.sh --url https://github.com/Martins3/R9000P --token xxx
-```
-
 ## 需要将 username 变为可以定制化才可以，或者说
 
 可以存在多个 username ，将 martins3 只是作为临时安装的一个名称，之后可以重新指向一个名称
@@ -1411,30 +936,6 @@ tokenFile 只是需要包含 github 指导步骤中的 token 即可
 ```sh
 nix-env -qaPA nixos.nodePackages
 ```
-
-## TODO : 真正的代办
-
-参考这个文档，重新理解下到底如何优雅的构建内核驱动来着:
-https://nixos.org/manual/nixos/stable/#sec-kernel-config
-
-> 如何编译 kernel module
-
-- 参考这个操作: https://github.com/fghibellini/nixos-kernel-module
-- 然后阅读一下: https://blog.prag.dev/building-kernel-modules-on-nixos
-
-没必要那么复杂，参考这个，中的 : Developing out-of-tree kernel modules
-
-- https://nixos.wiki/wiki/Linux_kernel
-
-```sh
-nix-shell '<nixpkgs>' -A linuxPackages_latest.kernel.dev
-make -C $(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/*/build M=$(pwd) modules
-
-make SYSSRC=$(nix-build -E '(import <nixpkgs> {}).linuxPackages_latest.kernel.dev' --no-out-link)/lib/modules/$(uname -r)/source
-```
-
-- [ ] 搞清楚 kbuild 也许会让问题容易很多吧
-- [ ] 似乎现在是没有办法手动编译的
 
 > 学习 nix 语言
 
@@ -1582,61 +1083,6 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 ```
 检查内核 compile_commands.json ，果然是没有输出的。
 
-## 搭建下 nixos 上 hack kvm 的方法
-- https://phip1611.de/blog/building-an-out-of-tree-linux-kernel-module-in-nix/
-
-文档还是很简单的，但是这个代码仓库就太复杂了。
-
-## 备份一些代码
-```nix
-  systemd.user.services.kernel = {
-    enable = true;
-    unitConfig = { };
-    serviceConfig = {
-      # User = "martins3";
-      Type = "forking";
-      # RemainAfterExit = true;
-      ExecStart = "/home/martins3/.nix-profile/bin/tmux new-session -d -s kernel '/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/sync-kernel.sh'";
-      Restart = "no";
-    };
-  };
-
-  # systemctl --user list-timers --all
-  systemd.user.timers.kernel = {
-    enable = true;
-    # timerConfig = { OnCalendar = "*-*-* 4:00:00"; };
-    timerConfig = { OnCalendar = "Fri *-*-* 4:00:00"; }; #  周五早上四点运行一次
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.timers.drink_water = {
-    enable = true;
-    timerConfig = { OnCalendar="*:0/5"; };
-    wantedBy = [ "timers.target" ];
-  };
-
-  systemd.user.services.drink_water = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "forking";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/drink_water.sh";
-      Restart = "no";
-    };
-  };
-
-  systemd.user.services.monitor = {
-    enable = false;
-    unitConfig = { };
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "/run/current-system/sw/bin/bash /home/martins3/.dotfiles/scripts/systemd/monitor.sh";
-      Restart = "no";
-    };
-    wantedBy = [ "timers.target" ];
-  };
-```
-
 ## 如何解决掉本身就在代理的问题
 - https://github.com/NixOS/nixpkgs/issues/27535 是我操作有问题，不行啊！
 
@@ -1653,8 +1099,6 @@ clang-16: warning: argument unused during compilation: '-arch arm64' [-Wunused-c
 nix-shell -p libgcc
 ```
 
-## nixos 的 kernel 有方便的方法裁剪吗？
-
 ## 这个似乎还不错
 https://github.com/gvolpe/nix-config
 
@@ -1662,48 +1106,6 @@ https://github.com/gvolpe/nix-config
 https://news.ycombinator.com/item?id=40817199
 
 Aeon 非常奇怪，安装不可以用 cdrom ，而且必须是 UEFI
-
-## nixos 下 bcc 不可以正常使用
-
-https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/by-name/bc/bcc/package.nix
-
-需要我更加深入的理解才可以:
-
-在 bcc 的构建的 nix 中，的确有:
-```txt
-  export PYTHONPATH=$out/${python3.sitePackages}:$PYTHONPATH
-```
-
-这个也是 https://github.com/iovisor/bcc/blob/master/FAQ.txt 中提到的:
-
-```txt
-Q: hello_world.py fails with:
-   ImportError: No module named bcc
-A: checkout "sudo make install" output to find out bpf package installation site,
-   add it to the PYTHONPATH env variable before running the program.
-   export PYTHONPATH=$(dirname `find /usr/lib -name bcc`):$PYTHONPATH
-```
-
-似乎是不可以的，进入到 bcc 中，其中连 bcc 的工具都没有，很惨:
-
-```sh
-cd $(nix-build -E "(import <nixpkgs> {}).bcc" --no-out-link)
-```
-
-### 2025-03-16 bcc 工具也不可以使用了
-```txt
-🧀  sudo wqlat
-<built-in>:1:10: fatal error: './include/linux/kconfig.h' file not found
-    1 | #include "./include/linux/kconfig.h"
-      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-1 error generated.
-Traceback (most recent call last):
-  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/share/bcc/tools/.wqlat-wrapped", line 162, in <module>
-    b = BPF(text=bpf_text)
-        ^^^^^^^^^^^^^^^^^^
-  File "/nix/store/ksnxa0g1lgjvgwqd9hn2f97ndr1bppbw-bcc-0.31.0/lib/python3.12/site-packages/bcc-0.31.0-py3.12.egg/bcc/__init__.py", line 480, in __init__
-Exception: Failed to compile BPF module <text>
-```
 
 ## 编译 bpf 的时候有警告
 
@@ -1749,30 +1151,6 @@ https://rasmuskirk.com/articles/2024-07-24_dont-use-nixos/
 ```nix
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.glib.out}/lib";
 ```
-
-## 如何自动 login 似乎在图形界面上才可以配置
-
-在 settings 中搜 login ，有一个 autoLogin 的选项。
-
-https://help.gnome.org/admin/system-admin-guide/stable/login-automatic.html.en
-
-配置之后接入如下:
-```txt
-🧀  cat /etc/gdm/custom.conf
-[daemon]
-AutomaticLogin=martins3
-AutomaticLoginEnable=true
-WaylandEnable=false
-```
-
-但是使用 nixos 的配置:
-
-```txt
-  services.displayMnager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "martins3";
-  services.xserver.displayManager.gdm.autoLogin.delay = 1;
-```
-会有很多诡异的想象。
 
 ## ocaml
 
@@ -1916,63 +1294,6 @@ nix/profiles/profile🔒 🌳
 ```
 应该是和这个有关系: linuxPackages_6_10.kernel.dev
 
-
-## rust
-使用 https://github.com/hyperlight-dev/hyperlight 的时候，发现了一个问题
-
-执行 just rg
-```txt
-error[E0463]: can't find crate for `core`
-  |
-  = note: the `x86_64-unknown-none` target may not be installed
-  = help: consider downloading the target with `rustup target add x86_64-unknown-none`
-
-For more information about this error, try `rustc --explain E0463`.
-error: could not compile `log` (lib) due to 1 previous error
-warning: build failed, waiting for other jobs to finish...
-error: could not compile `scopeguard` (lib) due to 1 previous error
-error: could not compile `bitflags` (lib) due to 1 previous error
-error: could not compile `itoa` (lib) due to 1 previous error
-error: could not compile `ryu` (lib) due to 1 previous error
-error: could not compile `memchr` (lib) due to 1 previous error
-error: could not compile `anyhow` (lib) due to 1 previous error
-error: could not compile `serde` (lib) due to 1 previous error
-error: Recipe `build-rust-guests` failed on line 38 with exit code 101
-
-```
-
-```txt
-🤒  rustup target add x86_64-unknown-none
-info: syncing channel updates for '1.81.0-x86_64-unknown-linux-gnu'
-info: latest update on 2024-09-05, rust version 1.81.0 (eeb90cda1 2024-09-04)
-info: downloading component 'cargo'
-  8.3 MiB /   8.3 MiB (100 %)   5.4 MiB/s in  2s ETA:  0s
-info: downloading component 'clippy'
-info: downloading component 'rust-docs'
- 15.9 MiB /  15.9 MiB (100 %)   5.2 MiB/s in  4s ETA:  0s
-info: downloading component 'rust-std'
- 26.8 MiB /  26.8 MiB (100 %)   4.6 MiB/s in  7s ETA:  0s
-info: downloading component 'rustc'
- 66.9 MiB /  66.9 MiB (100 %)   3.6 MiB/s in 20s ETA:  0s
-info: downloading component 'rustfmt'
-info: installing component 'cargo'
-info: installing component 'clippy'
-info: installing component 'rust-docs'
-info: installing component 'rust-std'
- 26.8 MiB /  26.8 MiB (100 %)  24.9 MiB/s in  1s ETA:  0s
-info: installing component 'rustc'
- 66.9 MiB /  66.9 MiB (100 %)  26.9 MiB/s in  2s ETA:  0s
-info: installing component 'rustfmt'
-info: downloading component 'rust-std' for 'x86_64-unknown-none'
- 11.3 MiB /  11.3 MiB (100 %)   4.8 MiB/s in  3s ETA:  0s
-info: installing component 'rust-std' for 'x86_64-unknown-none'
-```
-
-或者说，rust 中的如下命令如何 nix 化
-```txt
-rustup target add x86_64-unknown-none
-rustup target add x86_64-pc-windows-msvc
-```
 ## cache
 https://github.com/nix-community/harmonia
 
@@ -1983,12 +1304,8 @@ https://github.com/NixOS-CN
 
 https://news.ycombinator.com/item?id=42666851
 
-
 ## kernel 配置在这里的
 kernel-modules/lib/modules/6.12.7/modules.devname
-
-## uv 来解决 python3 的环境问题可以吗?
-https://github.com/astral-sh/uv
 
 ## 原来 rust-analyzer 是一个软连接啊
 ```txt
@@ -2005,19 +1322,6 @@ rustup component add rust-analyzer
 ## 这个功能对于我来说，很重要
 安装的时候可以不用联网。
 https://github.com/tfc/nixos-auto-installer
-
-## nixos 的 kernel 为什么默认打开了
-```txt
-CONFIG_KFENCE=y
-```
-看看这个导致了多少的性能损失 和 内存损失。
-
-## 系统中的 contained 是从哪里来的
-
-```txt
-        ├─containerd-shim─┬─redis-server───4*[{redis-server}]
-        │                 └─12*[{containerd-shim}]
-```
 
 ## coreutils 中的 .envrc 可以关注下
 
@@ -2042,23 +1346,6 @@ https://github.com/nix-community/nix-ld
 ## 这个东西好啊
 https://github.com/nix-community/nh
 
-## 真的有点累了
-https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
-
-```txt
-  × Querying Python at `/home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13` failed with exit status exit
-  │ status: 127
-  │ --- stdout:
-
-  │ --- stderr:
-  │ Could not start dynamically linked executable: /home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13
-  │ NixOS cannot run dynamically linked executables intended for generic
-  │ linux environments out of the box. For more information, see:
-  │ https://nix.dev/permalink/stub-ld
-  │ ---
-```
-在 fedora + home-manager 中可以，为什么在 nixos 中就不可以。
-
 ## 看看这个
 https://saylesss88.github.io/Getting_Started_with_Nix_1.html
 
@@ -2079,7 +1366,7 @@ https://aruarian.dance/blog/you-do-not-need-nixos/
 https://github.com/zdyxry/isengard
 
 
-## 不理解为什么为什么构建了，但是启动之后，动态库就找不到了
+## 不理解为什么构建了，但是启动之后，动态库就找不到了
 ```txt
 /home/martins3/data/qemu-f9a3def17b2a////install/bin/qemu-system-x86_64: error while loading shared libraries: libpixman-1.so.0: cannot open shared object file: No such file or directory
 ```
@@ -2141,24 +1428,29 @@ https://github.com/zdyxry/isengard
 但是在两个机器上测试，不是稳定复现的。
 
 
-## 构建 liburing 的时候有这个问题
-
-```txt
-bear -- make
-make[1]: Entering directory '/home/martins3/data/liburing/src'
-awk: /lib64/libc.so.6: version `GLIBC_2.34' not found (required by /nix/store/gw3yi5d1zb7qvjm6xw9rnnw75wisynv0-bear-3.1.6/lib/bear/libexec.so)
-awk: /lib64/libc.so.6: version `GLIBC_2.33' not found (required by /nix/store/gw3yi5d1zb7qvjm6xw9rnnw75wisynv0-bear-3.1.6/lib/bear/libexec.so)
-awk: /lib64/libc.so.6: version `GLIBC_2.38' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libstdc++.so.6)
-awk: /lib64/libc.so.6: version `GLIBC_2.32' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libstdc++.so.6)
-awk: /lib64/libc.so.6: version `GLIBC_2.33' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libstdc++.so.6)
-awk: /lib64/libc.so.6: version `GLIBC_2.36' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libstdc++.so.6)
-awk: /lib64/libc.so.6: version `GLIBC_2.34' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libstdc++.so.6)
-awk: /lib64/libc.so.6: version `GLIBC_2.35' not found (required by /nix/store/7c0v0kbrrdc2cqgisi78jdqxn73n3401-gcc-14.2.1.20250322-lib/lib/libgcc_s.so.1)
-```
-不知道为什么，换一个环境就没有问题了。
-
 ## very nice 的 python 环境搭建
 https://news.ycombinator.com/item?id=44579717
+
+### uv 来解决 python3 的环境问题可以吗?
+https://github.com/astral-sh/uv
+
+
+### 真的有点累了
+https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
+
+```txt
+  × Querying Python at `/home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13` failed with exit status exit
+  │ status: 127
+  │ --- stdout:
+
+  │ --- stderr:
+  │ Could not start dynamically linked executable: /home/martins3/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3.13
+  │ NixOS cannot run dynamically linked executables intended for generic
+  │ linux environments out of the box. For more information, see:
+  │ https://nix.dev/permalink/stub-ld
+  │ ---
+```
+在 fedora + home-manager 中可以，为什么在 nixos 中就不可以。
 
 
 ## 为什么 home-manager 中，命令行中编译和 bu 有不同的效果
