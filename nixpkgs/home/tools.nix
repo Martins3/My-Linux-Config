@@ -29,6 +29,7 @@ with pkgs;
   gnumake
   yarn
   nodejs
+  bun
   starship
   atuin
   eza # more powerful ls
@@ -83,8 +84,8 @@ with pkgs;
   termshark
   dnsmasq
   # audit # 没啥意义，用不起来
-  # tmux
-  old_tmux
+  tmux
+  # old_tmux
   tmuxp
   pueue
   screen
@@ -424,7 +425,7 @@ with pkgs;
   # stylua
   nasm
   deno # 用于 markdown 格式化
-  opencode
+  # opencode # 还是用 curl 了安装了，这个迭代的太快了
 
   # efm-langserver # 集成 shellcheck
   # lua-language-server
