@@ -108,7 +108,7 @@ function ProcessClipboard()
   end
 
   local project = "/home/martins3/data/vn"
-  local script_path = project .. "/code/qemu/trim.sh"
+  local script_path = project .. "/alpine/trim.sh"
   if vim.fn.filereadable(script_path) == 1 then
     vim.fn.system(script_path)
   else
