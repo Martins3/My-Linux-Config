@@ -67,16 +67,15 @@ with pkgs;
   # 文件浏览器
   # xplr
 
-  pass # wireguard 作者维护的密码管理工具
+  # pass # wireguard 作者维护的密码管理工具
   # TODO virt-customize -a bionic-server-cloudimg-amd64.img --root-password password:<pass>
   # libguestfs
   # libguestfs-appliance
   # cloud-utils
   # adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
   # minicom
-  typos # 检查代码中 typo
+  # typos # 检查代码中 typo ，不过 LLM 似乎做的更好?
   # typst # latex 替代品
-  cargo
   cmake
   # ov # feature rich pager
   # zig
@@ -84,8 +83,8 @@ with pkgs;
   termshark
   dnsmasq
   # audit # 没啥意义，用不起来
-  tmux
-  # old_tmux
+  # tmux
+  old_tmux
   tmuxp
   pueue
   screen
@@ -413,6 +412,7 @@ with pkgs;
 
   # lsp && formatter
   black # python formatter
+  cargo
   # 似乎不需要在这里安装 rust 的工具
   # rust-analyzer
   # rustfmt
