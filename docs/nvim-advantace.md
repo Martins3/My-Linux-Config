@@ -325,3 +325,36 @@ rachartier/tiny-inline-diagnostic.nvim
 
 ## tree-sitter 类似的？
 https://ast-grep.github.io/
+
+## 这个拷贝始终没搞懂
+- 有时候，nvim 报告 Clipboard 是 tmux，但是实际上下面的才是正确的
+```txt
+## Clipboard (optional)
+  - OK: Clipboard tool found: xclip
+```
+- 登录远程终端，在远程终端中使用 clear 或者 vim 的时候遇到
+```txt
+'tmux-256color': unknown terminal type.
+```
+https://unix.stackexchange.com/questions/574669/clearing-tmux-terminal-throws-error-tmux-256color-unknown-terminal-type
+
+配置了:
+```lua
+ vim.g.clipboard = {
+    name = 'SSH OSC52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = function() return vim.fn.getreg('+') end,
+      ['*'] = function() return vim.fn.getreg('*') end,
+    },
+  }
+```
+其 provider 修改为:
+```txt
+Clipboard (optional) ~
+- ✅ OK Clipboard tool found: SSH OSC52
+```
+这个结果之后，在任何环境中都可以复制了。

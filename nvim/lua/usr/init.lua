@@ -55,3 +55,16 @@ require("persisted").setup({
 require('gitsigns').setup {
   current_line_blame = true,
 }
+
+-- ssh 到远端，neovim 可以拷贝到本地
+vim.g.clipboard = {
+  name = 'SSH OSC52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = function() return vim.fn.getreg('+') end,
+    ['*'] = function() return vim.fn.getreg('*') end,
+  },
+}
