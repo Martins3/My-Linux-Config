@@ -31,9 +31,14 @@ vim.lsp.enable({ 'ccls', 'nixd' })
 -- vim.o.winborder = 'rounded'
 
 vim.diagnostic.config({
-  -- virtual_lines 造成了巨大的视觉干扰，还是 virtual_text 好用
-  -- virtual_lines = { current_line = true, },
-  virtual_text = { current_line = true, },
+  virtual_text = false, -- 关闭右侧文字，只保留悬浮窗
+  signs = true,         -- 左侧图标保留
+  float = { border = 'rounded' },
+})
+
+-- 光标停留时自动显示诊断
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function() vim.diagnostic.open_float(nil, { focusable = false }) end,
 })
 
 local map = vim.keymap.set
