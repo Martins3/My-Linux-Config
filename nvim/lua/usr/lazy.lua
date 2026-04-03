@@ -97,8 +97,20 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
   -- ui
   "kyazdani42/nvim-tree.lua", -- 文件树
-  "akinsho/bufferline.nvim", -- buffer
-  "nvim-lualine/lualine.nvim", -- 状态栏
+  {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("usr.bufferline")
+    end,
+  }, -- buffer
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("usr.lualine")
+    end,
+  }, -- 状态栏
   {
     "axkirillov/hbac.nvim",
     event = "SessionLoadPost",
@@ -131,7 +143,21 @@ require("lazy").setup({
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
   -- 命令执行
-  "akinsho/toggleterm.nvim",                -- nvim 中打开终端
+  {
+    "akinsho/toggleterm.nvim",
+    cmd = { "ToggleTerm", "TermSelect" },
+    keys = {
+      "<c-t>",
+      "<space>gs",
+      "<space>gl",
+      "<space>x",
+      "<space>e",
+      "<c-s>",
+    },
+    config = function()
+      require("usr.toggleterm")
+    end,
+  }, -- nvim 中打开终端
   "CRAG666/code_runner.nvim", -- 一键运行代码
   "samjwill/nvim-unception", -- 在 nvim 的 termianl 打开 nvim 自动 offload
   -- markdown

@@ -11,13 +11,10 @@ require("usr.telescope")
 require("usr.version")
 require("usr.which-key")
 require("usr.colorscheme")
-require("usr.bufferline")
-require("usr.lualine")
 if vim.g.neovide then
   require("usr.neovide")
 end
 require("usr.util")
-require("usr.toggleterm")
 require("nvim-surround").setup()
 require("gitsigns").setup({
   signcolumn = false,
