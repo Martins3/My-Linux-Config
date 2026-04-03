@@ -1307,18 +1307,6 @@ https://news.ycombinator.com/item?id=42666851
 ## kernel 配置在这里的
 kernel-modules/lib/modules/6.12.7/modules.devname
 
-## 原来 rust-analyzer 是一个软连接啊
-```txt
-🧀  l /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer
-Permissions Size User Date Modified Name
-lrwxrwxrwx     - root  1 Jan  1970   /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer -> rustup
-```
-
-这样可以解决:
-```txt
-rustup component add rust-analyzer
-```
-
 ## 这个功能对于我来说，很重要
 安装的时候可以不用联网。
 https://github.com/tfc/nixos-auto-installer
