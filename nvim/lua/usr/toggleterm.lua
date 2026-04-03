@@ -18,29 +18,28 @@ end
 
 local Terminal = require("toggleterm.terminal").Terminal
 
--- TODO 这些重复的内容显然可以注册成函数
-function _lazygit_toggle()
-  local lazygit = Terminal:new({
-    cmd = "tig status",
+local function toggle_float_terminal(cmd)
+  Terminal:new({
+    cmd = cmd,
     hidden = true,
     direction = "float",
-  })
-  lazygit:toggle()
+  }):toggle()
 end
 
-function _ls_toggle()
-  local ls = Terminal:new({ cmd = "tig " .. vim.api.nvim_buf_get_name(0), hidden = true, direction = "float" })
-  ls:toggle()
+local function lazygit_toggle()
+  toggle_float_terminal("tig status")
 end
 
-function _ipython_toggle()
-  local ipython = Terminal:new({ cmd = "ipython", hidden = true, direction = "float" })
-  ipython:toggle()
+local function ls_toggle()
+  toggle_float_terminal("tig " .. vim.api.nvim_buf_get_name(0))
 end
 
-function _qwen_toggle()
-  local qwen = Terminal:new({ cmd = "qwen", hidden = true, direction = "float" })
-  qwen:toggle()
+local function ipython_toggle()
+  toggle_float_terminal("ipython")
+end
+
+local function qwen_toggle()
+  toggle_float_terminal("qwen")
 end
 
 require("toggleterm").setup({
@@ -50,10 +49,10 @@ require("toggleterm").setup({
   auto_scroll = false, -- 如果屏幕中出现新的内容，不要将屏幕滑动最下
 })
 
-vim.keymap.set("n", "<space>gs", _lazygit_toggle, { silent = true })
-vim.keymap.set("n", "<space>gl", _ls_toggle, { silent = true })
-vim.keymap.set("n", "<space>x", _ipython_toggle, { silent = true })
-vim.keymap.set("n", "<space>e", _qwen_toggle, { silent = true })
+vim.keymap.set("n", "<space>gs", lazygit_toggle, { silent = true })
+vim.keymap.set("n", "<space>gl", ls_toggle, { silent = true })
+vim.keymap.set("n", "<space>x", ipython_toggle, { silent = true })
+vim.keymap.set("n", "<space>e", qwen_toggle, { silent = true })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }

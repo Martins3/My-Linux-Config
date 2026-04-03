@@ -20,7 +20,6 @@ local options = {
 
   signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   linebreak = true, -- companion to wrap, don't split words
-  guifont = "monospace:h17", -- the font used in graphical neovim applications
   whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
 
   -- 我设置的部分
