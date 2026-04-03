@@ -36,16 +36,6 @@ vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
 
--- 书签
-require("bookmarks").setup({
-  mappings_enabled = true,
-  keymap = {
-    toggle = "mc",
-    delete = "dd",
-  },
-  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
-})
-
 require("persisted").setup({
   autoload = true,
   should_save = function()

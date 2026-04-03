@@ -168,7 +168,22 @@ require("lazy").setup({
   },
   "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
-  { "crusj/bookmarks.nvim", branch = "main" }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
+  {
+    "crusj/bookmarks.nvim",
+    branch = "main",
+    event = "VeryLazy",
+    config = function()
+      require("bookmarks").setup({
+        mappings_enabled = true,
+        keymap = {
+          toggle = "mc",
+          delete = "dd",
+        },
+        virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
+      })
+      require("telescope").load_extension("bookmarks")
+    end,
+  }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   {
     "keaising/im-select.nvim",
