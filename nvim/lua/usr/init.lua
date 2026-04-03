@@ -45,14 +45,4 @@ require("persisted").setup({
 
 -- ssh 到远端，neovim 可以拷贝到本地
 -- FIXME 真的是按下了葫芦起了瓢，现在 ProcessClipboard 不能用了，我靠
-vim.g.clipboard = {
-  name = 'SSH OSC52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = function() return vim.fn.getreg('+') end,
-    ['*'] = function() return vim.fn.getreg('*') end,
-  },
-}
+vim.g.clipboard = 'osc52'
