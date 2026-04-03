@@ -42,27 +42,27 @@ vim.g.rustaceanvim = {
         vim.cmd.RustLsp("runnables")
       end, "Rust runnables")
 
-      map("<leader>re", function()
+      map("<leader>ce", function()
         vim.cmd.RustLsp({ "explainError", "current" })
       end, "Rust explain error")
 
-      map("<leader>rd", function()
+      map("<leader>cd", function()
         vim.cmd.RustLsp("openDocs")
       end, "Rust docs")
 
-      map("<leader>rm", function()
+      map("<leader>cm", function()
         vim.cmd.RustLsp("expandMacro")
       end, "Rust expand macro")
 
-      map("<leader>rp", function()
+      map("<leader>cp", function()
         vim.cmd.RustLsp("parentModule")
       end, "Rust parent module")
 
-      map("<leader>rr", function()
+      map("<leader>cr", function()
         vim.cmd.RustLsp("renderDiagnostic")
       end, "Rust render diagnostic")
 
-      map("<leader>rs", function()
+      map("<leader>cs", function()
         vim.cmd.RustLsp("ssr")
       end, "Rust structural search replace")
     end,
