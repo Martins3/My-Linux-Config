@@ -18,7 +18,11 @@ require("usr.util")
 require("usr.toggleterm")
 require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
 require("nvim-surround").setup()
-require("gitsigns").setup({ signcolumn = false, numhl = true })
+require("gitsigns").setup({
+  signcolumn = false,
+  numhl = true,
+  current_line_blame = true,
+})
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
@@ -51,10 +55,6 @@ require("persisted").setup({
     return true
   end,
 })
-
-require('gitsigns').setup {
-  current_line_blame = true,
-}
 
 -- ssh 到远端，neovim 可以拷贝到本地
 -- FIXME 真的是按下了葫芦起了瓢，现在 ProcessClipboard 不能用了，我靠
