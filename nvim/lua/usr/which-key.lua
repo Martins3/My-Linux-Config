@@ -162,24 +162,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<leader>x", ":MarkdownPreview<CR>", { buffer = true, silent = false })
   end
 })
-
-local function run_rust()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.keymap.set("n", "<leader>a", function()
-    vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-    -- or vim.lsp.buf.codeAction() if you don't want grouping.
-  end, { silent = true, buffer = bufnr })
-
-  vim.keymap.set("n", "<leader>r", function()
-    vim.cmd.RustLsp("run")
-  end, { silent = true, buffer = bufnr })
-
-  vim.keymap.set("n", "<leader>R", function()
-    vim.cmd.RustLsp("runnables")
-  end, { silent = true, buffer = bufnr })
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "rust",
-  callback = run_rust,
-})

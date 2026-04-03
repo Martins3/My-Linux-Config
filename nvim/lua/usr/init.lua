@@ -1,4 +1,5 @@
 require("usr.options")
+require("usr.rustaceanvim")
 require("usr.lazy")
 require("usr.mason")
 require("usr.cmp")
