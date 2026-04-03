@@ -11,11 +11,32 @@ local function get_transfer_status()
   return icons[status] or nil
 end
 
+local function has_toggleterm_buffer()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].filetype == "toggleterm" then
+      return true
+    end
+  end
+  return false
+end
+
+local function get_toggleterm_indicator()
+  return "🏃"
+end
+
 require("lualine").setup({
   extensions = { "nvim-tree", "fugitive" },
   sections = {
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_c = {
+      {
+        function()
+          return get_toggleterm_indicator()
+        end,
+        cond = function()
+          return has_toggleterm_buffer()
+        end,
+      },
       {
         function()
           return get_transfer_status() or ""
