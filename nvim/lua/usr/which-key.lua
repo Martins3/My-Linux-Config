@@ -140,16 +140,13 @@ wk.add({
 })
 
 wk.add({
-  {
-    mode = { "v" },
-    { "<space>lc", ":Commentary<cr>",                               desc = "comment code" },
-    { "<space>s",  group = "search" },
-    { "<space>sp", "<cmd>lua require('spectre').open_visual()<cr>", desc = "search" },
-    { "q",         "<cmd>q<cr>",                                    desc = "close window" },
-  },
+  { "<space>lc", ":Commentary<cr>",                               desc = "comment code", mode = "v" },
+  { "<space>s",  group = "search",                                mode = "v" },
+  { "<space>sp", "<cmd>lua require('spectre').open_visual()<cr>", desc = "search",       mode = "v" },
+  { "q",         "<cmd>q<cr>",                                    desc = "close window", mode = "v" },
 })
 
-vim.api.nvim_set_keymap("i", "<c-g>", "<cmd>!ibus engine rime<cr>", { noremap = true })
+vim.keymap.set("i", "<c-g>", "<cmd>!ibus engine rime<cr>")
 
 -- 添加自适应的命令
 vim.api.nvim_create_autocmd("FileType", {
@@ -166,8 +163,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.cmd("autocmd FileType rust lua RunRust()")
-function RunRust()
+local function run_rust()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.keymap.set("n", "<leader>a", function()
     vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
@@ -182,3 +178,8 @@ function RunRust()
     vim.cmd.RustLsp("runnables")
   end, { silent = true, buffer = bufnr })
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = run_rust,
+})

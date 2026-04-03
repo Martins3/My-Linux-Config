@@ -50,10 +50,10 @@ require("toggleterm").setup({
   auto_scroll = false, -- 如果屏幕中出现新的内容，不要将屏幕滑动最下
 })
 
-vim.api.nvim_set_keymap("n", "<space>gs", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gl", "<cmd>lua _ls_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>x", "<cmd>lua _ipython_toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>e", "<cmd>lua _qwen_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<space>gs", _lazygit_toggle, { silent = true })
+vim.keymap.set("n", "<space>gl", _ls_toggle, { silent = true })
+vim.keymap.set("n", "<space>x", _ipython_toggle, { silent = true })
+vim.keymap.set("n", "<space>e", _qwen_toggle, { silent = true })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
@@ -62,13 +62,19 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "<c-s>", "<cmd>TermSelect<CR>", opts)
 end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+local toggleterm_group = vim.api.nvim_create_augroup("usr_toggleterm", { clear = true })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = toggleterm_group,
+  pattern = "term://*",
+  callback = function()
+    set_terminal_keymaps()
+  end,
+})
 
 function get_terminal()
   local m = vim.api.nvim_buf_get_name(0)
   print(string.match(m, '%d$'))
 end
 
-vim.api.nvim_set_keymap("n", "<c-s>", "<cmd>TermSelect<CR>",
-  { noremap = true, silent = true })
+vim.keymap.set("n", "<c-s>", "<cmd>TermSelect<CR>", { silent = true })

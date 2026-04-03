@@ -129,4 +129,4 @@ function ProcessClipboard()
 end
 
 -- 映射快捷键
-vim.api.nvim_set_keymap("n", "<leader>a", ":lua ProcessClipboard()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>a", ProcessClipboard, { silent = true })
