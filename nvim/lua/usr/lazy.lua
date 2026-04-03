@@ -181,7 +181,12 @@ require("lazy").setup({
     "olimorris/persisted.nvim",
   }, -- 自动保存关闭时候的会话
   "nvimtools/hydra.nvim", -- 消除重复快捷键，可以用于调整 window 大小等
-  { "andrewferrier/debugprint.nvim", version = "*" }, -- 快速插入 print 来调试
+  {
+    "andrewferrier/debugprint.nvim",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  }, -- 快速插入 print 来调试，默认快捷键 g?p
   { "xiyaowong/telescope-emoji.nvim" },
   {
     dir = "/home/martins3/data/rsync.nvim/",

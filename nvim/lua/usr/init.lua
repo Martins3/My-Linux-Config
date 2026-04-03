@@ -13,7 +13,9 @@ require("usr.which-key")
 require("usr.colorscheme")
 require("usr.bufferline")
 require("usr.lualine")
-require("usr.neovide")
+if vim.g.neovide then
+  require("usr.neovide")
+end
 require("usr.util")
 require("usr.toggleterm")
 require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
@@ -26,7 +28,6 @@ require("gitsigns").setup({
 require("flit").setup({})
 require("nvim-autopairs").setup()
 require("fidget").setup()
-require("debugprint").setup()
 
 vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
 vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
