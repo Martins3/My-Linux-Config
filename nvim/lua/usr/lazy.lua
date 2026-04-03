@@ -38,7 +38,12 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/mason.nvim" }, -- simple to use language server installer
   { "williamboman/mason-lspconfig.nvim" },
-  { "j-hui/fidget.nvim", tag = "legacy" }, -- 右下角展示索引状态
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {},
+  }, -- 右下角展示索引状态
   {
     "nvimdev/lspsaga.nvim",
     config = function()
@@ -149,7 +154,13 @@ require("lazy").setup({
   "mbbill/undotree", -- 显示编辑的历史记录
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
   -- 高亮
-  "norcalli/nvim-colorizer.lua", -- 显示 #ABCBCB
+  {
+    "norcalli/nvim-colorizer.lua",
+    ft = { "css", "javascript", "lua", "html" },
+    config = function()
+      require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
+    end,
+  }, -- 显示 #ABCBCB
   -- 时间管理
   "nvim-orgmode/orgmode", -- orgmode 日程管理
 
