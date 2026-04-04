@@ -69,5 +69,9 @@ if [ -e $HOME/data/vn/code/zsh  ]; then
   . $HOME/data/vn/code/zsh
 fi
 
+if [ -e $HOME/vn/code/zsh  ]; then
+  . $HOME/vn/code/zsh
+fi
+
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
