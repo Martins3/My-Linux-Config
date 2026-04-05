@@ -241,7 +241,7 @@ require("lazy").setup({
   }, -- 快速插入 print 来调试，默认快捷键 g?p
   { "xiyaowong/telescope-emoji.nvim" },
   {
-    dir = "/home/martins3/data/rsync.nvim/",
+    -- dir = "/home/martins3/data/rsync.nvim/",
     "Martins3/rsync.nvim",
     lazy = true,
     cmd = { "TransferInit", "TransferToggle", "TransferShow"  },
