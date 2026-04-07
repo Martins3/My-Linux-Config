@@ -1,12 +1,21 @@
 local function get_transfer_status()
+  -- lazy load
+  if package.loaded["transfer"] == nil then
+    return nil
+  end
+
   local ok, transfer = pcall(require, "transfer")
   if not ok then
     return nil
   end
+
   local status = transfer.get_status()
+
   local icons = {
-    disabled = "",
     idle = "🌕",
+    syncing = "󰇚",
+    success = "󰄬",
+    error = "󰅚",
   }
   return icons[status] or nil
 end
