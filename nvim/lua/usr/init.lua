@@ -22,7 +22,6 @@ require("gitsigns").setup({
   numhl = true,
   current_line_blame = true,
 })
-require("flit").setup({})
 require("nvim-autopairs").setup()
 
 vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')

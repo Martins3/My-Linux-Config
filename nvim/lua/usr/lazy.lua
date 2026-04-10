@@ -203,7 +203,6 @@ require("lazy").setup({
   {
     url = "https://codeberg.org/andyg/leap.nvim",   -- 快速移动
   },
-  "ggandor/flit.nvim", -- 利用 leap.nvim 强化 f/F t/T
 
   {
     "crusj/bookmarks.nvim",
