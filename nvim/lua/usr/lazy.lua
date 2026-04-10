@@ -15,6 +15,7 @@ require("lazy").setup({
   -- 基础
   "nvim-lua/plenary.nvim", -- 很多 lua 插件依赖的库
   "kyazdani42/nvim-web-devicons", -- 显示图标
+  "echasnovski/mini.icons", -- which-key healthcheck prefers it when available
   "folke/which-key.nvim", -- 用于配置和提示快捷键
   "kkharji/sqlite.lua", -- 数据库
   "MunifTanjim/nui.nvim", -- 图形库
@@ -89,7 +90,7 @@ require("lazy").setup({
   --treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
+    commit = "f8bbc3177d929dc86e272c41cc15219f0a7aa1ac", -- newer main drops Nvim 0.11 support
     lazy = false,
     build = ":TSUpdate",
   },
@@ -131,7 +132,7 @@ require("lazy").setup({
   "rhysd/git-messenger.vim", -- 利用 git blame 显示当前行的 commit message
   "tpope/vim-fugitive", -- 实现一些基本操作的快捷执行
   "lewis6991/gitsigns.nvim", -- 显示改动的信息
-  {'akinsho/git-conflict.nvim', version = "*", config = true}, -- 解决 git 冲突
+  { "akinsho/git-conflict.nvim", version = "*", config = true }, -- 解决 git 冲突
   -- 基于 telescope 的搜索
   "nvim-telescope/telescope.nvim",
   {
@@ -201,7 +202,7 @@ require("lazy").setup({
   },
   -- 其他
   {
-    url = "https://codeberg.org/andyg/leap.nvim",   -- 快速移动
+    url = "https://codeberg.org/andyg/leap.nvim", -- 快速移动
   },
 
   {
@@ -243,7 +244,7 @@ require("lazy").setup({
     -- dir = "/home/martins3/data/rsync.nvim/",
     "Martins3/rsync.nvim",
     lazy = true,
-    cmd = { "TransferInit", "TransferToggle", "TransferShow"  },
+    cmd = { "TransferInit", "TransferToggle", "TransferShow" },
     opts = {},
   },
 
@@ -293,9 +294,8 @@ require("lazy").setup({
   {
     "yetone/avante.nvim",
     enabled = false,
-    build = vim.fn.has("win32") ~= 0
-        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-        or "make",
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
@@ -308,11 +308,9 @@ require("lazy").setup({
           command = "kimi",
           args = { "acp" },
         },
-
       },
       -- 保留 API 直连模式配置（备用）
-      providers = {
-      }
+      providers = {},
     },
     dependencies = {
       -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
@@ -346,12 +344,12 @@ require("lazy").setup({
   },
   "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
   {
-    'chomosuke/typst-preview.nvim',
+    "chomosuke/typst-preview.nvim",
     lazy = false, -- or ft = 'typst'
-    version = '1.*',
+    version = "1.*",
     opts = {
-       host = '172.17.127.73', -- 这个总是需要修改，就有点烦
-       port = 8001,
-    },  -- lazy.nvim will implicitly calls `setup {}`
+      host = "172.17.127.73", -- 这个总是需要修改，就有点烦
+      port = 8001,
+    }, -- lazy.nvim will implicitly calls `setup {}`
   },
 }, {})

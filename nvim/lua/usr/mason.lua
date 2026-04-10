@@ -25,6 +25,8 @@ require("mason").setup()
 require("mason-lspconfig").setup {
   ensure_installed = servers
 }
+-- lsp 很容易到达 1G ，只看关键的，需要用的时候再打开
+vim.lsp.set_log_level(vim.log.levels.ERROR)
 vim.lsp.enable({ 'ccls', 'nixd' })
 -- 虽然打开这个会让
 -- 打开这个选项会让 telescope ui 不正常

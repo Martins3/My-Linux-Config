@@ -422,7 +422,7 @@ with pkgs;
   cppman
   ccls
   checkmake
-  # stylua
+  stylua
   nasm
   deno # 用于 markdown 格式化
   # opencode # 还是用 curl 了安装了，这个迭代的太快了
