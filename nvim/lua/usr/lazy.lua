@@ -277,7 +277,7 @@ require("lazy").setup({
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
-      -- bigfile = { enabled = true },
+      bigfile = { enabled = true },
       -- dashboard = { enabled = true },
       -- explorer = { enabled = true },
       -- indent = { enabled = true },
@@ -338,11 +338,9 @@ require("lazy").setup({
   {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
-    dependencies = { "folke/snacks.nvim", lazy = true },
     keys = {},
     enabled = true,
   },
-  "pteroctopus/faster.nvim", -- 打开大文件的时候自动 disable 一些功能，例如高亮等
   {
     "chomosuke/typst-preview.nvim",
     lazy = false, -- or ft = 'typst'
