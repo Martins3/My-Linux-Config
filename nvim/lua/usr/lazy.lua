@@ -247,7 +247,14 @@ require("lazy").setup({
     cmd = { "TransferInit", "TransferToggle", "TransferShow" },
     opts = {},
   },
-
+  {
+    -- dir = "/home/martins3/data/vim-translator",
+    "Martins3/translator.nvim",
+    config = function()
+      require("translator").setup()
+    end,
+    cmd = { "Translate" },
+  },
   {
     "stevearc/aerial.nvim",
     config = function()
