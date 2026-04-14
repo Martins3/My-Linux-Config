@@ -161,7 +161,7 @@ theme "solarized-dark"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-layout_dir "/home/martins3/.dotfiles/config/zellij/"
+layout_dir "/home/martins3/.dotfiles/config/zellij/layout"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
