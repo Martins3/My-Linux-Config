@@ -23,10 +23,25 @@ keybinds clear-defaults=true {
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
         bind "n" { NewPane; SwitchToMode "normal"; }
+        bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
         bind "t" { ToggleTab; }
+        bind "i" { TogglePanePinned; SwitchToMode "normal"; }
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "z" { TogglePaneFrames; SwitchToMode "normal"; }
         bind "tab" { SwitchFocus; }
+    }
+    tab {
+        bind "h" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "j" { GoToNextTab; SwitchToMode "normal"; }
+        bind "k" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "l" { GoToNextTab; SwitchToMode "normal"; }
+        bind "n" { NewTab; SwitchToMode "normal"; }
+        bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "s" { ToggleActiveSyncTab; SwitchToMode "normal"; }
+        bind "b" { BreakPane; SwitchToMode "normal"; }
+        bind "[" { BreakPaneLeft; SwitchToMode "normal"; }
+        bind "]" { BreakPaneRight; SwitchToMode "normal"; }
+        bind "x" { CloseTab; SwitchToMode "normal"; }
     }
     shared_except "locked" "tmux" {
         bind "Ctrl h" { SwitchToMode "tmux"; }
@@ -50,6 +65,8 @@ keybinds clear-defaults=true {
         bind "Alt =" { Resize "Increase"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
+        bind "Alt p" { TogglePaneInGroup; }
+        bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl g" { ToggleFloatingPanes; SwitchToMode "normal"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
@@ -72,6 +89,51 @@ keybinds clear-defaults=true {
     renamepane {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }
+    session {
+        bind "a" {
+            LaunchOrFocusPlugin "zellij:about" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+        bind "c" {
+            LaunchOrFocusPlugin "configuration" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+        bind "d" { Detach; SwitchToMode "normal"; }
+        bind "l" {
+            LaunchOrFocusPlugin "zellij:layout-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+        bind "p" {
+            LaunchOrFocusPlugin "plugin-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+        bind "s" {
+            LaunchOrFocusPlugin "zellij:share" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+        bind "w" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "normal";
+        }
+    }
     tmux {
         bind "left" { MoveFocus "left"; SwitchToMode "normal"; }
         bind "down" { MoveFocus "down"; SwitchToMode "normal"; }
@@ -82,18 +144,25 @@ keybinds clear-defaults=true {
         bind "&" { CloseTab; SwitchToMode "normal"; }
         bind "," { SwitchToMode "renametab"; }
         bind "[" { SwitchToMode "scroll"; }
+        bind "b" { BreakPane; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
         bind "d" { Detach; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
         bind "h" { MoveFocus "left"; SwitchToMode "normal"; }
+        bind "i" { TogglePanePinned; SwitchToMode "normal"; }
         bind "Ctrl h" { Write 2; SwitchToMode "normal"; }
         bind "j" { MoveFocus "down"; SwitchToMode "normal"; }
         bind "k" { MoveFocus "up"; SwitchToMode "normal"; }
         bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
         bind "n" { GoToNextTab; SwitchToMode "normal"; }
-        bind "o" { FocusNextPane; }
-        bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+        // bind "o" { FocusNextPane; }
+        // bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "o" { SwitchToMode "session"; }
+        bind "p" { SwitchToMode "pane"; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "t" { SwitchToMode "tab"; }
+        bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
+        bind "S" { ToggleActiveSyncTab; SwitchToMode "normal"; }
         bind "x" { CloseFocus; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
     }
@@ -259,6 +328,8 @@ attach_to_session true
 //   - false
 // 
 // auto_layout false
+
+stacked_resize true
  
 // Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
 // Options:
@@ -367,7 +438,7 @@ show_startup_tips false
  
 // Whether to enable mouse hover effects and pane grouping functionality
 // default is true
-// advanced_mouse_actions false
+advanced_mouse_actions true
  
 // The ip address the web server should listen on when it starts
 // Default: "127.0.0.1"
