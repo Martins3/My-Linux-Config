@@ -41,9 +41,13 @@ require("lazy").setup({
   { "williamboman/mason-lspconfig.nvim" },
   {
     "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = {},
+    version = "1.6.1",
+    lazy = false,
+    opts = {
+      notification = {
+        override_vim_notify = false,
+      },
+    },
   }, -- 右下角展示索引状态
   {
     "nvimdev/lspsaga.nvim",
@@ -165,6 +169,16 @@ require("lazy").setup({
     lazy = false,
     config = function()
       require("terminal-smart-quit")
+    end,
+  },
+  {
+    dir = vim.fn.stdpath("config") .. "/plugins/break-reminder",
+    name = "break-reminder",
+    lazy = false,
+    config = function()
+      require("break-reminder").setup({
+        interval_minutes = 22,
+      })
     end,
   },
   "CRAG666/code_runner.nvim", -- 一键运行代码
