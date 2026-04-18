@@ -16,6 +16,7 @@ pkgs.mkShell {
     nlohmann_json
     openal
     glslang
+    shader-slang
     vulkan-headers
     vulkan-loader
     vulkan-tools

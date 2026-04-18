@@ -27,6 +27,17 @@ function M.new(config, state_api)
     fidget.notify(message, level, opts)
   end
 
+  local function echo_message(message, level)
+    local hl = "None"
+    if level == vim.log.levels.ERROR then
+      hl = "ErrorMsg"
+    elseif level == vim.log.levels.WARN then
+      hl = "WarningMsg"
+    end
+
+    vim.api.nvim_echo({ { message, hl } }, true, {})
+  end
+
   local function show_notification()
     notify(config.message, vim.log.levels[config.level] or vim.log.levels.WARN, {
       group = group_key,
@@ -72,7 +83,13 @@ function M.new(config, state_api)
       message = prefix .. ": " .. message
     end
 
-    notify(message, vim.log.levels.INFO, {
+    local level = vim.log.levels.INFO
+    if prefix ~= "fired" then
+      echo_message(message, level)
+      return
+    end
+
+    notify(message, level, {
       group = group_key,
       key = "status",
       annote = annote,
