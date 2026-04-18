@@ -12,6 +12,7 @@
 * [Tabby : 几分钟](#tabby-几分钟)
 * [wezterm : 2023-2024](#wezterm-2023-2024)
 * [Windows Terminal + wezterm + Kitty : 2025](#windows-terminal-wezterm-kitty-2025)
+* [ghostty : 2026](#ghostty-2026)
 * [总结](#总结)
 
 <!-- vim-markdown-toc -->
@@ -87,6 +88,9 @@ Alacritty 的优点:
 
 对于我来说，这个几个 terminal emulator 其实差不多，在这个环境如果有问题，
 那么就立刻换另外一个。
+
+## ghostty : 2026
+/home/martins3/.config/ghostty/config
 
 ## 总结
 如果是在 Linux 下，目前，我推荐的 terminal 是:

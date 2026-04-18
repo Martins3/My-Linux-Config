@@ -386,20 +386,6 @@ in {
 - https://nixos.wiki/wiki/Flakes
 - https://news.ycombinator.com/item?id=36362225
 
-## switch caps 和 escape
-
-https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
-
-似乎需要:
-
-```sh
-gsettings reset org.gnome.desktop.input-sources xkb-options
-gsettings reset org.gnome.desktop.input-sources sources
-```
-
-也许也需要执行下:
-setxkbmap -option caps:swapescape
-
 ## 问题
 
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
@@ -408,10 +394,6 @@ setxkbmap -option caps:swapescape
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
 - [ ] 挂载磁盘 https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
-
-## 需要验证的问题
-
-- [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
 
 ## Nix/NixOs 踩坑记录
 

@@ -1,2 +1,3 @@
 patch:
-  translator/dictionary: luna_pinyin.my_words
+  translator:
+    dictionary : luna_pinyin.my_words

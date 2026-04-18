@@ -6,7 +6,9 @@
 2. https://leimao.github.io/blog/Ubuntu-Gaming-Chinese-Input/
 忍无可忍，就换成 Rime 了。但是我发现 Rime 的输入法的门槛很高，这里简单记录下配置过程。
 
-## 安装
+## 安装，这里仅仅考虑 fedora ，并且是最新环境的
+
+https://extensions.gnome.org/extension/261/kimpanel/
 
 参考 rime/linux-install.sh ，其实也就是:
 
@@ -15,6 +17,17 @@
 ```sh
 sudo dnf install -y fcitx5-rime
 ```
+
+检查版本:
+```sh
+sudo rpm -qa | grep rime
+```
+```txt
+perl-experimental-0.034-2.fc42.noarch
+librime-1.13.1-1.fc42.x86_64
+fcitx5-rime-5.1.12-1.fc42.x86_64
+```
+
 
 - 安装 : [rime](https://github.com/fcitx/fcitx-rime)
 - 安装并且使用: [plum](https://github.com/rime/plum)
@@ -41,7 +54,6 @@ sudo dnf install -y fcitx5-rime
 | luna_pinyin.martins3.dict.yaml | 我自己增加的词汇             |
 | luna_pinyin.my_words.dict.yaml | 词库配置，包含雾凇拼音的词库 |
 | luna_pinyin_simp.custom.yaml   | 输入法的模糊音之类的配置     |
-| squirrel.custom.yaml           | Mac 的输入法皮肤             |
 
 ## 皮肤
 - 如果你喜欢折腾
@@ -122,8 +134,6 @@ sudo dnf install ibus-rime
 
 https://github.com/iDvel/rime-ice
 https://github.com/Mark24Code/rime-auto-deploy
-
-直接无敌!
 
 - [ ] 这个基础上处理下模糊音
 - [ ] 默认上屏的操作
