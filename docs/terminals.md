@@ -90,7 +90,7 @@ Alacritty 的优点:
 那么就立刻换另外一个。
 
 ## ghostty : 2026
-/home/martins3/.config/ghostty/config
+
 
 ## 总结
 如果是在 Linux 下，目前，我推荐的 terminal 是:
