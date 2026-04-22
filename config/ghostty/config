@@ -60,14 +60,12 @@ font-family = FiraCode Nerd Font
 font-size = 15
 
 # Use Ctrl+K to switch to the next tab.
-# 这个是错误的
-# keybind = ctrl+k=next_tab
+keybind = ctrl+k=next_tab
 
-# Disable paste protection prompts.
-clipboard-paste-protection = false
+# Disable copy notification toast.
+app-notifications = no-clipboard-copy,config-reload
 
 # Remove window decorations (title bar, etc.) on Windows.
-# 这个也是错误的
 # window-decoration = false
 
 # Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
