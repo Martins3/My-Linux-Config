@@ -68,6 +68,10 @@ keybind = ctrl+k=next_tab
 # Disable copy notification toast.
 app-notifications = no-clipboard-copy,config-reload
 
+# Remove all extra UI elements for a minimal alacritty-like appearance.
+window-decoration = false
+window-show-tab-bar = never
+
 # Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
 keybind = ctrl+equal=unbind
 keybind = ctrl++=unbind
