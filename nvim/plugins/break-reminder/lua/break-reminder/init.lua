@@ -10,6 +10,11 @@ local default_config = {
   poll_interval_ms = 2000,
   lock_timeout_ms = 800,
   stale_lock_seconds = 30,
+  statusline_icons = {
+    running = "⏳",
+    paused = "⏸",
+    fired = "🔔",
+  },
   message = table.concat({
     "起来休息一下",
   }, "\n"),
@@ -20,34 +25,17 @@ local plugin_state = {
   configured = false,
 }
 
-local function setup_commands(config, state_api, ui)
-  pcall(vim.api.nvim_del_user_command, "BreakReminderStart")
-  vim.api.nvim_create_user_command("BreakReminderStart", function()
-    local _, started = state_api.start_countdown()
-    local state = ui.sync()
-    if started then
-      ui.show_status(state, "started")
-    else
-      ui.show_status(state, "status")
-    end
-  end, { desc = "Start break reminder timer or show status" })
-
-  pcall(vim.api.nvim_del_user_command, "BreakReminderFinish")
-  vim.api.nvim_create_user_command("BreakReminderFinish", function()
-    local state, finished = state_api.finish_cycle()
+local function setup_commands(state_api, ui)
+  pcall(vim.api.nvim_del_user_command, "BreakReminderKick")
+  vim.api.nvim_create_user_command("BreakReminderKick", function()
+    local state = state_api.kick()
     ui.clear_notification()
-    if finished then
-      ui.show_status(state, "finished")
-    else
-      ui.show_status(state, "status")
-    end
-  end, { desc = "Dismiss break reminder and stop current timer" })
+    ui.show_status(state)
+  end, { desc = "Kick break reminder state machine" })
 
+  pcall(vim.api.nvim_del_user_command, "BreakReminderStart")
+  pcall(vim.api.nvim_del_user_command, "BreakReminderFinish")
   pcall(vim.api.nvim_del_user_command, "BreakReminderStatus")
-  vim.api.nvim_create_user_command("BreakReminderStatus", function()
-    local state = ui.sync()
-    ui.show_status(state, "status")
-  end, { desc = "Show break reminder status" })
 end
 
 local function setup_autocmds(config, ui)
@@ -99,12 +87,20 @@ function M.setup(opts)
   plugin_state.state_api = state_api
   plugin_state.ui = ui
 
-  setup_commands(config, state_api, ui)
+  setup_commands(state_api, ui)
   setup_autocmds(config, ui)
   start_timer(config, ui)
   vim.schedule(function()
     ui.sync()
   end)
+end
+
+function M.get_statusline_indicator()
+  if not plugin_state.ui then
+    return nil
+  end
+
+  return plugin_state.ui.get_statusline_indicator()
 end
 
 return M
