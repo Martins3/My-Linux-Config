@@ -73,7 +73,7 @@ window-decoration = false
 window-show-tab-bar = never
 
 # Slight background transparency.
-background-opacity = 0.85
+background-opacity = 0.98
 
 # Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
 keybind = ctrl+equal=unbind
