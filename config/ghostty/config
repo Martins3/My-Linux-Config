@@ -56,6 +56,9 @@ mouse-scroll-multiplier = precision:1,discrete:0.5
 # Use the installed FiraCode Nerd Font family for terminal text.
 font-family = FiraCode Nerd Font
 
+# Fallback Chinese font.
+# font-family = LXGW WenKai
+
 # Increase the default terminal font size slightly from Ghostty's default 12.
 font-size = 15
 
@@ -64,9 +67,6 @@ keybind = ctrl+k=next_tab
 
 # Disable copy notification toast.
 app-notifications = no-clipboard-copy,config-reload
-
-# Remove window decorations (title bar, etc.) on Windows.
-# window-decoration = false
 
 # Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
 keybind = ctrl+equal=unbind
