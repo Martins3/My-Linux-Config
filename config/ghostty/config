@@ -69,3 +69,10 @@ clipboard-paste-protection = false
 # Remove window decorations (title bar, etc.) on Windows.
 # 这个也是错误的
 # window-decoration = false
+
+# Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
+keybind = ctrl+equal=unbind
+keybind = ctrl++=unbind
+keybind = ctrl+-=unbind
+keybind = ctrl+shift+plus=increase_font_size:1
+keybind = ctrl+shift+minus=decrease_font_size:1
