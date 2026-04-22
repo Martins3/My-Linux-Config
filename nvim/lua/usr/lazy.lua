@@ -245,6 +245,8 @@ require("lazy").setup({
   }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   {
+  -- TODO 似乎这个容易导致安装问题，应该让只有 linux 图形界面的时候再去安装
+  -- 用起来还是有点问题的，会做一些奇怪的自动切换
     "keaising/im-select.nvim",
     config = function()
       require("im_select").setup()
@@ -375,8 +377,14 @@ require("lazy").setup({
     lazy = false, -- or ft = 'typst'
     version = "1.*",
     opts = {
-      host = "172.17.127.73", -- 这个总是需要修改，就有点烦
+      -- host = "172.17.127.73", -- 这个总是需要修改，就有点烦
       port = 8001,
     }, -- lazy.nvim will implicitly calls `setup {}`
+  },
+  -- 好玩的东西哦
+  {
+    "NickTsaizer/shaderdebug",
+    ft = { "slang" },
+    dependencies = { "3rd/image.nvim" },
   },
 }, {})

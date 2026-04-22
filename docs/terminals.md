@@ -91,6 +91,10 @@ Alacritty 的优点:
 
 ## ghostty : 2026
 
+检查快捷键:
+ghostty +list-keybinds --default
+
+
 
 ## 总结
 如果是在 Linux 下，目前，我推荐的 terminal 是:

@@ -58,3 +58,14 @@ font-family = FiraCode Nerd Font
 
 # Increase the default terminal font size slightly from Ghostty's default 12.
 font-size = 15
+
+# Use Ctrl+K to switch to the next tab.
+# 这个是错误的
+# keybind = ctrl+k=next_tab
+
+# Disable paste protection prompts.
+clipboard-paste-protection = false
+
+# Remove window decorations (title bar, etc.) on Windows.
+# 这个也是错误的
+# window-decoration = false
