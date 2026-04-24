@@ -21,14 +21,18 @@ require("lazy").setup({
   "MunifTanjim/nui.nvim", -- 图形库
 
   -- 补全
-  { "hrsh7th/nvim-cmp" }, -- The completion plugin
-  { "hrsh7th/cmp-buffer" }, -- buffer completions
-  { "hrsh7th/cmp-path" }, -- path completions
-  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-nvim-lua" },
-  { "hrsh7th/cmp-cmdline" },
-  { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
+  {
+    "saghen/blink.cmp",
+    version = "1.*",
+    dependencies = {
+      "Kaiser-Yang/blink-cmp-dictionary",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
+    opts = function()
+      return require("usr.blink")
+    end,
+  },
 
   -- 代码段
   {

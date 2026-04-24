@@ -1,7 +1,13 @@
 -- Add the same capabilities to ALL server configurations.
 -- Refer to :h vim.lsp.config() for more information.
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local blink_ok, blink = pcall(require, "blink.cmp")
+if blink_ok then
+  capabilities = blink.get_lsp_capabilities(capabilities)
+end
+
 vim.lsp.config("*", {
-  capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = capabilities,
 })
 
 local servers = {
