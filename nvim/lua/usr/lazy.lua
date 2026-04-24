@@ -381,10 +381,4 @@ require("lazy").setup({
       port = 8001,
     }, -- lazy.nvim will implicitly calls `setup {}`
   },
-  -- 好玩的东西哦
-  {
-    "NickTsaizer/shaderdebug",
-    ft = { "slang" },
-    dependencies = { "3rd/image.nvim" },
-  },
 }, {})
