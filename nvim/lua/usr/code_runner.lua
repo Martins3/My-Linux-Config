@@ -11,6 +11,12 @@ require("code_runner").setup({
     position = "belowright",
     size = 15,
   },
+  project = {
+    ["/home/martins3/data/leetgpu-challenges"] = {
+      name = "leetgpu-challenges",
+      command = "bash run.sh",
+    },
+  },
   filetype = {
     python = "python3 $file",
     c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g "
