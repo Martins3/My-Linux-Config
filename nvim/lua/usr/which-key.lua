@@ -160,3 +160,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<leader>x", ":MarkdownPreview<CR>", { buffer = true, silent = false })
   end
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typst",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":TypstPreview<CR>", { buffer = true, silent = false })
+  end
+})

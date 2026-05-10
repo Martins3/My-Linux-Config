@@ -292,6 +292,11 @@ require("lazy").setup({
         },
         attach_mode = "global",
         disable_max_lines = 20000,
+        filter_kind = {
+          typst = {
+            "Namespace", -- codex 给 typst 修复，不然，这个不会显示结果
+          },
+        },
       })
     end,
   },
