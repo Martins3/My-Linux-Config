@@ -30,6 +30,7 @@ require 'nvim-treesitter'.install {
   "make",
   "kconfig",
   "toml",
+  "cuda",
 }
 
 
