@@ -27,3 +27,9 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
   gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Control>4']"
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Control>l']"
 ```
+
+## 键盘重复延迟原来是 500ms，
+```sh
+  gsettings set org.gnome.desktop.peripherals.keyboard delay 150
+  gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 18
+```
