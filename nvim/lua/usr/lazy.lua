@@ -337,12 +337,26 @@ require("lazy").setup({
     version = false, -- set this if you want to always pull the latest change
     opts = {
       -- 使用 kimi-cli 的 ACP 模式
-      provider = "kimi-cli",
+      -- provider = "kimi-cli",
+      provider = "codex",
       -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
       acp_providers = {
         ["kimi-cli"] = {
           command = "kimi",
           args = { "acp" },
+        },
+        ["codex"] = {
+          command = "codex-acp",
+          env = {
+            NODE_NO_WARNINGS = "1",
+            HOME = os.getenv("HOME"),
+            PATH = os.getenv("PATH"),
+            CODEX_PATH = "/home/martins3/.bun/bin/codex",
+            http_proxy = os.getenv("http_proxy") or "http://127.0.0.1:7890",
+            https_proxy = os.getenv("https_proxy") or "http://127.0.0.1:7890",
+            HTTP_PROXY = os.getenv("HTTP_PROXY") or "http://127.0.0.1:7890",
+            HTTPS_PROXY = os.getenv("HTTPS_PROXY") or "http://127.0.0.1:7890",
+          },
         },
       },
       -- 保留 API 直连模式配置（备用）
