@@ -30,6 +30,6 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 
 ## 键盘重复延迟原来是 500ms，
 ```sh
-  gsettings set org.gnome.desktop.peripherals.keyboard delay 150
-  gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 18
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 18
 ```
