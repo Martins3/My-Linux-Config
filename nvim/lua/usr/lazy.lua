@@ -30,13 +30,36 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
-  -- GitHub Copilot 补全
+  -- AI 行内补全 (GitHub Copilot)
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup({
+        panel = {
+          enabled = false, -- 不需要面板，用行内建议即可
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true, -- 自动触发，无需手动按键
+          debounce = 75,
+          keymap = {
+            accept = "<A-f>",         -- Alt+f 接受整个建议
+            accept_word = "<A-w>",    -- Alt+w 接受一个单词
+            accept_line = "<A-l>",    -- Alt+l 接受整行
+            next = "<A-n>",           -- Alt+n 下一条建议
+            prev = "<A-p>",           -- Alt+p 上一条建议
+            dismiss = "<A-e>",        -- Alt+e 关闭建议
+          },
+        },
+        filetypes = {
+          -- 默认所有文件类型都启用，可以在这里排除
+          ["*"] = true,
+        },
+        copilot_node_command = "node", -- Node.js 路径，默认用 PATH 里的
+        server_opts_overrides = {},
+      })
     end,
   },
 
