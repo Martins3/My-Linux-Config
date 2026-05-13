@@ -45,12 +45,12 @@ require("lazy").setup({
           auto_trigger = true, -- 自动触发，无需手动按键
           debounce = 75,
           keymap = {
-            accept = "<A-f>",         -- Alt+f 接受整个建议
-            accept_word = "<A-w>",    -- Alt+w 接受一个单词
-            accept_line = "<A-l>",    -- Alt+l 接受整行
-            next = "<A-n>",           -- Alt+n 下一条建议
-            prev = "<A-p>",           -- Alt+p 上一条建议
-            dismiss = "<A-e>",        -- Alt+e 关闭建议
+            accept = "<A-f>", -- Alt+f 接受整个建议
+            accept_word = "<A-w>", -- Alt+w 接受一个单词
+            accept_line = "<A-l>", -- Alt+l 接受整行
+            next = "<A-n>", -- Alt+n 下一条建议
+            prev = "<A-p>", -- Alt+p 上一条建议
+            dismiss = "<A-e>", -- Alt+e 关闭建议
           },
         },
         filetypes = {
@@ -275,8 +275,8 @@ require("lazy").setup({
   }, -- 书签, 存储在 ~/.local/share/nvim/bookmarks 中
   "tyru/open-browser.vim", -- 使用 gx 打开链接
   {
-  -- TODO 似乎这个容易导致安装问题，应该让只有 linux 图形界面的时候再去安装
-  -- 用起来还是有点问题的，会做一些奇怪的自动切换
+    -- TODO 似乎这个容易导致安装问题，应该让只有 linux 图形界面的时候再去安装
+    -- 用起来还是有点问题的，会做一些奇怪的自动切换
     "keaising/im-select.nvim",
     config = function()
       require("im_select").setup()

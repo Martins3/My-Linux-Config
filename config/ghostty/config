@@ -65,6 +65,30 @@ font-size = 15
 # Use Ctrl+K to switch to the next tab.
 keybind = ctrl+k=next_tab
 
+# Disable alt+0..9 to avoid conflict with tmux.
+# Send ESC sequences so tmux can receive them.
+# TODO 不确定这是不是推荐的做法，不过已经够了。
+keybind = unconsumed:alt+0=esc:0
+keybind = unconsumed:alt+1=esc:1
+keybind = unconsumed:alt+2=esc:2
+keybind = unconsumed:alt+3=esc:3
+keybind = unconsumed:alt+4=esc:4
+keybind = unconsumed:alt+5=esc:5
+keybind = unconsumed:alt+6=esc:6
+keybind = unconsumed:alt+7=esc:7
+keybind = unconsumed:alt+8=esc:8
+keybind = unconsumed:alt+9=esc:9
+keybind = unconsumed:alt+digit_0=esc:0
+keybind = unconsumed:alt+digit_1=esc:1
+keybind = unconsumed:alt+digit_2=esc:2
+keybind = unconsumed:alt+digit_3=esc:3
+keybind = unconsumed:alt+digit_4=esc:4
+keybind = unconsumed:alt+digit_5=esc:5
+keybind = unconsumed:alt+digit_6=esc:6
+keybind = unconsumed:alt+digit_7=esc:7
+keybind = unconsumed:alt+digit_8=esc:8
+keybind = unconsumed:alt+digit_9=esc:9
+
 # Disable copy notification toast.
 app-notifications = no-clipboard-copy,config-reload
 
@@ -81,3 +105,5 @@ keybind = ctrl++=unbind
 keybind = ctrl+-=unbind
 keybind = ctrl+shift+plus=increase_font_size:1
 keybind = ctrl+shift+minus=decrease_font_size:1
+
+# 在 ghostty 里按 Ctrl+Shift+逗号 即可热重载配置
