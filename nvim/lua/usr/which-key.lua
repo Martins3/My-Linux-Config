@@ -84,7 +84,6 @@ wk.add({
   { "<space>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",          desc = "" },
   { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
-  -- <space> o 被 orgmode 使用
   { "<space>q",  "<cmd>SmartQuit<cr>",                                desc = "close vim" },
 
   { "<space>s",  group = "search" },

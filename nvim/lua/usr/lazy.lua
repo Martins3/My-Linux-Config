@@ -30,6 +30,16 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
+  -- GitHub Copilot 补全
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  },
+
   -- 代码段
   {
     "L3MON4D3/LuaSnip",
@@ -210,9 +220,6 @@ require("lazy").setup({
       require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
     end,
   }, -- 显示 #ABCBCB
-  -- 时间管理
-  "nvim-orgmode/orgmode", -- orgmode 日程管理
-
   -- lsp 增强
   "jackguo380/vim-lsp-cxx-highlight", -- ccls 高亮
   "mattn/efm-langserver", -- 支持 bash

@@ -174,9 +174,6 @@ https://github.com/aitjcize/cppman
 
 ## [ ] 似乎我的 markdown 的 format 无法正常工作了
 
-## [ ]  orgmode 用起来？
-https://beorg.app/orgmode/letsgetgoing/
-
 ## [ ] 这个经常不准
 lua require('barbecue.ui').navigate(-1)
 
