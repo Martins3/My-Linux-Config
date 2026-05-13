@@ -6,6 +6,17 @@ local function microsoft_edge()
   end
 end
 
+local function cuda_tutorial_runner()
+  local root = vim.fs.normalize("/home/martins3/data/vn/gpu/cuda/tutorial")
+  local file = vim.fs.normalize(vim.fn.expand("%:p"))
+
+  if not vim.startswith(file, root .. "/") then
+    return nil
+  end
+
+  return "cd " .. vim.fn.shellescape(root) .. " && make && $dir/$fileNameWithoutExt.out"
+end
+
 require("code_runner").setup({
   term = {
     position = "belowright",
@@ -19,6 +30,7 @@ require("code_runner").setup({
   },
   filetype = {
     python = "python3 $file",
+    cuda = cuda_tutorial_runner,
     c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g "
       .. "-lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",
     cpp = "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o"
