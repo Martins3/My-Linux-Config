@@ -33,6 +33,7 @@ require("lazy").setup({
   -- AI 行内补全 (GitHub Copilot)
   {
     "zbirenbaum/copilot.lua",
+    enabled = false,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
