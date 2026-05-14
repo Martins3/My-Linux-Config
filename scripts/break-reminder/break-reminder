@@ -1,0 +1,661 @@
+#!/usr/bin/env python3
+"""break-reminder - 桌面休息提醒工具
+
+基于 notify-send 的独立 break reminder，核心状态机沿用 nvim/plugins/break-reminder/ 设计。
+
+状态机:
+    idle --kick--> running --time up--> fired --kick--> idle
+                      |
+                      +--kick--> paused --kick--> running
+
+用法:
+    break-reminder daemon    后台守护模式
+    break-reminder kick      切换状态
+    break-reminder status    查看当前状态
+"""
+
+import argparse
+import fcntl
+import json
+import os
+import signal
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+# Python 3.11+ 有 tomllib
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
+
+
+# ---------------------------------------------------------------------------
+# 配置
+# ---------------------------------------------------------------------------
+DEFAULT_CONFIG = {
+    "interval_minutes": 22,
+    "poll_interval_seconds": 2,
+    "stale_lock_seconds": 30,
+    "lock_timeout_ms": 800,
+    "message": "起来休息一下",
+    "urgency": "normal",  # low, normal, critical
+    "icon": "",
+}
+
+
+def get_config_path() -> Path:
+    xdg = os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")
+    return Path(xdg) / "break-reminder" / "config.toml"
+
+
+def get_state_dir() -> Path:
+    xdg = os.environ.get("XDG_STATE_HOME", Path.home() / ".local" / "state")
+    return Path(xdg) / "break-reminder-cli"
+
+
+def load_config() -> dict:
+    config = dict(DEFAULT_CONFIG)
+    path = get_config_path()
+    if path.exists():
+        with open(path, "rb") as f:
+            data = tomllib.load(f)
+        config.update(data)
+    return config
+
+
+# ---------------------------------------------------------------------------
+# 工具函数
+# ---------------------------------------------------------------------------
+def now() -> int:
+    return int(time.time())
+
+
+def format_seconds(seconds: int) -> str:
+    total = max(int(seconds or 0), 0)
+    hours = total // 3600
+    minutes = (total % 3600) // 60
+    remain = total % 60
+    if hours > 0:
+        return f"{hours}h {minutes:02d}m {remain:02d}s"
+    return f"{minutes}m {remain:02d}s"
+
+
+def format_timestamp(ts: int | None) -> str | None:
+    if ts is None:
+        return None
+    return time.strftime("%H:%M:%S", time.localtime(ts))
+
+
+# ---------------------------------------------------------------------------
+# 文件锁（fcntl，比目录锁更可靠）
+# ---------------------------------------------------------------------------
+def acquire_lock(lock_path: Path, timeout_ms: int) -> bool:
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    fd = os.open(str(lock_path), os.O_CREAT | os.O_RDWR)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return True
+    except (OSError, IOError):
+        # 已经有锁，尝试等待
+        pass
+
+    deadline = time.time() + timeout_ms / 1000.0
+    while time.time() < deadline:
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return True
+        except (OSError, IOError):
+            time.sleep(0.05)
+
+    os.close(fd)
+    return False
+
+
+def release_lock(fd: int) -> None:
+    try:
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        os.close(fd)
+    except Exception:
+        pass
+
+
+# ---------------------------------------------------------------------------
+# 状态机
+# ---------------------------------------------------------------------------
+class StateMachine:
+    def __init__(self, config: dict):
+        self.config = config
+        self.state_dir = get_state_dir()
+        self.state_file = self.state_dir / "state.json"
+        self.log_file = self.state_dir / "events.jsonl"
+        self.stats_file = self.state_dir / "stats.json"
+        self.lock_file = self.state_dir / ".lock"
+
+    def _read_json(self, path: Path, default=None):
+        if not path.exists():
+            return default
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return default
+
+    def _write_json(self, path: Path, data):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(".tmp")
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+            f.flush()
+            os.fsync(f.fileno())
+        tmp.rename(path)
+
+    def _append_jsonl(self, path: Path, record: dict):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            f.flush()
+
+    def _default_state(self, generation: int = 0) -> dict:
+        return {
+            "version": 2,
+            "generation": generation,
+            "phase": "idle",
+            "interval_minutes": self.config["interval_minutes"],
+            "deadline_ts": None,
+            "remaining_seconds": None,
+            "run_started_at": None,
+            "elapsed_seconds": 0,
+            "fired_at": None,
+            "updated_at": now(),
+        }
+
+    def _default_stats(self) -> dict:
+        return {
+            "version": 1,
+            "total_kicks": 0,
+            "starts": 0,
+            "pauses": 0,
+            "resumes": 0,
+            "auto_fires": 0,
+            "finishes": 0,
+            "acknowledgements": 0,
+            "completed_cycles": 0,
+            "interrupted_cycles": 0,
+            "total_focus_seconds": 0,
+            "updated_at": now(),
+        }
+
+    def _normalize_state(self, raw: dict | None) -> dict:
+        if not isinstance(raw, dict):
+            return self._default_state(0)
+
+        current_now = now()
+        generation = int(raw.get("generation", 0))
+        interval_minutes = int(raw.get("interval_minutes", self.config["interval_minutes"]))
+        deadline_ts = raw.get("deadline_ts")
+        remaining_seconds = raw.get("remaining_seconds")
+        run_started_at = raw.get("run_started_at")
+        fired_at = raw.get("fired_at")
+        elapsed_seconds = max(int(raw.get("elapsed_seconds", 0)), 0)
+
+        phase = "idle"
+        if raw.get("phase") in ("waiting", "running"):
+            phase = "running"
+        elif raw.get("phase") == "paused":
+            phase = "paused"
+        elif raw.get("phase") == "fired":
+            phase = "fired"
+
+        if phase == "running":
+            if deadline_ts is None:
+                fallback = remaining_seconds if remaining_seconds is not None else interval_minutes * 60
+                deadline_ts = current_now + max(fallback, 0)
+            if run_started_at is None:
+                run_started_at = max(deadline_ts - interval_minutes * 60, 0)
+            remaining_seconds = None
+        elif phase == "paused":
+            if remaining_seconds is None:
+                if deadline_ts is not None:
+                    remaining_seconds = max(deadline_ts - current_now, 0)
+                else:
+                    remaining_seconds = interval_minutes * 60
+            deadline_ts = None
+            run_started_at = None
+        elif phase == "fired":
+            deadline_ts = None
+            remaining_seconds = 0
+            run_started_at = None
+            if fired_at is None:
+                fired_at = current_now
+        else:
+            deadline_ts = None
+            remaining_seconds = None
+            run_started_at = None
+            fired_at = None
+            elapsed_seconds = 0
+
+        return {
+            "version": int(raw.get("version", 2)),
+            "generation": generation,
+            "phase": phase,
+            "interval_minutes": interval_minutes,
+            "deadline_ts": deadline_ts,
+            "remaining_seconds": remaining_seconds,
+            "run_started_at": run_started_at,
+            "elapsed_seconds": elapsed_seconds,
+            "fired_at": fired_at,
+            "updated_at": int(raw.get("updated_at", current_now)),
+        }
+
+    def _normalize_stats(self, raw: dict | None) -> dict:
+        if not isinstance(raw, dict):
+            return self._default_stats()
+        stats = self._default_stats()
+        stats["version"] = int(raw.get("version", 1))
+        stats["total_kicks"] = max(int(raw.get("total_kicks", 0)), 0)
+        stats["starts"] = max(int(raw.get("starts", 0)), 0)
+        stats["pauses"] = max(int(raw.get("pauses", 0)), 0)
+        stats["resumes"] = max(int(raw.get("resumes", 0)), 0)
+        stats["auto_fires"] = max(int(raw.get("auto_fires", 0)), 0)
+        stats["finishes"] = max(int(raw.get("finishes", 0)), 0)
+        stats["acknowledgements"] = max(int(raw.get("acknowledgements", 0)), 0)
+        stats["completed_cycles"] = max(int(raw.get("completed_cycles", 0)), 0)
+        stats["interrupted_cycles"] = max(int(raw.get("interrupted_cycles", 0)), 0)
+        stats["total_focus_seconds"] = max(int(raw.get("total_focus_seconds", 0)), 0)
+        stats["updated_at"] = int(raw.get("updated_at", now()))
+        return stats
+
+    def _read_state(self) -> dict:
+        return self._normalize_state(self._read_json(self.state_file))
+
+    def _write_state(self, state: dict):
+        self._write_json(self.state_file, state)
+
+    def _read_stats(self) -> dict:
+        return self._normalize_stats(self._read_json(self.stats_file))
+
+    def _write_stats(self, stats: dict):
+        self._write_json(self.stats_file, stats)
+
+    def _get_elapsed_seconds(self, state: dict, at_ts: int | None = None) -> int:
+        elapsed = max(int(state.get("elapsed_seconds", 0)), 0)
+        if state.get("phase") == "running" and state.get("run_started_at") is not None:
+            elapsed += max((at_ts or now()) - state["run_started_at"], 0)
+        return elapsed
+
+    def _get_remaining_seconds(self, state: dict, at_ts: int | None = None) -> int | None:
+        if state.get("phase") == "running" and state.get("deadline_ts") is not None:
+            return max(state["deadline_ts"] - (at_ts or now()), 0)
+        if state.get("phase") == "paused" and state.get("remaining_seconds") is not None:
+            return max(int(state["remaining_seconds"]), 0)
+        if state.get("phase") == "fired":
+            return 0
+        return None
+
+    def _append_event(self, event: dict):
+        timestamp = int(event.get("ts", now()))
+        state = event.get("state")
+        record = {
+            "ts": timestamp,
+            "action": event["action"],
+            "trigger": event.get("trigger", "command"),
+            "previous_phase": event.get("previous_phase"),
+            "next_phase": event.get("next_phase"),
+            "completed_cycle": bool(event.get("completed_cycle")),
+            "interrupted_cycle": bool(event.get("interrupted_cycle")),
+        }
+        if state is not None:
+            record["generation"] = state["generation"]
+            record["phase"] = state["phase"]
+            record["interval_minutes"] = state["interval_minutes"]
+            record["remaining_seconds"] = self._get_remaining_seconds(state, timestamp)
+            record["elapsed_seconds"] = self._get_elapsed_seconds(state, timestamp)
+        if event.get("segment_seconds") is not None:
+            record["segment_seconds"] = max(int(event["segment_seconds"]), 0)
+
+        self._append_jsonl(self.log_file, record)
+
+        stats = self._read_stats()
+        if record.get("trigger") == "kick":
+            stats["total_kicks"] += 1
+
+        action = record["action"]
+        if action == "start":
+            stats["starts"] += 1
+        elif action == "pause":
+            stats["pauses"] += 1
+        elif action == "resume":
+            stats["resumes"] += 1
+        elif action == "auto_fire":
+            stats["auto_fires"] += 1
+        elif action == "finish":
+            stats["finishes"] += 1
+        elif action == "acknowledge":
+            stats["acknowledgements"] += 1
+
+        if record.get("segment_seconds") is not None:
+            stats["total_focus_seconds"] += record["segment_seconds"]
+        if record.get("completed_cycle"):
+            stats["completed_cycles"] += 1
+        if record.get("interrupted_cycle"):
+            stats["interrupted_cycles"] += 1
+        stats["updated_at"] = timestamp
+        self._write_stats(stats)
+
+    def _with_lock(self, fn):
+        self.state_dir.mkdir(parents=True, exist_ok=True)
+        fd = os.open(str(self.lock_file), os.O_CREAT | os.O_RDWR)
+        acquired = False
+        try:
+            deadline = time.time() + self.config["lock_timeout_ms"] / 1000.0
+            while time.time() < deadline:
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    acquired = True
+                    break
+                except (OSError, IOError):
+                    time.sleep(0.05)
+            if not acquired:
+                return None
+            return fn()
+        finally:
+            if acquired:
+                try:
+                    fcntl.flock(fd, fcntl.LOCK_UN)
+                except Exception:
+                    pass
+            os.close(fd)
+
+    def ensure_state(self) -> dict:
+        state = self._read_state()
+        if state is not None:
+            return state
+        return self._with_lock(lambda: self._read_state()) or self._default_state(0)
+
+    def start_countdown(self, trigger: str = "command"):
+        def _do():
+            current_now = now()
+            state = self._read_state() or self._default_state(0)
+            if state["phase"] != "idle":
+                return state, False
+            nxt = self._default_state(state["generation"] + 1)
+            nxt["phase"] = "running"
+            nxt["deadline_ts"] = current_now + self.config["interval_minutes"] * 60
+            nxt["run_started_at"] = current_now
+            nxt["updated_at"] = current_now
+            self._write_state(nxt)
+            self._append_event({
+                "action": "start",
+                "trigger": trigger,
+                "previous_phase": "idle",
+                "next_phase": "running",
+                "state": nxt,
+                "ts": current_now,
+            })
+            return nxt, True
+        return self._with_lock(_do) or (self.ensure_state(), False)
+
+    def transition_to_fired(self):
+        def _do():
+            current_now = now()
+            state = self._read_state() or self._default_state(0)
+            if state["phase"] != "running" or state.get("deadline_ts") is None or current_now < state["deadline_ts"]:
+                return state, False
+
+            segment_seconds = 0
+            if state.get("run_started_at") is not None:
+                segment_seconds = max(current_now - state["run_started_at"], 0)
+
+            state["elapsed_seconds"] = self._get_elapsed_seconds(state, current_now)
+            state["phase"] = "fired"
+            state["deadline_ts"] = None
+            state["remaining_seconds"] = 0
+            state["run_started_at"] = None
+            state["fired_at"] = current_now
+            state["updated_at"] = current_now
+            self._write_state(state)
+            self._append_event({
+                "action": "auto_fire",
+                "trigger": "timer",
+                "previous_phase": "running",
+                "next_phase": "fired",
+                "state": state,
+                "segment_seconds": segment_seconds,
+                "ts": current_now,
+            })
+            return state, True
+        return self._with_lock(_do) or (self.ensure_state(), False)
+
+    def finish_cycle(self, trigger: str = "command"):
+        def _do():
+            current_now = now()
+            state = self._read_state() or self._default_state(0)
+            if state["phase"] == "idle":
+                return state, False
+
+            previous_phase = state["phase"]
+            segment_seconds = 0
+            if previous_phase == "running" and state.get("run_started_at") is not None:
+                segment_seconds = max(current_now - state["run_started_at"], 0)
+                state["remaining_seconds"] = self._get_remaining_seconds(state, current_now) or 0
+                state["elapsed_seconds"] = self._get_elapsed_seconds(state, current_now)
+                state["run_started_at"] = None
+
+            nxt = self._default_state(state["generation"])
+            nxt["updated_at"] = current_now
+            self._write_state(nxt)
+            self._append_event({
+                "action": "finish",
+                "trigger": trigger,
+                "previous_phase": previous_phase,
+                "next_phase": "idle",
+                "state": state,
+                "segment_seconds": segment_seconds,
+                "completed_cycle": previous_phase == "fired",
+                "interrupted_cycle": previous_phase != "fired",
+                "ts": current_now,
+            })
+            return nxt, True
+        return self._with_lock(_do) or (self.ensure_state(), False)
+
+    def kick(self):
+        def _do():
+            current_now = now()
+            state = self._read_state() or self._default_state(0)
+
+            if state["phase"] == "idle":
+                nxt = self._default_state(state["generation"] + 1)
+                nxt["phase"] = "running"
+                nxt["deadline_ts"] = current_now + self.config["interval_minutes"] * 60
+                nxt["run_started_at"] = current_now
+                nxt["updated_at"] = current_now
+                self._write_state(nxt)
+                self._append_event({
+                    "action": "start",
+                    "trigger": "kick",
+                    "previous_phase": "idle",
+                    "next_phase": "running",
+                    "state": nxt,
+                    "ts": current_now,
+                })
+                return nxt, "start"
+
+            if state["phase"] == "running":
+                segment_seconds = 0
+                if state.get("run_started_at") is not None:
+                    segment_seconds = max(current_now - state["run_started_at"], 0)
+
+                state["elapsed_seconds"] = self._get_elapsed_seconds(state, current_now)
+                state["remaining_seconds"] = self._get_remaining_seconds(state, current_now) or 0
+                state["deadline_ts"] = None
+                state["run_started_at"] = None
+                state["phase"] = "paused"
+                state["updated_at"] = current_now
+                self._write_state(state)
+                self._append_event({
+                    "action": "pause",
+                    "trigger": "kick",
+                    "previous_phase": "running",
+                    "next_phase": "paused",
+                    "state": state,
+                    "segment_seconds": segment_seconds,
+                    "ts": current_now,
+                })
+                return state, "pause"
+
+            if state["phase"] == "paused":
+                remain = self._get_remaining_seconds(state, current_now) or self.config["interval_minutes"] * 60
+                state["phase"] = "running"
+                state["deadline_ts"] = current_now + remain
+                state["remaining_seconds"] = None
+                state["run_started_at"] = current_now
+                state["updated_at"] = current_now
+                self._write_state(state)
+                self._append_event({
+                    "action": "resume",
+                    "trigger": "kick",
+                    "previous_phase": "paused",
+                    "next_phase": "running",
+                    "state": state,
+                    "ts": current_now,
+                })
+                return state, "resume"
+
+            # fired
+            previous_state = state
+            nxt = self._default_state(previous_state["generation"])
+            nxt["updated_at"] = current_now
+            self._write_state(nxt)
+            self._append_event({
+                "action": "acknowledge",
+                "trigger": "kick",
+                "previous_phase": "fired",
+                "next_phase": "idle",
+                "state": previous_state,
+                "completed_cycle": True,
+                "ts": current_now,
+            })
+            return nxt, "acknowledge"
+
+        return self._with_lock(_do) or (self.ensure_state(), "noop")
+
+    def get_stats(self) -> dict:
+        self.state_dir.mkdir(parents=True, exist_ok=True)
+        return self._read_stats()
+
+
+# ---------------------------------------------------------------------------
+# UI / 通知
+# ---------------------------------------------------------------------------
+def notify_send(message: str, urgency: str = "normal", icon: str = ""):
+    args = ["notify-send"]
+    args.extend(["-u", urgency])
+    if icon:
+        args.extend(["-i", icon])
+    args.append("break-reminder")
+    args.append(message)
+    try:
+        subprocess.run(args, capture_output=True, check=False)
+    except FileNotFoundError:
+        print("[break-reminder] notify-send not found", file=sys.stderr)
+
+
+def build_status_message(state: dict, sm: StateMachine) -> str:
+    stats = sm.get_stats()
+    parts = [f"break reminder [{state['phase']}]"]
+    if state["phase"] == "idle":
+        parts.append(f"interval {format_seconds(sm.config['interval_minutes'] * 60)}")
+        parts.append(f"done {stats['completed_cycles']}")
+        parts.append(f"focus {format_seconds(stats['total_focus_seconds'])}")
+    else:
+        parts.append(f"cycle #{state['generation']}")
+        remaining = sm._get_remaining_seconds(state)
+        if remaining is not None:
+            parts.append(f"remaining {format_seconds(remaining)}")
+        parts.append(f"focused {format_seconds(sm._get_elapsed_seconds(state))}")
+        if state["phase"] == "fired":
+            fired_at = format_timestamp(state.get("fired_at"))
+            if fired_at:
+                parts.append(f"fired at {fired_at}")
+    return ", ".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# 守护进程
+# ---------------------------------------------------------------------------
+class Daemon:
+    def __init__(self, config: dict):
+        self.config = config
+        self.sm = StateMachine(config)
+        self.running = True
+        self.notified = False
+
+    def _on_signal(self, signum, frame):
+        self.running = False
+
+    def run(self):
+        signal.signal(signal.SIGTERM, self._on_signal)
+        signal.signal(signal.SIGINT, self._on_signal)
+
+        print(f"[break-reminder] daemon started (pid {os.getpid()})")
+        while self.running:
+            state = self.sm.ensure_state()
+            if state["phase"] == "running" and state.get("deadline_ts") is not None and now() >= state["deadline_ts"]:
+                state, changed = self.sm.transition_to_fired()
+                if changed:
+                    self.notified = False
+
+            if state["phase"] == "fired" and not self.notified:
+                notify_send(self.config["message"], self.config["urgency"], self.config.get("icon", ""))
+                self.notified = True
+
+            if state["phase"] != "fired":
+                self.notified = False
+
+            time.sleep(self.config["poll_interval_seconds"])
+
+        print("[break-reminder] daemon stopped")
+
+
+# ---------------------------------------------------------------------------
+# 主入口
+# ---------------------------------------------------------------------------
+def check_gui_environment():
+    if not os.environ.get("DISPLAY") and not os.environ.get("WAYLAND_DISPLAY"):
+        print("[break-reminder] error: no GUI environment detected (DISPLAY or WAYLAND_DISPLAY not set)", file=sys.stderr)
+        sys.exit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="break-reminder desktop notification tool")
+    sub = parser.add_subparsers(dest="cmd")
+    sub.add_parser("daemon", help="run daemon")
+    sub.add_parser("kick", help="kick state machine")
+    sub.add_parser("status", help="show status")
+    args = parser.parse_args()
+
+    if not args.cmd:
+        parser.print_help()
+        sys.exit(0)
+
+    check_gui_environment()
+    config = load_config()
+    sm = StateMachine(config)
+
+    if args.cmd == "daemon":
+        Daemon(config).run()
+    elif args.cmd == "kick":
+        state, action = sm.kick()
+        msg = build_status_message(state, sm)
+        if action in ("start", "pause", "resume", "acknowledge"):
+            msg = f"{action}: {msg}"
+        print(msg)
+    elif args.cmd == "status":
+        state = sm.ensure_state()
+        print(build_status_message(state, sm))
+
+
+if __name__ == "__main__":
+    main()

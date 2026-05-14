@@ -106,4 +106,8 @@ keybind = ctrl+-=unbind
 keybind = ctrl+shift+plus=increase_font_size:1
 keybind = ctrl+shift+minus=decrease_font_size:1
 
+# Unbind Ctrl+Shift+方向键，避免与 tmux 的 swap-window 冲突
+keybind = ctrl+shift+arrow_right=unbind
+keybind = ctrl+shift+arrow_left=unbind
+
 # 在 ghostty 里按 Ctrl+Shift+逗号 即可热重载配置

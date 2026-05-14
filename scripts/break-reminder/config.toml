@@ -1,0 +1,20 @@
+# break-reminder 配置文件
+# 放置于 ~/.config/break-reminder/config.toml
+
+# 专注时长（分钟），到达后触发提醒
+interval_minutes = 22
+
+# 守护进程轮询间隔（秒）
+poll_interval_seconds = 2
+
+# 锁超时（毫秒）
+lock_timeout_ms = 800
+
+# 提醒消息内容
+message = "起来休息一下"
+
+# 通知紧急程度: low, normal, critical
+urgency = "normal"
+
+# 通知图标（空字符串表示不使用）
+icon = ""
