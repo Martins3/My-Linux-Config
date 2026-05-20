@@ -56,7 +56,7 @@ require("lazy").setup({
         },
         filetypes = {
           -- 默认所有文件类型都启用，可以在这里排除
-          ["*"] = true,
+          ["c"] = true,
         },
         copilot_node_command = "node", -- Node.js 路径，默认用 PATH 里的
         server_opts_overrides = {},

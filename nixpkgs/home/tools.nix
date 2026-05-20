@@ -4,12 +4,6 @@
 let
   unstable = import <unstable> { };
 
-  # tmux 最近的鼠标拖动会很卡
-  tmux_pkgs = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/53951c0c1444e500585205e8b2510270b2ad188f.tar.gz";
-  }) { };
-  old_tmux = tmux_pkgs.tmux;
-
   # qemu 6
   qemu_pkgs = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/d1c3fea7ecbed758168787fe4e4a3157e52bc808.tar.gz";
@@ -83,8 +77,8 @@ with pkgs;
   termshark
   dnsmasq
   # audit # 没啥意义，用不起来
-  # tmux
-  old_tmux
+  # tmux 3.2 crashed in grid_reflow_join while mouse-resizing panes.
+  tmux
   tmuxp
   pueue
   screen
