@@ -147,7 +147,7 @@ vim.keymap.set("i", "<c-g>", "<cmd>!ibus engine rime<cr>")
 
 -- 添加自适应的命令
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "sh",
+  pattern = { "sh", "python" },
   callback = function()
     vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { buffer = true, silent = true })
   end
