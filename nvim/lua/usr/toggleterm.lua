@@ -17,6 +17,7 @@ if isWindows then
 end
 
 local Terminal = require("toggleterm.terminal").Terminal
+local python = require("usr.python")
 
 local function toggle_float_terminal(cmd)
   Terminal:new({
@@ -35,7 +36,20 @@ local function ls_toggle()
 end
 
 local function ipython_toggle()
-  toggle_float_terminal("ipython")
+  toggle_float_terminal(python.ipython_command())
+end
+
+local function pytest_file_toggle()
+  toggle_float_terminal(python.pytest_command())
+end
+
+local function pytest_nearest_toggle()
+  toggle_float_terminal(python.pytest_command(python.current_test_target()))
+end
+
+local function pytest_project_toggle()
+  local root = python.project_root(0)
+  toggle_float_terminal("cd " .. vim.fn.shellescape(root) .. " && " .. python.pytest_cmd(root))
 end
 
 local function qwen_toggle()
@@ -53,6 +67,9 @@ vim.keymap.set("n", "<space>gs", lazygit_toggle, { silent = true })
 vim.keymap.set("n", "<space>gl", ls_toggle, { silent = true })
 vim.keymap.set("n", "<space>x", ipython_toggle, { silent = true })
 vim.keymap.set("n", "<space>e", qwen_toggle, { silent = true })
+vim.keymap.set("n", "<space>lt", pytest_file_toggle, { silent = true, desc = "pytest current file" })
+vim.keymap.set("n", "<space>lT", pytest_nearest_toggle, { silent = true, desc = "pytest nearest test" })
+vim.keymap.set("n", "<space>lp", pytest_project_toggle, { silent = true, desc = "pytest project" })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }

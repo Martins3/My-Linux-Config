@@ -2,7 +2,7 @@ return {
   settings = {
     python = {
       analysis = {
-        typeCheckingMode = "on",
+        typeCheckingMode = "standard",
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
       },

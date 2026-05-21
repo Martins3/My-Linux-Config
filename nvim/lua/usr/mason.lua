@@ -14,6 +14,7 @@ local servers = {
   "lua_ls",
   -- "marksman", 不够稳定，而且 CPU 消耗高
   "pyright",
+  "ruff",
   "vimls",
   "yamlls",
   "perlnavigator",

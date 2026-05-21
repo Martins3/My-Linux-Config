@@ -29,7 +29,9 @@ require("code_runner").setup({
     },
   },
   filetype = {
-    python = "python3 $file",
+    python = function()
+      return require("usr.python").run_file_command()
+    end,
     cuda = cuda_tutorial_runner,
     c = "cd $dir && gcc -Wall -lpthread -fno-omit-frame-pointer -pg -g "
       .. "-lm $fileName -o $fileNameWithoutExt.out && $dir/$fileNameWithoutExt.out",

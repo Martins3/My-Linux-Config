@@ -112,7 +112,7 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "black" },
+        python = { "ruff_organize_imports", "ruff_fix", "black" },
         markdown = { "deno_fmt" },
       },
       formatters = {
@@ -190,6 +190,9 @@ require("lazy").setup({
       "<space>gs",
       "<space>gl",
       "<space>x",
+      { "<space>lt", desc = "pytest current file" },
+      { "<space>lT", desc = "pytest nearest test" },
+      { "<space>lp", desc = "pytest project" },
       "<space>e",
       "<c-s>",
     },
