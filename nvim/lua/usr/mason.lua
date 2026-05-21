@@ -6,6 +6,7 @@ vim.lsp.config("*", {
 
 local servers = {
   "bashls",
+  "clangd",
   "cssls",
   "efm",
   "html",
