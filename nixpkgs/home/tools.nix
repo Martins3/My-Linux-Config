@@ -69,7 +69,6 @@ with pkgs;
   # adoptopenjdk-icedtea-web # 用于打开 impi jnlp 文件
   # minicom
   # typos # 检查代码中 typo ，不过 LLM 似乎做的更好?
-  # typst # latex 替代品
   cmake
   # ov # feature rich pager
   # zig
