@@ -30,7 +30,56 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
-  -- AI 行内补全 (GitHub Copilot)
+  -- AI 行内补全 (本地 vLLM / OpenAI-compatible)
+  {
+    "milanglacier/minuet-ai.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("minuet").setup({
+        -- 使用 OpenAI-compatible chat completions 端点对接 vLLM
+        provider = "openai_compatible",
+        -- 本地模型响应较慢，适当放宽超时和节流
+        request_timeout = 5,
+        throttle = 1000,
+        debounce = 400,
+        -- 初始上下文窗口，可根据本地 GPU 性能调大
+        context_window = 1024,
+        n_completions = 1, -- 本地模型建议只请求 1 个结果，节省资源
+        provider_options = {
+          openai_compatible = {
+            -- vLLM 默认地址，请根据你的实际部署修改
+            end_point = "http://localhost:8100/v1/chat/completions",
+            -- 模型名，请改为你在 vLLM 中 serve 的模型名
+            model = "your-model-name",
+            -- vLLM 本地部署通常无需认证，随便填一个非空字符串即可
+            api_key = "EMPTY",
+            name = "vLLM",
+            stream = true,
+            optional = {
+              max_tokens = 256,
+              temperature = 0.2,
+              top_p = 0.9,
+            },
+          },
+        },
+        virtualtext = {
+          -- 自动触发的文件类型，"*" 表示全部
+          auto_trigger_ft = { "*" },
+          keymap = {
+            accept = "<A-f>", -- Alt+f 接受整个建议
+            accept_line = "<A-l>", -- Alt+l 接受整行
+            accept_n_lines = "", -- 不绑定
+            next = "<A-n>", -- Alt+n 下一条建议
+            prev = "<A-p>", -- Alt+p 上一条建议
+            dismiss = "<A-e>", -- Alt+e 关闭建议
+          },
+        },
+        notify = "warn",
+      })
+    end,
+  },
+
+  -- AI 行内补全 (GitHub Copilot) -- 保留备用，已禁用
   {
     "zbirenbaum/copilot.lua",
     enabled = false,
@@ -38,27 +87,22 @@ require("lazy").setup({
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        panel = {
-          enabled = false, -- 不需要面板，用行内建议即可
-        },
+        panel = { enabled = false },
         suggestion = {
           enabled = true,
-          auto_trigger = true, -- 自动触发，无需手动按键
+          auto_trigger = true,
           debounce = 75,
           keymap = {
-            accept = "<A-f>", -- Alt+f 接受整个建议
-            accept_word = "<A-w>", -- Alt+w 接受一个单词
-            accept_line = "<A-l>", -- Alt+l 接受整行
-            next = "<A-n>", -- Alt+n 下一条建议
-            prev = "<A-p>", -- Alt+p 上一条建议
-            dismiss = "<A-e>", -- Alt+e 关闭建议
+            accept = "<A-f>",
+            accept_word = "<A-w>",
+            accept_line = "<A-l>",
+            next = "<A-n>",
+            prev = "<A-p>",
+            dismiss = "<A-e>",
           },
         },
-        filetypes = {
-          -- 默认所有文件类型都启用，可以在这里排除
-          ["c"] = true,
-        },
-        copilot_node_command = "node", -- Node.js 路径，默认用 PATH 里的
+        filetypes = { ["c"] = true },
+        copilot_node_command = "node",
         server_opts_overrides = {},
       })
     end,
