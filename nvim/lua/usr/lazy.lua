@@ -31,6 +31,7 @@ require("lazy").setup({
   { "octaltree/cmp-look" }, -- 利用 nvim/10k.txt 来补全输入
 
   -- AI 行内补全 (本地 vLLM / OpenAI-compatible)
+  -- 服务不在线时仅请求超时，不会报 Lua 错误
   {
     "milanglacier/minuet-ai.nvim",
     event = "InsertEnter",
@@ -47,16 +48,17 @@ require("lazy").setup({
         n_completions = 1, -- 本地模型建议只请求 1 个结果，节省资源
         provider_options = {
           openai_compatible = {
-            -- vLLM 默认地址，请根据你的实际部署修改
-            end_point = "http://localhost:8100/v1/chat/completions",
-            -- 模型名，请改为你在 vLLM 中 serve 的模型名
-            model = "your-model-name",
-            -- vLLM 本地部署通常无需认证，随便填一个非空字符串即可
-            api_key = "EMPTY",
-            name = "vLLM",
+            end_point = "http://127.0.0.1:8000/v1/chat/completions",
+            model = "qwen3-0.6b",
+            -- 本地部署无需认证，但必须返回非空字符串；
+            -- 用函数返回可避免被当作环境变量名去查而导致 nil 报错
+            api_key = function()
+              return "EMPTY"
+            end,
+            name = "LocalLLM",
             stream = true,
             optional = {
-              max_tokens = 256,
+              max_tokens = 1280,
               temperature = 0.2,
               top_p = 0.9,
             },
@@ -68,7 +70,7 @@ require("lazy").setup({
           keymap = {
             accept = "<A-f>", -- Alt+f 接受整个建议
             accept_line = "<A-l>", -- Alt+l 接受整行
-            accept_n_lines = "", -- 不绑定
+            accept_n_lines = nil, -- 不绑定
             next = "<A-n>", -- Alt+n 下一条建议
             prev = "<A-p>", -- Alt+p 上一条建议
             dismiss = "<A-e>", -- Alt+e 关闭建议
