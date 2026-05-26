@@ -14,7 +14,7 @@ local function cuda_tutorial_runner()
     return nil
   end
 
-  return "cd " .. vim.fn.shellescape(root) .. " && make && $dir/$fileNameWithoutExt.out"
+  return "cd " .. vim.fn.shellescape(root) .. " && make -j && $dir/$fileNameWithoutExt.out"
 end
 
 require("code_runner").setup({
