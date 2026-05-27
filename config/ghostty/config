@@ -88,6 +88,11 @@ keybind = alt+digit_7=unbind
 keybind = alt+digit_8=unbind
 keybind = alt+digit_9=unbind
 
+# 也许可以解决 macOS 的键位
+macos-option-as-alt = true
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
 # Disable copy notification toast.
 app-notifications = no-clipboard-copy,config-reload
 
