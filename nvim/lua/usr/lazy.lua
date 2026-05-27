@@ -35,6 +35,7 @@ require("lazy").setup({
   {
     "milanglacier/minuet-ai.nvim",
     event = "InsertEnter",
+    enabled = false,
     config = function()
       require("minuet").setup({
         -- 使用 OpenAI-compatible chat completions 端点对接 vLLM
