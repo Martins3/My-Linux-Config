@@ -13,8 +13,8 @@ local servers = {
   "jsonls",
   "lua_ls",
   -- "marksman", 不够稳定，而且 CPU 消耗高
-  "pyright",
   "ruff",
+  "ty",
   "vimls",
   "yamlls",
   "perlnavigator",
@@ -25,7 +25,8 @@ local servers = {
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = servers
+  ensure_installed = servers,
+  automatic_enable = servers,
 }
 -- lsp 很容易到达 1G ，只看关键的，需要用的时候再打开
 vim.lsp.set_log_level(vim.log.levels.ERROR)
