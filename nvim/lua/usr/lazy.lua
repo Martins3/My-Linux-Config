@@ -418,8 +418,8 @@ require("lazy").setup({
     version = false, -- set this if you want to always pull the latest change
     opts = {
       -- 使用 kimi-cli 的 ACP 模式
-      provider = "kimi-cli",
-      -- provider = "codex",
+      -- provider = "kimi-cli",
+      provider = "codex",
       -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
       acp_providers = {
         ["kimi-cli"] = {

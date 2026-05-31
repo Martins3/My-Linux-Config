@@ -1,7 +1,9 @@
+-- 这个加载是有顺序的
 local root_markers = {
   "ty.toml",
   "pyproject.toml",
   "uv.lock",
+  ".venv",
   ".git",
 }
 
