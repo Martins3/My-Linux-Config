@@ -15,17 +15,26 @@ local function shellescape(value)
   return vim.fn.shellescape(value)
 end
 
+M.root_markers = {
+  "ty.toml",
+  "pyproject.toml",
+  "uv.lock",
+  "setup.py",
+  "setup.cfg",
+  "requirements.txt",
+  "Pipfile",
+  ".venv",
+  ".git",
+}
+
+function M.find_project_root(bufnr)
+  bufnr = bufnr or 0
+  return vim.fs.root(bufnr, M.root_markers)
+end
+
 function M.project_root(bufnr)
   bufnr = bufnr or 0
-  return vim.fs.root(bufnr, {
-    "pyproject.toml",
-    "uv.lock",
-    "setup.py",
-    "setup.cfg",
-    "requirements.txt",
-    "Pipfile",
-    ".git",
-  }) or vim.fn.getcwd()
+  return M.find_project_root(bufnr) or vim.fn.getcwd()
 end
 
 function M.has_uv_project(root)
@@ -51,9 +60,20 @@ function M.has_uv_project(root)
   return false
 end
 
+function M.venv_executable(root, name)
+  local path = root .. "/.venv/bin/" .. name
+  if executable(path) then
+    return path
+  end
+end
+
+function M.venv_python(root)
+  return M.venv_executable(root, "python")
+end
+
 function M.python_cmd(root)
-  local venv_python = root .. "/.venv/bin/python"
-  if executable(venv_python) then
+  local venv_python = M.venv_python(root)
+  if venv_python then
     return shellescape(venv_python)
   end
 
@@ -65,8 +85,8 @@ function M.python_cmd(root)
 end
 
 function M.ipython_cmd(root)
-  local venv_ipython = root .. "/.venv/bin/ipython"
-  if executable(venv_ipython) then
+  local venv_ipython = M.venv_executable(root, "ipython")
+  if venv_ipython then
     return shellescape(venv_ipython)
   end
 
@@ -78,8 +98,8 @@ function M.ipython_cmd(root)
 end
 
 function M.pytest_cmd(root)
-  local venv_python = root .. "/.venv/bin/python"
-  if executable(venv_python) then
+  local venv_python = M.venv_python(root)
+  if venv_python then
     return shellescape(venv_python) .. " -m pytest"
   end
 
