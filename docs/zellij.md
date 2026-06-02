@@ -78,17 +78,6 @@ zellij --layout /home/martins3/.dotfiles/config/zellij/layout/docs.kdl
 - 多个远程机器执行同一条命令
 - 多个目录同时跑同构操作
 
-### 4. Break Pane To Tab
-
-两种用法:
-
-- `Ctrl h` 然后按 `b`
-
-效果:
-
-- 把当前 pane 提升成独立 tab
-- 临时把一个任务“放大处理”时很方便
-
 ### 5. Pane Grouping
 
 - `Alt Shift p` 开关 group marking

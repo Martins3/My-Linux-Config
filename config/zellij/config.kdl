@@ -144,7 +144,7 @@ keybinds clear-defaults=true {
         bind "&" { CloseTab; SwitchToMode "normal"; }
         bind "," { SwitchToMode "renametab"; }
         bind "[" { SwitchToMode "scroll"; }
-        bind "b" { BreakPane; SwitchToMode "normal"; }
+        bind "!" { BreakPane; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
         bind "d" { Detach; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "normal"; }
