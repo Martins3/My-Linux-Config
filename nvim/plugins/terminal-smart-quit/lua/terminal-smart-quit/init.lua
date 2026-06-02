@@ -47,8 +47,8 @@ local function classify_terminal_buffer(buf)
     }
   end
 
-  local pid = vim.fn.jobpid(channel)
-  if type(pid) ~= "number" or pid <= 0 then
+  local ok, pid = pcall(vim.fn.jobpid, channel)
+  if not ok or type(pid) ~= "number" or pid <= 0 then
     return {
       buf = buf,
       action = "kill",
