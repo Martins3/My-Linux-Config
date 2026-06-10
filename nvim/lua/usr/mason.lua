@@ -6,7 +6,6 @@ vim.lsp.config("*", {
 
 local servers = {
   "bashls",
-  "clangd",
   "cssls",
   "efm",
   "html",
@@ -29,8 +28,12 @@ require("mason-lspconfig").setup {
   automatic_enable = servers,
 }
 -- lsp 很容易到达 1G ，只看关键的，需要用的时候再打开
-vim.lsp.set_log_level(vim.log.levels.ERROR)
-vim.lsp.enable({ 'ccls', 'nixd' })
+-- 但是这个日志过期了
+-- vim.lsp.set_log_level(vim.log.levels.ERROR)
+
+-- ccls 不能支持
+-- clangd 在 aarch64 安装有问题
+vim.lsp.enable({ 'ccls', 'clangd', 'nixd' })
 -- 虽然打开这个会让
 -- 打开这个选项会让 telescope ui 不正常
 -- vim.o.winborder = 'rounded'
