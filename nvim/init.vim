@@ -2,7 +2,8 @@ set autoread
 au FocusGained,BufEnter * :checktime
 " 当失去焦点或者离开当前的 buffer 的时候保存
 set autowrite
-autocmd FocusLost,BufLeave * silent! update
+" TODO autosave ，但是仅仅针对普通文件，不然环境中总是出现 NvimTree_1
+autocmd FocusLost,BufLeave * if &buftype == '' && !empty(bufname()) && !&readonly | silent! update | endif
 
 " 映射 leader 键为 ,
 let g:mapleader = ','
