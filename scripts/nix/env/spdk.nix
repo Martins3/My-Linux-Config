@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.mkShell {
   packages = with pkgs; [
@@ -10,6 +12,7 @@ pkgs.mkShell {
     help2man
     libaio
     libtool
+    liburing
     meson
     nasm
     ncurses
@@ -26,14 +29,14 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    export AS=
+        export AS=
 
-    cat <<'EOF'
-SPDK nix shell ready.
+        cat <<'EOF'
+    SPDK nix shell ready.
 
-Use:
-  ./configure --without-fio --target-arch=x86-64-v2
-  make -j$(nproc)
-EOF
+    Use:
+      ./configure --without-fio --target-arch=x86-64-v2 --with-ublk
+      make -j$(nproc)
+    EOF
   '';
 }
