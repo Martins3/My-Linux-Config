@@ -43,3 +43,26 @@ require("persisted").setup({
 })
 
 vim.g.clipboard = "osc52"
+
+
+
+-- 当失去焦点或者离开当前的 buffer 的时候保存
+local group = vim.api.nvim_create_augroup("CoreAutoSave", { clear = true })
+local function save()
+  local buf = vim.api.nvim_get_current_buf()
+  if not vim.bo[buf].modifiable then
+    return
+  end
+  if not vim.bo[buf].modified then
+    return
+  end
+  vim.api.nvim_buf_call(buf, function()
+    vim.cmd("silent! write")
+  end)
+end
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  group = group,
+  pattern = "*",
+  callback = save,
+})
