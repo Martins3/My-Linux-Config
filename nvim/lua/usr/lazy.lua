@@ -255,16 +255,6 @@ require("lazy").setup({
       require("terminal-smart-quit")
     end,
   },
-  {
-    dir = vim.fn.stdpath("config") .. "/plugins/break-reminder",
-    name = "break-reminder",
-    lazy = false,
-    config = function()
-      require("break-reminder").setup({
-        interval_minutes = 22,
-      })
-    end,
-  },
   "CRAG666/code_runner.nvim", -- 一键运行代码
   "samjwill/nvim-unception", -- 在 nvim 的 termianl 打开 nvim 自动 offload
   -- markdown
