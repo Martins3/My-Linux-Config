@@ -9,7 +9,7 @@
 
 - [2024 年 vim 的 C/C++ 配置](./docs/nvim.md)
 - [极简 Tmux 配置](./docs/tmux.md)
-- [Tabby, Tilix, Gnome Terminal, Alacritty 和 Kitty 使用体验对比](./docs/terminals.md)
+- [终端模拟器横评](./docs/terminals.md)
 - [Rime 输入法配置](./docs/rime.md)
 - [tig 基于 vim 模式的快捷键介绍](./docs/tig.md)
 - [2023 年对比一下 ccls 和 clangd](./docs/ccls-vs-clangd.md)
