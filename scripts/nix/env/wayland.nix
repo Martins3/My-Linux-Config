@@ -6,7 +6,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     cmake
     libdrm
     libinput
-    libseat
+    seatd
     libxkbcommon
     mesa
     meson
@@ -15,6 +15,7 @@ pkgs.llvmPackages.stdenv.mkDerivation {
     libGL # 提供 EGL/egl.h
     pkg-config
     wayland
+    wayland-scanner
     wayland-protocols
     xorg.xcbproto
     xorg.xcbutil

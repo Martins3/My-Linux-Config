@@ -1,59 +1,42 @@
-# 参考:
-# https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/libraries/spdk/default.nix
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
-pkgs.stdenv.mkDerivation {
-  pname = "spdk";
-
-  version = "24.09";
-
-  nativeBuildInputs = with pkgs; [
-    python3
-    python3.pkgs.pip
-    python3.pkgs.setuptools
-    python3.pkgs.wheel
-    python3.pkgs.wrapPython
-    python3.pkgs.pyelftools
-    pkg-config
-    ensureNewerSourcesForZipFilesHook
-  ];
-
-  buildInputs = with pkgs; [
+pkgs.mkShell {
+  packages = with pkgs; [
     autoconf
-    libtool
     automake
-
-    elfutils
     cunit
-    dpdk
     fuse3
-    jansson
+    gcc
+    help2man
     libaio
-    libbsd
+    libtool
     liburing
-    elfutils
-    libuuid
-    libpcap
-    libnl
+    meson
+    nasm
+    ncurses
+    ninja
     numactl
     openssl
-    ncurses
-    zlib
-    zstd
+    perl
+    pkg-config
+    python3
+    python3Packages.jinja2
+    python3Packages.pyelftools
+    python3Packages.tabulate
+    util-linux
   ];
 
-  propagatedBuildInputs  = with pkgs; [
-    python3.pkgs.configshell
-  ];
+  shellHook = ''
+        export AS=
 
-  postPatch = ''
-    patchShebangs .
+        cat <<'EOF'
+    SPDK nix shell ready.
+
+    Use:
+      ./configure --without-fio --target-arch=x86-64-v2 --with-ublk
+      make -j$(nproc)
+    EOF
   '';
-
-  enableParallelBuilding = true;
-
-  env.NIX_CFLAGS_COMPILE = "-mssse3"; # Necessary to compile.
-  # otherwise does not find strncpy when compiling
-  env.NIX_LDFLAGS = "-lbsd";
-
 }
