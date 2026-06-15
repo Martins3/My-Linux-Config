@@ -1,4 +1,4 @@
-# 2024 年 vim 的 C/C++ 配置
+# 2026 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
