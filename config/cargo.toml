@@ -1,5 +1,6 @@
-[source.crates-io]
-replace-with = 'tuna'
-
-[source.tuna]
-registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+# 不知道为什么，添加 mirror 反而变慢了
+# [source.crates-io]
+# replace-with = 'tuna'
+# 
+# [source.tuna]
+# registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"

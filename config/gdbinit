@@ -13,8 +13,9 @@ dashboard -style prompt_not_running "\\[\\e[1;34m\\]$\\[\\e[0m\\]"
 ## fg bold green
 dashboard -style prompt_running "\\[\\e[1;32m\\]$\\[\\e[0m\\]"
 
-add-auto-load-safe-path /home/martins3/data/qemu/.gdbinit
-add-auto-load-safe-path /home/martins3/data/kernel/linux-build/scripts/gdb/vmlinux-gdb.py
+set auto-load safe-path /
+# add-auto-load-safe-path /home/martins3/data/qemu/.gdbinit
+# add-auto-load-safe-path /home/martins3/data/kernel/linux-build/scripts/gdb/vmlinux-gdb.py
 
 # 不想每次启动 gdb 的时候，都被问要不要自动加载 debuginfo
 # Enable debuginfod for this session? (y or [n]) 
