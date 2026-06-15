@@ -1,3 +1,22 @@
+-- 有时候，我们在 terminal 中运行了 codex 等，等到要关闭 nvim 的时候，
+-- 我也不记不清楚了，所以需要动态的判断:
+-- 
+-- 如果执行 qa 退出，那么 terminal 中内容直接被 kill 掉
+-- 
+-- wqa 退出，发现如果 nvim 打开了 terminal ，无论是 ，如果执行 wqa 会有这个错误
+-- ```txt
+-- E948: Job still running
+-- E676: No matching autocommands for buftype= buffer
+-- ```
+--
+-- 所以
+-- terminal buffer 需要单独判断：
+-- 
+-- 1. 停在 zsh 提示符时自动清理 terminal
+-- 2. 前台是其它程序时阻塞退出，避免误杀正在运行的任务
+
+
+
 local M = {}
 
 -- Idle shell buffers are safe to close. Busy terminals should block quit.

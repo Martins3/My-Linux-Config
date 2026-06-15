@@ -10,6 +10,7 @@ require("usr.nvim-treesitter")
 require("usr.telescope")
 require("usr.version")
 require("usr.which-key")
+require("usr.terminal-smart-quit")
 require("usr.colorscheme")
 require("usr.ft")
 if vim.g.neovide then

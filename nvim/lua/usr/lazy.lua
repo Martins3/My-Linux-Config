@@ -247,14 +247,6 @@ require("lazy").setup({
       require("usr.toggleterm")
     end,
   }, -- nvim 中打开终端
-  {
-    dir = vim.fn.stdpath("config") .. "/plugins/terminal-smart-quit",
-    name = "terminal-smart-quit",
-    lazy = false,
-    config = function()
-      require("terminal-smart-quit")
-    end,
-  },
   "CRAG666/code_runner.nvim", -- 一键运行代码
   "samjwill/nvim-unception", -- 在 nvim 的 termianl 打开 nvim 自动 offload
   -- markdown
