@@ -1,0 +1,117 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/martins3/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+# Reduce discrete mouse-wheel scroll distance so each wheel step moves less.
+# This keeps touchpad behavior at Ghostty's default while making wheel
+# scrolling feel less jumpy.
+mouse-scroll-multiplier = precision:1,discrete:0.5
+
+# Use the installed FiraCode Nerd Font family for terminal text.
+font-family = FiraCode Nerd Font
+
+# Fallback Chinese font.
+# font-family = LXGW WenKai
+
+# Increase the default terminal font size slightly from Ghostty's default 12.
+font-size = 15
+
+# Use Ctrl+K to switch to the next tab.
+keybind = ctrl+k=next_tab
+
+# Disable ghostty default alt+0..9 tab switching to avoid conflict with tmux.
+# Directly override with esc:N so tmux/nvim can receive Alt+num as escape sequences.
+keybind = alt+0=esc:0
+keybind = alt+1=esc:1
+keybind = alt+2=esc:2
+keybind = alt+3=esc:3
+keybind = alt+4=esc:4
+keybind = alt+5=esc:5
+keybind = alt+6=esc:6
+keybind = alt+7=esc:7
+keybind = alt+8=esc:8
+keybind = alt+9=esc:9
+keybind = alt+digit_0=unbind
+keybind = alt+digit_1=unbind
+keybind = alt+digit_2=unbind
+keybind = alt+digit_3=unbind
+keybind = alt+digit_4=unbind
+keybind = alt+digit_5=unbind
+keybind = alt+digit_6=unbind
+keybind = alt+digit_7=unbind
+keybind = alt+digit_8=unbind
+keybind = alt+digit_9=unbind
+
+# 也许可以解决 macOS 的键位
+macos-option-as-alt = true
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
+# Disable copy notification toast.
+app-notifications = no-clipboard-copy,config-reload
+
+# Remove all extra UI elements for a minimal alacritty-like appearance.
+window-decoration = false
+window-show-tab-bar = never
+
+# Slight background transparency.
+background-opacity = 0.98
+
+# Unbind default font size keybindings and rebind to ctrl+shift+plus/minus.
+keybind = ctrl+equal=unbind
+keybind = ctrl++=unbind
+keybind = ctrl+-=unbind
+keybind = ctrl+shift+plus=increase_font_size:1
+keybind = ctrl+shift+minus=decrease_font_size:1
+
+# Unbind Ctrl+Shift+方向键，避免与 tmux 的 swap-window 冲突
+keybind = ctrl+shift+arrow_right=unbind
+keybind = ctrl+shift+arrow_left=unbind
+
+# 在 ghostty 里按 Ctrl+Shift+逗号 即可热重载配置
