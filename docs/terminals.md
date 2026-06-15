@@ -12,6 +12,7 @@
 * [Tabby : 几分钟](#tabby-几分钟)
 * [wezterm : 2023-2024](#wezterm-2023-2024)
 * [Windows Terminal + wezterm + Kitty : 2025](#windows-terminal-wezterm-kitty-2025)
+* [ghostty : 2026](#ghostty-2026)
 * [总结](#总结)
 
 <!-- vim-markdown-toc -->
@@ -88,14 +89,25 @@ Alacritty 的优点:
 对于我来说，这个几个 terminal emulator 其实差不多，在这个环境如果有问题，
 那么就立刻换另外一个。
 
+## ghostty : 2026
+
+检查快捷键:
+ghostty +list-keybinds --default
+
+
+
 ## 总结
-目前，我推荐的 terminal 是:
+如果是在 Linux 下，目前，我推荐的 terminal 是:
 - kitty
 - wezterm
 - alacritty
 
 虽然 kitty 很大一部分代码是 Python，但是我估计只是用于控制面的，其性能用 [terminal-benchmark](https://github.com/Dica-Developer/terminal-benchmark)
 测试，无明显差距。
+
+如果在 windows 下，Windows terminal 基本上是唯一的选择了。
+
+此外，由于精力有限，ghostty 之类的新秀(2026-03-23) ，广受好评，但是我并没有体验。
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

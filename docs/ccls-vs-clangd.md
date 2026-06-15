@@ -129,10 +129,11 @@ static inline unsigned long __raw_spin_lock_irqsave(raw_spinlock_t *lock)
 ## 更多参考
 - https://github.com/MaskRay/ccls/issues/880
 
-## 2025/4 的更新
-clangd 在 kernel/time/ntp.c
-检查到了这个是不需要的
-```txt
+## 2025/4 更新
+我发现 clangd + clang-tidy 功能更多，更加完善。
+
+例如 clangd 在 kernel/time/ntp.c 中检查到了这个是不需要的
+```c
 #include "timekeeping_internal.h"
 ```
 

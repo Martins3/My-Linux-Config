@@ -386,20 +386,6 @@ in {
 - https://nixos.wiki/wiki/Flakes
 - https://news.ycombinator.com/item?id=36362225
 
-## switch caps 和 escape
-
-https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
-
-似乎需要:
-
-```sh
-gsettings reset org.gnome.desktop.input-sources xkb-options
-gsettings reset org.gnome.desktop.input-sources sources
-```
-
-也许也需要执行下:
-setxkbmap -option caps:swapescape
-
 ## 问题
 
 - [ ] 直接下载的 vs debug adaptor 无法正确使用:
@@ -408,10 +394,6 @@ setxkbmap -option caps:swapescape
 - https://ejpcmac.net/blog/about-using-nix-in-my-development-workflow/
 - https://www.ertt.ca/nix/shell-scripts/
 - [ ] 挂载磁盘 https://nixos.org/manual/nixos/stable/index.html#ch-file-systems
-
-## 需要验证的问题
-
-- [ ] 不知道为什么，需要安装所有的 Treesitter，nvim 才可以正常工作。
 
 ## Nix/NixOs 踩坑记录
 
@@ -1306,18 +1288,6 @@ https://news.ycombinator.com/item?id=42666851
 
 ## kernel 配置在这里的
 kernel-modules/lib/modules/6.12.7/modules.devname
-
-## 原来 rust-analyzer 是一个软连接啊
-```txt
-🧀  l /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer
-Permissions Size User Date Modified Name
-lrwxrwxrwx     - root  1 Jan  1970   /nix/store/dyn2kdxcnhcjz13nqpdrpcgd3qj7996b-rustup-1.27.1/bin/rust-analyzer -> rustup
-```
-
-这样可以解决:
-```txt
-rustup component add rust-analyzer
-```
 
 ## 这个功能对于我来说，很重要
 安装的时候可以不用联网。

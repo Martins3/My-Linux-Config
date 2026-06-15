@@ -286,6 +286,10 @@ export http_proxy=
 对于 mason 不支持的 lsp，就需要手动安装了，目前只有 ccls ，例如 `sudo apt install ccls`
 - [ccls](https://github.com/MaskRay/ccls/wiki/Install)
 
+C/C++ 默认使用 `clangd`，并通过 `--clang-tidy` 启用 clang-tidy 诊断。需要确保
+`clangd` 在 `PATH` 中；`clangd` 会读取项目里的 `compile_commands.json` 和
+`.clang-tidy`。Linux kernel 源码树例外，会自动使用 `ccls`。
+
 ### 安装本配置
 
 nvim 的配置在 ~/.config/nvim 中，
