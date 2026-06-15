@@ -12,7 +12,8 @@ local servers = {
   "jsonls",
   "lua_ls",
   -- "marksman", 不够稳定，而且 CPU 消耗高
-  "pyright",
+  "ruff",
+  "ty",
   "vimls",
   "yamlls",
   "perlnavigator",
@@ -23,17 +24,29 @@ local servers = {
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = servers
+  ensure_installed = servers,
+  automatic_enable = servers,
 }
-vim.lsp.enable({ 'ccls', 'nixd' })
+-- lsp 很容易到达 1G ，只看关键的，需要用的时候再打开
+-- 但是这个日志过期了
+-- vim.lsp.set_log_level(vim.log.levels.ERROR)
+
+-- ccls 不能支持
+-- clangd 在 aarch64 安装有问题
+vim.lsp.enable({ 'ccls', 'clangd', 'nixd' })
 -- 虽然打开这个会让
 -- 打开这个选项会让 telescope ui 不正常
 -- vim.o.winborder = 'rounded'
 
 vim.diagnostic.config({
-  -- virtual_lines 造成了巨大的视觉干扰，还是 virtual_text 好用
-  -- virtual_lines = { current_line = true, },
-  virtual_text = { current_line = true, },
+  virtual_text = false, -- 关闭右侧文字，只保留悬浮窗
+  signs = true,         -- 左侧图标保留
+  float = { border = 'rounded' },
+})
+
+-- 光标停留时自动显示诊断
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function() vim.diagnostic.open_float(nil, { focusable = false }) end,
 })
 
 local map = vim.keymap.set
