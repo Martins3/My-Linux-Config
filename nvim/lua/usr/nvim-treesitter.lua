@@ -1,6 +1,6 @@
 require 'nvim-treesitter'.setup {}
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'markdown', 'c', 'sh' },
+  pattern = { 'markdown', 'c', 'sh', 'python' },
   callback = function()
     vim.treesitter.start()
   end,
@@ -30,6 +30,7 @@ require 'nvim-treesitter'.install {
   "make",
   "kconfig",
   "toml",
+  "cuda",
 }
 
 

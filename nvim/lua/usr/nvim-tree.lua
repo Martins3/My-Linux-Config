@@ -29,6 +29,9 @@ require("nvim-tree").setup({
     side = "right",
   },
   on_attach = on_attach,
+  filesystem_watchers = {
+    enable = false,
+  },
   actions = {
     open_file = {
       quit_on_open = false,

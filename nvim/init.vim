@@ -1,8 +1,6 @@
+" 用来在文件被外部修改时自动重新加载
 set autoread
 au FocusGained,BufEnter * :checktime
-" 当失去焦点或者离开当前的 buffer 的时候保存
-set autowrite
-autocmd FocusLost,BufLeave * silent! update
 
 " 映射 leader 键为 ,
 let g:mapleader = ','

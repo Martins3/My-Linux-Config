@@ -1,4 +1,5 @@
 require("usr.options")
+require("usr.rustaceanvim")
 require("usr.lazy")
 require("usr.mason")
 require("usr.cmp")
@@ -6,40 +7,30 @@ require("usr.code_runner")
 require("usr.hydra")
 require("usr.nvim-tree")
 require("usr.nvim-treesitter")
-require("usr.orgmode")
 require("usr.telescope")
 require("usr.version")
 require("usr.which-key")
+require("usr.terminal-smart-quit")
 require("usr.colorscheme")
-require("usr.bufferline")
-require("usr.lualine")
-require("usr.neovide")
+require("usr.ft")
+if vim.g.neovide then
+  require("usr.neovide")
+end
 require("usr.util")
-require("usr.toggleterm")
-require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
 require("nvim-surround").setup()
-require("gitsigns").setup({ signcolumn = false, numhl = true })
-require("flit").setup({})
+require("gitsigns").setup({
+  signcolumn = false,
+  numhl = true,
+  current_line_blame = true,
+})
 require("nvim-autopairs").setup()
-require("fidget").setup()
-require("debugprint").setup()
 
-vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
-vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
+vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
 
 -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 require("luasnip.loaders.from_snipmate").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
 -- require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets"})
-
--- 书签
-require("bookmarks").setup({
-  mappings_enabled = true,
-  keymap = {
-    toggle = "mc",
-    delete = "dd",
-  },
-  virt_pattern = { "*.lua", "*.md", "*.c", "*.h", "*.sh", "*.py" },
-})
 
 require("persisted").setup({
   autoload = true,
@@ -52,6 +43,27 @@ require("persisted").setup({
   end,
 })
 
-require('gitsigns').setup {
-  current_line_blame = true,
-}
+vim.g.clipboard = "osc52"
+
+
+
+-- 当失去焦点或者离开当前的 buffer 的时候保存
+local group = vim.api.nvim_create_augroup("CoreAutoSave", { clear = true })
+local function save()
+  local buf = vim.api.nvim_get_current_buf()
+  if not vim.bo[buf].modifiable then
+    return
+  end
+  if not vim.bo[buf].modified then
+    return
+  end
+  vim.api.nvim_buf_call(buf, function()
+    vim.cmd("silent! write")
+  end)
+end
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  group = group,
+  pattern = "*",
+  callback = save,
+})

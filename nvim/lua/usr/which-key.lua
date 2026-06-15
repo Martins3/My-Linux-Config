@@ -49,6 +49,7 @@ wk.add({
   { "<space>a",  group = "misc" },
   { "<space>aa", "<cmd>InsertUUID<cr>",                               desc = "remove trailing space" },
   { "<space>ad", "<cmd>call TrimWhitespace()<cr>",                    desc = "remove trailing space" },
+  { "<space>at", "<cmd>Translate<cr>",                                   desc = "translate current word" },
   { "<space>b",  group = "buffer" },
   { "<space>bd", "<cmd>bdelete %<cr>",                                desc = "close current buffers" },
   -- only works in a c/cpp file
@@ -83,12 +84,7 @@ wk.add({
   { "<space>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",          desc = "" },
   { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
-  -- <space> o 被 orgmode 使用
-  --
-  -- 为什么是 qa 而不是 wqa ，发现如果 nvim 打开了 terminal ，如果执行 wqa 会有这个错误
-  -- E948: Job still running
-  -- E676: No matching autocommands for buftype= buffer
-  { "<space>q",  "<cmd>qa<cr>",                                      desc = "close vim" },
+  { "<space>q",  "<cmd>SmartQuit<cr>",                                desc = "close vim" },
 
   { "<space>s",  group = "search" },
   {
@@ -104,6 +100,7 @@ wk.add({
   { "<space>t7", "<cmd>let &cc = &cc == '' ? '75' : ''<cr>",              desc = "highlight 75 line" },
   { "<space>t8", "<cmd>let &cc = &cc == '' ? '81' : ''<cr>",              desc = "highlight 80 line" },
   { "<space>tb", "<cmd>let &tw = &tw == '0' ? '80' : '0'<cr>",            desc = "automaticall break line at 80" },
+  { "<space>tg", "<cmd>BreakReminderKick<cr>",                            desc = "kick break reminder" },
   { "<space>th", "<cmd>noh<cr>",                                          desc = "Stop the highlighting" },
   { "<space>tm", "<cmd>TableModeToggle<cr>",                              desc = "markdown table edit mode" },
   { "<space>tr", "<cmd>TransferToggle<cr>",                               desc = "toggle rsync on save" },
@@ -134,27 +131,23 @@ wk.add({
   { "m",         group = "bookmarks" },
   { "ma",        "<cmd>Telescope bookmarks<cr>",                          desc = "search bookmarks" },
   { "md",        "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
-  { "md",        "<cmd>lua require'bookmarks.list'.delete_on_virt()<cr>", desc = "delete bookmark at virt text line" },
   { "mm",        "<cmd>lua require'bookmarks'.add_bookmarks()<cr>",       desc = "add bookmarks" },
   { "mn",        "<cmd>lua require'bookmarks.list'.show_desc() <cr>",     desc = "show bookmark note" },
   { "q",         "<cmd>q<cr>",                                           desc = "close current window" },
 })
 
 wk.add({
-  {
-    mode = { "v" },
-    { "<space>lc", ":Commentary<cr>",                               desc = "comment code" },
-    { "<space>s",  group = "search" },
-    { "<space>sp", "<cmd>lua require('spectre').open_visual()<cr>", desc = "search" },
-    { "q",         "<cmd>q<cr>",                                    desc = "close window" },
-  },
+  { "<space>lc", ":Commentary<cr>",                               desc = "comment code", mode = "v" },
+  { "<space>s",  group = "search",                                mode = "v" },
+  { "<space>sp", "<cmd>lua require('spectre').open_visual()<cr>", desc = "search",       mode = "v" },
+  { "q",         "<cmd>q<cr>",                                    desc = "close window", mode = "v" },
 })
 
-vim.api.nvim_set_keymap("i", "<c-g>", "<cmd>!ibus engine rime<cr>", { noremap = true })
+vim.keymap.set("i", "<c-g>", "<cmd>!ibus engine rime<cr>")
 
 -- 添加自适应的命令
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "sh",
+  pattern = { "sh", "python" },
   callback = function()
     vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { buffer = true, silent = true })
   end
@@ -167,19 +160,9 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.cmd("autocmd FileType rust lua RunRust()")
-function RunRust()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.keymap.set("n", "<leader>a", function()
-    vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-    -- or vim.lsp.buf.codeAction() if you don't want grouping.
-  end, { silent = true, buffer = bufnr })
-
-  vim.keymap.set("n", "<leader>r", function()
-    vim.cmd.RustLsp("run")
-  end, { silent = true, buffer = bufnr })
-
-  vim.keymap.set("n", "<leader>R", function()
-    vim.cmd.RustLsp("runnables")
-  end, { silent = true, buffer = bufnr })
-end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typst",
+  callback = function()
+    vim.keymap.set("n", "<leader>x", ":TypstPreview<CR>", { buffer = true, silent = false })
+  end
+})

@@ -84,8 +84,15 @@ vim.keymap.set(
 -- 拷贝， <leader> a ，然后粘贴
 -- 会调用脚本，将 clipboard 中的 gdb backtrace 简化之后再粘贴出来
 function ProcessClipboard()
-  -- 获取剪贴板内容
-  local clipboard_content = vim.fn.getreg("+")
+  -- SSH/tmux 下读取本地系统剪贴板不一定可用；provider 失败时给出明确提示。
+  local ok, clipboard_content = pcall(vim.fn.getreg, "+")
+  if not ok then
+    vim.notify(
+      "Failed to read + register from clipboard provider. Paste the text into a buffer first, then process it there.",
+      vim.log.levels.ERROR
+    )
+    return
+  end
   -- 检查剪贴板内容是否为空
   if clipboard_content == "" then
     print("Clipboard is empty!")
@@ -108,7 +115,7 @@ function ProcessClipboard()
   end
 
   local project = "/home/martins3/data/vn"
-  local script_path = project .. "/code/qemu/trim.sh"
+  local script_path = project .. "/alpine/trim.sh"
   if vim.fn.filereadable(script_path) == 1 then
     vim.fn.system(script_path)
   else
@@ -129,4 +136,4 @@ function ProcessClipboard()
 end
 
 -- 映射快捷键
-vim.api.nvim_set_keymap("n", "<leader>a", ":lua ProcessClipboard()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>a", ProcessClipboard, { silent = true })
