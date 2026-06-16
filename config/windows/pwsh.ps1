@@ -22,11 +22,16 @@ function rmrf(){
 function q { exit }
 function gg { gitui --watcher }
 function fedora { wsl --user martins3 -d FedoraLinux-42 }
+function Enable-TunProxy {
+    $env:HTTP_PROXY = "http://127.0.0.1:7897"
+    $env:HTTPS_PROXY = "http://127.0.0.1:7897"
+}
 Set-Alias ls lsd
 function l { lsd -lah  @args }
 Set-Alias c Clear-Host
 Set-Alias v nvim
 Set-Alias gs gitui
+Set-Alias tpx Enable-TunProxy
 
 $env:SHELL_ARCH = "🌳"
 $env:SHELL = "pwsh"
