@@ -29,6 +29,7 @@ Set-Alias v nvim
 Set-Alias gs gitui
 
 $env:SHELL_ARCH = "🌳"
+$env:SHELL = "pwsh"
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # oh-my-posh init pwsh | Invoke-Expression

@@ -6,6 +6,15 @@ $appdata = $env:APPDATA
 $links = @{
     "nvim" = "$appdata\nvim"
     "config\gitui" = "$appdata\gitui"
+    "config\zellij" = "$appdata\Zellij\config"
+}
+
+$legacyZellij = "$appdata\zellij"
+if (Test-Path $legacyZellij) {
+    $legacyItem = Get-Item $legacyZellij -Force
+    if ($legacyItem.LinkType -eq "Junction" -and $legacyItem.Target -eq "$dotfiles\config\zellij") {
+        Remove-Item -Path $legacyZellij -Force
+    }
 }
 
 # 构建软链接
@@ -14,6 +23,10 @@ foreach ($key in $links.Keys) {
     $target = $links[$key]
 
     if (Test-Path $source) {
+        $targetParent = Split-Path -Parent $target
+        if (!(Test-Path $targetParent)) {
+            New-Item -ItemType Directory -Path $targetParent -Force | Out-Null
+        }
         if (Test-Path $target) {
             Remove-Item -Recurse -Force $target
         }
