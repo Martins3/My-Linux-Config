@@ -99,6 +99,53 @@ set -g pane-border-format " [ ###P #T ] "
 bind T command-prompt -p "Set Pane title:" "select-pane -T '%1'"
 ```
 
+## tmux 的颜色
+
+```txt
+tmux 颜色主要有这几类可选：
+
+# 基础 8 色
+black red green yellow blue magenta cyan white
+
+# 亮色
+brightblack brightred brightgreen brightyellow brightblue brightmagenta brightcyan brightwhite
+
+# 256 色
+colour0 到 colour255
+
+# 默认色
+default terminal
+
+# truecolor / RGB
+#RRGGBB
+
+你现在这个可以直接换成：
+
+setw -g window-status-current-style fg=black,bg=brightyellow
+setw -g window-status-current-style fg=white,bg=blue
+setw -g window-status-current-style fg=colour16,bg=colour81
+setw -g window-status-current-style fg=#111111,bg=#ffcc00
+
+注意 tmux 文档里 256 色是英式拼写：colour81，不是 color81。
+
+可以在终端里看 256 色编号：
+
+for i in {0..255}; do printf "\e[48;5;%sm%3s\e[0m " "$i" "$i"; (( (i + 1) % 16 == 0 )) && printf "\n"; done
+
+我建议不同机器用明显区分的背景色，比如：
+
+# 本机
+setw -g window-status-current-style fg=black,bg=yellow
+
+# 生产/重要机器
+setw -g window-status-current-style fg=white,bg=red
+
+# 测试机
+setw -g window-status-current-style fg=black,bg=green
+
+# ARM 机器
+setw -g window-status-current-style fg=white,bg=blue
+```
 
 ## 一些试错
 
