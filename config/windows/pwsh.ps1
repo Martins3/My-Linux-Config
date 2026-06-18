@@ -50,8 +50,9 @@ function Update-ZellijTabName {
         (Get-Location).Path
     }
 
-    if ($currentDir.StartsWith($HOME, [System.StringComparison]::OrdinalIgnoreCase)) {
-        $currentDir = "~" + $currentDir.Substring($HOME.Length)
+    $currentDir = Split-Path -Leaf $currentDir
+    if (-not $currentDir) {
+        $currentDir = (Get-Location).Path
     }
 
     $currentDir = $currentDir -replace "`r|`n", " "
