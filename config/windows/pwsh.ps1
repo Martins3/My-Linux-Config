@@ -39,6 +39,38 @@ Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # oh-my-posh init pwsh | Invoke-Expression
 
+function Update-ZellijTabName {
+    if (-not $env:ZELLIJ) {
+        return
+    }
+
+    $currentDir = if ($ExecutionContext.SessionState.Path.CurrentFileSystemLocation) {
+        $ExecutionContext.SessionState.Path.CurrentFileSystemLocation.Path
+    } else {
+        (Get-Location).Path
+    }
+
+    if ($currentDir.StartsWith($HOME, [System.StringComparison]::OrdinalIgnoreCase)) {
+        $currentDir = "~" + $currentDir.Substring($HOME.Length)
+    }
+
+    $currentDir = $currentDir -replace "`r|`n", " "
+    if ($script:ZellijLastTabName -eq $currentDir) {
+        return
+    }
+
+    zellij action rename-tab $currentDir *> $null
+    $script:ZellijLastTabName = $currentDir
+}
+
+$script:ZellijLastTabName = $null
+$script:OriginalPrompt = (Get-Command prompt).ScriptBlock
+function global:prompt {
+    Update-ZellijTabName
+    & $script:OriginalPrompt
+}
+Update-ZellijTabName
+
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
 
