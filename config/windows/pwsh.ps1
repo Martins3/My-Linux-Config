@@ -74,6 +74,8 @@ Update-ZellijTabName
 
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineKeyHandler -Key Ctrl+e -Function AcceptSuggestion
+Set-PSReadLineKeyHandler -Key Ctrl+RightArrow -Function AcceptNextSuggestionWord
 
 $env:Path = "C:\Users\97936\.local\bin;$env:Path"
 
