@@ -147,6 +147,37 @@ setw -g window-status-current-style fg=black,bg=green
 setw -g window-status-current-style fg=white,bg=blue
 ```
 
+```txt
+控制整条 tmux status line 的底色/前景色，用：
+
+set -g status-style fg=blue,bg=yellow
+
+你现在这行：
+
+setw -g window-status-current-style fg=blue,bg=yellow
+
+只控制“当前 window 标签”的颜色，所以只会影响 window list 中当前窗口那一块。
+
+常用分层是：
+
+# 整条 status line 的默认颜色
+set -g status-style fg=blue,bg=yellow
+
+# 非当前 window 标签
+setw -g window-status-style fg=white,bg=yellow
+
+# 当前 window 标签
+setw -g window-status-current-style fg=blue,bg=yellow
+
+# 左右状态区如果需要单独覆盖
+set -g status-left-style fg=blue,bg=yellow
+set -g status-right-style fg=blue,bg=yellow
+
+如果 status-left、status-right 或 window-status-current-format 里有 #[fg=...,bg=...]，那些内联样式会覆盖 status-style。改完后可执行：
+
+tmux source-file ~/.tmux.conf
+```
+
 ## 一些试错
 
 1. 自动连接远程的 server 的 tmux，这样就可以一次有一次使用 ssh 创建 remote terminal 了
