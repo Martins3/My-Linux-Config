@@ -253,7 +253,11 @@ require("lazy").setup({
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    -- 这个写法看上去仅仅在 Unix 上可以工作
+    -- build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
