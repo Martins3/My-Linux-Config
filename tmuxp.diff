@@ -1,0 +1,74 @@
+diff --git a/config/sh/tmux.sh b/config/sh/tmux.sh
+deleted file mode 100755
+index b29d16d40da5..000000000000
+--- a/config/sh/tmux.sh
++++ /dev/null
+@@ -1,14 +0,0 @@
+-#!/usr/bin/env bash
+-
+-set -E -e -u -o pipefail
+-
+-tmuxp load -d ~/.dotfiles/config/tmux-note.yaml
+-tmuxp load -d ~/.dotfiles/config/tmux-code.yaml
+-
+-if [[ -n $TMUX ]]; then
+-	# 如果在 tmux 中，先退出
+-	exit 0
+-else
+-  # 
+-	exit 1
+-fi
+diff --git a/config/tmux-code.yaml b/config/tmux-code.yaml
+deleted file mode 100644
+index 57b74a6a8e15..000000000000
+--- a/config/tmux-code.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-session_name: code
+-windows:
+-  - window_name: linux
+-    layout: tiled
+-    shell_command_before:
+-      - cd ~/data/linux
+-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+-  # 必须定义两个 window ，否则 tmux status line 存在 no previous window 的警告
+-  - window_name: lab
+-    layout: tiled
+-    shell_command_before:
+-      - cd /tmp
+diff --git a/config/tmux-note-private.yaml b/config/tmux-note-private.yaml
+deleted file mode 100644
+index 39f03b883038..000000000000
+--- a/config/tmux-note-private.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-session_name: note
+-windows:
+-  - window_name: vn
+-    layout: tiled
+-    shell_command_before:
+-      - cd ~/core/vn
+-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+-  - window_name: module
+-    layout: tiled
+-    shell_command_before:
+-      - cd ~/core/vn/code/module/
+-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+diff --git a/config/tmux-note.yaml b/config/tmux-note.yaml
+deleted file mode 100644
+index 5b6c47bccab9..000000000000
+--- a/config/tmux-note.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-session_name: note
+-windows:
+-  - window_name: vn
+-    layout: tiled
+-    shell_command_before:
+-      - cd ~/core/vn
+-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
+-  - window_name: dotfiles
+-    layout: tiled
+-    shell_command_before:
+-      - cd ~/.dotfiles/
+-      - mkdir -p /tmp/martins3/nvim/ && nvim --listen /tmp/martins3/nvim/$(uuidgen)
