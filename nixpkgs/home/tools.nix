@@ -330,14 +330,13 @@ with pkgs;
   (python3.withPackages (
     p: with p; [
       ipython
-      autopep8
       gcovr
       pygments # 让 gdb-dashboard 支持高亮
       pytest
     ]
   ))
   uv # 似乎现在大家更加推荐使用这个作为 python 的包管理器
-  # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
+  ruff # python linter/formatter，替代 black/autopep8
   # perl
   # man-db
   # man-pages
@@ -404,7 +403,6 @@ with pkgs;
   clash-meta
 
   # lsp && formatter
-  black # python formatter
   cargo
   # 似乎不需要在这里安装 rust 的工具
   # rust-analyzer

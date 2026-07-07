@@ -159,7 +159,7 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff_organize_imports", "ruff_fix", "black" },
+        python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
         markdown = { "deno_fmt" },
       },
       formatters = {
