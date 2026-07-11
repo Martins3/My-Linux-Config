@@ -267,7 +267,7 @@ with pkgs;
   # weechat
   # offlineimap # 下载邮件的工具，很难用
   tcpdump
-  tcptrace
+  # tcptrace 已经从 nixpkgs 26.05 中移除（broken + upstream gone）
   proxychains-ng
   sshpass
   gping # better ping
@@ -285,7 +285,7 @@ with pkgs;
   nix-tree # 动态的展示每一个包的依赖
   # nix-index
   nixd # nix 语言的 lsp
-  nixfmt-rfc-style
+  nixfmt
   # debootstrap # 制作 uml 的工具
   meson
   unstable.neovim
