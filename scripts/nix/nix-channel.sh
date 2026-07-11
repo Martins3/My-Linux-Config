@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-release=25.11
+release=26.5
 set -x
 if [[ -f /etc/nixos/configuration.nix ]]; then
 	SUDO=sudo
