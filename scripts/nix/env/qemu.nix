@@ -14,7 +14,7 @@ pkgs.clangStdenv.mkDerivation {
     ninja
     glib
     pixman
-    xorg.libX11.dev
+    libX11.dev
     rdma-core
     liburing
     libiscsi
