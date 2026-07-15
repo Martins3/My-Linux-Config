@@ -98,8 +98,10 @@ ghostty +list-keybinds --default
 
 几个常用快捷键:
 
-|------|------------|
-| 全屏 | ctrl+enter |
+|-----------------|--------------|
+| 全屏            | ctrl+enter   |
+| 关闭一个 window | ctrl+shift+w |
+
 
 ## 总结
 如果是在 Linux 下，目前，我推荐的 terminal 是:
