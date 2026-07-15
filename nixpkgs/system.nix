@@ -43,7 +43,7 @@ in
     git
     wget
     zsh
-    unstable.tailscale
+    tailscale
     cifs-utils
     parted
     k3s
