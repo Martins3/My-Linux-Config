@@ -2,18 +2,14 @@
 
 https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
 
-似乎需要:
-
 ```sh
 gsettings reset org.gnome.desktop.input-sources xkb-options
 gsettings reset org.gnome.desktop.input-sources sources
 ```
-
 也许也需要执行下:
 setxkbmap -option caps:swapescape
 
-
-gnome 中的最终解决方案:
+2026-07-17 : 上面的方法可以不看，gnome 中的最终解决方案:
 ```sh
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 ```
