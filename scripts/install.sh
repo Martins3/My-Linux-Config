@@ -17,6 +17,7 @@ mkdir -p ~/.config/pueue
 [[ ! -d ~/.config/ghostty ]] && ln -sf ~/.dotfiles/config/ghostty ~/.config/ghostty
 [[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
 [[ ! -d ~/.config/gitui ]] && ln -sf ~/.dotfiles/config/gitui ~/.config/gitui
+[[ ! -d ~/.config/htop ]] && ln -sf ~/.dotfiles/config/htop ~/.config/htop
 
 ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
