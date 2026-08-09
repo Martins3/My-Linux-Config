@@ -1,48 +1,47 @@
 #!/usr/bin/env bash
 set -E -e -u -o pipefail
-cd ~ || exit 0
-if [[ ! -d ~/.dotfiles ]]; then
-	git clone https://github.com/Martins3/My-Linux-config .dotfiles
-fi
-mkdir -p ~/.config
-mkdir -p ~/.config/wtf
-mkdir -p ~/.config/wezterm
-mkdir -p ~/.config/zathura
-mkdir -p ~/.cargo
-mkdir -p ~/.config/atuin/
-mkdir -p ~/.config/pueue
 
-[[ ! -d ~/.config/nvim ]] && ln -sf ~/.dotfiles/nvim ~/.config/nvim
-[[ ! -d ~/.config/kitty ]] && ln -sf ~/.dotfiles/config/kitty ~/.config/kitty
-[[ ! -d ~/.config/ghostty ]] && ln -sf ~/.dotfiles/config/ghostty ~/.config/ghostty
-[[ ! -d ~/.config/zellij ]] && ln -sf ~/.dotfiles/config/zellij ~/.config/zellij
-[[ ! -d ~/.config/gitui ]] && ln -sf ~/.dotfiles/config/gitui ~/.config/gitui
-[[ ! -d ~/.config/htop ]] && ln -sf ~/.dotfiles/config/htop ~/.config/htop
+dotfiles="$HOME/.dotfiles"
 
-ln -sf ~/.dotfiles/config/tmux.conf ~/.tmux.conf
-ln -sf ~/.dotfiles/config/tigrc.conf ~/.tigrc
-ln -sf ~/.dotfiles/config/alacritty.toml ~/.alacritty.toml
-ln -sf ~/.dotfiles/config/wtf.yml ~/.config/wtf/config.yml
-ln -sf ~/.dotfiles/config/zathurarc ~/.config/zathura/zathurarc
-ln -sf ~/.dotfiles/config/starship.toml ~/.config/starship.toml
-ln -sf ~/.dotfiles/config/cargo.toml ~/.cargo/config.toml
-ln -sf ~/.dotfiles/config/wezterm.lua ~/.config/wezterm/wezterm.lua
-ln -sf ~/.dotfiles/config/atuin.toml ~/.config/atuin/config.toml
-ln -sf ~/.dotfiles/config/pueue.yml ~/.config/pueue/pueue.yml
-
-if [[ ! -L ~/.gitconfig ]]; then
-	ln -sf ~/.dotfiles/config/gitconfig ~/.gitconfig
+if [[ ! -d $dotfiles ]]; then
+	git clone https://github.com/Martins3/My-Linux-config "$dotfiles"
 fi
 
-mkdir -p ~/.config/efm-langserver/
-ln -sf ~/.dotfiles/nvim/efm.yaml ~/.config/efm-langserver/config.yaml
+mkdir -p "$HOME/.cargo" "$HOME/.config"/{atuin,efm-langserver,pueue,wezterm,wtf,zathura}
 
-if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+[[ -d "$HOME/.config/nvim" ]] || ln -sf "$dotfiles/nvim" "$HOME/.config/nvim"
+for name in ghostty gitui htop kitty zellij; do
+	[[ -d "$HOME/.config/$name" ]] || ln -sf "$dotfiles/config/$name" "$HOME/.config/$name"
+done
+
+declare -A links=(
+	["config/tmux.conf"]=".tmux.conf"
+	["config/tigrc.conf"]=".tigrc"
+	["config/alacritty.toml"]=".alacritty.toml"
+	["config/wtf.yml"]=".config/wtf/config.yml"
+	["config/zathurarc"]=".config/zathura/zathurarc"
+	["config/starship.toml"]=".config/starship.toml"
+	["config/cargo.toml"]=".cargo/config.toml"
+	["config/wezterm.lua"]=".config/wezterm/wezterm.lua"
+	["config/atuin.toml"]=".config/atuin/config.toml"
+	["config/pueue.yml"]=".config/pueue/pueue.yml"
+	["nvim/efm.yaml"]=".config/efm-langserver/config.yaml"
+)
+
+for source_path in "${!links[@]}"; do
+	ln -sf "$dotfiles/$source_path" "$HOME/${links[$source_path]}"
+done
+
+if [[ ! -L "$HOME/.gitconfig" ]]; then
+	ln -sf "$dotfiles/config/gitconfig" "$HOME/.gitconfig"
+fi
+
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+	git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 	echo "tmux plugin install : prefix + I"
 fi
 
-if systemctl list-units --type target | grep graphical; then
-	bash "$HOME"/.dotfiles/rime/linux-install.sh
+if systemctl is-active --quiet graphical.target; then
+	bash "$dotfiles/rime/linux-install.sh"
 	echo "Almost finished，open fcitx 5 Configiration"
 fi
