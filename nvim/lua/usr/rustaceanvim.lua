@@ -26,6 +26,14 @@ vim.g.rustaceanvim = {
         })
       end
 
+      local run_at_cursor = function()
+        vim.cmd.RustLsp("run")
+      end
+
+      local select_runnable = function()
+        vim.cmd.RustLsp("runnables")
+      end
+
       map("K", function()
         vim.cmd.RustLsp({ "hover", "actions" })
       end, "Rust hover actions")
@@ -34,13 +42,8 @@ vim.g.rustaceanvim = {
         vim.cmd.RustLsp("codeAction")
       end, "Rust code action")
 
-      map("<leader>x", function()
-        vim.cmd.RustLsp("run")
-      end, "Rust run")
-
-      map("<leader>R", function()
-        vim.cmd.RustLsp("runnables")
-      end, "Rust runnables")
+      map("<space>lr", run_at_cursor, "Rust run at cursor")
+      map("<space>lR", select_runnable, "Rust select runnable")
 
       map("<leader>ce", function()
         vim.cmd.RustLsp({ "explainError", "current" })

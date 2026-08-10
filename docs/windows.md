@@ -259,6 +259,7 @@ Windows 支持 symbolic link，也支持目录 junction。创建 symbolic link �
 
 ## 相关文档
 
+- [Windows 驱动开发环境](./windows-driver.md)
 - [PowerShell 常用命令](./windows-powershell.md)
 - [Visual Studio 简记](./windows-visual-studio.md)
 - [使用 Windows 作为开发机的背景](./windows-why.md)

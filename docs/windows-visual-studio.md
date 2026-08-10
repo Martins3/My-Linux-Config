@@ -34,6 +34,21 @@ Visual Studio 2022 Community 的 MSBuild 通常位于：
 C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe
 ```
 
+当前 Windows 驱动环境使用 Visual Studio 2026，安装目录是：
+
+```text
+C:\Program Files\Microsoft Visual Studio\18\Community
+```
+
+构建 WDK 28000 项目必须选择 64 位 MSBuild：
+
+```text
+C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\amd64\MSBuild.exe
+```
+
+普通的 `Bin\MSBuild.exe` 是 32 位进程，不适合 WDK 28000 的内核驱动验证工具链。完整记录见
+[Windows 驱动开发环境](./windows-driver.md)。
+
 参考：
 
 - <https://learn.microsoft.com/en-us/visualstudio/msbuild/walkthrough-using-msbuild?view=vs-2022>

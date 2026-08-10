@@ -625,7 +625,11 @@ vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 
 
 | binding           | function                 |
 | ----------------- | ------------------------ |
-| `<space>` `l` `r` | 根据文件类型，执行该文件 |
+| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable |
+
+Rust 文件由 rustaceanvim 接管：光标放在 `main()` 或带
+`#[test]`/`#[cfg_attr(test, test)]` 的函数中，按 `<space>lr` 或 `,x`
+直接运行；按 `<space>lR` 或 `,R` 选择当前 crate 中的 runnable。
 
 | C 语言文件一键运行                  |
 | ----------------------------------- |
