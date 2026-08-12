@@ -46,7 +46,8 @@ vim.diagnostic.config({
 
 -- 光标停留时自动显示诊断
 vim.api.nvim_create_autocmd('CursorHold', {
-  callback = function() vim.diagnostic.open_float(nil, { focusable = false }) end,
+  -- focusable 就是光标是否可以选中报错的框
+  callback = function() vim.diagnostic.open_float(nil, { focusable = true }) end,
 })
 
 local map = vim.keymap.set

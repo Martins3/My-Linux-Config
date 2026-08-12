@@ -46,6 +46,8 @@ pkgs.clangStdenv.mkDerivation {
     clippy
     rdma-core
     lttng-ust
+    # QEMU's dtrace trace backend includes <sys/sdt.h> in generated headers.
+    libsystemtap
     # 提供 libcurl 库，给 block/curl.c 使用
     curl
     alsa-lib
