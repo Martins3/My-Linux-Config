@@ -288,7 +288,7 @@ with pkgs;
   nixfmt
   # debootstrap # 制作 uml 的工具
   meson
-  unstable.neovim
+  neovim
   # translate-shell # TODO 需要下联网问题
   luarocks
   # zed-editor # 默认不支持中文，放弃

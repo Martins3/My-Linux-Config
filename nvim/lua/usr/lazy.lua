@@ -286,7 +286,7 @@ require("lazy").setup({
   "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
+    version = "^9", -- Recommended
     lazy = false, -- This plugin is already lazy
   },
   -- 其他
