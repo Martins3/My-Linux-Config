@@ -52,10 +52,6 @@ local function pytest_project_toggle()
   toggle_float_terminal("cd " .. vim.fn.shellescape(root) .. " && " .. python.pytest_cmd(root))
 end
 
-local function qwen_toggle()
-  toggle_float_terminal("qwen")
-end
-
 require("toggleterm").setup({
   direction = "float",
   open_mapping = [[<c-t>]],
@@ -66,7 +62,6 @@ require("toggleterm").setup({
 vim.keymap.set("n", "<space>gs", lazygit_toggle, { silent = true })
 vim.keymap.set("n", "<space>gl", ls_toggle, { silent = true })
 vim.keymap.set("n", "<space>x", ipython_toggle, { silent = true })
-vim.keymap.set("n", "<space>e", qwen_toggle, { silent = true })
 vim.keymap.set("n", "<space>lt", pytest_file_toggle, { silent = true, desc = "pytest current file" })
 vim.keymap.set("n", "<space>lT", pytest_nearest_toggle, { silent = true, desc = "pytest nearest test" })
 vim.keymap.set("n", "<space>lp", pytest_project_toggle, { silent = true, desc = "pytest project" })

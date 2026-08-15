@@ -54,7 +54,7 @@ end
 -- - terminal job is zsh
 -- - tty foreground group is still zsh's own group
 -- Blocked case:
--- - terminal job is some other program, such as ipython/tig/qwen
+-- - terminal job is some other program, such as ipython/tig
 -- - or zsh has handed the tty to a foreground child process
 local function classify_terminal_buffer(buf)
   local channel = vim.bo[buf].channel
