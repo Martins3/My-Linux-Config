@@ -403,39 +403,23 @@ require("lazy").setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      -- 使用 kimi-cli 的 ACP 模式
-      -- provider = "kimi-cli",
-      provider = "codex",
-      -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
-      acp_providers = {
-        ["kimi-cli"] = {
-          command = "kimi",
-          args = { "acp" },
-        },
-        ["codex"] = {
-          command = "codex-acp",
-          env = {
-            NODE_NO_WARNINGS = "1",
-            INITIAL_AGENT_MODE = "agent-full-access",
-            HOME = os.getenv("HOME"),
-            PATH = os.getenv("PATH"),
-            CODEX_PATH = "/home/martins3/.bun/bin/codex",
-            http_proxy = os.getenv("http_proxy") or "http://127.0.0.1:7890",
-            https_proxy = os.getenv("https_proxy") or "http://127.0.0.1:7890",
-            ftp_proxy = os.getenv("ftp_proxy") or "http://127.0.0.1:7890",
-            WS_PROXY = os.getenv("WS_PROXY") or "http://127.0.0.1:7890",
-            WSS_PROXY = os.getenv("WSS_PROXY") or "http://127.0.0.1:7890",
-            HTTP_PROXY = os.getenv("HTTP_PROXY") or "http://127.0.0.1:7890",
-            HTTPS_PROXY = os.getenv("HTTPS_PROXY") or "http://127.0.0.1:7890",
-            FTP_PROXY = os.getenv("FTP_PROXY") or "http://127.0.0.1:7890",
+      provider = "deepseek",
+      providers = {
+        deepseek = {
+          __inherited_from = "openai",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-v4-flash",
+          api_key_name = "cmd:cat " .. vim.fn.expand("~/.config/avante/deepseek-api-key"),
+          timeout = 30000,
+          context_window = 1000000,
+          use_response_api = false,
+          support_previous_response_id = false,
+          extra_request_body = {
+            max_tokens = 32768,
+            thinking = { type = "enabled" },
           },
         },
       },
-      -- 保留 API 直连模式配置（备用）
-      providers = {},
-    },
-    dependencies = {
-      -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
     },
   },
   -- cppman
