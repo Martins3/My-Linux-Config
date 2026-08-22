@@ -274,10 +274,22 @@ require("lazy").setup({
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
   -- 高亮
   {
-    "norcalli/nvim-colorizer.lua",
+    "nvim-mini/mini.hipatterns",
     ft = { "css", "javascript", "lua", "html" },
     config = function()
-      require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
+      local hipatterns = require("mini.hipatterns")
+      local color_filetypes = { css = true, javascript = true, lua = true, html = true }
+
+      hipatterns.setup({
+        highlighters = {
+          hex_color = hipatterns.gen_highlighter.hex_color({
+            filter = function(bufnr)
+              return color_filetypes[vim.bo[bufnr].filetype] == true
+            end,
+          }),
+        },
+      })
+      hipatterns.enable()
     end,
   }, -- 显示 #ABCBCB
   -- lsp 增强
