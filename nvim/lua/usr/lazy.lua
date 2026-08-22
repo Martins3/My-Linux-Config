@@ -217,7 +217,6 @@ require("lazy").setup({
   "rhysd/git-messenger.vim", -- 利用 git blame 显示当前行的 commit message
   "tpope/vim-fugitive", -- 实现一些基本操作的快捷执行
   "lewis6991/gitsigns.nvim", -- 显示改动的信息
-  { "akinsho/git-conflict.nvim", version = "*", config = true }, -- 解决 git 冲突
   -- 基于 telescope 的搜索
   "nvim-telescope/telescope.nvim",
   {
