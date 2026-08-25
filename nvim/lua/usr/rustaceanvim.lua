@@ -1,4 +1,4 @@
----@type RustaceanOpts
+---@type rustaceanvim.Opts
 vim.g.rustaceanvim = {
   tools = {
     executor = "toggleterm",
@@ -9,6 +9,7 @@ vim.g.rustaceanvim = {
     },
     code_actions = {
       ui_select_fallback = true,
+      keys = {},
     },
     float_win_config = {
       border = "rounded",

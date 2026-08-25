@@ -36,8 +36,10 @@ end
 
 local function cpp_runner()
   return windows_system_programming_runner()
-    or "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o"
+    or (
+      "cd $dir && g++ -std=c++20 -lpthread -g $fileName -o"
       .. "$fileNameWithoutExt.out  && $dir/$fileNameWithoutExt.out"
+    )
 end
 
 require("code_runner").setup({

@@ -89,7 +89,11 @@ require("lazy").setup({
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({
+      -- The disabled plugin is absent from runtimepath, so lua_ls otherwise
+      -- mistakes Avante's internal copilot module for zbirenbaum/copilot.lua.
+      ---@type { setup: fun(opts: table) }
+      local copilot = require("copilot")
+      copilot.setup({
         panel = { enabled = false },
         suggestion = {
           enabled = true,
