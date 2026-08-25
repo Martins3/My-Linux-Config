@@ -623,9 +623,10 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
-| binding           | function                 |
-| ----------------- | ------------------------ |
-| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable |
+| binding           | function                                                  |
+| ----------------- | --------------------------------------------------------- |
+| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable              |
+| `<space>` `l` `R` | 执行当前项目；Rust 中选择当前 crate 的 runnable            |
 
 Rust 文件由 rustaceanvim 接管：光标放在 `main()` 或带
 `#[test]`/`#[cfg_attr(test, test)]` 的函数中，按 `<space>lr` 或 `,x`

@@ -82,7 +82,8 @@ wk.add({
   { "<space>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", desc = "lsp goto prev" },
   { "<space>ln", "<cmd>lua vim.lsp.buf.rename()<cr>",                 desc = "rename" },
   { "<space>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",          desc = "" },
-  { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run current file" },
+  { "<space>lr", "<cmd>RunFile<cr>",                                  desc = "run current file" },
+  { "<space>lR", "<cmd>RunProject<cr>",                               desc = "run current project" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   { "<space>q",  "<cmd>SmartQuit<cr>",                                desc = "close vim" },
 
