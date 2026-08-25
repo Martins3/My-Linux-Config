@@ -49,4 +49,4 @@ require("nvim-treesitter-textobjects").setup({
 
 vim.keymap.set({ "n", "x", "o" }, "gj", function()
   require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-end)
+end, { desc = "Go to start of current/previous function" })
