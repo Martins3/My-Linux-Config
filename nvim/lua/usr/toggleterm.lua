@@ -64,22 +64,3 @@ vim.keymap.set("n", "<space>x", ipython_toggle, { silent = true })
 vim.keymap.set("n", "<space>lt", pytest_file_toggle, { silent = true, desc = "pytest current file" })
 vim.keymap.set("n", "<space>lT", pytest_nearest_toggle, { silent = true, desc = "pytest nearest test" })
 vim.keymap.set("n", "<space>lp", pytest_project_toggle, { silent = true, desc = "pytest project" })
-
-local function set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-
-  vim.keymap.set("t", "<c-s>", "<cmd>TermSelect<CR>", opts)
-end
-
-local toggleterm_group = vim.api.nvim_create_augroup("usr_toggleterm", { clear = true })
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = toggleterm_group,
-  pattern = "term://*",
-  callback = function()
-    set_terminal_keymaps()
-  end,
-})
-
-vim.keymap.set("n", "<c-s>", "<cmd>TermSelect<CR>", { silent = true })

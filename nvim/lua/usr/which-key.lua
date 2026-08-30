@@ -73,7 +73,6 @@ wk.add({
   { "<space>gp", "<cmd>Git push<cr>",                                  desc = "git push" },
   -- 因为 ctrl-i 实际上等同于 tab
   { "<space>i",  "<c-i>",                                             desc = "go to newer jumplist" },
-  { "<space>j",  "<cmd>ToggleTerm size=30 direction=horizontal <cr>", desc = "open toggle term" },
   { "<space>l",  group = "language" },
   { "<space>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",            desc = "code action" },
   { "<space>lc", "<cmd>Commentary<cr>",                               desc = "comment code" },
