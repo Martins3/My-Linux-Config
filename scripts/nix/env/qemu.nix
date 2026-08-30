@@ -23,7 +23,6 @@ pkgs.clangStdenv.mkDerivation {
     gtk3
     libaio
     libnfs
-    liburing
     libseccomp
     libssh
     libbpf
