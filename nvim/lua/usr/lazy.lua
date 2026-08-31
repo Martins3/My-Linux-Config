@@ -231,6 +231,30 @@ require("lazy").setup({
     end,
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
+  {
+    "dmtrKovalenko/fff",
+    -- 官方下载器在当前 Nix/glibc 环境无法加载预编译库，且 workspace
+    -- 回退构建会超过其两分钟超时；只构建 Neovim package 更可靠。
+    build = "cargo build --release --package fff-nvim",
+    lazy = false, -- fff 会自行延迟初始化索引
+    opts = {},
+    keys = {
+      {
+        "<leader>d",
+        function()
+          require("fff").find_files()
+        end,
+        desc = "search files with fff",
+      },
+      {
+        "<leader>D",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = "live grep with fff",
+      },
+    },
+  },
   -- 命令执行
   {
     "akinsho/toggleterm.nvim",
