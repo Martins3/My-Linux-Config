@@ -3,9 +3,17 @@
 #f45873b3-b655-43a6-b217-97c00aa0db58
 function Invoke-SshScript {
     param(
-        [switch]$c
+        [switch]$c,
+        [switch]$r
     )
-    & "C:\Users\97936\data\vn\smartx\ssh.ps1" @PSBoundParameters
+    $sshArgs = @()
+    if ($c) {
+        $sshArgs += "-c"
+    }
+    if ($r) {
+        $sshArgs += "-r"
+    }
+    python "C:\Users\97936\data\vn\smartx\ssh.py" @sshArgs
 }
 Set-Alias s Invoke-SshScript
 
