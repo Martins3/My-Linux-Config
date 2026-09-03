@@ -1436,3 +1436,34 @@ https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
 ```
 
 ## 不知道为什么，现在 compile_commands.json 中需要把 rebuild 字段删掉才可以
+
+
+## 这也是安装的方法
+
+用 Nix 安装的静态 BusyBox，并避免覆盖现有工具。
+
+实际安装命令是：
+
+```sh
+  nix profile add --impure --expr '
+    with import /home/martins3/data/nixpkgs {};
+    runCommand "busybox-static" {} "
+      mkdir -p \$out/bin
+      ln -s \${pkgsStatic.busybox}/bin/busybox \$out/bin/busybox-static
+    "
+  '
+```
+
+它做了两层事情：
+
+- pkgsStatic.busybox：Nixpkgs 提供的 aarch64 静态 BusyBox。
+- runCommand "busybox-static"：只创建一个 busybox-static 命令，避免 BusyBox 自带的 lsof、mount 等 applet 与现有 Home Manager profile
+    冲突。
+
+  安装后命令是：
+
+  ~/.nix-profile/bin/busybox-static
+
+底层实际文件是：
+
+/nix/store/...-busybox-static-aarch64-unknown-linux-musl-1.37.0/bin/busybox
