@@ -1,5 +1,6 @@
 local roots = require("usr.lsp_roots")
 
+-- 将 Nix shell 的编译参数传给没有 compile_commands.json 条目的文件。
 local nix_cflags = vim.split(vim.env.NIX_CFLAGS_COMPILE or "", "%s+", {
   trimempty = true,
 })
