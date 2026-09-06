@@ -7,7 +7,7 @@ if [[ ! -d $dotfiles ]]; then
 	git clone https://github.com/Martins3/My-Linux-config "$dotfiles"
 fi
 
-mkdir -p "$HOME/.cargo" "$HOME/.config"/{atuin,efm-langserver,pueue,wezterm,wtf,zathura}
+mkdir -p "$HOME/.cargo" "$HOME/.config"/{atuin,clangd,efm-langserver,pueue,wezterm,wtf,zathura}
 
 [[ -d "$HOME/.config/nvim" ]] || ln -sf "$dotfiles/nvim" "$HOME/.config/nvim"
 for name in ghostty gitui htop kitty zellij; do
@@ -22,6 +22,7 @@ declare -A links=(
 	["config/zathurarc"]=".config/zathura/zathurarc"
 	["config/starship.toml"]=".config/starship.toml"
 	["config/cargo.toml"]=".cargo/config.toml"
+	["config/clangd/config.yaml"]=".config/clangd/config.yaml"
 	["config/wezterm.lua"]=".config/wezterm/wezterm.lua"
 	["config/atuin.toml"]=".config/atuin/config.toml"
 	["config/pueue.yml"]=".config/pueue/pueue.yml"
