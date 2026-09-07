@@ -165,7 +165,7 @@ direnv allow
 之后，安装无需使用 sudo 了
 
 ```sh
-npm install -g @lint-md/cli@beta
+npm install -g @lint-md/cli@2.3.1
 # npm i -g bash-language-server
 # npm install -g vim-language-server
 npm install -g prettier
@@ -775,11 +775,11 @@ gnome 有些内容需要手动设置
 3. Vn 和 My-Linux-Config 两个仓库中
 
 ```sh
-npm install -g @lint-md/cli@beta
+npm install -g @lint-md/cli@2.3.1
 pre-commit install
 ```
 
-但是 pre-commit 不知道为什么，并没有起效。 
+该命令会在当前仓库安装 `.git/hooks/pre-commit`。
 4. escape and capslock 的切换
 
 ```sh
