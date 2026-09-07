@@ -165,7 +165,7 @@ direnv allow
 之后，安装无需使用 sudo 了
 
 ```sh
-npm install -g @lint-md/cli@beta
+npm install -g @lint-md/cli@2.3.1
 # npm i -g bash-language-server
 # npm install -g vim-language-server
 npm install -g prettier
@@ -775,11 +775,11 @@ gnome 有些内容需要手动设置
 3. Vn 和 My-Linux-Config 两个仓库中
 
 ```sh
-npm install -g @lint-md/cli@beta
+npm install -g @lint-md/cli@2.3.1
 pre-commit install
 ```
 
-但是 pre-commit 不知道为什么，并没有起效。 
+该命令会在当前仓库安装 `.git/hooks/pre-commit`。
 4. escape and capslock 的切换
 
 ```sh
@@ -1436,3 +1436,34 @@ https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
 ```
 
 ## 不知道为什么，现在 compile_commands.json 中需要把 rebuild 字段删掉才可以
+
+
+## 这也是安装的方法
+
+用 Nix 安装的静态 BusyBox，并避免覆盖现有工具。
+
+实际安装命令是：
+
+```sh
+  nix profile add --impure --expr '
+    with import /home/martins3/data/nixpkgs {};
+    runCommand "busybox-static" {} "
+      mkdir -p \$out/bin
+      ln -s \${pkgsStatic.busybox}/bin/busybox \$out/bin/busybox-static
+    "
+  '
+```
+
+它做了两层事情：
+
+- pkgsStatic.busybox：Nixpkgs 提供的 aarch64 静态 BusyBox。
+- runCommand "busybox-static"：只创建一个 busybox-static 命令，避免 BusyBox 自带的 lsof、mount 等 applet 与现有 Home Manager profile
+    冲突。
+
+  安装后命令是：
+
+  ~/.nix-profile/bin/busybox-static
+
+底层实际文件是：
+
+/nix/store/...-busybox-static-aarch64-unknown-linux-musl-1.37.0/bin/busybox

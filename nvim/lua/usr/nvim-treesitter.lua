@@ -1,12 +1,18 @@
-require 'nvim-treesitter'.setup {}
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'markdown', 'c', 'sh', 'python' },
+if vim.fn.has("win32") == 1 and vim.fn.executable("gcc") == 1 then
+  -- tree-sitter defaults to cl.exe on Windows, but the Scoop toolchain uses MinGW GCC.
+  vim.env.CC = "gcc"
+  vim.env.CXX = "g++"
+end
+
+require("nvim-treesitter").setup({})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "c", "sh", "python" },
   callback = function()
     vim.treesitter.start()
   end,
 })
 
-require 'nvim-treesitter'.install {
+require("nvim-treesitter").install({
   "lua",
   "java",
   "rust",
@@ -31,17 +37,16 @@ require 'nvim-treesitter'.install {
   "kconfig",
   "toml",
   "cuda",
-}
-
+})
 
 -- configuration
-require("nvim-treesitter-textobjects").setup {
+require("nvim-treesitter-textobjects").setup({
   move = {
     -- whether to set jumps in the jumplist
     set_jumps = true,
   },
-}
+})
 
 vim.keymap.set({ "n", "x", "o" }, "gj", function()
   require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-end)
+end, { desc = "Go to start of current/previous function" })

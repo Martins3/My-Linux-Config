@@ -89,7 +89,11 @@ require("lazy").setup({
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({
+      -- The disabled plugin is absent from runtimepath, so lua_ls otherwise
+      -- mistakes Avante's internal copilot module for zbirenbaum/copilot.lua.
+      ---@type { setup: fun(opts: table) }
+      local copilot = require("copilot")
+      copilot.setup({
         panel = { enabled = false },
         suggestion = {
           enabled = true,
@@ -159,7 +163,7 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff_organize_imports", "ruff_fix", "black" },
+        python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
         markdown = { "deno_fmt" },
       },
       formatters = {
@@ -217,7 +221,6 @@ require("lazy").setup({
   "rhysd/git-messenger.vim", -- 利用 git blame 显示当前行的 commit message
   "tpope/vim-fugitive", -- 实现一些基本操作的快捷执行
   "lewis6991/gitsigns.nvim", -- 显示改动的信息
-  { "akinsho/git-conflict.nvim", version = "*", config = true }, -- 解决 git 冲突
   -- 基于 telescope 的搜索
   "nvim-telescope/telescope.nvim",
   {
@@ -228,6 +231,30 @@ require("lazy").setup({
     end,
   },
   "nvim-telescope/telescope-frecency.nvim", -- 查找最近打开的文件
+  {
+    "dmtrKovalenko/fff",
+    -- 官方下载器在当前 Nix/glibc 环境无法加载预编译库，且 workspace
+    -- 回退构建会超过其两分钟超时；只构建 Neovim package 更可靠。
+    build = "cargo build --release --package fff-nvim",
+    lazy = false, -- fff 会自行延迟初始化索引
+    opts = {},
+    keys = {
+      {
+        "<leader>d",
+        function()
+          require("fff").find_files()
+        end,
+        desc = "search files with fff",
+      },
+      {
+        "<leader>D",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = "live grep with fff",
+      },
+    },
+  },
   -- 命令执行
   {
     "akinsho/toggleterm.nvim",
@@ -253,7 +280,11 @@ require("lazy").setup({
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    -- 这个写法看上去仅仅在 Unix 上可以工作
+    -- build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
@@ -270,10 +301,22 @@ require("lazy").setup({
   "windwp/nvim-spectre", -- 媲美 vscode 的多文件替换
   -- 高亮
   {
-    "norcalli/nvim-colorizer.lua",
+    "nvim-mini/mini.hipatterns",
     ft = { "css", "javascript", "lua", "html" },
     config = function()
-      require("colorizer").setup({ "css", "javascript", "lua", html = { mode = "foreground" } })
+      local hipatterns = require("mini.hipatterns")
+      local color_filetypes = { css = true, javascript = true, lua = true, html = true }
+
+      hipatterns.setup({
+        highlighters = {
+          hex_color = hipatterns.gen_highlighter.hex_color({
+            filter = function(bufnr)
+              return color_filetypes[vim.bo[bufnr].filetype] == true
+            end,
+          }),
+        },
+      })
+      hipatterns.enable()
     end,
   }, -- 显示 #ABCBCB
   -- lsp 增强
@@ -282,7 +325,7 @@ require("lazy").setup({
   "jakemason/ouroboros", -- quickly switch between header and source file in C/C++ project
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
+    version = "^9", -- Recommended
     lazy = false, -- This plugin is already lazy
   },
   -- 其他
@@ -399,39 +442,23 @@ require("lazy").setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      -- 使用 kimi-cli 的 ACP 模式
-      -- provider = "kimi-cli",
-      provider = "codex",
-      -- ACP 模式配置：覆盖默认配置，修复 --acp 参数已被废弃的问题
-      acp_providers = {
-        ["kimi-cli"] = {
-          command = "kimi",
-          args = { "acp" },
-        },
-        ["codex"] = {
-          command = "codex-acp",
-          env = {
-            NODE_NO_WARNINGS = "1",
-            INITIAL_AGENT_MODE = "agent-full-access",
-            HOME = os.getenv("HOME"),
-            PATH = os.getenv("PATH"),
-            CODEX_PATH = "/home/martins3/.bun/bin/codex",
-            http_proxy = os.getenv("http_proxy") or "http://127.0.0.1:7890",
-            https_proxy = os.getenv("https_proxy") or "http://127.0.0.1:7890",
-            ftp_proxy = os.getenv("ftp_proxy") or "http://127.0.0.1:7890",
-            WS_PROXY = os.getenv("WS_PROXY") or "http://127.0.0.1:7890",
-            WSS_PROXY = os.getenv("WSS_PROXY") or "http://127.0.0.1:7890",
-            HTTP_PROXY = os.getenv("HTTP_PROXY") or "http://127.0.0.1:7890",
-            HTTPS_PROXY = os.getenv("HTTPS_PROXY") or "http://127.0.0.1:7890",
-            FTP_PROXY = os.getenv("FTP_PROXY") or "http://127.0.0.1:7890",
+      provider = "deepseek",
+      providers = {
+        deepseek = {
+          __inherited_from = "openai",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-v4-flash",
+          api_key_name = "cmd:cat " .. vim.fn.expand("~/.config/avante/deepseek-api-key"),
+          timeout = 30000,
+          context_window = 1000000,
+          use_response_api = false,
+          support_previous_response_id = false,
+          extra_request_body = {
+            max_tokens = 32768,
+            thinking = { type = "enabled" },
           },
         },
       },
-      -- 保留 API 直连模式配置（备用）
-      providers = {},
-    },
-    dependencies = {
-      -- "stevearc/dressing.nvim",  -- 这个让 nvim-tree 的编辑有点不习惯
     },
   },
   -- cppman

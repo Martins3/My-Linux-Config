@@ -1,4 +1,4 @@
-# 2024 年 vim 的 C/C++ 配置
+# 2026 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -623,9 +623,14 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
-| binding           | function                 |
-| ----------------- | ------------------------ |
-| `<space>` `l` `r` | 根据文件类型，执行该文件 |
+| binding           | function                                                  |
+| ----------------- | --------------------------------------------------------- |
+| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable              |
+| `<space>` `l` `R` | 执行当前项目；Rust 中选择当前 crate 的 runnable            |
+
+Rust 文件由 rustaceanvim 接管：光标放在 `main()` 或带
+`#[test]`/`#[cfg_attr(test, test)]` 的函数中，按 `<space>lr` 或 `,x`
+直接运行；按 `<space>lR` 或 `,R` 选择当前 crate 中的 runnable。
 
 | C 语言文件一键运行                  |
 | ----------------------------------- |

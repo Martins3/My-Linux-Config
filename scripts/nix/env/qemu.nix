@@ -14,7 +14,7 @@ pkgs.clangStdenv.mkDerivation {
     ninja
     glib
     pixman
-    xorg.libX11.dev
+    libX11.dev
     rdma-core
     liburing
     libiscsi
@@ -23,7 +23,6 @@ pkgs.clangStdenv.mkDerivation {
     gtk3
     libaio
     libnfs
-    liburing
     libseccomp
     libssh
     libbpf
@@ -46,6 +45,8 @@ pkgs.clangStdenv.mkDerivation {
     clippy
     rdma-core
     lttng-ust
+    # QEMU's dtrace trace backend includes <sys/sdt.h> in generated headers.
+    libsystemtap
     # 提供 libcurl 库，给 block/curl.c 使用
     curl
     alsa-lib

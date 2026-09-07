@@ -73,7 +73,6 @@ wk.add({
   { "<space>gp", "<cmd>Git push<cr>",                                  desc = "git push" },
   -- 因为 ctrl-i 实际上等同于 tab
   { "<space>i",  "<c-i>",                                             desc = "go to newer jumplist" },
-  { "<space>j",  "<cmd>ToggleTerm size=30 direction=horizontal <cr>", desc = "open toggle term" },
   { "<space>l",  group = "language" },
   { "<space>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",            desc = "code action" },
   { "<space>lc", "<cmd>Commentary<cr>",                               desc = "comment code" },
@@ -82,7 +81,8 @@ wk.add({
   { "<space>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", desc = "lsp goto prev" },
   { "<space>ln", "<cmd>lua vim.lsp.buf.rename()<cr>",                 desc = "rename" },
   { "<space>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>",          desc = "" },
-  { "<space>lr", "<cmd>RunCode<cr>",                                  desc = "run code" },
+  { "<space>lr", "<cmd>RunFile<cr>",                                  desc = "run current file" },
+  { "<space>lR", "<cmd>RunProject<cr>",                               desc = "run current project" },
   { "<space>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>",         desc = "signature help" },
   { "<space>q",  "<cmd>SmartQuit<cr>",                                desc = "close vim" },
 

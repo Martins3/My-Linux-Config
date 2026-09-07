@@ -65,6 +65,12 @@ pkgs.llvmPackages.stdenv.mkDerivation {
 
   RUST_LIB_SRC = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
+  # 保证 nix 的 rustc 优先于 ~/.cargo/bin 里 rustup 的 rustc，
+  # 否则 rustup 升级后 rustc 与 RUST_LIB_SRC 版本不匹配，rust/core.o 编译失败
+  shellHook = ''
+    export PATH=${pkgs.rustc}/bin:$PATH
+  '';
+
   # See https://discourse.nixos.org/t/rust-src-not-found-and-other-misadventures-of-developing-rust-on-nixos/11570/3?u=samuela.
   # RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 }

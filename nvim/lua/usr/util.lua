@@ -82,56 +82,70 @@ vim.keymap.set(
 )
 
 -- 拷贝， <leader> a ，然后粘贴
--- 会调用脚本，将 clipboard 中的 gdb backtrace 简化之后再粘贴出来
-function ProcessClipboard()
-  -- SSH/tmux 下读取本地系统剪贴板不一定可用；provider 失败时给出明确提示。
-  local ok, clipboard_content = pcall(vim.fn.getreg, "+")
-  if not ok then
-    vim.notify(
-      "Failed to read + register from clipboard provider. Paste the text into a buffer first, then process it there.",
-      vim.log.levels.ERROR
-    )
-    return
+-- 将 clipboard 中的 gdb backtrace 简化之后再粘贴出来
+-- 传入 input 时直接处理字符串并返回结果，不读写剪贴板（方便测试）。
+function ProcessClipboard(input)
+  local clipboard_content
+  if input then
+    clipboard_content = input
+  else
+    -- SSH/tmux 下读取本地系统剪贴板不一定可用；provider 失败时给出明确提示。
+    local ok, content = pcall(vim.fn.getreg, "+")
+    if not ok then
+      vim.notify(
+        "Failed to read + register from clipboard provider. Paste the text into a buffer first, then process it there.",
+        vim.log.levels.ERROR
+      )
+      return
+    end
+    clipboard_content = content
   end
+
   -- 检查剪贴板内容是否为空
   if clipboard_content == "" then
     print("Clipboard is empty!")
     return
   end
 
-  -- 打开文件并写入剪贴板内容
-  local tmp = "/tmp/martins3/trim.txt"
-  local file = io.open(tmp, "w+")
-  if file then
-    local success, err = file:write(clipboard_content)
-    if not success then
-      print("Failed to write to file: " .. err)
-      return
+  -- 1. 合并所有行，再按 #数字 重新分割，处理 gdb backtrace 的折行
+  local joined = clipboard_content:gsub("\n", " ")
+  local frames = {}
+  for frame in joined:gmatch("#%d+%s*([^#]*)") do
+    -- 2. 去掉 "0xffffffff812e6b58 in " 这类地址前缀
+    frame = frame:gsub("^%s*0x%x+%s*in%s*", "")
+    -- 3. 去掉前导空格
+    frame = frame:gsub("^%s*", "")
+    -- 4. 提取函数名，遇到 ( 为止
+    frame = frame:match("^[^%(]+")
+    if frame then
+      frame = frame:gsub("%s*$", "")
+      if frame ~= "" then
+        table.insert(frames, frame)
+      end
     end
-    file:close()
-  else
-    print("Failed to open file: " .. tmp)
+  end
+
+  if #frames == 0 then
+    print("No gdb backtrace frames found in clipboard.")
     return
   end
 
-  local project = "/home/martins3/data/vn"
-  local script_path = project .. "/alpine/trim.sh"
-  if vim.fn.filereadable(script_path) == 1 then
-    vim.fn.system(script_path)
-  else
-    print("Script not found: " .. script_path)
+  -- 5. 反转调用栈，并生成缩进列表
+  local indent = "- "
+  local result = {}
+  for i = #frames, 1, -1 do
+    table.insert(result, indent .. frames[i])
+    indent = "  " .. indent
   end
 
-  file = io.open(tmp, "r")
-  if file then
-    local file_content = file:read("*a") -- 读取整个文件内容
-    -- 将文件内容写入剪贴板
-    vim.fn.setreg("+", file_content)
-    print(file_content)
-    file:close()
-  else
-    print("Failed to read file: " .. tmp)
+  local output = table.concat(result, "\n")
+
+  if input then
+    return output
   end
+
+  vim.fn.setreg("+", output)
+  print(output)
   print("trim finished !")
 end
 
