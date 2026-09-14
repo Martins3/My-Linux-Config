@@ -509,8 +509,10 @@ nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使
 | ----------------- | ------------------------------ |
 | `,` `b`           | 搜索 buffer                    |
 | `,` num           | 切换当前窗口到第 num 个 buffer |
-| `<Space>` `b` `c` | 关闭其他已经保存的 buffer      |
+| `<Space>` `b` `c` | 关闭已保存且不在任何窗口显示的非终端 buffer，并清理对应参数列表 |
 | `<Space>` `b` `d` | 关闭当前 buffer                |
+
+`<Space> b c` 使用 Snacks.bufdelete 批量清理，保留其他标签页中可见的 buffer。
 
 ### 文件搜索
 
