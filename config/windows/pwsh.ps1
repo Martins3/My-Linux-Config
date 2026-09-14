@@ -1,11 +1,19 @@
-#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
-Import-Module -Name Microsoft.WinGet.CommandNotFound
+# f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+# Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
 function Invoke-SshScript {
     param(
-        [switch]$c
+        [switch]$c,
+        [switch]$r
     )
-    & "C:\Users\97936\data\vn\smartx\ssh.ps1" @PSBoundParameters
+    $sshArgs = @()
+    if ($c) {
+        $sshArgs += "-c"
+    }
+    if ($r) {
+        $sshArgs += "-r"
+    }
+    python "C:\Users\97936\data\vn\smartx\ssh.py" @sshArgs
 }
 Set-Alias s Invoke-SshScript
 
@@ -22,19 +30,60 @@ function rmrf(){
 function q { exit }
 function gg { gitui --watcher }
 function fedora { wsl --user martins3 -d FedoraLinux-42 }
+function Enable-TunProxy {
+    $env:HTTP_PROXY = "http://127.0.0.1:7897"
+    $env:HTTPS_PROXY = "http://127.0.0.1:7897"
+}
 Set-Alias ls lsd
 function l { lsd -lah  @args }
 Set-Alias c Clear-Host
 Set-Alias v nvim
 Set-Alias gs gitui
+Set-Alias tpx Enable-TunProxy
 
 $env:SHELL_ARCH = "🌳"
+$env:SHELL = "pwsh"
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # oh-my-posh init pwsh | Invoke-Expression
 
+function Update-ZellijTabName {
+    if (-not $env:ZELLIJ) {
+        return
+    }
+
+    $currentDir = if ($ExecutionContext.SessionState.Path.CurrentFileSystemLocation) {
+        $ExecutionContext.SessionState.Path.CurrentFileSystemLocation.Path
+    } else {
+        (Get-Location).Path
+    }
+
+    $currentDir = Split-Path -Leaf $currentDir
+    if (-not $currentDir) {
+        $currentDir = (Get-Location).Path
+    }
+
+    $currentDir = $currentDir -replace "`r|`n", " "
+    if ($script:ZellijLastTabName -eq $currentDir) {
+        return
+    }
+
+    zellij action rename-tab $currentDir *> $null
+    $script:ZellijLastTabName = $currentDir
+}
+
+$script:ZellijLastTabName = $null
+$script:OriginalPrompt = (Get-Command prompt).ScriptBlock
+function global:prompt {
+    Update-ZellijTabName
+    & $script:OriginalPrompt
+}
+Update-ZellijTabName
+
 Import-Module PSReadline
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineKeyHandler -Key Ctrl+e -Function AcceptSuggestion
+Set-PSReadLineKeyHandler -Key Ctrl+RightArrow -Function AcceptNextSuggestionWord
 
 $env:Path = "C:\Users\97936\.local\bin;$env:Path"
 

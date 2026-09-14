@@ -1,19 +1,9 @@
-# 安装 scoop
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+param(
+    [switch]$SkipPackages,
+    [switch]$SkipNeovimSync
+)
 
-scoop install git vim neovim
-scoop bucket add nerd-fonts
-scoop install Hack-NF
+$repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$installer = Join-Path $repoRoot "scripts\windows-install.ps1"
 
-scoop install neovim neovide git lazygit gcc ripgrep fd unzip tree-sitter luarocks yarn yazi lsd llvm fzf
-scoop install Sysinternals zoxide make go ripgrep
-scoop install ntop python gdu
-scoop install ntop python wget
-# scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
-
-# https://github.com/gluons/powershell-git-aliases
-scoop install git-aliases
-
-# uv
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+& $installer @PSBoundParameters

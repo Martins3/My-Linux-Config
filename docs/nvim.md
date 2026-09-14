@@ -1,4 +1,4 @@
-# 2024 年 vim 的 C/C++ 配置
+# 2026 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -509,8 +509,10 @@ nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使
 | ----------------- | ------------------------------ |
 | `,` `b`           | 搜索 buffer                    |
 | `,` num           | 切换当前窗口到第 num 个 buffer |
-| `<Space>` `b` `c` | 关闭其他已经保存的 buffer      |
+| `<Space>` `b` `c` | 关闭已保存且不在任何窗口显示的非终端 buffer，并清理对应参数列表 |
 | `<Space>` `b` `d` | 关闭当前 buffer                |
+
+`<Space> b c` 使用 Snacks.bufdelete 批量清理，保留其他标签页中可见的 buffer。
 
 ### 文件搜索
 
@@ -623,9 +625,14 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
-| binding           | function                 |
-| ----------------- | ------------------------ |
-| `<space>` `l` `r` | 根据文件类型，执行该文件 |
+| binding           | function                                                  |
+| ----------------- | --------------------------------------------------------- |
+| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable              |
+| `<space>` `l` `R` | 执行当前项目；Rust 中选择当前 crate 的 runnable            |
+
+Rust 文件由 rustaceanvim 接管：光标放在 `main()` 或带
+`#[test]`/`#[cfg_attr(test, test)]` 的函数中，按 `<space>lr` 或 `,x`
+直接运行；按 `<space>lR` 或 `,R` 选择当前 crate 中的 runnable。
 
 | C 语言文件一键运行                  |
 | ----------------------------------- |
