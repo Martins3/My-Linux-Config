@@ -496,11 +496,10 @@ vim 内置了强大的搜索替换功能
 
 #### window resize
 
-nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
-将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
-
-利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
-`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。
+按 `c` `a` 进入窗口大小调整模式，命令行会显示当前处于“调整窗口”状态。
+可以连续使用 `h`/`l` 增大/缩小宽度（每次 10 列），
+`j`/`k` 增大/缩小高度（每次 5 行）。按 `Esc`、`Enter` 或 `q` 退出；
+按其他键会退出并正常执行该键。调整使用 Neovim 原生的 `resize` 命令。
 
 
 ### buffer
