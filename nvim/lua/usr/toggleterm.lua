@@ -1,10 +1,9 @@
-local isWindows = vim.fn.has('win32') == 1
+local isWindows = vim.fn.has("win32") == 1
 
 if isWindows then
   local powershell_options = {
-    shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
-    shellcmdflag =
-    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+    shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
     shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
     shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
     shellquote = "",
@@ -52,10 +51,6 @@ local function pytest_project_toggle()
   toggle_float_terminal("cd " .. vim.fn.shellescape(root) .. " && " .. python.pytest_cmd(root))
 end
 
-local function qwen_toggle()
-  toggle_float_terminal("qwen")
-end
-
 require("toggleterm").setup({
   direction = "float",
   open_mapping = [[<c-t>]],
@@ -66,31 +61,6 @@ require("toggleterm").setup({
 vim.keymap.set("n", "<space>gs", lazygit_toggle, { silent = true })
 vim.keymap.set("n", "<space>gl", ls_toggle, { silent = true })
 vim.keymap.set("n", "<space>x", ipython_toggle, { silent = true })
-vim.keymap.set("n", "<space>e", qwen_toggle, { silent = true })
 vim.keymap.set("n", "<space>lt", pytest_file_toggle, { silent = true, desc = "pytest current file" })
 vim.keymap.set("n", "<space>lT", pytest_nearest_toggle, { silent = true, desc = "pytest nearest test" })
 vim.keymap.set("n", "<space>lp", pytest_project_toggle, { silent = true, desc = "pytest project" })
-
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-
-  vim.keymap.set("t", "<c-s>", "<cmd>TermSelect<CR>", opts)
-end
-
-local toggleterm_group = vim.api.nvim_create_augroup("usr_toggleterm", { clear = true })
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = toggleterm_group,
-  pattern = "term://*",
-  callback = function()
-    set_terminal_keymaps()
-  end,
-})
-
-function get_terminal()
-  local m = vim.api.nvim_buf_get_name(0)
-  print(string.match(m, '%d$'))
-end
-
-vim.keymap.set("n", "<c-s>", "<cmd>TermSelect<CR>", { silent = true })

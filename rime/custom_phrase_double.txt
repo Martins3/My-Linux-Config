@@ -1,0 +1,13 @@
+# Rime table
+# coding: utf-8
+#@/db_name	custom_phrase_double.txt
+#@/db_type	tabledb
+#
+# 小鹤双拼自定义短语，以 Tab 分隔：词汇、编码、权重。
+
+访存	fhcy	1
+系统态	xitstd	1
+中州韵输入法引擎	rime	2
+为什么	wsm	1
+什么	sm	1
+北京志凌海纳科技有限公司	smartx	1

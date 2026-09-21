@@ -38,34 +38,30 @@ function install_rime_ice() {
 	rime_dir="$CONFIG_DIR" bash rime-install
 
 	rime_frontend="$PLUM_FRONTEND" rime_dir="$CONFIG_DIR" bash rime-install iDvel/rime-ice:others/recipes/full
-	rime_frontend="$PLUM_FRONTEND" rime_dir="$CONFIG_DIR" bash rime-install iDvel/rime-ice:others/recipes/config:schema=flypy
+	rime_frontend="$PLUM_FRONTEND" rime_dir="$CONFIG_DIR" bash rime-install iDvel/rime-ice:others/recipes/config:schema=double_pinyin_flypy
 }
 
 function add_extra_config() {
 
 	# 部署上我的配置，目前看，其实大多数都是没必要的，似乎 rime-ice 的配置
-  # 比我都是要好的，添加词库只有需要做这个操作
-  #
-  #  1. 先把自定义词库放进当前 Rime 配置目录。
-  #     在 Linux + fcitx5 下，你的配置目录是 ~/.local/share/fcitx5/rime/。最简单
-  #     是做软链接：
-  #
-  #  ln -sf ~/.dotfiles/rime/luna_pinyin.martins3.dict.yaml ~/.local/share/fcitx5/rime/
-  #
-  #
-  #  2. 修改 ~/.local/share/fcitx5/rime/rime_ice.dict.yaml
-  #     在 import_tables: 下面加一行：
-  #    - luna_pinyin.martins3
-  #
+	# 当前使用 custom_phrase_double.txt；以下为已停用的旧聚合词典方案说明。
+	# 比我都是要好的，添加词库只有需要做这个操作
+	#
+	#  1. 先把自定义词库放进当前 Rime 配置目录。
+	#     在 Linux + fcitx5 下，你的配置目录是 ~/.local/share/fcitx5/rime/。最简单
+	#     是做软链接：
+	#
+	#  ln -sf ~/.dotfiles/rime/luna_pinyin.martins3.dict.yaml ~/.local/share/fcitx5/rime/
+	#
+	#
+	#  2. 修改 ~/.local/share/fcitx5/rime/rime_ice.dict.yaml
+	#     在 import_tables: 下面加一行：
+	#    - luna_pinyin.martins3
+	#
 	cd ~/.dotfiles/rime
 	config=(
 		# default.custom.yaml
-		# double_pinyin_flypy.custom.yaml
-		# luna_pinyin.martins3.dict.yaml
-		# martins3_ice.dict.yaml
-		# melt_eng.custom.yaml
-		# radical_pinyin.custom.yaml
-		# rime_ice.custom.yaml
+		custom_phrase_double.txt
 	)
 	for i in "${config[@]}"; do
 		ln -sf "$(pwd)/$i" "$CONFIG_DIR/$i"
@@ -75,6 +71,5 @@ function add_extra_config() {
 setup_config_dir
 install_rime_ice
 add_extra_config
-# 最后，gnome 是需要这个机制的:
+# 最后，gnome 是需要这个机制的，不然没有输入法
 # https://extensions.gnome.org/extension/261/kimpanel/
-

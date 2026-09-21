@@ -1,4 +1,4 @@
-# 2024 年 vim 的 C/C++ 配置
+# 2026 年 vim 的 C/C++ 配置
 
 <!-- vim-markdown-toc GitLab -->
 
@@ -496,11 +496,10 @@ vim 内置了强大的搜索替换功能
 
 #### window resize
 
-nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使用 `vertical resize +10`
-将增大 10 个单位。如果想要调整多次，那么需要执行多次这个命令:
-
-利用 [nvimtools/hydra.nvim](https://github.com/nvimtools/hydra.nvim) ，可以先
-`c` `a` 两个键，进入到调整模式，然后使用 `j` `k` 调整 windows 的大小。
+按 `c` `a` 进入窗口大小调整模式，命令行会显示当前处于“调整窗口”状态。
+可以连续使用 `h`/`l` 增大/缩小宽度（每次 10 列），
+`j`/`k` 增大/缩小高度（每次 5 行）。按 `Esc`、`Enter` 或 `q` 退出；
+按其他键会退出并正常执行该键。调整使用 Neovim 原生的 `resize` 命令。
 
 
 ### buffer
@@ -509,8 +508,10 @@ nvim 提供了原生的命令来自动一个 windows 的大小，例如可以使
 | ----------------- | ------------------------------ |
 | `,` `b`           | 搜索 buffer                    |
 | `,` num           | 切换当前窗口到第 num 个 buffer |
-| `<Space>` `b` `c` | 关闭其他已经保存的 buffer      |
+| `<Space>` `b` `c` | 关闭已保存且不在任何窗口显示的非终端 buffer，并清理对应参数列表 |
 | `<Space>` `b` `d` | 关闭当前 buffer                |
+
+`<Space> b c` 使用 Snacks.bufdelete 批量清理，保留其他标签页中可见的 buffer。
 
 ### 文件搜索
 
@@ -623,9 +624,14 @@ neovim 中有内置调试功能 [Termdebug](https://fzheng.me/2018/05/28/termdeb
 
 vim 中利用 [`code_runner.nvim`](https://github.com/CRAG666/code_runner.nvim) 可以实现类似的功能。
 
-| binding           | function                 |
-| ----------------- | ------------------------ |
-| `<space>` `l` `r` | 根据文件类型，执行该文件 |
+| binding           | function                                                  |
+| ----------------- | --------------------------------------------------------- |
+| `<space>` `l` `r` | 执行当前文件；Rust 中执行光标所在的 runnable              |
+| `<space>` `l` `R` | 执行当前项目；Rust 中选择当前 crate 的 runnable            |
+
+Rust 文件由 rustaceanvim 接管：光标放在 `main()` 或带
+`#[test]`/`#[cfg_attr(test, test)]` 的函数中，按 `<space>lr` 或 `,x`
+直接运行；按 `<space>lR` 或 `,R` 选择当前 crate 中的 runnable。
 
 | C 语言文件一键运行                  |
 | ----------------------------------- |

@@ -10,7 +10,6 @@
   };
 
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = false;
   services.xserver.desktopManager.gnome.enable = true;
 
   # see xieby1
@@ -22,14 +21,10 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-emoji]) ++ (with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "SourceCodePro"
-        "Iosevka"
-        "FiraCode"
-        "FantasqueSansMono"
-      ];
-    })
+    nerd-fonts.iosevka
+    nerd-fonts.fira-code
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.sauce-code-pro
     # refs to pkgs/data/fonts/roboto-mono/default.nix
     (stdenv.mkDerivation {
       name = "my_fonts";

@@ -59,7 +59,6 @@
 
   # virtualisation.vmware.host.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.multipass.enable = true;
   virtualisation.docker.daemon.settings = {
     bip = "10.11.0.1/16";
   };
