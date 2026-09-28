@@ -1,6 +1,11 @@
 -- whichkey configuration
 local wk = require("which-key")
 wk.setup({
+  triggers = {
+    { "<auto>", mode = "nxso" },
+    -- Keep slow c-prefixed window mappings in normal mode instead of entering change.
+    { "c", mode = "n" },
+  },
   plugins = {
     marks = false,    -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mo
