@@ -113,10 +113,6 @@ wk.add({
   { "c",         group = "window" },
   -- i f a t 被 textobject 所使用
   { "cg",        "<cmd>vsp<cr>",                                          desc = "vertical split window" },
-  { "ch",        "<C-w>h",                                                desc = "go to the window left" },
-  { "cj",        "<C-w>j",                                                desc = "go to the window below" },
-  { "ck",        "<C-w>k",                                                desc = "go to the window up" },
-  { "cl",        "<C-w>l",                                                desc = "go to the window right" },
   { "cm",        "<cmd>only<cr>",                                         desc = "delete other window" },
   { "cn",        "<cmd>AerialToggle!<cr>",                                      desc = "toggle navigator" },
   { "cs",        "<cmd>sp<cr>",                                           desc = "horizontal split window" },
