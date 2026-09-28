@@ -19,3 +19,5 @@ repos:
         entry: scripts/lint-md.sh
         language: script
         require_serial: true
+        files: ^docs/.*\.md$
+        types: [markdown]

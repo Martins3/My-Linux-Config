@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-lint-md "docs/**/*" -c .lintmdrc.json --threads
+set -E -e -u -o pipefail
 
-if [[ $? ]]; then
-  lint-md -f "docs/**/*" -c .lintmdrc.json --threads
-else
-  exit 1
+if (($# == 0)); then
+	set -- "docs/**/*"
 fi
+
+lint-md "$@" -c .lintmdrc.json --threads auto --suppress-warnings
