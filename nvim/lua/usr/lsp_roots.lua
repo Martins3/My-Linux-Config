@@ -9,6 +9,11 @@ local function has(root, relpath)
 end
 
 function M.is_linux_kernel_root(root)
+  -- vn/m is kernel module src dir
+  if has(root, "gen_compile_commands.py") then
+    return true
+  end
+
   return has(root, "Makefile")
       and has(root, "Kbuild")
       and has(root, "Kconfig")
