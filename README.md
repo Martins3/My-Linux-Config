@@ -7,7 +7,8 @@
 
 ## 📚 Document
 
-- [2024 年 vim 的 C/C++ 配置](./docs/nvim.md)
+- [2026 年 vim 的 C/C++ 配置](./docs/nvim.md)
+- [Windows 开发环境部署与问题记录](./docs/windows.md)
 - [极简 Tmux 配置](./docs/tmux.md)
 - [终端模拟器横评](./docs/terminals.md)
 - [Rime 输入法配置](./docs/rime.md)
