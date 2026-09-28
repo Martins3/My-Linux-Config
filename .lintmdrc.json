@@ -1,6 +1,7 @@
 {
   "excludeFiles": [],
   "rules": {
+    "no-half-width-punctuation": 1,
     "no-empty-code": 1,
     "no-long-code": [
       0,
