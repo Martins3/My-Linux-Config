@@ -92,8 +92,15 @@ Alacritty 的优点:
 ## ghostty : 2026
 
 检查快捷键:
+```sh
 ghostty +list-keybinds --default
+```
 
+几个常用快捷键:
+
+|-----------------|--------------|
+| 全屏            | ctrl+enter   |
+| 关闭一个 window | ctrl+shift+w |
 
 
 ## 总结
@@ -106,8 +113,6 @@ ghostty +list-keybinds --default
 测试，无明显差距。
 
 如果在 windows 下，Windows terminal 基本上是唯一的选择了。
-
-此外，由于精力有限，ghostty 之类的新秀(2026-03-23) ，广受好评，但是我并没有体验。
 
 <script src="https://giscus.app/client.js"
         data-repo="Martins3/My-Linux-Config"

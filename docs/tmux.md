@@ -9,7 +9,7 @@
 
 [Oh my tmux](https://github.com/gpakosz/.tmux) 我尝试过几分钟，但是个人默认配置不够简洁，高级功能暂时用不上，所以没有深入分析。
 
-最简单的方法就是立刻使用起来，配置可以参考我个人的 [tmux.conf](https://github.com/Martins3/My-Linux-Config/blob/master/scripts/tmux.conf) 配置
+最简单的方法就是立刻使用起来，配置可以参考我个人的 [tmux.conf](https://github.com/Martins3/My-Linux-Config/blob/master/config/tmux.conf) 配置
 这个脚本超级简单，而且每一个行都是有注释的。
 
 ## 默认常用操作
@@ -99,6 +99,84 @@ set -g pane-border-format " [ ###P #T ] "
 bind T command-prompt -p "Set Pane title:" "select-pane -T '%1'"
 ```
 
+## tmux 的颜色
+
+```txt
+tmux 颜色主要有这几类可选：
+
+# 基础 8 色
+black red green yellow blue magenta cyan white
+
+# 亮色
+brightblack brightred brightgreen brightyellow brightblue brightmagenta brightcyan brightwhite
+
+# 256 色
+colour0 到 colour255
+
+# 默认色
+default terminal
+
+# truecolor / RGB
+#RRGGBB
+
+你现在这个可以直接换成：
+
+setw -g window-status-current-style fg=black,bg=brightyellow
+setw -g window-status-current-style fg=white,bg=blue
+setw -g window-status-current-style fg=colour16,bg=colour81
+setw -g window-status-current-style fg=#111111,bg=#ffcc00
+
+注意 tmux 文档里 256 色是英式拼写：colour81，不是 color81。
+
+可以在终端里看 256 色编号：
+
+for i in {0..255}; do printf "\e[48;5;%sm%3s\e[0m " "$i" "$i"; (( (i + 1) % 16 == 0 )) && printf "\n"; done
+
+我建议不同机器用明显区分的背景色，比如：
+
+# 本机
+setw -g window-status-current-style fg=black,bg=yellow
+
+# 生产/重要机器
+setw -g window-status-current-style fg=white,bg=red
+
+# 测试机
+setw -g window-status-current-style fg=black,bg=green
+
+# ARM 机器
+setw -g window-status-current-style fg=white,bg=blue
+```
+
+```txt
+控制整条 tmux status line 的底色/前景色，用：
+
+set -g status-style fg=blue,bg=yellow
+
+你现在这行：
+
+setw -g window-status-current-style fg=blue,bg=yellow
+
+只控制“当前 window 标签”的颜色，所以只会影响 window list 中当前窗口那一块。
+
+常用分层是：
+
+# 整条 status line 的默认颜色
+set -g status-style fg=blue,bg=yellow
+
+# 非当前 window 标签
+setw -g window-status-style fg=white,bg=yellow
+
+# 当前 window 标签
+setw -g window-status-current-style fg=blue,bg=yellow
+
+# 左右状态区如果需要单独覆盖
+set -g status-left-style fg=blue,bg=yellow
+set -g status-right-style fg=blue,bg=yellow
+
+如果 status-left、status-right 或 window-status-current-format 里有 #[fg=...,bg=...]，那些内联样式会覆盖 status-style。改完后可执行：
+
+tmux source-file ~/.tmux.conf
+```
 
 ## 一些试错
 

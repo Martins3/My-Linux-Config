@@ -2,18 +2,14 @@
 
 https://unix.stackexchange.com/questions/377600/in-nixos-how-to-remap-caps-lock-to-control
 
-似乎需要:
-
 ```sh
 gsettings reset org.gnome.desktop.input-sources xkb-options
 gsettings reset org.gnome.desktop.input-sources sources
 ```
-
 也许也需要执行下:
 setxkbmap -option caps:swapescape
 
-
-gnome 中的最终解决方案:
+2026-07-17 : 上面的方法可以不看，gnome 中的最终解决方案:
 ```sh
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 ```
@@ -28,7 +24,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
   gsettings set org.gnome.desktop.wm.keybindings cycle-windows "['<Control>l']"
 ```
 
-## 键盘重复延迟原来是 500ms，
+## 键盘重复延迟原来是 500ms
 ```sh
 gsettings set org.gnome.desktop.peripherals.keyboard delay 200
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 18
