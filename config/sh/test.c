@@ -11,7 +11,8 @@
 *
 * 至此，可以确定，这个操作是 nixos 的技术失误。破案，结束!
 *
-* wrok around 的方法，在 clang -target aarch64 -E 的时候，获取到这些 header 的位置，然后将其手动拷贝 include 的位置中去，
+* wrok around 的方法，在 clang -target aarch64 -E 的时候，获取到这些 header 的位置，
+* 然后将其手动拷贝 include 的位置中去，
 */
 
 int main(int argc, char *argv[])

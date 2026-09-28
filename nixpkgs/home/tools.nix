@@ -267,7 +267,7 @@ with pkgs;
   # weechat
   # offlineimap # 下载邮件的工具，很难用
   tcpdump
-  tcptrace
+  # tcptrace 已经从 nixpkgs 26.05 中移除（broken + upstream gone）
   proxychains-ng
   sshpass
   gping # better ping
@@ -285,10 +285,10 @@ with pkgs;
   nix-tree # 动态的展示每一个包的依赖
   # nix-index
   nixd # nix 语言的 lsp
-  nixfmt-rfc-style
+  nixfmt
   # debootstrap # 制作 uml 的工具
   meson
-  unstable.neovim
+  neovim
   # translate-shell # TODO 需要下联网问题
   luarocks
   # zed-editor # 默认不支持中文，放弃
@@ -330,14 +330,13 @@ with pkgs;
   (python3.withPackages (
     p: with p; [
       ipython
-      autopep8
       gcovr
       pygments # 让 gdb-dashboard 支持高亮
       pytest
     ]
   ))
   uv # 似乎现在大家更加推荐使用这个作为 python 的包管理器
-  # ruff # 类似 pyright，据说很快，但是项目太小，看不出什么优势
+  ruff # python linter/formatter，替代 black/autopep8
   # perl
   # man-db
   # man-pages
@@ -404,7 +403,6 @@ with pkgs;
   clash-meta
 
   # lsp && formatter
-  black # python formatter
   cargo
   # 似乎不需要在这里安装 rust 的工具
   # rust-analyzer
