@@ -1,0 +1,7 @@
+# 让 clangd 默认使用 c++ 20 的结果
+If:
+  PathMatch: '.*\.(C|cc|cpp|cxx|c\+\+|H|hh|hpp|hxx|h\+\+|ipp|tpp)$'
+
+CompileFlags:
+  Add:
+    - -std=c++20
