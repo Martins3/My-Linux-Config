@@ -31,6 +31,16 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+if vim.fn.has("win32") == 1 then
+  -- Keep these options in sync: Neovim otherwise may run pwsh with cmd.exe flags
+  -- like "/s /c", which can leave terminal jobs stuck before the command starts.
+  vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+  vim.opt.shellcmdflag =
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
+end
+
 -- vim.opt.shortmess = "ilmnrx"                        -- flags to shorten vim messages, see :help 'shortmess'
 vim.opt.shortmess:append("c") -- don't give |ins-completion-menu| messages
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches

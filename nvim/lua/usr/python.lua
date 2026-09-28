@@ -17,19 +17,14 @@ end
 
 M.root_markers = {
   "ty.toml",
-  "pyproject.toml",
-  "uv.lock",
-  "setup.py",
-  "setup.cfg",
-  "requirements.txt",
-  "Pipfile",
   ".venv",
   ".git",
 }
 
 function M.find_project_root(bufnr)
   bufnr = bufnr or 0
-  return vim.fs.root(bufnr, M.root_markers)
+  -- Treat all markers as equal priority so the nearest project wins.
+  return vim.fs.root(bufnr, { M.root_markers })
 end
 
 function M.project_root(bufnr)
