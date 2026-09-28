@@ -31,7 +31,7 @@ fcitx5-rime-5.1.12-1.fc42.x86_64
 
 - 安装 : [rime](https://github.com/fcitx/fcitx-rime)
 - 安装并且使用: [plum](https://github.com/rime/plum)
-- 从 [雾凇拼音](https://github.com/iDvel/rime-ice) 中增加词库，雾凇拼音其他的配置一时无法全部消化吸收，仅仅拷贝其中的 cn_dicts 来扩充自己的词库。
+- 通过 Plum 完整安装 [雾凇拼音](https://github.com/iDvel/rime-ice)，使用它提供的小鹤双拼方案、词库和扩展功能。
 
 ## 配置 fcitx5
 在 Fcitx5 Configure 中增加 rime 输入法。
@@ -40,27 +40,189 @@ fcitx5-rime-5.1.12-1.fc42.x86_64
 
 ![image](https://github.com/Martins3/My-Linux-Config/assets/16731244/4c0efdd4-d913-4f03-8cd1-c1a7884b06b1)
 
+## 当前配置结构
+
+当前使用 Fcitx5 加载 Rime，Rime 中只启用雾凇拼音的小鹤双拼方案。主词典完全由
+Rime Ice 管理，个人固定词汇通过独立的 `custom_phrase` 翻译器加载，不再维护额外的
+聚合词典。
+
+```text
+Fcitx5
+└── fcitx5-rime
+    └── ~/.local/share/fcitx5/rime/
+        ├── default.yaml
+        │   └── schema_list: double_pinyin_flypy
+        ├── double_pinyin_flypy.schema.yaml
+        │   ├── script_translator
+        │   │   └── dictionary: rime_ice
+        │   │       └── rime_ice.dict.yaml
+        │   │           ├── cn_dicts/8105
+        │   │           ├── cn_dicts/base
+        │   │           ├── cn_dicts/ext
+        │   │           ├── cn_dicts/tencent
+        │   │           └── cn_dicts/others
+        │   └── table_translator@custom_phrase
+        │       └── user_dict: custom_phrase_double
+        ├── custom_phrase_double.txt
+        │   └── -> ~/.dotfiles/rime/custom_phrase_double.txt
+        └── build/
+            └── Rime 部署时生成的编译结果
+```
+
+各层的职责：
+
+- `fcitx5-rime` 是 Fcitx5 与 Rime 引擎之间的前端插件。
+- `double_pinyin_flypy` 是当前唯一启用的输入方案，定义小鹤双拼编码和输入行为。
+- `rime_ice` 是主词典入口。`cn_dicts/*` 是 Rime Ice 自身拆分出来的字表和词表，
+  不是本仓库额外叠加的词库。
+- `custom_phrase_double` 是独立的固定短语表，优先级高于主词典，不替换或重新聚合
+  `rime_ice`。它使用小鹤双拼按键或自定义缩写作为编码。
+- `build/`、`default.yaml`、`double_pinyin_flypy.schema.yaml` 和 `rime_ice.dict.yaml`
+  都由 Plum/Rime 安装或生成，不应直接修改。
+
+## rime.nvim：在 Neovim 内部使用 Rime
+
+[rime.nvim](https://github.com/rimeinn/rime.nvim) 是另一种 Rime 前端：它把
+`librime` 直接加载进 Neovim，在插入模式中自己处理按键、候选窗口和上屏，和
+Fcitx5 在终端外部处理输入是两条独立路径。它不会自动继承 Fcitx5 当前已经打开的
+输入状态，但可以复用同一套 Rime 配置和词库。
+
+### 安装
+
+系统先安装 `librime` 和 Fcitx5 Rime 配置。当前 Fedora 配置使用：
+
+```sh
+sudo dnf install -y fcitx5-rime
+cd ~/.dotfiles
+bash rime/linux-install.sh
+```
+
+Neovim 使用 `lazy.nvim` 管理插件。插件声明和本仓库中的实际配置入口是
+`nvim/lua/usr/lazy.lua`：
+
+```lua
+{
+  "rimeinn/rime.nvim",
+  lazy = false,
+}
+```
+
+第一次启动 Neovim 时，`lazy.nvim` 会安装插件及其 rockspec 依赖（`ime`、
+`platformdirs`、`lua-cjson` 等）。这些依赖需要 Lua 5.1；如果 Nix 环境中的
+`luarocks` 默认指向 Lua 5.2，可以在临时环境中安装：
+
+```sh
+nix shell nixpkgs#lua5_1 nixpkgs#lua51Packages.luarocks \
+  nixpkgs#readline nixpkgs#xmake \
+  --command nvim --headless '+Lazy! install rime.nvim' +qa
+```
+
+当前机器上的 `librime` 由系统提供，Neovim 的 Nix 动态链接环境还需要确保它能
+找到 `/lib64/librime.so.1` 及其依赖库；如果出现 `librime.so.1: cannot open
+shared object file`，先检查：
+
+```sh
+ldconfig -p | grep librime
+ldd ~/.local/share/nvim/lazy-rocks/rime.nvim/lib/lua/5.1/rime.so
+```
+
+### 当前接入方式
+
+插件的自动目录探测会优先尝试 IBus、Fcitx 和 Nix profile 目录。当前配置显式指定：
+
+```text
+用户配置和词库：~/.local/share/fcitx5/rime/
+共享 Rime 数据：/usr/share/rime-data/
+```
+
+这样可以读到 `double_pinyin_flypy`、Rime Ice 以及仓库维护的
+`custom_phrase_double.txt`。如果机器使用其他前端或目录，需要修改
+`nvim/lua/usr/lazy.lua` 中的 `traits.user_data_dir` 和
+`traits.shared_data_dir`，不要只修改生成的 `build/` 文件。
+
+当前提供以下入口：
+
+```vim
+:RimeToggle
+:RimeEnable
+:RimeDisable
+```
+
+插入模式下当前绑定 `<C-m>`（Ctrl-M）切换 Rime，`<C-\>` 将按键传给 Rime。这个
+切换键属于 Neovim 内部前端，不等同于 Fcitx5 的 `Ctrl-Space`。启用后输入小鹤双拼编码，例如 `nh`，应看到
+候选窗口；`wsm` 应得到“为什么”，`smartx` 应得到“北京志凌海纳科技有限公司”。
+
+### 曾经出现的两个问题
+
+1. **安装成功但完全没有候选**
+
+   原因不是插件没有加载，而是自动探测选中了旧的 `~/.config/fcitx/rime` 或
+   Nix profile 下的 `rime-data`，没有读到当前 Fcitx5 目录。定位时先查看：
+
+   ```sh
+   find ~/.local/share/fcitx5/rime -maxdepth 1 -type f | head
+   fcitx5-remote -n
+   ```
+
+   再在 Neovim 中确认方案和目录：
+
+   ```sh
+   nvim --headless \
+     '+lua local r=require("rime.nvim"); r.init(); print(r.ime.session:get_current_schema())' \
+     +qa
+   ```
+
+   预期方案是 `double_pinyin_flypy`。
+
+2. **`wsm`、`smartx` 等自定义短语消失**
+
+   词库本身没有消失。`rime.nvim` 原版在“当前前缀暂时没有候选”时会立即提交
+   composition；`wsm` 输入到 `ws` 时正好会经过这个状态，于是 `ws` 被提前上屏，
+   第三个字符 `m` 无法再组成完整编码。`smartx` 的每一步都有英文候选，所以不容易
+   暴露这个问题。
+
+   当前配置覆盖了插件的 `draw()`：当没有候选但仍有 `preedit` 时保留输入串，直到
+   后续按键产生候选或用户明确确认。用下面的 headless 测试可以验证：
+
+   ```sh
+   nvim --headless '+lua local r=require("rime.nvim"); r.init(); r.enable(); \
+     r.ime:process("w"); r.ime:process("s"); local _,lines=r.ime:process("m"); \
+     print(vim.inspect(lines))' +qa
+   ```
+
+   输出中应包含 `为什么`。
+
+本仓库只维护下面两个入口文件：
+
+| 文件                       | 说明                                                   |
+|----------------------------|--------------------------------------------------------|
+| `rime/linux-install.sh`    | 安装/更新 Rime Ice，并把个人短语文件链接到 Rime 目录   |
+| `rime/custom_phrase_double.txt` | 小鹤双拼个人固定短语，格式为“词汇、编码、权重”    |
+
+修改个人短语后执行：
+
+```sh
+fcitx5 -r -d
+```
+
+完整安装或更新配置时执行：
+
+```sh
+cd ~/.dotfiles
+bash rime/linux-install.sh
+fcitx5 -r -d
+```
+
+`fcitx5-remote -r` 只会重载 Fcitx5 配置，在当前环境中不会触发 Rime 重新部署。
 
 ## 常用快捷键
 1. `ctrl space` 唤出 rime 输入法
 2. shift 切换的 rime 的中文输入和英文输入。
 3. `ctrl delete` : 删除自造词
 
-## 配置简单说明
-| 文件                           | 说明                         |
-|--------------------------------|------------------------------|
-| linux-install.sh               | 简单的安装脚本               |
-| default.custom.yaml            | 基础配置，例如候选词的个数   |
-| luna_pinyin.martins3.dict.yaml | 我自己增加的词汇             |
-| luna_pinyin.my_words.dict.yaml | 词库配置，包含雾凇拼音的词库 |
-| luna_pinyin_simp.custom.yaml   | 输入法的模糊音之类的配置     |
-
 ## 皮肤
-- 如果你喜欢折腾
-  - https://github.com/fkxxyz/ssfconv
 - 在 mac 中的参考很多，例如:
   - [简单安利 Rime 输入法](https://www.manjusaka.blog/posts/2020/01/28/simple-config-for-rime-input/#more)
-
 
 https://github.com/fcitx/fcitx5-rime/issues/15
 
@@ -84,8 +246,7 @@ https://github.com/fcitx/fcitx5-rime/issues/15
 甚至怀疑是键盘的问题，但是实际上并不是；
 https://superuser.com/questions/248517/show-keys-pressed-in-linux
 
-似乎自定义的输入法没办法用了。 例如:
-rime/luna_pinyin.martins3.dict.yaml
+小鹤双拼的自定义短语放在 `rime/custom_phrase_double.txt`。
 
 ## rime-ls
 ```sh
@@ -225,6 +386,9 @@ index f49b0c7ef8a1..d1459b277c94 100644
 -  },
  }, {})
 ```
+
+## 语音输入
+https://github.com/xifan2333/fcitx5-vinput
 
 ## 参考 && TODO
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
