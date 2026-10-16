@@ -318,7 +318,7 @@ cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
 
 ### checkhealth 检查
 
-在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖, **比如 xclip 没有安装，那么和系统的 clipboard 和 vim 的 clipboard 之间复制会出现问题**。neovim 的 python 的没有安装可能导致一些插件不可用。
+在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖。
 
 | 我的配置的截图                      |
 | ----------------------------------- |
