@@ -9,10 +9,13 @@
 
 [Oh my tmux](https://github.com/gpakosz/.tmux) 我尝试过几分钟，但是个人默认配置不够简洁，高级功能暂时用不上，所以没有深入分析。
 
-最简单的方法就是立刻使用起来，配置可以参考我个人的 [tmux.conf](https://github.com/Martins3/My-Linux-Config/blob/master/config/tmux.conf) 配置
+最简单的方法就是立刻使用起来，配置可以参考本仓库的 [tmux.conf](../config/tmux.conf)。
 这个脚本超级简单，而且每一个行都是有注释的。
 
 ## 默认常用操作
+
+本配置的 `prefix` 是 `Ctrl-h`；连续按两次 `Ctrl-h` 会向 pane 内的程序发送一次 `Ctrl-h`。
+
 - `prefix d` : 等价于 tmux detach
 - `prefix &` : kill 当前的 window
 - `prefix x` : kill 当前的 pane
@@ -25,26 +28,38 @@
 - `prefix !` : 将 pane 转换为 window
 
 ## copy mode
-默认可以编辑的状态 tmux 称为 normal mode，使用 `prefix y` 进入到 copy mode，进入之后，可以使用 vim 的各种移动方式
 
-> Although tmux copy mode doesn't translate to 100% vim navigation keys - overall they are good enough to feel natural. Some navigation keys that you can use:
-> - h / j / k / l to move left/down/up/right
-> - w / W / e / E / b / B to move forward to the start / to the end / backward a word or WORD
-> - { / } to move backward / forward a paragraph
-> - Ctrl + e / d / f to scroll down a line / half screen / whole screen
-> - Ctrl + y / u / b to scroll up a line / half screen / whole screen
-> - / / ? to search forward / backward
-> - n / N to repeat the previous search forward / backward
-> etc
->
->  https://dev.to/iggredible/the-easy-way-to-copy-text-in-tmux-319g
+使用 `prefix v`（或默认的 `prefix [`）进入 copy mode，按 `q` 退出。
+默认使用 vim 模式
 
-- `V` 行选，`v` 字符选，`ctrl-v` 不支持
-- [zt/zz/zb 没有支持](https://www.reddit.com/r/tmux/comments/5yoh1q/is_there_a_hack_to_have_vi_ztzzzb_in_copy_mode/)
-- 使用 `y` 或者 `enter` 或者鼠标选中，可以复制
-- 使用 `ctrl shift v` （MacOS 上 `ctrl-v`) 粘贴，这个和 tmux 无关，一般是 terminal emulator 支持的。
+`prefix f` 可以直接进入 copy mode 并向上搜索历史输出。
+鼠标拖选后松开也会复制，并留在 copy mode。
+
+## 系统剪贴板：OSC 52
+
+复制统一使用 tmux 原生 OSC 52，由外层终端写入系统剪贴板：
+
+```text
+tmux 选区 → tmux paste buffer + OSC 52 → 外层终端 → 系统剪贴板
+```
+
+本配置使用以下设置，不需要 tmux-yank、wl-copy 或 xclip：
+
+```tmux
+set -s set-clipboard on
+bind-key -T copy-mode-vi y send -X copy-selection
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-selection
+```
+
+`set-clipboard on` 还允许 pane 内应用发送的 OSC 52 经过 tmux 传给终端。外层终端必须支持并允许 OSC 52 写剪贴板；当前使用的 Ghostty 已支持。SSH 到远端后，远端 tmux 也可以通过这条路径写入本地终端的剪贴板，无需远端访问本地 Wayland/X11 会话。
+
+系统剪贴板粘贴使用终端的快捷键，通常 Linux 是 `Ctrl-Shift-v`，macOS 是 `Cmd-v`；`prefix ]` 则粘贴 tmux 自己的 paste buffer。
+
+如果复制只能在 tmux 内粘贴，检查外层终端的 OSC 52 权限，以及 `tmux info` 输出中的 `Ms` 能力是否存在。原理和终端配置见 [tmux 官方 Clipboard 文档](https://github.com/tmux/tmux/wiki/Clipboard)。
 
 ## 插件管理
+
+tmux-sensible 提供历史缓冲、焦点事件及 `prefix R` 等便利设置；
 
 安装:
 ```sh
