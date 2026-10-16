@@ -6,6 +6,7 @@
 2. https://leimao.github.io/blog/Ubuntu-Gaming-Chinese-Input/
 忍无可忍，就换成 Rime 了。但是我发现 Rime 的输入法的门槛很高，这里简单记录下配置过程。
 
+
 ## 安装，这里仅仅考虑 fedora ，并且是最新环境的
 
 https://extensions.gnome.org/extension/261/kimpanel/
@@ -391,6 +392,7 @@ index f49b0c7ef8a1..d1459b277c94 100644
 https://github.com/xifan2333/fcitx5-vinput
 
 ## 参考 && TODO
+- https://github.com/ayaka14732/awesome-rime
 - [双拼練習](https://github.com/BlueSky-07/Shuang)
 - [GNU/Linux 输入法折腾笔记 (RIME)](https://mogeko.me/posts/zh-cn/031/)
 - [小狼毫 3 分钟入门及进阶指南](https://sspai.com/post/63916)

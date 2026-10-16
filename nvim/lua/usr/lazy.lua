@@ -21,7 +21,13 @@ require("lazy").setup({
   "MunifTanjim/nui.nvim", -- 图形库
 
   -- 补全
-  { "hrsh7th/nvim-cmp" }, -- The completion plugin
+  {
+    "hrsh7th/nvim-cmp",
+    -- #2219 leaves stale entries after deleting/joining lines, causing
+    -- core.lua:403 Invalid 'start_row'. Keep the preceding revision for now.
+    -- https://github.com/hrsh7th/nvim-cmp/pull/2219
+    commit = "7d850f3daf38462c4760adae9cfdbd3417bbc01c",
+  },
   { "hrsh7th/cmp-buffer" }, -- buffer completions
   { "hrsh7th/cmp-path" }, -- path completions
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
