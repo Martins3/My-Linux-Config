@@ -148,6 +148,17 @@ vim.keymap.set("i", "<c-g>", "<cmd>!ibus engine rime<cr>")
 
 -- 添加自适应的命令
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = "cpp",
+  callback = function(event)
+    vim.keymap.set("n", "<leader>x", function()
+      vim.cmd("update")
+      require("code_runner").run_from_fn("insights " .. vim.fn.shellescape(vim.fn.expand("%:p")))
+    end,
+      { buffer = event.buf, silent = true, desc = "C++ Insights 展开" })
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = { "sh", "python" },
   callback = function()
     vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { buffer = true, silent = true })
