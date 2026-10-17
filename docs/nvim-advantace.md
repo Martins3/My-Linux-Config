@@ -316,7 +316,7 @@ https://news.ycombinator.com/item?id=45559076
 ## 这个是可以解决我们的问题的
 rachartier/tiny-inline-diagnostic.nvim
 
-不过用起来有点 bug 
+不过用起来有点 bug
 
 ## 现在 nvim 到底使用什么翻译还是一个小问题
 
@@ -355,3 +355,33 @@ Clipboard (optional) ~
 - ✅ OK Clipboard tool found: SSH OSC52
 ```
 这个结果之后，在任何环境中都可以复制了。
+
+## fff
+
+似乎没有什么优势，而且难以安装
+```txt
+  {
+    "dmtrKovalenko/fff",
+    -- 官方下载器在当前 Nix/glibc 环境无法加载预编译库，且 workspace
+    -- 回退构建会超过其两分钟超时；只构建 Neovim package 更可靠。
+    build = "cargo build --release --package fff-nvim",
+    lazy = false, -- fff 会自行延迟初始化索引
+    opts = {},
+    keys = {
+      {
+        "<leader>d",
+        function()
+          require("fff").find_files()
+        end,
+        desc = "search files with fff",
+      },
+      {
+        "<leader>D",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = "live grep with fff",
+      },
+    },
+  },
+```
