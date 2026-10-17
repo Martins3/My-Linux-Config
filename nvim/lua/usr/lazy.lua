@@ -414,34 +414,6 @@ require("lazy").setup({
       -- words = { enabled = true },
     },
   },
-  {
-    "yetone/avante.nvim",
-    enabled = true,
-    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      or "make",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- set this if you want to always pull the latest change
-    opts = {
-      provider = "deepseek",
-      providers = {
-        deepseek = {
-          __inherited_from = "openai",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-v4-flash",
-          api_key_name = "cmd:cat " .. vim.fn.expand("~/.config/avante/deepseek-api-key"),
-          timeout = 30000,
-          context_window = 1000000,
-          use_response_api = false,
-          support_previous_response_id = false,
-          extra_request_body = {
-            max_tokens = 32768,
-            thinking = { type = "enabled" },
-          },
-        },
-      },
-    },
-  },
   -- cppman
   {
     "madskjeldgaard/cppman.nvim",

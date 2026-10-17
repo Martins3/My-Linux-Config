@@ -50,8 +50,8 @@ in
 
   home.file.gdbinit = {
     source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit";
-      sha256 = "0drplmbbrv9i1djsg59hpnb9878y6hspqmrc6rfyss35c260z952";
+      url = "https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/7b9b1260a8b3e9dd57b6cbf302bdfba71cec4014/.gdbinit";
+      hash = "sha256-U83w4tm6FJRtLbeBb+GH/JP9DY+uhWyPUQv19cY5XpI=";
       name = "gdbinit";
     };
     target = ".gdbinit";
