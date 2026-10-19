@@ -417,3 +417,6 @@ Clipboard (optional) ~
     },
   },
 ```
+
+## 有趣的插件
+https://github.com/j-hui/fidget.nvim

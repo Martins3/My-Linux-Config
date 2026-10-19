@@ -1467,3 +1467,6 @@ https://www.reddit.com/r/NixOS/comments/1fv4hyg/anyone_using_python_uv_on_nixos/
 底层实际文件是：
 
 /nix/store/...-busybox-static-aarch64-unknown-linux-musl-1.37.0/bin/busybox
+
+## 参考下他是如何解决  linux kernel 的开发的
+https://github.com/jordanisaacs/kernel-development-flake
