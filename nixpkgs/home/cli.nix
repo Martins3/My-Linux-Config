@@ -62,6 +62,11 @@ in
     target = ".gdbinit.d/init";
   };
 
+  home.file.gdb_fzf = {
+    source = ../../config/gdb-fzf.py;
+    target = ".gdbinit.d/gdb-fzf.py";
+  };
+
   home.file.npm = {
     source = ../../config/npmrc;
     target = ".npmrc";
