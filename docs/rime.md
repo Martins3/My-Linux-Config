@@ -216,6 +216,30 @@ fcitx5 -r -d
 
 `fcitx5-remote -r` 只会重载 Fcitx5 配置，在当前环境中不会触发 Rime 重新部署。
 
+## Asahi Linux (Fedora Asahi Remix, aarch64)
+
+2026-07-29 在 Fedora Asahi Remix 43 上验证通过，流程和 x86_64 Fedora 完全一样，
+fedora 官方源里 fcitx5 全家桶都有 aarch64 的包，不需要任何额外处理。
+
+```sh
+sudo dnf install -y fcitx5-rime fcitx5-configtool fcitx5-autostart
+bash ~/.dotfiles/rime/linux-install.sh
+```
+
+安装版本:
+```txt
+fcitx5-5.1.21-1.fc43.aarch64
+fcitx5-rime-5.1.14-1.fc43.aarch64
+librime-1.14.0-1.fc43.aarch64
+```
+
+注意:
+1. `fcitx5-autostart` 负责自启动 (`/etc/xdg/autostart/org.fcitx.Fcitx5.desktop`)
+   和环境变量 (`/etc/profile.d/fcitx5.sh`)，装完后**注销重新登录**才生效。
+   不要同时用 im-chooser，否则日志刷屏。
+2. 登录后在 `fcitx5-configtool` 里把 Rime 加到 Current Input Method。
+3. GNOME 下建议装 kimpanel 扩展，否则候选词框很难看。
+
 ## 常用快捷键
 1. `ctrl space` 唤出 rime 输入法
 2. shift 切换的 rime 的中文输入和英文输入。
