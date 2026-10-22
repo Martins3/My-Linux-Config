@@ -11,7 +11,8 @@
 3. 各种 ai 工具极大的降低了平台迁移的难度，我完全不会写 pwsh ，但是我依旧可以配置起来环境
 
 Windows 开发环境的统一入口是 `scripts/windows-install.ps1`。它可以从 Windows
-PowerShell 5.1 启动，并完成 PowerShell 7、Scoop 工具链、dotfiles 和应用配置部署。
+PowerShell 5.1 启动，并完成 Nushell、Scoop 工具链、dotfiles 和应用配置部署。
+日常终端统一使用 Nu；PowerShell 7 仅作为安装、Windows 系统查询和项目脚本的解释器。
 
 ## 全新系统部署
 
@@ -46,11 +47,12 @@ powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass `
 
 软件层：
 
-- PowerShell 7：通过 `winget` 安装。
+- Nushell：唯一维护的日常交互 shell，通过 Scoop 安装。
+- PowerShell 7：通过 `winget` 安装，仅用于按需运行脚本，不部署交互 profile。
 - Scoop：自动判断当前进程是否为管理员；管理员会使用 Scoop 的 `-RunAsAdmin`。
 - Scoop buckets：`main`、`extras`、`nerd-fonts`。
 - 编辑器和终端工具：Vim、Neovim、Neovide、Zellij、Starship、zoxide、lsd。
-- Git 工具：Git、gitui、lazygit、git-aliases。
+- Git 工具：Git、gitui、lazygit；快捷命令直接定义在 Nu 配置中。
 - 编译和语言工具：GCC、LLVM、Make、Go、Python、Node.js LTS、Yarn、LuaRocks、tree-sitter、uv。
 - 常用命令：ripgrep、fd、fzf、yazi、wget、gdu、ntop、Sysinternals。
 - 字体和运行库：Hack Nerd Font、FiraCode Nerd Font、VC++ 2022 runtime。
@@ -60,8 +62,11 @@ powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass `
 - Neovim：`%LOCALAPPDATA%\nvim` junction 到 `~/.dotfiles/nvim`。
 - gitui：`%APPDATA%\gitui` junction 到 `~/.dotfiles/config/gitui`。
 - Zellij：`%APPDATA%\Zellij\config` junction 到 `~/.dotfiles/config/zellij`。
-- PowerShell profile：`~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1`。
-- Windows Terminal、WezTerm、Starship 和 tig 配置。
+- Nushell：`scripts/windows-profile-install.ps1` 写入 `config.nu` 加载入口，直接读取
+  `config/nushell/config.nu`，修改源文件后新窗口生效；同时备份并移除旧的受管
+  PowerShell loader。见
+  [Nushell 配置说明](./windows-nushell.md)。
+- Windows Terminal 默认启动 `nu.exe`；另部署 WezTerm、Starship 和 tig 配置。
 
 目标已正确时脚本会跳过。覆盖现有文件或目录前会先备份到：
 
@@ -84,18 +89,16 @@ CurrentUser execution policy；部署进程本身通过 `-ExecutionPolicy Bypass
 
 ### extras bucket 缺失
 
-`neovide`、`lazygit`、`sysinternals`、`git-aliases` 和 `vcredist2022` 位于
+`neovide`、`lazygit`、`sysinternals` 和 `vcredist2022` 位于
 `extras` bucket。旧脚本只添加 `nerd-fonts`，所以会报告找不到 manifest。新脚本会在
 安装 Git 后按需添加两个 bucket。
 
-### PowerShell 7 不在 Program Files
+### 终端直接进入 Nu
 
-当前 `winget` 的 PowerShell 包是 MSIX，实际可执行文件位于版本化的
-`C:\Program Files\WindowsApps` 路径。Windows Terminal 配置不能再硬编码
-`C:\Program Files\PowerShell\7\pwsh.exe`，应使用应用执行别名：
+Windows Terminal 使用 Nushell profile，命令通过 PATH 查找，避免绑定安装目录：
 
 ```json
-"commandline": "pwsh.exe"
+"commandline": "nu.exe"
 ```
 
 ### SSH 登录后仍然进入 cmd.exe
@@ -104,10 +107,10 @@ CurrentUser execution policy；部署进程本身通过 `-ExecutionPolicy Bypass
 安装脚本不把这个系统级修改作为部署前提。SSH 登录后执行：
 
 ```cmd
-pwsh
+nu
 ```
 
-即可加载 `~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1`。
+即可进入日常 Nu 环境。
 
 ### Neovim 配置目录放错
 
@@ -159,22 +162,22 @@ parser 可使用：
 Yarn 的 Scoop post-install 会调用 `node`。旧清单只安装 Yarn，新清单会先安装
 `nodejs-lts`，再安装 Yarn。
 
-### Profile 命令依赖不完整
+### Nu 配置的工具依赖
 
-PowerShell profile 会直接调用或导入 `starship`、`zoxide`、`zellij`、`gitui`、`lsd`
-和 `git-aliases`。这些现在都是部署脚本的显式依赖，避免 profile 启动时逐项报错。
+`nu`、`zoxide`、`zellij`、`gitui` 和 `lsd` 都是部署脚本的显式依赖。
+Nu 使用原生快速提示符，Git 别名直接调用 Git；不再导入 PowerShell 的 git-aliases 模块。
 
 ## 验证
 
 ```powershell
-pwsh -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion'
-pwsh -NoLogo -Command 'Get-Alias v; Get-Alias ls'
+nu --version
+nu -c 'scope aliases | where name in [v ls gp gc gm]'
 nvim --version
 nvim --headless "+checkhealth vim.deprecated" "+qa"
 git -C "$HOME\.dotfiles" status --short
 ```
 
-PowerShell profile 正常时，`v` 指向 `nvim`，`ls` 指向 `lsd`。
+Nu 配置正常时，`v` 指向 `nvim`，`ls` 指向 `lsd`，`gp`/`gc`/`gm` 直接调用 Git。
 
 ## 日常环境设置
 
@@ -229,7 +232,7 @@ Set-ItemProperty -Path $path -Name KeyboardSpeed -Value '31'
 - `git sync` 明显慢于 `git pull` 时，先检查代理规则；曾遇到 Gitee 也被错误送入代理。
 - Vim 或 Neovim 首次启动很慢时，先用无配置模式区分编辑器启动与插件安装/更新。
 - Marksman 在 Windows 上可以运行，但交互曾有卡顿，仍需单独定位 LSP、文件监控或终端延迟。
-- Python 的 uv 虚拟环境在 PowerShell 中通过 `.\.venv\Scripts\Activate.ps1` 激活。
+- Python 虚拟环境使用项目生成的 `activate.nu`，见 [Nushell 配置说明](./windows-nushell.md)。
 - 查看 C 盘空间分布可运行 `gdu C:\`。
 - 查看某个进程加载的模块：
 
@@ -261,6 +264,7 @@ Windows 支持 symbolic link，也支持目录 junction。创建 symbolic link �
 
 - [Windows 驱动开发环境](./windows-driver.md)
 - [PowerShell 常用命令](./windows-powershell.md)
+- [Nushell 日常环境](./windows-nushell.md)
 - [Visual Studio 简记](./windows-visual-studio.md)
 - [使用 Windows 作为开发机的背景](./windows-why.md)
 - 从 vn 无损迁移的原始记录：[环境搭建](./windows-notes/setup-env.md)、

@@ -230,13 +230,13 @@ if (-not $SkipPackages) {
         "fzf",
         "sysinternals",
         "zoxide",
+        "nu",
         "make",
         "go",
         "ntop",
         "python",
         "gdu",
         "wget",
-        "git-aliases",
         "starship",
         "zellij",
         "gitui",
@@ -260,7 +260,7 @@ $dotfiles = Join-Path $HOME ".dotfiles"
 if ($PSScriptRoot) {
     $repoCandidate = Split-Path -Parent $PSScriptRoot
     $candidateInstaller = Join-Path $repoCandidate "scripts\windows-config-restore.ps1"
-    $candidateProfile = Join-Path $repoCandidate "config\windows\pwsh.ps1"
+    $candidateProfile = Join-Path $repoCandidate "config\nushell\config.nu"
     if ((Test-Path -LiteralPath $candidateInstaller) -and (Test-Path -LiteralPath $candidateProfile)) {
         $dotfiles = $repoCandidate
     }
@@ -297,11 +297,6 @@ $configFiles = @(
         BackupName = "gitconfig"
     },
     @{
-        Source = Join-Path $dotfiles "config\windows\pwsh.ps1"
-        Target = Join-Path $HOME "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
-        BackupName = "pwsh-profile"
-    },
-    @{
         Source = Join-Path $dotfiles "config\wezterm.lua"
         Target = Join-Path $HOME ".config\wezterm\wezterm.lua"
         BackupName = "wezterm"
@@ -321,16 +316,14 @@ foreach ($file in $configFiles) {
     Install-ConfigFile -Source $file.Source -Target $file.Target -BackupName $file.BackupName
 }
 
+& (Join-Path $dotfiles "scripts\windows-profile-install.ps1") -BackupRoot $script:backupRoot
+
 & (Join-Path $dotfiles "scripts\windows-config-restore.ps1") -BackupRoot $script:backupRoot
 
 if (-not $SkipNeovimSync) {
     Invoke-NativeCommand -FilePath "nvim" -ArgumentList @("--headless", "+Lazy! sync", "+qa")
 }
 
-$profilePath = Join-Path $HOME "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
-if (-not (Test-Path -LiteralPath $profilePath)) {
-    throw "PowerShell profile was not installed"
-}
 if (-not (Test-Path -LiteralPath (Join-Path $env:LOCALAPPDATA "nvim"))) {
     throw "Neovim config junction was not installed"
 }
@@ -339,4 +332,4 @@ Write-Output "Deployment complete"
 if ($script:backupCreated -or (Test-Path -LiteralPath $script:backupRoot)) {
     Write-Output "Backup: $script:backupRoot"
 }
-Write-Output "OpenSSH may still start cmd.exe; run pwsh after SSH login if needed."
+Write-Output "OpenSSH may still start cmd.exe; run nu after SSH login if needed."
