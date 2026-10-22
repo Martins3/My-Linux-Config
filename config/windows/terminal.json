@@ -49,7 +49,7 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "defaultProfile": "{a05a2c00-350d-4d92-a250-3ee9c3eefc0a}",
     "disableAnimations": true,
     "keybindings": 
     [
@@ -60,6 +60,10 @@
         {
             "id": "Terminal.MoveFocusLeft",
             "keys": "alt+h"
+        },
+        {
+            "id": "Terminal.SwitchToTab5",
+            "keys": "alt+shift+6"
         },
         {
             "id": "Terminal.SplitPaneDown",
@@ -122,12 +126,12 @@
             "keys": "ctrl+tab"
         },
         {
-            "id": null,
-            "keys": "alt+f4"
+            "id": "Terminal.SwitchToTab7",
+            "keys": "alt+shift+8"
         },
         {
-            "id": "Terminal.SwitchToTab0",
-            "keys": "alt+1"
+            "id": null,
+            "keys": "alt+f4"
         },
         {
             "id": null,
@@ -162,36 +166,24 @@
             "keys": "ctrl+alt+1"
         },
         {
-            "id": "Terminal.SwitchToTab5",
-            "keys": "alt+6"
-        },
-        {
-            "id": "Terminal.SwitchToTab1",
-            "keys": "alt+2"
+            "id": null,
+            "keys": "ctrl+alt+9"
         },
         {
             "id": null,
             "keys": "ctrl+alt+2"
         },
         {
-            "id": "Terminal.SwitchToTab2",
-            "keys": "alt+3"
-        },
-        {
             "id": null,
             "keys": "alt+left"
         },
         {
+            "id": "Terminal.SwitchToTab3",
+            "keys": "alt+shift+4"
+        },
+        {
             "id": null,
             "keys": "ctrl+alt+3"
-        },
-        {
-            "id": "Terminal.SwitchToTab3",
-            "keys": "alt+4"
-        },
-        {
-            "id": "Terminal.SwitchToTab4",
-            "keys": "alt+5"
         },
         {
             "id": null,
@@ -202,12 +194,8 @@
             "keys": "ctrl+alt+6"
         },
         {
-            "id": "Terminal.SwitchToTab6",
-            "keys": "alt+7"
-        },
-        {
-            "id": "Terminal.SwitchToTab7",
-            "keys": "alt+8"
+            "id": "Terminal.SwitchToTab1",
+            "keys": "alt+w"
         },
         {
             "id": null,
@@ -230,8 +218,28 @@
             "keys": "alt+down"
         },
         {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "alt+q"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "alt+shift+5"
+        },
+        {
             "id": "Terminal.MoveFocusRight",
             "keys": "alt+l"
+        },
+        {
+            "id": "Terminal.SwitchToTab6",
+            "keys": "alt+shift+7"
+        },
+        {
+            "id": "Terminal.SwitchToLastTab",
+            "keys": "alt+t"
+        },
+        {
+            "id": "Terminal.SwitchToTab2",
+            "keys": "alt+e"
         }
     ],
     "minimizeToNotificationArea": false,
@@ -262,10 +270,11 @@
         "list": 
         [
             {
-                "commandline": "pwsh.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "commandline": "nu.exe",
+                "guid": "{a05a2c00-350d-4d92-a250-3ee9c3eefc0a}",
                 "hidden": false,
-                "name": "PowerShell"
+                "name": "Nushell",
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -304,6 +313,7 @@
             },
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "commandline": "pwsh.exe -NoLogo -NoProfile",
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
@@ -401,6 +411,12 @@
                 "snapOnInput": true,
                 "startingDirectory": "%USERPROFILE%",
                 "useAcrylic": false
+            },
+            {
+                "guid": "{e1b9c28b-c938-5ba5-9d9d-0cf02ca8758d}",
+                "hidden": false,
+                "name": "FedoraLinux-44",
+                "source": "Microsoft.WSL"
             }
         ]
     },
