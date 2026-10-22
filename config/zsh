@@ -75,3 +75,9 @@ fi
 
 export NIXPKGS_ALLOW_INSECURE=1
 export EDITOR=nvim
+
+if [[ $OSTYPE == darwin* && -t 0 ]]; then
+  # macOS/BSD reserves Ctrl-T for the terminal driver's status (SIGINFO)
+  # character. Disable it so terminal applications receive Ctrl-T normally.
+  stty status undef
+fi
