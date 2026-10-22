@@ -24,7 +24,8 @@
     shift_up: Some(( code: Char('K'), modifiers: "SHIFT")),
     shift_down: Some(( code: Char('J'), modifiers: "SHIFT")),
 
-    edit_file: Some(( code: Char('I'), modifiers: "SHIFT")),
+    // Use an unmodified key to open the selected file in the editor.
+    edit_file: Some(( code: Char('e'), modifiers: "")),
 
     status_reset_item: Some(( code: Char('U'), modifiers: "SHIFT")),
 
