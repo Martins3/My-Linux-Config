@@ -446,6 +446,8 @@ require("lazy").setup({
     opts = {
       -- host = "172.17.127.73", -- 这个总是需要修改，就有点烦
       port = 8001,
+      -- Tinymist 0.15.2 rejects backslashes in the Windows entry-file path.
+      get_main_file = vim.fs.normalize,
     }, -- lazy.nvim will implicitly calls `setup {}`
   },
 }, {})

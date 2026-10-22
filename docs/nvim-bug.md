@@ -24,3 +24,23 @@
 目前在 `nvim/lua/usr/lazy.lua` 和 `nvim/lazy-lock.json` 中固定到前一个提交
 `7d850f3daf38462c4760adae9cfdbd3417bbc01c`。相同步骤下菜单正确关闭，回车正常换行。
 待上游修复并通过上述步骤验证后，再移除版本固定。
+
+## typist 在 windows 下无法正常使用
+
+https://github.com/Myriad-Dreamin/tinymist/commit/60561572fb95c22ebf6f4a737dd9011a3f02d1c2
+标题是 fix: adapt path model for typst 0.15 (#2561)。
+
+这个提交在 crates/tinymist-world/src/entry.rs 中做了这处修改：
+
+```diff
+- entry.map(VirtualPath::new),
++ entry.map(|entry| {
++     VirtualPath::new(entry.to_string_lossy())
++         .expect("entry path must be a valid virtual path")
++ }),
+```
+
+它把系统路径转成字符串，交给新版虚拟路径接口，却没有转换 Windows 的反斜杠。接口返回 Backslash，
+随后 expect() 触发崩溃，和本机实测完全对应。
+
+当前的 workaround 解决办法是，添加       get_main_file = vim.fs.normalize 来解决
