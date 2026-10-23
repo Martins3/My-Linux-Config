@@ -66,7 +66,7 @@ powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass `
   `config/nushell/config.nu`，修改源文件后新窗口生效；同时备份并移除旧的受管
   PowerShell loader。见
   [Nushell 配置说明](./windows-nushell.md)。
-- Windows Terminal 默认启动 `nu.exe`；另部署 WezTerm、Starship 和 tig 配置。
+- Windows Terminal 默认打开 Zellij，内部继续使用 Nu；另部署 WezTerm、Starship 和 tig 配置。
 
 目标已正确时脚本会跳过。覆盖现有文件或目录前会先备份到：
 
@@ -93,13 +93,17 @@ CurrentUser execution policy；部署进程本身通过 `-ExecutionPolicy Bypass
 `extras` bucket。旧脚本只添加 `nerd-fonts`，所以会报告找不到 manifest。新脚本会在
 安装 Git 后按需添加两个 bucket。
 
-### 终端直接进入 Nu
+### 终端直接进入 Zellij
 
-Windows Terminal 使用 Nushell profile，命令通过 PATH 查找，避免绑定安装目录：
+Windows Terminal 默认使用 Zellij profile，先加载 Nu 配置，再自动运行 Zellij：
 
 ```json
-"commandline": "nu.exe"
+"commandline": "nu.exe --execute zellij"
 ```
+
+Nu 配置中的 `$env.SHELL` 指向实际 Nu 程序，Zellij 新建 pane 时继续使用 Nu。
+Zellij 沿用 `config/zellij/config.kdl` 中的会话配置。退出 Zellij 后回到 Nu，
+下拉菜单中的 Nushell profile 也可以单独打开 Nu。
 
 ### SSH 登录后仍然进入 cmd.exe
 

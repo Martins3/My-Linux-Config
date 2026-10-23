@@ -29,8 +29,10 @@ require("nvim-tree").setup({
     side = "right",
   },
   on_attach = on_attach,
+  -- windows 中如果不去开启这个，创建了一个新文件，在保存的时候，会卡 4 ~ 5 秒
+  -- Watch filesystem events instead of synchronously reloading the tree on every save.
   filesystem_watchers = {
-    enable = false,
+    enable = true,
   },
   actions = {
     open_file = {

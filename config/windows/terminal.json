@@ -49,7 +49,7 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{a05a2c00-350d-4d92-a250-3ee9c3eefc0a}",
+    "defaultProfile": "{7616db87-6841-42b9-8846-3f1754735573}",
     "disableAnimations": true,
     "keybindings": 
     [
@@ -269,6 +269,13 @@
         },
         "list": 
         [
+            {
+                "commandline": "nu.exe --execute zellij",
+                "guid": "{7616db87-6841-42b9-8846-3f1754735573}",
+                "hidden": false,
+                "name": "Zellij",
+                "startingDirectory": "%USERPROFILE%"
+            },
             {
                 "commandline": "nu.exe",
                 "guid": "{a05a2c00-350d-4d92-a250-3ee9c3eefc0a}",
