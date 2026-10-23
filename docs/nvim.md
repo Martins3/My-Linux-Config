@@ -4,26 +4,18 @@
 
 * [前言](#前言)
 * [入门 vim](#入门-vim)
-* [Language Server Protocal](#language-server-protocal)
-* [Async](#async)
-* [Treesitter](#treesitter)
-* [为什么我不再使用 coc.nvim](#为什么我不再使用-cocnvim)
-* [为什么应该使用 neovim 而不是 vim](#为什么应该使用-neovim-而不是-vim)
+* [AI 时代还有必要学习 vim 吗?](#ai-时代还有必要学习-vim-吗)
 * [安装](#安装)
   * [终端代理](#终端代理)
   * [git 代理](#git-代理)
-  * [安装各种依赖](#安装各种依赖)
   * [安装 nvim](#安装-nvim)
   * [安装 nerdfonts](#安装-nerdfonts)
   * [安装 bear](#安装-bear)
   * [安装各种 lsp](#安装各种-lsp)
   * [安装本配置](#安装本配置)
-  * [手动编译一些插件](#手动编译一些插件)
-  * [checkhealth 检查](#checkhealth-检查)
 * [基本操作](#基本操作)
   * [退出](#退出)
   * [复制粘贴](#复制粘贴)
-    * [从远程 server 上复制粘贴本地的剪切板中](#从远程-server-上复制粘贴本地的剪切板中)
   * [符号搜索](#符号搜索)
   * [定义和引用](#定义和引用)
   * [注释](#注释)
@@ -68,14 +60,6 @@
 
 <blockquote class="twitter-tweet"><p lang="zh" dir="ltr">有些看似不起眼的“小工具”或“小技巧”，实质上可以强烈影响到你的工作效率或开发理念，强到你的职业生涯甚至可以拿它当分界线，分为泾渭分明的两块：“学会 XXX 前” vs “学会 XXX 之后”。<br><br>对我来说，“tmux”、“VIM”、“写好的单元测试”、“完全使用英文搜索技术问题”均属于此类。</p>&mdash; piglei (@Piglei) <a href="https://twitter.com/Piglei/status/1501389100074500098?ref_src=twsrc%5Etfw">March 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-本文的目标观众:
-
-1. vim 新手
-2. 正在使用 [cscope](http://cscope.sourceforge.net/) / [ctags](https://github.com/universal-ctags/ctags) / [gtags](https://github.com/SpaceVim/SpaceVim/issues/4389) / [nerdtree](https://github.com/preservim/nerdtree) / [YCM](https://github.com/ycm-core/YouCompleteMe) 的 vimer
-3. 不了解 [Language Server Protocal](https://microsoft.github.io/language-server-protocol/) (下简称 lsp ) 等新特性的 vimer
-4. 没有使用过 [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-
-本项目不是在于要大家使用我的这个配置，而是让大家知道 vim 正在飞速进步 ，拥抱 lsp, async, treesitter 等新特性，vim 一定的比你想象的酷炫。
 
 任何问题, 欢迎[issue](https://github.com/Martins3/My-Linux-config/issues?q=is%3Aissue)。
 
@@ -86,74 +70,38 @@
 1. [OpenVim](https://openvim.com): 交互式的学习 vim
 2. [vim check sheet](https://vim.rtorr.com/lang/zh_cn): vim 常用快捷键清单
 
-如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。当你知道 hjkl 之类的操作之后，之后可以
-使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的那几个。
+如果完全没有基础，建议使用 openvim 打牢基础之后，然后就直接将 vim 用于实战中间，因为这些快捷键都是肌肉记忆，无非多熟悉一下而已。
+当你知道 hjkl 之类的操作之后，之后可以使用 vim check sheet 来强化补充一下，不要指望一次全部背下来，也没有必要全部记住，一次学几个，学最能提高你工作效率的那几个。
 
-vim 的学习曲线陡峭主要就是在最开始的 hjkl 这些快捷键的记忆，但是最多几天，之后就学习曲线就非常平缓了，无非是装装插件，重新映射一下快捷键之类的事情。实不相瞒，我用 vim 好几年，至今不会写超过 5 行的 vimscript 。
+## AI 时代还有必要学习 vim 吗?
 
-## Language Server Protocal
+- **总是需要有人参与的情况吧**
 
-lsp 是微软开发 VSCode 提出的，其定义了一套标准编辑器和 language server 之间的规范。
+我觉得我们不妨把这个问题稍微扩大一点。那么我 AI 时代有必要学 C++ / Rust 
+有必要学 Linux 内核和 QEMU 吗？有必要学 CUDA 吗？
+[AI 写起来比人算子快多了](https://mp.weixin.qq.com/s/zk0KxuLzhmMJ4LPYW_OHMA)。
+有必要学数学吗？ 反正现在 OpenAI 一下子做出了 [722 个数学结果](https://github.com/openai/math)。
+似乎 AI 做什么东西都比我们强，那我们干脆什么也不要做了，对吧？
 
-1. 不同的语言需要不同的 Language Server，比如 C/C++ 需要 [clangd](https://clangd.llvm.org/), Rust 语言采用 [rust analyzer](https://github.com/rust-analyzer/rust-analyzer), 官方列举了很多 [lsp servers](https://microsoft.github.io/language-server-protocol/implementors/servers/)。
-2. 不同的编辑按照 lsp 的规范和 language server 通信
+豆包输入法又快又好，可以不用学习拼音吗?
 
-他们大致的关系如下, 通过统一的接口，大大的减少了重复开发，lsp 定义的查找引用，定义，格式化代码功能只需要安装对应的 language server 支持就是开箱即用，再也无需从各种插件哪里东拼西凑这些功能。
+但是如果你使用了 AI 会发现，很多时候由于各种各样的原因，还是需要参与的，
+这就是我使用 vim 的地方。
 
-```txt
-+------------------------+    +---------------+
-|      Editor            |    |Language Server|
-+------------------------+    +---------------+
-|     Emacs              |    |               |
-|     Neovim             +--> |      clangd   |
-|     Visual Studio Code |    |               |
-+------------------------+    +---------------+
-```
+还有一个问题就是，那为什么我非要去写这个文档呢？好像AI也可以一下子把这些文档全都写出来。我是不是因为只是我恰好掌握了DUV，现在我想给大家制造一点这种崎岖的东西，我来炫耀一下呢？
 
-## Async
+- **AI 时代，vim 掌握起来没有那么难了快捷键现在是唯一的难度**
 
-async 的效果当然就是快，当一个插件存在其 async 的版本，那么毫无疑问，就应该使用 async 版本。
+AI 真的让工具配置变的简单了很多，我最开始折腾 vim 的时候，我发现在 Ubuntu 上安装一个最新版本的 nvim
+都非常复杂，很多新手在这一环就被劝退来。
+现在有了类似 codex 的 agent 工具，这些都可以快速略过了。
 
-文件树插件，我之前一直都是使用 nerdtree 的，直到有一天我用 vim 打开 Linux kernel，我发现光标移动都非常的困难，我开始以为是终端的性能问题，但是在 htop 中发现 vim 的 CPU 利用率很高，
-直到将 nerdtree 替换为 [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua) 之类的
+最近(2026-10-23) 我将我的配置迁移到 windows 上，利用配置 nushell ，定位 nvim 在 windows 上的兼容性问题，
+也都是我在处理其他工作时候，顺手就解决了。
 
-关于 nerdtree 为什么不支持 async 可以参考 [why nerdtree doesn't support async](https://github.com/preservim/nerdtree/issues/1170)。
+- 我的 vim 的使用哲学，就是加快经常性事件，我可以经常做的事情可以写成脚本，然后快速调用。
 
-## Treesitter
-
-[treesitter](https://github.com/tree-sitter/tree-sitter) 通过语法分析，而不是词法分析，这让很多事情都非常精确。
-
-1. 更加的智能和高效的高亮。原始的 vim 中只能按照正则匹配来高亮关键字，但是 treesitter 可以区分什么是函数，成员，类，宏等定义。
-2. 如果想要跳转到函数头，在 vim 中使用默认提供 [`[``m`](https://stackoverflow.com/questions/2109503/how-to-jump-to-the-beginning-of-the-current-function-body-in-vim)，但是这是根据词法规则实现的，要么跳转到第一个匹配的 { ，要么跳转到最外层的 { ，因此
-   对于文件的格式有要求，但是如果使用上 [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)，这个问题就不存在了，你总是可以跳转到函数的开始位置。
-3. 精确的拼写检查。[spellsitter](https://www.reddit.com/r/neovim/comments/x7k7r7/spellsitter_merged_to_neovim_core/) 可以让拼写检查仅仅检查注释中内容，而默认的检查会检查所有的单词，包括各种缩写函数名，那些检查大部分都是误报。
-
-通过 Treesitter ，[有的插件](https://github.com/ThePrimeagen/refactoring.nvim)可以做到超乎想象的事情，甚至是将《重构，改善既有代码》的操作集成到 vim 中。
-
-## 为什么我不再使用 coc.nvim
-
-最开始的时候，vim / neovim 都是没有内置 lsp 功能的，在 vim 下想要使用 lsp 就要靠 [coc.nim](https://github.com/neoclide/coc.nvim) 这种插件，类似的工具官方列举了很多 [lsp tools](https://microsoft.github.io/language-server-protocol/implementors/tools/),
-coc.nvim 的宗旨就是*full language server protocol support as VSCode*, 虽然后来 neovim 内置了，但是到目前为止，我还是认为内置的 lsp 和 coc.nvim 的完善度还是存在一些差距。
-reddit 上的一些老哥目前[认为 coc.nvim 的自动补全做的更好，开箱即用。](https://www.reddit.com/r/neovim/comments/p3ji6d/nvimlspconfig_or_cocnvim/)
-
-但是到了 2023 年，虽然我认为 fannheyward 的 [Thoughts on coc.nvim](https://fann.im/blog/2021/08/01/thoughts-on-coc.nvim/) 分析地很深刻，但是现在 native lsp 的易用程度和 coc.nvim 已经很小了，[但是社区的人几乎都倒向了 native lsp](https://www.reddit.com/r/neovim/comments/14pvyo4/why_is_nobody_using_coc_anymore/)。
-虽然充满了不舍，但是还是从 coc.nvim 切换为 native lsp 了。对于使用上来说，几乎没有区别，只是现在配置内容变复杂了很多 :( 。
-
-当然，也可能我端午节的时候太清闲了。
-
-## 为什么应该使用 neovim 而不是 vim
-
-其实 vim 还有一个祖先叫做 vi, vim 全称为 vi improve, 但是 vim 在很长一段时间更新的不大，neovim 的作者提交了一个很大的 patch 给 vim，但是被 vim 的作者拒绝了，
-因为这个 patch 太大了，改动太多，然后 neovim 的作者就开始自立门户搞了一个 neovim，很多 vim 特性都是被 neovim 逼出来的，
-[neovim 推出之后，vim 的更新速度大大加快了](https://www.contextualize.ai/mpereira/20-years-of-vim-ef9acae9)
-总体来说，neovim 相较于 vim :
-
-1. 更新更快, 添加的新功能更多，例如内置 lsp, lua 语言的支持。
-2. 社区更活跃。这个你对比一下 vim 和 neovim 的开发者数量就可以知道了，vim 很长时间都只有一个人开发的。
-3. 很多插件依赖 neovim 新特性，或者只能在 vim 上勉强使用。
-4. neovim 支持 lua 语言配置。
-
-根据 stackoverflow 的报告指出 [Neovim is the most loved editor it is the 10th most wanted editor](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
+无论使用什么工具，最后的目标都是这个了。
 
 ## 安装
 
@@ -213,17 +161,6 @@ index.html              0  --.-KB/s        index.html         19.39K  --.-KB/s  
 然后 ~/.gitconfig-local 中配置代理信息。
 
 
-### 安装各种依赖
-
-```sh
-sudo apt update
-# 基本工具
-sudo apt install -y gcc wget iputils-ping python3-pip git bear tig shellcheck ripgrep fzf npm yarn
-
-# neovim 的各种依赖 https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
-sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
-```
-
 ### 安装 nvim
 
 - 当前配置需要 neovim 0.10 以上的版本，手动安装[参考这里](https://github.com/neovim/neovim/wiki/Installing-Neovim)
@@ -280,15 +217,12 @@ export http_proxy=
 
 ### 安装各种 lsp
 
-通过 [mason](https://github.com/williamboman/mason.nvim) 可以自动的安装各种 lsp，
+推荐使用 [mason](https://github.com/williamboman/mason.nvim) 
+mason 可以 可以自动的安装各种 lsp，
 在 neovim 中执行 `:Mason` 可以检查各种插件的执行状态。
 
 对于 mason 不支持的 lsp，就需要手动安装了，目前只有 ccls ，例如 `sudo apt install ccls`
 - [ccls](https://github.com/MaskRay/ccls/wiki/Install)
-
-C/C++ 默认使用 `clangd`，并通过 `--clang-tidy` 启用 clang-tidy 诊断。需要确保
-`clangd` 在 `PATH` 中；`clangd` 会读取项目里的 `compile_commands.json` 和
-`.clang-tidy`。Linux kernel 源码树例外，会自动使用 `ccls`。
 
 ### 安装本配置
 
@@ -306,23 +240,6 @@ nvim --headless +qall # 不去打开 nvim 的界面，仅仅显示 nvim 的安�
 ```
 
 然后打开 nvim，nvim 会检查包管理器 lazy.nvim 是否存在，如果不存在，那么首先安装 lazy.nvim ，然后 lazy.nvim 会自动安装所有的插件.
-
-### 手动编译一些插件
-
-一般来说，安装插件是可以自动构建好的，但是我发现有两个插件很多时候并不能，给搭建带来很多困扰，所以可以手动构建
-
-```sh
-# markdown-preview.nvim
-cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install
-```
-
-### checkhealth 检查
-
-在 nvim 中间执行 `checkhealth` 命令，其会提醒需要安装的各种依赖。
-
-| 我的配置的截图                      |
-| ----------------------------------- |
-| <img src="./img/checkhealth.png" /> |
 
 ## 基本操作
 
@@ -382,22 +299,8 @@ map <leader>d "+d
 ```
 所以现在可以使用，`,` `y` 和 `,` `p` 实现复制粘贴，`,` `d` 删除到系统剪切板中。
 
-#### 从远程 server 上复制粘贴本地的剪切板中
-
-假如你在一台 windows 系统的电脑中 ssh 到一台 Linux server 上，在 server 中使用复制，默认会复制到 server 的剪切板中。
-neovim 在 0.10 中增加了一个新功能 oscyank，通过该功能可以直接复制到你在使用的 windows 电脑的剪切板中。
-
-如果 0.10 之前的版本， 使用插件 [ojroques/vim-oscyank](https://github.com/ojroques/vim-oscyank)
-
-如果是在 tmux 中使用，那么 tmux 中需要添加如下配置:
-```txt
-# Allow clipboard with OSC-52 work, see https://github.com/tmux/tmux/wiki/Clipboard
-set -s set-clipboard on
-```
-
-原理上参考:
-- https://news.ycombinator.com/item?id=32037489
-- https://github.com/ojroques/vim-oscyank/issues/24
+得益于 osc52 ，如果你在 remote server 上使用 nvim ，拷贝会默认进入到当前桌面环境的剪切板中，
+这真的很方便了。
 
 ### 符号搜索
 
