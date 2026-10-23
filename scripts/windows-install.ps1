@@ -292,6 +292,11 @@ Install-Junction -Source (Join-Path $dotfiles "config\zellij") -Target (Join-Pat
 
 $configFiles = @(
     @{
+        Source = Join-Path $dotfiles "config\clangd\config.yaml"
+        Target = Join-Path $env:LOCALAPPDATA "clangd\config.yaml"
+        BackupName = "clangd-config"
+    },
+    @{
         Source = Join-Path $dotfiles ".gitconfig"
         Target = Join-Path $HOME ".gitconfig"
         BackupName = "gitconfig"
