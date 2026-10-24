@@ -7,3 +7,11 @@ snippet import
     ${0}
   	return 0;
   }
+
+snippet src
+  static inline void
+  log(std::source_location loc = std::source_location::current())
+  {
+      std::cout << loc.function_name() << " ";
+  }
+  ${0}
