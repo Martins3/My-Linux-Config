@@ -218,6 +218,7 @@ if (-not $SkipPackages) {
         "lazygit",
         "gcc",
         "ripgrep",
+        "tokei",
         "fd",
         "unzip",
         "tree-sitter",
@@ -273,6 +274,10 @@ if (-not (Test-Path -LiteralPath $dotfiles)) {
         "https://github.com/Martins3/My-Linux-Config",
         $dotfiles
     )
+}
+
+if (-not $SkipPackages) {
+    Invoke-NativeCommand -FilePath "go" -ArgumentList @("install", "github.com/zdyxry/tokui@latest")
 }
 
 $legacyZellij = Join-Path $env:APPDATA "zellij"
