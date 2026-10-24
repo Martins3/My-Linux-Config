@@ -1,5 +1,6 @@
 -- whichkey configuration
 local wk = require("which-key")
+local runner = require("usr.runner")
 wk.setup({
   triggers = {
     { "<auto>", mode = "nxso" },
@@ -152,7 +153,8 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.keymap.set("n", "<leader>x", function()
       vim.cmd("update")
-      require("code_runner").run_from_fn("insights " .. vim.fn.shellescape(vim.fn.expand("%:p")))
+      local file = vim.fs.normalize(vim.fn.expand("%:p"))
+      require("code_runner").run_from_fn(runner.command("insights %s", file))
     end,
       { buffer = event.buf, silent = true, desc = "C++ Insights 展开" })
   end
